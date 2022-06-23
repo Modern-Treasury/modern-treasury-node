@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+rm -rf dist/*
+
+tsc -p tsconfig.cjs.json
+
+tsc-alias -p tsconfig.cjs.json
+
+yarn prettier --write .
