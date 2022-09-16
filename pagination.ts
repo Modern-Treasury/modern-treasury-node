@@ -4,7 +4,7 @@ import { AbstractPage, APIResponse, APIClient, FinalRequestOptions, coerceIntege
 export type PageResponse<Item> = Item[];
 
 export interface PageParams {
-  after_cursor?: string;
+  after_cursor?: string | null;
 
   per_page?: number;
 }
