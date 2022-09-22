@@ -41,6 +41,13 @@ export interface RoutingNumberLookupRequest {
   routing_number_type?: 'aba' | 'au_bsb' | 'ca_cpa' | 'gb_sort_code' | 'swift';
 
   /**
+   * An object containing key-value pairs, each with a sanctions list as the key and
+   * a boolean value representing whether the bank is on that particular sanctions
+   * list. Currently, this includes eu_con, uk_hmt, us_ofac, and un sanctions lists.
+   */
+  sanctions?: unknown;
+
+  /**
    * An array of payment types that are supported for this routing number. This can
    * include `ach`, `wire`, `rtp`, `sepa`, `bacs`, `au_becs` currently.
    */

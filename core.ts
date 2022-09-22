@@ -1,5 +1,4 @@
 import qs from 'qs';
-import pkgUp from 'pkg-up';
 
 import type { Agent } from 'http';
 import type NodeFetch from 'node-fetch';
@@ -8,8 +7,9 @@ import type KeepAliveAgent from 'agentkeepalive';
 import { AbortController } from 'abort-controller';
 import { FormData, File, Blob } from 'formdata-node';
 import { FormDataEncoder } from 'form-data-encoder';
-
 import { Readable } from 'stream';
+
+import { VERSION } from './version';
 
 const isNode = typeof process !== 'undefined';
 let nodeFetch: typeof NodeFetch | undefined = undefined;
@@ -29,6 +29,8 @@ if (isNode) {
 const DEFAULT_MAX_RETRIES = 2;
 const DEFAULT_TIMEOUT = 60 * 1000; // 60s
 
+type Fetch = (url: RequestInfo, init?: RequestInit) => Promise<Response>;
+
 export abstract class APIClient {
   apiKey: string | null;
   baseURL: string;
@@ -36,7 +38,7 @@ export abstract class APIClient {
   timeout: number;
   httpAgent: Agent | undefined;
 
-  private fetch: typeof NodeFetch;
+  private fetch: Fetch;
   protected idempotencyHeader?: string;
 
   constructor({
@@ -68,7 +70,7 @@ export abstract class APIClient {
         );
       }
       // For now, we just pretend that Fetch is the same type as NodeFetch.
-      this.fetch = fetch as unknown as typeof NodeFetch;
+      this.fetch = fetch as unknown as Fetch;
     }
   }
 
@@ -89,7 +91,7 @@ export abstract class APIClient {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'User-Agent': this.getUserAgent(),
-      'X-Stainless-Client-User-Agent': getPlatformPropertiesJSON(),
+      ...getPlatformHeaders(),
       ...this.authHeaders(),
     };
   }
@@ -241,9 +243,15 @@ export abstract class APIClient {
 
     const timeout = setTimeout(() => controller.abort(), ms);
 
-    return this.fetch(url, { signal: controller.signal as any, ...options }).finally(() => {
-      clearTimeout(timeout);
-    });
+    return this.getRequestClient()
+      .fetch(url, { signal: controller.signal as any, ...options })
+      .finally(() => {
+        clearTimeout(timeout);
+      });
+  }
+
+  protected getRequestClient(): RequestClient {
+    return { fetch: this.fetch };
   }
 
   private shouldRetry(response: Response): boolean {
@@ -312,8 +320,7 @@ export abstract class APIClient {
   }
 
   private getUserAgent(): string {
-    const packageVersion = getPackageVersion();
-    return `${this.constructor.name}/JS ${packageVersion}`;
+    return `${this.constructor.name}/JS ${VERSION}`;
   }
 
   private debug(action: string, ...args: any[]) {
@@ -438,7 +445,7 @@ export class PagePromise<
 }
 
 export const createResponseHeaders = (
-  headers: Awaited<ReturnType<typeof NodeFetch>>['headers'],
+  headers: Awaited<ReturnType<Fetch>>['headers'],
 ): Record<string, string> => {
   return new Proxy(Object.fromEntries(headers.entries()), {
     get(target, name) {
@@ -450,6 +457,7 @@ export const createResponseHeaders = (
 
 type HTTPMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
+export type RequestClient = { fetch: Fetch };
 export type Headers = Record<string, string | null | undefined>;
 export type KeysEnum<T> = { [P in keyof Required<T>]: true };
 
@@ -577,53 +585,98 @@ export class APIConnectionTimeoutError extends APIConnectionError {
   }
 }
 
-let _packageVersion: string;
-const getPackageVersion = (): string => {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    return (_packageVersion ??= require(pkgUp.sync()!).version);
-  } catch (e) {
-    console.debug(`Ignoring error while determing package version ${e}`);
-    return (_packageVersion = 'unknown');
-  }
-};
-
 declare const Deno: any;
+type Arch = 'x32' | 'x64' | 'arm' | 'arm64' | `other:${string}` | 'unknown';
+type PlatformName =
+  | 'MacOS'
+  | 'Linux'
+  | 'Windows'
+  | 'FreeBSD'
+  | 'OpenBSD'
+  | 'iOS'
+  | 'Android'
+  | `Other:${string}`
+  | 'Unknown';
 type PlatformProperties = {
-  lang: 'js';
-  packageVersion: string;
-  os: string;
-  arch: string;
-  runtime: 'node' | 'deno';
-  runtimeVersion: string;
+  'X-Stainless-Lang': 'js';
+  'X-Stainless-Package-Version': string;
+  'X-Stainless-OS': PlatformName;
+  'X-Stainless-Arch': Arch;
+  'X-Stainless-Runtime': 'node' | 'deno' | 'unknown';
+  'X-Stainless-Runtime-Version': string;
 };
-const getPlatformProperties = (): PlatformProperties | void => {
+const getPlatformProperties = (): PlatformProperties => {
   if (typeof process !== 'undefined') {
     return {
-      lang: 'js',
-      packageVersion: getPackageVersion(),
-      os: process.platform,
-      arch: process.arch,
-      runtime: 'node',
-      runtimeVersion: process.version,
+      'X-Stainless-Lang': 'js',
+      'X-Stainless-Package-Version': VERSION,
+      'X-Stainless-OS': normalizePlatform(process.platform),
+      'X-Stainless-Arch': normalizeArch(process.arch),
+      'X-Stainless-Runtime': 'node',
+      'X-Stainless-Runtime-Version': process.version,
     };
   }
   if (typeof Deno !== 'undefined') {
     return {
-      lang: 'js',
-      packageVersion: getPackageVersion(),
-      os: Deno.build.os,
-      arch: Deno.build.arch,
-      runtime: 'deno',
-      runtimeVersion: Deno.version,
+      'X-Stainless-Lang': 'js',
+      'X-Stainless-Package-Version': VERSION,
+      'X-Stainless-OS': normalizePlatform(Deno.build.os),
+      'X-Stainless-Arch': normalizeArch(Deno.build.arch),
+      'X-Stainless-Runtime': 'deno',
+      'X-Stainless-Runtime-Version': Deno.version,
     };
   }
   // TODO add support for Cloudflare workers, browsers, etc.
+  return {
+    'X-Stainless-Lang': 'js',
+    'X-Stainless-Package-Version': VERSION,
+    'X-Stainless-OS': 'Unknown',
+    'X-Stainless-Arch': 'unknown',
+    'X-Stainless-Runtime': 'unknown',
+    'X-Stainless-Runtime-Version': 'unknown',
+  };
 };
 
-let _platformPropertiesJSON: string;
-const getPlatformPropertiesJSON = () => {
-  return (_platformPropertiesJSON ??= JSON.stringify(getPlatformProperties())) || '';
+const normalizeArch = (arch: string): Arch => {
+  // Node docs:
+  // - https://nodejs.org/api/process.html#processarch
+  // Deno docs:
+  // - https://doc.deno.land/deno/stable/~/Deno.build
+  if (arch === 'x32') return 'x32';
+  if (arch === 'x86_64' || arch === 'x64') return 'x64';
+  if (arch === 'arm') return 'arm';
+  if (arch === 'aarch64' || arch === 'arm64') return 'arm64';
+  if (arch) return `other:${arch}`;
+  return 'unknown';
+};
+
+const normalizePlatform = (platform: string): PlatformName => {
+  // Node platforms:
+  // - https://nodejs.org/api/process.html#processplatform
+  // Deno platforms:
+  // - https://doc.deno.land/deno/stable/~/Deno.build
+  // - https://github.com/denoland/deno/issues/14799
+
+  platform = platform.toLowerCase();
+
+  // NOTE: this iOS check is untested and may not work
+  // Node does not work natively on IOS, there is a fork at
+  // https://github.com/nodejs-mobile/nodejs-mobile
+  // however it is unknown at the time of writing how to detect if it is running
+  if (platform.includes('ios')) return 'iOS';
+  if (platform === 'android') return 'Android';
+  if (platform === 'darwin') return 'MacOS';
+  if (platform === 'win32') return 'Windows';
+  if (platform === 'freebsd') return 'FreeBSD';
+  if (platform === 'openbsd') return 'OpenBSD';
+  if (platform === 'linux') return 'Linux';
+  if (platform) return `Other:${platform}`;
+  return 'Unknown';
+};
+
+let _platformHeaders: PlatformProperties;
+const getPlatformHeaders = () => {
+  return (_platformHeaders ??= getPlatformProperties());
 };
 
 const safeJSON = (text: string) => {

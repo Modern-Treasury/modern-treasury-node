@@ -59,6 +59,11 @@ export class ModernTreasury extends Core.APIClient {
   incomingPaymentDetails: API.IncomingPaymentDetails = new API.IncomingPaymentDetails(this);
   documents: API.Documents = new API.Documents(this);
   internalAccounts: API.InternalAccounts = new API.InternalAccounts(this);
+  ledgers: API.Ledgers = new API.Ledgers(this);
+  ledgerAccountCategories: API.LedgerAccountCategories = new API.LedgerAccountCategories(this);
+  ledgerAccounts: API.LedgerAccounts = new API.LedgerAccounts(this);
+  ledgerEntries: API.LedgerEntries = new API.LedgerEntries(this);
+  ledgerTransactions: API.LedgerTransactions = new API.LedgerTransactions(this);
   lineItems: API.LineItems = new API.LineItems(this);
   paymentOrders: API.PaymentOrders = new API.PaymentOrders(this);
   returns: API.Returns = new API.Returns(this);
@@ -147,6 +152,35 @@ export namespace ModernTreasury {
   export import InternalAccountCreateParams = API.InternalAccountCreateParams;
   export import InternalAccountUpdateParams = API.InternalAccountUpdateParams;
   export import InternalAccountListParams = API.InternalAccountListParams;
+
+  export import Ledger = API.Ledger;
+  export import LedgersPage = API.LedgersPage;
+  export import LedgerCreateParams = API.LedgerCreateParams;
+  export import LedgerUpdateParams = API.LedgerUpdateParams;
+  export import LedgerListParams = API.LedgerListParams;
+
+  export import LedgerAccountCategory = API.LedgerAccountCategory;
+  export import LedgerAccountCategoriesPage = API.LedgerAccountCategoriesPage;
+  export import LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
+  export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
+  export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
+
+  export import LedgerAccount = API.LedgerAccount;
+  export import LedgerAccountsPage = API.LedgerAccountsPage;
+  export import LedgerAccountCreateParams = API.LedgerAccountCreateParams;
+  export import LedgerAccountRetrieveParams = API.LedgerAccountRetrieveParams;
+  export import LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;
+  export import LedgerAccountListParams = API.LedgerAccountListParams;
+
+  export import LedgerEntry = API.LedgerEntry;
+  export import LedgerEntriesPage = API.LedgerEntriesPage;
+  export import LedgerEntryListParams = API.LedgerEntryListParams;
+
+  export import LedgerTransaction = API.LedgerTransaction;
+  export import LedgerTransactionsPage = API.LedgerTransactionsPage;
+  export import LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
+  export import LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
+  export import LedgerTransactionListParams = API.LedgerTransactionListParams;
 
   export import LineItem = API.LineItem;
   export import LineItemsPage = API.LineItemsPage;
