@@ -10,7 +10,7 @@ export class LineItems extends APIResource {
    * Get a single line item
    */
   retrieve(
-    itemizableType: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     options?: Core.RequestOptions,
@@ -19,20 +19,20 @@ export class LineItems extends APIResource {
   }
 
   update(
-    itemizableType: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     body?: LineItemUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LineItem>>;
   update(
-    itemizableType: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LineItem>>;
   update(
-    itemizableType: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     body: LineItemUpdateParams | Core.RequestOptions = {},
@@ -49,23 +49,30 @@ export class LineItems extends APIResource {
    * Get a list of line items
    */
   list(
-    itemizableType: string,
-    id: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     query?: LineItemListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<LineItemsPage>;
-  list(itemizableType: string, id: string, options?: Core.RequestOptions): Core.PagePromise<LineItemsPage>;
   list(
-    itemizableType: string,
-    id: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<LineItemsPage>;
+  list(
+    itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     query: LineItemListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<LineItemsPage> {
     if (isRequestOptions(query)) {
-      return this.list(itemizableType, id, {}, query);
+      return this.list(itemizableType, itemizableId, {}, query);
     }
 
-    return this.getAPIList(`/api/${itemizableType}/${id}/line_items`, LineItemsPage, { query, ...options });
+    return this.getAPIList(`/api/${itemizableType}/${itemizableId}/line_items`, LineItemsPage, {
+      query,
+      ...options,
+    });
   }
 }
 

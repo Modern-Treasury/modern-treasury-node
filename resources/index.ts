@@ -15,6 +15,7 @@ export * from './line-items';
 export * from './paper-items';
 export * from './payment-orders/payment-orders';
 export * from './returns';
+export * from './shared';
 export * from './top-level';
 export * from './transactions';
 export * from './validations';

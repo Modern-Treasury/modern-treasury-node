@@ -7,23 +7,57 @@ import { Page, PageParams } from '~/pagination';
 
 export class Documents extends APIResource {
   list(
-    documentableType: string,
-    id: string,
+    documentableType:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions',
+    documentableId: string,
     query?: DocumentListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage>;
-  list(documentableType: string, id: string, options?: Core.RequestOptions): Core.PagePromise<DocumentsPage>;
   list(
-    documentableType: string,
-    id: string,
+    documentableType:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions',
+    documentableId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DocumentsPage>;
+  list(
+    documentableType:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions',
+    documentableId: string,
     query: DocumentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage> {
     if (isRequestOptions(query)) {
-      return this.list(documentableType, id, {}, query);
+      return this.list(documentableType, documentableId, {}, query);
     }
 
-    return this.getAPIList(`/api/${documentableType}/${id}/documents`, DocumentsPage, { query, ...options });
+    return this.getAPIList(`/api/${documentableType}/${documentableId}/documents`, DocumentsPage, {
+      query,
+      ...options,
+    });
   }
 }
 
