@@ -1,6 +1,6 @@
 {
   "name": "modern-treasury",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Client library for the ModernTreasury API",
   "author": "Modern Treasury <sdk-feedback@moderntreasury.com>",
   "types": "dist/cjs/index.d.ts",
@@ -28,6 +28,7 @@
     "qs": "^6.10.3"
   },
   "devDependencies": {
+    "modern-treasury": "link:.",
     "@types/jest": "^27.5.0",
     "@types/node": "^17.0.21",
     "@types/node-fetch": "^2.6.1",
@@ -37,7 +38,7 @@
     "eslint": "^8.22.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "jest": "^28.1.0",
-    "prettier": "^2.5.1",
+    "prettier": "rattrayalex/prettier#postfix-ternaries",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.5.0",
     "tsc-alias": "^1.6.9",
