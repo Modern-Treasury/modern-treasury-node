@@ -1,8 +1,8 @@
-# ModernTreasury Node API Library
+# Modern Treasury Node API Library
 
 [![NPM version](https://img.shields.io/npm/v/modern-treasury.svg)](https://npmjs.org/package/modern-treasury)
 
-The ModernTreasury Node library provides convenient access to the ModernTreasury REST API from applications written in server-side JavaScript.
+The Modern Treasury Node library provides convenient access to the Modern Treasury REST API from applications written in server-side JavaScript.
 It includes TypeScript definitions for all request params and response fields.
 
 ## Documentation
@@ -28,13 +28,14 @@ const modernTreasury = new ModernTreasury({
 });
 
 async function main() {
-  const counterparty = await modernTreasury.counterparties.create({
-    name: 'my first counterparty',
+  const externalAccount = await modernTreasury.externalAccounts.create({
+    counterparty_id: '123',
+    name: 'my bank',
   });
 
-  console.log(counterparty.id);
+  console.log(externalAccount.id);
 }
-main().catch(console.error)
+main().catch(console.error);
 ```
 
 ### Usage with TypeScript
@@ -51,11 +52,13 @@ const modernTreasury = new ModernTreasury({
 });
 
 async function main() {
-  const params: ModernTreasury.CounterpartyCreateParams = { name: 'my first counterparty' };
+  const params: ModernTreasury.ExternalAccountCreateParams = { counterparty_id: '123', name: 'my bank' };
 
-  const counterparty: ModernTreasury.Counterparty = await modernTreasury.counterparties.create(params);
+  const externalAccount: ModernTreasury.ExternalAccount = await modernTreasury.externalAccounts.create(
+    params,
+  );
 }
-main().catch(console.error)
+main().catch(console.error);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -68,7 +71,8 @@ a subclass of `APIError` will be thrown:
 
 ```ts
 async function main() {
-  const externalAccount = await modernTreasury.externalAccounts.create({ counterparty_id: 'missing' })
+  const externalAccount = await modernTreasury.externalAccounts
+    .create({ counterparty_id: 'missing' })
     .catch((err) => {
       if (err instanceof ModernTreasury.APIError) {
         console.log(err.status); // 400
@@ -76,10 +80,9 @@ async function main() {
 
         console.log(err.headers); // {server: 'nginx', ...}
       }
-    })
-
+    });
 }
-main().catch(console.error)
+main().catch(console.error);
 ```
 
 Error codes are as followed:
@@ -152,7 +155,7 @@ async function fetchAllExternalAccounts(params) {
     allExternalAccounts.push(externalAccount);
   }
   return allExternalAccounts;
-};
+}
 ```
 
 ## Configuring an HTTP(S) Agent (e.g., for proxies)

@@ -2,7 +2,6 @@
 import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources';
-
 import type { Agent } from 'http';
 
 type Config = {
@@ -18,6 +17,7 @@ type Config = {
 };
 
 export class ModernTreasury extends Core.APIClient {
+  apiKey: string | null;
   organizationId: string;
   webhookKey?: string | null;
 
@@ -35,11 +35,11 @@ export class ModernTreasury extends Core.APIClient {
     }
 
     super({
-      apiKey: options.apiKey,
       baseURL: options.baseURL!,
       timeout: options.timeout,
       httpAgent: options.httpAgent,
     });
+    this.apiKey = options.apiKey;
     this.idempotencyHeader = 'Idempotency-Key';
 
     const organizationId = config.organizationId || process.env['MODERN_TREASURY_ORGANIZATION_ID'];
