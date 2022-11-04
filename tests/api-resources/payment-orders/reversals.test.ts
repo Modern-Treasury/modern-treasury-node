@@ -8,6 +8,79 @@ const modernTreasury = new ModernTreasury({
 });
 
 describe('resource reversals', () => {
+  test('create: only required params', async () => {
+    const response = await modernTreasury.paymentOrders.reversals.create(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      { reason: 'duplicate' },
+    );
+  });
+
+  test('create: required and optional params', async () => {
+    const response = await modernTreasury.paymentOrders.reversals.create(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      {
+        reason: 'duplicate',
+        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+        ledger_transaction: {
+          description: 'string',
+          status: 'archived',
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          effective_date: '2019-12-27',
+          ledger_entries: [
+            {
+              amount: 0,
+              direction: 'credit',
+              ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              lock_version: 0,
+              pending_balance_amount: { foo: 0 },
+              posted_balance_amount: { foo: 0 },
+              available_balance_amount: { foo: 0 },
+            },
+            {
+              amount: 0,
+              direction: 'credit',
+              ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              lock_version: 0,
+              pending_balance_amount: { foo: 0 },
+              posted_balance_amount: { foo: 0 },
+              available_balance_amount: { foo: 0 },
+            },
+            {
+              amount: 0,
+              direction: 'credit',
+              ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              lock_version: 0,
+              pending_balance_amount: { foo: 0 },
+              posted_balance_amount: { foo: 0 },
+              available_balance_amount: { foo: 0 },
+            },
+          ],
+          external_id: 'string',
+          ledgerable_type: 'counterparty',
+          ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+      },
+    );
+  });
+
+  test('retrieve', async () => {
+    const response = await modernTreasury.paymentOrders.reversals.retrieve(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    );
+  });
+
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      modernTreasury.paymentOrders.reversals.retrieve(
+        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('list: only required params', async () => {
     const response = await modernTreasury.paymentOrders.reversals.list('string');
   });

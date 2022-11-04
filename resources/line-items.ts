@@ -10,7 +10,7 @@ export class LineItems extends APIResource {
    * Get a single line item
    */
   retrieve(
-    itemizableType: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     options?: Core.RequestOptions,
@@ -19,20 +19,20 @@ export class LineItems extends APIResource {
   }
 
   update(
-    itemizableType: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     body?: LineItemUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LineItem>>;
   update(
-    itemizableType: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LineItem>>;
   update(
-    itemizableType: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     body: LineItemUpdateParams | Core.RequestOptions = {},
@@ -49,29 +49,38 @@ export class LineItems extends APIResource {
    * Get a list of line items
    */
   list(
-    itemizableType: string,
-    id: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     query?: LineItemListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<LineItemsPage>;
-  list(itemizableType: string, id: string, options?: Core.RequestOptions): Core.PagePromise<LineItemsPage>;
   list(
-    itemizableType: string,
-    id: string,
+    itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<LineItemsPage>;
+  list(
+    itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     query: LineItemListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<LineItemsPage> {
     if (isRequestOptions(query)) {
-      return this.list(itemizableType, id, {}, query);
+      return this.list(itemizableType, itemizableId, {}, query);
     }
 
-    return this.getAPIList(`/api/${itemizableType}/${id}/line_items`, LineItemsPage, { query, ...options });
+    return this.getAPIList(`/api/${itemizableType}/${itemizableId}/line_items`, LineItemsPage, {
+      query,
+      ...options,
+    });
   }
 }
 
 export class LineItemsPage extends Page<LineItem> {}
 
 export interface LineItem {
+  accounting: LineItem.Accounting;
+
   /**
    * The ID of one of your accounting categories. Note that these will only be
    * accessible if your accounting system has been connected.
@@ -125,6 +134,23 @@ export interface LineItem {
   object: string;
 
   updated_at: string;
+}
+
+export namespace LineItem {
+  export interface Accounting {
+    /**
+     * The ID of one of your accounting categories. Note that these will only be
+     * accessible if your accounting system has been connected.
+     */
+    account_id?: string | null;
+
+    /**
+     * The ID of one of the class objects in your accounting system. Class objects
+     * track segments of your business independent of client or project. Note that
+     * these will only be accessible if your accounting system has been connected.
+     */
+    class_id?: string | null;
+  }
 }
 
 export interface LineItemUpdateParams {

@@ -3,10 +3,13 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import { Versions } from './versions';
 import { Page, PageParams } from '~/pagination';
 import * as LedgerEntries from '~/resources/ledger-entries';
 
 export class LedgerTransactions extends APIResource {
+  versions: Versions = new Versions(this.client);
+
   /**
    * Create a ledger transaction.
    */
@@ -74,6 +77,12 @@ export interface LedgerTransaction {
    * An optional description for internal use.
    */
   description: string | null;
+
+  /**
+   * The timestamp (ISO8601 format) at which the ledger transaction happened for
+   * reporting purposes.
+   */
+  effective_at: string;
 
   /**
    * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
@@ -166,7 +175,7 @@ export interface LedgerTransactionCreateParams {
   /**
    * An optional description for internal use.
    */
-  description?: string;
+  description?: string | null;
 
   /**
    * A unique string to represent the ledger transaction. Only one pending or posted

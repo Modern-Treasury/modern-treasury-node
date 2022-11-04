@@ -30,6 +30,10 @@ describe('resource payment_orders', () => {
       priority: 'high',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      accounting: {
+        account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      },
       accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       currency: 'AED',
@@ -173,6 +177,10 @@ describe('resource payment_orders', () => {
       priority: 'high',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      accounting: {
+        account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      },
       accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       currency: 'AED',
@@ -270,6 +278,10 @@ describe('resource payment_orders', () => {
           priority: 'high',
           originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          accounting: {
+            account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          },
           accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           currency: 'AED',
@@ -419,6 +431,10 @@ describe('resource payment_orders', () => {
       priority: 'high',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      accounting: {
+        account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      },
       accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       currency: 'AED',
