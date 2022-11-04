@@ -7,21 +7,24 @@ import { Page, PageParams } from '~/pagination';
 
 export class Reversals extends APIResource {
   list(
-    id: string,
+    paymentOrderId: string,
     query?: ReversalListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<ReversalsPage>;
-  list(id: string, options?: Core.RequestOptions): Core.PagePromise<ReversalsPage>;
+  list(paymentOrderId: string, options?: Core.RequestOptions): Core.PagePromise<ReversalsPage>;
   list(
-    id: string,
+    paymentOrderId: string,
     query: ReversalListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<ReversalsPage> {
     if (isRequestOptions(query)) {
-      return this.list(id, {}, query);
+      return this.list(paymentOrderId, {}, query);
     }
 
-    return this.getAPIList(`/api/payment_orders/${id}/reversals`, ReversalsPage, { query, ...options });
+    return this.getAPIList(`/api/payment_orders/${paymentOrderId}/reversals`, ReversalsPage, {
+      query,
+      ...options,
+    });
   }
 }
 
