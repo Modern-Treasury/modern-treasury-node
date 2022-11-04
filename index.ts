@@ -52,12 +52,15 @@ export class ModernTreasury extends Core.APIClient {
     this.webhookKey = config.webhookKey || process.env['MODERN_TREASURY_WEBHOOK_KEY'] || null;
   }
 
+  connections: API.Connections = new API.Connections(this);
   counterparties: API.Counterparties = new API.Counterparties(this);
   events: API.Events = new API.Events(this);
   expectedPayments: API.ExpectedPayments = new API.ExpectedPayments(this);
   externalAccounts: API.ExternalAccounts = new API.ExternalAccounts(this);
   incomingPaymentDetails: API.IncomingPaymentDetails = new API.IncomingPaymentDetails(this);
   documents: API.Documents = new API.Documents(this);
+  accountDetails: API.AccountDetails = new API.AccountDetails(this);
+  routingDetails: API.RoutingDetails = new API.RoutingDetails(this);
   internalAccounts: API.InternalAccounts = new API.InternalAccounts(this);
   ledgers: API.Ledgers = new API.Ledgers(this);
   ledgerAccountCategories: API.LedgerAccountCategories = new API.LedgerAccountCategories(this);
@@ -112,6 +115,10 @@ export namespace ModernTreasury {
 
   export import PingResponse = API.PingResponse;
 
+  export import Connection = API.Connection;
+  export import ConnectionsPage = API.ConnectionsPage;
+  export import ConnectionListParams = API.ConnectionListParams;
+
   export import Counterparty = API.Counterparty;
   export import CounterpartyCollectAccountResponse = API.CounterpartyCollectAccountResponse;
   export import CounterpartiesPage = API.CounterpartiesPage;
@@ -142,10 +149,20 @@ export namespace ModernTreasury {
   export import IncomingPaymentDetailsPage = API.IncomingPaymentDetailsPage;
   export import IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
   export import IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
+  export import IncomingPaymentDetailCreateAsyncParams = API.IncomingPaymentDetailCreateAsyncParams;
 
   export import Document = API.Document;
   export import DocumentsPage = API.DocumentsPage;
+  export import DocumentCreateParams = API.DocumentCreateParams;
   export import DocumentListParams = API.DocumentListParams;
+
+  export import AccountDetailsPage = API.AccountDetailsPage;
+  export import AccountDetailCreateParams = API.AccountDetailCreateParams;
+  export import AccountDetailListParams = API.AccountDetailListParams;
+
+  export import RoutingDetailsPage = API.RoutingDetailsPage;
+  export import RoutingDetailCreateParams = API.RoutingDetailCreateParams;
+  export import RoutingDetailListParams = API.RoutingDetailListParams;
 
   export import InternalAccount = API.InternalAccount;
   export import InternalAccountsPage = API.InternalAccountsPage;

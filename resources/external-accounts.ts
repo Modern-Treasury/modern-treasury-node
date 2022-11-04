@@ -89,7 +89,7 @@ export class ExternalAccounts extends APIResource {
 export class ExternalAccountsPage extends Page<ExternalAccount> {}
 
 export interface ExternalAccount {
-  account_details: Array<ExternalAccount.AccountDetails>;
+  account_details: Array<Shared.AccountDetail>;
 
   /**
    * Can be `checking`, `savings` or `other`.
@@ -141,7 +141,7 @@ export interface ExternalAccount {
    */
   party_type: 'business' | 'individual' | null;
 
-  routing_details: Array<ExternalAccount.RoutingDetails>;
+  routing_details: Array<Shared.RoutingDetail>;
 
   updated_at: string;
 
@@ -187,133 +187,6 @@ export namespace ExternalAccount {
     region: string | null;
 
     updated_at: string;
-  }
-
-  export interface AccountDetails {
-    account_number: string;
-
-    /**
-     * Supports iban and clabe, otherwise other if the bank account number is in a
-     * generic format.
-     */
-    account_number_type: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    id: string;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
-  export interface RoutingDetails {
-    bank_address: RoutingDetails.BankAddress | null;
-
-    bank_name: string;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    id: string;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * If the routing detail is to be used for a specific payment type this field will
-     * be populated, otherwise null.
-     */
-    payment_type:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'book'
-      | 'card'
-      | 'check'
-      | 'eft'
-      | 'interac'
-      | 'provxchange'
-      | 'rtp'
-      | 'sen'
-      | 'sepa'
-      | 'signet'
-      | 'wire'
-      | null;
-
-    /**
-     * The routing number of the bank.
-     */
-    routing_number: string;
-
-    routing_number_type:
-      | 'aba'
-      | 'swift'
-      | 'au_bsb'
-      | 'ca_cpa'
-      | 'cnaps'
-      | 'gb_sort_code'
-      | 'in_ifsc'
-      | 'my_branch_code'
-      | 'br_codigo';
-
-    updated_at: string;
-  }
-
-  export namespace RoutingDetails {
-    export interface BankAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country: string | null;
-
-      created_at: string;
-
-      id: string;
-
-      line1: string | null;
-
-      line2: string | null;
-
-      /**
-       * This field will be true if this object exists in the live environment or false
-       * if it exists in the test environment.
-       */
-      live_mode: boolean;
-
-      /**
-       * Locality or City.
-       */
-      locality: string | null;
-
-      object: string;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code: string | null;
-
-      /**
-       * Region or State.
-       */
-      region: string | null;
-
-      updated_at: string;
-    }
   }
 
   export interface ContactDetails {
@@ -444,6 +317,7 @@ export namespace ExternalAccountCreateParams {
       | 'card'
       | 'check'
       | 'eft'
+      | 'global_pay'
       | 'interac'
       | 'provxchange'
       | 'rtp'
@@ -559,6 +433,7 @@ export interface ExternalAccountVerifyParams {
     | 'card'
     | 'check'
     | 'eft'
+    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'

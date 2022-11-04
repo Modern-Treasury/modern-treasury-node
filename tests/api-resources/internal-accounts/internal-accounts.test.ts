@@ -25,6 +25,7 @@ describe('resource internal_accounts', () => {
       currency: 'USD',
       entity_id: 'string',
       parent_account_id: 'string',
+      counterparty_id: 'string',
     });
   });
 
@@ -48,6 +49,7 @@ describe('resource internal_accounts', () => {
       name: 'string',
       metadata: { foo: 'string' },
       parent_account_id: 'string',
+      counterparty_id: 'string',
     });
   });
 
@@ -63,7 +65,12 @@ describe('resource internal_accounts', () => {
     await expect(
       modernTreasury.internalAccounts.update(
         'string',
-        { name: 'string', metadata: { foo: 'string' }, parent_account_id: 'string' },
+        {
+          name: 'string',
+          metadata: { foo: 'string' },
+          parent_account_id: 'string',
+          counterparty_id: 'string',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

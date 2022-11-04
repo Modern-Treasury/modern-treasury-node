@@ -82,6 +82,8 @@ export class PaymentOrders extends APIResource {
 export class PaymentOrdersPage extends Page<PaymentOrder> {}
 
 export interface PaymentOrder {
+  accounting: PaymentOrder.Accounting;
+
   /**
    * The ID of one of your accounting categories. Note that these will only be
    * accessible if your accounting system has been connected.
@@ -302,6 +304,7 @@ export interface PaymentOrder {
     | 'card'
     | 'check'
     | 'eft'
+    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -334,6 +337,21 @@ export interface PaymentOrder {
 }
 
 export namespace PaymentOrder {
+  export interface Accounting {
+    /**
+     * The ID of one of your accounting categories. Note that these will only be
+     * accessible if your accounting system has been connected.
+     */
+    account_id?: string | null;
+
+    /**
+     * The ID of one of the class objects in your accounting system. Class objects
+     * track segments of your business independent of client or project. Note that
+     * these will only be accessible if your accounting system has been connected.
+     */
+    class_id?: string | null;
+  }
+
   export interface ReferenceNumbers {
     created_at: string;
 
@@ -440,6 +458,7 @@ export interface PaymentOrderCreateParams {
     | 'card'
     | 'check'
     | 'eft'
+    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -447,6 +466,8 @@ export interface PaymentOrderCreateParams {
     | 'sepa'
     | 'signet'
     | 'wire';
+
+  accounting?: PaymentOrderCreateParams.Accounting;
 
   /**
    * The ID of one of your accounting categories. Note that these will only be
@@ -631,6 +652,21 @@ export interface PaymentOrderCreateParams {
 }
 
 export namespace PaymentOrderCreateParams {
+  export interface Accounting {
+    /**
+     * The ID of one of your accounting categories. Note that these will only be
+     * accessible if your accounting system has been connected.
+     */
+    account_id?: string | null;
+
+    /**
+     * The ID of one of the class objects in your accounting system. Class objects
+     * track segments of your business independent of client or project. Note that
+     * these will only be accessible if your accounting system has been connected.
+     */
+    class_id?: string | null;
+  }
+
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -734,6 +770,7 @@ export namespace PaymentOrderCreateParams {
         | 'card'
         | 'check'
         | 'eft'
+        | 'global_pay'
         | 'interac'
         | 'provxchange'
         | 'rtp'
@@ -765,7 +802,7 @@ export namespace PaymentOrderCreateParams {
     /**
      * An optional description for internal use.
      */
-    description?: string;
+    description?: string | null;
 
     /**
      * A unique string to represent the ledger transaction. Only one pending or posted
@@ -898,6 +935,8 @@ export namespace PaymentOrderCreateParams {
 }
 
 export interface PaymentOrderUpdateParams {
+  accounting?: PaymentOrderUpdateParams.Accounting;
+
   /**
    * The ID of one of your accounting categories. Note that these will only be
    * accessible if your accounting system has been connected.
@@ -1093,6 +1132,7 @@ export interface PaymentOrderUpdateParams {
     | 'card'
     | 'check'
     | 'eft'
+    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -1131,6 +1171,21 @@ export interface PaymentOrderUpdateParams {
 }
 
 export namespace PaymentOrderUpdateParams {
+  export interface Accounting {
+    /**
+     * The ID of one of your accounting categories. Note that these will only be
+     * accessible if your accounting system has been connected.
+     */
+    account_id?: string | null;
+
+    /**
+     * The ID of one of the class objects in your accounting system. Class objects
+     * track segments of your business independent of client or project. Note that
+     * these will only be accessible if your accounting system has been connected.
+     */
+    class_id?: string | null;
+  }
+
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -1234,6 +1289,7 @@ export namespace PaymentOrderUpdateParams {
         | 'card'
         | 'check'
         | 'eft'
+        | 'global_pay'
         | 'interac'
         | 'provxchange'
         | 'rtp'
@@ -1301,6 +1357,13 @@ export interface PaymentOrderListParams extends PageParams {
   originating_account_id?: string;
 
   /**
+   * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
+   * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
+   * an overnight check rather than standard mail.
+   */
+  priority?: 'high' | 'normal';
+
+  /**
    * Query for records with the provided reference number
    */
   reference_number?: string;
@@ -1331,6 +1394,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'card'
     | 'check'
     | 'eft'
+    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -1372,6 +1436,7 @@ export interface PaymentOrderCreateAsyncParams {
     | 'card'
     | 'check'
     | 'eft'
+    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -1379,6 +1444,8 @@ export interface PaymentOrderCreateAsyncParams {
     | 'sepa'
     | 'signet'
     | 'wire';
+
+  accounting?: PaymentOrderCreateAsyncParams.Accounting;
 
   /**
    * The ID of one of your accounting categories. Note that these will only be
@@ -1557,6 +1624,21 @@ export interface PaymentOrderCreateAsyncParams {
 }
 
 export namespace PaymentOrderCreateAsyncParams {
+  export interface Accounting {
+    /**
+     * The ID of one of your accounting categories. Note that these will only be
+     * accessible if your accounting system has been connected.
+     */
+    account_id?: string | null;
+
+    /**
+     * The ID of one of the class objects in your accounting system. Class objects
+     * track segments of your business independent of client or project. Note that
+     * these will only be accessible if your accounting system has been connected.
+     */
+    class_id?: string | null;
+  }
+
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -1660,6 +1742,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'card'
         | 'check'
         | 'eft'
+        | 'global_pay'
         | 'interac'
         | 'provxchange'
         | 'rtp'
@@ -1691,7 +1774,7 @@ export namespace PaymentOrderCreateAsyncParams {
     /**
      * An optional description for internal use.
      */
-    description?: string;
+    description?: string | null;
 
     /**
      * A unique string to represent the ledger transaction. Only one pending or posted

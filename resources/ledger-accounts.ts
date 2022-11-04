@@ -289,12 +289,12 @@ export interface LedgerAccountUpdateParams {
   /**
    * The name of the ledger account.
    */
-  name?: string | null;
+  name?: string;
 
   /**
    * The normal balance of the ledger account.
    */
-  normal_balance?: 'credit' | 'debit' | null;
+  normal_balance?: 'credit' | 'debit';
 }
 
 export interface LedgerAccountListParams extends PageParams {

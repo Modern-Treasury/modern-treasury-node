@@ -123,6 +123,11 @@ export interface ReturnObject {
   internal_account_id: string | null;
 
   /**
+   * The ID of the ledger transaction linked to the return.
+   */
+  ledger_transaction_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -172,7 +177,8 @@ export interface ReturnObject {
   transaction_line_item_id: string | null;
 
   /**
-   * The type of return. Can be one of: `ach`, `paper_item`, `eft`, `wire`.
+   * The type of return. Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`,
+   * `interac`, `manual`, `paper_item`, `wire`.
    */
   type: 'ach' | 'ach_noc' | 'au_becs' | 'bacs' | 'eft' | 'interac' | 'manual' | 'paper_item' | 'wire';
 

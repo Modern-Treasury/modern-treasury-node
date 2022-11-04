@@ -116,6 +116,7 @@ describe('resource counterparties', () => {
       email: 'dev@stainlessapi.com',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       send_remittance_advice: true,
+      accounting: { type: 'customer' },
       ledger_type: 'customer',
       taxpayer_identifier: 'string',
     });
