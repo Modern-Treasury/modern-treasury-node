@@ -134,7 +134,7 @@ export interface LedgerUpdateParams {
   /**
    * The name of the ledger.
    */
-  name?: string | null;
+  name?: string;
 }
 
 export interface LedgerListParams extends PageParams {

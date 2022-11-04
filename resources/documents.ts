@@ -2,28 +2,112 @@
 
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
+import type * as FormData from 'formdata-node';
+import { multipartFormRequestOptions } from '~/core';
 import { isRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
 
 export class Documents extends APIResource {
-  list(
-    documentableType: string,
+  /**
+   * Create a document.
+   */
+  create(
+    documentableType:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions',
+    documentableId: string,
+    body: DocumentCreateParams,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Document>> {
+    return this.post(
+      `/api/${documentableType}/${documentableId}/documents`,
+      multipartFormRequestOptions({ body, ...options }),
+    );
+  }
+
+  /**
+   * Get an existing document.
+   */
+  retrieve(
+    documentableType:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions',
+    documentableId: string,
     id: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Document>> {
+    return this.get(`/api/${documentableType}/${documentableId}/documents/${id}`, options);
+  }
+
+  /**
+   * Get a list of documents.
+   */
+  list(
+    documentableType:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions',
+    documentableId: string,
     query?: DocumentListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage>;
-  list(documentableType: string, id: string, options?: Core.RequestOptions): Core.PagePromise<DocumentsPage>;
   list(
-    documentableType: string,
-    id: string,
+    documentableType:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions',
+    documentableId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DocumentsPage>;
+  list(
+    documentableType:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions',
+    documentableId: string,
     query: DocumentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage> {
     if (isRequestOptions(query)) {
-      return this.list(documentableType, id, {}, query);
+      return this.list(documentableType, documentableId, {}, query);
     }
 
-    return this.getAPIList(`/api/${documentableType}/${id}/documents`, DocumentsPage, { query, ...options });
+    return this.getAPIList(`/api/${documentableType}/${documentableId}/documents`, DocumentsPage, {
+      query,
+      ...options,
+    });
   }
 }
 
@@ -92,6 +176,15 @@ export namespace Document {
      */
     size?: number;
   }
+}
+
+export interface DocumentCreateParams {
+  file: FormData.Blob | FormData.File;
+
+  /**
+   * A category given to the document, can be `null`.
+   */
+  document_type?: string;
 }
 
 export interface DocumentListParams extends PageParams {}

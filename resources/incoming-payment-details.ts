@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
+import * as Shared from '~/resources/shared';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
@@ -55,6 +56,26 @@ export class IncomingPaymentDetails extends APIResource {
       ...options,
     });
   }
+
+  /**
+   * Simulate Incoming Payment Detail
+   */
+  createAsync(body?: IncomingPaymentDetailCreateAsyncParams, options?: Core.RequestOptions): Promise<void>;
+  createAsync(options?: Core.RequestOptions): Promise<void>;
+  createAsync(
+    body: IncomingPaymentDetailCreateAsyncParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Promise<void> {
+    if (isRequestOptions(body)) {
+      return this.createAsync({}, body);
+    }
+
+    return this.post('/api/simulations/incoming_payment_details/create_async', {
+      body,
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
+  }
 }
 
 export class IncomingPaymentDetailsPage extends Page<IncomingPaymentDetail> {}
@@ -76,196 +97,7 @@ export interface IncomingPaymentDetail {
   /**
    * The currency of the incoming payment detail.
    */
-  currency:
-    | 'AED'
-    | 'AFN'
-    | 'ALL'
-    | 'AMD'
-    | 'ANG'
-    | 'AOA'
-    | 'ARS'
-    | 'AUD'
-    | 'AWG'
-    | 'AZN'
-    | 'BAM'
-    | 'BBD'
-    | 'BCH'
-    | 'BDT'
-    | 'BGN'
-    | 'BHD'
-    | 'BIF'
-    | 'BMD'
-    | 'BND'
-    | 'BOB'
-    | 'BRL'
-    | 'BSD'
-    | 'BTC'
-    | 'BTN'
-    | 'BWP'
-    | 'BYN'
-    | 'BYR'
-    | 'BZD'
-    | 'CAD'
-    | 'CDF'
-    | 'CHF'
-    | 'CLF'
-    | 'CLP'
-    | 'CNH'
-    | 'CNY'
-    | 'COP'
-    | 'CRC'
-    | 'CUC'
-    | 'CUP'
-    | 'CVE'
-    | 'CZK'
-    | 'DJF'
-    | 'DKK'
-    | 'DOP'
-    | 'DZD'
-    | 'EEK'
-    | 'EGP'
-    | 'ERN'
-    | 'ETB'
-    | 'EUR'
-    | 'FJD'
-    | 'FKP'
-    | 'GBP'
-    | 'GBX'
-    | 'GEL'
-    | 'GGP'
-    | 'GHS'
-    | 'GIP'
-    | 'GMD'
-    | 'GNF'
-    | 'GTQ'
-    | 'GYD'
-    | 'HKD'
-    | 'HNL'
-    | 'HRK'
-    | 'HTG'
-    | 'HUF'
-    | 'IDR'
-    | 'ILS'
-    | 'IMP'
-    | 'INR'
-    | 'IQD'
-    | 'IRR'
-    | 'ISK'
-    | 'JEP'
-    | 'JMD'
-    | 'JOD'
-    | 'JPY'
-    | 'KES'
-    | 'KGS'
-    | 'KHR'
-    | 'KMF'
-    | 'KPW'
-    | 'KRW'
-    | 'KWD'
-    | 'KYD'
-    | 'KZT'
-    | 'LAK'
-    | 'LBP'
-    | 'LKR'
-    | 'LRD'
-    | 'LSL'
-    | 'LTL'
-    | 'LVL'
-    | 'LYD'
-    | 'MAD'
-    | 'MDL'
-    | 'MGA'
-    | 'MKD'
-    | 'MMK'
-    | 'MNT'
-    | 'MOP'
-    | 'MRO'
-    | 'MRU'
-    | 'MTL'
-    | 'MUR'
-    | 'MVR'
-    | 'MWK'
-    | 'MXN'
-    | 'MYR'
-    | 'MZN'
-    | 'NAD'
-    | 'NGN'
-    | 'NIO'
-    | 'NOK'
-    | 'NPR'
-    | 'NZD'
-    | 'OMR'
-    | 'PAB'
-    | 'PEN'
-    | 'PGK'
-    | 'PHP'
-    | 'PKR'
-    | 'PLN'
-    | 'PYG'
-    | 'QAR'
-    | 'RON'
-    | 'RSD'
-    | 'RUB'
-    | 'RWF'
-    | 'SAR'
-    | 'SBD'
-    | 'SCR'
-    | 'SDG'
-    | 'SEK'
-    | 'SGD'
-    | 'SHP'
-    | 'SKK'
-    | 'SLL'
-    | 'SOS'
-    | 'SRD'
-    | 'SSP'
-    | 'STD'
-    | 'SVC'
-    | 'SYP'
-    | 'SZL'
-    | 'THB'
-    | 'TJS'
-    | 'TMM'
-    | 'TMT'
-    | 'TND'
-    | 'TOP'
-    | 'TRY'
-    | 'TTD'
-    | 'TWD'
-    | 'TZS'
-    | 'UAH'
-    | 'UGX'
-    | 'USD'
-    | 'UYU'
-    | 'UZS'
-    | 'VEF'
-    | 'VES'
-    | 'VND'
-    | 'VUV'
-    | 'WST'
-    | 'XAF'
-    | 'XAG'
-    | 'XAU'
-    | 'XBA'
-    | 'XBB'
-    | 'XBC'
-    | 'XBD'
-    | 'XCD'
-    | 'XDR'
-    | 'XFU'
-    | 'XOF'
-    | 'XPD'
-    | 'XPF'
-    | 'XPT'
-    | 'XTS'
-    | 'YER'
-    | 'ZAR'
-    | 'ZMK'
-    | 'ZMW'
-    | 'ZWD'
-    | 'ZWL'
-    | 'ZWN'
-    | 'ZWR';
+  currency: Shared.Currency;
 
   /**
    * The raw data from the payment pre-notification file that we get from the bank.
@@ -345,7 +177,7 @@ export namespace IncomingPaymentDetail {
     /**
      * An array of account detail objects.
      */
-    account_details: Array<VirtualAccount.AccountDetails>;
+    account_details: Array<Shared.AccountDetail>;
 
     /**
      * The ID of a counterparty that the virtual account belongs to. Optional.
@@ -405,138 +237,9 @@ export namespace IncomingPaymentDetail {
      * An array of routing detail objects. These will be the routing details of the
      * internal account.
      */
-    routing_details: Array<VirtualAccount.RoutingDetails>;
+    routing_details: Array<Shared.RoutingDetail>;
 
     updated_at: string;
-  }
-
-  export namespace VirtualAccount {
-    export interface AccountDetails {
-      account_number: string;
-
-      /**
-       * Supports iban and clabe, otherwise other if the bank account number is in a
-       * generic format.
-       */
-      account_number_type: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
-
-      created_at: string;
-
-      discarded_at: string | null;
-
-      id: string;
-
-      /**
-       * This field will be true if this object exists in the live environment or false
-       * if it exists in the test environment.
-       */
-      live_mode: boolean;
-
-      object: string;
-
-      updated_at: string;
-    }
-
-    export interface RoutingDetails {
-      bank_address: RoutingDetails.BankAddress | null;
-
-      bank_name: string;
-
-      created_at: string;
-
-      discarded_at: string | null;
-
-      id: string;
-
-      /**
-       * This field will be true if this object exists in the live environment or false
-       * if it exists in the test environment.
-       */
-      live_mode: boolean;
-
-      object: string;
-
-      /**
-       * If the routing detail is to be used for a specific payment type this field will
-       * be populated, otherwise null.
-       */
-      payment_type:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'interac'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire'
-        | null;
-
-      /**
-       * The routing number of the bank.
-       */
-      routing_number: string;
-
-      routing_number_type:
-        | 'aba'
-        | 'swift'
-        | 'au_bsb'
-        | 'ca_cpa'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'br_codigo';
-
-      updated_at: string;
-    }
-
-    export namespace RoutingDetails {
-      export interface BankAddress {
-        /**
-         * Country code conforms to [ISO 3166-1 alpha-2]
-         */
-        country: string | null;
-
-        created_at: string;
-
-        id: string;
-
-        line1: string | null;
-
-        line2: string | null;
-
-        /**
-         * This field will be true if this object exists in the live environment or false
-         * if it exists in the test environment.
-         */
-        live_mode: boolean;
-
-        /**
-         * Locality or City.
-         */
-        locality: string | null;
-
-        object: string;
-
-        /**
-         * The postal code of the address.
-         */
-        postal_code: string | null;
-
-        /**
-         * Region or State.
-         */
-        region: string | null;
-
-        updated_at: string;
-      }
-    }
   }
 }
 
@@ -589,4 +292,43 @@ export interface IncomingPaymentDetailListParams extends PageParams {
    * Account.
    */
   virtual_account_id?: string;
+}
+
+export interface IncomingPaymentDetailCreateAsyncParams {
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
+   */
+  amount?: number;
+
+  /**
+   * Defaults to today.
+   */
+  as_of_date?: string | null;
+
+  /**
+   * Defaults to the currency of the originating account.
+   */
+  currency?: Shared.Currency;
+
+  /**
+   * One of `credit`, `debit`.
+   */
+  direction?: 'credit' | 'debit';
+
+  /**
+   * The ID of one of your internal accounts.
+   */
+  internal_account_id?: string;
+
+  /**
+   * One of `ach`, `wire`, `check`.
+   */
+  type?: 'ach' | 'book' | 'check' | 'eft' | 'interac' | 'rtp' | 'sepa' | 'signet' | 'wire';
+
+  /**
+   * An optional parameter to associate the incoming payment detail to a virtual
+   * account.
+   */
+  virtual_account_id?: string | null;
 }

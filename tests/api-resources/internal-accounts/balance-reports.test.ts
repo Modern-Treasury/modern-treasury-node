@@ -1,7 +1,5 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { fileFromPath } from 'formdata-node/file-from-path';
-
 import ModernTreasury from '~/index';
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -9,45 +7,28 @@ const modernTreasury = new ModernTreasury({
   organizationId: 'my-organization-ID',
 });
 
-describe('resource documents', () => {
-  // skipped: prism mock server is broken for file uploads
-  test.skip('create: only required params', async () => {
-    const response = await modernTreasury.documents.create('cases', 'string', {
-      file: await fileFromPath('README.md'),
-    });
-  });
-
-  // skipped: prism mock server is broken for file uploads
-  test.skip('create: required and optional params', async () => {
-    const response = await modernTreasury.documents.create('cases', 'string', {
-      document_type: 'string',
-      file: await fileFromPath('README.md'),
-    });
-  });
-
+describe('resource balance_reports', () => {
   test('retrieve', async () => {
-    const response = await modernTreasury.documents.retrieve(
-      'cases',
-      'string',
-      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    );
+    const response = await modernTreasury.internalAccounts.balanceReports.retrieve('string', 'string');
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.documents.retrieve('cases', 'string', '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      modernTreasury.internalAccounts.balanceReports.retrieve('string', 'string', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list: only required params', async () => {
-    const response = await modernTreasury.documents.list('cases', 'string');
+    const response = await modernTreasury.internalAccounts.balanceReports.list('string');
   });
 
   test('list: required and optional params', async () => {
-    const response = await modernTreasury.documents.list('cases', 'string', {
+    const response = await modernTreasury.internalAccounts.balanceReports.list('string', {
+      as_of_date: '2019-12-27',
+      balance_report_type: 'intraday',
       after_cursor: 'string',
       per_page: 0,
     });
@@ -56,17 +37,16 @@ describe('resource documents', () => {
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.documents.list('cases', 'string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.internalAccounts.balanceReports.list('string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.documents.list(
-        'cases',
+      modernTreasury.internalAccounts.balanceReports.list(
         'string',
-        { after_cursor: 'string', per_page: 0 },
+        { as_of_date: '2019-12-27', balance_report_type: 'intraday', after_cursor: 'string', per_page: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
