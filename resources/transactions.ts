@@ -142,6 +142,7 @@ export interface Transaction {
     | 'card'
     | 'check'
     | 'eft'
+    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
