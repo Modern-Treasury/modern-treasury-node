@@ -1,6 +1,6 @@
 {
   "name": "modern-treasury",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Client library for the ModernTreasury API",
   "author": "Modern Treasury <sdk-feedback@moderntreasury.com>",
   "types": "dist/cjs/index.d.ts",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "yarn jest",
+    "test": "bin/check-test-server && yarn jest",
     "build": "bash ./build",
     "prepack": "yarn build",
     "format": "prettier --write .",

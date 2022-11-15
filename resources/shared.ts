@@ -1,5 +1,8 @@
 // File generated from our OpenAPI spec by Stainless.
 
+/**
+ * Three-letter ISO currency code.
+ */
 export type Currency =
   | 'AED'
   | 'AFN'
@@ -254,8 +257,8 @@ export interface RoutingDetail {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
