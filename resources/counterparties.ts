@@ -117,7 +117,7 @@ export interface Counterparty {
   /**
    * A human friendly name for this counterparty.
    */
-  name: string;
+  name: string | null;
 
   object: string;
 
@@ -279,7 +279,7 @@ export interface CounterpartyCreateParams {
   /**
    * A human friendly name for this counterparty.
    */
-  name: string;
+  name: string | null;
 
   accounting?: CounterpartyCreateParams.Accounting;
 
@@ -421,7 +421,7 @@ export namespace CounterpartyCreateParams {
         | 'card'
         | 'check'
         | 'eft'
-        | 'global_pay'
+        | 'cross_border'
         | 'interac'
         | 'provxchange'
         | 'rtp'

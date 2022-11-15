@@ -113,6 +113,11 @@ export interface ExpectedPayment {
   internal_account_id: string;
 
   /**
+   * The ID of the ledger transaction linked to the expected payment.
+   */
+  ledger_transaction_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -174,8 +179,8 @@ export interface ExpectedPayment {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -271,8 +276,8 @@ export interface ExpectedPaymentCreateParams {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -391,8 +396,8 @@ export interface ExpectedPaymentUpdateParams {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -452,8 +457,8 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'

@@ -53,6 +53,7 @@ describe('resource payment_orders', () => {
       ultimate_receiving_party_name: 'string',
       ultimate_receiving_party_identifier: 'string',
       send_remittance_advice: true,
+      expires_at: '2019-12-27T18:11:19.117Z',
       fallback_type: 'ach',
       receiving_account: {
         account_type: 'checking',
@@ -200,6 +201,7 @@ describe('resource payment_orders', () => {
       ultimate_receiving_party_name: 'string',
       ultimate_receiving_party_identifier: 'string',
       send_remittance_advice: true,
+      expires_at: '2019-12-27T18:11:19.117Z',
       status: 'approved',
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       fallback_type: 'ach',
@@ -301,6 +303,7 @@ describe('resource payment_orders', () => {
           ultimate_receiving_party_name: 'string',
           ultimate_receiving_party_identifier: 'string',
           send_remittance_advice: true,
+          expires_at: '2019-12-27T18:11:19.117Z',
           status: 'approved',
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           fallback_type: 'ach',
@@ -456,6 +459,7 @@ describe('resource payment_orders', () => {
       ultimate_receiving_party_name: 'string',
       ultimate_receiving_party_identifier: 'string',
       send_remittance_advice: true,
+      expires_at: '2019-12-27T18:11:19.117Z',
       fallback_type: 'ach',
       receiving_account: {
         account_type: 'checking',

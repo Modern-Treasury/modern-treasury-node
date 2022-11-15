@@ -126,7 +126,7 @@ export interface PaymentOrder {
    * If the payment order's status is `returned`, this will include the return
    * object's data.
    */
-  current_return: Returns.ReturnObject;
+  current_return: Returns.ReturnObject | null;
 
   /**
    * The ID of the compliance decision for the payment order, if transaction
@@ -153,6 +153,11 @@ export interface PaymentOrder {
    * holiday or weekend. Format: yyyy-mm-dd.
    */
   effective_date: string;
+
+  /**
+   * RFP payments require an expires_at. This value must be past the effective_date.
+   */
+  expires_at: string | null;
 
   /**
    * If present, indicates a specific foreign exchange contract number that has been
@@ -303,8 +308,8 @@ export interface PaymentOrder {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -457,8 +462,8 @@ export interface PaymentOrderCreateParams {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -510,6 +515,11 @@ export interface PaymentOrderCreateParams {
    * holiday or weekend. Format: yyyy-mm-dd.
    */
   effective_date?: string;
+
+  /**
+   * RFP payments require an expires_at. This value must be past the effective_date.
+   */
+  expires_at?: string | null;
 
   /**
    * A payment type to fallback to if the original type is not valid for the
@@ -770,7 +780,7 @@ export namespace PaymentOrderCreateParams {
         | 'card'
         | 'check'
         | 'eft'
-        | 'global_pay'
+        | 'cross_border'
         | 'interac'
         | 'provxchange'
         | 'rtp'
@@ -993,6 +1003,11 @@ export interface PaymentOrderUpdateParams {
   effective_date?: string;
 
   /**
+   * RFP payments require an expires_at. This value must be past the effective_date.
+   */
+  expires_at?: string | null;
+
+  /**
    * A payment type to fallback to if the original type is not valid for the
    * receiving account. Currently, this only supports falling back from RTP to ACH
    * (type=rtp and fallback_type=ach)
@@ -1131,8 +1146,8 @@ export interface PaymentOrderUpdateParams {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -1289,7 +1304,7 @@ export namespace PaymentOrderUpdateParams {
         | 'card'
         | 'check'
         | 'eft'
-        | 'global_pay'
+        | 'cross_border'
         | 'interac'
         | 'provxchange'
         | 'rtp'
@@ -1393,8 +1408,8 @@ export interface PaymentOrderListParams extends PageParams {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -1435,8 +1450,8 @@ export interface PaymentOrderCreateAsyncParams {
     | 'book'
     | 'card'
     | 'check'
+    | 'cross_border'
     | 'eft'
-    | 'global_pay'
     | 'interac'
     | 'provxchange'
     | 'rtp'
@@ -1482,6 +1497,11 @@ export interface PaymentOrderCreateAsyncParams {
    * holiday or weekend. Format: yyyy-mm-dd.
    */
   effective_date?: string;
+
+  /**
+   * RFP payments require an expires_at. This value must be past the effective_date.
+   */
+  expires_at?: string | null;
 
   /**
    * A payment type to fallback to if the original type is not valid for the
@@ -1742,7 +1762,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'card'
         | 'check'
         | 'eft'
-        | 'global_pay'
+        | 'cross_border'
         | 'interac'
         | 'provxchange'
         | 'rtp'
