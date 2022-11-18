@@ -5,6 +5,8 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
+import * as AccountDetails from '~/resources/account-details';
+import * as RoutingDetails from '~/resources/routing-details';
 
 export class ExternalAccounts extends APIResource {
   create(
@@ -89,7 +91,7 @@ export class ExternalAccounts extends APIResource {
 export class ExternalAccountsPage extends Page<ExternalAccount> {}
 
 export interface ExternalAccount {
-  account_details: Array<Shared.AccountDetail>;
+  account_details: Array<AccountDetails.AccountDetail>;
 
   /**
    * Can be `checking`, `savings` or `other`.
@@ -141,7 +143,7 @@ export interface ExternalAccount {
    */
   party_type: 'business' | 'individual' | null;
 
-  routing_details: Array<Shared.RoutingDetail>;
+  routing_details: Array<RoutingDetails.RoutingDetail>;
 
   updated_at: string;
 

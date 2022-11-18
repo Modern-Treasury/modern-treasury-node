@@ -6,6 +6,8 @@ import { isRequestOptions } from '~/core';
 import { BalanceReports } from './balance-reports';
 import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
+import * as AccountDetails from '~/resources/account-details';
+import * as RoutingDetails from '~/resources/routing-details';
 import * as Connections from '~/resources/connections';
 
 export class InternalAccounts extends APIResource {
@@ -63,7 +65,7 @@ export interface InternalAccount {
   /**
    * An array of account detail objects.
    */
-  account_details: Array<Shared.AccountDetail>;
+  account_details: Array<AccountDetails.AccountDetail>;
 
   /**
    * Can be checking, savings or other.
@@ -131,7 +133,7 @@ export interface InternalAccount {
   /**
    * An array of routing detail objects.
    */
-  routing_details: Array<Shared.RoutingDetail>;
+  routing_details: Array<RoutingDetails.RoutingDetail>;
 
   updated_at: string;
 }

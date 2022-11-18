@@ -160,10 +160,12 @@ export namespace ModernTreasury {
   export import DocumentCreateParams = API.DocumentCreateParams;
   export import DocumentListParams = API.DocumentListParams;
 
+  export import AccountDetail = API.AccountDetail;
   export import AccountDetailsPage = API.AccountDetailsPage;
   export import AccountDetailCreateParams = API.AccountDetailCreateParams;
   export import AccountDetailListParams = API.AccountDetailListParams;
 
+  export import RoutingDetail = API.RoutingDetail;
   export import RoutingDetailsPage = API.RoutingDetailsPage;
   export import RoutingDetailCreateParams = API.RoutingDetailCreateParams;
   export import RoutingDetailListParams = API.RoutingDetailListParams;
