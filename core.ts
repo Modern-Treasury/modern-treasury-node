@@ -486,6 +486,7 @@ export type RequestOptions<Req extends {} = Record<string, unknown> | Readable> 
   maxRetries?: number;
   timeout?: number;
   httpAgent?: Agent;
+  idempotencyKey?: string;
 };
 
 // This is required so that we can determine if a given object matches the RequestOptions
@@ -501,6 +502,7 @@ const requestOptionsKeys: KeysEnum<RequestOptions> = {
   maxRetries: true,
   timeout: true,
   httpAgent: true,
+  idempotencyKey: true,
 };
 
 export const isRequestOptions = (obj: unknown): obj is RequestOptions => {
@@ -515,7 +517,6 @@ export const isRequestOptions = (obj: unknown): obj is RequestOptions => {
 export type FinalRequestOptions<Req extends {} = Record<string, unknown> | Readable> = RequestOptions<Req> & {
   method: HTTPMethod;
   path: string;
-  idempotencyKey?: string;
 };
 
 export type APIResponse<T> = T & {
