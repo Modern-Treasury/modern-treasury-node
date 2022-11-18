@@ -51,3 +51,14 @@ describe('instantiate client', () => {
     expect(client.apiKey).toBeNull();
   });
 });
+
+describe('idempotency', () => {
+  test('key can be set per-request', async () => {
+    const client = new ModernTreasury({
+      apiKey: 'my api key',
+      organizationId: 'my-organization-ID',
+      baseURL: 'http://127.0.0.1:4010',
+    });
+    await client.counterparties.create({ name: 'string' }, { idempotencyKey: 'my-idempotency-key' });
+  });
+});
