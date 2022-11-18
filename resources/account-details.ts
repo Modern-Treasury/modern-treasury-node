@@ -4,7 +4,6 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
-import * as Shared from '~/resources/shared';
 
 export class AccountDetails extends APIResource {
   /**
@@ -15,7 +14,7 @@ export class AccountDetails extends APIResource {
     accountId: string,
     body: AccountDetailCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Shared.AccountDetail>> {
+  ): Promise<Core.APIResponse<AccountDetail>> {
     return this.post(`/api/${accountsType}/${accountId}/account_details`, { body, ...options });
   }
 
@@ -27,7 +26,7 @@ export class AccountDetails extends APIResource {
     accountId: string,
     id: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Shared.AccountDetail>> {
+  ): Promise<Core.APIResponse<AccountDetail>> {
     return this.get(`/api/${accountsType}/${accountId}/account_details/${id}`, options);
   }
 
@@ -77,7 +76,36 @@ export class AccountDetails extends APIResource {
   }
 }
 
-export class AccountDetailsPage extends Page<Shared.AccountDetail> {}
+export class AccountDetailsPage extends Page<AccountDetail> {}
+
+export interface AccountDetail {
+  /**
+   * The account number for the bank account.
+   */
+  account_number: string;
+
+  /**
+   * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
+   * account number is in a generic format.
+   */
+  account_number_type: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address';
+
+  created_at: string;
+
+  discarded_at: string | null;
+
+  id: string;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  updated_at: string;
+}
 
 export interface AccountDetailCreateParams {
   /**

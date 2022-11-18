@@ -5,6 +5,8 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
+import * as AccountDetails from '~/resources/account-details';
+import * as RoutingDetails from '~/resources/routing-details';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
@@ -177,7 +179,7 @@ export namespace IncomingPaymentDetail {
     /**
      * An array of account detail objects.
      */
-    account_details: Array<Shared.AccountDetail>;
+    account_details: Array<AccountDetails.AccountDetail>;
 
     /**
      * The ID of a counterparty that the virtual account belongs to. Optional.
@@ -237,7 +239,7 @@ export namespace IncomingPaymentDetail {
      * An array of routing detail objects. These will be the routing details of the
      * internal account.
      */
-    routing_details: Array<Shared.RoutingDetail>;
+    routing_details: Array<RoutingDetails.RoutingDetail>;
 
     updated_at: string;
   }
