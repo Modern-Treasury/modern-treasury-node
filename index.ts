@@ -109,6 +109,22 @@ export class ModernTreasury extends Core.APIClient {
   static InternalServerError = Core.InternalServerError;
 }
 
+export const {
+  APIError,
+
+  APIConnectionError,
+  APIConnectionTimeoutError,
+
+  BadRequestError,
+  AuthenticationError,
+  PermissionDeniedError,
+  NotFoundError,
+  ConflictError,
+  UnprocessableEntityError,
+  RateLimitError,
+  InternalServerError,
+} = ModernTreasury;
+
 export namespace ModernTreasury {
   // Helper functions
   export import fileFromPath = FileFromPath.fileFromPath;
