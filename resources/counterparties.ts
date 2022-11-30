@@ -138,7 +138,7 @@ export namespace Counterparty {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'checking' | 'other' | 'savings';
+    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
 
     contact_details?: Array<Accounts.ContactDetails>;
 
@@ -325,7 +325,7 @@ export namespace CounterpartyCreateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'checking' | 'other' | 'savings';
+    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
 
     contact_details?: Array<Accounts.ContactDetails>;
 

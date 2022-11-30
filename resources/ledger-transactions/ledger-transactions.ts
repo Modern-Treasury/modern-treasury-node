@@ -242,7 +242,7 @@ export namespace LedgerTransactionCreateParams {
     ledger_account_id: string;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s available balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
@@ -257,14 +257,14 @@ export namespace LedgerTransactionCreateParams {
     lock_version?: number | null;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s pending balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
     pending_balance_amount?: Record<string, number> | null;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s posted balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
@@ -319,7 +319,7 @@ export namespace LedgerTransactionUpdateParams {
     ledger_account_id: string;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s available balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
@@ -334,14 +334,14 @@ export namespace LedgerTransactionUpdateParams {
     lock_version?: number | null;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s pending balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
     pending_balance_amount?: Record<string, number> | null;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s posted balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
@@ -352,6 +352,13 @@ export namespace LedgerTransactionUpdateParams {
 export interface LedgerTransactionListParams extends PageParams {
   /**
    * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
+   * effective at. For example, for all transactions after Jan 1 2000, use
+   * effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
+   */
+  effective_at?: Record<string, string>;
+
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
    * effective date. For example, for all dates after Jan 1 2000, use
    * effective_date%5Bgt%5D=2000-01-01.
    */
@@ -373,7 +380,7 @@ export interface LedgerTransactionListParams extends PageParams {
   metadata?: Record<string, string>;
 
   /**
-   * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
@@ -382,7 +389,7 @@ export interface LedgerTransactionListParams extends PageParams {
   status?: 'pending' | 'posted' | 'archived';
 
   /**
-   * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */

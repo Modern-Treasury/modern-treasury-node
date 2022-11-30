@@ -56,7 +56,7 @@ describe('resource payment_orders', () => {
       expires_at: '2019-12-27T18:11:19.117Z',
       fallback_type: 'ach',
       receiving_account: {
-        account_type: 'checking',
+        account_type: 'cash',
         party_type: 'business',
         party_address: {
           line1: 'string',
@@ -206,7 +206,7 @@ describe('resource payment_orders', () => {
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       fallback_type: 'ach',
       receiving_account: {
-        account_type: 'checking',
+        account_type: 'cash',
         party_type: 'business',
         party_address: {
           line1: 'string',
@@ -308,7 +308,7 @@ describe('resource payment_orders', () => {
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           fallback_type: 'ach',
           receiving_account: {
-            account_type: 'checking',
+            account_type: 'cash',
             party_type: 'business',
             party_address: {
               line1: 'string',
@@ -462,7 +462,7 @@ describe('resource payment_orders', () => {
       expires_at: '2019-12-27T18:11:19.117Z',
       fallback_type: 'ach',
       receiving_account: {
-        account_type: 'checking',
+        account_type: 'cash',
         party_type: 'business',
         party_address: {
           line1: 'string',

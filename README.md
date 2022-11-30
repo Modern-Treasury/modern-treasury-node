@@ -162,7 +162,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 List methods in the ModernTreasury API are paginated.
 Use `for await … of` syntax to iterate through items across all pages.
 
-```js
+```ts
 async function fetchAllExternalAccounts(params) {
   const allExternalAccounts = [];
   // Automatically fetches more pages as needed.
@@ -208,6 +208,9 @@ or open an issue with questions, bugs, or suggestions.
 
 ## Requirements
 
-Node.js version 12 or higher.
+The following runtimes are supported:
+
+- Node.js version 12 or higher.
+- Deno v1.13.0 or higher.
 
 If you are interested in other runtime environments, please open or upvote an issue on Github.
