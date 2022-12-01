@@ -96,7 +96,7 @@ export interface ExternalAccount {
   /**
    * Can be `checking`, `savings` or `other`.
    */
-  account_type: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+  account_type: 'checking' | 'other' | 'savings';
 
   contact_details: Array<ExternalAccount.ContactDetails>;
 
@@ -222,7 +222,7 @@ export interface ExternalAccountCreateParams {
   /**
    * Can be `checking`, `savings` or `other`.
    */
-  account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+  account_type?: 'checking' | 'other' | 'savings';
 
   contact_details?: Array<ExternalAccountCreateParams.ContactDetails>;
 
@@ -340,7 +340,7 @@ export interface ExternalAccountUpdateParams {
   /**
    * Can be `checking`, `savings` or `other`.
    */
-  account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+  account_type?: 'checking' | 'other' | 'savings';
 
   counterparty_id?: string | null;
 

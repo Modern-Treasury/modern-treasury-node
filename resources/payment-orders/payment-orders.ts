@@ -281,7 +281,7 @@ export interface PaymentOrder {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | 'neft' | null;
+  subtype: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
 
   /**
    * The IDs of all the transactions associated to this payment order. Usually, you
@@ -632,7 +632,7 @@ export interface PaymentOrderCreateParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | 'neft' | null;
+  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
 
   /**
    * A flag that determines whether a payment order should go through transaction
@@ -683,7 +683,7 @@ export namespace PaymentOrderCreateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+    account_type?: 'checking' | 'other' | 'savings';
 
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
@@ -879,7 +879,7 @@ export namespace PaymentOrderCreateParams {
       ledger_account_id: string;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s available balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
@@ -894,14 +894,14 @@ export namespace PaymentOrderCreateParams {
       lock_version?: number | null;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s pending balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
       pending_balance_amount?: Record<string, number> | null;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s posted balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
@@ -1133,7 +1133,7 @@ export interface PaymentOrderUpdateParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | 'neft' | null;
+  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
 
   /**
    * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
@@ -1207,7 +1207,7 @@ export namespace PaymentOrderUpdateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+    account_type?: 'checking' | 'other' | 'savings';
 
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
@@ -1614,7 +1614,7 @@ export interface PaymentOrderCreateAsyncParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | 'neft' | null;
+  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
 
   /**
    * A flag that determines whether a payment order should go through transaction
@@ -1665,7 +1665,7 @@ export namespace PaymentOrderCreateAsyncParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+    account_type?: 'checking' | 'other' | 'savings';
 
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
@@ -1861,7 +1861,7 @@ export namespace PaymentOrderCreateAsyncParams {
       ledger_account_id: string;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s available balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
@@ -1876,14 +1876,14 @@ export namespace PaymentOrderCreateAsyncParams {
       lock_version?: number | null;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s pending balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
       pending_balance_amount?: Record<string, number> | null;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s posted balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */

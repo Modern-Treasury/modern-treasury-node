@@ -102,12 +102,6 @@ export interface LedgerEntryListParams extends PageParams {
 
   /**
    * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
-   * transaction's effective time. Format ISO8601
-   */
-  effective_at?: Record<string, string>;
-
-  /**
-   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * transaction's effective date. Format YYYY-MM-DD
    */
   effective_date?: Record<string, string>;
@@ -121,7 +115,7 @@ export interface LedgerEntryListParams extends PageParams {
   ledger_account_id?: string;
 
   /**
-   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+   * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
    * lock_version of a ledger account. For example, for all entries created at or
    * before before lock_version 1000 of a ledger account, use
    * ledger_account_lock_version%5Blte%5D=1000
@@ -138,7 +132,7 @@ export interface LedgerEntryListParams extends PageParams {
   show_deleted?: boolean;
 
   /**
-   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+   * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */

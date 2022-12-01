@@ -75,7 +75,6 @@ export class ModernTreasury extends Core.APIClient {
   validations: API.Validations = new API.Validations(this);
   paperItems: API.PaperItems = new API.PaperItems(this);
   webhooks: API.Webhooks = new API.Webhooks(this);
-  virtualAccounts: API.VirtualAccounts = new API.VirtualAccounts(this);
 
   /**
    * A test endpoint often used to confirm credentials and headers are being passed
@@ -109,22 +108,6 @@ export class ModernTreasury extends Core.APIClient {
   static RateLimitError = Core.RateLimitError;
   static InternalServerError = Core.InternalServerError;
 }
-
-export const {
-  APIError,
-
-  APIConnectionError,
-  APIConnectionTimeoutError,
-
-  BadRequestError,
-  AuthenticationError,
-  PermissionDeniedError,
-  NotFoundError,
-  ConflictError,
-  UnprocessableEntityError,
-  RateLimitError,
-  InternalServerError,
-} = ModernTreasury;
 
 export namespace ModernTreasury {
   // Helper functions
@@ -250,12 +233,6 @@ export namespace ModernTreasury {
   export import PaperItem = API.PaperItem;
   export import PaperItemsPage = API.PaperItemsPage;
   export import PaperItemListParams = API.PaperItemListParams;
-
-  export import VirtualAccount = API.VirtualAccount;
-  export import VirtualAccountsPage = API.VirtualAccountsPage;
-  export import VirtualAccountCreateParams = API.VirtualAccountCreateParams;
-  export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
-  export import VirtualAccountListParams = API.VirtualAccountListParams;
 }
 
 exports = module.exports = ModernTreasury;

@@ -115,12 +115,6 @@ export interface ReturnObject {
    */
   date_of_death: string | null;
 
-  /**
-   * If an originating return failed to be processed by the bank, a description of
-   * the failure reason will be available.
-   */
-  failure_reason: string | null;
-
   id: string;
 
   /**

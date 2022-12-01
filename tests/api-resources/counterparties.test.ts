@@ -17,7 +17,7 @@ describe('resource counterparties', () => {
       name: 'string',
       accounts: [
         {
-          account_type: 'cash',
+          account_type: 'checking',
           party_type: 'business',
           party_address: {
             line1: 'string',
@@ -49,7 +49,7 @@ describe('resource counterparties', () => {
           ],
         },
         {
-          account_type: 'cash',
+          account_type: 'checking',
           party_type: 'business',
           party_address: {
             line1: 'string',
@@ -81,7 +81,7 @@ describe('resource counterparties', () => {
           ],
         },
         {
-          account_type: 'cash',
+          account_type: 'checking',
           party_type: 'business',
           party_address: {
             line1: 'string',

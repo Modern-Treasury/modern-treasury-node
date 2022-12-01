@@ -5,7 +5,8 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
-import * as VirtualAccounts from '~/resources/virtual-accounts';
+import * as AccountDetails from '~/resources/account-details';
+import * as RoutingDetails from '~/resources/routing-details';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
@@ -164,13 +165,84 @@ export interface IncomingPaymentDetail {
    * If the incoming payment detail is in a virtual account, the serialized virtual
    * account object.
    */
-  virtual_account: VirtualAccounts.VirtualAccount | null;
+  virtual_account: IncomingPaymentDetail.VirtualAccount | null;
 
   /**
    * If the incoming payment detail is in a virtual account, the ID of the Virtual
    * Account.
    */
   virtual_account_id: string | null;
+}
+
+export namespace IncomingPaymentDetail {
+  export interface VirtualAccount {
+    /**
+     * An array of account detail objects.
+     */
+    account_details: Array<AccountDetails.AccountDetail>;
+
+    /**
+     * The ID of a counterparty that the virtual account belongs to. Optional.
+     */
+    counterparty_id: string | null;
+
+    created_at: string;
+
+    /**
+     * The ID of a credit normal ledger account. When money enters the virtual account,
+     * this ledger account will be credited. Must be accompanied by a
+     * debit_ledger_account_id if present.
+     */
+    credit_ledger_account_id: string | null;
+
+    /**
+     * The ID of a debit normal ledger account. When money enters the virtual account,
+     * this ledger account will be debited. Must be accompanied by a
+     * credit_ledger_account_id if present.
+     */
+    debit_ledger_account_id: string | null;
+
+    /**
+     * An optional free-form description for internal use.
+     */
+    description: string | null;
+
+    discarded_at: string | null;
+
+    id: string;
+
+    /**
+     * The ID of the internal account that the virtual account is in.
+     */
+    internal_account_id: string;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode: boolean;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata: Record<string, string>;
+
+    /**
+     * The name of the virtual account.
+     */
+    name: string;
+
+    object: string;
+
+    /**
+     * An array of routing detail objects. These will be the routing details of the
+     * internal account.
+     */
+    routing_details: Array<RoutingDetails.RoutingDetail>;
+
+    updated_at: string;
+  }
 }
 
 export interface IncomingPaymentDetailUpdateParams {

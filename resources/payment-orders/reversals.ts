@@ -207,7 +207,7 @@ export namespace ReversalCreateParams {
       ledger_account_id: string;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s available balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
@@ -222,14 +222,14 @@ export namespace ReversalCreateParams {
       lock_version?: number | null;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s pending balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
       pending_balance_amount?: Record<string, number> | null;
 
       /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
        * account’s posted balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
