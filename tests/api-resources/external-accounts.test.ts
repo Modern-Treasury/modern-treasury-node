@@ -16,7 +16,7 @@ describe('resource external_accounts', () => {
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.externalAccounts.create({
-      account_type: 'checking',
+      account_type: 'cash',
       party_type: 'business',
       party_address: {
         line1: 'string',
@@ -68,7 +68,7 @@ describe('resource external_accounts', () => {
   test('update: required and optional params', async () => {
     const response = await modernTreasury.externalAccounts.update('string', {
       party_type: 'business',
-      account_type: 'checking',
+      account_type: 'cash',
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       name: 'string',
       party_name: 'string',
@@ -98,7 +98,7 @@ describe('resource external_accounts', () => {
         'string',
         {
           party_type: 'business',
-          account_type: 'checking',
+          account_type: 'cash',
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           name: 'string',
           party_name: 'string',
