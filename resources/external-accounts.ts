@@ -96,7 +96,7 @@ export interface ExternalAccount {
   /**
    * Can be `checking`, `savings` or `other`.
    */
-  account_type: 'checking' | 'other' | 'savings';
+  account_type: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
 
   contact_details: Array<ExternalAccount.ContactDetails>;
 
@@ -222,7 +222,7 @@ export interface ExternalAccountCreateParams {
   /**
    * Can be `checking`, `savings` or `other`.
    */
-  account_type?: 'checking' | 'other' | 'savings';
+  account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
 
   contact_details?: Array<ExternalAccountCreateParams.ContactDetails>;
 
@@ -321,6 +321,8 @@ export namespace ExternalAccountCreateParams {
       | 'eft'
       | 'cross_border'
       | 'interac'
+      | 'masav'
+      | 'neft'
       | 'provxchange'
       | 'rtp'
       | 'sen'
@@ -340,7 +342,7 @@ export interface ExternalAccountUpdateParams {
   /**
    * Can be `checking`, `savings` or `other`.
    */
-  account_type?: 'checking' | 'other' | 'savings';
+  account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
 
   counterparty_id?: string | null;
 
@@ -437,6 +439,8 @@ export interface ExternalAccountVerifyParams {
     | 'cross_border'
     | 'eft'
     | 'interac'
+    | 'masav'
+    | 'neft'
     | 'provxchange'
     | 'rtp'
     | 'sen'

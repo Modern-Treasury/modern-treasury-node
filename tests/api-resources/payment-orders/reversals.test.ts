@@ -35,6 +35,7 @@ describe('resource reversals', () => {
               pending_balance_amount: { foo: 0 },
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
+              show_resulting_ledger_account_balances: true,
             },
             {
               amount: 0,
@@ -44,6 +45,7 @@ describe('resource reversals', () => {
               pending_balance_amount: { foo: 0 },
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
+              show_resulting_ledger_account_balances: true,
             },
             {
               amount: 0,
@@ -53,6 +55,7 @@ describe('resource reversals', () => {
               pending_balance_amount: { foo: 0 },
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
+              show_resulting_ledger_account_balances: true,
             },
           ],
           external_id: 'string',

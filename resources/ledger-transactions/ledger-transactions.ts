@@ -221,10 +221,8 @@ export interface LedgerTransactionCreateParams {
 export namespace LedgerTransactionCreateParams {
   export interface LedgerEntries {
     /**
-     * One of `credit`, `debit`. Describes the direction money is flowing in the
-     * transaction. A `credit` moves money from your account to someone else's. A
-     * `debit` pulls money from someone else's account to your own. Note that wire,
-     * rtp, and check payments will always be `credit`.
+     * Value in specified currency's smallest unit. e.g. $10 would be represented
+     * as 1000. Can be any integer up to 36 digits.
      */
     amount: number;
 
@@ -242,7 +240,7 @@ export namespace LedgerTransactionCreateParams {
     ledger_account_id: string;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s available balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
@@ -257,18 +255,24 @@ export namespace LedgerTransactionCreateParams {
     lock_version?: number | null;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s pending balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
     pending_balance_amount?: Record<string, number> | null;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s posted balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
     posted_balance_amount?: Record<string, number> | null;
+
+    /**
+     * If true, response will include the balance of the associated ledger account for
+     * the entry.
+     */
+    show_resulting_ledger_account_balances?: boolean | null;
   }
 }
 
@@ -298,10 +302,8 @@ export interface LedgerTransactionUpdateParams {
 export namespace LedgerTransactionUpdateParams {
   export interface LedgerEntries {
     /**
-     * One of `credit`, `debit`. Describes the direction money is flowing in the
-     * transaction. A `credit` moves money from your account to someone else's. A
-     * `debit` pulls money from someone else's account to your own. Note that wire,
-     * rtp, and check payments will always be `credit`.
+     * Value in specified currency's smallest unit. e.g. $10 would be represented
+     * as 1000. Can be any integer up to 36 digits.
      */
     amount: number;
 
@@ -319,7 +321,7 @@ export namespace LedgerTransactionUpdateParams {
     ledger_account_id: string;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s available balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
@@ -334,24 +336,37 @@ export namespace LedgerTransactionUpdateParams {
     lock_version?: number | null;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s pending balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
     pending_balance_amount?: Record<string, number> | null;
 
     /**
-     * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s posted balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
     posted_balance_amount?: Record<string, number> | null;
+
+    /**
+     * If true, response will include the balance of the associated ledger account for
+     * the entry.
+     */
+    show_resulting_ledger_account_balances?: boolean | null;
   }
 }
 
 export interface LedgerTransactionListParams extends PageParams {
   /**
    * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
+   * effective at. For example, for all transactions after Jan 1 2000, use
+   * effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
+   */
+  effective_at?: Record<string, string>;
+
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
    * effective date. For example, for all dates after Jan 1 2000, use
    * effective_date%5Bgt%5D=2000-01-01.
    */
@@ -373,7 +388,7 @@ export interface LedgerTransactionListParams extends PageParams {
   metadata?: Record<string, string>;
 
   /**
-   * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
@@ -382,7 +397,7 @@ export interface LedgerTransactionListParams extends PageParams {
   status?: 'pending' | 'posted' | 'archived';
 
   /**
-   * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */

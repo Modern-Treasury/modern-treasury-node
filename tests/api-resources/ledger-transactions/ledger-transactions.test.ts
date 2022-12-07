@@ -20,6 +20,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
         {
           amount: 0,
@@ -29,6 +30,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
         {
           amount: 0,
@@ -38,6 +40,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
       ],
     });
@@ -58,6 +61,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
         {
           amount: 0,
@@ -67,6 +71,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
         {
           amount: 0,
@@ -76,6 +81,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
       ],
       external_id: 'string',
@@ -113,6 +119,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
         {
           amount: 0,
@@ -122,6 +129,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
         {
           amount: 0,
@@ -131,6 +139,7 @@ describe('resource ledger_transactions', () => {
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
+          show_resulting_ledger_account_balances: true,
         },
       ],
     });
@@ -161,6 +170,7 @@ describe('resource ledger_transactions', () => {
               pending_balance_amount: { foo: 0 },
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
+              show_resulting_ledger_account_balances: true,
             },
             {
               amount: 0,
@@ -170,6 +180,7 @@ describe('resource ledger_transactions', () => {
               pending_balance_amount: { foo: 0 },
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
+              show_resulting_ledger_account_balances: true,
             },
             {
               amount: 0,
@@ -179,6 +190,7 @@ describe('resource ledger_transactions', () => {
               pending_balance_amount: { foo: 0 },
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
+              show_resulting_ledger_account_balances: true,
             },
           ],
         },
@@ -198,6 +210,7 @@ describe('resource ledger_transactions', () => {
       metadata: { foo: 'string' },
       ledger_id: 'string',
       ledger_account_id: 'string',
+      effective_at: { foo: 'string' },
       effective_date: { foo: '2019-12-27T18:11:19.117Z' },
       posted_at: { foo: '2019-12-27T18:11:19.117Z' },
       updated_at: { foo: '2019-12-27T18:11:19.117Z' },
@@ -224,6 +237,7 @@ describe('resource ledger_transactions', () => {
           metadata: { foo: 'string' },
           ledger_id: 'string',
           ledger_account_id: 'string',
+          effective_at: { foo: 'string' },
           effective_date: { foo: '2019-12-27T18:11:19.117Z' },
           posted_at: { foo: '2019-12-27T18:11:19.117Z' },
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },

@@ -70,7 +70,7 @@ export interface InternalAccount {
   /**
    * Can be checking, savings or other.
    */
-  account_type: 'checking' | 'other' | 'savings' | null;
+  account_type: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings' | null;
 
   /**
    * Specifies which financial institution the accounts belong to.
@@ -216,6 +216,39 @@ export interface InternalAccountCreateParams {
    * The parent internal account of this new account.
    */
   parent_account_id?: string;
+
+  /**
+   * The address associated with the owner or null.
+   */
+  party_address?: InternalAccountCreateParams.PartyAddress;
+}
+
+export namespace InternalAccountCreateParams {
+  export interface PartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country: string;
+
+    line1: string;
+
+    /**
+     * Locality or City.
+     */
+    locality: string;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code: string;
+
+    /**
+     * Region or State.
+     */
+    region: string;
+
+    line2?: string;
+  }
 }
 
 export interface InternalAccountUpdateParams {
@@ -265,6 +298,8 @@ export interface InternalAccountListParams extends PageParams {
     | 'cross_border'
     | 'eft'
     | 'interac'
+    | 'masav'
+    | 'neft'
     | 'provxchange'
     | 'rtp'
     | 'sen'

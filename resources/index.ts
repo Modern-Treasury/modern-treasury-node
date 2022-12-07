@@ -22,4 +22,5 @@ export * from './shared';
 export * from './top-level';
 export * from './transactions';
 export * from './validations';
+export * from './virtual-accounts';
 export * from './webhooks';

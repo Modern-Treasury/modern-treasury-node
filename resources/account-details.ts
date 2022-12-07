@@ -85,6 +85,11 @@ export interface AccountDetail {
   account_number: string;
 
   /**
+   * The last 4 digits of the account_number.
+   */
+  account_number_safe: string;
+
+  /**
    * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
    * account number is in a generic format.
    */
