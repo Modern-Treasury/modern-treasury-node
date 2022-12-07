@@ -1,6 +1,5 @@
 # Modern Treasury Node API Library
 
-
 [![NPM version](https://img.shields.io/npm/v/modern-treasury.svg)](https://npmjs.org/package/modern-treasury)
 
 The Modern Treasury Node library provides convenient access to the Modern Treasury REST API from applications written in server-side JavaScript.
