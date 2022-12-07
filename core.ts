@@ -4,22 +4,18 @@ import type { Agent } from 'http';
 import type NodeFetch from 'node-fetch';
 import type { RequestInfo, RequestInit, Response } from 'node-fetch';
 import type KeepAliveAgent from 'agentkeepalive';
-import { AbortController } from 'abort-controller';
+import { AbortController as AbortControllerPolyfill } from 'abort-controller';
 import { FormData, File, Blob } from 'formdata-node';
 import { FormDataEncoder } from 'form-data-encoder';
 import { Readable } from 'stream';
 
 import { VERSION } from './version';
 
-const isNode = typeof process !== 'undefined';
+const isNode = typeof process !== 'undefined' && typeof Deno === 'undefined';
 let nodeFetch: typeof NodeFetch | undefined = undefined;
 let getDefaultAgent = (_url: string): Agent | undefined => undefined;
 if (isNode) {
   /* eslint-disable @typescript-eslint/no-var-requires */
-  // NB: `node-fetch` has both named exports and a default export that is the `fetch` function
-  // we want to use. In most runtime environments, just using `require` gets us the function,
-  // but in some bundling/runtime systems it only gives us the object of named exports.
-  // So we explicitly ask for the `default` export, which works everywhere.
   nodeFetch = require('node-fetch').default;
   const HttpAgent: typeof KeepAliveAgent = require('agentkeepalive');
   const HttpsAgent = HttpAgent.HttpsAgent;
@@ -29,6 +25,12 @@ if (isNode) {
   const defaultHttpsAgent = new HttpsAgent({ keepAlive: true });
   getDefaultAgent = (url: string) => (url.startsWith('https') ? defaultHttpsAgent : defaultHttpAgent);
 }
+
+AbortController ??=
+  global?.AbortController ??
+  globalThis?.AbortController ??
+  window?.AbortController ??
+  AbortControllerPolyfill;
 
 const DEFAULT_MAX_RETRIES = 2;
 const DEFAULT_TIMEOUT = 60 * 1000; // 60s
@@ -112,19 +114,19 @@ export abstract class APIClient {
     return `stainless-node-retry-${uuid4()}`;
   }
 
-  get<Req, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
+  get<Req extends {}, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
     return this.request({ method: 'get', path, ...opts });
   }
-  post<Req, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
+  post<Req extends {}, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
     return this.request({ method: 'post', path, ...opts });
   }
-  patch<Req, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
+  patch<Req extends {}, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
     return this.request({ method: 'patch', path, ...opts });
   }
-  put<Req, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
+  put<Req extends {}, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
     return this.request({ method: 'put', path, ...opts });
   }
-  delete<Req, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
+  delete<Req extends {}, Rsp>(path: string, opts?: RequestOptions<Req>): Promise<Rsp> {
     return this.request({ method: 'delete', path, ...opts });
   }
 
@@ -136,7 +138,7 @@ export abstract class APIClient {
     return this.requestAPIList(Page, { method: 'get', path, ...opts });
   }
 
-  async request<Req, Rsp>(
+  async request<Req extends {}, Rsp>(
     options: FinalRequestOptions<Req>,
     retriesRemaining = options.maxRetries ?? this.maxRetries,
   ): Promise<APIResponse<Rsp>> {
@@ -201,6 +203,7 @@ export abstract class APIClient {
       const json = await response.json();
 
       if (typeof json === 'object' && json != null) {
+        /** @deprecated – we expect to change this interface in the near future. */
         Object.defineProperty(json, 'responseHeaders', {
           enumerable: false,
           writable: false,
@@ -274,7 +277,7 @@ export abstract class APIClient {
     return false;
   }
 
-  private async retryRequest<Req, Rsp>(
+  private async retryRequest<Req extends {}, Rsp>(
     options: FinalRequestOptions<Req>,
     retriesRemaining: number,
     responseHeaders?: Headers | undefined,
@@ -384,10 +387,11 @@ export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
       );
     }
     const nextOptions = { ...this.options };
-    if ('params' in nextInfo) nextOptions.query = { ...nextOptions.query, ...nextInfo.params };
-    else {
-      const qs = [...Object.entries(nextOptions.query || {}), ...nextInfo.url.searchParams.entries()];
-      for (const [key, value] of qs) {
+    if ('params' in nextInfo) {
+      nextOptions.query = { ...nextOptions.query, ...nextInfo.params };
+    } else if ('url' in nextInfo) {
+      const params = [...Object.entries(nextOptions.query || {}), ...nextInfo.url.searchParams.entries()];
+      for (const [key, value] of params) {
         nextInfo.url.searchParams.set(key, value);
       }
       nextOptions.query = undefined;
@@ -730,7 +734,7 @@ const castToError = (err: any): Error => {
  * Returns a multipart/form-data request if any part of the given request body contains a File / Blob value.
  * Otherwise returns the request as is.
  */
-export const maybeMultipartFormRequestOptions = <T = Record<string, unknown>>(
+export const maybeMultipartFormRequestOptions = <T extends {} = Record<string, unknown>>(
   opts: RequestOptions<T>,
 ): RequestOptions<T | Readable> => {
   // TODO: does this add unreasonable overhead in the case where we shouldn't use multipart/form-data?
@@ -746,7 +750,7 @@ export const maybeMultipartFormRequestOptions = <T = Record<string, unknown>>(
   return opts;
 };
 
-export const multipartFormRequestOptions = <T = Record<string, unknown>>(
+export const multipartFormRequestOptions = <T extends {} = Record<string, unknown>>(
   opts: RequestOptions<T>,
 ): RequestOptions<T | Readable> => {
   return getMultipartRequestOptions(createForm(opts.body), opts);
@@ -758,7 +762,7 @@ const createForm = <T = Record<string, unknown>>(body: T | undefined): FormData 
   return form;
 };
 
-const getMultipartRequestOptions = <T = Record<string, unknown>>(
+const getMultipartRequestOptions = <T extends {} = Record<string, unknown>>(
   form: FormData,
   opts: RequestOptions<T>,
 ): RequestOptions<T | Readable> => {

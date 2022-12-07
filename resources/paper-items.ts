@@ -40,6 +40,11 @@ export interface PaperItem {
   account_number: string | null;
 
   /**
+   * The last 4 digits of the account_number.
+   */
+  account_number_safe: string | null;
+
+  /**
    * The amount of the paper item.
    */
   amount: number;

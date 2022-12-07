@@ -61,6 +61,8 @@ export interface RoutingNumberLookupRequest {
     | 'cross_border'
     | 'eft'
     | 'interac'
+    | 'masav'
+    | 'neft'
     | 'provxchange'
     | 'rtp'
     | 'sen'

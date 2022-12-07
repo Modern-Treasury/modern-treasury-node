@@ -30,11 +30,13 @@ describe('resource ledger_entries', () => {
       ledger_account_id: 'string',
       ledger_transaction_id: 'string',
       effective_date: { foo: '2019-12-27' },
+      effective_at: { foo: 'string' },
       updated_at: { foo: '2019-12-27T18:11:19.117Z' },
       ledger_account_lock_version: { foo: 0 },
       ledger_account_category_id: 'string',
       show_deleted: true,
       direction: 'credit',
+      status: 'pending',
     });
   });
 
@@ -55,11 +57,13 @@ describe('resource ledger_entries', () => {
           ledger_account_id: 'string',
           ledger_transaction_id: 'string',
           effective_date: { foo: '2019-12-27' },
+          effective_at: { foo: 'string' },
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
           ledger_account_lock_version: { foo: 0 },
           ledger_account_category_id: 'string',
           show_deleted: true,
           direction: 'credit',
+          status: 'pending',
         },
         { path: '/_stainless_unknown_path' },
       ),
