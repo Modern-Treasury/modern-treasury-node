@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
+import * as ExternalAccounts from '~/resources/external-accounts';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
 
@@ -138,7 +139,7 @@ export namespace Counterparty {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+    account_type?: ExternalAccounts.ExternalAccountType;
 
     contact_details?: Array<Accounts.ContactDetails>;
 
@@ -325,7 +326,7 @@ export namespace CounterpartyCreateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+    account_type?: ExternalAccounts.ExternalAccountType;
 
     contact_details?: Array<Accounts.ContactDetails>;
 

@@ -172,28 +172,34 @@ export interface ExpectedPayment {
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
    * sepa, signet, wire.
    */
-  type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'cross_border'
-    | 'eft'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sepa'
-    | 'signet'
-    | 'wire'
-    | null;
+  type: ExpectedPaymentType;
 
   updated_at: string;
 }
+
+/**
+ * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+ * sepa, signet, wire.
+ */
+export type ExpectedPaymentType =
+  | 'ach'
+  | 'au_becs'
+  | 'bacs'
+  | 'book'
+  | 'card'
+  | 'check'
+  | 'cross_border'
+  | 'eft'
+  | 'interac'
+  | 'masav'
+  | 'neft'
+  | 'provxchange'
+  | 'rtp'
+  | 'sen'
+  | 'sepa'
+  | 'signet'
+  | 'wire'
+  | null;
 
 export interface ExpectedPaymentCreateParams {
   /**
@@ -271,25 +277,7 @@ export interface ExpectedPaymentCreateParams {
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
    * sepa, signet, wire.
    */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'cross_border'
-    | 'eft'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sepa'
-    | 'signet'
-    | 'wire'
-    | null;
+  type?: ExpectedPaymentType;
 }
 
 export namespace ExpectedPaymentCreateParams {
@@ -393,25 +381,7 @@ export interface ExpectedPaymentUpdateParams {
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
    * sepa, signet, wire.
    */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'cross_border'
-    | 'eft'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sepa'
-    | 'signet'
-    | 'wire'
-    | null;
+  type?: ExpectedPaymentType;
 }
 
 export interface ExpectedPaymentListParams extends PageParams {
