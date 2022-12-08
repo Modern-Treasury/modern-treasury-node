@@ -9,6 +9,7 @@ import { Reversals } from './reversals';
 import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
 import * as Returns from '~/resources/returns';
+import * as ExternalAccounts from '~/resources/external-accounts';
 
 export class PaymentOrders extends APIResource {
   reversals: Reversals = new Reversals(this.client);
@@ -281,7 +282,7 @@ export interface PaymentOrder {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
+  subtype: PaymentOrderSubtype;
 
   /**
    * The IDs of all the transactions associated to this payment order. Usually, you
@@ -301,24 +302,7 @@ export interface PaymentOrder {
    * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
    * `au_becs`, `interac`, `signet`, `provexchange`.
    */
-  type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'cross_border'
-    | 'eft'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sepa'
-    | 'signet'
-    | 'wire';
+  type: PaymentOrderType;
 
   /**
    * Identifier of the ultimate originator of the payment order.
@@ -433,6 +417,37 @@ export namespace PaymentOrder {
   }
 }
 
+/**
+ * An additional layer of classification for the type of payment order you are
+ * doing. This field is only used for `ach` payment orders currently. For `ach`
+ * payment orders, the `subtype` represents the SEC code. We currently support
+ * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
+ */
+export type PaymentOrderSubtype = 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
+
+/**
+ * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+ * `au_becs`, `interac`, `signet`, `provexchange`.
+ */
+export type PaymentOrderType =
+  | 'ach'
+  | 'au_becs'
+  | 'bacs'
+  | 'book'
+  | 'card'
+  | 'check'
+  | 'cross_border'
+  | 'eft'
+  | 'interac'
+  | 'masav'
+  | 'neft'
+  | 'provxchange'
+  | 'rtp'
+  | 'sen'
+  | 'sepa'
+  | 'signet'
+  | 'wire';
+
 export interface PaymentOrderCreateParams {
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
@@ -457,24 +472,7 @@ export interface PaymentOrderCreateParams {
    * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
    * `au_becs`, `interac`, `signet`, `provexchange`.
    */
-  type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'cross_border'
-    | 'eft'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sepa'
-    | 'signet'
-    | 'wire';
+  type: PaymentOrderType;
 
   accounting?: PaymentOrderCreateParams.Accounting;
 
@@ -636,7 +634,7 @@ export interface PaymentOrderCreateParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
+  subtype?: PaymentOrderSubtype;
 
   /**
    * A flag that determines whether a payment order should go through transaction
@@ -687,7 +685,7 @@ export namespace PaymentOrderCreateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+    account_type?: ExternalAccounts.ExternalAccountType;
 
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
@@ -1143,30 +1141,13 @@ export interface PaymentOrderUpdateParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
+  subtype?: PaymentOrderSubtype;
 
   /**
    * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
    * `au_becs`, `interac`, `signet`, `provexchange`.
    */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'cross_border'
-    | 'eft'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sepa'
-    | 'signet'
-    | 'wire';
+  type?: PaymentOrderType;
 
   /**
    * This represents the identifier by which the person is known to the receiver when
@@ -1219,7 +1200,7 @@ export namespace PaymentOrderUpdateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+    account_type?: ExternalAccounts.ExternalAccountType;
 
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
@@ -1459,24 +1440,7 @@ export interface PaymentOrderCreateAsyncParams {
    * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
    * `au_becs`, `interac`, `signet`, `provexchange`.
    */
-  type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'cross_border'
-    | 'eft'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sepa'
-    | 'signet'
-    | 'wire';
+  type: PaymentOrderType;
 
   accounting?: PaymentOrderCreateAsyncParams.Accounting;
 
@@ -1632,7 +1596,7 @@ export interface PaymentOrderCreateAsyncParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
+  subtype?: PaymentOrderSubtype;
 
   /**
    * A flag that determines whether a payment order should go through transaction
@@ -1683,7 +1647,7 @@ export namespace PaymentOrderCreateAsyncParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings';
+    account_type?: ExternalAccounts.ExternalAccountType;
 
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 

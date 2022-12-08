@@ -153,12 +153,14 @@ export namespace ModernTreasury {
   export import EventListParams = API.EventListParams;
 
   export import ExpectedPayment = API.ExpectedPayment;
+  export import ExpectedPaymentType = API.ExpectedPaymentType;
   export import ExpectedPaymentsPage = API.ExpectedPaymentsPage;
   export import ExpectedPaymentCreateParams = API.ExpectedPaymentCreateParams;
   export import ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
   export import ExpectedPaymentListParams = API.ExpectedPaymentListParams;
 
   export import ExternalAccount = API.ExternalAccount;
+  export import ExternalAccountType = API.ExternalAccountType;
   export import ExternalAccountsPage = API.ExternalAccountsPage;
   export import ExternalAccountCreateParams = API.ExternalAccountCreateParams;
   export import ExternalAccountUpdateParams = API.ExternalAccountUpdateParams;
@@ -228,6 +230,8 @@ export namespace ModernTreasury {
   export import LineItemListParams = API.LineItemListParams;
 
   export import PaymentOrder = API.PaymentOrder;
+  export import PaymentOrderSubtype = API.PaymentOrderSubtype;
+  export import PaymentOrderType = API.PaymentOrderType;
   export import PaymentOrdersPage = API.PaymentOrdersPage;
   export import PaymentOrderCreateParams = API.PaymentOrderCreateParams;
   export import PaymentOrderUpdateParams = API.PaymentOrderUpdateParams;
