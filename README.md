@@ -53,7 +53,6 @@ const modernTreasury = new ModernTreasury({
 
 async function main() {
   const params: ModernTreasury.ExternalAccountCreateParams = { counterparty_id: '123', name: 'my bank' };
-
   const externalAccount: ModernTreasury.ExternalAccount = await modernTreasury.externalAccounts.create(
     params,
   );
@@ -211,6 +210,7 @@ or open an issue with questions, bugs, or suggestions.
 The following runtimes are supported:
 
 - Node.js version 12 or higher.
-- Deno v1.13.0 or higher.
+- Deno v1.28.0 or higher (experimental).
+  Use `import ModernTreasury from "npm:modern-treasury"`.
 
 If you are interested in other runtime environments, please open or upvote an issue on Github.
