@@ -19,7 +19,7 @@ export class Page<Item> extends AbstractPage<Item> {
   constructor(client: APIClient, response: APIResponse<PageResponse<Item>>, options: FinalRequestOptions) {
     super(client, response, options);
 
-    this.items = response;
+    this.items = response || [];
     this.per_page = coerceInteger(response.responseHeaders['x-per-page'] || null);
     this.after_cursor = response.responseHeaders['x-after-cursor'] || null;
   }
