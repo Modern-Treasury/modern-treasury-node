@@ -9,7 +9,7 @@ type Config = {
   /**
    * Defaults to to process.env["MODERN_TREASURY_API_KEY"]. Set it to null if you want to send unauthenticated requests.
    */
-  apiKey?: string | null;
+  apiKey?: string;
   baseURL?: string;
   timeout?: number;
   httpAgent?: Agent;
@@ -18,7 +18,7 @@ type Config = {
 };
 
 export class ModernTreasury extends Core.APIClient {
-  apiKey: string | null;
+  apiKey: string;
   organizationId: string;
   webhookKey?: string | null;
 
