@@ -8,6 +8,9 @@ import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
 
 export class VirtualAccounts extends APIResource {
+  /**
+   * create virtual_account
+   */
   create(
     body: VirtualAccountCreateParams,
     options?: Core.RequestOptions,
@@ -15,6 +18,9 @@ export class VirtualAccounts extends APIResource {
     return this.post('/api/virtual_accounts', { body, ...options });
   }
 
+  /**
+   * get virtual_account
+   */
   retrieve(id: string, options?: Core.RequestOptions): Promise<void> {
     return this.get(`/api/virtual_accounts/${id}`, {
       ...options,
@@ -22,6 +28,9 @@ export class VirtualAccounts extends APIResource {
     });
   }
 
+  /**
+   * update virtual_account
+   */
   update(
     id: string,
     body?: VirtualAccountUpdateParams,
@@ -59,6 +68,9 @@ export class VirtualAccounts extends APIResource {
     return this.getAPIList('/api/virtual_accounts', VirtualAccountsPage, { query, ...options });
   }
 
+  /**
+   * delete virtual_account
+   */
   del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VirtualAccount>> {
     return this.delete(`/api/virtual_accounts/${id}`, options);
   }
