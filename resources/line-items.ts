@@ -18,6 +18,9 @@ export class LineItems extends APIResource {
     return this.get(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, options);
   }
 
+  /**
+   * update line item
+   */
   update(
     itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,

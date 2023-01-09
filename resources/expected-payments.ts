@@ -7,6 +7,9 @@ import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
 
 export class ExpectedPayments extends APIResource {
+  /**
+   * create expected payment
+   */
   create(
     body: ExpectedPaymentCreateParams,
     options?: Core.RequestOptions,
@@ -14,10 +17,16 @@ export class ExpectedPayments extends APIResource {
     return this.post('/api/expected_payments', { body, ...options });
   }
 
+  /**
+   * get expected payment
+   */
   retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExpectedPayment>> {
     return this.get(`/api/expected_payments/${id}`, options);
   }
 
+  /**
+   * update expected payment
+   */
   update(
     id: string,
     body?: ExpectedPaymentUpdateParams,
@@ -36,6 +45,9 @@ export class ExpectedPayments extends APIResource {
     return this.patch(`/api/expected_payments/${id}`, { body, ...options });
   }
 
+  /**
+   * list expected_payments
+   */
   list(
     query?: ExpectedPaymentListParams,
     options?: Core.RequestOptions,
@@ -52,6 +64,9 @@ export class ExpectedPayments extends APIResource {
     return this.getAPIList('/api/expected_payments', ExpectedPaymentsPage, { query, ...options });
   }
 
+  /**
+   * delete expected payment
+   */
   del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExpectedPayment>> {
     return this.delete(`/api/expected_payments/${id}`, options);
   }
