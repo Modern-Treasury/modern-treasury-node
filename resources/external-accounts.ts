@@ -9,6 +9,9 @@ import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
 
 export class ExternalAccounts extends APIResource {
+  /**
+   * create external account
+   */
   create(
     body: ExternalAccountCreateParams,
     options?: Core.RequestOptions,
@@ -16,10 +19,16 @@ export class ExternalAccounts extends APIResource {
     return this.post('/api/external_accounts', { body, ...options });
   }
 
+  /**
+   * show external account
+   */
   retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExternalAccount>> {
     return this.get(`/api/external_accounts/${id}`, options);
   }
 
+  /**
+   * update external account
+   */
   update(
     id: string,
     body?: ExternalAccountUpdateParams,
@@ -38,6 +47,9 @@ export class ExternalAccounts extends APIResource {
     return this.patch(`/api/external_accounts/${id}`, { body, ...options });
   }
 
+  /**
+   * list external accounts
+   */
   list(
     query?: ExternalAccountListParams,
     options?: Core.RequestOptions,
@@ -54,6 +66,9 @@ export class ExternalAccounts extends APIResource {
     return this.getAPIList('/api/external_accounts', ExternalAccountsPage, { query, ...options });
   }
 
+  /**
+   * delete external account
+   */
   del(id: string, options?: Core.RequestOptions): Promise<void> {
     return this.delete(`/api/external_accounts/${id}`, {
       ...options,
@@ -61,6 +76,9 @@ export class ExternalAccounts extends APIResource {
     });
   }
 
+  /**
+   * complete verification of external account
+   */
   completeVerification(
     id: string,
     body?: ExternalAccountCompleteVerificationParams,
@@ -79,6 +97,9 @@ export class ExternalAccounts extends APIResource {
     return this.post(`/api/external_accounts/${id}/complete_verification`, { body, ...options });
   }
 
+  /**
+   * verify external account
+   */
   verify(
     id: string,
     body: ExternalAccountVerifyParams,
