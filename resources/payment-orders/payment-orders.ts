@@ -71,7 +71,10 @@ export class PaymentOrders extends APIResource {
   /**
    * Create a new payment order asynchronously
    */
-  createAsync(body: PaymentOrderCreateAsyncParams, options?: Core.RequestOptions): Promise<void> {
+  createAsync(
+    body: PaymentOrderCreateAsyncParams,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.post('/api/payment_orders/create_async', {
       body,
       ...options,

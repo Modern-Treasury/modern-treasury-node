@@ -66,7 +66,7 @@ export class Counterparties extends APIResource {
   /**
    * Deletes a given counterparty.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<void> {
+  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/api/counterparties/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
