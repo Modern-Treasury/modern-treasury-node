@@ -61,12 +61,15 @@ export class IncomingPaymentDetails extends APIResource {
   /**
    * Simulate Incoming Payment Detail
    */
-  createAsync(body?: IncomingPaymentDetailCreateAsyncParams, options?: Core.RequestOptions): Promise<void>;
-  createAsync(options?: Core.RequestOptions): Promise<void>;
+  createAsync(
+    body?: IncomingPaymentDetailCreateAsyncParams,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>>;
+  createAsync(options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>>;
   createAsync(
     body: IncomingPaymentDetailCreateAsyncParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<void> {
+  ): Promise<Core.APIResponse<Promise<void>>> {
     if (isRequestOptions(body)) {
       return this.createAsync({}, body);
     }
