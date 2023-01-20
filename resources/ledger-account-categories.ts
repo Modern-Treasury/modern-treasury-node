@@ -76,7 +76,11 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Add a ledger account category to an account.
    */
-  addLedgerAccount(id: string, ledgerAccountId: string, options?: Core.RequestOptions): Promise<void> {
+  addLedgerAccount(
+    id: string,
+    ledgerAccountId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.put(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -86,7 +90,11 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Add a ledger account category to a ledger account category.
    */
-  addNestedCategory(id: string, subCategoryId: string, options?: Core.RequestOptions): Promise<void> {
+  addNestedCategory(
+    id: string,
+    subCategoryId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.put(`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -96,7 +104,11 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Delete a ledger account category from an account.
    */
-  removeLedgerAccount(id: string, ledgerAccountId: string, options?: Core.RequestOptions): Promise<void> {
+  removeLedgerAccount(
+    id: string,
+    ledgerAccountId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -106,7 +118,11 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Delete a ledger account category from a ledger account category.
    */
-  removeNestedCategory(id: string, subCategoryId: string, options?: Core.RequestOptions): Promise<void> {
+  removeNestedCategory(
+    id: string,
+    subCategoryId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

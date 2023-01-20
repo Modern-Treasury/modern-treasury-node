@@ -1,3 +1,9 @@
 // File generated from our OpenAPI spec by Stainless.
-export * from './balance-reports';
-export * from './internal-accounts';
+export { BalanceReport, BalanceReportListParams, BalanceReportsPage } from './balance-reports';
+export {
+  InternalAccount,
+  InternalAccountCreateParams,
+  InternalAccountUpdateParams,
+  InternalAccountListParams,
+  InternalAccountsPage,
+} from './internal-accounts';

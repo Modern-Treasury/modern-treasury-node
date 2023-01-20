@@ -1,3 +1,9 @@
 // File generated from our OpenAPI spec by Stainless.
-export * from './ledger-transactions';
-export * from './versions';
+export {
+  LedgerTransaction,
+  LedgerTransactionCreateParams,
+  LedgerTransactionUpdateParams,
+  LedgerTransactionListParams,
+  LedgerTransactionsPage,
+} from './ledger-transactions';
+export { LedgerTransactionVersion, VersionVersionsParams, LedgerTransactionVersionsPage } from './versions';
