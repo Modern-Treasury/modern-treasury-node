@@ -262,6 +262,7 @@ export namespace ModernTreasury {
   export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
   export import VirtualAccountListParams = API.VirtualAccountListParams;
 
+  export import AccountsType = API.AccountsType;
   export import Currency = API.Currency;
 }
 
