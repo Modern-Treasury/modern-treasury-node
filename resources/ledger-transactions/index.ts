@@ -6,4 +6,9 @@ export {
   LedgerTransactionListParams,
   LedgerTransactionsPage,
 } from './ledger-transactions';
-export { LedgerTransactionVersion, VersionVersionsParams, LedgerTransactionVersionsPage } from './versions';
+export {
+  LedgerTransactionVersion,
+  VersionListParams,
+  VersionVersionsParams,
+  LedgerTransactionVersionsPage,
+} from './versions';

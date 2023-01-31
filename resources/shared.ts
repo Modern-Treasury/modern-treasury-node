@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
+export type AccountsType = 'external_accounts' | 'internal_accounts';
+
 /**
  * Three-letter ISO currency code.
  */

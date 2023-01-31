@@ -220,7 +220,7 @@ Models:
 
 Methods:
 
-- <code title="get /api/ledger_transactions/{id}/versions">client.ledgerTransactions.versions.<a href="./resources/ledger-transactions/versions.ts">versions</a>(id, { ...params }) -> LedgerTransactionVersionsPage</code>
+- <code title="get /api/ledger_transactions/{id}/versions">client.ledgerTransactions.versions.<a href="./resources/ledger-transactions/versions.ts">list</a>(id, { ...params }) -> LedgerTransactionVersionsPage</code>
 
 # LineItems
 

@@ -7,9 +7,7 @@ import type { Agent } from 'http';
 import * as FileFromPath from 'formdata-node/file-from-path';
 
 type Config = {
-  /**
-   * Defaults to to process.env["MODERN_TREASURY_API_KEY"]. Set it to null if you want to send unauthenticated requests.
-   */
+  /* Defaults to to process.env["MODERN_TREASURY_API_KEY"].  */
   apiKey?: string;
   baseURL?: string;
   timeout?: number;
@@ -32,7 +30,7 @@ export class ModernTreasury extends Core.APIClient {
 
     if (!options.apiKey && options.apiKey !== null) {
       throw new Error(
-        "The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({apiKey: 'my api key'}).",
+        "The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({ apiKey: 'my api key' }).",
       );
     }
 
@@ -262,6 +260,7 @@ export namespace ModernTreasury {
   export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
   export import VirtualAccountListParams = API.VirtualAccountListParams;
 
+  export import AccountsType = API.AccountsType;
   export import Currency = API.Currency;
 }
 
