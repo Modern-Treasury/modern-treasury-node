@@ -3,10 +3,10 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { Page, PageParams } from '~/pagination';
-import * as Shared from '~/resources/shared';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
+import { Page, PageParams } from '~/pagination';
+import * as Shared from '~/resources/shared';
 
 export class ExternalAccounts extends APIResource {
   /**

@@ -3,26 +3,26 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { Page, PageParams } from '~/pagination';
 import * as LedgerEntries from '~/resources/ledger-entries';
+import { Page, PageParams } from '~/pagination';
 
 export class Versions extends APIResource {
   /**
    * Get a list of ledger transaction versions.
    */
-  versions(
+  list(
     id: string,
-    query?: VersionVersionsParams,
+    query?: VersionListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<LedgerTransactionVersionsPage>;
-  versions(id: string, options?: Core.RequestOptions): Core.PagePromise<LedgerTransactionVersionsPage>;
-  versions(
+  list(id: string, options?: Core.RequestOptions): Core.PagePromise<LedgerTransactionVersionsPage>;
+  list(
     id: string,
-    query: VersionVersionsParams | Core.RequestOptions = {},
+    query: VersionListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<LedgerTransactionVersionsPage> {
     if (isRequestOptions(query)) {
-      return this.versions(id, {}, query);
+      return this.list(id, {}, query);
     }
 
     return this.getAPIList(`/api/ledger_transactions/${id}/versions`, LedgerTransactionVersionsPage, {
@@ -30,6 +30,11 @@ export class Versions extends APIResource {
       ...options,
     });
   }
+
+  /**
+   * @deprecated This method has been deprecated and will be removed soon.
+   */
+  versions = this.list;
 }
 
 export class LedgerTransactionVersionsPage extends Page<LedgerTransactionVersion> {}
@@ -124,6 +129,21 @@ export interface LedgerTransactionVersion {
    * Version number of the ledger transaction.
    */
   version: number;
+}
+
+export interface VersionListParams extends PageParams {
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+   * created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
+   * created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+   */
+  created_at?: Record<string, string>;
+
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+   * version. For example, for all versions after 2, use version%5Bgt%5D=2.
+   */
+  version?: Record<string, number>;
 }
 
 export interface VersionVersionsParams extends PageParams {

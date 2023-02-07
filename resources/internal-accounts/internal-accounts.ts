@@ -3,12 +3,12 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { BalanceReports } from './balance-reports';
-import { Page, PageParams } from '~/pagination';
-import * as Shared from '~/resources/shared';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
 import * as Connections from '~/resources/connections';
+import { Page, PageParams } from '~/pagination';
+import { BalanceReports } from './balance-reports';
+import * as Shared from '~/resources/shared';
 
 export class InternalAccounts extends APIResource {
   balanceReports: BalanceReports = new BalanceReports(this.client);

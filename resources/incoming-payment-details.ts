@@ -3,9 +3,9 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as VirtualAccounts from '~/resources/virtual-accounts';
 import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
-import * as VirtualAccounts from '~/resources/virtual-accounts';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
