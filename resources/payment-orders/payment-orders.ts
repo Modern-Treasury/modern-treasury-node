@@ -5,11 +5,11 @@ import { APIResource } from '~/resource';
 import type * as FormData from 'formdata-node';
 import { maybeMultipartFormRequestOptions } from '~/core';
 import { isRequestOptions } from '~/core';
-import { Reversals } from './reversals';
-import { Page, PageParams } from '~/pagination';
-import * as Shared from '~/resources/shared';
 import * as Returns from '~/resources/returns';
 import * as ExternalAccounts from '~/resources/external-accounts';
+import { Page, PageParams } from '~/pagination';
+import { Reversals } from './reversals';
+import * as Shared from '~/resources/shared';
 
 export class PaymentOrders extends APIResource {
   reversals: Reversals = new Reversals(this.client);
@@ -370,6 +370,7 @@ export namespace PaymentOrder {
     reference_number_type:
       | 'ach_original_trace_number'
       | 'ach_trace_number'
+      | 'bankprov_payment_activity_date'
       | 'bankprov_payment_id'
       | 'bnk_dev_prenotification_id'
       | 'bnk_dev_transfer_id'
@@ -393,6 +394,7 @@ export namespace PaymentOrder {
       | 'goldman_sachs_unique_payment_id'
       | 'interac_message_id'
       | 'jpmc_ccn'
+      | 'jpmc_customer_reference_id'
       | 'jpmc_end_to_end_id'
       | 'jpmc_firm_root_id'
       | 'jpmc_p3_id'
@@ -800,7 +802,7 @@ export namespace PaymentOrderCreateParams {
     export interface ContactDetails {
       contact_identifier?: string;
 
-      contact_identifier_type?: 'email' | 'phone_number';
+      contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
   }
 
@@ -1315,7 +1317,7 @@ export namespace PaymentOrderUpdateParams {
     export interface ContactDetails {
       contact_identifier?: string;
 
-      contact_identifier_type?: 'email' | 'phone_number';
+      contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
   }
 
@@ -1762,7 +1764,7 @@ export namespace PaymentOrderCreateAsyncParams {
     export interface ContactDetails {
       contact_identifier?: string;
 
-      contact_identifier_type?: 'email' | 'phone_number';
+      contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
   }
 

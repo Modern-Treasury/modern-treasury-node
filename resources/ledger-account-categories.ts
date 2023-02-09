@@ -19,8 +19,22 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Get the details on a single ledger account category.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>> {
-    return this.get(`/api/ledger_account_categories/${id}`, options);
+  retrieve(
+    id: string,
+    query?: LedgerAccountCategoryRetrieveParams,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<LedgerAccountCategory>>;
+  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>>;
+  retrieve(
+    id: string,
+    query: LedgerAccountCategoryRetrieveParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<LedgerAccountCategory>> {
+    if (isRequestOptions(query)) {
+      return this.retrieve(id, {}, query);
+    }
+
+    return this.get(`/api/ledger_account_categories/${id}`, { query, ...options });
   }
 
   /**
@@ -299,6 +313,24 @@ export interface LedgerAccountCategoryCreateParams {
    * strings.
    */
   metadata?: Record<string, string>;
+}
+
+export interface LedgerAccountCategoryRetrieveParams {
+  /**
+   * For example, if you want the balances as of a particular effective date
+   * (YYYY-MM-DD), the encoded query string would be
+   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
+   * entries with that exact date.
+   */
+  balances?: LedgerAccountCategoryRetrieveParams.Balances;
+}
+
+export namespace LedgerAccountCategoryRetrieveParams {
+  export interface Balances {
+    as_of_date?: string;
+
+    effective_at?: string;
+  }
 }
 
 export interface LedgerAccountCategoryUpdateParams {
