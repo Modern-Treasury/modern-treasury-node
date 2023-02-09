@@ -2,7 +2,6 @@
 
 import { APIResource } from '~/resource';
 import { createHmac } from 'crypto';
-
 import type { HeadersLike } from '~/core';
 import { getHeader } from '~/core';
 
