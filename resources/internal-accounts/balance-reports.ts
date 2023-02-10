@@ -147,6 +147,7 @@ export namespace BalanceReport {
       | 'currencycloud'
       | 'dc_bank'
       | 'dwolla'
+      | 'evolve'
       | 'goldman_sachs'
       | 'iso20022'
       | 'jpmc'

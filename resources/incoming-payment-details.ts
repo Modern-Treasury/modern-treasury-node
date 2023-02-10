@@ -3,9 +3,9 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as VirtualAccounts from '~/resources/virtual-accounts';
 import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
-import * as VirtualAccounts from '~/resources/virtual-accounts';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
@@ -152,7 +152,8 @@ export interface IncomingPaymentDetail {
   transaction_line_item_id: string | null;
 
   /**
-   * One of: `ach`, `wire`, `check`, `rtp`, `sepa`, `signet`.
+   * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+   * `wire`.
    */
   type: 'ach' | 'book' | 'check' | 'eft' | 'interac' | 'rtp' | 'sepa' | 'signet' | 'wire';
 
@@ -216,7 +217,8 @@ export interface IncomingPaymentDetailListParams extends PageParams {
   status?: 'completed' | 'pending' | 'returned';
 
   /**
-   * One of: `ach`, `wire`, `check`, `rtp`, `sepa`, `signet`.
+   * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+   * `wire`.
    */
   type?: 'ach' | 'book' | 'check' | 'eft' | 'interac' | 'rtp' | 'sepa' | 'signet' | 'wire';
 

@@ -332,5 +332,7 @@ export interface LedgerAccountListParams extends PageParams {
 export namespace LedgerAccountListParams {
   export interface Balances {
     as_of_date?: string;
+
+    effective_at?: string;
   }
 }

@@ -3,9 +3,9 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { Versions } from './versions';
-import { Page, PageParams } from '~/pagination';
 import * as LedgerEntries from '~/resources/ledger-entries';
+import { Page, PageParams } from '~/pagination';
+import { Versions } from './versions';
 
 export class LedgerTransactions extends APIResource {
   versions: Versions = new Versions(this.client);

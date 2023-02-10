@@ -160,7 +160,7 @@ export interface ReturnObject {
   /**
    * The type of object being returned or `null`.
    */
-  returnable_type: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'reversal' | null;
+  returnable_type: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'return' | 'reversal' | null;
 
   /**
    * The role of the return, can be `originating` or `receiving`.
@@ -170,7 +170,7 @@ export interface ReturnObject {
   /**
    * The current status of the return.
    */
-  status: 'completed' | 'failed' | 'pending' | 'processing' | 'sent';
+  status: 'completed' | 'failed' | 'pending' | 'processing' | 'returned' | 'sent';
 
   /**
    * The ID of the relevant Transaction or `null`.
@@ -191,6 +191,7 @@ export interface ReturnObject {
     | 'ach_noc'
     | 'au_becs'
     | 'bacs'
+    | 'book'
     | 'eft'
     | 'interac'
     | 'manual'
@@ -226,6 +227,7 @@ export namespace ReturnObject {
     reference_number_type:
       | 'ach_original_trace_number'
       | 'ach_trace_number'
+      | 'bankprov_payment_activity_date'
       | 'bankprov_payment_id'
       | 'bnk_dev_prenotification_id'
       | 'bnk_dev_transfer_id'
@@ -249,6 +251,7 @@ export namespace ReturnObject {
       | 'goldman_sachs_unique_payment_id'
       | 'interac_message_id'
       | 'jpmc_ccn'
+      | 'jpmc_customer_reference_id'
       | 'jpmc_end_to_end_id'
       | 'jpmc_firm_root_id'
       | 'jpmc_p3_id'
@@ -378,5 +381,5 @@ export interface ReturnListParams extends PageParams {
    * One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
    * Must be accompanied by `returnable_id`.
    */
-  returnable_type?: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'reversal';
+  returnable_type?: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'return' | 'reversal';
 }

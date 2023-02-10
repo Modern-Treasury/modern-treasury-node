@@ -105,7 +105,7 @@ describe('resource ledger_accounts', () => {
       id: 'string',
       name: 'string',
       ledger_id: 'string',
-      balances: { as_of_date: '2019-12-27' },
+      balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' },
       updated_at: { foo: '2019-12-27T18:11:19.117Z' },
       ledger_account_category_id: 'string',
     });
@@ -129,7 +129,7 @@ describe('resource ledger_accounts', () => {
           id: 'string',
           name: 'string',
           ledger_id: 'string',
-          balances: { as_of_date: '2019-12-27' },
+          balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' },
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
           ledger_account_category_id: 'string',
         },

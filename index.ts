@@ -1,4 +1,5 @@
 // File generated from our OpenAPI spec by Stainless.
+
 import qs from 'qs';
 import * as Core from './core';
 import * as Pagination from './pagination';
@@ -8,7 +9,7 @@ import * as FileFromPath from 'formdata-node/file-from-path';
 
 type Config = {
   /**
-   * Defaults to to process.env["MODERN_TREASURY_API_KEY"]. Set it to null if you want to send unauthenticated requests.
+   * Defaults to process.env["MODERN_TREASURY_API_KEY"].
    */
   apiKey?: string;
   baseURL?: string;
@@ -18,6 +19,7 @@ type Config = {
   webhookKey?: string | null;
 };
 
+/** Instantiate the API Client. */
 export class ModernTreasury extends Core.APIClient {
   apiKey: string;
   organizationId: string;
@@ -32,7 +34,7 @@ export class ModernTreasury extends Core.APIClient {
 
     if (!options.apiKey && options.apiKey !== null) {
       throw new Error(
-        "The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({apiKey: 'my api key'}).",
+        "The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({ apiKey: 'my api key' }).",
       );
     }
 
@@ -67,10 +69,12 @@ export class ModernTreasury extends Core.APIClient {
   ledgers: API.Ledgers = new API.Ledgers(this);
   ledgerAccountCategories: API.LedgerAccountCategories = new API.LedgerAccountCategories(this);
   ledgerAccounts: API.LedgerAccounts = new API.LedgerAccounts(this);
+  ledgerAccountPayouts: API.LedgerAccountPayouts = new API.LedgerAccountPayouts(this);
   ledgerEntries: API.LedgerEntries = new API.LedgerEntries(this);
   ledgerTransactions: API.LedgerTransactions = new API.LedgerTransactions(this);
   lineItems: API.LineItems = new API.LineItems(this);
   paymentOrders: API.PaymentOrders = new API.PaymentOrders(this);
+  paymentReferences: API.PaymentReferences = new API.PaymentReferences(this);
   returns: API.Returns = new API.Returns(this);
   transactions: API.Transactions = new API.Transactions(this);
   validations: API.Validations = new API.Validations(this);
@@ -205,6 +209,7 @@ export namespace ModernTreasury {
   export import LedgerAccountCategory = API.LedgerAccountCategory;
   export import LedgerAccountCategoriesPage = API.LedgerAccountCategoriesPage;
   export import LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
+  export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
   export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
   export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
 
@@ -214,6 +219,12 @@ export namespace ModernTreasury {
   export import LedgerAccountRetrieveParams = API.LedgerAccountRetrieveParams;
   export import LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;
   export import LedgerAccountListParams = API.LedgerAccountListParams;
+
+  export import LedgerAccountPayout = API.LedgerAccountPayout;
+  export import LedgerAccountPayoutsPage = API.LedgerAccountPayoutsPage;
+  export import LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
+  export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
+  export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
 
   export import LedgerEntry = API.LedgerEntry;
   export import LedgerEntriesPage = API.LedgerEntriesPage;
@@ -239,6 +250,10 @@ export namespace ModernTreasury {
   export import PaymentOrderListParams = API.PaymentOrderListParams;
   export import PaymentOrderCreateAsyncParams = API.PaymentOrderCreateAsyncParams;
 
+  export import PaymentReference = API.PaymentReference;
+  export import PaymentReferencesPage = API.PaymentReferencesPage;
+  export import PaymentReferenceListParams = API.PaymentReferenceListParams;
+
   export import ReturnObject = API.ReturnObject;
   export import ReturnObjectsPage = API.ReturnObjectsPage;
   export import ReturnCreateParams = API.ReturnCreateParams;
@@ -262,6 +277,7 @@ export namespace ModernTreasury {
   export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
   export import VirtualAccountListParams = API.VirtualAccountListParams;
 
+  export import AccountsType = API.AccountsType;
   export import Currency = API.Currency;
 }
 

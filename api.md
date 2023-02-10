@@ -165,7 +165,7 @@ Models:
 Methods:
 
 - <code title="post /api/ledger_account_categories">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">create</a>({ ...params }) -> LedgerAccountCategory</code>
-- <code title="get /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">retrieve</a>(id) -> LedgerAccountCategory</code>
+- <code title="get /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">retrieve</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="patch /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">update</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="get /api/ledger_account_categories">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">list</a>({ ...params }) -> LedgerAccountCategoriesPage</code>
 - <code title="delete /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">del</a>(id) -> LedgerAccountCategory</code>
@@ -187,6 +187,19 @@ Methods:
 - <code title="patch /api/ledger_accounts/{id}">client.ledgerAccounts.<a href="./resources/ledger-accounts.ts">update</a>(id, { ...params }) -> LedgerAccount</code>
 - <code title="get /api/ledger_accounts">client.ledgerAccounts.<a href="./resources/ledger-accounts.ts">list</a>({ ...params }) -> LedgerAccountsPage</code>
 - <code title="delete /api/ledger_accounts/{id}">client.ledgerAccounts.<a href="./resources/ledger-accounts.ts">del</a>(id) -> LedgerAccount</code>
+
+# LedgerAccountPayouts
+
+Models:
+
+- <code><a href="./resources/ledger-account-payouts.ts">LedgerAccountPayout</a></code>
+
+Methods:
+
+- <code title="post /api/ledger_account_payouts">client.ledgerAccountPayouts.<a href="./resources/ledger-account-payouts.ts">create</a>({ ...params }) -> LedgerAccountPayout</code>
+- <code title="patch /api/ledger_account_payouts/{id}">client.ledgerAccountPayouts.<a href="./resources/ledger-account-payouts.ts">update</a>(id, { ...params }) -> LedgerAccountPayout</code>
+- <code title="get /api/ledger_account_payouts">client.ledgerAccountPayouts.<a href="./resources/ledger-account-payouts.ts">list</a>({ ...params }) -> LedgerAccountPayoutsPage</code>
+- <code title="get /api/ledger_account_payouts/{id}">client.ledgerAccountPayouts.<a href="./resources/ledger-account-payouts.ts">retireve</a>(id) -> LedgerAccountPayout</code>
 
 # LedgerEntries
 
@@ -220,7 +233,7 @@ Models:
 
 Methods:
 
-- <code title="get /api/ledger_transactions/{id}/versions">client.ledgerTransactions.versions.<a href="./resources/ledger-transactions/versions.ts">versions</a>(id, { ...params }) -> LedgerTransactionVersionsPage</code>
+- <code title="get /api/ledger_transactions/{id}/versions">client.ledgerTransactions.versions.<a href="./resources/ledger-transactions/versions.ts">list</a>(id, { ...params }) -> LedgerTransactionVersionsPage</code>
 
 # LineItems
 
@@ -261,6 +274,17 @@ Methods:
 - <code title="post /api/payment_orders/{payment_order_id}/reversals">client.paymentOrders.reversals.<a href="./resources/payment-orders/reversals.ts">create</a>(paymentOrderId, { ...params }) -> Reversal</code>
 - <code title="get /api/payment_orders/{payment_order_id}/reversals/{reversal_id}">client.paymentOrders.reversals.<a href="./resources/payment-orders/reversals.ts">retrieve</a>(paymentOrderId, reversalId) -> Reversal</code>
 - <code title="get /api/payment_orders/{payment_order_id}/reversals">client.paymentOrders.reversals.<a href="./resources/payment-orders/reversals.ts">list</a>(paymentOrderId, { ...params }) -> ReversalsPage</code>
+
+# PaymentReferences
+
+Models:
+
+- <code><a href="./resources/payment-references.ts">PaymentReference</a></code>
+
+Methods:
+
+- <code title="get /api/payment_references">client.paymentReferences.<a href="./resources/payment-references.ts">list</a>({ ...params }) -> PaymentReferencesPage</code>
+- <code title="get /api/payment_references/{id}">client.paymentReferences.<a href="./resources/payment-references.ts">retireve</a>(id) -> PaymentReference</code>
 
 # Returns
 

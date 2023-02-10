@@ -29,14 +29,31 @@ describe('resource ledger_account_categories', () => {
     });
   });
 
-  test('retrieve', async () => {
+  test('retrieve: only required params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.retrieve('string');
+  });
+
+  test('retrieve: required and optional params', async () => {
+    const response = await modernTreasury.ledgerAccountCategories.retrieve('string', {
+      balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' },
+    });
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.retrieve('string', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      modernTreasury.ledgerAccountCategories.retrieve(
+        'string',
+        { balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' } },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 

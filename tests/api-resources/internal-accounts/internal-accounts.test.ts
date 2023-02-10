@@ -95,6 +95,7 @@ describe('resource internal_accounts', () => {
       currency: 'AED',
       payment_type: 'ach',
       payment_direction: 'credit',
+      metadata: { foo: 'string' },
     });
   });
 
@@ -115,6 +116,7 @@ describe('resource internal_accounts', () => {
           currency: 'AED',
           payment_type: 'ach',
           payment_direction: 'credit',
+          metadata: { foo: 'string' },
         },
         { path: '/_stainless_unknown_path' },
       ),

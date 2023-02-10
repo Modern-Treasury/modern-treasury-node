@@ -80,11 +80,6 @@ export class AccountDetailsPage extends Page<AccountDetail> {}
 
 export interface AccountDetail {
   /**
-   * The account number for the bank account.
-   */
-  account_number: string;
-
-  /**
    * The last 4 digits of the account_number.
    */
   account_number_safe: string;
@@ -110,6 +105,11 @@ export interface AccountDetail {
   object: string;
 
   updated_at: string;
+
+  /**
+   * The account number for the bank account.
+   */
+  account_number?: string;
 }
 
 export interface AccountDetailCreateParams {
