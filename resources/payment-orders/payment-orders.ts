@@ -2,14 +2,14 @@
 
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
-import type * as FormData from 'formdata-node';
-import { maybeMultipartFormRequestOptions } from '~/core';
 import { isRequestOptions } from '~/core';
 import * as Returns from '~/resources/returns';
 import * as ExternalAccounts from '~/resources/external-accounts';
 import { Page, PageParams } from '~/pagination';
 import { Reversals } from './reversals';
 import * as Shared from '~/resources/shared';
+import type * as FormData from 'formdata-node';
+import { maybeMultipartFormRequestOptions } from '~/core';
 
 export class PaymentOrders extends APIResource {
   reversals: Reversals = new Reversals(this.client);
