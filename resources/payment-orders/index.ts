@@ -4,6 +4,7 @@ export {
   PaymentOrder,
   PaymentOrderSubtype,
   PaymentOrderType,
+  IncomingPaymentDetailCreateAsyncResponse,
   PaymentOrderCreateParams,
   PaymentOrderUpdateParams,
   PaymentOrderListParams,

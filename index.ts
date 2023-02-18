@@ -174,6 +174,7 @@ export namespace ModernTreasury {
   export import ExternalAccountVerifyParams = API.ExternalAccountVerifyParams;
 
   export import IncomingPaymentDetail = API.IncomingPaymentDetail;
+  export import IncomingPaymentDetailCreateAsyncResponse = API.IncomingPaymentDetailCreateAsyncResponse;
   export import IncomingPaymentDetailsPage = API.IncomingPaymentDetailsPage;
   export import IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
   export import IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
@@ -244,6 +245,7 @@ export namespace ModernTreasury {
   export import PaymentOrder = API.PaymentOrder;
   export import PaymentOrderSubtype = API.PaymentOrderSubtype;
   export import PaymentOrderType = API.PaymentOrderType;
+  export import IncomingPaymentDetailCreateAsyncResponse = API.IncomingPaymentDetailCreateAsyncResponse;
   export import PaymentOrdersPage = API.PaymentOrdersPage;
   export import PaymentOrderCreateParams = API.PaymentOrderCreateParams;
   export import PaymentOrderUpdateParams = API.PaymentOrderUpdateParams;

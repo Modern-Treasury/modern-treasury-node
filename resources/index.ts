@@ -43,6 +43,7 @@ export {
 } from './external-accounts';
 export {
   IncomingPaymentDetail,
+  IncomingPaymentDetailCreateAsyncResponse,
   IncomingPaymentDetailUpdateParams,
   IncomingPaymentDetailListParams,
   IncomingPaymentDetailCreateAsyncParams,
@@ -106,6 +107,7 @@ export {
   PaymentOrder,
   PaymentOrderSubtype,
   PaymentOrderType,
+  IncomingPaymentDetailCreateAsyncResponse,
   PaymentOrderCreateParams,
   PaymentOrderUpdateParams,
   PaymentOrderListParams,
