@@ -64,21 +64,17 @@ export class IncomingPaymentDetails extends APIResource {
   createAsync(
     body?: IncomingPaymentDetailCreateAsyncParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>>;
-  createAsync(options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>>;
+  ): Promise<Core.APIResponse<Shared.AsyncResponse>>;
+  createAsync(options?: Core.RequestOptions): Promise<Core.APIResponse<Shared.AsyncResponse>>;
   createAsync(
     body: IncomingPaymentDetailCreateAsyncParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<Shared.AsyncResponse>> {
     if (isRequestOptions(body)) {
       return this.createAsync({}, body);
     }
 
-    return this.post('/api/simulations/incoming_payment_details/create_async', {
-      body,
-      ...options,
-      headers: { Accept: '', ...options?.headers },
-    });
+    return this.post('/api/simulations/incoming_payment_details/create_async', { body, ...options });
   }
 }
 
