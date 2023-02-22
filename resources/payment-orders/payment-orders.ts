@@ -74,12 +74,8 @@ export class PaymentOrders extends APIResource {
   createAsync(
     body: PaymentOrderCreateAsyncParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
-    return this.post('/api/payment_orders/create_async', {
-      body,
-      ...options,
-      headers: { Accept: '', ...options?.headers },
-    });
+  ): Promise<Core.APIResponse<Shared.AsyncResponse>> {
+    return this.post('/api/payment_orders/create_async', { body, ...options });
   }
 }
 
@@ -112,6 +108,12 @@ export interface PaymentOrder {
    * respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
    */
   charge_bearer: 'shared' | 'sender' | 'receiver' | null;
+
+  /**
+   * Custom key-value pair for usage in compliance rules. Please contact support
+   * before making changes to this field.
+   */
+  compliance_rule_metadata: Record<string, unknown> | null;
 
   /**
    * If the payment order is tied to a specific Counterparty, their id will appear,
