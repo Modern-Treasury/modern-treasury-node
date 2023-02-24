@@ -2,6 +2,12 @@
 
 export type AccountsType = 'external_accounts' | 'internal_accounts';
 
+export interface AsyncResponse {
+  id: string;
+
+  object: string;
+}
+
 /**
  * Three-letter ISO currency code.
  */

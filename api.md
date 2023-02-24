@@ -78,7 +78,7 @@ Methods:
 - <code title="get /api/incoming_payment_details/{id}">client.incomingPaymentDetails.<a href="./resources/incoming-payment-details.ts">retrieve</a>(id) -> IncomingPaymentDetail</code>
 - <code title="patch /api/incoming_payment_details/{id}">client.incomingPaymentDetails.<a href="./resources/incoming-payment-details.ts">update</a>(id, { ...params }) -> IncomingPaymentDetail</code>
 - <code title="get /api/incoming_payment_details">client.incomingPaymentDetails.<a href="./resources/incoming-payment-details.ts">list</a>({ ...params }) -> IncomingPaymentDetailsPage</code>
-- <code title="post /api/simulations/incoming_payment_details/create_async">client.incomingPaymentDetails.<a href="./resources/incoming-payment-details.ts">createAsync</a>({ ...params }) -> Promise<void></code>
+- <code title="post /api/simulations/incoming_payment_details/create_async">client.incomingPaymentDetails.<a href="./resources/incoming-payment-details.ts">createAsync</a>({ ...params }) -> AsyncResponse</code>
 
 # Documents
 
@@ -261,7 +261,7 @@ Methods:
 - <code title="get /api/payment_orders/{id}">client.paymentOrders.<a href="./resources/payment-orders/payment-orders.ts">retrieve</a>(id) -> PaymentOrder</code>
 - <code title="patch /api/payment_orders/{id}">client.paymentOrders.<a href="./resources/payment-orders/payment-orders.ts">update</a>(id, { ...params }) -> PaymentOrder</code>
 - <code title="get /api/payment_orders">client.paymentOrders.<a href="./resources/payment-orders/payment-orders.ts">list</a>({ ...params }) -> PaymentOrdersPage</code>
-- <code title="post /api/payment_orders/create_async">client.paymentOrders.<a href="./resources/payment-orders/payment-orders.ts">createAsync</a>({ ...params }) -> Promise<void></code>
+- <code title="post /api/payment_orders/create_async">client.paymentOrders.<a href="./resources/payment-orders/payment-orders.ts">createAsync</a>({ ...params }) -> AsyncResponse</code>
 
 ## Reversals
 
