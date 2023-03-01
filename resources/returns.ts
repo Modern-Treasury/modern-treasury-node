@@ -186,18 +186,7 @@ export interface ReturnObject {
    * The type of return. Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`,
    * `interac`, `manual`, `paper_item`, `wire`.
    */
-  type:
-    | 'ach'
-    | 'ach_noc'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'eft'
-    | 'interac'
-    | 'manual'
-    | 'paper_item'
-    | 'sepa'
-    | 'wire';
+  type: 'ach' | 'ach_noc' | 'au_becs' | 'bacs' | 'book' | 'eft' | 'interac' | 'paper_item' | 'sepa' | 'wire';
 
   updated_at: string;
 }
