@@ -12,36 +12,9 @@ describe('resource ledger_transactions', () => {
     const response = await modernTreasury.ledgerTransactions.create({
       effective_date: '2019-12-27',
       ledger_entries: [
-        {
-          amount: 0,
-          direction: 'credit',
-          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          lock_version: 0,
-          pending_balance_amount: { foo: 0 },
-          posted_balance_amount: { foo: 0 },
-          available_balance_amount: { foo: 0 },
-          show_resulting_ledger_account_balances: true,
-        },
-        {
-          amount: 0,
-          direction: 'credit',
-          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          lock_version: 0,
-          pending_balance_amount: { foo: 0 },
-          posted_balance_amount: { foo: 0 },
-          available_balance_amount: { foo: 0 },
-          show_resulting_ledger_account_balances: true,
-        },
-        {
-          amount: 0,
-          direction: 'credit',
-          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          lock_version: 0,
-          pending_balance_amount: { foo: 0 },
-          posted_balance_amount: { foo: 0 },
-          available_balance_amount: { foo: 0 },
-          show_resulting_ledger_account_balances: true,
-        },
+        { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
       ],
     });
   });
