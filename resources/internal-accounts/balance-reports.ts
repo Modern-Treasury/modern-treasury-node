@@ -143,6 +143,7 @@ export namespace BalanceReport {
       | 'bankprov'
       | 'bnk_dev'
       | 'cleartouch'
+      | 'column'
       | 'cross_river'
       | 'currencycloud'
       | 'dc_bank'
