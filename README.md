@@ -69,7 +69,7 @@ Request parameters that correspond to file uploads can be passed as either a `Fo
 We provide a `fileFromPath` helper function to easily create `FormData.File` instances from a given class.
 
 ```ts
-import ModernTreasury, { fileFromPath } from 'modern-treasury';
+import modernTreasury, { fileFromPath } from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury();
 
