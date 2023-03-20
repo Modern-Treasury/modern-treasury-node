@@ -131,6 +131,8 @@ export const {
   InternalServerError,
 } = ModernTreasury;
 
+export import fileFromPath = FileFromPath.fileFromPath;
+
 export namespace ModernTreasury {
   // Helper functions
   export import fileFromPath = FileFromPath.fileFromPath;
