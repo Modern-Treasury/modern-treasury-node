@@ -506,7 +506,7 @@ export interface PaymentOrderCreateParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * An optional description for internal use.
@@ -642,7 +642,7 @@ export interface PaymentOrderCreateParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: PaymentOrderSubtype;
+  subtype?: PaymentOrderSubtype | null;
 
   /**
    * A flag that determines whether a payment order should go through transaction
@@ -996,7 +996,7 @@ export interface PaymentOrderUpdateParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * An optional description for internal use.
@@ -1149,7 +1149,7 @@ export interface PaymentOrderUpdateParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: PaymentOrderSubtype;
+  subtype?: PaymentOrderSubtype | null;
 
   /**
    * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
@@ -1474,7 +1474,7 @@ export interface PaymentOrderCreateAsyncParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * An optional description for internal use.
@@ -1604,7 +1604,7 @@ export interface PaymentOrderCreateAsyncParams {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype?: PaymentOrderSubtype;
+  subtype?: PaymentOrderSubtype | null;
 
   /**
    * A flag that determines whether a payment order should go through transaction
