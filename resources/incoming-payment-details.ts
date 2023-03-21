@@ -240,7 +240,7 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * One of `credit`, `debit`.

@@ -186,7 +186,18 @@ export interface ReturnObject {
    * The type of return. Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`,
    * `interac`, `manual`, `paper_item`, `wire`.
    */
-  type: 'ach' | 'ach_noc' | 'au_becs' | 'bacs' | 'book' | 'eft' | 'interac' | 'paper_item' | 'sepa' | 'wire';
+  type:
+    | 'ach'
+    | 'ach_noc'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'eft'
+    | 'interac'
+    | 'manual'
+    | 'paper_item'
+    | 'sepa'
+    | 'wire';
 
   updated_at: string;
 }
@@ -223,6 +234,7 @@ export namespace ReturnObject {
       | 'bofa_end_to_end_id'
       | 'bofa_transaction_id'
       | 'check_number'
+      | 'column_fx_quote_id'
       | 'column_transfer_id'
       | 'cross_river_payment_id'
       | 'cross_river_transaction_id'

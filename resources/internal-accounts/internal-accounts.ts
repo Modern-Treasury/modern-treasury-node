@@ -290,7 +290,7 @@ export interface InternalAccountListParams extends PageParams {
   /**
    * The currency associated with the internal account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * For example, if you want to query for records with metadata key `Type` and value

@@ -65,7 +65,6 @@ describe('resource ledger_accounts', () => {
     const response = await modernTreasury.ledgerAccounts.update('string', {
       name: 'string',
       description: 'string',
-      normal_balance: 'credit',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
     });
   });
@@ -82,12 +81,7 @@ describe('resource ledger_accounts', () => {
     await expect(
       modernTreasury.ledgerAccounts.update(
         'string',
-        {
-          name: 'string',
-          description: 'string',
-          normal_balance: 'credit',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-        },
+        { name: 'string', description: 'string', metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
