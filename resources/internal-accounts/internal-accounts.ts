@@ -6,9 +6,9 @@ import { isRequestOptions } from '~/core';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
 import * as Connections from '~/resources/connections';
-import { Page, PageParams } from '~/pagination';
 import { BalanceReports } from './balance-reports';
 import * as Shared from '~/resources/shared';
+import { Page, PageParams } from '~/pagination';
 
 export class InternalAccounts extends APIResource {
   balanceReports: BalanceReports = new BalanceReports(this.client);
@@ -290,7 +290,7 @@ export interface InternalAccountListParams extends PageParams {
   /**
    * The currency associated with the internal account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * For example, if you want to query for records with metadata key `Type` and value

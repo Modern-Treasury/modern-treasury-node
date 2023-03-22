@@ -5,8 +5,8 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
-import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
+import { Page, PageParams } from '~/pagination';
 
 export class ExternalAccounts extends APIResource {
   /**
@@ -484,5 +484,5 @@ export interface ExternalAccountVerifyParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 }

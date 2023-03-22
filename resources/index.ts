@@ -2,6 +2,14 @@
 
 export * from './shared';
 export {
+  AcccountConnectionFlow,
+  AccountCollectionFlowCreateParams,
+  AccountCollectionFlowUpdateParams,
+  AccountCollectionFlowListParams,
+  AcccountConnectionFlowsPage,
+  AccountCollectionFlows,
+} from './account-collection-flows';
+export {
   AccountDetail,
   AccountDetailCreateParams,
   AccountDetailListParams,
@@ -102,6 +110,14 @@ export {
 } from './ledger-transactions/ledger-transactions';
 export { LineItem, LineItemUpdateParams, LineItemListParams, LineItemsPage, LineItems } from './line-items';
 export { PaperItem, PaperItemListParams, PaperItemsPage, PaperItems } from './paper-items';
+export {
+  PaymentFlow,
+  PaymentFlowCreateParams,
+  PaymentFlowUpdateParams,
+  PaymentFlowListParams,
+  PaymentFlowsPage,
+  PaymentFlows,
+} from './payment-flows';
 export {
   PaymentOrder,
   PaymentOrderSubtype,

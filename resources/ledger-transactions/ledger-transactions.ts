@@ -4,8 +4,8 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as LedgerEntries from '~/resources/ledger-entries';
-import { Page, PageParams } from '~/pagination';
 import { Versions } from './versions';
+import { Page, PageParams } from '~/pagination';
 
 export class LedgerTransactions extends APIResource {
   versions: Versions = new Versions(this.client);
@@ -388,6 +388,13 @@ export interface LedgerTransactionListParams extends PageParams {
   metadata?: Record<string, string>;
 
   /**
+   * Order by `created_at` and/or `effective_at` in `asc` or `desc` order. For
+   * example, to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`.
+   * Ordering by only one field at a time is supported.
+   */
+  order_by?: LedgerTransactionListParams.OrderBy;
+
+  /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
@@ -402,4 +409,12 @@ export interface LedgerTransactionListParams extends PageParams {
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
   updated_at?: Record<string, string>;
+}
+
+export namespace LedgerTransactionListParams {
+  export interface OrderBy {
+    created_at?: 'asc' | 'desc';
+
+    effective_at?: 'asc' | 'desc';
+  }
 }

@@ -3,8 +3,8 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
+import { Page, PageParams } from '~/pagination';
 
 export class ExpectedPayments extends APIResource {
   /**
@@ -248,7 +248,7 @@ export interface ExpectedPaymentCreateParams {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -292,7 +292,7 @@ export interface ExpectedPaymentCreateParams {
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
    * sepa, signet, wire.
    */
-  type?: ExpectedPaymentType;
+  type?: ExpectedPaymentType | null;
 }
 
 export namespace ExpectedPaymentCreateParams {
@@ -343,7 +343,7 @@ export interface ExpectedPaymentUpdateParams {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -396,7 +396,7 @@ export interface ExpectedPaymentUpdateParams {
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
    * sepa, signet, wire.
    */
-  type?: ExpectedPaymentType;
+  type?: ExpectedPaymentType | null;
 }
 
 export interface ExpectedPaymentListParams extends PageParams {
