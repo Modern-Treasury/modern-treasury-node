@@ -92,6 +92,19 @@ Methods:
 - <code title="get /api/{documentable_type}/{documentable_id}/documents/{id}">client.documents.<a href="./resources/documents.ts">retrieve</a>(documentableType, documentableId, id) -> Document</code>
 - <code title="get /api/{documentable_type}/{documentable_id}/documents">client.documents.<a href="./resources/documents.ts">list</a>(documentableType, documentableId, { ...params }) -> DocumentsPage</code>
 
+# AccountCollectionFlows
+
+Models:
+
+- <code><a href="./resources/account-collection-flows.ts">AccountConnectionFlow</a></code>
+
+Methods:
+
+- <code title="post /api/account_collection_flows">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">create</a>({ ...params }) -> AccountConnectionFlow</code>
+- <code title="get /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">retrieve</a>(id) -> AccountConnectionFlow</code>
+- <code title="patch /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">update</a>(id, { ...params }) -> AccountConnectionFlow</code>
+- <code title="get /api/account_collection_flows">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">list</a>({ ...params }) -> AccountConnectionFlowsPage</code>
+
 # AccountDetails
 
 Models:
@@ -246,6 +259,19 @@ Methods:
 - <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./resources/line-items.ts">retrieve</a>(itemizableType, itemizableId, id) -> LineItem</code>
 - <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./resources/line-items.ts">update</a>(itemizableType, itemizableId, id, { ...params }) -> LineItem</code>
 - <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.lineItems.<a href="./resources/line-items.ts">list</a>(itemizableType, itemizableId, { ...params }) -> LineItemsPage</code>
+
+# PaymentFlows
+
+Models:
+
+- <code><a href="./resources/payment-flows.ts">PaymentFlow</a></code>
+
+Methods:
+
+- <code title="post /api/payment_flows">client.paymentFlows.<a href="./resources/payment-flows.ts">create</a>({ ...params }) -> PaymentFlow</code>
+- <code title="get /api/payment_flows/{id}">client.paymentFlows.<a href="./resources/payment-flows.ts">retrieve</a>(id) -> PaymentFlow</code>
+- <code title="patch /api/payment_flows/{id}">client.paymentFlows.<a href="./resources/payment-flows.ts">update</a>(id, { ...params }) -> PaymentFlow</code>
+- <code title="get /api/payment_flows">client.paymentFlows.<a href="./resources/payment-flows.ts">list</a>({ ...params }) -> PaymentFlowsPage</code>
 
 # PaymentOrders
 

@@ -3,8 +3,8 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { Page, PageParams } from '~/pagination';
 import type * as FormData from 'formdata-node';
+import { Page, PageParams } from '~/pagination';
 import { multipartFormRequestOptions } from '~/core';
 
 export class Documents extends APIResource {
