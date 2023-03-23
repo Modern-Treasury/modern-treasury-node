@@ -4,8 +4,8 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as VirtualAccounts from '~/resources/virtual-accounts';
-import { Page, PageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
+import { Page, PageParams } from '~/pagination';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
@@ -240,7 +240,7 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * One of `credit`, `debit`.

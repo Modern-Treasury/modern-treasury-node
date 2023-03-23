@@ -63,6 +63,7 @@ export class ModernTreasury extends Core.APIClient {
   externalAccounts: API.ExternalAccounts = new API.ExternalAccounts(this);
   incomingPaymentDetails: API.IncomingPaymentDetails = new API.IncomingPaymentDetails(this);
   documents: API.Documents = new API.Documents(this);
+  accountCollectionFlows: API.AccountCollectionFlows = new API.AccountCollectionFlows(this);
   accountDetails: API.AccountDetails = new API.AccountDetails(this);
   routingDetails: API.RoutingDetails = new API.RoutingDetails(this);
   internalAccounts: API.InternalAccounts = new API.InternalAccounts(this);
@@ -73,6 +74,7 @@ export class ModernTreasury extends Core.APIClient {
   ledgerEntries: API.LedgerEntries = new API.LedgerEntries(this);
   ledgerTransactions: API.LedgerTransactions = new API.LedgerTransactions(this);
   lineItems: API.LineItems = new API.LineItems(this);
+  paymentFlows: API.PaymentFlows = new API.PaymentFlows(this);
   paymentOrders: API.PaymentOrders = new API.PaymentOrders(this);
   paymentReferences: API.PaymentReferences = new API.PaymentReferences(this);
   returns: API.Returns = new API.Returns(this);
@@ -131,6 +133,8 @@ export const {
   InternalServerError,
 } = ModernTreasury;
 
+export import fileFromPath = FileFromPath.fileFromPath;
+
 export namespace ModernTreasury {
   // Helper functions
   export import fileFromPath = FileFromPath.fileFromPath;
@@ -183,6 +187,12 @@ export namespace ModernTreasury {
   export import DocumentsPage = API.DocumentsPage;
   export import DocumentCreateParams = API.DocumentCreateParams;
   export import DocumentListParams = API.DocumentListParams;
+
+  export import AccountConnectionFlow = API.AccountConnectionFlow;
+  export import AccountConnectionFlowsPage = API.AccountConnectionFlowsPage;
+  export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
+  export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
+  export import AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
 
   export import AccountDetail = API.AccountDetail;
   export import AccountDetailsPage = API.AccountDetailsPage;
@@ -240,6 +250,12 @@ export namespace ModernTreasury {
   export import LineItemsPage = API.LineItemsPage;
   export import LineItemUpdateParams = API.LineItemUpdateParams;
   export import LineItemListParams = API.LineItemListParams;
+
+  export import PaymentFlow = API.PaymentFlow;
+  export import PaymentFlowsPage = API.PaymentFlowsPage;
+  export import PaymentFlowCreateParams = API.PaymentFlowCreateParams;
+  export import PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;
+  export import PaymentFlowListParams = API.PaymentFlowListParams;
 
   export import PaymentOrder = API.PaymentOrder;
   export import PaymentOrderSubtype = API.PaymentOrderSubtype;

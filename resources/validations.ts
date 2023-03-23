@@ -38,7 +38,7 @@ export interface RoutingNumberLookupRequest {
    * support `aba` and `swift` with routing numbers '123456789' and 'GRINUST0XXX'
    * respectively.
    */
-  routing_number_type?: 'aba' | 'au_bsb' | 'ca_cpa' | 'gb_sort_code' | 'swift';
+  routing_number_type?: 'aba' | 'au_bsb' | 'ca_cpa' | 'gb_sort_code' | 'in_ifsc' | 'swift';
 
   /**
    * An object containing key-value pairs, each with a sanctions list as the key and
