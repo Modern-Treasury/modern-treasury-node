@@ -388,9 +388,9 @@ export interface LedgerTransactionListParams extends PageParams {
   metadata?: Record<string, string>;
 
   /**
-   * Order by `created_at` and/or `effective_at` in `asc` or `desc` order. For
-   * example, to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`.
-   * Ordering by only one field at a time is supported.
+   * Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
+   * to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
+   * by only one field at a time is supported.
    */
   order_by?: LedgerTransactionListParams.OrderBy;
 

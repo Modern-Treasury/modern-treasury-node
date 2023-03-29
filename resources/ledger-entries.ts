@@ -189,6 +189,12 @@ export namespace LedgerEntry {
 
 export interface LedgerEntryListParams extends PageParams {
   /**
+   * Shows all ledger entries that were present on a ledger account at a particular
+   * `lock_version`. You must also specify `ledger_account_id`.
+   */
+  as_of_lock_version?: number;
+
+  /**
    * If true, response will include ledger entries that were deleted. When you update
    * a ledger transaction to specify a new set of entries, the previous entries are
    * deleted.
@@ -219,11 +225,18 @@ export interface LedgerEntryListParams extends PageParams {
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * lock_version of a ledger account. For example, for all entries created at or
    * before before lock_version 1000 of a ledger account, use
-   * ledger_account_lock_version%5Blte%5D=1000
+   * `ledger_account_lock_version%5Blte%5D=1000`.
    */
   ledger_account_lock_version?: Record<string, number>;
 
   ledger_transaction_id?: string;
+
+  /**
+   * Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
+   * to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
+   * by only one field at a time is supported.
+   */
+  order_by?: LedgerEntryListParams.OrderBy;
 
   /**
    * If true, response will include ledger entries that were deleted. When you update
@@ -244,4 +257,12 @@ export interface LedgerEntryListParams extends PageParams {
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
   updated_at?: Record<string, string>;
+}
+
+export namespace LedgerEntryListParams {
+  export interface OrderBy {
+    created_at?: 'asc' | 'desc';
+
+    effective_at?: 'asc' | 'desc';
+  }
 }
