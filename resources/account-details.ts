@@ -12,10 +12,15 @@ export class AccountDetails extends APIResource {
   create(
     accountsType: 'external_accounts',
     accountId: string,
-    body: AccountDetailCreateParams,
+    params: AccountDetailCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<AccountDetail>> {
-    return this.post(`/api/${accountsType}/${accountId}/account_details`, { body, ...options });
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    return this.post(`/api/${accountsType}/${accountId}/account_details`, {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+    });
   }
 
   /**
@@ -53,7 +58,6 @@ export class AccountDetails extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(accountsType, accountId, {}, query);
     }
-
     return this.getAPIList(`/api/${accountsType}/${accountId}/account_details`, AccountDetailsPage, {
       query,
       ...options,
@@ -114,15 +118,21 @@ export interface AccountDetail {
 
 export interface AccountDetailCreateParams {
   /**
-   * The account number for the bank account.
+   * Body param: The account number for the bank account.
    */
   account_number: string;
 
   /**
-   * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
-   * account number is in a generic format.
+   * Body param: One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if
+   * the bank account number is in a generic format.
    */
   account_number_type?: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address';
+
+  /**
+   * Header param: This key should be something unique, preferably something like an
+   * UUID.
+   */
+  'Idempotency-Key'?: string;
 }
 
 export interface AccountDetailListParams extends PageParams {}

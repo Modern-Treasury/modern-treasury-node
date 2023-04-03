@@ -9,8 +9,13 @@ export class Ledgers extends APIResource {
   /**
    * Create a ledger.
    */
-  create(body: LedgerCreateParams, options?: Core.RequestOptions): Promise<Core.APIResponse<Ledger>> {
-    return this.post('/api/ledgers', { body, ...options });
+  create(params: LedgerCreateParams, options?: Core.RequestOptions): Promise<Core.APIResponse<Ledger>> {
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    return this.post('/api/ledgers', {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+    });
   }
 
   /**
@@ -37,7 +42,6 @@ export class Ledgers extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-
     return this.patch(`/api/ledgers/${id}`, { body, ...options });
   }
 
@@ -53,7 +57,6 @@ export class Ledgers extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/api/ledgers', LedgersPage, { query, ...options });
   }
 
@@ -103,20 +106,26 @@ export interface Ledger {
 
 export interface LedgerCreateParams {
   /**
-   * The name of the ledger.
-   */
-  name: string;
-
-  /**
-   * An optional free-form description for internal use.
+   * Body param: An optional free-form description for internal use.
    */
   description?: string | null;
 
   /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
+   * Body param: Additional data represented as key-value pairs. Both the key and
+   * value must be strings.
    */
   metadata?: Record<string, string>;
+
+  /**
+   * Body param: The name of the ledger.
+   */
+  name: string;
+
+  /**
+   * Header param: This key should be something unique, preferably something like an
+   * UUID.
+   */
+  'Idempotency-Key'?: string;
 }
 
 export interface LedgerUpdateParams {

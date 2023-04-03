@@ -9,32 +9,26 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource line_items', () => {
   test('retrieve', async () => {
-    const response = await modernTreasury.lineItems.retrieve('expected_payments', 'string', 'string');
+    const response = await modernTreasury.lineItems.retrieve('string', 'expected_payments', 'string');
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.lineItems.retrieve('expected_payments', 'string', 'string', {
+      modernTreasury.lineItems.retrieve('string', 'expected_payments', 'string', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update: only required params', async () => {
-    const response = await modernTreasury.lineItems.update('expected_payments', 'string', 'string');
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await modernTreasury.lineItems.update('expected_payments', 'string', 'string', {
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-    });
+  test('update', async () => {
+    const response = await modernTreasury.lineItems.update('string', 'expected_payments', 'string');
   });
 
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.lineItems.update('expected_payments', 'string', 'string', {
+      modernTreasury.lineItems.update('string', 'expected_payments', 'string', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
@@ -44,8 +38,8 @@ describe('resource line_items', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.lineItems.update(
-        'expected_payments',
         'string',
+        'expected_payments',
         'string',
         { metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
         { path: '/_stainless_unknown_path' },
@@ -53,21 +47,14 @@ describe('resource line_items', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
-    const response = await modernTreasury.lineItems.list('expected_payments', 'string');
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.lineItems.list('expected_payments', 'string', {
-      after_cursor: 'string',
-      per_page: 0,
-    });
+  test('list', async () => {
+    const response = await modernTreasury.lineItems.list('string', 'expected_payments');
   });
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.lineItems.list('expected_payments', 'string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.lineItems.list('string', 'expected_payments', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -75,8 +62,8 @@ describe('resource line_items', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.lineItems.list(
-        'expected_payments',
         'string',
+        'expected_payments',
         { after_cursor: 'string', per_page: 0 },
         { path: '/_stainless_unknown_path' },
       ),

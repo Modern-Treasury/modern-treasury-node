@@ -19,18 +19,8 @@ describe('resource paper_items', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.paperItems.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.paperItems.list({
-      lockbox_number: 'string',
-      deposit_date_start: '2019-12-27',
-      deposit_date_end: '2019-12-27',
-      after_cursor: 'string',
-      per_page: 0,
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -45,10 +35,10 @@ describe('resource paper_items', () => {
     await expect(
       modernTreasury.paperItems.list(
         {
-          lockbox_number: 'string',
-          deposit_date_start: '2019-12-27',
-          deposit_date_end: '2019-12-27',
           after_cursor: 'string',
+          deposit_date_end: '2019-12-27',
+          deposit_date_start: '2019-12-27',
+          lockbox_number: 'string',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },

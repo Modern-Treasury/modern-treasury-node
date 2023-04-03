@@ -191,6 +191,7 @@ export namespace ModernTreasury {
   export import AccountConnectionFlow = API.AccountConnectionFlow;
   export import AccountConnectionFlowsPage = API.AccountConnectionFlowsPage;
   export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
+  export import AccountCollectionFlowRetrieveParams = API.AccountCollectionFlowRetrieveParams;
   export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
   export import AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
 
@@ -222,6 +223,7 @@ export namespace ModernTreasury {
   export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
   export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
   export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
+  export import LedgerAccountCategoryDeleteParams = API.LedgerAccountCategoryDeleteParams;
 
   export import LedgerAccount = API.LedgerAccount;
   export import LedgerAccountsPage = API.LedgerAccountsPage;
@@ -254,6 +256,7 @@ export namespace ModernTreasury {
   export import PaymentFlow = API.PaymentFlow;
   export import PaymentFlowsPage = API.PaymentFlowsPage;
   export import PaymentFlowCreateParams = API.PaymentFlowCreateParams;
+  export import PaymentFlowRetrieveParams = API.PaymentFlowRetrieveParams;
   export import PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;
   export import PaymentFlowListParams = API.PaymentFlowListParams;
 
