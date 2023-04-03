@@ -19,14 +19,8 @@ describe('resource incoming_payment_details', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update: only required params', async () => {
+  test('update', async () => {
     const response = await modernTreasury.incomingPaymentDetails.update('string');
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await modernTreasury.incomingPaymentDetails.update('string', {
-      metadata: { foo: 'string' },
-    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -47,22 +41,8 @@ describe('resource incoming_payment_details', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.incomingPaymentDetails.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.incomingPaymentDetails.list({
-      after_cursor: 'string',
-      per_page: 0,
-      direction: 'credit',
-      status: 'completed',
-      type: 'ach',
-      as_of_date_start: '2019-12-27',
-      as_of_date_end: '2019-12-27',
-      metadata: { foo: 'string' },
-      virtual_account_id: 'string',
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -78,13 +58,13 @@ describe('resource incoming_payment_details', () => {
       modernTreasury.incomingPaymentDetails.list(
         {
           after_cursor: 'string',
-          per_page: 0,
+          as_of_date_end: '2019-12-27',
+          as_of_date_start: '2019-12-27',
           direction: 'credit',
+          metadata: { foo: 'string' },
+          per_page: 0,
           status: 'completed',
           type: 'ach',
-          as_of_date_start: '2019-12-27',
-          as_of_date_end: '2019-12-27',
-          metadata: { foo: 'string' },
           virtual_account_id: 'string',
         },
         { path: '/_stainless_unknown_path' },
@@ -92,20 +72,8 @@ describe('resource incoming_payment_details', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('create_async: only required params', async () => {
+  test('create_async', async () => {
     const response = await modernTreasury.incomingPaymentDetails.createAsync();
-  });
-
-  test('create_async: required and optional params', async () => {
-    const response = await modernTreasury.incomingPaymentDetails.createAsync({
-      type: 'ach',
-      direction: 'credit',
-      amount: 0,
-      currency: 'AED',
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      as_of_date: '2019-12-27',
-    });
   });
 
   test('create_async: request options instead of params are passed correctly', async () => {
@@ -120,13 +88,14 @@ describe('resource incoming_payment_details', () => {
     await expect(
       modernTreasury.incomingPaymentDetails.createAsync(
         {
-          type: 'ach',
-          direction: 'credit',
           amount: 0,
-          currency: 'AED',
-          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           as_of_date: '2019-12-27',
+          currency: 'AED',
+          direction: 'credit',
+          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          type: 'ach',
+          virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          'Idempotency-Key': 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),

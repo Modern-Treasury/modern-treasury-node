@@ -11,7 +11,19 @@ describe('resource reversals', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.paymentOrders.reversals.create(
       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      { reason: 'duplicate' },
+      {
+        ledger_transaction: {
+          effective_date: '2019-12-27',
+          ledger_entries: [
+            { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+            { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+            { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+          ],
+        },
+        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+        reason: 'duplicate',
+        'Idempotency-Key': 'string',
+      },
     );
   });
 
@@ -19,8 +31,6 @@ describe('resource reversals', () => {
     const response = await modernTreasury.paymentOrders.reversals.create(
       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       {
-        reason: 'duplicate',
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         ledger_transaction: {
           description: 'string',
           status: 'archived',
@@ -62,6 +72,9 @@ describe('resource reversals', () => {
           ledgerable_type: 'counterparty',
           ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         },
+        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+        reason: 'duplicate',
+        'Idempotency-Key': 'string',
       },
     );
   });
@@ -84,15 +97,8 @@ describe('resource reversals', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.paymentOrders.reversals.list('string');
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.paymentOrders.reversals.list('string', {
-      after_cursor: 'string',
-      per_page: 0,
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

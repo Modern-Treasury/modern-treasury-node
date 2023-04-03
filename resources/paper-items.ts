@@ -26,7 +26,6 @@ export class PaperItems extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/api/paper_items', PaperItemsPage, { query, ...options });
   }
 }

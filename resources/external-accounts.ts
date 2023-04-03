@@ -13,10 +13,15 @@ export class ExternalAccounts extends APIResource {
    * create external account
    */
   create(
-    body: ExternalAccountCreateParams,
+    params: ExternalAccountCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<ExternalAccount>> {
-    return this.post('/api/external_accounts', { body, ...options });
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    return this.post('/api/external_accounts', {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+    });
   }
 
   /**
@@ -43,7 +48,6 @@ export class ExternalAccounts extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-
     return this.patch(`/api/external_accounts/${id}`, { body, ...options });
   }
 
@@ -62,7 +66,6 @@ export class ExternalAccounts extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/api/external_accounts', ExternalAccountsPage, { query, ...options });
   }
 
@@ -81,20 +84,24 @@ export class ExternalAccounts extends APIResource {
    */
   completeVerification(
     id: string,
-    body?: ExternalAccountCompleteVerificationParams,
+    params?: ExternalAccountCompleteVerificationParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<ExternalAccount>>;
   completeVerification(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExternalAccount>>;
   completeVerification(
     id: string,
-    body: ExternalAccountCompleteVerificationParams | Core.RequestOptions = {},
+    params: ExternalAccountCompleteVerificationParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<ExternalAccount>> {
-    if (isRequestOptions(body)) {
-      return this.completeVerification(id, {}, body);
+    if (isRequestOptions(params)) {
+      return this.completeVerification(id, {}, params);
     }
-
-    return this.post(`/api/external_accounts/${id}/complete_verification`, { body, ...options });
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    return this.post(`/api/external_accounts/${id}/complete_verification`, {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+    });
   }
 
   /**
@@ -102,10 +109,15 @@ export class ExternalAccounts extends APIResource {
    */
   verify(
     id: string,
-    body: ExternalAccountVerifyParams,
+    params: ExternalAccountVerifyParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<ExternalAccount>> {
-    return this.post(`/api/external_accounts/${id}/verify`, { body, ...options });
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    return this.post(`/api/external_accounts/${id}/verify`, {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+    });
   }
 }
 
@@ -248,53 +260,75 @@ export type ExternalAccountType =
   | 'savings';
 
 export interface ExternalAccountCreateParams {
-  counterparty_id: string | null;
-
+  /**
+   * Body param:
+   */
   account_details?: Array<ExternalAccountCreateParams.AccountDetails>;
 
   /**
-   * Can be `checking`, `savings` or `other`.
+   * Body param: Can be `checking`, `savings` or `other`.
    */
   account_type?: ExternalAccountType;
 
+  /**
+   * Body param:
+   */
   contact_details?: Array<ExternalAccountCreateParams.ContactDetails>;
 
   /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
+   * Body param:
+   */
+  counterparty_id: string | null;
+
+  /**
+   * Body param: Additional data represented as key-value pairs. Both the key and
+   * value must be strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * A nickname for the external account. This is only for internal usage and won't
-   * affect any payments
+   * Body param: A nickname for the external account. This is only for internal usage
+   * and won't affect any payments
    */
   name?: string | null;
 
   /**
-   * Required if receiving wire payments.
+   * Body param: Required if receiving wire payments.
    */
   party_address?: ExternalAccountCreateParams.PartyAddress;
 
+  /**
+   * Body param:
+   */
   party_identifier?: string;
 
   /**
-   * If this value isn't provided, it will be inherited from the counterparty's name.
+   * Body param: If this value isn't provided, it will be inherited from the
+   * counterparty's name.
    */
   party_name?: string;
 
   /**
-   * Either `individual` or `business`.
+   * Body param: Either `individual` or `business`.
    */
   party_type?: 'business' | 'individual' | null;
 
   /**
-   * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
-   * you can pass the processor token in this field.
+   * Body param: If you've enabled the Modern Treasury + Plaid integration in your
+   * Plaid account, you can pass the processor token in this field.
    */
   plaid_processor_token?: string;
 
+  /**
+   * Body param:
+   */
   routing_details?: Array<ExternalAccountCreateParams.RoutingDetails>;
+
+  /**
+   * Header param: This key should be something unique, preferably something like an
+   * UUID.
+   */
+  'Idempotency-Key'?: string;
 }
 
 export namespace ExternalAccountCreateParams {
@@ -369,6 +403,78 @@ export namespace ExternalAccountCreateParams {
 
     contact_identifier_type?: 'email' | 'phone_number' | 'website';
   }
+
+  export interface AccountDetails {
+    account_number: string;
+
+    account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
+  }
+
+  export interface ContactDetails {
+    contact_identifier?: string;
+
+    contact_identifier_type?: 'email' | 'phone_number' | 'website';
+  }
+
+  export interface PartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string | null;
+
+    line1?: string | null;
+
+    line2?: string | null;
+
+    /**
+     * Locality or City.
+     */
+    locality?: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string | null;
+
+    /**
+     * Region or State.
+     */
+    region?: string | null;
+  }
+
+  export interface RoutingDetails {
+    routing_number: string;
+
+    routing_number_type:
+      | 'aba'
+      | 'swift'
+      | 'au_bsb'
+      | 'ca_cpa'
+      | 'cnaps'
+      | 'gb_sort_code'
+      | 'in_ifsc'
+      | 'my_branch_code'
+      | 'br_codigo';
+
+    payment_type?:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'book'
+      | 'card'
+      | 'check'
+      | 'eft'
+      | 'cross_border'
+      | 'interac'
+      | 'masav'
+      | 'neft'
+      | 'provxchange'
+      | 'rtp'
+      | 'sen'
+      | 'sepa'
+      | 'signet'
+      | 'wire';
+  }
 }
 
 export interface ExternalAccountUpdateParams {
@@ -430,6 +536,32 @@ export namespace ExternalAccountUpdateParams {
      */
     region?: string | null;
   }
+
+  export interface PartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string | null;
+
+    line1?: string | null;
+
+    line2?: string | null;
+
+    /**
+     * Locality or City.
+     */
+    locality?: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string | null;
+
+    /**
+     * Region or State.
+     */
+    region?: string | null;
+  }
 }
 
 export interface ExternalAccountListParams extends PageParams {
@@ -449,18 +581,32 @@ export interface ExternalAccountListParams extends PageParams {
 }
 
 export interface ExternalAccountCompleteVerificationParams {
+  /**
+   * Body param:
+   */
   amounts?: Array<number>;
+
+  /**
+   * Header param: This key should be something unique, preferably something like an
+   * UUID.
+   */
+  'Idempotency-Key'?: string;
 }
 
 export interface ExternalAccountVerifyParams {
   /**
-   * The ID of the internal account where the micro-deposits originate from. Both
-   * credit and debit capabilities must be enabled.
+   * Body param: Defaults to the currency of the originating account.
+   */
+  currency?: Shared.Currency | null;
+
+  /**
+   * Body param: The ID of the internal account where the micro-deposits originate
+   * from. Both credit and debit capabilities must be enabled.
    */
   originating_account_id: string;
 
   /**
-   * Both ach and eft are supported payment types.
+   * Body param: Both ach and eft are supported payment types.
    */
   payment_type:
     | 'ach'
@@ -482,7 +628,8 @@ export interface ExternalAccountVerifyParams {
     | 'wire';
 
   /**
-   * Defaults to the currency of the originating account.
+   * Header param: This key should be something unique, preferably something like an
+   * UUID.
    */
-  currency?: Shared.Currency | null;
+  'Idempotency-Key'?: string;
 }

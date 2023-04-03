@@ -23,7 +23,6 @@ export class Versions extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(id, {}, query);
     }
-
     return this.getAPIList(`/api/ledger_transactions/${id}/versions`, LedgerTransactionVersionsPage, {
       query,
       ...options,
