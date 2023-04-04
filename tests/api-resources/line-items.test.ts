@@ -21,14 +21,8 @@ describe('resource line_items', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update: only required params', async () => {
+  test('update', async () => {
     const response = await modernTreasury.lineItems.update('expected_payments', 'string', 'string');
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await modernTreasury.lineItems.update('expected_payments', 'string', 'string', {
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -53,15 +47,8 @@ describe('resource line_items', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.lineItems.list('expected_payments', 'string');
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.lineItems.list('expected_payments', 'string', {
-      after_cursor: 'string',
-      per_page: 0,
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

@@ -10,32 +10,30 @@ const modernTreasury = new ModernTreasury({
 describe('resource ledger_account_payouts', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.ledgerAccountPayouts.create({
-      payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      description: 'string',
+      effective_at_upper_bound: '14:15:22Z',
       funding_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'pending',
+      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerAccountPayouts.create({
       description: 'string',
-      status: 'pending',
-      payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      funding_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       effective_at_upper_bound: '14:15:22Z',
+      funding_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'pending',
+      'Idempotency-Key': 'string',
     });
   });
 
-  test('update: only required params', async () => {
+  test('update', async () => {
     const response = await modernTreasury.ledgerAccountPayouts.update('string');
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await modernTreasury.ledgerAccountPayouts.update('string', {
-      description: 'string',
-      status: 'posted',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -52,24 +50,16 @@ describe('resource ledger_account_payouts', () => {
         'string',
         {
           description: 'string',
-          status: 'posted',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          status: 'posted',
         },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.ledgerAccountPayouts.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.ledgerAccountPayouts.list({
-      after_cursor: 'string',
-      per_page: 0,
-      payout_ledger_account_id: 'string',
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -83,7 +73,7 @@ describe('resource ledger_account_payouts', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountPayouts.list(
-        { after_cursor: 'string', per_page: 0, payout_ledger_account_id: 'string' },
+        { after_cursor: 'string', payout_ledger_account_id: 'string', per_page: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

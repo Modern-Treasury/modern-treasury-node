@@ -13,7 +13,9 @@ describe('resource documents', () => {
   // skipped: prism mock server is broken for file uploads
   test.skip('create: only required params', async () => {
     const response = await modernTreasury.documents.create('cases', 'string', {
+      document_type: 'string',
       file: await fileFromPath('README.md'),
+      'Idempotency-Key': 'string',
     });
   });
 
@@ -22,6 +24,7 @@ describe('resource documents', () => {
     const response = await modernTreasury.documents.create('cases', 'string', {
       document_type: 'string',
       file: await fileFromPath('README.md'),
+      'Idempotency-Key': 'string',
     });
   });
 
@@ -42,15 +45,8 @@ describe('resource documents', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.documents.list('cases', 'string');
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.documents.list('cases', 'string', {
-      after_cursor: 'string',
-      per_page: 0,
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

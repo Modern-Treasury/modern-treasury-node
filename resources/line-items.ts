@@ -44,7 +44,6 @@ export class LineItems extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(itemizableType, itemizableId, id, {}, body);
     }
-
     return this.patch(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, { body, ...options });
   }
 
@@ -71,7 +70,6 @@ export class LineItems extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(itemizableType, itemizableId, {}, query);
     }
-
     return this.getAPIList(`/api/${itemizableType}/${itemizableId}/line_items`, LineItemsPage, {
       query,
       ...options,

@@ -101,7 +101,7 @@ Models:
 Methods:
 
 - <code title="post /api/account_collection_flows">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">create</a>({ ...params }) -> AccountConnectionFlow</code>
-- <code title="get /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">retrieve</a>(id) -> AccountConnectionFlow</code>
+- <code title="get /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">retrieve</a>(id, { ...params }) -> AccountConnectionFlow</code>
 - <code title="patch /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">update</a>(id, { ...params }) -> AccountConnectionFlow</code>
 - <code title="get /api/account_collection_flows">client.accountCollectionFlows.<a href="./resources/account-collection-flows.ts">list</a>({ ...params }) -> AccountConnectionFlowsPage</code>
 
@@ -181,7 +181,7 @@ Methods:
 - <code title="get /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">retrieve</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="patch /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">update</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="get /api/ledger_account_categories">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">list</a>({ ...params }) -> LedgerAccountCategoriesPage</code>
-- <code title="delete /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">del</a>(id) -> LedgerAccountCategory</code>
+- <code title="delete /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">del</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="put /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">addLedgerAccount</a>(id, ledgerAccountId) -> Promise<void></code>
 - <code title="put /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">addNestedCategory</a>(id, subCategoryId) -> Promise<void></code>
 - <code title="delete /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">removeLedgerAccount</a>(id, ledgerAccountId) -> Promise<void></code>
@@ -269,7 +269,7 @@ Models:
 Methods:
 
 - <code title="post /api/payment_flows">client.paymentFlows.<a href="./resources/payment-flows.ts">create</a>({ ...params }) -> PaymentFlow</code>
-- <code title="get /api/payment_flows/{id}">client.paymentFlows.<a href="./resources/payment-flows.ts">retrieve</a>(id) -> PaymentFlow</code>
+- <code title="get /api/payment_flows/{id}">client.paymentFlows.<a href="./resources/payment-flows.ts">retrieve</a>(id, { ...params }) -> PaymentFlow</code>
 - <code title="patch /api/payment_flows/{id}">client.paymentFlows.<a href="./resources/payment-flows.ts">update</a>(id, { ...params }) -> PaymentFlow</code>
 - <code title="get /api/payment_flows">client.paymentFlows.<a href="./resources/payment-flows.ts">list</a>({ ...params }) -> PaymentFlowsPage</code>
 

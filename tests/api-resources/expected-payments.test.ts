@@ -10,28 +10,35 @@ const modernTreasury = new ModernTreasury({
 describe('resource expected_payments', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.expectedPayments.create({
-      amount_upper_bound: 0,
       amount_lower_bound: 0,
+      amount_upper_bound: 0,
+      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      currency: 'AED',
+      date_lower_bound: '2019-12-27',
+      date_upper_bound: '2019-12-27',
+      description: 'string',
       direction: 'credit',
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      line_items: [{ amount: 0 }, { amount: 0 }, { amount: 0 }],
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      remittance_information: 'string',
+      statement_descriptor: 'string',
+      type: 'ach',
+      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.expectedPayments.create({
-      amount_upper_bound: 0,
       amount_lower_bound: 0,
+      amount_upper_bound: 0,
+      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      currency: 'AED',
+      date_lower_bound: '2019-12-27',
+      date_upper_bound: '2019-12-27',
+      description: 'string',
       direction: 'credit',
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      type: 'ach',
-      currency: 'AED',
-      date_upper_bound: '2019-12-27',
-      date_lower_bound: '2019-12-27',
-      description: 'string',
-      statement_descriptor: 'string',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      remittance_information: 'string',
       line_items: [
         {
           amount: 0,
@@ -52,6 +59,11 @@ describe('resource expected_payments', () => {
           accounting_category_id: 'string',
         },
       ],
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      remittance_information: 'string',
+      statement_descriptor: 'string',
+      type: 'ach',
+      'Idempotency-Key': 'string',
     });
   });
 
@@ -66,26 +78,8 @@ describe('resource expected_payments', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update: only required params', async () => {
+  test('update', async () => {
     const response = await modernTreasury.expectedPayments.update('string');
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await modernTreasury.expectedPayments.update('string', {
-      amount_upper_bound: 0,
-      amount_lower_bound: 0,
-      direction: 'credit',
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      type: 'ach',
-      currency: 'AED',
-      date_upper_bound: '2019-12-27',
-      date_lower_bound: '2019-12-27',
-      description: 'string',
-      statement_descriptor: 'string',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      remittance_information: 'string',
-    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -101,42 +95,27 @@ describe('resource expected_payments', () => {
       modernTreasury.expectedPayments.update(
         'string',
         {
-          amount_upper_bound: 0,
           amount_lower_bound: 0,
+          amount_upper_bound: 0,
+          counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          currency: 'AED',
+          date_lower_bound: '2019-12-27',
+          date_upper_bound: '2019-12-27',
+          description: 'string',
           direction: 'credit',
           internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          type: 'ach',
-          currency: 'AED',
-          date_upper_bound: '2019-12-27',
-          date_lower_bound: '2019-12-27',
-          description: 'string',
-          statement_descriptor: 'string',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           remittance_information: 'string',
+          statement_descriptor: 'string',
+          type: 'ach',
         },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.expectedPayments.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.expectedPayments.list({
-      after_cursor: 'string',
-      per_page: 0,
-      status: 'archived',
-      internal_account_id: 'string',
-      direction: 'credit',
-      type: 'ach',
-      counterparty_id: 'string',
-      metadata: { foo: 'string' },
-      created_at_lower_bound: '2019-12-27T18:11:19.117Z',
-      created_at_upper_bound: '2019-12-27T18:11:19.117Z',
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -152,15 +131,15 @@ describe('resource expected_payments', () => {
       modernTreasury.expectedPayments.list(
         {
           after_cursor: 'string',
-          per_page: 0,
-          status: 'archived',
-          internal_account_id: 'string',
-          direction: 'credit',
-          type: 'ach',
           counterparty_id: 'string',
-          metadata: { foo: 'string' },
           created_at_lower_bound: '2019-12-27T18:11:19.117Z',
           created_at_upper_bound: '2019-12-27T18:11:19.117Z',
+          direction: 'credit',
+          internal_account_id: 'string',
+          metadata: { foo: 'string' },
+          per_page: 0,
+          status: 'archived',
+          type: 'ach',
         },
         { path: '/_stainless_unknown_path' },
       ),

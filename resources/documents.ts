@@ -23,12 +23,17 @@ export class Documents extends APIResource {
       | 'payment_orders'
       | 'transactions',
     documentableId: string,
-    body: DocumentCreateParams,
+    params: DocumentCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<Document>> {
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(
       `/api/${documentableType}/${documentableId}/documents`,
-      multipartFormRequestOptions({ body, ...options }),
+      multipartFormRequestOptions({
+        body,
+        ...options,
+        headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      }),
     );
   }
 
@@ -103,7 +108,6 @@ export class Documents extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(documentableType, documentableId, {}, query);
     }
-
     return this.getAPIList(`/api/${documentableType}/${documentableId}/documents`, DocumentsPage, {
       query,
       ...options,
@@ -203,12 +207,21 @@ export namespace Document {
 }
 
 export interface DocumentCreateParams {
+  /**
+   * Body param: A category given to the document, can be `null`.
+   */
+  document_type?: string;
+
+  /**
+   * Body param:
+   */
   file: FormData.Blob | FormData.File;
 
   /**
-   * A category given to the document, can be `null`.
+   * Header param: This key should be something unique, preferably something like an
+   * UUID.
    */
-  document_type?: string;
+  'Idempotency-Key'?: string;
 }
 
 export interface DocumentListParams extends PageParams {}
