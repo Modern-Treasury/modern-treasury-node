@@ -4,6 +4,7 @@ export * from './shared';
 export {
   AccountConnectionFlow,
   AccountCollectionFlowCreateParams,
+  AccountCollectionFlowRetrieveParams,
   AccountCollectionFlowUpdateParams,
   AccountCollectionFlowListParams,
   AccountConnectionFlowsPage,
@@ -88,6 +89,7 @@ export {
   LedgerAccountCategoryRetrieveParams,
   LedgerAccountCategoryUpdateParams,
   LedgerAccountCategoryListParams,
+  LedgerAccountCategoryDeleteParams,
   LedgerAccountCategoriesPage,
   LedgerAccountCategories,
 } from './ledger-account-categories';
@@ -113,6 +115,7 @@ export { PaperItem, PaperItemListParams, PaperItemsPage, PaperItems } from './pa
 export {
   PaymentFlow,
   PaymentFlowCreateParams,
+  PaymentFlowRetrieveParams,
   PaymentFlowUpdateParams,
   PaymentFlowListParams,
   PaymentFlowsPage,

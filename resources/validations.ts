@@ -117,6 +117,7 @@ export interface ValidationValidateRoutingNumberParams {
     | 'au_bsb'
     | 'br_codigo'
     | 'ca_cpa'
+    | 'chips'
     | 'cnaps'
     | 'gb_sort_code'
     | 'in_ifsc'

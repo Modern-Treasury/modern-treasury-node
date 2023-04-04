@@ -9,12 +9,22 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource counterparties', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.counterparties.create({ name: 'string' });
+    const response = await modernTreasury.counterparties.create({
+      accounting: {},
+      accounts: [{}, {}, {}],
+      email: 'dev@stainlessapi.com',
+      ledger_type: 'customer',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      name: 'string',
+      send_remittance_advice: true,
+      taxpayer_identifier: 'string',
+      'Idempotency-Key': 'string',
+    });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.counterparties.create({
-      name: 'string',
+      accounting: { type: 'customer' },
       accounts: [
         {
           account_type: 'cash',
@@ -114,11 +124,12 @@ describe('resource counterparties', () => {
         },
       ],
       email: 'dev@stainlessapi.com',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      send_remittance_advice: true,
-      accounting: { type: 'customer' },
       ledger_type: 'customer',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      name: 'string',
+      send_remittance_advice: true,
       taxpayer_identifier: 'string',
+      'Idempotency-Key': 'string',
     });
   });
 
@@ -133,18 +144,8 @@ describe('resource counterparties', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update: only required params', async () => {
+  test('update', async () => {
     const response = await modernTreasury.counterparties.update('string');
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await modernTreasury.counterparties.update('string', {
-      name: 'string',
-      email: 'dev@stainlessapi.com',
-      metadata: { foo: 'string' },
-      send_remittance_advice: true,
-      taxpayer_identifier: 'string',
-    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -160,9 +161,9 @@ describe('resource counterparties', () => {
       modernTreasury.counterparties.update(
         'string',
         {
-          name: 'string',
           email: 'dev@stainlessapi.com',
           metadata: { foo: 'string' },
+          name: 'string',
           send_remittance_advice: true,
           taxpayer_identifier: 'string',
         },
@@ -171,20 +172,8 @@ describe('resource counterparties', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.counterparties.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.counterparties.list({
-      after_cursor: 'string',
-      per_page: 0,
-      name: 'string',
-      email: 'dev@stainlessapi.com',
-      metadata: { foo: 'string' },
-      created_at_lower_bound: '2019-12-27T18:11:19.117Z',
-      created_at_upper_bound: '2019-12-27T18:11:19.117Z',
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -200,12 +189,12 @@ describe('resource counterparties', () => {
       modernTreasury.counterparties.list(
         {
           after_cursor: 'string',
-          per_page: 0,
-          name: 'string',
-          email: 'dev@stainlessapi.com',
-          metadata: { foo: 'string' },
           created_at_lower_bound: '2019-12-27T18:11:19.117Z',
           created_at_upper_bound: '2019-12-27T18:11:19.117Z',
+          email: 'dev@stainlessapi.com',
+          metadata: { foo: 'string' },
+          name: 'string',
+          per_page: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -224,15 +213,22 @@ describe('resource counterparties', () => {
   });
 
   test('collect_account: only required params', async () => {
-    const response = await modernTreasury.counterparties.collectAccount('string', { direction: 'credit' });
+    const response = await modernTreasury.counterparties.collectAccount('string', {
+      custom_redirect: 'https://example.com',
+      direction: 'credit',
+      fields: ['name', 'name', 'name'],
+      send_email: true,
+      'Idempotency-Key': 'string',
+    });
   });
 
   test('collect_account: required and optional params', async () => {
     const response = await modernTreasury.counterparties.collectAccount('string', {
-      direction: 'credit',
-      send_email: true,
-      fields: ['name', 'name', 'name'],
       custom_redirect: 'https://example.com',
+      direction: 'credit',
+      fields: ['name', 'name', 'name'],
+      send_email: true,
+      'Idempotency-Key': 'string',
     });
   });
 });
