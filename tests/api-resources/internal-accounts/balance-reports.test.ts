@@ -21,17 +21,8 @@ describe('resource balance_reports', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.internalAccounts.balanceReports.list('string');
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.internalAccounts.balanceReports.list('string', {
-      as_of_date: '2019-12-27',
-      balance_report_type: 'intraday',
-      after_cursor: 'string',
-      per_page: 0,
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -46,7 +37,7 @@ describe('resource balance_reports', () => {
     await expect(
       modernTreasury.internalAccounts.balanceReports.list(
         'string',
-        { as_of_date: '2019-12-27', balance_report_type: 'intraday', after_cursor: 'string', per_page: 0 },
+        { after_cursor: 'string', as_of_date: '2019-12-27', balance_report_type: 'intraday', per_page: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

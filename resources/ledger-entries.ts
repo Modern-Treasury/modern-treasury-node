@@ -25,7 +25,6 @@ export class LedgerEntries extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/api/ledger_entries', LedgerEntriesPage, { query, ...options });
   }
 }
@@ -260,6 +259,12 @@ export interface LedgerEntryListParams extends PageParams {
 }
 
 export namespace LedgerEntryListParams {
+  export interface OrderBy {
+    created_at?: 'asc' | 'desc';
+
+    effective_at?: 'asc' | 'desc';
+  }
+
   export interface OrderBy {
     created_at?: 'asc' | 'desc';
 

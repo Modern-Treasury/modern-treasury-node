@@ -11,6 +11,8 @@ describe('resource account_details', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.accountDetails.create('external_accounts', 'string', {
       account_number: 'string',
+      account_number_type: 'clabe',
+      'Idempotency-Key': 'string',
     });
   });
 
@@ -18,6 +20,7 @@ describe('resource account_details', () => {
     const response = await modernTreasury.accountDetails.create('external_accounts', 'string', {
       account_number: 'string',
       account_number_type: 'clabe',
+      'Idempotency-Key': 'string',
     });
   });
 
@@ -34,15 +37,8 @@ describe('resource account_details', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.accountDetails.list('external_accounts', 'string');
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.accountDetails.list('external_accounts', 'string', {
-      after_cursor: 'string',
-      per_page: 0,
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

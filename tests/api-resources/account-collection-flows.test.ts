@@ -8,10 +8,19 @@ const modernTreasury = new ModernTreasury({
 });
 
 describe('resource account_collection_flows', () => {
-  test('create', async () => {
+  test('create: only required params', async () => {
     const response = await modernTreasury.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_types: ['string', 'string', 'string'],
+      'Idempotency-Key': 'string',
+    });
+  });
+
+  test('create: required and optional params', async () => {
+    const response = await modernTreasury.accountCollectionFlows.create({
+      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      payment_types: ['string', 'string', 'string'],
+      'Idempotency-Key': 'string',
     });
   });
 
@@ -26,23 +35,33 @@ describe('resource account_collection_flows', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update', async () => {
-    const response = await modernTreasury.accountCollectionFlows.update('string', { status: 'cancelled' });
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      modernTreasury.accountCollectionFlows.retrieve(
+        'string',
+        { 'Idempotency-Key': 'string' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.list({
-      after_cursor: 'string',
-      per_page: 0,
-      client_token: 'string',
-      status: 'string',
-      counterparty_id: 'string',
-      external_account_id: 'string',
+  test('update: only required params', async () => {
+    const response = await modernTreasury.accountCollectionFlows.update('string', {
+      status: 'cancelled',
+      'Idempotency-Key': 'string',
     });
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await modernTreasury.accountCollectionFlows.update('string', {
+      status: 'cancelled',
+      'Idempotency-Key': 'string',
+    });
+  });
+
+  test('list', async () => {
+    const response = await modernTreasury.accountCollectionFlows.list();
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -58,11 +77,11 @@ describe('resource account_collection_flows', () => {
       modernTreasury.accountCollectionFlows.list(
         {
           after_cursor: 'string',
-          per_page: 0,
           client_token: 'string',
-          status: 'string',
           counterparty_id: 'string',
           external_account_id: 'string',
+          per_page: 0,
+          status: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),

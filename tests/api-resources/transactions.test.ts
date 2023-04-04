@@ -19,12 +19,8 @@ describe('resource transactions', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update: only required params', async () => {
+  test('update', async () => {
     const response = await modernTreasury.transactions.update('string');
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await modernTreasury.transactions.update('string', { metadata: { foo: 'string' } });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -45,26 +41,8 @@ describe('resource transactions', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await modernTreasury.transactions.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await modernTreasury.transactions.list({
-      after_cursor: 'string',
-      per_page: 0,
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      posted: true,
-      as_of_date_start: '2019-12-27',
-      as_of_date_end: '2019-12-27',
-      direction: 'string',
-      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      payment_type: 'string',
-      transactable_type: 'string',
-      description: 'string',
-      metadata: { foo: 'string' },
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -80,18 +58,18 @@ describe('resource transactions', () => {
       modernTreasury.transactions.list(
         {
           after_cursor: 'string',
-          per_page: 0,
-          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          posted: true,
-          as_of_date_start: '2019-12-27',
           as_of_date_end: '2019-12-27',
-          direction: 'string',
+          as_of_date_start: '2019-12-27',
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          payment_type: 'string',
-          transactable_type: 'string',
           description: 'string',
+          direction: 'string',
+          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: { foo: 'string' },
+          payment_type: 'string',
+          per_page: 0,
+          posted: true,
+          transactable_type: 'string',
+          virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         },
         { path: '/_stainless_unknown_path' },
       ),

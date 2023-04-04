@@ -10,10 +10,15 @@ export class LedgerAccountPayouts extends APIResource {
    * Create a ledger account payout.
    */
   create(
-    body: LedgerAccountPayoutCreateParams,
+    params: LedgerAccountPayoutCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerAccountPayout>> {
-    return this.post('/api/ledger_account_payouts', { body, ...options });
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    return this.post('/api/ledger_account_payouts', {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+    });
   }
 
   /**
@@ -33,7 +38,6 @@ export class LedgerAccountPayouts extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-
     return this.patch(`/api/ledger_account_payouts/${id}`, { body, ...options });
   }
 
@@ -52,7 +56,6 @@ export class LedgerAccountPayouts extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/api/ledger_account_payouts', LedgerAccountPayoutsPage, { query, ...options });
   }
 
@@ -140,40 +143,46 @@ export interface LedgerAccountPayout {
 
 export interface LedgerAccountPayoutCreateParams {
   /**
-   * The id of the funding ledger account that sends to or receives funds from the
-   * payout ledger account.
-   */
-  funding_ledger_account_id: string;
-
-  /**
-   * The id of the payout ledger account whose ledger entries are queried against,
-   * and its balance is reduced as a result.
-   */
-  payout_ledger_account_id: string;
-
-  /**
-   * The description of the ledger account payout.
+   * Body param: The description of the ledger account payout.
    */
   description?: string | null;
 
   /**
-   * The maximum effective_at timestamp of the ledger entries to be included in the
-   * ledger account payout. The default value is the created_at timestamp of the
-   * ledger account payout.
+   * Body param: The maximum effective_at timestamp of the ledger entries to be
+   * included in the ledger account payout. The default value is the created_at
+   * timestamp of the ledger account payout.
    */
   effective_at_upper_bound?: string | null;
 
   /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
+   * Body param: The id of the funding ledger account that sends to or receives funds
+   * from the payout ledger account.
+   */
+  funding_ledger_account_id: string;
+
+  /**
+   * Body param: Additional data represented as key-value pairs. Both the key and
+   * value must be strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * The status of the ledger account payout. It is set to `pending` by default. To
-   * post a ledger account payout at creation, use `posted`.
+   * Body param: The id of the payout ledger account whose ledger entries are queried
+   * against, and its balance is reduced as a result.
+   */
+  payout_ledger_account_id: string;
+
+  /**
+   * Body param: The status of the ledger account payout. It is set to `pending` by
+   * default. To post a ledger account payout at creation, use `posted`.
    */
   status?: 'pending' | 'posted' | null;
+
+  /**
+   * Header param: This key should be something unique, preferably something like an
+   * UUID.
+   */
+  'Idempotency-Key'?: string;
 }
 
 export interface LedgerAccountPayoutUpdateParams {
