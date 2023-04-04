@@ -8,8 +8,17 @@ const modernTreasury = new ModernTreasury({
 });
 
 describe('resource versions', () => {
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.ledgerTransactions.versions.list('string');
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.ledgerTransactions.versions.list('string', {
+      after_cursor: 'string',
+      per_page: 0,
+      created_at: { foo: '2019-12-27T18:11:19.117Z' },
+      version: { foo: 0 },
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -26,8 +35,8 @@ describe('resource versions', () => {
         'string',
         {
           after_cursor: 'string',
-          created_at: { foo: '2019-12-27T18:11:19.117Z' },
           per_page: 0,
+          created_at: { foo: '2019-12-27T18:11:19.117Z' },
           version: { foo: 0 },
         },
         { path: '/_stainless_unknown_path' },
@@ -35,8 +44,17 @@ describe('resource versions', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('versions', async () => {
+  test('versions: only required params', async () => {
     const response = await modernTreasury.ledgerTransactions.versions.versions('string');
+  });
+
+  test('versions: required and optional params', async () => {
+    const response = await modernTreasury.ledgerTransactions.versions.versions('string', {
+      after_cursor: 'string',
+      per_page: 0,
+      created_at: { foo: '2019-12-27T18:11:19.117Z' },
+      version: { foo: 0 },
+    });
   });
 
   test('versions: request options instead of params are passed correctly', async () => {
@@ -53,8 +71,8 @@ describe('resource versions', () => {
         'string',
         {
           after_cursor: 'string',
-          created_at: { foo: '2019-12-27T18:11:19.117Z' },
           per_page: 0,
+          created_at: { foo: '2019-12-27T18:11:19.117Z' },
           version: { foo: 0 },
         },
         { path: '/_stainless_unknown_path' },

@@ -11,15 +11,10 @@ export class ExpectedPayments extends APIResource {
    * create expected payment
    */
   create(
-    params: ExpectedPaymentCreateParams,
+    body: ExpectedPaymentCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<ExpectedPayment>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post('/api/expected_payments', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post('/api/expected_payments', { body, ...options });
   }
 
   /**
@@ -46,6 +41,7 @@ export class ExpectedPayments extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
+
     return this.patch(`/api/expected_payments/${id}`, { body, ...options });
   }
 
@@ -64,6 +60,7 @@ export class ExpectedPayments extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/expected_payments', ExpectedPaymentsPage, { query, ...options });
   }
 
@@ -221,119 +218,84 @@ export type ExpectedPaymentType =
 
 export interface ExpectedPaymentCreateParams {
   /**
-   * Body param: The lowest amount this expected payment may be equal to. Value in
-   * specified currency's smallest unit. e.g. $10 would be represented as 1000.
+   * The lowest amount this expected payment may be equal to. Value in specified
+   * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
   amount_lower_bound: number;
 
   /**
-   * Body param: The highest amount this expected payment may be equal to. Value in
-   * specified currency's smallest unit. e.g. $10 would be represented as 1000.
+   * The highest amount this expected payment may be equal to. Value in specified
+   * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
   amount_upper_bound: number;
 
   /**
-   * Body param: The ID of the counterparty you expect for this payment.
-   */
-  counterparty_id?: string | null;
-
-  /**
-   * Body param: Must conform to ISO 4217. Defaults to the currency of the internal
-   * account.
-   */
-  currency?: Shared.Currency | null;
-
-  /**
-   * Body param: The earliest date the payment may come in. Format: yyyy-mm-dd
-   */
-  date_lower_bound?: string | null;
-
-  /**
-   * Body param: The latest date the payment may come in. Format: yyyy-mm-dd
-   */
-  date_upper_bound?: string | null;
-
-  /**
-   * Body param: An optional description for internal use.
-   */
-  description?: string | null;
-
-  /**
-   * Body param: One of credit or debit. When you are receiving money, use credit.
-   * When you are being charged, use debit.
+   * One of credit or debit. When you are receiving money, use credit. When you are
+   * being charged, use debit.
    */
   direction: 'credit' | 'debit';
 
   /**
-   * Body param: The ID of the Internal Account for the expected payment.
+   * The ID of the Internal Account for the expected payment.
    */
   internal_account_id: string;
 
   /**
-   * Body param:
+   * The ID of the counterparty you expect for this payment.
    */
+  counterparty_id?: string | null;
+
+  /**
+   * Must conform to ISO 4217. Defaults to the currency of the internal account.
+   */
+  currency?: Shared.Currency | null;
+
+  /**
+   * The earliest date the payment may come in. Format: yyyy-mm-dd
+   */
+  date_lower_bound?: string | null;
+
+  /**
+   * The latest date the payment may come in. Format: yyyy-mm-dd
+   */
+  date_upper_bound?: string | null;
+
+  /**
+   * An optional description for internal use.
+   */
+  description?: string | null;
+
   line_items?: Array<ExpectedPaymentCreateParams.LineItems>;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: For `ach`, this field will be passed through on an addenda record.
-   * For `wire` payments the field will be passed through as the "Originator to
-   * Beneficiary Information", also known as OBI or Fedwire tag 6000.
+   * For `ach`, this field will be passed through on an addenda record. For `wire`
+   * payments the field will be passed through as the "Originator to Beneficiary
+   * Information", also known as OBI or Fedwire tag 6000.
    */
   remittance_information?: string | null;
 
   /**
-   * Body param: The statement description you expect to see on the transaction. For
-   * ACH payments, this will be the full line item passed from the bank. For wire
+   * The statement description you expect to see on the transaction. For ACH
+   * payments, this will be the full line item passed from the bank. For wire
    * payments, this will be the OBI field on the wire. For check payments, this will
    * be the memo field.
    */
   statement_descriptor?: string | null;
 
   /**
-   * Body param: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange,
-   * rtp, sen, sepa, signet, wire.
+   * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+   * sepa, signet, wire.
    */
   type?: ExpectedPaymentType | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace ExpectedPaymentCreateParams {
-  export interface LineItems {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-  }
-
   export interface LineItems {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented

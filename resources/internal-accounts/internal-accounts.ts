@@ -17,15 +17,10 @@ export class InternalAccounts extends APIResource {
    * create internal account
    */
   create(
-    params: InternalAccountCreateParams,
+    body: InternalAccountCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<InternalAccount>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post('/api/internal_accounts', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post('/api/internal_accounts', { body, ...options });
   }
 
   /**
@@ -52,6 +47,7 @@ export class InternalAccounts extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
+
     return this.patch(`/api/internal_accounts/${id}`, { body, ...options });
   }
 
@@ -70,6 +66,7 @@ export class InternalAccounts extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/internal_accounts', InternalAccountsPage, { query, ...options });
   }
 }
@@ -197,80 +194,48 @@ export namespace InternalAccount {
 
 export interface InternalAccountCreateParams {
   /**
-   * Body param: The identifier of the financial institution the account belongs to.
+   * The identifier of the financial institution the account belongs to.
    */
   connection_id: string;
 
   /**
-   * Body param: The Counterparty associated to this account.
-   */
-  counterparty_id?: string;
-
-  /**
-   * Body param: Either "USD" or "CAD". Internal accounts created at Increase only
-   * supports "USD".
+   * Either "USD" or "CAD". Internal accounts created at Increase only supports
+   * "USD".
    */
   currency: 'USD' | 'CAD';
 
   /**
-   * Body param: The identifier of the entity at Increase which owns the account.
-   */
-  entity_id?: string;
-
-  /**
-   * Body param: The nickname of the account.
+   * The nickname of the account.
    */
   name: string;
 
   /**
-   * Body param: The parent internal account of this new account.
-   */
-  parent_account_id?: string;
-
-  /**
-   * Body param: The address associated with the owner or null.
-   */
-  party_address?: InternalAccountCreateParams.PartyAddress;
-
-  /**
-   * Body param: The legal name of the entity which owns the account.
+   * The legal name of the entity which owns the account.
    */
   party_name: string;
 
   /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
+   * The Counterparty associated to this account.
    */
-  'Idempotency-Key'?: string;
+  counterparty_id?: string;
+
+  /**
+   * The identifier of the entity at Increase which owns the account.
+   */
+  entity_id?: string;
+
+  /**
+   * The parent internal account of this new account.
+   */
+  parent_account_id?: string;
+
+  /**
+   * The address associated with the owner or null.
+   */
+  party_address?: InternalAccountCreateParams.PartyAddress;
 }
 
 export namespace InternalAccountCreateParams {
-  export interface PartyAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
   export interface PartyAddress {
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -323,7 +288,7 @@ export interface InternalAccountUpdateParams {
 
 export interface InternalAccountListParams extends PageParams {
   /**
-   * Three-letter ISO currency code.
+   * The currency associated with the internal account.
    */
   currency?: Shared.Currency | null;
 

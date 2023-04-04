@@ -12,7 +12,6 @@ export class Documents extends APIResource {
    * Create a document.
    */
   create(
-    documentableId: string,
     documentableType:
       | 'cases'
       | 'counterparties'
@@ -23,17 +22,13 @@ export class Documents extends APIResource {
       | 'paper_items'
       | 'payment_orders'
       | 'transactions',
-    params: DocumentCreateParams,
+    documentableId: string,
+    body: DocumentCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<Document>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(
       `/api/${documentableType}/${documentableId}/documents`,
-      multipartFormRequestOptions({
-        body,
-        ...options,
-        headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-      }),
+      multipartFormRequestOptions({ body, ...options }),
     );
   }
 
@@ -41,7 +36,6 @@ export class Documents extends APIResource {
    * Get an existing document.
    */
   retrieve(
-    documentableId: string,
     documentableType:
       | 'cases'
       | 'counterparties'
@@ -52,6 +46,7 @@ export class Documents extends APIResource {
       | 'paper_items'
       | 'payment_orders'
       | 'transactions',
+    documentableId: string,
     id: string,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<Document>> {
@@ -62,7 +57,6 @@ export class Documents extends APIResource {
    * Get a list of documents.
    */
   list(
-    documentableId: string,
     documentableType:
       | 'cases'
       | 'counterparties'
@@ -73,11 +67,11 @@ export class Documents extends APIResource {
       | 'paper_items'
       | 'payment_orders'
       | 'transactions',
+    documentableId: string,
     query?: DocumentListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage>;
   list(
-    documentableId: string,
     documentableType:
       | 'cases'
       | 'counterparties'
@@ -88,10 +82,10 @@ export class Documents extends APIResource {
       | 'paper_items'
       | 'payment_orders'
       | 'transactions',
+    documentableId: string,
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage>;
   list(
-    documentableId: string,
     documentableType:
       | 'cases'
       | 'counterparties'
@@ -102,12 +96,14 @@ export class Documents extends APIResource {
       | 'paper_items'
       | 'payment_orders'
       | 'transactions',
+    documentableId: string,
     query: DocumentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage> {
     if (isRequestOptions(query)) {
-      return this.list(documentableId, documentableType, {}, query);
+      return this.list(documentableType, documentableId, {}, query);
     }
+
     return this.getAPIList(`/api/${documentableType}/${documentableId}/documents`, DocumentsPage, {
       query,
       ...options,
@@ -207,21 +203,12 @@ export namespace Document {
 }
 
 export interface DocumentCreateParams {
-  /**
-   * Body param: A category given to the document, can be `null`.
-   */
-  document_type?: string;
-
-  /**
-   * Body param:
-   */
   file: FormData.Blob | FormData.File;
 
   /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
+   * A category given to the document, can be `null`.
    */
-  'Idempotency-Key'?: string;
+  document_type?: string;
 }
 
 export interface DocumentListParams extends PageParams {}

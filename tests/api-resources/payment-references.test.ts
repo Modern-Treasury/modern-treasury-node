@@ -8,8 +8,18 @@ const modernTreasury = new ModernTreasury({
 });
 
 describe('resource payment_references', () => {
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.paymentReferences.list();
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.paymentReferences.list({
+      after_cursor: 'string',
+      per_page: 0,
+      referenceable_id: 'string',
+      referenceable_type: 'payment_order',
+      reference_number: 'string',
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -26,9 +36,9 @@ describe('resource payment_references', () => {
         {
           after_cursor: 'string',
           per_page: 0,
-          reference_number: 'string',
           referenceable_id: 'string',
           referenceable_type: 'payment_order',
+          reference_number: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),

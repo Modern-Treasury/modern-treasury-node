@@ -13,15 +13,10 @@ export class Counterparties extends APIResource {
    * Create a new counterparty.
    */
   create(
-    params: CounterpartyCreateParams,
+    body: CounterpartyCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<Counterparty>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post('/api/counterparties', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post('/api/counterparties', { body, ...options });
   }
 
   /**
@@ -48,6 +43,7 @@ export class Counterparties extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
+
     return this.patch(`/api/counterparties/${id}`, { body, ...options });
   }
 
@@ -63,6 +59,7 @@ export class Counterparties extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/counterparties', CounterpartiesPage, { query, ...options });
   }
 
@@ -81,15 +78,10 @@ export class Counterparties extends APIResource {
    */
   collectAccount(
     id: string,
-    params: CounterpartyCollectAccountParams,
+    body: CounterpartyCollectAccountParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<CounterpartyCollectAccountResponse>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post(`/api/counterparties/${id}/collect_account`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post(`/api/counterparties/${id}/collect_account`, { body, ...options });
   }
 }
 
@@ -287,53 +279,44 @@ export interface CounterpartyCollectAccountResponse {
 
 export interface CounterpartyCreateParams {
   /**
-   * Body param:
+   * A human friendly name for this counterparty.
    */
+  name: string | null;
+
   accounting?: CounterpartyCreateParams.Accounting;
 
   /**
-   * Body param: The accounts for this counterparty.
+   * The accounts for this counterparty.
    */
   accounts?: Array<CounterpartyCreateParams.Accounts>;
 
   /**
-   * Body param: The counterparty's email.
+   * The counterparty's email.
    */
   email?: string | null;
 
   /**
-   * Body param: An optional type to auto-sync the counterparty to your ledger.
-   * Either `customer` or `vendor`.
+   * An optional type to auto-sync the counterparty to your ledger. Either `customer`
+   * or `vendor`.
    */
   ledger_type?: 'customer' | 'vendor';
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: A human friendly name for this counterparty.
-   */
-  name: string | null;
-
-  /**
-   * Body param: Send an email to the counterparty whenever an associated payment
-   * order is sent to the bank.
+   * Send an email to the counterparty whenever an associated payment order is sent
+   * to the bank.
    */
   send_remittance_advice?: boolean;
 
   /**
-   * Body param: Either a valid SSN or EIN.
+   * Either a valid SSN or EIN.
    */
   taxpayer_identifier?: string;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace CounterpartyCreateParams {
@@ -466,136 +449,6 @@ export namespace CounterpartyCreateParams {
      */
     type?: 'customer' | 'vendor';
   }
-
-  export interface Accounting {
-    /**
-     * An optional type to auto-sync the counterparty to your ledger. Either `customer`
-     * or `vendor`.
-     */
-    type?: 'customer' | 'vendor';
-  }
-
-  export interface Accounts {
-    account_details?: Array<Accounts.AccountDetails>;
-
-    /**
-     * Can be `checking`, `savings` or `other`.
-     */
-    account_type?: ExternalAccounts.ExternalAccountType;
-
-    contact_details?: Array<Accounts.ContactDetails>;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-
-    /**
-     * A nickname for the external account. This is only for internal usage and won't
-     * affect any payments
-     */
-    name?: string | null;
-
-    /**
-     * Required if receiving wire payments.
-     */
-    party_address?: Accounts.PartyAddress;
-
-    party_identifier?: string;
-
-    /**
-     * If this value isn't provided, it will be inherited from the counterparty's name.
-     */
-    party_name?: string;
-
-    /**
-     * Either `individual` or `business`.
-     */
-    party_type?: 'business' | 'individual' | null;
-
-    /**
-     * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
-     * you can pass the processor token in this field.
-     */
-    plaid_processor_token?: string;
-
-    routing_details?: Array<Accounts.RoutingDetails>;
-  }
-
-  export namespace Accounts {
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
-    export interface AccountDetails {
-      account_number: string;
-
-      account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
-    }
-
-    export interface RoutingDetails {
-      routing_number: string;
-
-      routing_number_type:
-        | 'aba'
-        | 'swift'
-        | 'au_bsb'
-        | 'ca_cpa'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'br_codigo';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
-    }
-
-    export interface ContactDetails {
-      contact_identifier?: string;
-
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
-    }
-  }
 }
 
 export interface CounterpartyUpdateParams {
@@ -660,26 +513,25 @@ export interface CounterpartyListParams extends PageParams {
 
 export interface CounterpartyCollectAccountParams {
   /**
-   * Body param: The URL you want your customer to visit upon filling out the form.
-   * By default, they will be sent to a Modern Treasury landing page. This must be a
-   * valid HTTPS URL if set.
-   */
-  custom_redirect?: string;
-
-  /**
-   * Body param: One of `credit` or `debit`. Use `credit` when you want to pay a
-   * counterparty. Use `debit` when you need to charge a counterparty. This field
-   * helps us send a more tailored email to your counterparties."
+   * One of `credit` or `debit`. Use `credit` when you want to pay a counterparty.
+   * Use `debit` when you need to charge a counterparty. This field helps us send a
+   * more tailored email to your counterparties."
    */
   direction: 'credit' | 'debit';
 
   /**
-   * Body param: The list of fields you want on the form. This field is optional and
-   * if it is not set, will default to [\"nameOnAccount\", \"accountType\",
-   * \"accountNumber\", \"routingNumber\", \"address\"]. The full list of options is
-   * [\"name\", \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\",
-   * \"accountNumber\", \"routingNumber\", \"address\", \"ibanNumber\",
-   * \"swiftCode\"].
+   * The URL you want your customer to visit upon filling out the form. By default,
+   * they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
+   * URL if set.
+   */
+  custom_redirect?: string;
+
+  /**
+   * The list of fields you want on the form. This field is optional and if it is not
+   * set, will default to [\"nameOnAccount\", \"accountType\", \"accountNumber\",
+   * \"routingNumber\", \"address\"]. The full list of options is [\"name\",
+   * \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
+   * \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
    */
   fields?: Array<
     | 'name'
@@ -706,16 +558,10 @@ export interface CounterpartyCollectAccountParams {
   >;
 
   /**
-   * Body param: By default, Modern Treasury will send an email to your counterparty
-   * that includes a link to the form they must fill out. However, if you would like
-   * to send the counterparty the link, you can set this parameter to `false`. The
-   * JSON body will include the link to the secure Modern Treasury form.
+   * By default, Modern Treasury will send an email to your counterparty that
+   * includes a link to the form they must fill out. However, if you would like to
+   * send the counterparty the link, you can set this parameter to `false`. The JSON
+   * body will include the link to the secure Modern Treasury form.
    */
   send_email?: boolean;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }

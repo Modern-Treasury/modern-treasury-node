@@ -10,19 +10,16 @@ const modernTreasury = new ModernTreasury({
 describe('resource routing_details', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.routingDetails.create('external_accounts', 'string', {
-      payment_type: 'ach',
       routing_number: 'string',
       routing_number_type: 'aba',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.routingDetails.create('external_accounts', 'string', {
-      payment_type: 'ach',
       routing_number: 'string',
       routing_number_type: 'aba',
-      'Idempotency-Key': 'string',
+      payment_type: 'ach',
     });
   });
 
@@ -39,8 +36,15 @@ describe('resource routing_details', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.routingDetails.list('external_accounts', 'string');
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.routingDetails.list('external_accounts', 'string', {
+      after_cursor: 'string',
+      per_page: 0,
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

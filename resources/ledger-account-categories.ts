@@ -10,15 +10,10 @@ export class LedgerAccountCategories extends APIResource {
    * Create a ledger account category.
    */
   create(
-    params: LedgerAccountCategoryCreateParams,
+    body: LedgerAccountCategoryCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerAccountCategory>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post('/api/ledger_account_categories', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post('/api/ledger_account_categories', { body, ...options });
   }
 
   /**
@@ -38,6 +33,7 @@ export class LedgerAccountCategories extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
+
     return this.get(`/api/ledger_account_categories/${id}`, { query, ...options });
   }
 
@@ -46,20 +42,20 @@ export class LedgerAccountCategories extends APIResource {
    */
   update(
     id: string,
-    params?: LedgerAccountCategoryUpdateParams,
+    body?: LedgerAccountCategoryUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerAccountCategory>>;
   update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>>;
   update(
     id: string,
-    params: LedgerAccountCategoryUpdateParams | Core.RequestOptions = {},
+    body: LedgerAccountCategoryUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerAccountCategory>> {
-    if (isRequestOptions(params)) {
-      return this.update(id, {}, params);
+    if (isRequestOptions(body)) {
+      return this.update(id, {}, body);
     }
-    const { balances, ...body } = params;
-    return this.patch(`/api/ledger_account_categories/${id}`, { query: { balances }, body, ...options });
+
+    return this.patch(`/api/ledger_account_categories/${id}`, { body, ...options });
   }
 
   /**
@@ -77,6 +73,7 @@ export class LedgerAccountCategories extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/ledger_account_categories', LedgerAccountCategoriesPage, {
       query,
       ...options,
@@ -86,22 +83,8 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Delete a ledger account category.
    */
-  del(
-    id: string,
-    body?: LedgerAccountCategoryDeleteParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>>;
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>>;
-  del(
-    id: string,
-    body: LedgerAccountCategoryDeleteParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>> {
-    if (isRequestOptions(body)) {
-      return this.del(id, {}, body);
-    }
-    const { balances } = body;
-    return this.delete(`/api/ledger_account_categories/${id}`, { query: { balances }, ...options });
+  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>> {
+    return this.delete(`/api/ledger_account_categories/${id}`, options);
   }
 
   /**
@@ -296,46 +279,40 @@ export namespace LedgerAccountCategory {
 
 export interface LedgerAccountCategoryCreateParams {
   /**
-   * Body param: The currency of the ledger account category.
+   * The currency of the ledger account category.
    */
   currency: string;
 
   /**
-   * Body param: The currency exponent of the ledger account category.
-   */
-  currency_exponent?: number | null;
-
-  /**
-   * Body param: The description of the ledger account category.
-   */
-  description?: string | null;
-
-  /**
-   * Body param: The id of the ledger that this account category belongs to.
+   * The id of the ledger that this account category belongs to.
    */
   ledger_id: string;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
-   */
-  metadata?: Record<string, string>;
-
-  /**
-   * Body param: The name of the ledger account category.
+   * The name of the ledger account category.
    */
   name: string;
 
   /**
-   * Body param: The normal balance of the ledger account category.
+   * The normal balance of the ledger account category.
    */
   normal_balance: 'credit' | 'debit';
 
   /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
+   * The currency exponent of the ledger account category.
    */
-  'Idempotency-Key'?: string;
+  currency_exponent?: number | null;
+
+  /**
+   * The description of the ledger account category.
+   */
+  description?: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string>;
 }
 
 export interface LedgerAccountCategoryRetrieveParams {
@@ -354,46 +331,24 @@ export namespace LedgerAccountCategoryRetrieveParams {
 
     effective_at?: string;
   }
-
-  export interface Balances {
-    as_of_date?: string;
-
-    effective_at?: string;
-  }
 }
 
 export interface LedgerAccountCategoryUpdateParams {
   /**
-   * Query param: For example, if you want the balances as of a particular effective
-   * date (YYYY-MM-DD), the encoded query string would be
-   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
-   * entries with that exact date.
-   */
-  balances?: LedgerAccountCategoryUpdateParams.Balances;
-
-  /**
-   * Body param: The description of the ledger account category.
+   * The description of the ledger account category.
    */
   description?: string | null;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: The name of the ledger account category.
+   * The name of the ledger account category.
    */
   name?: string;
-}
-
-export namespace LedgerAccountCategoryUpdateParams {
-  export interface Balances {
-    as_of_date?: string;
-
-    effective_at?: string;
-  }
 }
 
 export interface LedgerAccountCategoryListParams extends PageParams {
@@ -412,22 +367,4 @@ export interface LedgerAccountCategoryListParams extends PageParams {
    * Query categories that are nested underneath a parent category
    */
   parent_ledger_account_category_id?: string;
-}
-
-export interface LedgerAccountCategoryDeleteParams {
-  /**
-   * For example, if you want the balances as of a particular effective date
-   * (YYYY-MM-DD), the encoded query string would be
-   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
-   * entries with that exact date.
-   */
-  balances?: LedgerAccountCategoryDeleteParams.Balances;
-}
-
-export namespace LedgerAccountCategoryDeleteParams {
-  export interface Balances {
-    as_of_date?: string;
-
-    effective_at?: string;
-  }
 }
