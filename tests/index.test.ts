@@ -54,19 +54,6 @@ describe('idempotency', () => {
       organizationId: 'my-organization-ID',
       baseURL: 'http://127.0.0.1:4010',
     });
-    await client.counterparties.create(
-      {
-        accounting: {},
-        accounts: [{}, {}, {}],
-        email: 'dev@stainlessapi.com',
-        ledger_type: 'customer',
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-        name: 'string',
-        send_remittance_advice: true,
-        taxpayer_identifier: 'string',
-        'Idempotency-Key': 'string',
-      },
-      { idempotencyKey: 'my-idempotency-key' },
-    );
+    await client.counterparties.create({ name: 'string' }, { idempotencyKey: 'my-idempotency-key' });
   });
 });

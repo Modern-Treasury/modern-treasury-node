@@ -10,39 +10,17 @@ export class PaymentFlows extends APIResource {
    * create payment_flow
    */
   create(
-    params: PaymentFlowCreateParams,
+    body: PaymentFlowCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<PaymentFlow>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post('/api/payment_flows', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post('/api/payment_flows', { body, ...options });
   }
 
   /**
    * get payment_flow
    */
-  retrieve(
-    id: string,
-    query?: PaymentFlowRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentFlow>>;
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<PaymentFlow>>;
-  retrieve(
-    id: string,
-    query: PaymentFlowRetrieveParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentFlow>> {
-    if (isRequestOptions(query)) {
-      return this.retrieve(id, {}, query);
-    }
-    const { 'Idempotency-Key': idempotencyKey } = query;
-    return this.get(`/api/payment_flows/${id}`, {
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<PaymentFlow>> {
+    return this.get(`/api/payment_flows/${id}`, options);
   }
 
   /**
@@ -50,15 +28,10 @@ export class PaymentFlows extends APIResource {
    */
   update(
     id: string,
-    params: PaymentFlowUpdateParams,
+    body: PaymentFlowUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<PaymentFlow>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.patch(`/api/payment_flows/${id}`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.patch(`/api/payment_flows/${id}`, { body, ...options });
   }
 
   /**
@@ -73,6 +46,7 @@ export class PaymentFlows extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/payment_flows', PaymentFlowsPage, { query, ...options });
   }
 }
@@ -147,61 +121,40 @@ export interface PaymentFlow {
 
 export interface PaymentFlowCreateParams {
   /**
-   * Body param: Required. Value in specified currency's smallest unit. e.g. $10
-   * would be represented as 1000. Can be any integer up to 36 digits.
+   * Required. Value in specified currency's smallest unit. e.g. $10 would be
+   * represented as 1000. Can be any integer up to 36 digits.
    */
   amount: number;
 
   /**
-   * Body param: Required. The ID of a counterparty associated with the payment. As
-   * part of the payment workflow an external account will be associated with this
-   * model.
+   * Required. The ID of a counterparty associated with the payment. As part of the
+   * payment workflow an external account will be associated with this model.
    */
   counterparty_id: string;
 
   /**
-   * Body param: Required. The currency of the payment.
+   * Required. The currency of the payment.
    */
   currency: string;
 
   /**
-   * Body param: Required. Describes the direction money is flowing in the
-   * transaction. Can only be `debit`. A `debit` pulls money from someone else's
-   * account to your own.
+   * Required. Describes the direction money is flowing in the transaction. Can only
+   * be `debit`. A `debit` pulls money from someone else's account to your own.
    */
   direction: 'credit' | 'debit';
 
   /**
-   * Body param: Required. The ID of one of your organization's internal accounts.
+   * Required. The ID of one of your organization's internal accounts.
    */
   originating_account_id: string;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
-}
-
-export interface PaymentFlowRetrieveParams {
-  /**
-   * This key should be something unique, preferably something like an UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface PaymentFlowUpdateParams {
   /**
-   * Body param: Required. The updated status of the payment flow. Can only be used
-   * to mark a flow as `cancelled`.
+   * Required. The updated status of the payment flow. Can only be used to mark a
+   * flow as `cancelled`.
    */
   status: 'cancelled';
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface PaymentFlowListParams extends PageParams {

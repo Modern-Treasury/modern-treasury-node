@@ -10,8 +10,8 @@ export class LineItems extends APIResource {
    * Get a single line item
    */
   retrieve(
-    itemizableId: string,
     itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     id: string,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LineItem>> {
@@ -22,28 +22,29 @@ export class LineItems extends APIResource {
    * update line item
    */
   update(
-    itemizableId: string,
     itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     id: string,
     body?: LineItemUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LineItem>>;
   update(
-    itemizableId: string,
     itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     id: string,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LineItem>>;
   update(
-    itemizableId: string,
     itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     id: string,
     body: LineItemUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LineItem>> {
     if (isRequestOptions(body)) {
-      return this.update(itemizableId, itemizableType, id, {}, body);
+      return this.update(itemizableType, itemizableId, id, {}, body);
     }
+
     return this.patch(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, { body, ...options });
   }
 
@@ -51,25 +52,26 @@ export class LineItems extends APIResource {
    * Get a list of line items
    */
   list(
-    itemizableId: string,
     itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     query?: LineItemListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<LineItemsPage>;
   list(
-    itemizableId: string,
     itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     options?: Core.RequestOptions,
   ): Core.PagePromise<LineItemsPage>;
   list(
-    itemizableId: string,
     itemizableType: 'expected_payments' | 'payment_orders',
+    itemizableId: string,
     query: LineItemListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<LineItemsPage> {
     if (isRequestOptions(query)) {
-      return this.list(itemizableId, itemizableType, {}, query);
+      return this.list(itemizableType, itemizableId, {}, query);
     }
+
     return this.getAPIList(`/api/${itemizableType}/${itemizableId}/line_items`, LineItemsPage, {
       query,
       ...options,

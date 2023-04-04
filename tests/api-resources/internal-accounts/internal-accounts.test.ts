@@ -11,31 +11,17 @@ describe('resource internal_accounts', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.internalAccounts.create({
       connection_id: 'string',
-      counterparty_id: 'string',
-      currency: 'USD',
-      entity_id: 'string',
       name: 'string',
-      parent_account_id: 'string',
-      party_address: {
-        line1: 'string',
-        locality: 'string',
-        region: 'string',
-        postal_code: 'string',
-        country: 'string',
-      },
       party_name: 'string',
-      'Idempotency-Key': 'string',
+      currency: 'USD',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.internalAccounts.create({
       connection_id: 'string',
-      counterparty_id: 'string',
-      currency: 'USD',
-      entity_id: 'string',
       name: 'string',
-      parent_account_id: 'string',
+      party_name: 'string',
       party_address: {
         line1: 'string',
         line2: 'string',
@@ -44,8 +30,10 @@ describe('resource internal_accounts', () => {
         postal_code: 'string',
         country: 'string',
       },
-      party_name: 'string',
-      'Idempotency-Key': 'string',
+      currency: 'USD',
+      entity_id: 'string',
+      parent_account_id: 'string',
+      counterparty_id: 'string',
     });
   });
 
@@ -60,8 +48,17 @@ describe('resource internal_accounts', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update', async () => {
+  test('update: only required params', async () => {
     const response = await modernTreasury.internalAccounts.update('string');
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await modernTreasury.internalAccounts.update('string', {
+      name: 'string',
+      metadata: { foo: 'string' },
+      parent_account_id: 'string',
+      counterparty_id: 'string',
+    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -77,18 +74,29 @@ describe('resource internal_accounts', () => {
       modernTreasury.internalAccounts.update(
         'string',
         {
-          counterparty_id: 'string',
-          metadata: { foo: 'string' },
           name: 'string',
+          metadata: { foo: 'string' },
           parent_account_id: 'string',
+          counterparty_id: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.internalAccounts.list();
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.internalAccounts.list({
+      after_cursor: 'string',
+      per_page: 0,
+      currency: 'AED',
+      payment_type: 'ach',
+      payment_direction: 'credit',
+      metadata: { foo: 'string' },
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -104,11 +112,11 @@ describe('resource internal_accounts', () => {
       modernTreasury.internalAccounts.list(
         {
           after_cursor: 'string',
-          currency: 'AED',
-          metadata: { foo: 'string' },
-          payment_direction: 'credit',
-          payment_type: 'ach',
           per_page: 0,
+          currency: 'AED',
+          payment_type: 'ach',
+          payment_direction: 'credit',
+          metadata: { foo: 'string' },
         },
         { path: '/_stainless_unknown_path' },
       ),

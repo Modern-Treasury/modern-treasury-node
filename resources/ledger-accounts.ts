@@ -10,15 +10,10 @@ export class LedgerAccounts extends APIResource {
    * Create a ledger account.
    */
   create(
-    params: LedgerAccountCreateParams,
+    body: LedgerAccountCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerAccount>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post('/api/ledger_accounts', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post('/api/ledger_accounts', { body, ...options });
   }
 
   /**
@@ -38,6 +33,7 @@ export class LedgerAccounts extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
+
     return this.get(`/api/ledger_accounts/${id}`, { query, ...options });
   }
 
@@ -58,6 +54,7 @@ export class LedgerAccounts extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
+
     return this.patch(`/api/ledger_accounts/${id}`, { body, ...options });
   }
 
@@ -73,6 +70,7 @@ export class LedgerAccounts extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/ledger_accounts', LedgerAccountsPage, { query, ...options });
   }
 
@@ -224,46 +222,40 @@ export namespace LedgerAccount {
 
 export interface LedgerAccountCreateParams {
   /**
-   * Body param: The currency of the ledger account.
+   * The currency of the ledger account.
    */
   currency: string;
 
   /**
-   * Body param: The currency exponent of the ledger account.
-   */
-  currency_exponent?: number | null;
-
-  /**
-   * Body param: The description of the ledger account.
-   */
-  description?: string | null;
-
-  /**
-   * Body param: The id of the ledger that this account belongs to.
+   * The id of the ledger that this account belongs to.
    */
   ledger_id: string;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
-   */
-  metadata?: Record<string, string>;
-
-  /**
-   * Body param: The name of the ledger account.
+   * The name of the ledger account.
    */
   name: string;
 
   /**
-   * Body param: The normal balance of the ledger account.
+   * The normal balance of the ledger account.
    */
   normal_balance: 'credit' | 'debit';
 
   /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
+   * The currency exponent of the ledger account.
    */
-  'Idempotency-Key'?: string;
+  currency_exponent?: number | null;
+
+  /**
+   * The description of the ledger account.
+   */
+  description?: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string>;
 }
 
 export interface LedgerAccountRetrieveParams {
@@ -277,10 +269,6 @@ export interface LedgerAccountRetrieveParams {
 }
 
 export namespace LedgerAccountRetrieveParams {
-  export interface Balances {
-    as_of_date?: string;
-  }
-
   export interface Balances {
     as_of_date?: string;
   }
@@ -337,12 +325,6 @@ export interface LedgerAccountListParams extends PageParams {
 }
 
 export namespace LedgerAccountListParams {
-  export interface Balances {
-    as_of_date?: string;
-
-    effective_at?: string;
-  }
-
   export interface Balances {
     as_of_date?: string;
 

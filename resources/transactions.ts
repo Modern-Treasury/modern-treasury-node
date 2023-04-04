@@ -31,6 +31,7 @@ export class Transactions extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
+
     return this.patch(`/api/transactions/${id}`, { body, ...options });
   }
 
@@ -46,6 +47,7 @@ export class Transactions extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/transactions', TransactionsPage, { query, ...options });
   }
 }

@@ -18,6 +18,7 @@ export class Connections extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/connections', ConnectionsPage, { query, ...options });
   }
 }

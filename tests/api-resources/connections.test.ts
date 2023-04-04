@@ -8,8 +8,17 @@ const modernTreasury = new ModernTreasury({
 });
 
 describe('resource connections', () => {
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.connections.list();
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.connections.list({
+      after_cursor: 'string',
+      per_page: 0,
+      vendor_customer_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      entity: 'string',
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -25,9 +34,9 @@ describe('resource connections', () => {
       modernTreasury.connections.list(
         {
           after_cursor: 'string',
-          entity: 'string',
           per_page: 0,
           vendor_customer_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          entity: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),

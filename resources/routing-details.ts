@@ -12,15 +12,10 @@ export class RoutingDetails extends APIResource {
   create(
     accountsType: 'external_accounts',
     accountId: string,
-    params: RoutingDetailCreateParams,
+    body: RoutingDetailCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<RoutingDetail>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post(`/api/${accountsType}/${accountId}/routing_details`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post(`/api/${accountsType}/${accountId}/routing_details`, { body, ...options });
   }
 
   /**
@@ -58,6 +53,7 @@ export class RoutingDetails extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(accountsType, accountId, {}, query);
     }
+
     return this.getAPIList(`/api/${accountsType}/${accountId}/routing_details`, RoutingDetailsPage, {
       query,
       ...options,
@@ -194,8 +190,27 @@ export namespace RoutingDetail {
 
 export interface RoutingDetailCreateParams {
   /**
-   * Body param: If the routing detail is to be used for a specific payment type this
-   * field will be populated, otherwise null.
+   * The routing number of the bank.
+   */
+  routing_number: string;
+
+  /**
+   * One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
+   */
+  routing_number_type:
+    | 'aba'
+    | 'au_bsb'
+    | 'br_codigo'
+    | 'ca_cpa'
+    | 'cnaps'
+    | 'gb_sort_code'
+    | 'in_ifsc'
+    | 'my_branch_code'
+    | 'swift';
+
+  /**
+   * If the routing detail is to be used for a specific payment type this field will
+   * be populated, otherwise null.
    */
   payment_type?:
     | 'ach'
@@ -216,32 +231,6 @@ export interface RoutingDetailCreateParams {
     | 'signet'
     | 'wire'
     | null;
-
-  /**
-   * Body param: The routing number of the bank.
-   */
-  routing_number: string;
-
-  /**
-   * Body param: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`,
-   * `in_ifsc`, `cnaps`.
-   */
-  routing_number_type:
-    | 'aba'
-    | 'au_bsb'
-    | 'br_codigo'
-    | 'ca_cpa'
-    | 'cnaps'
-    | 'gb_sort_code'
-    | 'in_ifsc'
-    | 'my_branch_code'
-    | 'swift';
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface RoutingDetailListParams extends PageParams {}

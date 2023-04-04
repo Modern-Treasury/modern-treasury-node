@@ -35,6 +35,7 @@ export class BalanceReports extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(internalAccountId, {}, query);
     }
+
     return this.getAPIList(
       `/api/internal_accounts/${internalAccountId}/balance_reports`,
       BalanceReportsPage,

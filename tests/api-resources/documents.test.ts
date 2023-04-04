@@ -12,26 +12,23 @@ const modernTreasury = new ModernTreasury({
 describe('resource documents', () => {
   // skipped: prism mock server is broken for file uploads
   test.skip('create: only required params', async () => {
-    const response = await modernTreasury.documents.create('string', 'cases', {
-      document_type: 'string',
+    const response = await modernTreasury.documents.create('cases', 'string', {
       file: await fileFromPath('README.md'),
-      'Idempotency-Key': 'string',
     });
   });
 
   // skipped: prism mock server is broken for file uploads
   test.skip('create: required and optional params', async () => {
-    const response = await modernTreasury.documents.create('string', 'cases', {
+    const response = await modernTreasury.documents.create('cases', 'string', {
       document_type: 'string',
       file: await fileFromPath('README.md'),
-      'Idempotency-Key': 'string',
     });
   });
 
   test('retrieve', async () => {
     const response = await modernTreasury.documents.retrieve(
-      'string',
       'cases',
+      'string',
       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     );
   });
@@ -39,20 +36,27 @@ describe('resource documents', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.documents.retrieve('string', 'cases', '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      modernTreasury.documents.retrieve('cases', 'string', '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
-    const response = await modernTreasury.documents.list('string', 'cases');
+  test('list: only required params', async () => {
+    const response = await modernTreasury.documents.list('cases', 'string');
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.documents.list('cases', 'string', {
+      after_cursor: 'string',
+      per_page: 0,
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.documents.list('string', 'cases', { path: '/_stainless_unknown_path' }),
+      modernTreasury.documents.list('cases', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -60,8 +64,8 @@ describe('resource documents', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.documents.list(
-        'string',
         'cases',
+        'string',
         { after_cursor: 'string', per_page: 0 },
         { path: '/_stainless_unknown_path' },
       ),

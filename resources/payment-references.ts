@@ -21,6 +21,7 @@ export class PaymentReferences extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/payment_references', PaymentReferencesPage, { query, ...options });
   }
 

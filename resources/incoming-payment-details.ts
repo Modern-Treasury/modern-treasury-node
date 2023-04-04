@@ -32,6 +32,7 @@ export class IncomingPaymentDetails extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
+
     return this.patch(`/api/incoming_payment_details/${id}`, { body, ...options });
   }
 
@@ -50,6 +51,7 @@ export class IncomingPaymentDetails extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/incoming_payment_details', IncomingPaymentDetailsPage, {
       query,
       ...options,
@@ -60,23 +62,19 @@ export class IncomingPaymentDetails extends APIResource {
    * Simulate Incoming Payment Detail
    */
   createAsync(
-    params?: IncomingPaymentDetailCreateAsyncParams,
+    body?: IncomingPaymentDetailCreateAsyncParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<Shared.AsyncResponse>>;
   createAsync(options?: Core.RequestOptions): Promise<Core.APIResponse<Shared.AsyncResponse>>;
   createAsync(
-    params: IncomingPaymentDetailCreateAsyncParams | Core.RequestOptions = {},
+    body: IncomingPaymentDetailCreateAsyncParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<Shared.AsyncResponse>> {
-    if (isRequestOptions(params)) {
-      return this.createAsync({}, params);
+    if (isRequestOptions(body)) {
+      return this.createAsync({}, body);
     }
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post('/api/simulations/incoming_payment_details/create_async', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+
+    return this.post('/api/simulations/incoming_payment_details/create_async', { body, ...options });
   }
 }
 
@@ -229,45 +227,39 @@ export interface IncomingPaymentDetailListParams extends PageParams {
 
 export interface IncomingPaymentDetailCreateAsyncParams {
   /**
-   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
-   * represented as 1000.
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
    */
   amount?: number;
 
   /**
-   * Body param: Defaults to today.
+   * Defaults to today.
    */
   as_of_date?: string | null;
 
   /**
-   * Body param: Defaults to the currency of the originating account.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency | null;
 
   /**
-   * Body param: One of `credit`, `debit`.
+   * One of `credit`, `debit`.
    */
   direction?: 'credit' | 'debit';
 
   /**
-   * Body param: The ID of one of your internal accounts.
+   * The ID of one of your internal accounts.
    */
   internal_account_id?: string;
 
   /**
-   * Body param: One of `ach`, `wire`, `check`.
+   * One of `ach`, `wire`, `check`.
    */
   type?: 'ach' | 'book' | 'check' | 'eft' | 'interac' | 'rtp' | 'sepa' | 'signet' | 'wire';
 
   /**
-   * Body param: An optional parameter to associate the incoming payment detail to a
-   * virtual account.
+   * An optional parameter to associate the incoming payment detail to a virtual
+   * account.
    */
   virtual_account_id?: string | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }

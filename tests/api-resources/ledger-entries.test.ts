@@ -19,8 +19,27 @@ describe('resource ledger_entries', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.ledgerEntries.list();
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.ledgerEntries.list({
+      after_cursor: 'string',
+      per_page: 0,
+      ledger_account_id: 'string',
+      ledger_transaction_id: 'string',
+      effective_date: { foo: '2019-12-27' },
+      effective_at: { foo: 'string' },
+      updated_at: { foo: '2019-12-27T18:11:19.117Z' },
+      as_of_lock_version: 0,
+      ledger_account_lock_version: { foo: 0 },
+      ledger_account_category_id: 'string',
+      show_deleted: true,
+      direction: 'credit',
+      status: 'pending',
+      order_by: { created_at: 'asc', effective_at: 'asc' },
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -36,19 +55,19 @@ describe('resource ledger_entries', () => {
       modernTreasury.ledgerEntries.list(
         {
           after_cursor: 'string',
-          as_of_lock_version: 0,
-          direction: 'credit',
-          effective_at: { foo: 'string' },
-          effective_date: { foo: '2019-12-27' },
-          ledger_account_category_id: 'string',
-          ledger_account_id: 'string',
-          ledger_account_lock_version: { foo: 0 },
-          ledger_transaction_id: 'string',
-          order_by: { created_at: 'asc', effective_at: 'asc' },
           per_page: 0,
-          show_deleted: true,
-          status: 'pending',
+          ledger_account_id: 'string',
+          ledger_transaction_id: 'string',
+          effective_date: { foo: '2019-12-27' },
+          effective_at: { foo: 'string' },
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
+          as_of_lock_version: 0,
+          ledger_account_lock_version: { foo: 0 },
+          ledger_account_category_id: 'string',
+          show_deleted: true,
+          direction: 'credit',
+          status: 'pending',
+          order_by: { created_at: 'asc', effective_at: 'asc' },
         },
         { path: '/_stainless_unknown_path' },
       ),

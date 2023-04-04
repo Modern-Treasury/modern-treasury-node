@@ -10,128 +10,17 @@ const modernTreasury = new ModernTreasury({
 describe('resource virtual_accounts', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.virtualAccounts.create({
-      account_details: [
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          account_number_type: 'clabe',
-          account_number_safe: 'string',
-        },
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          account_number_type: 'clabe',
-          account_number_safe: 'string',
-        },
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          account_number_type: 'clabe',
-          account_number_safe: 'string',
-        },
-      ],
-      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      credit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      debit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      description: 'string',
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      metadata: { foo: 'string' },
       name: 'string',
-      routing_details: [
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          routing_number: 'string',
-          routing_number_type: 'aba',
-          payment_type: 'ach',
-          bank_name: 'string',
-          bank_address: {
-            id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            object: 'string',
-            live_mode: true,
-            created_at: '2019-12-27T18:11:19.117Z',
-            updated_at: '2019-12-27T18:11:19.117Z',
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
-          },
-        },
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          routing_number: 'string',
-          routing_number_type: 'aba',
-          payment_type: 'ach',
-          bank_name: 'string',
-          bank_address: {
-            id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            object: 'string',
-            live_mode: true,
-            created_at: '2019-12-27T18:11:19.117Z',
-            updated_at: '2019-12-27T18:11:19.117Z',
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
-          },
-        },
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          routing_number: 'string',
-          routing_number_type: 'aba',
-          payment_type: 'ach',
-          bank_name: 'string',
-          bank_address: {
-            id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            object: 'string',
-            live_mode: true,
-            created_at: '2019-12-27T18:11:19.117Z',
-            updated_at: '2019-12-27T18:11:19.117Z',
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
-          },
-        },
-      ],
-      'Idempotency-Key': 'string',
+      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.virtualAccounts.create({
+      name: 'string',
+      description: 'string',
+      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       account_details: [
         {
           id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -167,13 +56,6 @@ describe('resource virtual_accounts', () => {
           account_number_safe: 'string',
         },
       ],
-      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      credit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      debit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      description: 'string',
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      metadata: { foo: 'string' },
-      name: 'string',
       routing_details: [
         {
           id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -251,7 +133,9 @@ describe('resource virtual_accounts', () => {
           },
         },
       ],
-      'Idempotency-Key': 'string',
+      debit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      credit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      metadata: { foo: 'string' },
     });
   });
 
@@ -266,8 +150,16 @@ describe('resource virtual_accounts', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update', async () => {
+  test('update: only required params', async () => {
     const response = await modernTreasury.virtualAccounts.update('string');
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await modernTreasury.virtualAccounts.update('string', {
+      name: 'string',
+      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      metadata: { foo: 'string' },
+    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -283,17 +175,27 @@ describe('resource virtual_accounts', () => {
       modernTreasury.virtualAccounts.update(
         'string',
         {
+          name: 'string',
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: { foo: 'string' },
-          name: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.virtualAccounts.list();
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.virtualAccounts.list({
+      after_cursor: 'string',
+      per_page: 0,
+      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      metadata: { foo: 'string' },
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -309,10 +211,10 @@ describe('resource virtual_accounts', () => {
       modernTreasury.virtualAccounts.list(
         {
           after_cursor: 'string',
-          counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          metadata: { foo: 'string' },
           per_page: 0,
+          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          metadata: { foo: 'string' },
         },
         { path: '/_stainless_unknown_path' },
       ),

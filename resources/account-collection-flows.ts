@@ -10,39 +10,17 @@ export class AccountCollectionFlows extends APIResource {
    * create account_collection_flow
    */
   create(
-    params: AccountCollectionFlowCreateParams,
+    body: AccountCollectionFlowCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<AccountConnectionFlow>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.post('/api/account_collection_flows', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.post('/api/account_collection_flows', { body, ...options });
   }
 
   /**
    * get account_collection_flow
    */
-  retrieve(
-    id: string,
-    query?: AccountCollectionFlowRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountConnectionFlow>>;
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<AccountConnectionFlow>>;
-  retrieve(
-    id: string,
-    query: AccountCollectionFlowRetrieveParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountConnectionFlow>> {
-    if (isRequestOptions(query)) {
-      return this.retrieve(id, {}, query);
-    }
-    const { 'Idempotency-Key': idempotencyKey } = query;
-    return this.get(`/api/account_collection_flows/${id}`, {
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<AccountConnectionFlow>> {
+    return this.get(`/api/account_collection_flows/${id}`, options);
   }
 
   /**
@@ -50,15 +28,10 @@ export class AccountCollectionFlows extends APIResource {
    */
   update(
     id: string,
-    params: AccountCollectionFlowUpdateParams,
+    body: AccountCollectionFlowUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<AccountConnectionFlow>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this.patch(`/api/account_collection_flows/${id}`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this.patch(`/api/account_collection_flows/${id}`, { body, ...options });
   }
 
   /**
@@ -76,6 +49,7 @@ export class AccountCollectionFlows extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
+
     return this.getAPIList('/api/account_collection_flows', AccountConnectionFlowsPage, {
       query,
       ...options,
@@ -128,41 +102,19 @@ export interface AccountConnectionFlow {
 
 export interface AccountCollectionFlowCreateParams {
   /**
-   * Body param: Required.
+   * Required.
    */
   counterparty_id: string;
 
-  /**
-   * Body param:
-   */
   payment_types: Array<string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
-}
-
-export interface AccountCollectionFlowRetrieveParams {
-  /**
-   * This key should be something unique, preferably something like an UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface AccountCollectionFlowUpdateParams {
   /**
-   * Body param: Required. The updated status of the account collection flow. Can
-   * only be used to mark a flow as `cancelled`.
+   * Required. The updated status of the account collection flow. Can only be used to
+   * mark a flow as `cancelled`.
    */
   status: 'cancelled';
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface AccountCollectionFlowListParams extends PageParams {

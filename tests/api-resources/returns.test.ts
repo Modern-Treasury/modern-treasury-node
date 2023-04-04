@@ -10,25 +10,19 @@ const modernTreasury = new ModernTreasury({
 describe('resource returns', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.returns.create({
-      additional_information: 'string',
-      code: '901',
-      date_of_death: '2019-12-27',
-      reason: 'string',
       returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       returnable_type: 'incoming_payment_detail',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.returns.create({
-      additional_information: 'string',
-      code: '901',
-      date_of_death: '2019-12-27',
-      reason: 'string',
       returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      code: '901',
+      reason: 'string',
+      date_of_death: '2019-12-27',
+      additional_information: 'string',
       returnable_type: 'incoming_payment_detail',
-      'Idempotency-Key': 'string',
     });
   });
 
@@ -43,8 +37,19 @@ describe('resource returns', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.returns.list();
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.returns.list({
+      after_cursor: 'string',
+      per_page: 0,
+      internal_account_id: 'string',
+      counterparty_id: 'string',
+      returnable_id: 'string',
+      returnable_type: 'incoming_payment_detail',
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -60,9 +65,9 @@ describe('resource returns', () => {
       modernTreasury.returns.list(
         {
           after_cursor: 'string',
-          counterparty_id: 'string',
-          internal_account_id: 'string',
           per_page: 0,
+          internal_account_id: 'string',
+          counterparty_id: 'string',
           returnable_id: 'string',
           returnable_type: 'incoming_payment_detail',
         },

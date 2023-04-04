@@ -10,32 +10,33 @@ const modernTreasury = new ModernTreasury({
 describe('resource ledger_account_categories', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.create({
-      currency: 'string',
-      currency_exponent: 0,
-      description: 'string',
-      ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       name: 'string',
+      currency: 'string',
+      ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       normal_balance: 'credit',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.create({
+      name: 'string',
+      description: 'string',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       currency: 'string',
       currency_exponent: 0,
-      description: 'string',
       ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
       normal_balance: 'credit',
-      'Idempotency-Key': 'string',
     });
   });
 
-  test('retrieve', async () => {
+  test('retrieve: only required params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.retrieve('string');
+  });
+
+  test('retrieve: required and optional params', async () => {
+    const response = await modernTreasury.ledgerAccountCategories.retrieve('string', {
+      balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' },
+    });
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -56,8 +57,16 @@ describe('resource ledger_account_categories', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update', async () => {
+  test('update: only required params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.update('string');
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await modernTreasury.ledgerAccountCategories.update('string', {
+      name: 'string',
+      description: 'string',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -72,19 +81,25 @@ describe('resource ledger_account_categories', () => {
     await expect(
       modernTreasury.ledgerAccountCategories.update(
         'string',
-        {
-          balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' },
-          description: 'string',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          name: 'string',
-        },
+        { name: 'string', description: 'string', metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.list();
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.ledgerAccountCategories.list({
+      after_cursor: 'string',
+      per_page: 0,
+      metadata: { foo: 'string' },
+      name: 'string',
+      ledger_id: 'string',
+      parent_ledger_account_category_id: 'string',
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -100,11 +115,11 @@ describe('resource ledger_account_categories', () => {
       modernTreasury.ledgerAccountCategories.list(
         {
           after_cursor: 'string',
-          ledger_id: 'string',
+          per_page: 0,
           metadata: { foo: 'string' },
           name: 'string',
+          ledger_id: 'string',
           parent_ledger_account_category_id: 'string',
-          per_page: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -119,17 +134,6 @@ describe('resource ledger_account_categories', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.del('string', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('delete: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.ledgerAccountCategories.del(
-        'string',
-        { balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' } },
-        { path: '/_stainless_unknown_path' },
-      ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 

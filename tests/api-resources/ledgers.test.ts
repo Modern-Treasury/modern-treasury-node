@@ -9,20 +9,14 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgers', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.ledgers.create({
-      description: 'string',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
-      'Idempotency-Key': 'string',
-    });
+    const response = await modernTreasury.ledgers.create({ name: 'string' });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgers.create({
+      name: 'string',
       description: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
-      'Idempotency-Key': 'string',
     });
   });
 
@@ -37,8 +31,16 @@ describe('resource ledgers', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('update', async () => {
+  test('update: only required params', async () => {
     const response = await modernTreasury.ledgers.update('string');
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await modernTreasury.ledgers.update('string', {
+      name: 'string',
+      description: 'string',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+    });
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -53,14 +55,23 @@ describe('resource ledgers', () => {
     await expect(
       modernTreasury.ledgers.update(
         'string',
-        { description: 'string', metadata: { key: 'value', foo: 'bar', modern: 'treasury' }, name: 'string' },
+        { name: 'string', description: 'string', metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
+  test('list: only required params', async () => {
     const response = await modernTreasury.ledgers.list();
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await modernTreasury.ledgers.list({
+      after_cursor: 'string',
+      per_page: 0,
+      metadata: { foo: 'string' },
+      updated_at: { foo: '2019-12-27T18:11:19.117Z' },
+    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -76,8 +87,8 @@ describe('resource ledgers', () => {
       modernTreasury.ledgers.list(
         {
           after_cursor: 'string',
-          metadata: { foo: 'string' },
           per_page: 0,
+          metadata: { foo: 'string' },
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
         },
         { path: '/_stainless_unknown_path' },
