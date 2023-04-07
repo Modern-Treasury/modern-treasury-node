@@ -159,7 +159,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 ## Auto-pagination
 
 List methods in the ModernTreasury API are paginated.
-Use `for await … of` syntax to iterate through items across all pages.
+You can use `for await … of` syntax to iterate through items across all pages:
 
 ```ts
 async function fetchAllExternalAccounts(params) {
@@ -169,6 +169,21 @@ async function fetchAllExternalAccounts(params) {
     allExternalAccounts.push(externalAccount);
   }
   return allExternalAccounts;
+}
+```
+
+Alternatively, you can make request a single page at a time:
+
+```ts
+let page = await modernTreasury.externalAccounts.list();
+for (const externalAccount of page.items) {
+  console.log(externalAccount);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = page.getNextPage();
+  // ...
 }
 ```
 
