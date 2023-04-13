@@ -180,6 +180,7 @@ export interface Transaction {
     | 'iso20022'
     | 'jpmc'
     | 'mx'
+    | 'rspec_vendor'
     | 'signet'
     | 'silvergate'
     | 'swift'
