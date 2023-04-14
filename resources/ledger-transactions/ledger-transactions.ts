@@ -496,6 +496,8 @@ export interface LedgerTransactionListParams extends PageParams {
 
   external_id?: string;
 
+  id?: Record<string, string>;
+
   ledger_account_category_id?: string;
 
   ledger_account_id?: string;
