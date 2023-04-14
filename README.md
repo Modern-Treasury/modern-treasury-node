@@ -29,7 +29,7 @@ const modernTreasury = new ModernTreasury({
 
 async function main() {
   const externalAccount = await modernTreasury.externalAccounts.create({
-    counterparty_id: '123',
+    counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a',
     name: 'my bank',
   });
 
@@ -52,7 +52,10 @@ const modernTreasury = new ModernTreasury({
 });
 
 async function main() {
-  const params: ModernTreasury.ExternalAccountCreateParams = { counterparty_id: '123', name: 'my bank' };
+  const params: ModernTreasury.ExternalAccountCreateParams = {
+    counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a',
+    name: 'my bank',
+  };
   const externalAccount: ModernTreasury.ExternalAccount = await modernTreasury.externalAccounts.create(
     params,
   );
