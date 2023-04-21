@@ -93,9 +93,9 @@ export interface LedgerAccountPayout {
   description: string | null;
 
   /**
-   * The maximum effective_at timestamp of the ledger entries to be included in the
-   * ledger account payout. The default value is the created_at timestamp of the
-   * ledger account payout.
+   * The exclusive upper bound of the effective_at timestamp of the ledger entries to
+   * be included in the ledger account payout. The default value is the created_at
+   * timestamp of the ledger account payout.
    */
   effective_at_upper_bound: string;
 
@@ -148,9 +148,9 @@ export interface LedgerAccountPayoutCreateParams {
   description?: string | null;
 
   /**
-   * Body param: The maximum effective_at timestamp of the ledger entries to be
-   * included in the ledger account payout. The default value is the created_at
-   * timestamp of the ledger account payout.
+   * Body param: The exclusive upper bound of the effective_at timestamp of the
+   * ledger entries to be included in the ledger account payout. The default value is
+   * the created_at timestamp of the ledger account payout.
    */
   effective_at_upper_bound?: string | null;
 

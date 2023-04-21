@@ -104,6 +104,7 @@ describe('resource internal_accounts', () => {
       modernTreasury.internalAccounts.list(
         {
           after_cursor: 'string',
+          counterparty_id: 'string',
           currency: 'AED',
           metadata: { foo: 'string' },
           payment_direction: 'credit',

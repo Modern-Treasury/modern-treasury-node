@@ -62,6 +62,7 @@ export class ModernTreasury extends Core.APIClient {
   expectedPayments: API.ExpectedPayments = new API.ExpectedPayments(this);
   externalAccounts: API.ExternalAccounts = new API.ExternalAccounts(this);
   incomingPaymentDetails: API.IncomingPaymentDetails = new API.IncomingPaymentDetails(this);
+  invoices: API.Invoices = new API.Invoices(this);
   documents: API.Documents = new API.Documents(this);
   accountCollectionFlows: API.AccountCollectionFlows = new API.AccountCollectionFlows(this);
   accountDetails: API.AccountDetails = new API.AccountDetails(this);
@@ -182,6 +183,12 @@ export namespace ModernTreasury {
   export import IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
   export import IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
   export import IncomingPaymentDetailCreateAsyncParams = API.IncomingPaymentDetailCreateAsyncParams;
+
+  export import Invoice = API.Invoice;
+  export import InvoicesPage = API.InvoicesPage;
+  export import InvoiceCreateParams = API.InvoiceCreateParams;
+  export import InvoiceUpdateParams = API.InvoiceUpdateParams;
+  export import InvoiceListParams = API.InvoiceListParams;
 
   export import Document = API.Document;
   export import DocumentsPage = API.DocumentsPage;

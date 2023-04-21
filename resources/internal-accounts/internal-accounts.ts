@@ -323,6 +323,11 @@ export interface InternalAccountUpdateParams {
 
 export interface InternalAccountListParams extends PageParams {
   /**
+   * The counterparty associated with the internal account.
+   */
+  counterparty_id?: string;
+
+  /**
    * Three-letter ISO currency code.
    */
   currency?: Shared.Currency | null;

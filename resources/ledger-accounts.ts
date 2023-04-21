@@ -113,6 +113,19 @@ export interface LedgerAccount {
   ledger_id: string;
 
   /**
+   * If the ledger account links to another object in Modern Treasury, the id will be
+   * populated here, otherwise null.
+   */
+  ledgerable_id: string | null;
+
+  /**
+   * If the ledger account links to another object in Modern Treasury, the type will
+   * be populated here, otherwise null. The value is one of internal_account or
+   * external_account.
+   */
+  ledgerable_type: 'external_account' | 'internal_account' | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
