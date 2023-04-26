@@ -100,7 +100,7 @@ export interface ExpectedPayment {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency: Shared.Currency;
+  currency: Shared.Currency | null;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -190,7 +190,7 @@ export interface ExpectedPayment {
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
    * sepa, signet, wire.
    */
-  type: ExpectedPaymentType;
+  type: ExpectedPaymentType | null;
 
   updated_at: string;
 }

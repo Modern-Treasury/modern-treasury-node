@@ -217,6 +217,13 @@ export interface LedgerAccountCategory {
 }
 
 export namespace LedgerAccountCategory {
+  /**
+   * The pending, posted, and available balances for this ledger account category.
+   * The posted balance is the sum of all posted entries on the account. The pending
+   * balance is the sum of all pending and posted entries on the account. The
+   * available balance is the posted incoming entries minus the sum of the pending
+   * and posted outgoing amounts.
+   */
   export interface Balances {
     /**
      * The available_balance is the sum of all posted inbound entries and pending
@@ -238,6 +245,9 @@ export namespace LedgerAccountCategory {
   }
 
   export namespace Balances {
+    /**
+     * The pending_balance is the sum of all pending and posted entries.
+     */
     export interface PendingBalance {
       amount: number;
 
@@ -256,6 +266,9 @@ export namespace LedgerAccountCategory {
       debits: number;
     }
 
+    /**
+     * The posted_balance is the sum of all posted entries.
+     */
     export interface PostedBalance {
       amount: number;
 
@@ -274,6 +287,12 @@ export namespace LedgerAccountCategory {
       debits: number;
     }
 
+    /**
+     * The available_balance is the sum of all posted inbound entries and pending
+     * outbound entries. For credit normal, available_amount = posted_credits -
+     * pending_debits; for debit normal, available_amount = posted_debits -
+     * pending_credits.
+     */
     export interface AvailableBalance {
       amount: number;
 
@@ -349,6 +368,12 @@ export interface LedgerAccountCategoryRetrieveParams {
 }
 
 export namespace LedgerAccountCategoryRetrieveParams {
+  /**
+   * For example, if you want the balances as of a particular effective date
+   * (YYYY-MM-DD), the encoded query string would be
+   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
+   * entries with that exact date.
+   */
   export interface Balances {
     as_of_date?: string;
 

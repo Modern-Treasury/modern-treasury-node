@@ -141,7 +141,7 @@ export interface PaymentOrder {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency: Shared.Currency;
+  currency: Shared.Currency | null;
 
   /**
    * If the payment order's status is `returned`, this will include the return
@@ -302,7 +302,7 @@ export interface PaymentOrder {
    * payment orders, the `subtype` represents the SEC code. We currently support
    * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
-  subtype: PaymentOrderSubtype;
+  subtype: PaymentOrderSubtype | null;
 
   /**
    * The IDs of all the transactions associated to this payment order. Usually, you
@@ -722,6 +722,11 @@ export namespace PaymentOrderCreateParams {
     class_id?: string | null;
   }
 
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -771,6 +776,9 @@ export namespace PaymentOrderCreateParams {
   }
 
   export namespace ReceivingAccount {
+    /**
+     * Required if receiving wire payments.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
@@ -845,6 +853,12 @@ export namespace PaymentOrderCreateParams {
     }
   }
 
+  /**
+   * Specifies a ledger transaction object that will be created with the payment
+   * order. If the ledger transaction cannot be created, then the payment order
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the payment order.
+   */
   export interface LedgerTransaction {
     /**
      * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
@@ -1019,6 +1033,12 @@ export namespace PaymentOrderCreateParams {
     document_type?: string;
   }
 
+  /**
+   * Specifies a ledger transaction object that will be created with the payment
+   * order. If the ledger transaction cannot be created, then the payment order
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the payment order.
+   */
   export interface LedgerTransaction {
     /**
      * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
@@ -1160,6 +1180,11 @@ export namespace PaymentOrderCreateParams {
     metadata?: Record<string, string>;
   }
 
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -1209,6 +1234,9 @@ export namespace PaymentOrderCreateParams {
   }
 
   export namespace ReceivingAccount {
+    /**
+     * Required if receiving wire payments.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
@@ -1526,6 +1554,11 @@ export namespace PaymentOrderUpdateParams {
     class_id?: string | null;
   }
 
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -1575,6 +1608,9 @@ export namespace PaymentOrderUpdateParams {
   }
 
   export namespace ReceivingAccount {
+    /**
+     * Required if receiving wire payments.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
@@ -1714,6 +1750,11 @@ export namespace PaymentOrderUpdateParams {
     metadata?: Record<string, string>;
   }
 
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -1763,6 +1804,9 @@ export namespace PaymentOrderUpdateParams {
   }
 
   export namespace ReceivingAccount {
+    /**
+     * Required if receiving wire payments.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
@@ -2150,6 +2194,11 @@ export namespace PaymentOrderCreateAsyncParams {
     class_id?: string | null;
   }
 
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -2199,6 +2248,9 @@ export namespace PaymentOrderCreateAsyncParams {
   }
 
   export namespace ReceivingAccount {
+    /**
+     * Required if receiving wire payments.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
@@ -2273,6 +2325,12 @@ export namespace PaymentOrderCreateAsyncParams {
     }
   }
 
+  /**
+   * Specifies a ledger transaction object that will be created with the payment
+   * order. If the ledger transaction cannot be created, then the payment order
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the payment order.
+   */
   export interface LedgerTransaction {
     /**
      * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
@@ -2429,6 +2487,12 @@ export namespace PaymentOrderCreateAsyncParams {
     class_id?: string | null;
   }
 
+  /**
+   * Specifies a ledger transaction object that will be created with the payment
+   * order. If the ledger transaction cannot be created, then the payment order
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the payment order.
+   */
   export interface LedgerTransaction {
     /**
      * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
@@ -2570,6 +2634,11 @@ export namespace PaymentOrderCreateAsyncParams {
     metadata?: Record<string, string>;
   }
 
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
   export interface ReceivingAccount {
     account_details?: Array<ReceivingAccount.AccountDetails>;
 
@@ -2619,6 +2688,9 @@ export namespace PaymentOrderCreateAsyncParams {
   }
 
   export namespace ReceivingAccount {
+    /**
+     * Required if receiving wire payments.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
