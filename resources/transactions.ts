@@ -75,7 +75,7 @@ export interface Transaction {
   /**
    * Currency that this transaction is denominated in.
    */
-  currency: Shared.Currency;
+  currency: Shared.Currency | null;
 
   /**
    * This field contains additional information that the bank provided about the

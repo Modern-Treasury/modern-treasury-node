@@ -99,7 +99,7 @@ export interface IncomingPaymentDetail {
   /**
    * The currency of the incoming payment detail.
    */
-  currency: Shared.Currency;
+  currency: Shared.Currency | null;
 
   /**
    * The raw data from the payment pre-notification file that we get from the bank.

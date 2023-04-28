@@ -113,6 +113,19 @@ export interface LedgerAccount {
   ledger_id: string;
 
   /**
+   * If the ledger account links to another object in Modern Treasury, the id will be
+   * populated here, otherwise null.
+   */
+  ledgerable_id: string | null;
+
+  /**
+   * If the ledger account links to another object in Modern Treasury, the type will
+   * be populated here, otherwise null. The value is one of internal_account or
+   * external_account.
+   */
+  ledgerable_type: 'external_account' | 'internal_account' | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -145,6 +158,13 @@ export interface LedgerAccount {
 }
 
 export namespace LedgerAccount {
+  /**
+   * The pending, posted, and available balances for this ledger account. The posted
+   * balance is the sum of all posted entries on the account. The pending balance is
+   * the sum of all pending and posted entries on the account. The available balance
+   * is the posted incoming entries minus the sum of the pending and posted outgoing
+   * amounts.
+   */
   export interface Balances {
     /**
      * The available_balance is the sum of all posted inbound entries and pending
@@ -166,6 +186,9 @@ export namespace LedgerAccount {
   }
 
   export namespace Balances {
+    /**
+     * The pending_balance is the sum of all pending and posted entries.
+     */
     export interface PendingBalance {
       amount: number;
 
@@ -184,6 +207,9 @@ export namespace LedgerAccount {
       debits: number;
     }
 
+    /**
+     * The posted_balance is the sum of all posted entries.
+     */
     export interface PostedBalance {
       amount: number;
 
@@ -202,6 +228,12 @@ export namespace LedgerAccount {
       debits: number;
     }
 
+    /**
+     * The available_balance is the sum of all posted inbound entries and pending
+     * outbound entries. For credit normal, available_amount = posted_credits -
+     * pending_debits; for debit normal, available_amount = posted_debits -
+     * pending_credits.
+     */
     export interface AvailableBalance {
       amount: number;
 
@@ -277,6 +309,12 @@ export interface LedgerAccountRetrieveParams {
 }
 
 export namespace LedgerAccountRetrieveParams {
+  /**
+   * For example, if you want the balances as of a particular effective date
+   * (YYYY-MM-DD), the encoded query string would be
+   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
+   * entries with that exact date.
+   */
   export interface Balances {
     as_of_date?: string;
   }
@@ -337,6 +375,12 @@ export interface LedgerAccountListParams extends PageParams {
 }
 
 export namespace LedgerAccountListParams {
+  /**
+   * For example, if you want the balances as of a particular effective date
+   * (YYYY-MM-DD), the encoded query string would be
+   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
+   * entries with that exact date.
+   */
   export interface Balances {
     as_of_date?: string;
 

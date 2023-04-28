@@ -115,7 +115,7 @@ export namespace BalanceReport {
     /**
      * The currency of the balance.
      */
-    currency: Shared.Currency;
+    currency: Shared.Currency | null;
 
     id: string;
 
