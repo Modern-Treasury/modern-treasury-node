@@ -184,6 +184,9 @@ export interface ExternalAccount {
 }
 
 export namespace ExternalAccount {
+  /**
+   * The address associated with the owner or `null`.
+   */
   export interface PartyAddress {
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -332,6 +335,9 @@ export interface ExternalAccountCreateParams {
 }
 
 export namespace ExternalAccountCreateParams {
+  /**
+   * Required if receiving wire payments.
+   */
   export interface PartyAddress {
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -417,6 +423,9 @@ export namespace ExternalAccountCreateParams {
     contact_identifier_type?: 'email' | 'phone_number' | 'website';
   }
 
+  /**
+   * Required if receiving wire payments.
+   */
   export interface PartyAddress {
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]

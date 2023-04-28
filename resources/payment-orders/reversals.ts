@@ -136,6 +136,11 @@ export interface ReversalCreateParams {
 }
 
 export namespace ReversalCreateParams {
+  /**
+   * Specifies a ledger transaction object that will be created with the reversal. If
+   * the ledger transaction cannot be created, then the reversal creation will fail.
+   * The resulting ledger transaction will mirror the status of the reversal.
+   */
   export interface LedgerTransaction {
     /**
      * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
@@ -252,6 +257,11 @@ export namespace ReversalCreateParams {
     }
   }
 
+  /**
+   * Specifies a ledger transaction object that will be created with the reversal. If
+   * the ledger transaction cannot be created, then the reversal creation will fail.
+   * The resulting ledger transaction will mirror the status of the reversal.
+   */
   export interface LedgerTransaction {
     /**
      * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
