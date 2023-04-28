@@ -58,7 +58,7 @@ export interface PaperItem {
   /**
    * The currency of the paper item.
    */
-  currency: Shared.Currency;
+  currency: Shared.Currency | null;
 
   /**
    * The date the paper item was deposited into your organization's bank account.

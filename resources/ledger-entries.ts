@@ -109,6 +109,15 @@ export interface LedgerEntry {
 }
 
 export namespace LedgerEntry {
+  /**
+   * The pending, posted, and available balances for this ledger entry's ledger
+   * account. The posted balance is the sum of all posted entries on the account. The
+   * pending balance is the sum of all pending and posted entries on the account. The
+   * available balance is the posted incoming entries minus the sum of the pending
+   * and posted outgoing amounts. Please see
+   * https://docs.moderntreasury.com/docs/transaction-status-and-balances for more
+   * details.
+   */
   export interface ResultingLedgerAccountBalances {
     /**
      * The available_balance is the sum of all posted inbound entries and pending
@@ -130,6 +139,9 @@ export namespace LedgerEntry {
   }
 
   export namespace ResultingLedgerAccountBalances {
+    /**
+     * The pending_balance is the sum of all pending and posted entries.
+     */
     export interface PendingBalance {
       amount: number;
 
@@ -148,6 +160,9 @@ export namespace LedgerEntry {
       debits: number;
     }
 
+    /**
+     * The posted_balance is the sum of all posted entries.
+     */
     export interface PostedBalance {
       amount: number;
 
@@ -166,6 +181,12 @@ export namespace LedgerEntry {
       debits: number;
     }
 
+    /**
+     * The available_balance is the sum of all posted inbound entries and pending
+     * outbound entries. For credit normal, available_amount = posted_credits -
+     * pending_debits; for debit normal, available_amount = posted_debits -
+     * pending_credits.
+     */
     export interface AvailableBalance {
       amount: number;
 
@@ -261,6 +282,11 @@ export interface LedgerEntryListParams extends PageParams {
 }
 
 export namespace LedgerEntryListParams {
+  /**
+   * Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
+   * to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
+   * by only one field at a time is supported.
+   */
   export interface OrderBy {
     created_at?: 'asc' | 'desc';
 

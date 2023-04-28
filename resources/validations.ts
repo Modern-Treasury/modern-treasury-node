@@ -73,6 +73,9 @@ export interface RoutingNumberLookupRequest {
 }
 
 export namespace RoutingNumberLookupRequest {
+  /**
+   * The address of the bank.
+   */
   export interface BankAddress {
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]

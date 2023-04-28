@@ -102,7 +102,7 @@ export interface InternalAccount {
   /**
    * The currency of the account.
    */
-  currency: Shared.Currency;
+  currency: Shared.Currency | null;
 
   id: string;
 
@@ -154,6 +154,9 @@ export interface InternalAccount {
 }
 
 export namespace InternalAccount {
+  /**
+   * The address associated with the owner or null.
+   */
   export interface PartyAddress {
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -245,6 +248,9 @@ export interface InternalAccountCreateParams {
 }
 
 export namespace InternalAccountCreateParams {
+  /**
+   * The address associated with the owner or null.
+   */
   export interface PartyAddress {
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -271,6 +277,9 @@ export namespace InternalAccountCreateParams {
     line2?: string;
   }
 
+  /**
+   * The address associated with the owner or null.
+   */
   export interface PartyAddress {
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -322,6 +331,11 @@ export interface InternalAccountUpdateParams {
 }
 
 export interface InternalAccountListParams extends PageParams {
+  /**
+   * The counterparty associated with the internal account.
+   */
+  counterparty_id?: string;
+
   /**
    * Three-letter ISO currency code.
    */
