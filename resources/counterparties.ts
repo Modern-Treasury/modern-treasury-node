@@ -200,6 +200,9 @@ export namespace Counterparty {
   }
 
   export namespace Accounts {
+    /**
+     * The address associated with the owner or `null`.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
@@ -386,6 +389,9 @@ export namespace CounterpartyCreateParams {
   }
 
   export namespace Accounts {
+    /**
+     * Required if receiving wire payments.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
@@ -525,6 +531,9 @@ export namespace CounterpartyCreateParams {
   }
 
   export namespace Accounts {
+    /**
+     * Required if receiving wire payments.
+     */
     export interface PartyAddress {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]

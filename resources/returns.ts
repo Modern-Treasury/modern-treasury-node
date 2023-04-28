@@ -111,7 +111,7 @@ export interface ReturnObject {
   /**
    * Currency that this transaction is denominated in.
    */
-  currency: Shared.Currency;
+  currency: Shared.Currency | null;
 
   /**
    * If the return code is `R14` or `R15` this is the date the deceased counterparty

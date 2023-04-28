@@ -204,6 +204,15 @@ export namespace LedgerTransactionVersion {
   }
 
   export namespace LedgerEntries {
+    /**
+     * The pending, posted, and available balances for this ledger entry's ledger
+     * account. The posted balance is the sum of all posted entries on the account. The
+     * pending balance is the sum of all pending and posted entries on the account. The
+     * available balance is the posted incoming entries minus the sum of the pending
+     * and posted outgoing amounts. Please see
+     * https://docs.moderntreasury.com/docs/transaction-status-and-balances for more
+     * details.
+     */
     export interface ResultingLedgerAccountBalances {
       /**
        * The available_balance is the sum of all posted inbound entries and pending
@@ -225,6 +234,9 @@ export namespace LedgerTransactionVersion {
     }
 
     export namespace ResultingLedgerAccountBalances {
+      /**
+       * The pending_balance is the sum of all pending and posted entries.
+       */
       export interface PendingBalance {
         amount: number;
 
@@ -243,6 +255,9 @@ export namespace LedgerTransactionVersion {
         debits: number;
       }
 
+      /**
+       * The posted_balance is the sum of all posted entries.
+       */
       export interface PostedBalance {
         amount: number;
 
@@ -261,6 +276,12 @@ export namespace LedgerTransactionVersion {
         debits: number;
       }
 
+      /**
+       * The available_balance is the sum of all posted inbound entries and pending
+       * outbound entries. For credit normal, available_amount = posted_credits -
+       * pending_debits; for debit normal, available_amount = posted_debits -
+       * pending_credits.
+       */
       export interface AvailableBalance {
         amount: number;
 

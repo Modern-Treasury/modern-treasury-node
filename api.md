@@ -80,6 +80,33 @@ Methods:
 - <code title="get /api/incoming_payment_details">client.incomingPaymentDetails.<a href="./resources/incoming-payment-details.ts">list</a>({ ...params }) -> IncomingPaymentDetailsPage</code>
 - <code title="post /api/simulations/incoming_payment_details/create_async">client.incomingPaymentDetails.<a href="./resources/incoming-payment-details.ts">createAsync</a>({ ...params }) -> AsyncResponse</code>
 
+# Invoices
+
+Models:
+
+- <code><a href="./resources/invoices/invoices.ts">Invoice</a></code>
+
+Methods:
+
+- <code title="post /api/invoices">client.invoices.<a href="./resources/invoices/invoices.ts">create</a>({ ...params }) -> Invoice</code>
+- <code title="get /api/invoices/{id}">client.invoices.<a href="./resources/invoices/invoices.ts">retrieve</a>(id) -> Invoice</code>
+- <code title="patch /api/invoices/{id}">client.invoices.<a href="./resources/invoices/invoices.ts">update</a>(id, { ...params }) -> Invoice</code>
+- <code title="get /api/invoices">client.invoices.<a href="./resources/invoices/invoices.ts">list</a>({ ...params }) -> InvoicesPage</code>
+
+## LineItems
+
+Models:
+
+- <code><a href="./resources/invoices/line-items.ts">InvoiceLineItem</a></code>
+
+Methods:
+
+- <code title="post /api/invoices/{invoice_id}/invoice_line_items">client.invoices.lineItems.<a href="./resources/invoices/line-items.ts">create</a>(invoiceId, { ...params }) -> InvoiceLineItem</code>
+- <code title="get /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./resources/invoices/line-items.ts">retrieve</a>(invoiceId, id) -> InvoiceLineItem</code>
+- <code title="patch /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./resources/invoices/line-items.ts">update</a>(invoiceId, id, { ...params }) -> InvoiceLineItem</code>
+- <code title="get /api/invoices/{invoice_id}/invoice_line_items">client.invoices.lineItems.<a href="./resources/invoices/line-items.ts">list</a>(invoiceId, { ...params }) -> InvoiceLineItemsPage</code>
+- <code title="delete /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./resources/invoices/line-items.ts">del</a>(invoiceId, id) -> InvoiceLineItem</code>
+
 # Documents
 
 Models:
