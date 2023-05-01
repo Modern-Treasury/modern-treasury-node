@@ -107,6 +107,12 @@ export interface InternalAccount {
   id: string;
 
   /**
+   * If the internal account links to a ledger account in Modern Treasury, the id of
+   * the ledger account will be populated here.
+   */
+  ledger_account_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */

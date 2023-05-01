@@ -152,6 +152,7 @@ export namespace BalanceReport {
       | 'iso20022'
       | 'jpmc'
       | 'mx'
+      | 'plaid'
       | 'rspec_vendor'
       | 'signet'
       | 'silvergate'

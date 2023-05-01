@@ -175,6 +175,18 @@ export namespace LedgerAccount {
     available_balance: Balances.AvailableBalance;
 
     /**
+     * The inclusive lower bound of the effective_at timestamp for the returned
+     * balances.
+     */
+    effective_at_lower_bound: string | null;
+
+    /**
+     * The exclusive upper bound of the effective_at timestamp for the returned
+     * balances.
+     */
+    effective_at_upper_bound: string | null;
+
+    /**
      * The pending_balance is the sum of all pending and posted entries.
      */
     pending_balance: Balances.PendingBalance;
@@ -317,10 +329,22 @@ export namespace LedgerAccountRetrieveParams {
    */
   export interface Balances {
     as_of_date?: string;
+
+    effective_at?: string;
+
+    effective_at_lower_bound?: string;
+
+    effective_at_upper_bound?: string;
   }
 
   export interface Balances {
     as_of_date?: string;
+
+    effective_at?: string;
+
+    effective_at_lower_bound?: string;
+
+    effective_at_upper_bound?: string;
   }
 }
 
@@ -385,11 +409,19 @@ export namespace LedgerAccountListParams {
     as_of_date?: string;
 
     effective_at?: string;
+
+    effective_at_lower_bound?: string;
+
+    effective_at_upper_bound?: string;
   }
 
   export interface Balances {
     as_of_date?: string;
 
     effective_at?: string;
+
+    effective_at_lower_bound?: string;
+
+    effective_at_upper_bound?: string;
   }
 }

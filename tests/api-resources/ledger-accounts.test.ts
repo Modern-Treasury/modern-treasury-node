@@ -50,7 +50,14 @@ describe('resource ledger_accounts', () => {
     await expect(
       modernTreasury.ledgerAccounts.retrieve(
         'string',
-        { balances: { as_of_date: '2019-12-27' } },
+        {
+          balances: {
+            as_of_date: '2019-12-27',
+            effective_at: '2019-12-27T18:11:19.117Z',
+            effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
+            effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
+          },
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
@@ -95,7 +102,12 @@ describe('resource ledger_accounts', () => {
       modernTreasury.ledgerAccounts.list(
         {
           after_cursor: 'string',
-          balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' },
+          balances: {
+            as_of_date: '2019-12-27',
+            effective_at: '2019-12-27T18:11:19.117Z',
+            effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
+            effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
+          },
           id: 'string',
           ledger_account_category_id: 'string',
           ledger_id: 'string',

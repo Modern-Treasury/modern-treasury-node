@@ -21,7 +21,8 @@ export class Documents extends APIResource {
       | 'organizations'
       | 'paper_items'
       | 'payment_orders'
-      | 'transactions',
+      | 'transactions'
+      | 'decisions',
     documentableId: string,
     params: DocumentCreateParams,
     options?: Core.RequestOptions,
@@ -50,7 +51,8 @@ export class Documents extends APIResource {
       | 'organizations'
       | 'paper_items'
       | 'payment_orders'
-      | 'transactions',
+      | 'transactions'
+      | 'decisions',
     documentableId: string,
     id: string,
     options?: Core.RequestOptions,
@@ -71,7 +73,8 @@ export class Documents extends APIResource {
       | 'organizations'
       | 'paper_items'
       | 'payment_orders'
-      | 'transactions',
+      | 'transactions'
+      | 'decisions',
     documentableId: string,
     query?: DocumentListParams,
     options?: Core.RequestOptions,
@@ -86,7 +89,8 @@ export class Documents extends APIResource {
       | 'organizations'
       | 'paper_items'
       | 'payment_orders'
-      | 'transactions',
+      | 'transactions'
+      | 'decisions',
     documentableId: string,
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage>;
@@ -100,7 +104,8 @@ export class Documents extends APIResource {
       | 'organizations'
       | 'paper_items'
       | 'payment_orders'
-      | 'transactions',
+      | 'transactions'
+      | 'decisions',
     documentableId: string,
     query: DocumentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
@@ -137,7 +142,7 @@ export interface Document {
   /**
    * The type of the associated object. Currently can be one of `payment_order`,
    * `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`,
-   * `case`, `internal_account` or `external_account`.
+   * `case`, `internal_account`, `decision`, or `external_account`.
    */
   documentable_type:
     | 'case'
@@ -148,7 +153,8 @@ export interface Document {
     | 'organization'
     | 'paper_item'
     | 'payment_order'
-    | 'transaction';
+    | 'transaction'
+    | 'decision';
 
   file: Document.File;
 
