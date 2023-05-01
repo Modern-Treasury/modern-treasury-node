@@ -37,7 +37,7 @@ export interface Event {
   /**
    * The body of the event.
    */
-  data: unknown;
+  data: Record<string, unknown>;
 
   /**
    * The ID of the entity for the event.

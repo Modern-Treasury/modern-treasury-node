@@ -148,9 +148,9 @@ export interface Invoice {
   pdf_url: string | null;
 
   /**
-   * One of `draft`, `unpaid`, `payment_pending`, `paid`, `void`, or `closed`.
+   * The status of the invoice.
    */
-  status: string;
+  status: 'draft' | 'paid' | 'payment_pending' | 'unpaid' | 'voided';
 
   /**
    * Total amount due in specified currency's smallest unit, e.g., $10 USD would be

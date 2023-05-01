@@ -45,7 +45,7 @@ export interface RoutingNumberLookupRequest {
    * a boolean value representing whether the bank is on that particular sanctions
    * list. Currently, this includes eu_con, uk_hmt, us_ofac, and un sanctions lists.
    */
-  sanctions?: unknown;
+  sanctions?: Record<string, unknown>;
 
   /**
    * An array of payment types that are supported for this routing number. This can

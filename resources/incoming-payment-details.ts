@@ -104,7 +104,7 @@ export interface IncomingPaymentDetail {
   /**
    * The raw data from the payment pre-notification file that we get from the bank.
    */
-  data: unknown;
+  data: Record<string, unknown>;
 
   /**
    * One of `credit` or `debit`.
