@@ -1,13 +1,14 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from '~/index';
+
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
   baseURL: 'http://127.0.0.1:4010',
   organizationId: 'my-organization-ID',
 });
 
-describe('resource ledger_account_categories', () => {
+describe('resource ledgerAccountCategories', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.create({
       currency: 'string',
@@ -111,18 +112,18 @@ describe('resource ledger_account_categories', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('delete', async () => {
+  test('del', async () => {
     const response = await modernTreasury.ledgerAccountCategories.del('string');
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
+  test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.del('string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('delete: request options and params are passed correctly', async () => {
+  test('del: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.del(
@@ -133,11 +134,11 @@ describe('resource ledger_account_categories', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('add_ledger_account', async () => {
+  test('addLedgerAccount', async () => {
     const response = await modernTreasury.ledgerAccountCategories.addLedgerAccount('string', 'string');
   });
 
-  test('add_ledger_account: request options instead of params are passed correctly', async () => {
+  test('addLedgerAccount: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.addLedgerAccount('string', 'string', {
@@ -146,11 +147,11 @@ describe('resource ledger_account_categories', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('add_nested_category', async () => {
+  test('addNestedCategory', async () => {
     const response = await modernTreasury.ledgerAccountCategories.addNestedCategory('string', 'string');
   });
 
-  test('add_nested_category: request options instead of params are passed correctly', async () => {
+  test('addNestedCategory: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.addNestedCategory('string', 'string', {
@@ -159,11 +160,11 @@ describe('resource ledger_account_categories', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('remove_ledger_account', async () => {
+  test('removeLedgerAccount', async () => {
     const response = await modernTreasury.ledgerAccountCategories.removeLedgerAccount('string', 'string');
   });
 
-  test('remove_ledger_account: request options instead of params are passed correctly', async () => {
+  test('removeLedgerAccount: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.removeLedgerAccount('string', 'string', {
@@ -172,11 +173,11 @@ describe('resource ledger_account_categories', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('remove_nested_category', async () => {
+  test('removeNestedCategory', async () => {
     const response = await modernTreasury.ledgerAccountCategories.removeNestedCategory('string', 'string');
   });
 
-  test('remove_nested_category: request options instead of params are passed correctly', async () => {
+  test('removeNestedCategory: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.removeNestedCategory('string', 'string', {
