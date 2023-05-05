@@ -1,13 +1,14 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from '~/index';
+
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
   baseURL: 'http://127.0.0.1:4010',
   organizationId: 'my-organization-ID',
 });
 
-describe('resource line_items', () => {
+describe('resource lineItems', () => {
   test('retrieve', async () => {
     const response = await modernTreasury.lineItems.retrieve('expected_payments', 'string', 'string');
   });

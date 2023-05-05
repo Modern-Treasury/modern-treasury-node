@@ -1,13 +1,14 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from '~/index';
+
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
   baseURL: 'http://127.0.0.1:4010',
   organizationId: 'my-organization-ID',
 });
 
-describe('resource routing_details', () => {
+describe('resource routingDetails', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.routingDetails.create('external_accounts', 'string', {
       payment_type: 'ach',
@@ -62,11 +63,11 @@ describe('resource routing_details', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('delete', async () => {
+  test('del', async () => {
     const response = await modernTreasury.routingDetails.del('external_accounts', 'string', 'string');
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
+  test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.routingDetails.del('external_accounts', 'string', 'string', {
