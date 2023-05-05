@@ -1,13 +1,14 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from '~/index';
+
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
   baseURL: 'http://127.0.0.1:4010',
   organizationId: 'my-organization-ID',
 });
 
-describe('resource internal_accounts', () => {
+describe('resource internalAccounts', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.internalAccounts.create({
       connection_id: 'string',

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from '~/index';
+
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
   baseURL: 'http://127.0.0.1:4010',
@@ -51,6 +52,15 @@ describe('resource counterparties', () => {
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           party_name: 'string',
           party_identifier: 'string',
+          ledger_account: {
+            name: 'string',
+            description: 'string',
+            normal_balance: 'credit',
+            ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            currency: 'string',
+            currency_exponent: 0,
+            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          },
           plaid_processor_token: 'string',
           contact_details: [
             { contact_identifier: 'string', contact_identifier_type: 'email' },
@@ -83,6 +93,15 @@ describe('resource counterparties', () => {
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           party_name: 'string',
           party_identifier: 'string',
+          ledger_account: {
+            name: 'string',
+            description: 'string',
+            normal_balance: 'credit',
+            ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            currency: 'string',
+            currency_exponent: 0,
+            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          },
           plaid_processor_token: 'string',
           contact_details: [
             { contact_identifier: 'string', contact_identifier_type: 'email' },
@@ -115,6 +134,15 @@ describe('resource counterparties', () => {
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           party_name: 'string',
           party_identifier: 'string',
+          ledger_account: {
+            name: 'string',
+            description: 'string',
+            normal_balance: 'credit',
+            ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            currency: 'string',
+            currency_exponent: 0,
+            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          },
           plaid_processor_token: 'string',
           contact_details: [
             { contact_identifier: 'string', contact_identifier_type: 'email' },
@@ -201,18 +229,18 @@ describe('resource counterparties', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('delete', async () => {
+  test('del', async () => {
     const response = await modernTreasury.counterparties.del('string');
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
+  test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.counterparties.del('string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('collect_account: only required params', async () => {
+  test('collectAccount: only required params', async () => {
     const response = await modernTreasury.counterparties.collectAccount('string', {
       custom_redirect: 'https://example.com',
       direction: 'credit',
@@ -222,7 +250,7 @@ describe('resource counterparties', () => {
     });
   });
 
-  test('collect_account: required and optional params', async () => {
+  test('collectAccount: required and optional params', async () => {
     const response = await modernTreasury.counterparties.collectAccount('string', {
       custom_redirect: 'https://example.com',
       direction: 'credit',

@@ -357,6 +357,15 @@ export namespace CounterpartyCreateParams {
     contact_details?: Array<Accounts.ContactDetails>;
 
     /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: Accounts.LedgerAccount;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -463,6 +472,51 @@ export namespace CounterpartyCreateParams {
         | 'sepa'
         | 'signet'
         | 'wire';
+    }
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    export interface LedgerAccount {
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The id of the ledger that this account belongs to.
+       */
+      ledger_id: string;
+
+      /**
+       * The name of the ledger account.
+       */
+      name: string;
+
+      /**
+       * The normal balance of the ledger account.
+       */
+      normal_balance: 'credit' | 'debit';
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent?: number | null;
+
+      /**
+       * The description of the ledger account.
+       */
+      description?: string | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
     }
 
     export interface ContactDetails {
@@ -499,6 +553,15 @@ export namespace CounterpartyCreateParams {
     contact_details?: Array<Accounts.ContactDetails>;
 
     /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: Accounts.LedgerAccount;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -605,6 +668,51 @@ export namespace CounterpartyCreateParams {
         | 'sepa'
         | 'signet'
         | 'wire';
+    }
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    export interface LedgerAccount {
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The id of the ledger that this account belongs to.
+       */
+      ledger_id: string;
+
+      /**
+       * The name of the ledger account.
+       */
+      name: string;
+
+      /**
+       * The normal balance of the ledger account.
+       */
+      normal_balance: 'credit' | 'debit';
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent?: number | null;
+
+      /**
+       * The description of the ledger account.
+       */
+      description?: string | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
     }
 
     export interface ContactDetails {
