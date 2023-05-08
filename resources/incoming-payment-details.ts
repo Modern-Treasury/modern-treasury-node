@@ -120,6 +120,12 @@ export interface IncomingPaymentDetail {
   internal_account_id: string;
 
   /**
+   * The ID of the ledger transaction linked to the incoming payment detail or
+   * `null`.
+   */
+  ledger_transaction_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */

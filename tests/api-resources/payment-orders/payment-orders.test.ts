@@ -1,15 +1,15 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import { fileFromPath } from 'formdata-node/file-from-path';
-
 import ModernTreasury from '~/index';
+
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
   baseURL: 'http://127.0.0.1:4010',
   organizationId: 'my-organization-ID',
 });
 
-describe('resource payment_orders', () => {
+describe('resource paymentOrders', () => {
   // skipped: prism mock server is broken for file uploads
   test.skip('create: only required params', async () => {
     const response = await modernTreasury.paymentOrders.create({
@@ -179,6 +179,15 @@ describe('resource payment_orders', () => {
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         party_name: 'string',
         party_identifier: 'string',
+        ledger_account: {
+          name: 'string',
+          description: 'string',
+          normal_balance: 'credit',
+          ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          currency: 'string',
+          currency_exponent: 0,
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+        },
         plaid_processor_token: 'string',
         contact_details: [
           { contact_identifier: 'string', contact_identifier_type: 'email' },
@@ -298,6 +307,15 @@ describe('resource payment_orders', () => {
             metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
             party_name: 'string',
             party_identifier: 'string',
+            ledger_account: {
+              name: 'string',
+              description: 'string',
+              normal_balance: 'credit',
+              ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              currency: 'string',
+              currency_exponent: 0,
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+            },
             plaid_processor_token: 'string',
             contact_details: [
               { contact_identifier: 'string', contact_identifier_type: 'email' },
@@ -357,7 +375,7 @@ describe('resource payment_orders', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('create_async: only required params', async () => {
+  test('createAsync: only required params', async () => {
     const response = await modernTreasury.paymentOrders.createAsync({
       accounting: {},
       accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -403,7 +421,7 @@ describe('resource payment_orders', () => {
     });
   });
 
-  test('create_async: required and optional params', async () => {
+  test('createAsync: required and optional params', async () => {
     const response = await modernTreasury.paymentOrders.createAsync({
       accounting: {
         account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -513,6 +531,15 @@ describe('resource payment_orders', () => {
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         party_name: 'string',
         party_identifier: 'string',
+        ledger_account: {
+          name: 'string',
+          description: 'string',
+          normal_balance: 'credit',
+          ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          currency: 'string',
+          currency_exponent: 0,
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+        },
         plaid_processor_token: 'string',
         contact_details: [
           { contact_identifier: 'string', contact_identifier_type: 'email' },

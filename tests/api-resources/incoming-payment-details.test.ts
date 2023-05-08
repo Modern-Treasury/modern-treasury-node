@@ -1,13 +1,14 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from '~/index';
+
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
   baseURL: 'http://127.0.0.1:4010',
   organizationId: 'my-organization-ID',
 });
 
-describe('resource incoming_payment_details', () => {
+describe('resource incomingPaymentDetails', () => {
   test('retrieve', async () => {
     const response = await modernTreasury.incomingPaymentDetails.retrieve('string');
   });
@@ -72,18 +73,18 @@ describe('resource incoming_payment_details', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('create_async', async () => {
+  test('createAsync', async () => {
     const response = await modernTreasury.incomingPaymentDetails.createAsync();
   });
 
-  test('create_async: request options instead of params are passed correctly', async () => {
+  test('createAsync: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.incomingPaymentDetails.createAsync({ path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('create_async: request options and params are passed correctly', async () => {
+  test('createAsync: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.incomingPaymentDetails.createAsync(

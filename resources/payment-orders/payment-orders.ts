@@ -738,6 +738,15 @@ export namespace PaymentOrderCreateParams {
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
     /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: ReceivingAccount.LedgerAccount;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -844,6 +853,51 @@ export namespace PaymentOrderCreateParams {
         | 'sepa'
         | 'signet'
         | 'wire';
+    }
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    export interface LedgerAccount {
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The id of the ledger that this account belongs to.
+       */
+      ledger_id: string;
+
+      /**
+       * The name of the ledger account.
+       */
+      name: string;
+
+      /**
+       * The normal balance of the ledger account.
+       */
+      normal_balance: 'credit' | 'debit';
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent?: number | null;
+
+      /**
+       * The description of the ledger account.
+       */
+      description?: string | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
     }
 
     export interface ContactDetails {
@@ -1196,6 +1250,15 @@ export namespace PaymentOrderCreateParams {
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
     /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: ReceivingAccount.LedgerAccount;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -1302,6 +1365,51 @@ export namespace PaymentOrderCreateParams {
         | 'sepa'
         | 'signet'
         | 'wire';
+    }
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    export interface LedgerAccount {
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The id of the ledger that this account belongs to.
+       */
+      ledger_id: string;
+
+      /**
+       * The name of the ledger account.
+       */
+      name: string;
+
+      /**
+       * The normal balance of the ledger account.
+       */
+      normal_balance: 'credit' | 'debit';
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent?: number | null;
+
+      /**
+       * The description of the ledger account.
+       */
+      description?: string | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
     }
 
     export interface ContactDetails {
@@ -1570,6 +1678,15 @@ export namespace PaymentOrderUpdateParams {
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
     /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: ReceivingAccount.LedgerAccount;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -1676,6 +1793,51 @@ export namespace PaymentOrderUpdateParams {
         | 'sepa'
         | 'signet'
         | 'wire';
+    }
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    export interface LedgerAccount {
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The id of the ledger that this account belongs to.
+       */
+      ledger_id: string;
+
+      /**
+       * The name of the ledger account.
+       */
+      name: string;
+
+      /**
+       * The normal balance of the ledger account.
+       */
+      normal_balance: 'credit' | 'debit';
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent?: number | null;
+
+      /**
+       * The description of the ledger account.
+       */
+      description?: string | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
     }
 
     export interface ContactDetails {
@@ -1766,6 +1928,15 @@ export namespace PaymentOrderUpdateParams {
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
     /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: ReceivingAccount.LedgerAccount;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -1872,6 +2043,51 @@ export namespace PaymentOrderUpdateParams {
         | 'sepa'
         | 'signet'
         | 'wire';
+    }
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    export interface LedgerAccount {
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The id of the ledger that this account belongs to.
+       */
+      ledger_id: string;
+
+      /**
+       * The name of the ledger account.
+       */
+      name: string;
+
+      /**
+       * The normal balance of the ledger account.
+       */
+      normal_balance: 'credit' | 'debit';
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent?: number | null;
+
+      /**
+       * The description of the ledger account.
+       */
+      description?: string | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
     }
 
     export interface ContactDetails {
@@ -2210,6 +2426,15 @@ export namespace PaymentOrderCreateAsyncParams {
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
     /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: ReceivingAccount.LedgerAccount;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -2316,6 +2541,51 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'sepa'
         | 'signet'
         | 'wire';
+    }
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    export interface LedgerAccount {
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The id of the ledger that this account belongs to.
+       */
+      ledger_id: string;
+
+      /**
+       * The name of the ledger account.
+       */
+      name: string;
+
+      /**
+       * The normal balance of the ledger account.
+       */
+      normal_balance: 'credit' | 'debit';
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent?: number | null;
+
+      /**
+       * The description of the ledger account.
+       */
+      description?: string | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
     }
 
     export interface ContactDetails {
@@ -2650,6 +2920,15 @@ export namespace PaymentOrderCreateAsyncParams {
     contact_details?: Array<ReceivingAccount.ContactDetails>;
 
     /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: ReceivingAccount.LedgerAccount;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -2756,6 +3035,51 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'sepa'
         | 'signet'
         | 'wire';
+    }
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    export interface LedgerAccount {
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The id of the ledger that this account belongs to.
+       */
+      ledger_id: string;
+
+      /**
+       * The name of the ledger account.
+       */
+      name: string;
+
+      /**
+       * The normal balance of the ledger account.
+       */
+      normal_balance: 'credit' | 'debit';
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent?: number | null;
+
+      /**
+       * The description of the ledger account.
+       */
+      description?: string | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
     }
 
     export interface ContactDetails {

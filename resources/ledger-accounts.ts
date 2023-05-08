@@ -123,7 +123,7 @@ export interface LedgerAccount {
    * be populated here, otherwise null. The value is one of internal_account or
    * external_account.
    */
-  ledgerable_type: 'external_account' | 'internal_account' | null;
+  ledgerable_type: 'ExternalAccount' | 'InternalAccount' | null;
 
   /**
    * This field will be true if this object exists in the live environment or false
