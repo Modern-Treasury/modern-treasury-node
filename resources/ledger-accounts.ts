@@ -123,7 +123,7 @@ export interface LedgerAccount {
    * be populated here, otherwise null. The value is one of internal_account or
    * external_account.
    */
-  ledgerable_type: 'ExternalAccount' | 'InternalAccount' | null;
+  ledgerable_type: 'external_account' | 'internal_account' | null;
 
   /**
    * This field will be true if this object exists in the live environment or false
@@ -288,6 +288,19 @@ export interface LedgerAccountCreateParams {
   ledger_id: string;
 
   /**
+   * Body param: If the ledger account links to another object in Modern Treasury,
+   * the id will be populated here, otherwise null.
+   */
+  ledgerable_id?: string;
+
+  /**
+   * Body param: If the ledger account links to another object in Modern Treasury,
+   * the type will be populated here, otherwise null. The value is one of
+   * internal_account or external_account.
+   */
+  ledgerable_type?: 'external_account' | 'internal_account';
+
+  /**
    * Body param: Additional data represented as key-value pairs. Both the key and
    * value must be strings.
    */
@@ -375,6 +388,13 @@ export interface LedgerAccountListParams extends PageParams {
    */
   balances?: LedgerAccountListParams.Balances;
 
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+   * created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+   * created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+   */
+  created_at?: Record<string, string>;
+
   id?: string;
 
   ledger_account_category_id?: string;
@@ -392,7 +412,7 @@ export interface LedgerAccountListParams extends PageParams {
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-   * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+   * updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
   updated_at?: Record<string, string>;
