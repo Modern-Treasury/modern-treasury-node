@@ -419,6 +419,7 @@ export namespace PaymentOrder {
       | 'jpmc_p3_id'
       | 'jpmc_payment_batch_id'
       | 'jpmc_payment_information_id'
+      | 'jpmc_payment_returned_datetime'
       | 'lob_check_id'
       | 'other'
       | 'partial_swift_mir'
@@ -894,6 +895,19 @@ export namespace PaymentOrderCreateParams {
       description?: string | null;
 
       /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
+
+      /**
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
@@ -1404,6 +1418,19 @@ export namespace PaymentOrderCreateParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -1834,6 +1861,19 @@ export namespace PaymentOrderUpdateParams {
       description?: string | null;
 
       /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
+
+      /**
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
@@ -2082,6 +2122,19 @@ export namespace PaymentOrderUpdateParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -2582,6 +2635,19 @@ export namespace PaymentOrderCreateAsyncParams {
       description?: string | null;
 
       /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
+
+      /**
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
@@ -3074,6 +3140,19 @@ export namespace PaymentOrderCreateAsyncParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
