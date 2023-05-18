@@ -114,6 +114,12 @@ export interface ReturnObject {
   currency: Shared.Currency | null;
 
   /**
+   * If the return's status is `returned`, this will include the return object's data
+   * that is returning this return.
+   */
+  current_return: ReturnObject | null;
+
+  /**
    * If the return code is `R14` or `R15` this is the date the deceased counterparty
    * passed away.
    */
@@ -247,6 +253,7 @@ export namespace ReturnObject {
       | 'dc_bank_transaction_id'
       | 'dwolla_transaction_id'
       | 'eft_trace_number'
+      | 'evolve_transaction_id'
       | 'fedwire_imad'
       | 'fedwire_omad'
       | 'first_republic_internal_id'
@@ -263,6 +270,7 @@ export namespace ReturnObject {
       | 'jpmc_p3_id'
       | 'jpmc_payment_batch_id'
       | 'jpmc_payment_information_id'
+      | 'jpmc_payment_returned_datetime'
       | 'lob_check_id'
       | 'other'
       | 'partial_swift_mir'
