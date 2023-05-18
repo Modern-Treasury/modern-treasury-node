@@ -263,6 +263,7 @@ export namespace ReturnObject {
       | 'jpmc_p3_id'
       | 'jpmc_payment_batch_id'
       | 'jpmc_payment_information_id'
+      | 'jpmc_payment_returned_datetime'
       | 'lob_check_id'
       | 'other'
       | 'partial_swift_mir'
