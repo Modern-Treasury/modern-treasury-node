@@ -46,6 +46,12 @@ export interface LedgerTransactionVersion {
   description: string | null;
 
   /**
+   * The timestamp (ISO8601 format) at which the ledger transaction happened for
+   * reporting purposes.
+   */
+  effective_at: string;
+
+  /**
    * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
    * purposes.
    */

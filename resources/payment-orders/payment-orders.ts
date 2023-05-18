@@ -403,6 +403,7 @@ export namespace PaymentOrder {
       | 'dc_bank_transaction_id'
       | 'dwolla_transaction_id'
       | 'eft_trace_number'
+      | 'evolve_transaction_id'
       | 'fedwire_imad'
       | 'fedwire_omad'
       | 'first_republic_internal_id'
@@ -419,6 +420,7 @@ export namespace PaymentOrder {
       | 'jpmc_p3_id'
       | 'jpmc_payment_batch_id'
       | 'jpmc_payment_information_id'
+      | 'jpmc_payment_returned_datetime'
       | 'lob_check_id'
       | 'other'
       | 'partial_swift_mir'
@@ -447,7 +449,18 @@ export namespace PaymentOrder {
  * payment orders, the `subtype` represents the SEC code. We currently support
  * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
  */
-export type PaymentOrderSubtype = 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | null;
+export type PaymentOrderSubtype =
+  | '0C'
+  | '0N'
+  | '0S'
+  | 'CCD'
+  | 'CIE'
+  | 'CTX'
+  | 'IAT'
+  | 'PPD'
+  | 'TEL'
+  | 'WEB'
+  | null;
 
 /**
  * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
@@ -741,7 +754,7 @@ export namespace PaymentOrderCreateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     ledger_account?: ReceivingAccount.LedgerAccount;
@@ -859,7 +872,7 @@ export namespace PaymentOrderCreateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     export interface LedgerAccount {
@@ -892,6 +905,19 @@ export namespace PaymentOrderCreateParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -1253,7 +1279,7 @@ export namespace PaymentOrderCreateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     ledger_account?: ReceivingAccount.LedgerAccount;
@@ -1371,7 +1397,7 @@ export namespace PaymentOrderCreateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     export interface LedgerAccount {
@@ -1404,6 +1430,19 @@ export namespace PaymentOrderCreateParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -1681,7 +1720,7 @@ export namespace PaymentOrderUpdateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     ledger_account?: ReceivingAccount.LedgerAccount;
@@ -1799,7 +1838,7 @@ export namespace PaymentOrderUpdateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     export interface LedgerAccount {
@@ -1832,6 +1871,19 @@ export namespace PaymentOrderUpdateParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -1931,7 +1983,7 @@ export namespace PaymentOrderUpdateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     ledger_account?: ReceivingAccount.LedgerAccount;
@@ -2049,7 +2101,7 @@ export namespace PaymentOrderUpdateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     export interface LedgerAccount {
@@ -2082,6 +2134,19 @@ export namespace PaymentOrderUpdateParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -2429,7 +2494,7 @@ export namespace PaymentOrderCreateAsyncParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     ledger_account?: ReceivingAccount.LedgerAccount;
@@ -2547,7 +2612,7 @@ export namespace PaymentOrderCreateAsyncParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     export interface LedgerAccount {
@@ -2580,6 +2645,19 @@ export namespace PaymentOrderCreateAsyncParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -2923,7 +3001,7 @@ export namespace PaymentOrderCreateAsyncParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     ledger_account?: ReceivingAccount.LedgerAccount;
@@ -3041,7 +3119,7 @@ export namespace PaymentOrderCreateAsyncParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     export interface LedgerAccount {
@@ -3074,6 +3152,19 @@ export namespace PaymentOrderCreateAsyncParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
