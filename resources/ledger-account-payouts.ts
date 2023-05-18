@@ -108,7 +108,12 @@ export interface LedgerAccountPayout {
   id: string;
 
   /**
-   * The ledger transaction that this payout is associated with.
+   * The id of the ledger that this ledger account payout belongs to.
+   */
+  ledger_id: string;
+
+  /**
+   * The id of the ledger transaction that this payout is associated with.
    */
   ledger_transaction_id: string | null;
 

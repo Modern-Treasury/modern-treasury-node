@@ -16,6 +16,19 @@ describe('instantiate client', () => {
     process.env = env;
   });
 
+  test('maxRetries option is correctly set', () => {
+    const client = new ModernTreasury({
+      maxRetries: 1,
+      organizationId: 'my-organization-ID',
+      apiKey: 'my api key',
+    });
+    expect(client.maxRetries).toEqual(1);
+
+    // default
+    const client2 = new ModernTreasury({ organizationId: 'my-organization-ID', apiKey: 'my api key' });
+    expect(client2.maxRetries).toEqual(2);
+  });
+
   test('with minimal arguments', () => {
     // set API Key via env var
     process.env['MODERN_TREASURY_API_KEY'] = 'env var api key';
