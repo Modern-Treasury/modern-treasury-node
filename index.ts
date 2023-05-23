@@ -15,6 +15,7 @@ type Config = {
   baseURL?: string;
   timeout?: number;
   httpAgent?: Agent;
+  maxRetries?: number;
   organizationId?: string | null;
   webhookKey?: string | null;
 };
@@ -42,6 +43,7 @@ export class ModernTreasury extends Core.APIClient {
       baseURL: options.baseURL!,
       timeout: options.timeout,
       httpAgent: options.httpAgent,
+      maxRetries: options.maxRetries,
     });
     this.apiKey = options.apiKey;
     this.idempotencyHeader = 'Idempotency-Key';

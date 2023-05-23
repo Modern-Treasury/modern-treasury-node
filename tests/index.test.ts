@@ -16,6 +16,39 @@ describe('instantiate client', () => {
     process.env = env;
   });
 
+  describe('baseUrl', () => {
+    test('trailing slash', () => {
+      const client = new ModernTreasury({
+        baseURL: 'http://localhost:5000/custom/path/',
+        organizationId: 'my-organization-ID',
+        apiKey: 'my api key',
+      });
+      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
+    });
+
+    test('no trailing slash', () => {
+      const client = new ModernTreasury({
+        baseURL: 'http://localhost:5000/custom/path',
+        organizationId: 'my-organization-ID',
+        apiKey: 'my api key',
+      });
+      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
+    });
+  });
+
+  test('maxRetries option is correctly set', () => {
+    const client = new ModernTreasury({
+      maxRetries: 1,
+      organizationId: 'my-organization-ID',
+      apiKey: 'my api key',
+    });
+    expect(client.maxRetries).toEqual(1);
+
+    // default
+    const client2 = new ModernTreasury({ organizationId: 'my-organization-ID', apiKey: 'my api key' });
+    expect(client2.maxRetries).toEqual(2);
+  });
+
   test('with minimal arguments', () => {
     // set API Key via env var
     process.env['MODERN_TREASURY_API_KEY'] = 'env var api key';

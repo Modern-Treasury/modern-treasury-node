@@ -360,7 +360,7 @@ export namespace CounterpartyCreateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     ledger_account?: Accounts.LedgerAccount;
@@ -478,7 +478,7 @@ export namespace CounterpartyCreateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     export interface LedgerAccount {
@@ -511,6 +511,19 @@ export namespace CounterpartyCreateParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -556,7 +569,7 @@ export namespace CounterpartyCreateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     ledger_account?: Accounts.LedgerAccount;
@@ -674,7 +687,7 @@ export namespace CounterpartyCreateParams {
      * Specifies a ledger account object that will be created with the external
      * account. The resulting ledger account is linked to the external account for
      * auto-ledgering Payment objects. See
-     * https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
     export interface LedgerAccount {
@@ -707,6 +720,19 @@ export namespace CounterpartyCreateParams {
        * The description of the ledger account.
        */
       description?: string | null;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the id will be
+       * populated here, otherwise null.
+       */
+      ledgerable_id?: string;
+
+      /**
+       * If the ledger account links to another object in Modern Treasury, the type will
+       * be populated here, otherwise null. The value is one of internal_account or
+       * external_account.
+       */
+      ledgerable_type?: 'external_account' | 'internal_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
