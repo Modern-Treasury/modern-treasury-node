@@ -11,22 +11,18 @@ const modernTreasury = new ModernTreasury({
 describe('resource lineItems', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.invoices.lineItems.create('string', {
-      description: 'string',
-      direction: 'string',
       name: 'string',
-      quantity: 0,
       unit_amount: 0,
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.invoices.lineItems.create('string', {
+      name: 'string',
+      unit_amount: 0,
       description: 'string',
       direction: 'string',
-      name: 'string',
       quantity: 0,
-      unit_amount: 0,
       'Idempotency-Key': 'string',
     });
   });

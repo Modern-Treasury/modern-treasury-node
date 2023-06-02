@@ -295,6 +295,17 @@ export namespace ReturnObject {
 
 export interface ReturnCreateParams {
   /**
+   * Body param: The ID of the object being returned or `null`.
+   */
+  returnable_id: string | null;
+
+  /**
+   * Body param: The type of object being returned. Currently, this may only be
+   * incoming_payment_detail.
+   */
+  returnable_type: 'incoming_payment_detail';
+
+  /**
    * Body param: Some returns may include additional information from the bank. In
    * these cases, this string will be present.
    */
@@ -361,17 +372,6 @@ export interface ReturnCreateParams {
    * internal usage and will not be transmitted to the bank.”
    */
   reason?: string | null;
-
-  /**
-   * Body param: The ID of the object being returned or `null`.
-   */
-  returnable_id: string | null;
-
-  /**
-   * Body param: The type of object being returned. Currently, this may only be
-   * incoming_payment_detail.
-   */
-  returnable_type: 'incoming_payment_detail';
 
   /**
    * Header param: This key should be something unique, preferably something like an

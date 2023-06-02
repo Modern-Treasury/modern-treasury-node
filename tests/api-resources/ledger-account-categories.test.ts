@@ -12,25 +12,21 @@ describe('resource ledgerAccountCategories', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.create({
       currency: 'string',
-      currency_exponent: 0,
-      description: 'string',
       ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       name: 'string',
       normal_balance: 'credit',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerAccountCategories.create({
       currency: 'string',
-      currency_exponent: 0,
-      description: 'string',
       ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       name: 'string',
       normal_balance: 'credit',
+      currency_exponent: 0,
+      description: 'string',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       'Idempotency-Key': 'string',
     });
   });

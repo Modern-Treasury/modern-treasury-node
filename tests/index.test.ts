@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
+import { Headers } from '~/core';
 import ModernTreasury from '../index';
 
 describe('instantiate client', () => {
@@ -14,6 +15,17 @@ describe('instantiate client', () => {
 
   afterEach(() => {
     process.env = env;
+  });
+
+  test('defaultHeaders are passed through', () => {
+    const client = new ModernTreasury({
+      defaultHeaders: { 'X-My-Default-Header': '2' },
+      organizationId: 'my-organization-ID',
+      apiKey: 'my api key',
+    });
+
+    const { req } = client.buildRequest({ path: '/foo', method: 'post' });
+    expect((req.headers as Headers)['X-My-Default-Header']).toEqual('2');
   });
 
   describe('baseUrl', () => {
@@ -87,19 +99,6 @@ describe('idempotency', () => {
       organizationId: 'my-organization-ID',
       baseURL: 'http://127.0.0.1:4010',
     });
-    await client.counterparties.create(
-      {
-        accounting: {},
-        accounts: [{}, {}, {}],
-        email: 'dev@stainlessapi.com',
-        ledger_type: 'customer',
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-        name: 'string',
-        send_remittance_advice: true,
-        taxpayer_identifier: 'string',
-        'Idempotency-Key': 'string',
-      },
-      { idempotencyKey: 'my-idempotency-key' },
-    );
+    await client.counterparties.create({ name: 'string' }, { idempotencyKey: 'my-idempotency-key' });
   });
 });
