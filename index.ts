@@ -16,6 +16,7 @@ type Config = {
   timeout?: number;
   httpAgent?: Agent;
   maxRetries?: number;
+  defaultHeaders?: Core.Headers;
   organizationId?: string | null;
   webhookKey?: string | null;
 };
@@ -25,6 +26,8 @@ export class ModernTreasury extends Core.APIClient {
   apiKey: string;
   organizationId: string;
   webhookKey?: string | null;
+
+  private _options: Config;
 
   constructor(config: Config) {
     const options: Config = {
@@ -46,6 +49,7 @@ export class ModernTreasury extends Core.APIClient {
       maxRetries: options.maxRetries,
     });
     this.apiKey = options.apiKey;
+    this._options = options;
     this.idempotencyHeader = 'Idempotency-Key';
 
     const organizationId = config.organizationId || process.env['MODERN_TREASURY_ORGANIZATION_ID'];
@@ -93,6 +97,13 @@ export class ModernTreasury extends Core.APIClient {
    */
   ping(options?: Core.RequestOptions): Promise<Core.APIResponse<ModernTreasury.PingResponse>> {
     return this.get('/api/ping', options);
+  }
+
+  protected override defaultHeaders(): Core.Headers {
+    return {
+      ...super.defaultHeaders(),
+      ...this._options.defaultHeaders,
+    };
   }
 
   protected override authHeaders(): Core.Headers {
