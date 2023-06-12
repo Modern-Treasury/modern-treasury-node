@@ -292,10 +292,4 @@ export namespace LedgerEntryListParams {
 
     effective_at?: 'asc' | 'desc';
   }
-
-  export interface OrderBy {
-    created_at?: 'asc' | 'desc';
-
-    effective_at?: 'asc' | 'desc';
-  }
 }

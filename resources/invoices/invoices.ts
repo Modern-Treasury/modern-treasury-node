@@ -274,6 +274,21 @@ export namespace Invoice {
 
 export interface InvoiceCreateParams {
   /**
+   * Body param: The ID of the counterparty receiving the invoice.
+   */
+  counterparty_id: string;
+
+  /**
+   * Body param: A future date by when the invoice needs to be paid.
+   */
+  due_date: string;
+
+  /**
+   * Body param: The ID of the internal account the invoice should be paid to.
+   */
+  originating_account_id: string;
+
+  /**
    * Body param: The invoicer's contact details displayed at the top of the invoice.
    */
   contact_details?: Array<InvoiceCreateParams.ContactDetails>;
@@ -282,11 +297,6 @@ export interface InvoiceCreateParams {
    * Body param: The counterparty's billing address.
    */
   counterparty_billing_address?: InvoiceCreateParams.CounterpartyBillingAddress | null;
-
-  /**
-   * Body param: The ID of the counterparty receiving the invoice.
-   */
-  counterparty_id: string;
 
   /**
    * Body param: The counterparty's shipping address where physical goods should be
@@ -306,19 +316,9 @@ export interface InvoiceCreateParams {
   description?: string;
 
   /**
-   * Body param: A future date by when the invoice needs to be paid.
-   */
-  due_date: string;
-
-  /**
    * Body param: The invoice issuer's business address.
    */
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
-
-  /**
-   * Body param: The ID of the internal account the invoice should be paid to.
-   */
-  originating_account_id: string;
 
   /**
    * Header param: This key should be something unique, preferably something like an
@@ -328,115 +328,6 @@ export interface InvoiceCreateParams {
 }
 
 export namespace InvoiceCreateParams {
-  export interface ContactDetails {
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    id: string;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
-  /**
-   * The counterparty's billing address.
-   */
-  export interface CounterpartyBillingAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
-  /**
-   * The counterparty's shipping address where physical goods should be delivered.
-   */
-  export interface CounterpartyShippingAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
-  /**
-   * The invoice issuer's business address.
-   */
-  export interface InvoicerAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
   export interface ContactDetails {
     contact_identifier: string;
 
@@ -608,115 +499,6 @@ export interface InvoiceUpdateParams {
 }
 
 export namespace InvoiceUpdateParams {
-  export interface ContactDetails {
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    id: string;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
-  /**
-   * The counterparty's billing address.
-   */
-  export interface CounterpartyBillingAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
-  /**
-   * The counterparty's shipping address where physical goods should be delivered.
-   */
-  export interface CounterpartyShippingAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
-  /**
-   * The invoice issuer's business address.
-   */
-  export interface InvoicerAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
   export interface ContactDetails {
     contact_identifier: string;
 

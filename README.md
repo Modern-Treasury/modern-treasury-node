@@ -76,7 +76,7 @@ import ModernTreasury, { fileFromPath } from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury();
 
-const file = await fileFromPath('/my/file.txt');
+const file = await fileFromPath('my/file.txt');
 await modernTreasury.documents.create('counterparties', '24c6b7a3-02...', { file: file });
 ```
 
