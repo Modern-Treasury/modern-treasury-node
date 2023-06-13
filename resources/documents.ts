@@ -214,14 +214,14 @@ export namespace Document {
 
 export interface DocumentCreateParams {
   /**
-   * Body param: A category given to the document, can be `null`.
-   */
-  document_type?: string;
-
-  /**
    * Body param:
    */
   file: FormData.Blob | FormData.File;
+
+  /**
+   * Body param: A category given to the document, can be `null`.
+   */
+  document_type?: string;
 
   /**
    * Header param: This key should be something unique, preferably something like an

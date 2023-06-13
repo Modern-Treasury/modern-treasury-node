@@ -296,6 +296,11 @@ export interface CounterpartyCollectAccountResponse {
 
 export interface CounterpartyCreateParams {
   /**
+   * Body param: A human friendly name for this counterparty.
+   */
+  name: string | null;
+
+  /**
    * Body param:
    */
   accounting?: CounterpartyCreateParams.Accounting;
@@ -323,11 +328,6 @@ export interface CounterpartyCreateParams {
   metadata?: Record<string, string>;
 
   /**
-   * Body param: A human friendly name for this counterparty.
-   */
-  name: string | null;
-
-  /**
    * Body param: Send an email to the counterparty whenever an associated payment
    * order is sent to the bank.
    */
@@ -346,207 +346,6 @@ export interface CounterpartyCreateParams {
 }
 
 export namespace CounterpartyCreateParams {
-  export interface Accounts {
-    account_details?: Array<Accounts.AccountDetails>;
-
-    /**
-     * Can be `checking`, `savings` or `other`.
-     */
-    account_type?: ExternalAccounts.ExternalAccountType;
-
-    contact_details?: Array<Accounts.ContactDetails>;
-
-    /**
-     * Specifies a ledger account object that will be created with the external
-     * account. The resulting ledger account is linked to the external account for
-     * auto-ledgering Payment objects. See
-     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-     * for more details.
-     */
-    ledger_account?: Accounts.LedgerAccount;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-
-    /**
-     * A nickname for the external account. This is only for internal usage and won't
-     * affect any payments
-     */
-    name?: string | null;
-
-    /**
-     * Required if receiving wire payments.
-     */
-    party_address?: Accounts.PartyAddress;
-
-    party_identifier?: string;
-
-    /**
-     * If this value isn't provided, it will be inherited from the counterparty's name.
-     */
-    party_name?: string;
-
-    /**
-     * Either `individual` or `business`.
-     */
-    party_type?: 'business' | 'individual' | null;
-
-    /**
-     * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
-     * you can pass the processor token in this field.
-     */
-    plaid_processor_token?: string;
-
-    routing_details?: Array<Accounts.RoutingDetails>;
-  }
-
-  export namespace Accounts {
-    /**
-     * Required if receiving wire payments.
-     */
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
-    export interface AccountDetails {
-      account_number: string;
-
-      account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
-    }
-
-    export interface RoutingDetails {
-      routing_number: string;
-
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'swift';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
-    }
-
-    /**
-     * Specifies a ledger account object that will be created with the external
-     * account. The resulting ledger account is linked to the external account for
-     * auto-ledgering Payment objects. See
-     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-     * for more details.
-     */
-    export interface LedgerAccount {
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The id of the ledger that this account belongs to.
-       */
-      ledger_id: string;
-
-      /**
-       * The name of the ledger account.
-       */
-      name: string;
-
-      /**
-       * The normal balance of the ledger account.
-       */
-      normal_balance: 'credit' | 'debit';
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent?: number | null;
-
-      /**
-       * The description of the ledger account.
-       */
-      description?: string | null;
-
-      /**
-       * If the ledger account links to another object in Modern Treasury, the id will be
-       * populated here, otherwise null.
-       */
-      ledgerable_id?: string;
-
-      /**
-       * If the ledger account links to another object in Modern Treasury, the type will
-       * be populated here, otherwise null. The value is one of internal_account or
-       * external_account.
-       */
-      ledgerable_type?: 'external_account' | 'internal_account';
-
-      /**
-       * Additional data represented as key-value pairs. Both the key and value must be
-       * strings.
-       */
-      metadata?: Record<string, string>;
-    }
-
-    export interface ContactDetails {
-      contact_identifier?: string;
-
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
-    }
-  }
-
-  export interface Accounting {
-    /**
-     * An optional type to auto-sync the counterparty to your ledger. Either `customer`
-     * or `vendor`.
-     */
-    type?: 'customer' | 'vendor';
-  }
-
   export interface Accounting {
     /**
      * An optional type to auto-sync the counterparty to your ledger. Either `customer`
@@ -811,18 +610,18 @@ export interface CounterpartyListParams extends PageParams {
 
 export interface CounterpartyCollectAccountParams {
   /**
-   * Body param: The URL you want your customer to visit upon filling out the form.
-   * By default, they will be sent to a Modern Treasury landing page. This must be a
-   * valid HTTPS URL if set.
-   */
-  custom_redirect?: string;
-
-  /**
    * Body param: One of `credit` or `debit`. Use `credit` when you want to pay a
    * counterparty. Use `debit` when you need to charge a counterparty. This field
    * helps us send a more tailored email to your counterparties."
    */
   direction: 'credit' | 'debit';
+
+  /**
+   * Body param: The URL you want your customer to visit upon filling out the form.
+   * By default, they will be sent to a Modern Treasury landing page. This must be a
+   * valid HTTPS URL if set.
+   */
+  custom_redirect?: string;
 
   /**
    * Body param: The list of fields you want on the form. This field is optional and

@@ -76,7 +76,7 @@ import ModernTreasury, { fileFromPath } from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury();
 
-const file = await fileFromPath('/my/file.txt');
+const file = await fileFromPath('my/file.txt');
 await modernTreasury.documents.create('counterparties', '24c6b7a3-02...', { file: file });
 ```
 
@@ -220,8 +220,7 @@ This package is in beta. Its internals and interfaces are not stable
 and subject to change without a major semver bump;
 please reach out if you rely on any undocumented behavior.
 
-We are keen for your feedback; please email us at [sdk-feedback@moderntreasury.com](mailto:sdk-feedback@moderntreasury.com)
-or open an issue with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-node/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

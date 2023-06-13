@@ -13,19 +13,8 @@ describe('resource expectedPayments', () => {
     const response = await modernTreasury.expectedPayments.create({
       amount_lower_bound: 0,
       amount_upper_bound: 0,
-      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      currency: 'AED',
-      date_lower_bound: '2019-12-27',
-      date_upper_bound: '2019-12-27',
-      description: 'string',
       direction: 'credit',
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      line_items: [{ amount: 0 }, { amount: 0 }, { amount: 0 }],
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      remittance_information: 'string',
-      statement_descriptor: 'string',
-      type: 'ach',
-      'Idempotency-Key': 'string',
     });
   });
 
@@ -33,13 +22,13 @@ describe('resource expectedPayments', () => {
     const response = await modernTreasury.expectedPayments.create({
       amount_lower_bound: 0,
       amount_upper_bound: 0,
+      direction: 'credit',
+      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       currency: 'AED',
       date_lower_bound: '2019-12-27',
       date_upper_bound: '2019-12-27',
       description: 'string',
-      direction: 'credit',
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       line_items: [
         {
           amount: 0,
