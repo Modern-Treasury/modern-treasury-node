@@ -152,6 +152,17 @@ export interface VirtualAccount {
 
 export interface VirtualAccountCreateParams {
   /**
+   * Body param: The ID of the internal account that this virtual account is
+   * associated with.
+   */
+  internal_account_id: string;
+
+  /**
+   * Body param: The name of the virtual account.
+   */
+  name: string;
+
+  /**
    * Body param: An array of account detail objects.
    */
   account_details?: Array<AccountDetails.AccountDetail>;
@@ -181,21 +192,10 @@ export interface VirtualAccountCreateParams {
   description?: string;
 
   /**
-   * Body param: The ID of the internal account that this virtual account is
-   * associated with.
-   */
-  internal_account_id: string;
-
-  /**
    * Body param: Additional data represented as key-value pairs. Both the key and
    * value must be strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Body param: The name of the virtual account.
-   */
-  name: string;
 
   /**
    * Body param: An array of routing detail objects.
