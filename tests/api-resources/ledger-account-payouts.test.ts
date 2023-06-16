@@ -11,23 +11,18 @@ const modernTreasury = new ModernTreasury({
 describe('resource ledgerAccountPayouts', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.ledgerAccountPayouts.create({
-      description: 'string',
-      effective_at_upper_bound: '14:15:22Z',
       funding_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'pending',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerAccountPayouts.create({
+      funding_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'string',
       effective_at_upper_bound: '14:15:22Z',
-      funding_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       status: 'pending',
       'Idempotency-Key': 'string',
     });
