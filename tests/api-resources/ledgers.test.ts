@@ -10,19 +10,14 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgers', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.ledgers.create({
-      description: 'string',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
-      'Idempotency-Key': 'string',
-    });
+    const response = await modernTreasury.ledgers.create({ name: 'string' });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgers.create({
+      name: 'string',
       description: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
       'Idempotency-Key': 'string',
     });
   });

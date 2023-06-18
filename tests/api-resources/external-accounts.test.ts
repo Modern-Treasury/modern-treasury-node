@@ -11,38 +11,13 @@ const modernTreasury = new ModernTreasury({
 describe('resource externalAccounts', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.externalAccounts.create({
-      account_details: [
-        { account_number: 'string' },
-        { account_number: 'string' },
-        { account_number: 'string' },
-      ],
-      account_type: 'cash',
-      contact_details: [{}, {}, {}],
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      ledger_account: {
-        name: 'string',
-        normal_balance: 'credit',
-        ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        currency: 'string',
-      },
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
-      party_address: {},
-      party_identifier: 'string',
-      party_name: 'string',
-      party_type: 'business',
-      plaid_processor_token: 'string',
-      routing_details: [
-        { routing_number: 'string', routing_number_type: 'aba' },
-        { routing_number: 'string', routing_number_type: 'aba' },
-        { routing_number: 'string', routing_number_type: 'aba' },
-      ],
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.externalAccounts.create({
+      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       account_details: [
         { account_number: 'string', account_number_type: 'iban' },
         { account_number: 'string', account_number_type: 'iban' },
@@ -54,7 +29,6 @@ describe('resource externalAccounts', () => {
         { contact_identifier: 'string', contact_identifier_type: 'email' },
         { contact_identifier: 'string', contact_identifier_type: 'email' },
       ],
-      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       ledger_account: {
         name: 'string',
         description: 'string',
@@ -199,18 +173,16 @@ describe('resource externalAccounts', () => {
 
   test('verify: only required params', async () => {
     const response = await modernTreasury.externalAccounts.verify('string', {
-      currency: 'AED',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_type: 'ach',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('verify: required and optional params', async () => {
     const response = await modernTreasury.externalAccounts.verify('string', {
-      currency: 'AED',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_type: 'ach',
+      currency: 'AED',
       'Idempotency-Key': 'string',
     });
   });
