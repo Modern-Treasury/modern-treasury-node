@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class ExpectedPayments extends APIResource {
@@ -472,4 +473,13 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'sepa'
     | 'signet'
     | 'wire';
+}
+
+export namespace ExpectedPayments {
+  export import ExpectedPayment = API.ExpectedPayment;
+  export import ExpectedPaymentType = API.ExpectedPaymentType;
+  export import ExpectedPaymentsPage = API.ExpectedPaymentsPage;
+  export import ExpectedPaymentCreateParams = API.ExpectedPaymentCreateParams;
+  export import ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
+  export import ExpectedPaymentListParams = API.ExpectedPaymentListParams;
 }

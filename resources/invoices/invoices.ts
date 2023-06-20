@@ -6,6 +6,7 @@ import { isRequestOptions } from '~/core';
 import * as PaymentOrders from '~/resources/payment-orders';
 import { LineItems } from './line-items';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Invoices extends APIResource {
@@ -610,3 +611,18 @@ export namespace InvoiceUpdateParams {
 }
 
 export interface InvoiceListParams extends PageParams {}
+
+export namespace Invoices {
+  export import Invoice = API.Invoice;
+  export import InvoicesPage = API.InvoicesPage;
+  export import InvoiceCreateParams = API.InvoiceCreateParams;
+  export import InvoiceUpdateParams = API.InvoiceUpdateParams;
+  export import InvoiceListParams = API.InvoiceListParams;
+
+  export import LineItems = API.LineItems;
+  export import InvoiceLineItem = API.InvoiceLineItem;
+  export import InvoiceLineItemsPage = API.InvoiceLineItemsPage;
+  export import LineItemCreateParams = API.LineItemCreateParams;
+  export import LineItemUpdateParams = API.LineItemUpdateParams;
+  export import LineItemListParams = API.LineItemListParams;
+}

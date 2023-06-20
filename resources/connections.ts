@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Connections extends APIResource {
@@ -67,4 +68,10 @@ export interface ConnectionListParams extends PageParams {
    * An identifier assigned by the vendor to your organization.
    */
   vendor_customer_id?: string;
+}
+
+export namespace Connections {
+  export import Connection = API.Connection;
+  export import ConnectionsPage = API.ConnectionsPage;
+  export import ConnectionListParams = API.ConnectionListParams;
 }

@@ -6,6 +6,7 @@ import { isRequestOptions } from '~/core';
 import * as ExternalAccounts from '~/resources/external-accounts';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Counterparties extends APIResource {
@@ -668,4 +669,14 @@ export interface CounterpartyCollectAccountParams {
    * UUID.
    */
   'Idempotency-Key'?: string;
+}
+
+export namespace Counterparties {
+  export import Counterparty = API.Counterparty;
+  export import CounterpartyCollectAccountResponse = API.CounterpartyCollectAccountResponse;
+  export import CounterpartiesPage = API.CounterpartiesPage;
+  export import CounterpartyCreateParams = API.CounterpartyCreateParams;
+  export import CounterpartyUpdateParams = API.CounterpartyUpdateParams;
+  export import CounterpartyListParams = API.CounterpartyListParams;
+  export import CounterpartyCollectAccountParams = API.CounterpartyCollectAccountParams;
 }

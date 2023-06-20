@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LineItems extends APIResource {
@@ -344,3 +345,11 @@ export namespace LineItemUpdateParams {
 }
 
 export interface LineItemListParams extends PageParams {}
+
+export namespace LineItems {
+  export import InvoiceLineItem = API.InvoiceLineItem;
+  export import InvoiceLineItemsPage = API.InvoiceLineItemsPage;
+  export import LineItemCreateParams = API.LineItemCreateParams;
+  export import LineItemUpdateParams = API.LineItemUpdateParams;
+  export import LineItemListParams = API.LineItemListParams;
+}

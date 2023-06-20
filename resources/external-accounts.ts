@@ -6,6 +6,7 @@ import { isRequestOptions } from '~/core';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class ExternalAccounts extends APIResource {
@@ -614,4 +615,15 @@ export interface ExternalAccountVerifyParams {
    * UUID.
    */
   'Idempotency-Key'?: string;
+}
+
+export namespace ExternalAccounts {
+  export import ExternalAccount = API.ExternalAccount;
+  export import ExternalAccountType = API.ExternalAccountType;
+  export import ExternalAccountsPage = API.ExternalAccountsPage;
+  export import ExternalAccountCreateParams = API.ExternalAccountCreateParams;
+  export import ExternalAccountUpdateParams = API.ExternalAccountUpdateParams;
+  export import ExternalAccountListParams = API.ExternalAccountListParams;
+  export import ExternalAccountCompleteVerificationParams = API.ExternalAccountCompleteVerificationParams;
+  export import ExternalAccountVerifyParams = API.ExternalAccountVerifyParams;
 }

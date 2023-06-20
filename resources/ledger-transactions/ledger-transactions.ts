@@ -5,6 +5,7 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as LedgerEntries from '~/resources/ledger-entries';
 import { Versions } from './versions';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LedgerTransactions extends APIResource {
@@ -434,4 +435,18 @@ export namespace LedgerTransactionListParams {
 
     effective_at?: 'asc' | 'desc';
   }
+}
+
+export namespace LedgerTransactions {
+  export import LedgerTransaction = API.LedgerTransaction;
+  export import LedgerTransactionsPage = API.LedgerTransactionsPage;
+  export import LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
+  export import LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
+  export import LedgerTransactionListParams = API.LedgerTransactionListParams;
+
+  export import Versions = API.Versions;
+  export import LedgerTransactionVersion = API.LedgerTransactionVersion;
+  export import LedgerTransactionVersionsPage = API.LedgerTransactionVersionsPage;
+  export import VersionListParams = API.VersionListParams;
+  export import VersionVersionsParams = API.VersionVersionsParams;
 }

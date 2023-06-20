@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LedgerAccountCategories extends APIResource {
@@ -461,4 +462,14 @@ export namespace LedgerAccountCategoryDeleteParams {
 
     effective_at?: string;
   }
+}
+
+export namespace LedgerAccountCategories {
+  export import LedgerAccountCategory = API.LedgerAccountCategory;
+  export import LedgerAccountCategoriesPage = API.LedgerAccountCategoriesPage;
+  export import LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
+  export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
+  export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
+  export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
+  export import LedgerAccountCategoryDeleteParams = API.LedgerAccountCategoryDeleteParams;
 }

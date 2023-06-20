@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class PaymentReferences extends APIResource {
@@ -142,4 +143,10 @@ export interface PaymentReferenceListParams extends PageParams {
    * referenceable or will return an error.
    */
   referenceable_type?: 'payment_order' | 'return' | 'reversal';
+}
+
+export namespace PaymentReferences {
+  export import PaymentReference = API.PaymentReference;
+  export import PaymentReferencesPage = API.PaymentReferencesPage;
+  export import PaymentReferenceListParams = API.PaymentReferenceListParams;
 }

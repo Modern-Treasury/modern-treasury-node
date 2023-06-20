@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class AccountCollectionFlows extends APIResource {
@@ -173,4 +174,13 @@ export interface AccountCollectionFlowListParams extends PageParams {
   external_account_id?: string;
 
   status?: string;
+}
+
+export namespace AccountCollectionFlows {
+  export import AccountConnectionFlow = API.AccountConnectionFlow;
+  export import AccountConnectionFlowsPage = API.AccountConnectionFlowsPage;
+  export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
+  export import AccountCollectionFlowRetrieveParams = API.AccountCollectionFlowRetrieveParams;
+  export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
+  export import AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
 }

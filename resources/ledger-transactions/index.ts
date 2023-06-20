@@ -6,10 +6,12 @@ export {
   LedgerTransactionUpdateParams,
   LedgerTransactionListParams,
   LedgerTransactionsPage,
+  LedgerTransactions,
 } from './ledger-transactions';
 export {
   LedgerTransactionVersion,
   VersionListParams,
   VersionVersionsParams,
   LedgerTransactionVersionsPage,
+  Versions,
 } from './versions';

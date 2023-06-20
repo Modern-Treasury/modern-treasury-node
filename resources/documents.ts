@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import type * as FormData from 'formdata-node';
 import { Page, PageParams } from '~/pagination';
 import { multipartFormRequestOptions } from '~/core';
@@ -231,3 +232,10 @@ export interface DocumentCreateParams {
 }
 
 export interface DocumentListParams extends PageParams {}
+
+export namespace Documents {
+  export import Document = API.Document;
+  export import DocumentsPage = API.DocumentsPage;
+  export import DocumentCreateParams = API.DocumentCreateParams;
+  export import DocumentListParams = API.DocumentListParams;
+}
