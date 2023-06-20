@@ -195,6 +195,27 @@ export namespace RoutingDetail {
 
 export interface RoutingDetailCreateParams {
   /**
+   * Body param: The routing number of the bank.
+   */
+  routing_number: string;
+
+  /**
+   * Body param: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`,
+   * `in_ifsc`, `cnaps`.
+   */
+  routing_number_type:
+    | 'aba'
+    | 'au_bsb'
+    | 'br_codigo'
+    | 'ca_cpa'
+    | 'chips'
+    | 'cnaps'
+    | 'gb_sort_code'
+    | 'in_ifsc'
+    | 'my_branch_code'
+    | 'swift';
+
+  /**
    * Body param: If the routing detail is to be used for a specific payment type this
    * field will be populated, otherwise null.
    */
@@ -217,27 +238,6 @@ export interface RoutingDetailCreateParams {
     | 'signet'
     | 'wire'
     | null;
-
-  /**
-   * Body param: The routing number of the bank.
-   */
-  routing_number: string;
-
-  /**
-   * Body param: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`,
-   * `in_ifsc`, `cnaps`.
-   */
-  routing_number_type:
-    | 'aba'
-    | 'au_bsb'
-    | 'br_codigo'
-    | 'ca_cpa'
-    | 'chips'
-    | 'cnaps'
-    | 'gb_sort_code'
-    | 'in_ifsc'
-    | 'my_branch_code'
-    | 'swift';
 
   /**
    * Header param: This key should be something unique, preferably something like an
