@@ -10,21 +10,12 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource counterparties', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.counterparties.create({
-      accounting: {},
-      accounts: [{}, {}, {}],
-      email: 'dev@stainlessapi.com',
-      ledger_type: 'customer',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
-      send_remittance_advice: true,
-      taxpayer_identifier: 'string',
-      'Idempotency-Key': 'string',
-    });
+    const response = await modernTreasury.counterparties.create({ name: 'string' });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.counterparties.create({
+      name: 'string',
       accounting: { type: 'customer' },
       accounts: [
         {
@@ -160,7 +151,6 @@ describe('resource counterparties', () => {
       email: 'dev@stainlessapi.com',
       ledger_type: 'customer',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
       send_remittance_advice: true,
       taxpayer_identifier: 'string',
       'Idempotency-Key': 'string',
@@ -247,19 +237,13 @@ describe('resource counterparties', () => {
   });
 
   test('collectAccount: only required params', async () => {
-    const response = await modernTreasury.counterparties.collectAccount('string', {
-      custom_redirect: 'https://example.com',
-      direction: 'credit',
-      fields: ['name', 'name', 'name'],
-      send_email: true,
-      'Idempotency-Key': 'string',
-    });
+    const response = await modernTreasury.counterparties.collectAccount('string', { direction: 'credit' });
   });
 
   test('collectAccount: required and optional params', async () => {
     const response = await modernTreasury.counterparties.collectAccount('string', {
-      custom_redirect: 'https://example.com',
       direction: 'credit',
+      custom_redirect: 'https://example.com',
       fields: ['name', 'name', 'name'],
       send_email: true,
       'Idempotency-Key': 'string',

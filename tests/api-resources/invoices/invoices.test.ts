@@ -11,70 +11,17 @@ const modernTreasury = new ModernTreasury({
 describe('resource invoices', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.invoices.create({
-      contact_details: [
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          contact_identifier: 'string',
-          contact_identifier_type: 'email',
-        },
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          contact_identifier: 'string',
-          contact_identifier_type: 'email',
-        },
-        {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          object: 'string',
-          live_mode: true,
-          created_at: '2019-12-27T18:11:19.117Z',
-          updated_at: '2019-12-27T18:11:19.117Z',
-          discarded_at: '2019-12-27T18:11:19.117Z',
-          contact_identifier: 'string',
-          contact_identifier_type: 'email',
-        },
-      ],
-      counterparty_billing_address: {
-        line1: 'string',
-        locality: 'string',
-        region: 'string',
-        postal_code: 'string',
-        country: 'string',
-      },
       counterparty_id: 'string',
-      counterparty_shipping_address: {
-        line1: 'string',
-        locality: 'string',
-        region: 'string',
-        postal_code: 'string',
-        country: 'string',
-      },
-      currency: 'AED',
-      description: 'string',
       due_date: '2019-12-27T18:11:19.117Z',
-      invoicer_address: {
-        line1: 'string',
-        locality: 'string',
-        region: 'string',
-        postal_code: 'string',
-        country: 'string',
-      },
       originating_account_id: 'string',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.invoices.create({
+      counterparty_id: 'string',
+      due_date: '2019-12-27T18:11:19.117Z',
+      originating_account_id: 'string',
       contact_details: [
         {
           id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -115,7 +62,6 @@ describe('resource invoices', () => {
         postal_code: 'string',
         country: 'string',
       },
-      counterparty_id: 'string',
       counterparty_shipping_address: {
         line1: 'string',
         line2: 'string',
@@ -126,7 +72,6 @@ describe('resource invoices', () => {
       },
       currency: 'AED',
       description: 'string',
-      due_date: '2019-12-27T18:11:19.117Z',
       invoicer_address: {
         line1: 'string',
         line2: 'string',
@@ -135,7 +80,6 @@ describe('resource invoices', () => {
         postal_code: 'string',
         country: 'string',
       },
-      originating_account_id: 'string',
       'Idempotency-Key': 'string',
     });
   });

@@ -107,6 +107,11 @@ export interface Ledger {
 
 export interface LedgerCreateParams {
   /**
+   * Body param: The name of the ledger.
+   */
+  name: string;
+
+  /**
    * Body param: An optional free-form description for internal use.
    */
   description?: string | null;
@@ -116,11 +121,6 @@ export interface LedgerCreateParams {
    * value must be strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Body param: The name of the ledger.
-   */
-  name: string;
 
   /**
    * Header param: This key should be something unique, preferably something like an

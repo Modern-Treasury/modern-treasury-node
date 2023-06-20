@@ -150,6 +150,17 @@ export interface InvoiceLineItem {
 
 export interface LineItemCreateParams {
   /**
+   * Body param: The name of the line item, typically a product or SKU name.
+   */
+  name: string;
+
+  /**
+   * Body param: The cost per unit of the product or service that this line item is
+   * for, specified in the invoice currency's smallest unit.
+   */
+  unit_amount: number;
+
+  /**
    * Body param: An optional free-form description of the line item.
    */
   description?: string;
@@ -162,21 +173,10 @@ export interface LineItemCreateParams {
   direction?: string;
 
   /**
-   * Body param: The name of the line item, typically a product or SKU name.
-   */
-  name: string;
-
-  /**
    * Body param: The number of units of a product or service that this line item is
    * for. Must be a whole number. Defaults to 1 if not provided.
    */
   quantity?: number;
-
-  /**
-   * Body param: The cost per unit of the product or service that this line item is
-   * for, specified in the invoice currency's smallest unit.
-   */
-  unit_amount: number;
 
   /**
    * Header param: This key should be something unique, preferably something like an
@@ -233,115 +233,6 @@ export interface LineItemUpdateParams {
 }
 
 export namespace LineItemUpdateParams {
-  export interface ContactDetails {
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    id: string;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
-  /**
-   * The counterparty's billing address.
-   */
-  export interface CounterpartyBillingAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
-  /**
-   * The counterparty's shipping address where physical goods should be delivered.
-   */
-  export interface CounterpartyShippingAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
-  /**
-   * The invoice issuer's business address.
-   */
-  export interface InvoicerAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
   export interface ContactDetails {
     contact_identifier: string;
 
