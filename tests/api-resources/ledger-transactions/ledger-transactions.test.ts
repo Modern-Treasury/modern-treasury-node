@@ -11,27 +11,18 @@ const modernTreasury = new ModernTreasury({
 describe('resource ledgerTransactions', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.ledgerTransactions.create({
-      description: 'string',
       effective_date: '2019-12-27',
-      external_id: 'string',
       ledger_entries: [
         { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
         { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
         { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
       ],
-      ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      ledgerable_type: 'counterparty',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      status: 'archived',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerTransactions.create({
-      description: 'string',
       effective_date: '2019-12-27',
-      external_id: 'string',
       ledger_entries: [
         {
           amount: 0,
@@ -64,6 +55,8 @@ describe('resource ledgerTransactions', () => {
           show_resulting_ledger_account_balances: true,
         },
       ],
+      description: 'string',
+      external_id: 'string',
       ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       ledgerable_type: 'counterparty',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },

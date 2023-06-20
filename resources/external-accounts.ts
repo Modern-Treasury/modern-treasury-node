@@ -272,6 +272,11 @@ export interface ExternalAccountCreateParams {
   /**
    * Body param:
    */
+  counterparty_id: string | null;
+
+  /**
+   * Body param:
+   */
   account_details?: Array<ExternalAccountCreateParams.AccountDetails>;
 
   /**
@@ -283,11 +288,6 @@ export interface ExternalAccountCreateParams {
    * Body param:
    */
   contact_details?: Array<ExternalAccountCreateParams.ContactDetails>;
-
-  /**
-   * Body param:
-   */
-  counterparty_id: string | null;
 
   /**
    * Body param: Specifies a ledger account object that will be created with the
@@ -350,140 +350,6 @@ export interface ExternalAccountCreateParams {
 }
 
 export namespace ExternalAccountCreateParams {
-  /**
-   * Required if receiving wire payments.
-   */
-  export interface PartyAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country?: string | null;
-
-    line1?: string | null;
-
-    line2?: string | null;
-
-    /**
-     * Locality or City.
-     */
-    locality?: string | null;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code?: string | null;
-
-    /**
-     * Region or State.
-     */
-    region?: string | null;
-  }
-
-  export interface AccountDetails {
-    account_number: string;
-
-    account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
-  }
-
-  export interface RoutingDetails {
-    routing_number: string;
-
-    routing_number_type:
-      | 'aba'
-      | 'au_bsb'
-      | 'br_codigo'
-      | 'ca_cpa'
-      | 'chips'
-      | 'cnaps'
-      | 'gb_sort_code'
-      | 'in_ifsc'
-      | 'my_branch_code'
-      | 'swift';
-
-    payment_type?:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'book'
-      | 'card'
-      | 'check'
-      | 'eft'
-      | 'cross_border'
-      | 'interac'
-      | 'masav'
-      | 'neft'
-      | 'provxchange'
-      | 'rtp'
-      | 'sen'
-      | 'sepa'
-      | 'signet'
-      | 'wire';
-  }
-
-  /**
-   * Specifies a ledger account object that will be created with the external
-   * account. The resulting ledger account is linked to the external account for
-   * auto-ledgering Payment objects. See
-   * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-   * for more details.
-   */
-  export interface LedgerAccount {
-    /**
-     * The currency of the ledger account.
-     */
-    currency: string;
-
-    /**
-     * The id of the ledger that this account belongs to.
-     */
-    ledger_id: string;
-
-    /**
-     * The name of the ledger account.
-     */
-    name: string;
-
-    /**
-     * The normal balance of the ledger account.
-     */
-    normal_balance: 'credit' | 'debit';
-
-    /**
-     * The currency exponent of the ledger account.
-     */
-    currency_exponent?: number | null;
-
-    /**
-     * The description of the ledger account.
-     */
-    description?: string | null;
-
-    /**
-     * If the ledger account links to another object in Modern Treasury, the id will be
-     * populated here, otherwise null.
-     */
-    ledgerable_id?: string;
-
-    /**
-     * If the ledger account links to another object in Modern Treasury, the type will
-     * be populated here, otherwise null. The value is one of internal_account or
-     * external_account.
-     */
-    ledgerable_type?: 'external_account' | 'internal_account';
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-  }
-
-  export interface ContactDetails {
-    contact_identifier?: string;
-
-    contact_identifier_type?: 'email' | 'phone_number' | 'website';
-  }
-
   export interface AccountDetails {
     account_number: string;
 
@@ -678,32 +544,6 @@ export namespace ExternalAccountUpdateParams {
      */
     region?: string | null;
   }
-
-  export interface PartyAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country?: string | null;
-
-    line1?: string | null;
-
-    line2?: string | null;
-
-    /**
-     * Locality or City.
-     */
-    locality?: string | null;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code?: string | null;
-
-    /**
-     * Region or State.
-     */
-    region?: string | null;
-  }
 }
 
 export interface ExternalAccountListParams extends PageParams {
@@ -737,11 +577,6 @@ export interface ExternalAccountCompleteVerificationParams {
 
 export interface ExternalAccountVerifyParams {
   /**
-   * Body param: Defaults to the currency of the originating account.
-   */
-  currency?: Shared.Currency | null;
-
-  /**
    * Body param: The ID of the internal account where the micro-deposits originate
    * from. Both credit and debit capabilities must be enabled.
    */
@@ -768,6 +603,11 @@ export interface ExternalAccountVerifyParams {
     | 'sepa'
     | 'signet'
     | 'wire';
+
+  /**
+   * Body param: Defaults to the currency of the originating account.
+   */
+  currency?: Shared.Currency | null;
 
   /**
    * Header param: This key should be something unique, preferably something like an
