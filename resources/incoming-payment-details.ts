@@ -5,6 +5,7 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as VirtualAccounts from '~/resources/virtual-accounts';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class IncomingPaymentDetails extends APIResource {
@@ -276,4 +277,12 @@ export interface IncomingPaymentDetailCreateAsyncParams {
    * UUID.
    */
   'Idempotency-Key'?: string;
+}
+
+export namespace IncomingPaymentDetails {
+  export import IncomingPaymentDetail = API.IncomingPaymentDetail;
+  export import IncomingPaymentDetailsPage = API.IncomingPaymentDetailsPage;
+  export import IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
+  export import IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
+  export import IncomingPaymentDetailCreateAsyncParams = API.IncomingPaymentDetailCreateAsyncParams;
 }

@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LedgerAccounts extends APIResource {
@@ -424,4 +425,13 @@ export namespace LedgerAccountListParams {
 
     effective_at_upper_bound?: string;
   }
+}
+
+export namespace LedgerAccounts {
+  export import LedgerAccount = API.LedgerAccount;
+  export import LedgerAccountsPage = API.LedgerAccountsPage;
+  export import LedgerAccountCreateParams = API.LedgerAccountCreateParams;
+  export import LedgerAccountRetrieveParams = API.LedgerAccountRetrieveParams;
+  export import LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;
+  export import LedgerAccountListParams = API.LedgerAccountListParams;
 }

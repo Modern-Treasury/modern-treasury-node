@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class AccountDetails extends APIResource {
@@ -136,3 +137,10 @@ export interface AccountDetailCreateParams {
 }
 
 export interface AccountDetailListParams extends PageParams {}
+
+export namespace AccountDetails {
+  export import AccountDetail = API.AccountDetail;
+  export import AccountDetailsPage = API.AccountDetailsPage;
+  export import AccountDetailCreateParams = API.AccountDetailCreateParams;
+  export import AccountDetailListParams = API.AccountDetailListParams;
+}

@@ -9,5 +9,6 @@ export {
   PaymentOrderListParams,
   PaymentOrderCreateAsyncParams,
   PaymentOrdersPage,
+  PaymentOrders,
 } from './payment-orders';
-export { Reversal, ReversalCreateParams, ReversalListParams, ReversalsPage } from './reversals';
+export { Reversal, ReversalCreateParams, ReversalListParams, ReversalsPage, Reversals } from './reversals';

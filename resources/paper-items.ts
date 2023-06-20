@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class PaperItems extends APIResource {
@@ -130,4 +131,10 @@ export interface PaperItemListParams extends PageParams {
    * a specific lockbox number.
    */
   lockbox_number?: string;
+}
+
+export namespace PaperItems {
+  export import PaperItem = API.PaperItem;
+  export import PaperItemsPage = API.PaperItemsPage;
+  export import PaperItemListParams = API.PaperItemListParams;
 }

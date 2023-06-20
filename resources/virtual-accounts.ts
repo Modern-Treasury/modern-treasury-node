@@ -5,6 +5,7 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class VirtualAccounts extends APIResource {
@@ -228,4 +229,12 @@ export interface VirtualAccountListParams extends PageParams {
    * parameters.
    */
   metadata?: Record<string, string>;
+}
+
+export namespace VirtualAccounts {
+  export import VirtualAccount = API.VirtualAccount;
+  export import VirtualAccountsPage = API.VirtualAccountsPage;
+  export import VirtualAccountCreateParams = API.VirtualAccountCreateParams;
+  export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
+  export import VirtualAccountListParams = API.VirtualAccountListParams;
 }

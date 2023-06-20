@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Reversals extends APIResource {
@@ -259,3 +260,10 @@ export namespace ReversalCreateParams {
 }
 
 export interface ReversalListParams extends PageParams {}
+
+export namespace Reversals {
+  export import Reversal = API.Reversal;
+  export import ReversalsPage = API.ReversalsPage;
+  export import ReversalCreateParams = API.ReversalCreateParams;
+  export import ReversalListParams = API.ReversalListParams;
+}

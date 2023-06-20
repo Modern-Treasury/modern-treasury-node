@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LedgerAccountPayouts extends APIResource {
@@ -211,4 +212,12 @@ export interface LedgerAccountPayoutUpdateParams {
 
 export interface LedgerAccountPayoutListParams extends PageParams {
   payout_ledger_account_id?: string;
+}
+
+export namespace LedgerAccountPayouts {
+  export import LedgerAccountPayout = API.LedgerAccountPayout;
+  export import LedgerAccountPayoutsPage = API.LedgerAccountPayoutsPage;
+  export import LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
+  export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
+  export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
 }

@@ -7,6 +7,7 @@ import * as Returns from '~/resources/returns';
 import * as ExternalAccounts from '~/resources/external-accounts';
 import { Reversals } from './reversals';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import type * as FormData from 'formdata-node';
 import { Page, PageParams } from '~/pagination';
 import { maybeMultipartFormRequestOptions } from '~/core';
@@ -2212,4 +2213,21 @@ export namespace PaymentOrderCreateAsyncParams {
       contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
   }
+}
+
+export namespace PaymentOrders {
+  export import PaymentOrder = API.PaymentOrder;
+  export import PaymentOrderSubtype = API.PaymentOrderSubtype;
+  export import PaymentOrderType = API.PaymentOrderType;
+  export import PaymentOrdersPage = API.PaymentOrdersPage;
+  export import PaymentOrderCreateParams = API.PaymentOrderCreateParams;
+  export import PaymentOrderUpdateParams = API.PaymentOrderUpdateParams;
+  export import PaymentOrderListParams = API.PaymentOrderListParams;
+  export import PaymentOrderCreateAsyncParams = API.PaymentOrderCreateAsyncParams;
+
+  export import Reversals = API.Reversals;
+  export import Reversal = API.Reversal;
+  export import ReversalsPage = API.ReversalsPage;
+  export import ReversalCreateParams = API.ReversalCreateParams;
+  export import ReversalListParams = API.ReversalListParams;
 }
