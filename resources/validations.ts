@@ -2,6 +2,7 @@
 
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
+import * as API from './';
 
 export class Validations extends APIResource {
   /**
@@ -126,4 +127,9 @@ export interface ValidationValidateRoutingNumberParams {
     | 'in_ifsc'
     | 'my_branch_code'
     | 'swift';
+}
+
+export namespace Validations {
+  export import RoutingNumberLookupRequest = API.RoutingNumberLookupRequest;
+  export import ValidationValidateRoutingNumberParams = API.ValidationValidateRoutingNumberParams;
 }

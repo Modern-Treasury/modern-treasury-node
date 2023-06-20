@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Versions extends APIResource {
@@ -337,4 +338,11 @@ export interface VersionVersionsParams extends PageParams {
    * version. For example, for all versions after 2, use version%5Bgt%5D=2.
    */
   version?: Record<string, number>;
+}
+
+export namespace Versions {
+  export import LedgerTransactionVersion = API.LedgerTransactionVersion;
+  export import LedgerTransactionVersionsPage = API.LedgerTransactionVersionsPage;
+  export import VersionListParams = API.VersionListParams;
+  export import VersionVersionsParams = API.VersionVersionsParams;
 }

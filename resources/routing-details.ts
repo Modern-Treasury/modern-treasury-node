@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class RoutingDetails extends APIResource {
@@ -247,3 +248,10 @@ export interface RoutingDetailCreateParams {
 }
 
 export interface RoutingDetailListParams extends PageParams {}
+
+export namespace RoutingDetails {
+  export import RoutingDetail = API.RoutingDetail;
+  export import RoutingDetailsPage = API.RoutingDetailsPage;
+  export import RoutingDetailCreateParams = API.RoutingDetailCreateParams;
+  export import RoutingDetailListParams = API.RoutingDetailListParams;
+}

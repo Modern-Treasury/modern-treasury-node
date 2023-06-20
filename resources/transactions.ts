@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Transactions extends APIResource {
@@ -258,4 +259,11 @@ export interface TransactionListParams extends PageParams {
   transactable_type?: string;
 
   virtual_account_id?: string;
+}
+
+export namespace Transactions {
+  export import Transaction = API.Transaction;
+  export import TransactionsPage = API.TransactionsPage;
+  export import TransactionUpdateParams = API.TransactionUpdateParams;
+  export import TransactionListParams = API.TransactionListParams;
 }

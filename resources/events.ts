@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Events extends APIResource {
@@ -88,4 +89,10 @@ export interface EventListParams extends PageParams {
   event_time_start?: string;
 
   resource?: string;
+}
+
+export namespace Events {
+  export import Event = API.Event;
+  export import EventsPage = API.EventsPage;
+  export import EventListParams = API.EventListParams;
 }

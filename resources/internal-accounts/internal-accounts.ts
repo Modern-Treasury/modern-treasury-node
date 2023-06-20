@@ -8,6 +8,7 @@ import * as RoutingDetails from '~/resources/routing-details';
 import * as Connections from '~/resources/connections';
 import { BalanceReports } from './balance-reports';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class InternalAccounts extends APIResource {
@@ -351,4 +352,17 @@ export interface InternalAccountListParams extends PageParams {
     | 'sepa'
     | 'signet'
     | 'wire';
+}
+
+export namespace InternalAccounts {
+  export import InternalAccount = API.InternalAccount;
+  export import InternalAccountsPage = API.InternalAccountsPage;
+  export import InternalAccountCreateParams = API.InternalAccountCreateParams;
+  export import InternalAccountUpdateParams = API.InternalAccountUpdateParams;
+  export import InternalAccountListParams = API.InternalAccountListParams;
+
+  export import BalanceReports = API.BalanceReports;
+  export import BalanceReport = API.BalanceReport;
+  export import BalanceReportsPage = API.BalanceReportsPage;
+  export import BalanceReportListParams = API.BalanceReportListParams;
 }

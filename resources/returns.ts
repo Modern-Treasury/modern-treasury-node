@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Returns extends APIResource {
@@ -403,4 +404,11 @@ export interface ReturnListParams extends PageParams {
    * Must be accompanied by `returnable_id`.
    */
   returnable_type?: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'return' | 'reversal';
+}
+
+export namespace Returns {
+  export import ReturnObject = API.ReturnObject;
+  export import ReturnObjectsPage = API.ReturnObjectsPage;
+  export import ReturnCreateParams = API.ReturnCreateParams;
+  export import ReturnListParams = API.ReturnListParams;
 }
