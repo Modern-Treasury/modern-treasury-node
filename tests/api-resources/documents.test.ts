@@ -13,17 +13,15 @@ describe('resource documents', () => {
   // skipped: prism mock server is broken for file uploads
   test.skip('create: only required params', async () => {
     const response = await modernTreasury.documents.create('cases', 'string', {
-      document_type: 'string',
       file: await fileFromPath('README.md'),
-      'Idempotency-Key': 'string',
     });
   });
 
   // skipped: prism mock server is broken for file uploads
   test.skip('create: required and optional params', async () => {
     const response = await modernTreasury.documents.create('cases', 'string', {
-      document_type: 'string',
       file: await fileFromPath('README.md'),
+      document_type: 'string',
       'Idempotency-Key': 'string',
     });
   });
