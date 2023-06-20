@@ -13,7 +13,6 @@ describe('resource accountCollectionFlows', () => {
     const response = await modernTreasury.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_types: ['string', 'string', 'string'],
-      'Idempotency-Key': 'string',
     });
   });
 
@@ -48,10 +47,7 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('update: only required params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.update('string', {
-      status: 'cancelled',
-      'Idempotency-Key': 'string',
-    });
+    const response = await modernTreasury.accountCollectionFlows.update('string', { status: 'cancelled' });
   });
 
   test('update: required and optional params', async () => {

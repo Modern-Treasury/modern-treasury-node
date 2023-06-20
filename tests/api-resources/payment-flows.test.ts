@@ -16,7 +16,6 @@ describe('resource paymentFlows', () => {
       currency: 'string',
       direction: 'credit',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      'Idempotency-Key': 'string',
     });
   });
 
@@ -54,10 +53,7 @@ describe('resource paymentFlows', () => {
   });
 
   test('update: only required params', async () => {
-    const response = await modernTreasury.paymentFlows.update('string', {
-      status: 'cancelled',
-      'Idempotency-Key': 'string',
-    });
+    const response = await modernTreasury.paymentFlows.update('string', { status: 'cancelled' });
   });
 
   test('update: required and optional params', async () => {

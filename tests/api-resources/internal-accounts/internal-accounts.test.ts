@@ -12,30 +12,20 @@ describe('resource internalAccounts', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.internalAccounts.create({
       connection_id: 'string',
-      counterparty_id: 'string',
       currency: 'USD',
-      entity_id: 'string',
       name: 'string',
-      parent_account_id: 'string',
-      party_address: {
-        line1: 'string',
-        locality: 'string',
-        region: 'string',
-        postal_code: 'string',
-        country: 'string',
-      },
       party_name: 'string',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.internalAccounts.create({
       connection_id: 'string',
-      counterparty_id: 'string',
       currency: 'USD',
-      entity_id: 'string',
       name: 'string',
+      party_name: 'string',
+      counterparty_id: 'string',
+      entity_id: 'string',
       parent_account_id: 'string',
       party_address: {
         line1: 'string',
@@ -45,7 +35,6 @@ describe('resource internalAccounts', () => {
         postal_code: 'string',
         country: 'string',
       },
-      party_name: 'string',
       'Idempotency-Key': 'string',
     });
   });
