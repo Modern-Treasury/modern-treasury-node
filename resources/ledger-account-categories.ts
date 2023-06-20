@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LedgerAccountCategories extends APIResource {
@@ -320,25 +321,9 @@ export interface LedgerAccountCategoryCreateParams {
   currency: string;
 
   /**
-   * Body param: The currency exponent of the ledger account category.
-   */
-  currency_exponent?: number | null;
-
-  /**
-   * Body param: The description of the ledger account category.
-   */
-  description?: string | null;
-
-  /**
    * Body param: The id of the ledger that this account category belongs to.
    */
   ledger_id: string;
-
-  /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
-   */
-  metadata?: Record<string, string>;
 
   /**
    * Body param: The name of the ledger account category.
@@ -349,6 +334,22 @@ export interface LedgerAccountCategoryCreateParams {
    * Body param: The normal balance of the ledger account category.
    */
   normal_balance: 'credit' | 'debit';
+
+  /**
+   * Body param: The currency exponent of the ledger account category.
+   */
+  currency_exponent?: number | null;
+
+  /**
+   * Body param: The description of the ledger account category.
+   */
+  description?: string | null;
+
+  /**
+   * Body param: Additional data represented as key-value pairs. Both the key and
+   * value must be strings.
+   */
+  metadata?: Record<string, string>;
 
   /**
    * Header param: This key should be something unique, preferably something like an
@@ -374,12 +375,6 @@ export namespace LedgerAccountCategoryRetrieveParams {
    * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
    * entries with that exact date.
    */
-  export interface Balances {
-    as_of_date?: string;
-
-    effective_at?: string;
-  }
-
   export interface Balances {
     as_of_date?: string;
 
@@ -414,6 +409,12 @@ export interface LedgerAccountCategoryUpdateParams {
 }
 
 export namespace LedgerAccountCategoryUpdateParams {
+  /**
+   * For example, if you want the balances as of a particular effective date
+   * (YYYY-MM-DD), the encoded query string would be
+   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
+   * entries with that exact date.
+   */
   export interface Balances {
     as_of_date?: string;
 
@@ -450,9 +451,25 @@ export interface LedgerAccountCategoryDeleteParams {
 }
 
 export namespace LedgerAccountCategoryDeleteParams {
+  /**
+   * For example, if you want the balances as of a particular effective date
+   * (YYYY-MM-DD), the encoded query string would be
+   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
+   * entries with that exact date.
+   */
   export interface Balances {
     as_of_date?: string;
 
     effective_at?: string;
   }
+}
+
+export namespace LedgerAccountCategories {
+  export import LedgerAccountCategory = API.LedgerAccountCategory;
+  export import LedgerAccountCategoriesPage = API.LedgerAccountCategoriesPage;
+  export import LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
+  export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
+  export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
+  export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
+  export import LedgerAccountCategoryDeleteParams = API.LedgerAccountCategoryDeleteParams;
 }

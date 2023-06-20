@@ -5,6 +5,7 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as AccountDetails from '~/resources/account-details';
 import * as RoutingDetails from '~/resources/routing-details';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class VirtualAccounts extends APIResource {
@@ -152,6 +153,17 @@ export interface VirtualAccount {
 
 export interface VirtualAccountCreateParams {
   /**
+   * Body param: The ID of the internal account that this virtual account is
+   * associated with.
+   */
+  internal_account_id: string;
+
+  /**
+   * Body param: The name of the virtual account.
+   */
+  name: string;
+
+  /**
    * Body param: An array of account detail objects.
    */
   account_details?: Array<AccountDetails.AccountDetail>;
@@ -181,21 +193,10 @@ export interface VirtualAccountCreateParams {
   description?: string;
 
   /**
-   * Body param: The ID of the internal account that this virtual account is
-   * associated with.
-   */
-  internal_account_id: string;
-
-  /**
    * Body param: Additional data represented as key-value pairs. Both the key and
    * value must be strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Body param: The name of the virtual account.
-   */
-  name: string;
 
   /**
    * Body param: An array of routing detail objects.
@@ -228,4 +229,12 @@ export interface VirtualAccountListParams extends PageParams {
    * parameters.
    */
   metadata?: Record<string, string>;
+}
+
+export namespace VirtualAccounts {
+  export import VirtualAccount = API.VirtualAccount;
+  export import VirtualAccountsPage = API.VirtualAccountsPage;
+  export import VirtualAccountCreateParams = API.VirtualAccountCreateParams;
+  export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
+  export import VirtualAccountListParams = API.VirtualAccountListParams;
 }

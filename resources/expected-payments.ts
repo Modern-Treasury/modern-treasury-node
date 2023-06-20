@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class ExpectedPayments extends APIResource {
@@ -233,6 +234,17 @@ export interface ExpectedPaymentCreateParams {
   amount_upper_bound: number;
 
   /**
+   * Body param: One of credit or debit. When you are receiving money, use credit.
+   * When you are being charged, use debit.
+   */
+  direction: 'credit' | 'debit';
+
+  /**
+   * Body param: The ID of the Internal Account for the expected payment.
+   */
+  internal_account_id: string;
+
+  /**
    * Body param: The ID of the counterparty you expect for this payment.
    */
   counterparty_id?: string | null;
@@ -257,17 +269,6 @@ export interface ExpectedPaymentCreateParams {
    * Body param: An optional description for internal use.
    */
   description?: string | null;
-
-  /**
-   * Body param: One of credit or debit. When you are receiving money, use credit.
-   * When you are being charged, use debit.
-   */
-  direction: 'credit' | 'debit';
-
-  /**
-   * Body param: The ID of the Internal Account for the expected payment.
-   */
-  internal_account_id: string;
 
   /**
    * Body param:
@@ -309,31 +310,6 @@ export interface ExpectedPaymentCreateParams {
 }
 
 export namespace ExpectedPaymentCreateParams {
-  export interface LineItems {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-  }
-
   export interface LineItems {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -497,4 +473,13 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'sepa'
     | 'signet'
     | 'wire';
+}
+
+export namespace ExpectedPayments {
+  export import ExpectedPayment = API.ExpectedPayment;
+  export import ExpectedPaymentType = API.ExpectedPaymentType;
+  export import ExpectedPaymentsPage = API.ExpectedPaymentsPage;
+  export import ExpectedPaymentCreateParams = API.ExpectedPaymentCreateParams;
+  export import ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
+  export import ExpectedPaymentListParams = API.ExpectedPaymentListParams;
 }

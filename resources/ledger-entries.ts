@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LedgerEntries extends APIResource {
@@ -292,10 +293,10 @@ export namespace LedgerEntryListParams {
 
     effective_at?: 'asc' | 'desc';
   }
+}
 
-  export interface OrderBy {
-    created_at?: 'asc' | 'desc';
-
-    effective_at?: 'asc' | 'desc';
-  }
+export namespace LedgerEntries {
+  export import LedgerEntry = API.LedgerEntry;
+  export import LedgerEntriesPage = API.LedgerEntriesPage;
+  export import LedgerEntryListParams = API.LedgerEntryListParams;
 }

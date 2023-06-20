@@ -4,6 +4,7 @@ import qs from 'qs';
 import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources';
+import * as Errors from '~/error';
 import type { Agent } from 'http';
 import * as FileFromPath from 'formdata-node/file-from-path';
 
@@ -116,36 +117,32 @@ export class ModernTreasury extends Core.APIClient {
     return { arrayFormat: 'repeat' };
   }
 
-  static APIError = Core.APIError;
-
-  static APIConnectionError = Core.APIConnectionError;
-  static APIConnectionTimeoutError = Core.APIConnectionTimeoutError;
-
-  static BadRequestError = Core.BadRequestError;
-  static AuthenticationError = Core.AuthenticationError;
-  static PermissionDeniedError = Core.PermissionDeniedError;
-  static NotFoundError = Core.NotFoundError;
-  static ConflictError = Core.ConflictError;
-  static UnprocessableEntityError = Core.UnprocessableEntityError;
-  static RateLimitError = Core.RateLimitError;
-  static InternalServerError = Core.InternalServerError;
+  static APIError = Errors.APIError;
+  static APIConnectionError = Errors.APIConnectionError;
+  static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
+  static NotFoundError = Errors.NotFoundError;
+  static ConflictError = Errors.ConflictError;
+  static RateLimitError = Errors.RateLimitError;
+  static BadRequestError = Errors.BadRequestError;
+  static AuthenticationError = Errors.AuthenticationError;
+  static InternalServerError = Errors.InternalServerError;
+  static PermissionDeniedError = Errors.PermissionDeniedError;
+  static UnprocessableEntityError = Errors.UnprocessableEntityError;
 }
 
 export const {
   APIError,
-
   APIConnectionError,
   APIConnectionTimeoutError,
-
-  BadRequestError,
-  AuthenticationError,
-  PermissionDeniedError,
   NotFoundError,
   ConflictError,
-  UnprocessableEntityError,
   RateLimitError,
+  BadRequestError,
+  AuthenticationError,
   InternalServerError,
-} = ModernTreasury;
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} = Errors;
 
 export import fileFromPath = FileFromPath.fileFromPath;
 
@@ -159,10 +156,12 @@ export namespace ModernTreasury {
 
   export import PingResponse = API.PingResponse;
 
+  export import Connections = API.Connections;
   export import Connection = API.Connection;
   export import ConnectionsPage = API.ConnectionsPage;
   export import ConnectionListParams = API.ConnectionListParams;
 
+  export import Counterparties = API.Counterparties;
   export import Counterparty = API.Counterparty;
   export import CounterpartyCollectAccountResponse = API.CounterpartyCollectAccountResponse;
   export import CounterpartiesPage = API.CounterpartiesPage;
@@ -171,10 +170,12 @@ export namespace ModernTreasury {
   export import CounterpartyListParams = API.CounterpartyListParams;
   export import CounterpartyCollectAccountParams = API.CounterpartyCollectAccountParams;
 
+  export import Events = API.Events;
   export import Event = API.Event;
   export import EventsPage = API.EventsPage;
   export import EventListParams = API.EventListParams;
 
+  export import ExpectedPayments = API.ExpectedPayments;
   export import ExpectedPayment = API.ExpectedPayment;
   export import ExpectedPaymentType = API.ExpectedPaymentType;
   export import ExpectedPaymentsPage = API.ExpectedPaymentsPage;
@@ -182,6 +183,7 @@ export namespace ModernTreasury {
   export import ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
   export import ExpectedPaymentListParams = API.ExpectedPaymentListParams;
 
+  export import ExternalAccounts = API.ExternalAccounts;
   export import ExternalAccount = API.ExternalAccount;
   export import ExternalAccountType = API.ExternalAccountType;
   export import ExternalAccountsPage = API.ExternalAccountsPage;
@@ -191,23 +193,27 @@ export namespace ModernTreasury {
   export import ExternalAccountCompleteVerificationParams = API.ExternalAccountCompleteVerificationParams;
   export import ExternalAccountVerifyParams = API.ExternalAccountVerifyParams;
 
+  export import IncomingPaymentDetails = API.IncomingPaymentDetails;
   export import IncomingPaymentDetail = API.IncomingPaymentDetail;
   export import IncomingPaymentDetailsPage = API.IncomingPaymentDetailsPage;
   export import IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
   export import IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
   export import IncomingPaymentDetailCreateAsyncParams = API.IncomingPaymentDetailCreateAsyncParams;
 
+  export import Invoices = API.Invoices;
   export import Invoice = API.Invoice;
   export import InvoicesPage = API.InvoicesPage;
   export import InvoiceCreateParams = API.InvoiceCreateParams;
   export import InvoiceUpdateParams = API.InvoiceUpdateParams;
   export import InvoiceListParams = API.InvoiceListParams;
 
+  export import Documents = API.Documents;
   export import Document = API.Document;
   export import DocumentsPage = API.DocumentsPage;
   export import DocumentCreateParams = API.DocumentCreateParams;
   export import DocumentListParams = API.DocumentListParams;
 
+  export import AccountCollectionFlows = API.AccountCollectionFlows;
   export import AccountConnectionFlow = API.AccountConnectionFlow;
   export import AccountConnectionFlowsPage = API.AccountConnectionFlowsPage;
   export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
@@ -215,28 +221,33 @@ export namespace ModernTreasury {
   export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
   export import AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
 
+  export import AccountDetails = API.AccountDetails;
   export import AccountDetail = API.AccountDetail;
   export import AccountDetailsPage = API.AccountDetailsPage;
   export import AccountDetailCreateParams = API.AccountDetailCreateParams;
   export import AccountDetailListParams = API.AccountDetailListParams;
 
+  export import RoutingDetails = API.RoutingDetails;
   export import RoutingDetail = API.RoutingDetail;
   export import RoutingDetailsPage = API.RoutingDetailsPage;
   export import RoutingDetailCreateParams = API.RoutingDetailCreateParams;
   export import RoutingDetailListParams = API.RoutingDetailListParams;
 
+  export import InternalAccounts = API.InternalAccounts;
   export import InternalAccount = API.InternalAccount;
   export import InternalAccountsPage = API.InternalAccountsPage;
   export import InternalAccountCreateParams = API.InternalAccountCreateParams;
   export import InternalAccountUpdateParams = API.InternalAccountUpdateParams;
   export import InternalAccountListParams = API.InternalAccountListParams;
 
+  export import Ledgers = API.Ledgers;
   export import Ledger = API.Ledger;
   export import LedgersPage = API.LedgersPage;
   export import LedgerCreateParams = API.LedgerCreateParams;
   export import LedgerUpdateParams = API.LedgerUpdateParams;
   export import LedgerListParams = API.LedgerListParams;
 
+  export import LedgerAccountCategories = API.LedgerAccountCategories;
   export import LedgerAccountCategory = API.LedgerAccountCategory;
   export import LedgerAccountCategoriesPage = API.LedgerAccountCategoriesPage;
   export import LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
@@ -245,6 +256,7 @@ export namespace ModernTreasury {
   export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
   export import LedgerAccountCategoryDeleteParams = API.LedgerAccountCategoryDeleteParams;
 
+  export import LedgerAccounts = API.LedgerAccounts;
   export import LedgerAccount = API.LedgerAccount;
   export import LedgerAccountsPage = API.LedgerAccountsPage;
   export import LedgerAccountCreateParams = API.LedgerAccountCreateParams;
@@ -252,27 +264,32 @@ export namespace ModernTreasury {
   export import LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;
   export import LedgerAccountListParams = API.LedgerAccountListParams;
 
+  export import LedgerAccountPayouts = API.LedgerAccountPayouts;
   export import LedgerAccountPayout = API.LedgerAccountPayout;
   export import LedgerAccountPayoutsPage = API.LedgerAccountPayoutsPage;
   export import LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
   export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
   export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
 
+  export import LedgerEntries = API.LedgerEntries;
   export import LedgerEntry = API.LedgerEntry;
   export import LedgerEntriesPage = API.LedgerEntriesPage;
   export import LedgerEntryListParams = API.LedgerEntryListParams;
 
+  export import LedgerTransactions = API.LedgerTransactions;
   export import LedgerTransaction = API.LedgerTransaction;
   export import LedgerTransactionsPage = API.LedgerTransactionsPage;
   export import LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
   export import LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
   export import LedgerTransactionListParams = API.LedgerTransactionListParams;
 
+  export import LineItems = API.LineItems;
   export import LineItem = API.LineItem;
   export import LineItemsPage = API.LineItemsPage;
   export import LineItemUpdateParams = API.LineItemUpdateParams;
   export import LineItemListParams = API.LineItemListParams;
 
+  export import PaymentFlows = API.PaymentFlows;
   export import PaymentFlow = API.PaymentFlow;
   export import PaymentFlowsPage = API.PaymentFlowsPage;
   export import PaymentFlowCreateParams = API.PaymentFlowCreateParams;
@@ -280,6 +297,7 @@ export namespace ModernTreasury {
   export import PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;
   export import PaymentFlowListParams = API.PaymentFlowListParams;
 
+  export import PaymentOrders = API.PaymentOrders;
   export import PaymentOrder = API.PaymentOrder;
   export import PaymentOrderSubtype = API.PaymentOrderSubtype;
   export import PaymentOrderType = API.PaymentOrderType;
@@ -289,27 +307,35 @@ export namespace ModernTreasury {
   export import PaymentOrderListParams = API.PaymentOrderListParams;
   export import PaymentOrderCreateAsyncParams = API.PaymentOrderCreateAsyncParams;
 
+  export import PaymentReferences = API.PaymentReferences;
   export import PaymentReference = API.PaymentReference;
   export import PaymentReferencesPage = API.PaymentReferencesPage;
   export import PaymentReferenceListParams = API.PaymentReferenceListParams;
 
+  export import Returns = API.Returns;
   export import ReturnObject = API.ReturnObject;
   export import ReturnObjectsPage = API.ReturnObjectsPage;
   export import ReturnCreateParams = API.ReturnCreateParams;
   export import ReturnListParams = API.ReturnListParams;
 
+  export import Transactions = API.Transactions;
   export import Transaction = API.Transaction;
   export import TransactionsPage = API.TransactionsPage;
   export import TransactionUpdateParams = API.TransactionUpdateParams;
   export import TransactionListParams = API.TransactionListParams;
 
+  export import Validations = API.Validations;
   export import RoutingNumberLookupRequest = API.RoutingNumberLookupRequest;
   export import ValidationValidateRoutingNumberParams = API.ValidationValidateRoutingNumberParams;
 
+  export import PaperItems = API.PaperItems;
   export import PaperItem = API.PaperItem;
   export import PaperItemsPage = API.PaperItemsPage;
   export import PaperItemListParams = API.PaperItemListParams;
 
+  export import Webhooks = API.Webhooks;
+
+  export import VirtualAccounts = API.VirtualAccounts;
   export import VirtualAccount = API.VirtualAccount;
   export import VirtualAccountsPage = API.VirtualAccountsPage;
   export import VirtualAccountCreateParams = API.VirtualAccountCreateParams;

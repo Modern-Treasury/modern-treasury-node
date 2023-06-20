@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LedgerAccounts extends APIResource {
@@ -273,6 +274,21 @@ export interface LedgerAccountCreateParams {
   currency: string;
 
   /**
+   * Body param: The id of the ledger that this account belongs to.
+   */
+  ledger_id: string;
+
+  /**
+   * Body param: The name of the ledger account.
+   */
+  name: string;
+
+  /**
+   * Body param: The normal balance of the ledger account.
+   */
+  normal_balance: 'credit' | 'debit';
+
+  /**
    * Body param: The currency exponent of the ledger account.
    */
   currency_exponent?: number | null;
@@ -281,11 +297,6 @@ export interface LedgerAccountCreateParams {
    * Body param: The description of the ledger account.
    */
   description?: string | null;
-
-  /**
-   * Body param: The id of the ledger that this account belongs to.
-   */
-  ledger_id: string;
 
   /**
    * Body param: If the ledger account links to another object in Modern Treasury,
@@ -305,16 +316,6 @@ export interface LedgerAccountCreateParams {
    * value must be strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Body param: The name of the ledger account.
-   */
-  name: string;
-
-  /**
-   * Body param: The normal balance of the ledger account.
-   */
-  normal_balance: 'credit' | 'debit';
 
   /**
    * Header param: This key should be something unique, preferably something like an
@@ -340,16 +341,6 @@ export namespace LedgerAccountRetrieveParams {
    * while the upper bound is exclusive of the provided timestamps. If no value is
    * supplied the balances will be retrieved not including that bound.
    */
-  export interface Balances {
-    as_of_date?: string;
-
-    effective_at?: string;
-
-    effective_at_lower_bound?: string;
-
-    effective_at_upper_bound?: string;
-  }
-
   export interface Balances {
     as_of_date?: string;
 
@@ -434,14 +425,13 @@ export namespace LedgerAccountListParams {
 
     effective_at_upper_bound?: string;
   }
+}
 
-  export interface Balances {
-    as_of_date?: string;
-
-    effective_at?: string;
-
-    effective_at_lower_bound?: string;
-
-    effective_at_upper_bound?: string;
-  }
+export namespace LedgerAccounts {
+  export import LedgerAccount = API.LedgerAccount;
+  export import LedgerAccountsPage = API.LedgerAccountsPage;
+  export import LedgerAccountCreateParams = API.LedgerAccountCreateParams;
+  export import LedgerAccountRetrieveParams = API.LedgerAccountRetrieveParams;
+  export import LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;
+  export import LedgerAccountListParams = API.LedgerAccountListParams;
 }

@@ -6,6 +6,7 @@ export {
   InvoiceUpdateParams,
   InvoiceListParams,
   InvoicesPage,
+  Invoices,
 } from './invoices';
 export {
   InvoiceLineItem,
@@ -13,4 +14,5 @@ export {
   LineItemUpdateParams,
   LineItemListParams,
   InvoiceLineItemsPage,
+  LineItems,
 } from './line-items';

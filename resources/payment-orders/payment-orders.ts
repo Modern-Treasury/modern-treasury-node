@@ -7,6 +7,7 @@ import * as Returns from '~/resources/returns';
 import * as ExternalAccounts from '~/resources/external-accounts';
 import { Reversals } from './reversals';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import type * as FormData from 'formdata-node';
 import { Page, PageParams } from '~/pagination';
 import { maybeMultipartFormRequestOptions } from '~/core';
@@ -487,6 +488,32 @@ export type PaymentOrderType =
 
 export interface PaymentOrderCreateParams {
   /**
+   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
+   * represented as 1000 (cents). For RTP, the maximum amount allowed by the network
+   * is $100,000.
+   */
+  amount: number;
+
+  /**
+   * Body param: One of `credit`, `debit`. Describes the direction money is flowing
+   * in the transaction. A `credit` moves money from your account to someone else's.
+   * A `debit` pulls money from someone else's account to your own. Note that wire,
+   * rtp, and check payments will always be `credit`.
+   */
+  direction: 'credit' | 'debit';
+
+  /**
+   * Body param: The ID of one of your organization's internal accounts.
+   */
+  originating_account_id: string;
+
+  /**
+   * Body param: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
+   */
+  type: PaymentOrderType;
+
+  /**
    * Body param:
    */
   accounting?: PaymentOrderCreateParams.Accounting;
@@ -504,13 +531,6 @@ export interface PaymentOrderCreateParams {
   accounting_ledger_class_id?: string | null;
 
   /**
-   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
-   * represented as 1000 (cents). For RTP, the maximum amount allowed by the network
-   * is $100,000.
-   */
-  amount: number;
-
-  /**
    * Body param: The party that will pay the fees for the payment order. Only applies
    * to wire payment orders. Can be one of shared, sender, or receiver, which
    * correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
@@ -526,14 +546,6 @@ export interface PaymentOrderCreateParams {
    * Body param: An optional description for internal use.
    */
   description?: string | null;
-
-  /**
-   * Body param: One of `credit`, `debit`. Describes the direction money is flowing
-   * in the transaction. A `credit` moves money from your account to someone else's.
-   * A `debit` pulls money from someone else's account to your own. Note that wire,
-   * rtp, and check payments will always be `credit`.
-   */
-  direction: 'credit' | 'debit';
 
   /**
    * Body param: An array of documents to be attached to the payment order. Note that
@@ -601,11 +613,6 @@ export interface PaymentOrderCreateParams {
    * settings page.
    */
   nsf_protected?: boolean;
-
-  /**
-   * Body param: The ID of one of your organization's internal accounts.
-   */
-  originating_account_id: string;
 
   /**
    * Body param: If present, this will replace your default company name on
@@ -682,12 +689,6 @@ export interface PaymentOrderCreateParams {
   transaction_monitoring_enabled?: boolean;
 
   /**
-   * Body param: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
-   */
-  type: PaymentOrderType;
-
-  /**
    * Body param: Identifier of the ultimate originator of the payment order.
    */
   ultimate_originating_party_identifier?: string | null;
@@ -720,375 +721,6 @@ export interface PaymentOrderCreateParams {
 }
 
 export namespace PaymentOrderCreateParams {
-  export interface Accounting {
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    account_id?: string | null;
-
-    /**
-     * The ID of one of the class objects in your accounting system. Class objects
-     * track segments of your business independent of client or project. Note that
-     * these will only be accessible if your accounting system has been connected.
-     */
-    class_id?: string | null;
-  }
-
-  /**
-   * Either `receiving_account` or `receiving_account_id` must be present. When using
-   * `receiving_account_id`, you may pass the id of an external account or an
-   * internal account.
-   */
-  export interface ReceivingAccount {
-    account_details?: Array<ReceivingAccount.AccountDetails>;
-
-    /**
-     * Can be `checking`, `savings` or `other`.
-     */
-    account_type?: ExternalAccounts.ExternalAccountType;
-
-    contact_details?: Array<ReceivingAccount.ContactDetails>;
-
-    /**
-     * Specifies a ledger account object that will be created with the external
-     * account. The resulting ledger account is linked to the external account for
-     * auto-ledgering Payment objects. See
-     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-     * for more details.
-     */
-    ledger_account?: ReceivingAccount.LedgerAccount;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-
-    /**
-     * A nickname for the external account. This is only for internal usage and won't
-     * affect any payments
-     */
-    name?: string | null;
-
-    /**
-     * Required if receiving wire payments.
-     */
-    party_address?: ReceivingAccount.PartyAddress;
-
-    party_identifier?: string;
-
-    /**
-     * If this value isn't provided, it will be inherited from the counterparty's name.
-     */
-    party_name?: string;
-
-    /**
-     * Either `individual` or `business`.
-     */
-    party_type?: 'business' | 'individual' | null;
-
-    /**
-     * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
-     * you can pass the processor token in this field.
-     */
-    plaid_processor_token?: string;
-
-    routing_details?: Array<ReceivingAccount.RoutingDetails>;
-  }
-
-  export namespace ReceivingAccount {
-    /**
-     * Required if receiving wire payments.
-     */
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
-    export interface AccountDetails {
-      account_number: string;
-
-      account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
-    }
-
-    export interface RoutingDetails {
-      routing_number: string;
-
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'swift';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
-    }
-
-    /**
-     * Specifies a ledger account object that will be created with the external
-     * account. The resulting ledger account is linked to the external account for
-     * auto-ledgering Payment objects. See
-     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-     * for more details.
-     */
-    export interface LedgerAccount {
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The id of the ledger that this account belongs to.
-       */
-      ledger_id: string;
-
-      /**
-       * The name of the ledger account.
-       */
-      name: string;
-
-      /**
-       * The normal balance of the ledger account.
-       */
-      normal_balance: 'credit' | 'debit';
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent?: number | null;
-
-      /**
-       * The description of the ledger account.
-       */
-      description?: string | null;
-
-      /**
-       * If the ledger account links to another object in Modern Treasury, the id will be
-       * populated here, otherwise null.
-       */
-      ledgerable_id?: string;
-
-      /**
-       * If the ledger account links to another object in Modern Treasury, the type will
-       * be populated here, otherwise null. The value is one of internal_account or
-       * external_account.
-       */
-      ledgerable_type?: 'external_account' | 'internal_account';
-
-      /**
-       * Additional data represented as key-value pairs. Both the key and value must be
-       * strings.
-       */
-      metadata?: Record<string, string>;
-    }
-
-    export interface ContactDetails {
-      contact_identifier?: string;
-
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
-    }
-  }
-
-  /**
-   * Specifies a ledger transaction object that will be created with the payment
-   * order. If the ledger transaction cannot be created, then the payment order
-   * creation will fail. The resulting ledger transaction will mirror the status of
-   * the payment order.
-   */
-  export interface LedgerTransaction {
-    /**
-     * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-     * purposes.
-     */
-    effective_date: string;
-
-    /**
-     * An array of ledger entry objects.
-     */
-    ledger_entries: Array<LedgerTransaction.LedgerEntries>;
-
-    /**
-     * An optional description for internal use.
-     */
-    description?: string | null;
-
-    /**
-     * A unique string to represent the ledger transaction. Only one pending or posted
-     * ledger transaction may have this ID in the ledger.
-     */
-    external_id?: string;
-
-    /**
-     * If the ledger transaction can be reconciled to another object in Modern
-     * Treasury, the id will be populated here, otherwise null.
-     */
-    ledgerable_id?: string;
-
-    /**
-     * If the ledger transaction can be reconciled to another object in Modern
-     * Treasury, the type will be populated here, otherwise null. This can be one of
-     * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
-     */
-    ledgerable_type?:
-      | 'counterparty'
-      | 'expected_payment'
-      | 'incoming_payment_detail'
-      | 'internal_account'
-      | 'line_item'
-      | 'paper_item'
-      | 'payment_order'
-      | 'payment_order_attempt'
-      | 'return'
-      | 'reversal';
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-
-    /**
-     * To post a ledger transaction at creation, use `posted`.
-     */
-    status?: 'archived' | 'pending' | 'posted';
-  }
-
-  export namespace LedgerTransaction {
-    export interface LedgerEntries {
-      /**
-       * Value in specified currency's smallest unit. e.g. $10 would be represented
-       * as 1000. Can be any integer up to 36 digits.
-       */
-      amount: number;
-
-      /**
-       * One of `credit`, `debit`. Describes the direction money is flowing in the
-       * transaction. A `credit` moves money from your account to someone else's. A
-       * `debit` pulls money from someone else's account to your own. Note that wire,
-       * rtp, and check payments will always be `credit`.
-       */
-      direction: 'credit' | 'debit';
-
-      /**
-       * The ledger account that this ledger entry is associated with.
-       */
-      ledger_account_id: string;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s available balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      available_balance_amount?: Record<string, number> | null;
-
-      /**
-       * Lock version of the ledger account. This can be passed when creating a ledger
-       * transaction to only succeed if no ledger transactions have posted since the
-       * given version. See our post about Designing the Ledgers API with Optimistic
-       * Locking for more details.
-       */
-      lock_version?: number | null;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s pending balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      pending_balance_amount?: Record<string, number> | null;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s posted balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      posted_balance_amount?: Record<string, number> | null;
-
-      /**
-       * If true, response will include the balance of the associated ledger account for
-       * the entry.
-       */
-      show_resulting_ledger_account_balances?: boolean | null;
-    }
-  }
-
-  export interface LineItems {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-  }
-
-  export interface Documents {
-    file: FormData.Blob | FormData.File;
-
-    /**
-     * A category given to the document, can be `null`.
-     */
-    document_type?: string;
-  }
-
   export interface Accounting {
     /**
      * The ID of one of your accounting categories. Note that these will only be
@@ -1701,244 +1333,6 @@ export namespace PaymentOrderUpdateParams {
     class_id?: string | null;
   }
 
-  /**
-   * Either `receiving_account` or `receiving_account_id` must be present. When using
-   * `receiving_account_id`, you may pass the id of an external account or an
-   * internal account.
-   */
-  export interface ReceivingAccount {
-    account_details?: Array<ReceivingAccount.AccountDetails>;
-
-    /**
-     * Can be `checking`, `savings` or `other`.
-     */
-    account_type?: ExternalAccounts.ExternalAccountType;
-
-    contact_details?: Array<ReceivingAccount.ContactDetails>;
-
-    /**
-     * Specifies a ledger account object that will be created with the external
-     * account. The resulting ledger account is linked to the external account for
-     * auto-ledgering Payment objects. See
-     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-     * for more details.
-     */
-    ledger_account?: ReceivingAccount.LedgerAccount;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-
-    /**
-     * A nickname for the external account. This is only for internal usage and won't
-     * affect any payments
-     */
-    name?: string | null;
-
-    /**
-     * Required if receiving wire payments.
-     */
-    party_address?: ReceivingAccount.PartyAddress;
-
-    party_identifier?: string;
-
-    /**
-     * If this value isn't provided, it will be inherited from the counterparty's name.
-     */
-    party_name?: string;
-
-    /**
-     * Either `individual` or `business`.
-     */
-    party_type?: 'business' | 'individual' | null;
-
-    /**
-     * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
-     * you can pass the processor token in this field.
-     */
-    plaid_processor_token?: string;
-
-    routing_details?: Array<ReceivingAccount.RoutingDetails>;
-  }
-
-  export namespace ReceivingAccount {
-    /**
-     * Required if receiving wire payments.
-     */
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
-    export interface AccountDetails {
-      account_number: string;
-
-      account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
-    }
-
-    export interface RoutingDetails {
-      routing_number: string;
-
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'swift';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
-    }
-
-    /**
-     * Specifies a ledger account object that will be created with the external
-     * account. The resulting ledger account is linked to the external account for
-     * auto-ledgering Payment objects. See
-     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-     * for more details.
-     */
-    export interface LedgerAccount {
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The id of the ledger that this account belongs to.
-       */
-      ledger_id: string;
-
-      /**
-       * The name of the ledger account.
-       */
-      name: string;
-
-      /**
-       * The normal balance of the ledger account.
-       */
-      normal_balance: 'credit' | 'debit';
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent?: number | null;
-
-      /**
-       * The description of the ledger account.
-       */
-      description?: string | null;
-
-      /**
-       * If the ledger account links to another object in Modern Treasury, the id will be
-       * populated here, otherwise null.
-       */
-      ledgerable_id?: string;
-
-      /**
-       * If the ledger account links to another object in Modern Treasury, the type will
-       * be populated here, otherwise null. The value is one of internal_account or
-       * external_account.
-       */
-      ledgerable_type?: 'external_account' | 'internal_account';
-
-      /**
-       * Additional data represented as key-value pairs. Both the key and value must be
-       * strings.
-       */
-      metadata?: Record<string, string>;
-    }
-
-    export interface ContactDetails {
-      contact_identifier?: string;
-
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
-    }
-  }
-
-  export interface LineItems {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-  }
-
-  export interface Accounting {
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    account_id?: string | null;
-
-    /**
-     * The ID of one of the class objects in your accounting system. Class objects
-     * track segments of your business independent of client or project. Note that
-     * these will only be accessible if your accounting system has been connected.
-     */
-    class_id?: string | null;
-  }
-
   export interface LineItems {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -2239,6 +1633,32 @@ export interface PaymentOrderListParams extends PageParams {
 
 export interface PaymentOrderCreateAsyncParams {
   /**
+   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
+   * represented as 1000 (cents). For RTP, the maximum amount allowed by the network
+   * is $100,000.
+   */
+  amount: number;
+
+  /**
+   * Body param: One of `credit`, `debit`. Describes the direction money is flowing
+   * in the transaction. A `credit` moves money from your account to someone else's.
+   * A `debit` pulls money from someone else's account to your own. Note that wire,
+   * rtp, and check payments will always be `credit`.
+   */
+  direction: 'credit' | 'debit';
+
+  /**
+   * Body param: The ID of one of your organization's internal accounts.
+   */
+  originating_account_id: string;
+
+  /**
+   * Body param: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
+   */
+  type: PaymentOrderType;
+
+  /**
    * Body param:
    */
   accounting?: PaymentOrderCreateAsyncParams.Accounting;
@@ -2256,13 +1676,6 @@ export interface PaymentOrderCreateAsyncParams {
   accounting_ledger_class_id?: string | null;
 
   /**
-   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
-   * represented as 1000 (cents). For RTP, the maximum amount allowed by the network
-   * is $100,000.
-   */
-  amount: number;
-
-  /**
    * Body param: The party that will pay the fees for the payment order. Only applies
    * to wire payment orders. Can be one of shared, sender, or receiver, which
    * correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
@@ -2278,14 +1691,6 @@ export interface PaymentOrderCreateAsyncParams {
    * Body param: An optional description for internal use.
    */
   description?: string | null;
-
-  /**
-   * Body param: One of `credit`, `debit`. Describes the direction money is flowing
-   * in the transaction. A `credit` moves money from your account to someone else's.
-   * A `debit` pulls money from someone else's account to your own. Note that wire,
-   * rtp, and check payments will always be `credit`.
-   */
-  direction: 'credit' | 'debit';
 
   /**
    * Body param: Date transactions are to be posted to the participants' account.
@@ -2346,11 +1751,6 @@ export interface PaymentOrderCreateAsyncParams {
    * settings page.
    */
   nsf_protected?: boolean;
-
-  /**
-   * Body param: The ID of one of your organization's internal accounts.
-   */
-  originating_account_id: string;
 
   /**
    * Body param: If present, this will replace your default company name on
@@ -2427,12 +1827,6 @@ export interface PaymentOrderCreateAsyncParams {
   transaction_monitoring_enabled?: boolean;
 
   /**
-   * Body param: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
-   */
-  type: PaymentOrderType;
-
-  /**
    * Body param: Identifier of the ultimate originator of the payment order.
    */
   ultimate_originating_party_identifier?: string | null;
@@ -2476,366 +1870,6 @@ export namespace PaymentOrderCreateAsyncParams {
   }
 
   /**
-   * Either `receiving_account` or `receiving_account_id` must be present. When using
-   * `receiving_account_id`, you may pass the id of an external account or an
-   * internal account.
-   */
-  export interface ReceivingAccount {
-    account_details?: Array<ReceivingAccount.AccountDetails>;
-
-    /**
-     * Can be `checking`, `savings` or `other`.
-     */
-    account_type?: ExternalAccounts.ExternalAccountType;
-
-    contact_details?: Array<ReceivingAccount.ContactDetails>;
-
-    /**
-     * Specifies a ledger account object that will be created with the external
-     * account. The resulting ledger account is linked to the external account for
-     * auto-ledgering Payment objects. See
-     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-     * for more details.
-     */
-    ledger_account?: ReceivingAccount.LedgerAccount;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-
-    /**
-     * A nickname for the external account. This is only for internal usage and won't
-     * affect any payments
-     */
-    name?: string | null;
-
-    /**
-     * Required if receiving wire payments.
-     */
-    party_address?: ReceivingAccount.PartyAddress;
-
-    party_identifier?: string;
-
-    /**
-     * If this value isn't provided, it will be inherited from the counterparty's name.
-     */
-    party_name?: string;
-
-    /**
-     * Either `individual` or `business`.
-     */
-    party_type?: 'business' | 'individual' | null;
-
-    /**
-     * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
-     * you can pass the processor token in this field.
-     */
-    plaid_processor_token?: string;
-
-    routing_details?: Array<ReceivingAccount.RoutingDetails>;
-  }
-
-  export namespace ReceivingAccount {
-    /**
-     * Required if receiving wire payments.
-     */
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
-    export interface AccountDetails {
-      account_number: string;
-
-      account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
-    }
-
-    export interface RoutingDetails {
-      routing_number: string;
-
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'swift';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
-    }
-
-    /**
-     * Specifies a ledger account object that will be created with the external
-     * account. The resulting ledger account is linked to the external account for
-     * auto-ledgering Payment objects. See
-     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-     * for more details.
-     */
-    export interface LedgerAccount {
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The id of the ledger that this account belongs to.
-       */
-      ledger_id: string;
-
-      /**
-       * The name of the ledger account.
-       */
-      name: string;
-
-      /**
-       * The normal balance of the ledger account.
-       */
-      normal_balance: 'credit' | 'debit';
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent?: number | null;
-
-      /**
-       * The description of the ledger account.
-       */
-      description?: string | null;
-
-      /**
-       * If the ledger account links to another object in Modern Treasury, the id will be
-       * populated here, otherwise null.
-       */
-      ledgerable_id?: string;
-
-      /**
-       * If the ledger account links to another object in Modern Treasury, the type will
-       * be populated here, otherwise null. The value is one of internal_account or
-       * external_account.
-       */
-      ledgerable_type?: 'external_account' | 'internal_account';
-
-      /**
-       * Additional data represented as key-value pairs. Both the key and value must be
-       * strings.
-       */
-      metadata?: Record<string, string>;
-    }
-
-    export interface ContactDetails {
-      contact_identifier?: string;
-
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
-    }
-  }
-
-  /**
-   * Specifies a ledger transaction object that will be created with the payment
-   * order. If the ledger transaction cannot be created, then the payment order
-   * creation will fail. The resulting ledger transaction will mirror the status of
-   * the payment order.
-   */
-  export interface LedgerTransaction {
-    /**
-     * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-     * purposes.
-     */
-    effective_date: string;
-
-    /**
-     * An array of ledger entry objects.
-     */
-    ledger_entries: Array<LedgerTransaction.LedgerEntries>;
-
-    /**
-     * An optional description for internal use.
-     */
-    description?: string | null;
-
-    /**
-     * A unique string to represent the ledger transaction. Only one pending or posted
-     * ledger transaction may have this ID in the ledger.
-     */
-    external_id?: string;
-
-    /**
-     * If the ledger transaction can be reconciled to another object in Modern
-     * Treasury, the id will be populated here, otherwise null.
-     */
-    ledgerable_id?: string;
-
-    /**
-     * If the ledger transaction can be reconciled to another object in Modern
-     * Treasury, the type will be populated here, otherwise null. This can be one of
-     * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
-     */
-    ledgerable_type?:
-      | 'counterparty'
-      | 'expected_payment'
-      | 'incoming_payment_detail'
-      | 'internal_account'
-      | 'line_item'
-      | 'paper_item'
-      | 'payment_order'
-      | 'payment_order_attempt'
-      | 'return'
-      | 'reversal';
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-
-    /**
-     * To post a ledger transaction at creation, use `posted`.
-     */
-    status?: 'archived' | 'pending' | 'posted';
-  }
-
-  export namespace LedgerTransaction {
-    export interface LedgerEntries {
-      /**
-       * Value in specified currency's smallest unit. e.g. $10 would be represented
-       * as 1000. Can be any integer up to 36 digits.
-       */
-      amount: number;
-
-      /**
-       * One of `credit`, `debit`. Describes the direction money is flowing in the
-       * transaction. A `credit` moves money from your account to someone else's. A
-       * `debit` pulls money from someone else's account to your own. Note that wire,
-       * rtp, and check payments will always be `credit`.
-       */
-      direction: 'credit' | 'debit';
-
-      /**
-       * The ledger account that this ledger entry is associated with.
-       */
-      ledger_account_id: string;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s available balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      available_balance_amount?: Record<string, number> | null;
-
-      /**
-       * Lock version of the ledger account. This can be passed when creating a ledger
-       * transaction to only succeed if no ledger transactions have posted since the
-       * given version. See our post about Designing the Ledgers API with Optimistic
-       * Locking for more details.
-       */
-      lock_version?: number | null;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s pending balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      pending_balance_amount?: Record<string, number> | null;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s posted balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      posted_balance_amount?: Record<string, number> | null;
-
-      /**
-       * If true, response will include the balance of the associated ledger account for
-       * the entry.
-       */
-      show_resulting_ledger_account_balances?: boolean | null;
-    }
-  }
-
-  export interface LineItems {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: Record<string, string>;
-  }
-
-  export interface Accounting {
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    account_id?: string | null;
-
-    /**
-     * The ID of one of the class objects in your accounting system. Class objects
-     * track segments of your business independent of client or project. Note that
-     * these will only be accessible if your accounting system has been connected.
-     */
-    class_id?: string | null;
-  }
-
-  /**
    * Specifies a ledger transaction object that will be created with the payment
    * order. If the ledger transaction cannot be created, then the payment order
    * creation will fail. The resulting ledger transaction will mirror the status of
@@ -3179,4 +2213,21 @@ export namespace PaymentOrderCreateAsyncParams {
       contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
   }
+}
+
+export namespace PaymentOrders {
+  export import PaymentOrder = API.PaymentOrder;
+  export import PaymentOrderSubtype = API.PaymentOrderSubtype;
+  export import PaymentOrderType = API.PaymentOrderType;
+  export import PaymentOrdersPage = API.PaymentOrdersPage;
+  export import PaymentOrderCreateParams = API.PaymentOrderCreateParams;
+  export import PaymentOrderUpdateParams = API.PaymentOrderUpdateParams;
+  export import PaymentOrderListParams = API.PaymentOrderListParams;
+  export import PaymentOrderCreateAsyncParams = API.PaymentOrderCreateAsyncParams;
+
+  export import Reversals = API.Reversals;
+  export import Reversal = API.Reversal;
+  export import ReversalsPage = API.ReversalsPage;
+  export import ReversalCreateParams = API.ReversalCreateParams;
+  export import ReversalListParams = API.ReversalListParams;
 }

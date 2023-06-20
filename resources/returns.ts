@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Returns extends APIResource {
@@ -295,6 +296,17 @@ export namespace ReturnObject {
 
 export interface ReturnCreateParams {
   /**
+   * Body param: The ID of the object being returned or `null`.
+   */
+  returnable_id: string | null;
+
+  /**
+   * Body param: The type of object being returned. Currently, this may only be
+   * incoming_payment_detail.
+   */
+  returnable_type: 'incoming_payment_detail';
+
+  /**
    * Body param: Some returns may include additional information from the bank. In
    * these cases, this string will be present.
    */
@@ -363,17 +375,6 @@ export interface ReturnCreateParams {
   reason?: string | null;
 
   /**
-   * Body param: The ID of the object being returned or `null`.
-   */
-  returnable_id: string | null;
-
-  /**
-   * Body param: The type of object being returned. Currently, this may only be
-   * incoming_payment_detail.
-   */
-  returnable_type: 'incoming_payment_detail';
-
-  /**
    * Header param: This key should be something unique, preferably something like an
    * UUID.
    */
@@ -403,4 +404,11 @@ export interface ReturnListParams extends PageParams {
    * Must be accompanied by `returnable_id`.
    */
   returnable_type?: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'return' | 'reversal';
+}
+
+export namespace Returns {
+  export import ReturnObject = API.ReturnObject;
+  export import ReturnObjectsPage = API.ReturnObjectsPage;
+  export import ReturnCreateParams = API.ReturnCreateParams;
+  export import ReturnListParams = API.ReturnListParams;
 }

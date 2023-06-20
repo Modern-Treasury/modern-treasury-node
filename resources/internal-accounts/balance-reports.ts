@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class BalanceReports extends APIResource {
@@ -173,4 +174,10 @@ export interface BalanceReportListParams extends PageParams {
    * `real_time`, or `other`.
    */
   balance_report_type?: 'intraday' | 'other' | 'previous_day' | 'real_time';
+}
+
+export namespace BalanceReports {
+  export import BalanceReport = API.BalanceReport;
+  export import BalanceReportsPage = API.BalanceReportsPage;
+  export import BalanceReportListParams = API.BalanceReportListParams;
 }

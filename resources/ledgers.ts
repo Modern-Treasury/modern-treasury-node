@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Ledgers extends APIResource {
@@ -107,6 +108,11 @@ export interface Ledger {
 
 export interface LedgerCreateParams {
   /**
+   * Body param: The name of the ledger.
+   */
+  name: string;
+
+  /**
    * Body param: An optional free-form description for internal use.
    */
   description?: string | null;
@@ -116,11 +122,6 @@ export interface LedgerCreateParams {
    * value must be strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Body param: The name of the ledger.
-   */
-  name: string;
 
   /**
    * Header param: This key should be something unique, preferably something like an
@@ -161,4 +162,12 @@ export interface LedgerListParams extends PageParams {
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
   updated_at?: Record<string, string>;
+}
+
+export namespace Ledgers {
+  export import Ledger = API.Ledger;
+  export import LedgersPage = API.LedgersPage;
+  export import LedgerCreateParams = API.LedgerCreateParams;
+  export import LedgerUpdateParams = API.LedgerUpdateParams;
+  export import LedgerListParams = API.LedgerListParams;
 }

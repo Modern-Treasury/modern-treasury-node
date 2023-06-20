@@ -12,29 +12,23 @@ describe('resource ledgerAccounts', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.ledgerAccounts.create({
       currency: 'string',
-      currency_exponent: 0,
-      description: 'string',
       ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      ledgerable_type: 'external_account',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       name: 'string',
       normal_balance: 'credit',
-      'Idempotency-Key': 'string',
     });
   });
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerAccounts.create({
       currency: 'string',
+      ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      name: 'string',
+      normal_balance: 'credit',
       currency_exponent: 0,
       description: 'string',
-      ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       ledgerable_type: 'external_account',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
-      normal_balance: 'credit',
       'Idempotency-Key': 'string',
     });
   });

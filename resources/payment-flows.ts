@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class PaymentFlows extends APIResource {
@@ -216,4 +217,13 @@ export interface PaymentFlowListParams extends PageParams {
   receiving_account_id?: string;
 
   status?: string;
+}
+
+export namespace PaymentFlows {
+  export import PaymentFlow = API.PaymentFlow;
+  export import PaymentFlowsPage = API.PaymentFlowsPage;
+  export import PaymentFlowCreateParams = API.PaymentFlowCreateParams;
+  export import PaymentFlowRetrieveParams = API.PaymentFlowRetrieveParams;
+  export import PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;
+  export import PaymentFlowListParams = API.PaymentFlowListParams;
 }

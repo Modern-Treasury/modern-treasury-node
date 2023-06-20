@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import type * as FormData from 'formdata-node';
 import { Page, PageParams } from '~/pagination';
 import { multipartFormRequestOptions } from '~/core';
@@ -214,14 +215,14 @@ export namespace Document {
 
 export interface DocumentCreateParams {
   /**
-   * Body param: A category given to the document, can be `null`.
-   */
-  document_type?: string;
-
-  /**
    * Body param:
    */
   file: FormData.Blob | FormData.File;
+
+  /**
+   * Body param: A category given to the document, can be `null`.
+   */
+  document_type?: string;
 
   /**
    * Header param: This key should be something unique, preferably something like an
@@ -231,3 +232,10 @@ export interface DocumentCreateParams {
 }
 
 export interface DocumentListParams extends PageParams {}
+
+export namespace Documents {
+  export import Document = API.Document;
+  export import DocumentsPage = API.DocumentsPage;
+  export import DocumentCreateParams = API.DocumentCreateParams;
+  export import DocumentListParams = API.DocumentListParams;
+}

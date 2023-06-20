@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LineItems extends APIResource {
@@ -163,3 +164,10 @@ export interface LineItemUpdateParams {
 }
 
 export interface LineItemListParams extends PageParams {}
+
+export namespace LineItems {
+  export import LineItem = API.LineItem;
+  export import LineItemsPage = API.LineItemsPage;
+  export import LineItemUpdateParams = API.LineItemUpdateParams;
+  export import LineItemListParams = API.LineItemListParams;
+}

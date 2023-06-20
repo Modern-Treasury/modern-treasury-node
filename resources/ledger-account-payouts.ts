@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class LedgerAccountPayouts extends APIResource {
@@ -148,6 +149,18 @@ export interface LedgerAccountPayout {
 
 export interface LedgerAccountPayoutCreateParams {
   /**
+   * Body param: The id of the funding ledger account that sends to or receives funds
+   * from the payout ledger account.
+   */
+  funding_ledger_account_id: string;
+
+  /**
+   * Body param: The id of the payout ledger account whose ledger entries are queried
+   * against, and its balance is reduced as a result.
+   */
+  payout_ledger_account_id: string;
+
+  /**
    * Body param: The description of the ledger account payout.
    */
   description?: string | null;
@@ -160,22 +173,10 @@ export interface LedgerAccountPayoutCreateParams {
   effective_at_upper_bound?: string | null;
 
   /**
-   * Body param: The id of the funding ledger account that sends to or receives funds
-   * from the payout ledger account.
-   */
-  funding_ledger_account_id: string;
-
-  /**
    * Body param: Additional data represented as key-value pairs. Both the key and
    * value must be strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Body param: The id of the payout ledger account whose ledger entries are queried
-   * against, and its balance is reduced as a result.
-   */
-  payout_ledger_account_id: string;
 
   /**
    * Body param: The status of the ledger account payout. It is set to `pending` by
@@ -211,4 +212,12 @@ export interface LedgerAccountPayoutUpdateParams {
 
 export interface LedgerAccountPayoutListParams extends PageParams {
   payout_ledger_account_id?: string;
+}
+
+export namespace LedgerAccountPayouts {
+  export import LedgerAccountPayout = API.LedgerAccountPayout;
+  export import LedgerAccountPayoutsPage = API.LedgerAccountPayoutsPage;
+  export import LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
+  export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
+  export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
 }

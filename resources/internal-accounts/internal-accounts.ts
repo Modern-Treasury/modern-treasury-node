@@ -8,6 +8,7 @@ import * as RoutingDetails from '~/resources/routing-details';
 import * as Connections from '~/resources/connections';
 import { BalanceReports } from './balance-reports';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class InternalAccounts extends APIResource {
@@ -211,25 +212,30 @@ export interface InternalAccountCreateParams {
   connection_id: string;
 
   /**
-   * Body param: The Counterparty associated to this account.
-   */
-  counterparty_id?: string;
-
-  /**
    * Body param: Either "USD" or "CAD". Internal accounts created at Increase only
    * supports "USD".
    */
   currency: 'USD' | 'CAD';
 
   /**
-   * Body param: The identifier of the entity at Increase which owns the account.
-   */
-  entity_id?: string;
-
-  /**
    * Body param: The nickname of the account.
    */
   name: string;
+
+  /**
+   * Body param: The legal name of the entity which owns the account.
+   */
+  party_name: string;
+
+  /**
+   * Body param: The Counterparty associated to this account.
+   */
+  counterparty_id?: string;
+
+  /**
+   * Body param: The identifier of the entity at Increase which owns the account.
+   */
+  entity_id?: string;
 
   /**
    * Body param: The parent internal account of this new account.
@@ -242,11 +248,6 @@ export interface InternalAccountCreateParams {
   party_address?: InternalAccountCreateParams.PartyAddress;
 
   /**
-   * Body param: The legal name of the entity which owns the account.
-   */
-  party_name: string;
-
-  /**
    * Header param: This key should be something unique, preferably something like an
    * UUID.
    */
@@ -254,35 +255,6 @@ export interface InternalAccountCreateParams {
 }
 
 export namespace InternalAccountCreateParams {
-  /**
-   * The address associated with the owner or null.
-   */
-  export interface PartyAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
   /**
    * The address associated with the owner or null.
    */
@@ -343,7 +315,7 @@ export interface InternalAccountListParams extends PageParams {
   counterparty_id?: string;
 
   /**
-   * Three-letter ISO currency code.
+   * The currency associated with the internal account.
    */
   currency?: Shared.Currency | null;
 
@@ -380,4 +352,17 @@ export interface InternalAccountListParams extends PageParams {
     | 'sepa'
     | 'signet'
     | 'wire';
+}
+
+export namespace InternalAccounts {
+  export import InternalAccount = API.InternalAccount;
+  export import InternalAccountsPage = API.InternalAccountsPage;
+  export import InternalAccountCreateParams = API.InternalAccountCreateParams;
+  export import InternalAccountUpdateParams = API.InternalAccountUpdateParams;
+  export import InternalAccountListParams = API.InternalAccountListParams;
+
+  export import BalanceReports = API.BalanceReports;
+  export import BalanceReport = API.BalanceReport;
+  export import BalanceReportsPage = API.BalanceReportsPage;
+  export import BalanceReportListParams = API.BalanceReportListParams;
 }

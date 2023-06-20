@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class RoutingDetails extends APIResource {
@@ -195,6 +196,27 @@ export namespace RoutingDetail {
 
 export interface RoutingDetailCreateParams {
   /**
+   * Body param: The routing number of the bank.
+   */
+  routing_number: string;
+
+  /**
+   * Body param: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`,
+   * `in_ifsc`, `cnaps`.
+   */
+  routing_number_type:
+    | 'aba'
+    | 'au_bsb'
+    | 'br_codigo'
+    | 'ca_cpa'
+    | 'chips'
+    | 'cnaps'
+    | 'gb_sort_code'
+    | 'in_ifsc'
+    | 'my_branch_code'
+    | 'swift';
+
+  /**
    * Body param: If the routing detail is to be used for a specific payment type this
    * field will be populated, otherwise null.
    */
@@ -219,27 +241,6 @@ export interface RoutingDetailCreateParams {
     | null;
 
   /**
-   * Body param: The routing number of the bank.
-   */
-  routing_number: string;
-
-  /**
-   * Body param: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`,
-   * `in_ifsc`, `cnaps`.
-   */
-  routing_number_type:
-    | 'aba'
-    | 'au_bsb'
-    | 'br_codigo'
-    | 'ca_cpa'
-    | 'chips'
-    | 'cnaps'
-    | 'gb_sort_code'
-    | 'in_ifsc'
-    | 'my_branch_code'
-    | 'swift';
-
-  /**
    * Header param: This key should be something unique, preferably something like an
    * UUID.
    */
@@ -247,3 +248,10 @@ export interface RoutingDetailCreateParams {
 }
 
 export interface RoutingDetailListParams extends PageParams {}
+
+export namespace RoutingDetails {
+  export import RoutingDetail = API.RoutingDetail;
+  export import RoutingDetailsPage = API.RoutingDetailsPage;
+  export import RoutingDetailCreateParams = API.RoutingDetailCreateParams;
+  export import RoutingDetailListParams = API.RoutingDetailListParams;
+}

@@ -12,19 +12,7 @@ describe('resource reversals', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.paymentOrders.reversals.create(
       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      {
-        ledger_transaction: {
-          effective_date: '2019-12-27',
-          ledger_entries: [
-            { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
-            { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
-            { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
-          ],
-        },
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-        reason: 'duplicate',
-        'Idempotency-Key': 'string',
-      },
+      { reason: 'duplicate' },
     );
   });
 
@@ -32,6 +20,7 @@ describe('resource reversals', () => {
     const response = await modernTreasury.paymentOrders.reversals.create(
       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       {
+        reason: 'duplicate',
         ledger_transaction: {
           description: 'string',
           status: 'archived',
@@ -74,7 +63,6 @@ describe('resource reversals', () => {
           ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         },
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-        reason: 'duplicate',
         'Idempotency-Key': 'string',
       },
     );
