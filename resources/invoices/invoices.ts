@@ -73,7 +73,7 @@ export interface Invoice {
   /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
-  contact_details: Array<Invoice.ContactDetails>;
+  contact_details: Array<Invoice.ContactDetail>;
 
   /**
    * The counterparty's billing address.
@@ -163,7 +163,7 @@ export interface Invoice {
 }
 
 export namespace Invoice {
-  export interface ContactDetails {
+  export interface ContactDetail {
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';
@@ -292,7 +292,7 @@ export interface InvoiceCreateParams {
   /**
    * Body param: The invoicer's contact details displayed at the top of the invoice.
    */
-  contact_details?: Array<InvoiceCreateParams.ContactDetails>;
+  contact_details?: Array<InvoiceCreateParams.ContactDetail>;
 
   /**
    * Body param: The counterparty's billing address.
@@ -329,7 +329,7 @@ export interface InvoiceCreateParams {
 }
 
 export namespace InvoiceCreateParams {
-  export interface ContactDetails {
+  export interface ContactDetail {
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';
@@ -443,7 +443,7 @@ export interface InvoiceUpdateParams {
   /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
-  contact_details?: Array<InvoiceUpdateParams.ContactDetails>;
+  contact_details?: Array<InvoiceUpdateParams.ContactDetail>;
 
   /**
    * The counterparty's billing address.
@@ -500,7 +500,7 @@ export interface InvoiceUpdateParams {
 }
 
 export namespace InvoiceUpdateParams {
-  export interface ContactDetails {
+  export interface ContactDetail {
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';

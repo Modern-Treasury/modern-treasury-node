@@ -69,7 +69,7 @@ export interface LedgerTransactionVersion {
   /**
    * An array of ledger entry objects.
    */
-  ledger_entries: Array<LedgerTransactionVersion.LedgerEntries>;
+  ledger_entries: Array<LedgerTransactionVersion.LedgerEntry>;
 
   /**
    * The ID of the ledger this ledger transaction belongs to.
@@ -137,7 +137,7 @@ export interface LedgerTransactionVersion {
 }
 
 export namespace LedgerTransactionVersion {
-  export interface LedgerEntries {
+  export interface LedgerEntry {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
      * as 1000. Can be any integer up to 36 digits.
@@ -201,7 +201,7 @@ export namespace LedgerTransactionVersion {
      * https://docs.moderntreasury.com/docs/transaction-status-and-balances for more
      * details.
      */
-    resulting_ledger_account_balances: LedgerEntries.ResultingLedgerAccountBalances | null;
+    resulting_ledger_account_balances: LedgerEntry.ResultingLedgerAccountBalances | null;
 
     /**
      * Equal to the state of the ledger transaction when the ledger entry was created.
@@ -210,7 +210,7 @@ export namespace LedgerTransactionVersion {
     status: 'archived' | 'pending' | 'posted';
   }
 
-  export namespace LedgerEntries {
+  export namespace LedgerEntry {
     /**
      * The pending, posted, and available balances for this ledger entry's ledger
      * account. The posted balance is the sum of all posted entries on the account. The

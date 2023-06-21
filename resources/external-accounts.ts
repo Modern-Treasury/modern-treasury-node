@@ -132,7 +132,7 @@ export interface ExternalAccount {
    */
   account_type: ExternalAccountType;
 
-  contact_details: Array<ExternalAccount.ContactDetails>;
+  contact_details: Array<ExternalAccount.ContactDetail>;
 
   counterparty_id: string | null;
 
@@ -234,7 +234,7 @@ export namespace ExternalAccount {
     updated_at: string;
   }
 
-  export interface ContactDetails {
+  export interface ContactDetail {
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';
@@ -278,7 +278,7 @@ export interface ExternalAccountCreateParams {
   /**
    * Body param:
    */
-  account_details?: Array<ExternalAccountCreateParams.AccountDetails>;
+  account_details?: Array<ExternalAccountCreateParams.AccountDetail>;
 
   /**
    * Body param: Can be `checking`, `savings` or `other`.
@@ -288,7 +288,7 @@ export interface ExternalAccountCreateParams {
   /**
    * Body param:
    */
-  contact_details?: Array<ExternalAccountCreateParams.ContactDetails>;
+  contact_details?: Array<ExternalAccountCreateParams.ContactDetail>;
 
   /**
    * Body param: Specifies a ledger account object that will be created with the
@@ -341,7 +341,7 @@ export interface ExternalAccountCreateParams {
   /**
    * Body param:
    */
-  routing_details?: Array<ExternalAccountCreateParams.RoutingDetails>;
+  routing_details?: Array<ExternalAccountCreateParams.RoutingDetail>;
 
   /**
    * Header param: This key should be something unique, preferably something like an
@@ -351,13 +351,13 @@ export interface ExternalAccountCreateParams {
 }
 
 export namespace ExternalAccountCreateParams {
-  export interface AccountDetails {
+  export interface AccountDetail {
     account_number: string;
 
     account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
   }
 
-  export interface ContactDetails {
+  export interface ContactDetail {
     contact_identifier?: string;
 
     contact_identifier_type?: 'email' | 'phone_number' | 'website';
@@ -450,7 +450,7 @@ export namespace ExternalAccountCreateParams {
     region?: string | null;
   }
 
-  export interface RoutingDetails {
+  export interface RoutingDetail {
     routing_number: string;
 
     routing_number_type:

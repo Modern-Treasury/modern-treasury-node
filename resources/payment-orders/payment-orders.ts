@@ -256,7 +256,7 @@ export interface PaymentOrder {
 
   receiving_account_type: 'internal_account' | 'external_account';
 
-  reference_numbers: Array<PaymentOrder.ReferenceNumbers>;
+  reference_numbers: Array<PaymentOrder.ReferenceNumber>;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -364,7 +364,7 @@ export namespace PaymentOrder {
     class_id?: string | null;
   }
 
-  export interface ReferenceNumbers {
+  export interface ReferenceNumber {
     created_at: string;
 
     id: string;
@@ -552,7 +552,7 @@ export interface PaymentOrderCreateParams {
    * if you attach documents, the request's content type must be
    * `multipart/form-data`.
    */
-  documents?: Array<PaymentOrderCreateParams.Documents>;
+  documents?: Array<PaymentOrderCreateParams.Document>;
 
   /**
    * Body param: Date transactions are to be posted to the participants' account.
@@ -599,7 +599,7 @@ export interface PaymentOrderCreateParams {
    * Body param: An array of line items that must sum up to the amount of the payment
    * order.
    */
-  line_items?: Array<PaymentOrderCreateParams.LineItems>;
+  line_items?: Array<PaymentOrderCreateParams.LineItem>;
 
   /**
    * Body param: Additional data represented as key-value pairs. Both the key and
@@ -736,7 +736,7 @@ export namespace PaymentOrderCreateParams {
     class_id?: string | null;
   }
 
-  export interface Documents {
+  export interface Document {
     file: FormData.Blob | FormData.File;
 
     /**
@@ -761,7 +761,7 @@ export namespace PaymentOrderCreateParams {
     /**
      * An array of ledger entry objects.
      */
-    ledger_entries: Array<LedgerTransaction.LedgerEntries>;
+    ledger_entries: Array<LedgerTransaction.LedgerEntry>;
 
     /**
      * An optional description for internal use.
@@ -810,7 +810,7 @@ export namespace PaymentOrderCreateParams {
   }
 
   export namespace LedgerTransaction {
-    export interface LedgerEntries {
+    export interface LedgerEntry {
       /**
        * Value in specified currency's smallest unit. e.g. $10 would be represented
        * as 1000. Can be any integer up to 36 digits.
@@ -867,7 +867,7 @@ export namespace PaymentOrderCreateParams {
     }
   }
 
-  export interface LineItems {
+  export interface LineItem {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
      * as 1000.
@@ -898,14 +898,14 @@ export namespace PaymentOrderCreateParams {
    * internal account.
    */
   export interface ReceivingAccount {
-    account_details?: Array<ReceivingAccount.AccountDetails>;
+    account_details?: Array<ReceivingAccount.AccountDetail>;
 
     /**
      * Can be `checking`, `savings` or `other`.
      */
     account_type?: ExternalAccounts.ExternalAccountType;
 
-    contact_details?: Array<ReceivingAccount.ContactDetails>;
+    contact_details?: Array<ReceivingAccount.ContactDetail>;
 
     /**
      * Specifies a ledger account object that will be created with the external
@@ -951,7 +951,7 @@ export namespace PaymentOrderCreateParams {
      */
     plaid_processor_token?: string;
 
-    routing_details?: Array<ReceivingAccount.RoutingDetails>;
+    routing_details?: Array<ReceivingAccount.RoutingDetail>;
   }
 
   export namespace ReceivingAccount {
@@ -984,13 +984,13 @@ export namespace PaymentOrderCreateParams {
       region?: string | null;
     }
 
-    export interface AccountDetails {
+    export interface AccountDetail {
       account_number: string;
 
       account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
-    export interface RoutingDetails {
+    export interface RoutingDetail {
       routing_number: string;
 
       routing_number_type:
@@ -1083,7 +1083,7 @@ export namespace PaymentOrderCreateParams {
       metadata?: Record<string, string>;
     }
 
-    export interface ContactDetails {
+    export interface ContactDetail {
       contact_identifier?: string;
 
       contact_identifier_type?: 'email' | 'phone_number' | 'website';
@@ -1177,7 +1177,7 @@ export interface PaymentOrderUpdateParams {
   /**
    * An array of line items that must sum up to the amount of the payment order.
    */
-  line_items?: Array<PaymentOrderUpdateParams.LineItems>;
+  line_items?: Array<PaymentOrderUpdateParams.LineItem>;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -1333,7 +1333,7 @@ export namespace PaymentOrderUpdateParams {
     class_id?: string | null;
   }
 
-  export interface LineItems {
+  export interface LineItem {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
      * as 1000.
@@ -1364,14 +1364,14 @@ export namespace PaymentOrderUpdateParams {
    * internal account.
    */
   export interface ReceivingAccount {
-    account_details?: Array<ReceivingAccount.AccountDetails>;
+    account_details?: Array<ReceivingAccount.AccountDetail>;
 
     /**
      * Can be `checking`, `savings` or `other`.
      */
     account_type?: ExternalAccounts.ExternalAccountType;
 
-    contact_details?: Array<ReceivingAccount.ContactDetails>;
+    contact_details?: Array<ReceivingAccount.ContactDetail>;
 
     /**
      * Specifies a ledger account object that will be created with the external
@@ -1417,7 +1417,7 @@ export namespace PaymentOrderUpdateParams {
      */
     plaid_processor_token?: string;
 
-    routing_details?: Array<ReceivingAccount.RoutingDetails>;
+    routing_details?: Array<ReceivingAccount.RoutingDetail>;
   }
 
   export namespace ReceivingAccount {
@@ -1450,13 +1450,13 @@ export namespace PaymentOrderUpdateParams {
       region?: string | null;
     }
 
-    export interface AccountDetails {
+    export interface AccountDetail {
       account_number: string;
 
       account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
-    export interface RoutingDetails {
+    export interface RoutingDetail {
       routing_number: string;
 
       routing_number_type:
@@ -1549,7 +1549,7 @@ export namespace PaymentOrderUpdateParams {
       metadata?: Record<string, string>;
     }
 
-    export interface ContactDetails {
+    export interface ContactDetail {
       contact_identifier?: string;
 
       contact_identifier_type?: 'email' | 'phone_number' | 'website';
@@ -1737,7 +1737,7 @@ export interface PaymentOrderCreateAsyncParams {
    * Body param: An array of line items that must sum up to the amount of the payment
    * order.
    */
-  line_items?: Array<PaymentOrderCreateAsyncParams.LineItems>;
+  line_items?: Array<PaymentOrderCreateAsyncParams.LineItem>;
 
   /**
    * Body param: Additional data represented as key-value pairs. Both the key and
@@ -1885,7 +1885,7 @@ export namespace PaymentOrderCreateAsyncParams {
     /**
      * An array of ledger entry objects.
      */
-    ledger_entries: Array<LedgerTransaction.LedgerEntries>;
+    ledger_entries: Array<LedgerTransaction.LedgerEntry>;
 
     /**
      * An optional description for internal use.
@@ -1934,7 +1934,7 @@ export namespace PaymentOrderCreateAsyncParams {
   }
 
   export namespace LedgerTransaction {
-    export interface LedgerEntries {
+    export interface LedgerEntry {
       /**
        * Value in specified currency's smallest unit. e.g. $10 would be represented
        * as 1000. Can be any integer up to 36 digits.
@@ -1991,7 +1991,7 @@ export namespace PaymentOrderCreateAsyncParams {
     }
   }
 
-  export interface LineItems {
+  export interface LineItem {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
      * as 1000.
@@ -2022,14 +2022,14 @@ export namespace PaymentOrderCreateAsyncParams {
    * internal account.
    */
   export interface ReceivingAccount {
-    account_details?: Array<ReceivingAccount.AccountDetails>;
+    account_details?: Array<ReceivingAccount.AccountDetail>;
 
     /**
      * Can be `checking`, `savings` or `other`.
      */
     account_type?: ExternalAccounts.ExternalAccountType;
 
-    contact_details?: Array<ReceivingAccount.ContactDetails>;
+    contact_details?: Array<ReceivingAccount.ContactDetail>;
 
     /**
      * Specifies a ledger account object that will be created with the external
@@ -2075,7 +2075,7 @@ export namespace PaymentOrderCreateAsyncParams {
      */
     plaid_processor_token?: string;
 
-    routing_details?: Array<ReceivingAccount.RoutingDetails>;
+    routing_details?: Array<ReceivingAccount.RoutingDetail>;
   }
 
   export namespace ReceivingAccount {
@@ -2108,13 +2108,13 @@ export namespace PaymentOrderCreateAsyncParams {
       region?: string | null;
     }
 
-    export interface AccountDetails {
+    export interface AccountDetail {
       account_number: string;
 
       account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
-    export interface RoutingDetails {
+    export interface RoutingDetail {
       routing_number: string;
 
       routing_number_type:
@@ -2207,7 +2207,7 @@ export namespace PaymentOrderCreateAsyncParams {
       metadata?: Record<string, string>;
     }
 
-    export interface ContactDetails {
+    export interface ContactDetail {
       contact_identifier?: string;
 
       contact_identifier_type?: 'email' | 'phone_number' | 'website';
