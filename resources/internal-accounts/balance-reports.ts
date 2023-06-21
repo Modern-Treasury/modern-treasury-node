@@ -66,7 +66,7 @@ export interface BalanceReport {
   /**
    * An array of `Balance` objects.
    */
-  balances: Array<BalanceReport.Balances>;
+  balances: Array<BalanceReport.Balance>;
 
   created_at: string;
 
@@ -89,7 +89,7 @@ export interface BalanceReport {
 }
 
 export namespace BalanceReport {
-  export interface Balances {
+  export interface Balance {
     /**
      * The balance amount.
      */

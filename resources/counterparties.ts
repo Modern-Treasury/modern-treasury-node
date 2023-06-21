@@ -100,7 +100,7 @@ export interface Counterparty {
   /**
    * The accounts for this counterparty.
    */
-  accounts: Array<Counterparty.Accounts>;
+  accounts: Array<Counterparty.Account>;
 
   created_at: string;
 
@@ -142,7 +142,7 @@ export interface Counterparty {
 }
 
 export namespace Counterparty {
-  export interface Accounts {
+  export interface Account {
     account_details?: Array<AccountDetails.AccountDetail>;
 
     /**
@@ -150,7 +150,7 @@ export namespace Counterparty {
      */
     account_type?: ExternalAccounts.ExternalAccountType;
 
-    contact_details?: Array<Accounts.ContactDetails>;
+    contact_details?: Array<Account.ContactDetail>;
 
     created_at?: string;
 
@@ -187,7 +187,7 @@ export namespace Counterparty {
     /**
      * The address associated with the owner or `null`.
      */
-    party_address?: Accounts.PartyAddress | null;
+    party_address?: Account.PartyAddress | null;
 
     /**
      * The legal name of the entity which owns the account.
@@ -206,7 +206,7 @@ export namespace Counterparty {
     verification_status?: 'pending_verification' | 'unverified' | 'verified';
   }
 
-  export namespace Accounts {
+  export namespace Account {
     /**
      * The address associated with the owner or `null`.
      */
@@ -250,7 +250,7 @@ export namespace Counterparty {
       updated_at: string;
     }
 
-    export interface ContactDetails {
+    export interface ContactDetail {
       contact_identifier: string;
 
       contact_identifier_type: 'email' | 'phone_number' | 'website';
@@ -309,7 +309,7 @@ export interface CounterpartyCreateParams {
   /**
    * Body param: The accounts for this counterparty.
    */
-  accounts?: Array<CounterpartyCreateParams.Accounts>;
+  accounts?: Array<CounterpartyCreateParams.Account>;
 
   /**
    * Body param: The counterparty's email.
@@ -355,15 +355,15 @@ export namespace CounterpartyCreateParams {
     type?: 'customer' | 'vendor';
   }
 
-  export interface Accounts {
-    account_details?: Array<Accounts.AccountDetails>;
+  export interface Account {
+    account_details?: Array<Account.AccountDetail>;
 
     /**
      * Can be `checking`, `savings` or `other`.
      */
     account_type?: ExternalAccounts.ExternalAccountType;
 
-    contact_details?: Array<Accounts.ContactDetails>;
+    contact_details?: Array<Account.ContactDetail>;
 
     /**
      * Specifies a ledger account object that will be created with the external
@@ -372,7 +372,7 @@ export namespace CounterpartyCreateParams {
      * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
      * for more details.
      */
-    ledger_account?: Accounts.LedgerAccount;
+    ledger_account?: Account.LedgerAccount;
 
     /**
      * Additional data represented as key-value pairs. Both the key and value must be
@@ -389,7 +389,7 @@ export namespace CounterpartyCreateParams {
     /**
      * Required if receiving wire payments.
      */
-    party_address?: Accounts.PartyAddress;
+    party_address?: Account.PartyAddress;
 
     party_identifier?: string;
 
@@ -409,10 +409,10 @@ export namespace CounterpartyCreateParams {
      */
     plaid_processor_token?: string;
 
-    routing_details?: Array<Accounts.RoutingDetails>;
+    routing_details?: Array<Account.RoutingDetail>;
   }
 
-  export namespace Accounts {
+  export namespace Account {
     /**
      * Required if receiving wire payments.
      */
@@ -442,13 +442,13 @@ export namespace CounterpartyCreateParams {
       region?: string | null;
     }
 
-    export interface AccountDetails {
+    export interface AccountDetail {
       account_number: string;
 
       account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
-    export interface RoutingDetails {
+    export interface RoutingDetail {
       routing_number: string;
 
       routing_number_type:
@@ -541,7 +541,7 @@ export namespace CounterpartyCreateParams {
       metadata?: Record<string, string>;
     }
 
-    export interface ContactDetails {
+    export interface ContactDetail {
       contact_identifier?: string;
 
       contact_identifier_type?: 'email' | 'phone_number' | 'website';

@@ -273,7 +273,7 @@ export interface ExpectedPaymentCreateParams {
   /**
    * Body param:
    */
-  line_items?: Array<ExpectedPaymentCreateParams.LineItems>;
+  line_items?: Array<ExpectedPaymentCreateParams.LineItem>;
 
   /**
    * Body param: Additional data represented as key-value pairs. Both the key and
@@ -310,7 +310,7 @@ export interface ExpectedPaymentCreateParams {
 }
 
 export namespace ExpectedPaymentCreateParams {
-  export interface LineItems {
+  export interface LineItem {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
      * as 1000.

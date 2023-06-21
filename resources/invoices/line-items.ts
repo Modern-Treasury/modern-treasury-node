@@ -190,7 +190,7 @@ export interface LineItemUpdateParams {
   /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
-  contact_details?: Array<LineItemUpdateParams.ContactDetails>;
+  contact_details?: Array<LineItemUpdateParams.ContactDetail>;
 
   /**
    * The counterparty's billing address.
@@ -234,7 +234,7 @@ export interface LineItemUpdateParams {
 }
 
 export namespace LineItemUpdateParams {
-  export interface ContactDetails {
+  export interface ContactDetail {
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';
