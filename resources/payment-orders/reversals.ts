@@ -152,7 +152,7 @@ export namespace ReversalCreateParams {
     /**
      * An array of ledger entry objects.
      */
-    ledger_entries: Array<LedgerTransaction.LedgerEntries>;
+    ledger_entries: Array<LedgerTransaction.LedgerEntry>;
 
     /**
      * An optional description for internal use.
@@ -201,7 +201,7 @@ export namespace ReversalCreateParams {
   }
 
   export namespace LedgerTransaction {
-    export interface LedgerEntries {
+    export interface LedgerEntry {
       /**
        * Value in specified currency's smallest unit. e.g. $10 would be represented
        * as 1000. Can be any integer up to 36 digits.

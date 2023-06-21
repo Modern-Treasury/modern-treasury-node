@@ -128,7 +128,7 @@ export interface Document {
 
   discarded_at: string | null;
 
-  document_details: Array<Document.DocumentDetails>;
+  document_details: Array<Document.DocumentDetail>;
 
   /**
    * A category given to the document, can be `null`.
@@ -173,7 +173,7 @@ export interface Document {
 }
 
 export namespace Document {
-  export interface DocumentDetails {
+  export interface DocumentDetail {
     created_at: string;
 
     discarded_at: string | null;

@@ -161,7 +161,7 @@ export interface ReturnObject {
   /**
    * An array of Payment Reference objects.
    */
-  reference_numbers: Array<ReturnObject.ReferenceNumbers>;
+  reference_numbers: Array<ReturnObject.ReferenceNumber>;
 
   /**
    * The ID of the object being returned or `null`.
@@ -214,7 +214,7 @@ export interface ReturnObject {
 }
 
 export namespace ReturnObject {
-  export interface ReferenceNumbers {
+  export interface ReferenceNumber {
     created_at: string;
 
     id: string;
