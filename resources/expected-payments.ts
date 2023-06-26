@@ -151,6 +151,16 @@ export interface ExpectedPayment {
   object: string;
 
   /**
+   * The reconciliation filters you have for this payment.
+   */
+  reconciliation_filters: unknown | null;
+
+  /**
+   * The reconciliation groups you have for this payment.
+   */
+  reconciliation_groups: unknown | null;
+
+  /**
    * One of manual if this expected payment was manually reconciled in the dashboard,
    * automatic if it was automatically reconciled by Modern Treasury, or null if it
    * is unreconciled.
@@ -282,6 +292,16 @@ export interface ExpectedPaymentCreateParams {
   metadata?: Record<string, string>;
 
   /**
+   * Body param: The reconciliation filters you have for this payment.
+   */
+  reconciliation_filters?: unknown | null;
+
+  /**
+   * Body param: The reconciliation groups you have for this payment.
+   */
+  reconciliation_groups?: unknown | null;
+
+  /**
    * Body param: For `ach`, this field will be passed through on an addenda record.
    * For `wire` payments the field will be passed through as the "Originator to
    * Beneficiary Information", also known as OBI or Fedwire tag 6000.
@@ -390,6 +410,16 @@ export interface ExpectedPaymentUpdateParams {
    * strings.
    */
   metadata?: Record<string, string>;
+
+  /**
+   * The reconciliation filters you have for this payment.
+   */
+  reconciliation_filters?: unknown | null;
+
+  /**
+   * The reconciliation groups you have for this payment.
+   */
+  reconciliation_groups?: unknown | null;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`

@@ -10,8 +10,21 @@ export class LedgerEntries extends APIResource {
   /**
    * Get details on a single ledger entry.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerEntry>> {
-    return this.get(`/api/ledger_entries/${id}`, options);
+  retrieve(
+    id: string,
+    query?: LedgerEntryRetrieveParams,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<LedgerEntry>>;
+  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerEntry>>;
+  retrieve(
+    id: string,
+    query: LedgerEntryRetrieveParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<LedgerEntry>> {
+    if (isRequestOptions(query)) {
+      return this.retrieve(id, {}, query);
+    }
+    return this.get(`/api/ledger_entries/${id}`, { query, ...options });
   }
 
   /**
@@ -86,6 +99,12 @@ export interface LedgerEntry {
    * if it exists in the test environment.
    */
   live_mode: boolean;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata: Record<string, string>;
 
   object: string;
 
@@ -208,6 +227,14 @@ export namespace LedgerEntry {
   }
 }
 
+export interface LedgerEntryRetrieveParams {
+  /**
+   * If true, response will include the balances attached to the ledger entry. If
+   * there is no balance available, null will be returned instead.
+   */
+  show_balances?: boolean;
+}
+
 export interface LedgerEntryListParams extends PageParams {
   /**
    * Shows all ledger entries that were present on a ledger account at a particular
@@ -252,6 +279,11 @@ export interface LedgerEntryListParams extends PageParams {
    */
   ledger_account_lock_version?: Record<string, number>;
 
+  /**
+   * Get all ledger entries that are included in the ledger account statement.
+   */
+  ledger_account_statement_id?: string;
+
   ledger_transaction_id?: string;
 
   /**
@@ -260,6 +292,12 @@ export interface LedgerEntryListParams extends PageParams {
    * by only one field at a time is supported.
    */
   order_by?: LedgerEntryListParams.OrderBy;
+
+  /**
+   * If true, response will include the balances attached to the ledger entry. If
+   * there is no balance available, null will be returned instead.
+   */
+  show_balances?: boolean;
 
   /**
    * If true, response will include ledger entries that were deleted. When you update
@@ -298,5 +336,6 @@ export namespace LedgerEntryListParams {
 export namespace LedgerEntries {
   export import LedgerEntry = API.LedgerEntry;
   export import LedgerEntriesPage = API.LedgerEntriesPage;
+  export import LedgerEntryRetrieveParams = API.LedgerEntryRetrieveParams;
   export import LedgerEntryListParams = API.LedgerEntryListParams;
 }

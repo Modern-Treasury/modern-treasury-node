@@ -115,9 +115,9 @@ Models:
 
 Methods:
 
-- <code title="post /api/{documentable_type}/{documentable_id}/documents">client.documents.<a href="./resources/documents.ts">create</a>(documentableType, documentableId, { ...params }) -> Document</code>
-- <code title="get /api/{documentable_type}/{documentable_id}/documents/{id}">client.documents.<a href="./resources/documents.ts">retrieve</a>(documentableType, documentableId, id) -> Document</code>
-- <code title="get /api/{documentable_type}/{documentable_id}/documents">client.documents.<a href="./resources/documents.ts">list</a>(documentableType, documentableId, { ...params }) -> DocumentsPage</code>
+- <code title="post /api/documents">client.documents.<a href="./resources/documents.ts">create</a>({ ...params }) -> Document</code>
+- <code title="get /api/documents/{id}">client.documents.<a href="./resources/documents.ts">retrieve</a>(id) -> Document</code>
+- <code title="get /api/documents">client.documents.<a href="./resources/documents.ts">list</a>({ ...params }) -> DocumentsPage</code>
 
 # AccountCollectionFlows
 
@@ -196,6 +196,17 @@ Methods:
 - <code title="get /api/ledgers">client.ledgers.<a href="./resources/ledgers.ts">list</a>({ ...params }) -> LedgersPage</code>
 - <code title="delete /api/ledgers/{id}">client.ledgers.<a href="./resources/ledgers.ts">del</a>(id) -> Ledger</code>
 
+# LedgerableEvents
+
+Models:
+
+- <code><a href="./resources/ledgerable-events.ts">LedgerableEvent</a></code>
+
+Methods:
+
+- <code title="post /api/ledgerable_events">client.ledgerableEvents.<a href="./resources/ledgerable-events.ts">create</a>({ ...params }) -> LedgerableEvent</code>
+- <code title="get /api/ledgerable_events/{id}">client.ledgerableEvents.<a href="./resources/ledgerable-events.ts">retrieve</a>(id) -> LedgerableEvent</code>
+
 # LedgerAccountCategories
 
 Models:
@@ -241,6 +252,18 @@ Methods:
 - <code title="get /api/ledger_account_payouts">client.ledgerAccountPayouts.<a href="./resources/ledger-account-payouts.ts">list</a>({ ...params }) -> LedgerAccountPayoutsPage</code>
 - <code title="get /api/ledger_account_payouts/{id}">client.ledgerAccountPayouts.<a href="./resources/ledger-account-payouts.ts">retireve</a>(id) -> LedgerAccountPayout</code>
 
+# LedgerAccountStatements
+
+Models:
+
+- <code><a href="./resources/ledger-account-statements.ts">LedgerAccountStatementCreateResponse</a></code>
+- <code><a href="./resources/ledger-account-statements.ts">LedgerAccountStatementRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="post /api/ledger_account_statements">client.ledgerAccountStatements.<a href="./resources/ledger-account-statements.ts">create</a>({ ...params }) -> LedgerAccountStatementCreateResponse</code>
+- <code title="get /api/ledger_account_statements/{id}">client.ledgerAccountStatements.<a href="./resources/ledger-account-statements.ts">retrieve</a>(id) -> LedgerAccountStatementRetrieveResponse</code>
+
 # LedgerEntries
 
 Models:
@@ -249,8 +272,24 @@ Models:
 
 Methods:
 
-- <code title="get /api/ledger_entries/{id}">client.ledgerEntries.<a href="./resources/ledger-entries.ts">retrieve</a>(id) -> LedgerEntry</code>
+- <code title="get /api/ledger_entries/{id}">client.ledgerEntries.<a href="./resources/ledger-entries.ts">retrieve</a>(id, { ...params }) -> LedgerEntry</code>
 - <code title="get /api/ledger_entries">client.ledgerEntries.<a href="./resources/ledger-entries.ts">list</a>({ ...params }) -> LedgerEntriesPage</code>
+
+# LedgerEventHandlers
+
+Models:
+
+- <code><a href="./resources/ledger-event-handlers.ts">LedgerEventHandlerCreateResponse</a></code>
+- <code><a href="./resources/ledger-event-handlers.ts">LedgerEventHandlerRetrieveResponse</a></code>
+- <code><a href="./resources/ledger-event-handlers.ts">LedgerEventHandlerListResponse</a></code>
+- <code><a href="./resources/ledger-event-handlers.ts">LedgerEventHandlerDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /api/ledger_event_handlers">client.ledgerEventHandlers.<a href="./resources/ledger-event-handlers.ts">create</a>({ ...params }) -> LedgerEventHandlerCreateResponse</code>
+- <code title="get /api/ledger_event_handlers/{id}">client.ledgerEventHandlers.<a href="./resources/ledger-event-handlers.ts">retrieve</a>(id) -> LedgerEventHandlerRetrieveResponse</code>
+- <code title="get /api/ledger_event_handlers">client.ledgerEventHandlers.<a href="./resources/ledger-event-handlers.ts">list</a>({ ...params }) -> LedgerEventHandlerListResponsesPage</code>
+- <code title="delete /api/ledger_event_handlers/{id}">client.ledgerEventHandlers.<a href="./resources/ledger-event-handlers.ts">del</a>(id) -> LedgerEventHandlerDeleteResponse</code>
 
 # LedgerTransactions
 
@@ -264,6 +303,7 @@ Methods:
 - <code title="get /api/ledger_transactions/{id}">client.ledgerTransactions.<a href="./resources/ledger-transactions/ledger-transactions.ts">retrieve</a>(id) -> LedgerTransaction</code>
 - <code title="patch /api/ledger_transactions/{id}">client.ledgerTransactions.<a href="./resources/ledger-transactions/ledger-transactions.ts">update</a>(id, { ...params }) -> LedgerTransaction</code>
 - <code title="get /api/ledger_transactions">client.ledgerTransactions.<a href="./resources/ledger-transactions/ledger-transactions.ts">list</a>({ ...params }) -> LedgerTransactionsPage</code>
+- <code title="post /api/ledger_transactions/{ledger_transaction_id}/reversal">client.ledgerTransactions.<a href="./resources/ledger-transactions/ledger-transactions.ts">createReversal</a>(ledgerTransactionId, { ...params }) -> LedgerTransaction</code>
 
 ## Versions
 
@@ -273,7 +313,7 @@ Models:
 
 Methods:
 
-- <code title="get /api/ledger_transactions/{id}/versions">client.ledgerTransactions.versions.<a href="./resources/ledger-transactions/versions.ts">list</a>(id, { ...params }) -> LedgerTransactionVersionsPage</code>
+- <code title="get /api/ledger_transaction_versions">client.ledgerTransactions.versions.<a href="./resources/ledger-transactions/versions.ts">list</a>({ ...params }) -> LedgerTransactionVersionsPage</code>
 
 # LineItems
 
@@ -355,13 +395,23 @@ Methods:
 
 Models:
 
-- <code><a href="./resources/transactions.ts">Transaction</a></code>
+- <code><a href="./resources/transactions/transactions.ts">Transaction</a></code>
 
 Methods:
 
-- <code title="get /api/transactions/{id}">client.transactions.<a href="./resources/transactions.ts">retrieve</a>(id) -> Transaction</code>
-- <code title="patch /api/transactions/{id}">client.transactions.<a href="./resources/transactions.ts">update</a>(id, { ...params }) -> Transaction</code>
-- <code title="get /api/transactions">client.transactions.<a href="./resources/transactions.ts">list</a>({ ...params }) -> TransactionsPage</code>
+- <code title="get /api/transactions/{id}">client.transactions.<a href="./resources/transactions/transactions.ts">retrieve</a>(id) -> Transaction</code>
+- <code title="patch /api/transactions/{id}">client.transactions.<a href="./resources/transactions/transactions.ts">update</a>(id, { ...params }) -> Transaction</code>
+- <code title="get /api/transactions">client.transactions.<a href="./resources/transactions/transactions.ts">list</a>({ ...params }) -> TransactionsPage</code>
+
+## LineItems
+
+Models:
+
+- <code><a href="./resources/transactions/line-items.ts">TransactionLineItem</a></code>
+
+Methods:
+
+- <code title="get /api/transactions/{transaction_id}/line_items">client.transactions.lineItems.<a href="./resources/transactions/line-items.ts">list</a>(transactionId, { ...params }) -> TransactionLineItemsPage</code>
 
 # Validations
 

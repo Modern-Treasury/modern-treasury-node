@@ -158,12 +158,45 @@ describe('resource ledgerTransactions', () => {
           ledger_account_category_id: 'string',
           ledger_account_id: 'string',
           ledger_id: 'string',
+          ledgerable_id: 'string',
+          ledgerable_type: 'counterparty',
           metadata: { foo: 'string' },
           order_by: { created_at: 'asc', effective_at: 'asc' },
           per_page: 0,
           posted_at: { foo: '2019-12-27T18:11:19.117Z' },
+          reverses_ledger_transaction_id: 'string',
           status: 'pending',
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('createReversal', async () => {
+    const response = await modernTreasury.ledgerTransactions.createReversal('string');
+  });
+
+  test('createReversal: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      modernTreasury.ledgerTransactions.createReversal('string', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('createReversal: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      modernTreasury.ledgerTransactions.createReversal(
+        'string',
+        {
+          description: 'string',
+          effective_at: '2019-12-27',
+          external_id: 'string',
+          ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          ledgerable_type: 'counterparty',
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          status: 'archived',
         },
         { path: '/_stainless_unknown_path' },
       ),

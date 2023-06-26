@@ -139,6 +139,11 @@ export interface Counterparty {
   send_remittance_advice: boolean;
 
   updated_at: string;
+
+  /**
+   * The verification status of the counterparty.
+   */
+  verification_status: 'denied' | 'needs_approval' | 'unverified' | 'verified';
 }
 
 export namespace Counterparty {
@@ -338,6 +343,11 @@ export interface CounterpartyCreateParams {
    * Body param: Either a valid SSN or EIN.
    */
   taxpayer_identifier?: string;
+
+  /**
+   * Body param: The verification status of the counterparty.
+   */
+  verification_status?: 'denied' | 'needs_approval' | 'unverified' | 'verified';
 
   /**
    * Header param: This key should be something unique, preferably something like an

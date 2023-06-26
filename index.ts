@@ -76,10 +76,13 @@ export class ModernTreasury extends Core.APIClient {
   routingDetails: API.RoutingDetails = new API.RoutingDetails(this);
   internalAccounts: API.InternalAccounts = new API.InternalAccounts(this);
   ledgers: API.Ledgers = new API.Ledgers(this);
+  ledgerableEvents: API.LedgerableEvents = new API.LedgerableEvents(this);
   ledgerAccountCategories: API.LedgerAccountCategories = new API.LedgerAccountCategories(this);
   ledgerAccounts: API.LedgerAccounts = new API.LedgerAccounts(this);
   ledgerAccountPayouts: API.LedgerAccountPayouts = new API.LedgerAccountPayouts(this);
+  ledgerAccountStatements: API.LedgerAccountStatements = new API.LedgerAccountStatements(this);
   ledgerEntries: API.LedgerEntries = new API.LedgerEntries(this);
+  ledgerEventHandlers: API.LedgerEventHandlers = new API.LedgerEventHandlers(this);
   ledgerTransactions: API.LedgerTransactions = new API.LedgerTransactions(this);
   lineItems: API.LineItems = new API.LineItems(this);
   paymentFlows: API.PaymentFlows = new API.PaymentFlows(this);
@@ -247,6 +250,10 @@ export namespace ModernTreasury {
   export import LedgerUpdateParams = API.LedgerUpdateParams;
   export import LedgerListParams = API.LedgerListParams;
 
+  export import LedgerableEvents = API.LedgerableEvents;
+  export import LedgerableEvent = API.LedgerableEvent;
+  export import LedgerableEventCreateParams = API.LedgerableEventCreateParams;
+
   export import LedgerAccountCategories = API.LedgerAccountCategories;
   export import LedgerAccountCategory = API.LedgerAccountCategory;
   export import LedgerAccountCategoriesPage = API.LedgerAccountCategoriesPage;
@@ -271,10 +278,25 @@ export namespace ModernTreasury {
   export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
   export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
 
+  export import LedgerAccountStatements = API.LedgerAccountStatements;
+  export import LedgerAccountStatementCreateResponse = API.LedgerAccountStatementCreateResponse;
+  export import LedgerAccountStatementRetrieveResponse = API.LedgerAccountStatementRetrieveResponse;
+  export import LedgerAccountStatementCreateParams = API.LedgerAccountStatementCreateParams;
+
   export import LedgerEntries = API.LedgerEntries;
   export import LedgerEntry = API.LedgerEntry;
   export import LedgerEntriesPage = API.LedgerEntriesPage;
+  export import LedgerEntryRetrieveParams = API.LedgerEntryRetrieveParams;
   export import LedgerEntryListParams = API.LedgerEntryListParams;
+
+  export import LedgerEventHandlers = API.LedgerEventHandlers;
+  export import LedgerEventHandlerCreateResponse = API.LedgerEventHandlerCreateResponse;
+  export import LedgerEventHandlerRetrieveResponse = API.LedgerEventHandlerRetrieveResponse;
+  export import LedgerEventHandlerListResponse = API.LedgerEventHandlerListResponse;
+  export import LedgerEventHandlerDeleteResponse = API.LedgerEventHandlerDeleteResponse;
+  export import LedgerEventHandlerListResponsesPage = API.LedgerEventHandlerListResponsesPage;
+  export import LedgerEventHandlerCreateParams = API.LedgerEventHandlerCreateParams;
+  export import LedgerEventHandlerListParams = API.LedgerEventHandlerListParams;
 
   export import LedgerTransactions = API.LedgerTransactions;
   export import LedgerTransaction = API.LedgerTransaction;
@@ -282,6 +304,7 @@ export namespace ModernTreasury {
   export import LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
   export import LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
   export import LedgerTransactionListParams = API.LedgerTransactionListParams;
+  export import LedgerTransactionCreateReversalParams = API.LedgerTransactionCreateReversalParams;
 
   export import LineItems = API.LineItems;
   export import LineItem = API.LineItem;

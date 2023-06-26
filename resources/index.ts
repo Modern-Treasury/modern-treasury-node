@@ -109,15 +109,39 @@ export {
   LedgerAccountPayoutsPage,
   LedgerAccountPayouts,
 } from './ledger-account-payouts';
-export { LedgerEntry, LedgerEntryListParams, LedgerEntriesPage, LedgerEntries } from './ledger-entries';
+export {
+  LedgerAccountStatementCreateResponse,
+  LedgerAccountStatementRetrieveResponse,
+  LedgerAccountStatementCreateParams,
+  LedgerAccountStatements,
+} from './ledger-account-statements';
+export {
+  LedgerEntry,
+  LedgerEntryRetrieveParams,
+  LedgerEntryListParams,
+  LedgerEntriesPage,
+  LedgerEntries,
+} from './ledger-entries';
+export {
+  LedgerEventHandlerCreateResponse,
+  LedgerEventHandlerRetrieveResponse,
+  LedgerEventHandlerListResponse,
+  LedgerEventHandlerDeleteResponse,
+  LedgerEventHandlerCreateParams,
+  LedgerEventHandlerListParams,
+  LedgerEventHandlerListResponsesPage,
+  LedgerEventHandlers,
+} from './ledger-event-handlers';
 export {
   LedgerTransaction,
   LedgerTransactionCreateParams,
   LedgerTransactionUpdateParams,
   LedgerTransactionListParams,
+  LedgerTransactionCreateReversalParams,
   LedgerTransactionsPage,
   LedgerTransactions,
 } from './ledger-transactions/ledger-transactions';
+export { LedgerableEvent, LedgerableEventCreateParams, LedgerableEvents } from './ledgerable-events';
 export { LineItem, LineItemUpdateParams, LineItemListParams, LineItemsPage, LineItems } from './line-items';
 export { PaperItem, PaperItemListParams, PaperItemsPage, PaperItems } from './paper-items';
 export {
@@ -166,7 +190,7 @@ export {
   TransactionListParams,
   TransactionsPage,
   Transactions,
-} from './transactions';
+} from './transactions/transactions';
 export {
   VirtualAccount,
   VirtualAccountCreateParams,

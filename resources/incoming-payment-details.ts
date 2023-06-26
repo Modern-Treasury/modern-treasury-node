@@ -141,6 +141,38 @@ export interface IncomingPaymentDetail {
   object: string;
 
   /**
+   * The last 4 digits of the originating account_number for the incoming payment
+   * detail.
+   */
+  originating_account_number_safe: string | null;
+
+  /**
+   * The type of the originating account number for the incoming payment detail.
+   */
+  originating_account_number_type: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address' | null;
+
+  /**
+   * The routing number of the originating account for the incoming payment detail.
+   */
+  originating_routing_number: string | null;
+
+  /**
+   * The type of the originating routing number for the incoming payment detail.
+   */
+  originating_routing_number_type:
+    | 'aba'
+    | 'au_bsb'
+    | 'br_codigo'
+    | 'ca_cpa'
+    | 'chips'
+    | 'cnaps'
+    | 'gb_sort_code'
+    | 'in_ifsc'
+    | 'my_branch_code'
+    | 'swift'
+    | null;
+
+  /**
    * The current status of the incoming payment order. One of `pending`, `completed`,
    * or `returned`.
    */
@@ -180,6 +212,11 @@ export interface IncomingPaymentDetail {
    * Account.
    */
   virtual_account_id: string | null;
+
+  /**
+   * The account number of the originating account for the incoming payment detail.
+   */
+  originating_account_number?: string | null;
 }
 
 export interface IncomingPaymentDetailUpdateParams {
