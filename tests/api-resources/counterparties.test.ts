@@ -153,6 +153,7 @@ describe('resource counterparties', () => {
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       send_remittance_advice: true,
       taxpayer_identifier: 'string',
+      verification_status: 'denied',
       'Idempotency-Key': 'string',
     });
   });

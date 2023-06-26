@@ -70,6 +70,7 @@ describe('resource transactions', () => {
           per_page: 0,
           posted: true,
           transactable_type: 'string',
+          vendor_id: 'string',
           virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         },
         { path: '/_stainless_unknown_path' },

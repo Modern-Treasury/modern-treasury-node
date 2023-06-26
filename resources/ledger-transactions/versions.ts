@@ -11,29 +11,22 @@ export class Versions extends APIResource {
    * Get a list of ledger transaction versions.
    */
   list(
-    id: string,
     query?: VersionListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<LedgerTransactionVersionsPage>;
-  list(id: string, options?: Core.RequestOptions): Core.PagePromise<LedgerTransactionVersionsPage>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LedgerTransactionVersionsPage>;
   list(
-    id: string,
     query: VersionListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<LedgerTransactionVersionsPage> {
     if (isRequestOptions(query)) {
-      return this.list(id, {}, query);
+      return this.list({}, query);
     }
-    return this.getAPIList(`/api/ledger_transactions/${id}/versions`, LedgerTransactionVersionsPage, {
+    return this.getAPIList('/api/ledger_transaction_versions', LedgerTransactionVersionsPage, {
       query,
       ...options,
     });
   }
-
-  /**
-   * @deprecated This method has been deprecated and will be removed soon.
-   */
-  versions = this.list;
 }
 
 export class LedgerTransactionVersionsPage extends Page<LedgerTransactionVersion> {}
@@ -190,6 +183,12 @@ export namespace LedgerTransactionVersion {
      */
     live_mode: boolean;
 
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata: Record<string, string>;
+
     object: string;
 
     /**
@@ -319,19 +318,16 @@ export interface VersionListParams extends PageParams {
   created_at?: Record<string, string>;
 
   /**
-   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-   * version. For example, for all versions after 2, use version%5Bgt%5D=2.
+   * Get all ledger transaction versions that are included in the ledger account
+   * statement.
    */
-  version?: Record<string, number>;
-}
+  ledger_account_statement_id?: string;
 
-export interface VersionVersionsParams extends PageParams {
   /**
-   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-   * created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
-   * created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+   * Get all the ledger transaction versions corresponding to the ID of a ledger
+   * transaction.
    */
-  created_at?: Record<string, string>;
+  ledger_transaction_id?: string;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
@@ -344,5 +340,4 @@ export namespace Versions {
   export import LedgerTransactionVersion = API.LedgerTransactionVersion;
   export import LedgerTransactionVersionsPage = API.LedgerTransactionVersionsPage;
   export import VersionListParams = API.VersionListParams;
-  export import VersionVersionsParams = API.VersionVersionsParams;
 }

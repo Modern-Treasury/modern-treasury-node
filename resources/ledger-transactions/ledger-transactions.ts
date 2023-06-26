@@ -70,6 +70,29 @@ export class LedgerTransactions extends APIResource {
     }
     return this.getAPIList('/api/ledger_transactions', LedgerTransactionsPage, { query, ...options });
   }
+
+  /**
+   * Create a ledger transaction reversal.
+   */
+  createReversal(
+    ledgerTransactionId: string,
+    body?: LedgerTransactionCreateReversalParams,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<LedgerTransaction>>;
+  createReversal(
+    ledgerTransactionId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<LedgerTransaction>>;
+  createReversal(
+    ledgerTransactionId: string,
+    body: LedgerTransactionCreateReversalParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<LedgerTransaction>> {
+    if (isRequestOptions(body)) {
+      return this.createReversal(ledgerTransactionId, {}, body);
+    }
+    return this.post(`/api/ledger_transactions/${ledgerTransactionId}/reversal`, { body, ...options });
+  }
 }
 
 export class LedgerTransactionsPage extends Page<LedgerTransaction> {}
@@ -155,6 +178,11 @@ export interface LedgerTransaction {
    * transaction is pending.
    */
   posted_at: string | null;
+
+  /**
+   * The ID of the original ledger transaction that this ledger transaction reverses.
+   */
+  reverses_ledger_transaction_id: string | null;
 
   /**
    * To post a ledger transaction at creation, use `posted`.
@@ -393,6 +421,20 @@ export interface LedgerTransactionListParams extends PageParams {
 
   ledger_id?: string;
 
+  ledgerable_id?: string;
+
+  ledgerable_type?:
+    | 'counterparty'
+    | 'expected_payment'
+    | 'incoming_payment_detail'
+    | 'internal_account'
+    | 'line_item'
+    | 'paper_item'
+    | 'payment_order'
+    | 'payment_order_attempt'
+    | 'return'
+    | 'reversal';
+
   /**
    * For example, if you want to query for records with metadata key `Type` and value
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
@@ -413,6 +455,8 @@ export interface LedgerTransactionListParams extends PageParams {
    * posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
   posted_at?: Record<string, string>;
+
+  reverses_ledger_transaction_id?: string;
 
   status?: 'pending' | 'posted' | 'archived';
 
@@ -437,16 +481,70 @@ export namespace LedgerTransactionListParams {
   }
 }
 
+export interface LedgerTransactionCreateReversalParams {
+  /**
+   * An optional free-form description for the reversal ledger transaction. Maximum
+   * of 1000 characters allowed.
+   */
+  description?: string;
+
+  /**
+   * The timestamp (ISO8601 format) at which the reversal ledger transaction happened
+   * for reporting purposes. It defaults to the `effective_at` of the original ledger
+   * transaction if not provided.
+   */
+  effective_at?: string | null;
+
+  /**
+   * Must be unique within the ledger.
+   */
+  external_id?: string;
+
+  /**
+   * Specify this if you'd like to link the reversal ledger transaction to a Payment
+   * object like Return or Reversal.
+   */
+  ledgerable_id?: string;
+
+  /**
+   * Specify this if you'd like to link the reversal ledger transaction to a Payment
+   * object like Return or Reversal.
+   */
+  ledgerable_type?:
+    | 'counterparty'
+    | 'expected_payment'
+    | 'incoming_payment_detail'
+    | 'internal_account'
+    | 'line_item'
+    | 'paper_item'
+    | 'payment_order'
+    | 'payment_order_attempt'
+    | 'return'
+    | 'reversal';
+
+  /**
+   * Additional data to be added to the reversal ledger transaction as key-value
+   * pairs. Both the key and value must be strings.
+   */
+  metadata?: Record<string, string>;
+
+  /**
+   * Status of the reversal ledger transaction. It defaults to `posted` if not
+   * provided.
+   */
+  status?: 'archived' | 'pending' | 'posted';
+}
+
 export namespace LedgerTransactions {
   export import LedgerTransaction = API.LedgerTransaction;
   export import LedgerTransactionsPage = API.LedgerTransactionsPage;
   export import LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
   export import LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
   export import LedgerTransactionListParams = API.LedgerTransactionListParams;
+  export import LedgerTransactionCreateReversalParams = API.LedgerTransactionCreateReversalParams;
 
   export import Versions = API.Versions;
   export import LedgerTransactionVersion = API.LedgerTransactionVersion;
   export import LedgerTransactionVersionsPage = API.LedgerTransactionVersionsPage;
   export import VersionListParams = API.VersionListParams;
-  export import VersionVersionsParams = API.VersionVersionsParams;
 }

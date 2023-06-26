@@ -12,26 +12,17 @@ export class Documents extends APIResource {
   /**
    * Create a document.
    */
-  create(
-    documentableType:
-      | 'cases'
-      | 'counterparties'
-      | 'expected_payments'
-      | 'external_accounts'
-      | 'internal_accounts'
-      | 'organizations'
-      | 'paper_items'
-      | 'payment_orders'
-      | 'transactions'
-      | 'decisions',
-    documentableId: string,
-    params: DocumentCreateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Document>> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+  create(params: DocumentCreateParams, options?: Core.RequestOptions): Promise<Core.APIResponse<Document>> {
+    const {
+      documentable_id: documentableId,
+      documentable_type: documentableType,
+      'Idempotency-Key': idempotencyKey,
+      ...body
+    } = params;
     return this.post(
-      `/api/${documentableType}/${documentableId}/documents`,
+      '/api/documents',
       multipartFormRequestOptions({
+        query: { documentable_id: documentableId, documentable_type: documentableType },
         body,
         ...options,
         headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
@@ -42,82 +33,23 @@ export class Documents extends APIResource {
   /**
    * Get an existing document.
    */
-  retrieve(
-    documentableType:
-      | 'cases'
-      | 'counterparties'
-      | 'expected_payments'
-      | 'external_accounts'
-      | 'internal_accounts'
-      | 'organizations'
-      | 'paper_items'
-      | 'payment_orders'
-      | 'transactions'
-      | 'decisions',
-    documentableId: string,
-    id: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Document>> {
-    return this.get(`/api/${documentableType}/${documentableId}/documents/${id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Document>> {
+    return this.get(`/api/documents/${id}`, options);
   }
 
   /**
    * Get a list of documents.
    */
+  list(query?: DocumentListParams, options?: Core.RequestOptions): Core.PagePromise<DocumentsPage>;
+  list(options?: Core.RequestOptions): Core.PagePromise<DocumentsPage>;
   list(
-    documentableType:
-      | 'cases'
-      | 'counterparties'
-      | 'expected_payments'
-      | 'external_accounts'
-      | 'internal_accounts'
-      | 'organizations'
-      | 'paper_items'
-      | 'payment_orders'
-      | 'transactions'
-      | 'decisions',
-    documentableId: string,
-    query?: DocumentListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DocumentsPage>;
-  list(
-    documentableType:
-      | 'cases'
-      | 'counterparties'
-      | 'expected_payments'
-      | 'external_accounts'
-      | 'internal_accounts'
-      | 'organizations'
-      | 'paper_items'
-      | 'payment_orders'
-      | 'transactions'
-      | 'decisions',
-    documentableId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DocumentsPage>;
-  list(
-    documentableType:
-      | 'cases'
-      | 'counterparties'
-      | 'expected_payments'
-      | 'external_accounts'
-      | 'internal_accounts'
-      | 'organizations'
-      | 'paper_items'
-      | 'payment_orders'
-      | 'transactions'
-      | 'decisions',
-    documentableId: string,
     query: DocumentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<DocumentsPage> {
     if (isRequestOptions(query)) {
-      return this.list(documentableType, documentableId, {}, query);
+      return this.list({}, query);
     }
-    return this.getAPIList(`/api/${documentableType}/${documentableId}/documents`, DocumentsPage, {
-      query,
-      ...options,
-    });
+    return this.getAPIList('/api/documents', DocumentsPage, { query, ...options });
   }
 }
 
@@ -155,7 +87,8 @@ export interface Document {
     | 'paper_item'
     | 'payment_order'
     | 'transaction'
-    | 'decision';
+    | 'decision'
+    | 'connection';
 
   file: Document.File;
 
@@ -168,6 +101,11 @@ export interface Document {
   live_mode: boolean;
 
   object: string;
+
+  /**
+   * The source of the document. Can be `vendor`, `customer`, or `modern_treasury`.
+   */
+  source: string;
 
   updated_at: string;
 }
@@ -215,6 +153,30 @@ export namespace Document {
 
 export interface DocumentCreateParams {
   /**
+   * Query param: The unique identifier for the associated object.
+   */
+  documentable_id: string;
+
+  /**
+   * Query param: The type of the associated object. Currently can be one of
+   * `payment_order`, `transaction`, `paper_item`, `expected_payment`,
+   * `counterparty`, `organization`, `case`, `internal_account`, `decision`, or
+   * `external_account`.
+   */
+  documentable_type:
+    | 'cases'
+    | 'counterparties'
+    | 'expected_payments'
+    | 'external_accounts'
+    | 'internal_accounts'
+    | 'organizations'
+    | 'paper_items'
+    | 'payment_orders'
+    | 'transactions'
+    | 'decisions'
+    | 'connections';
+
+  /**
    * Body param:
    */
   file: FormData.Blob | FormData.File;
@@ -231,7 +193,30 @@ export interface DocumentCreateParams {
   'Idempotency-Key'?: string;
 }
 
-export interface DocumentListParams extends PageParams {}
+export interface DocumentListParams extends PageParams {
+  /**
+   * The unique identifier for the associated object.
+   */
+  documentable_id?: string;
+
+  /**
+   * The type of the associated object. Currently can be one of `payment_order`,
+   * `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`,
+   * `case`, `internal_account`, `decision`, or `external_account`.
+   */
+  documentable_type?:
+    | 'cases'
+    | 'counterparties'
+    | 'expected_payments'
+    | 'external_accounts'
+    | 'internal_accounts'
+    | 'organizations'
+    | 'paper_items'
+    | 'payment_orders'
+    | 'transactions'
+    | 'decisions'
+    | 'connections';
+}
 
 export namespace Documents {
   export import Document = API.Document;
