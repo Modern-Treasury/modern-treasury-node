@@ -97,6 +97,7 @@ describe('resource ledgerAccountCategories', () => {
       modernTreasury.ledgerAccountCategories.list(
         {
           after_cursor: 'string',
+          ledger_account_id: 'string',
           ledger_id: 'string',
           metadata: { foo: 'string' },
           name: 'string',

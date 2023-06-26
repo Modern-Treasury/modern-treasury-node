@@ -423,6 +423,12 @@ export namespace LedgerAccountCategoryUpdateParams {
 }
 
 export interface LedgerAccountCategoryListParams extends PageParams {
+  /**
+   * Query categories which contain a ledger account directly or through child
+   * categories.
+   */
+  ledger_account_id?: string;
+
   ledger_id?: string;
 
   /**

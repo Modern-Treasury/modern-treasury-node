@@ -48,18 +48,21 @@ describe('resource lineItems', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
+  // Prism is broken in this case
+  test.skip('list', async () => {
     const response = await modernTreasury.lineItems.list('expected_payments', 'string');
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
+  // Prism is broken in this case
+  test.skip('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.lineItems.list('expected_payments', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list: request options and params are passed correctly', async () => {
+  // Prism is broken in this case
+  test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.lineItems.list(

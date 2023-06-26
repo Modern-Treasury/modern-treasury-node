@@ -3,11 +3,14 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import { LineItems } from './line-items';
 import * as Shared from '~/resources/shared';
 import * as API from './';
 import { Page, PageParams } from '~/pagination';
 
 export class Transactions extends APIResource {
+  lineItems: LineItems = new LineItems(this.client);
+
   /**
    * Get details on a single transaction.
    */
@@ -258,6 +261,12 @@ export interface TransactionListParams extends PageParams {
 
   transactable_type?: string;
 
+  /**
+   * Filters for transactions including the queried vendor id (an identifier given to
+   * transactions by the bank).
+   */
+  vendor_id?: string;
+
   virtual_account_id?: string;
 }
 
@@ -266,4 +275,9 @@ export namespace Transactions {
   export import TransactionsPage = API.TransactionsPage;
   export import TransactionUpdateParams = API.TransactionUpdateParams;
   export import TransactionListParams = API.TransactionListParams;
+
+  export import LineItems = API.LineItems;
+  export import TransactionLineItem = API.TransactionLineItem;
+  export import TransactionLineItemsPage = API.TransactionLineItemsPage;
+  export import LineItemListParams = API.LineItemListParams;
 }
