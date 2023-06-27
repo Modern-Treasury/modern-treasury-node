@@ -8,9 +8,8 @@ import * as ExternalAccounts from '~/resources/external-accounts';
 import { Reversals } from './reversals';
 import * as Shared from '~/resources/shared';
 import * as API from './';
-import type * as FormData from 'formdata-node';
+import { type Uploadable, maybeMultipartFormRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
-import { maybeMultipartFormRequestOptions } from '~/core';
 
 export class PaymentOrders extends APIResource {
   reversals: Reversals = new Reversals(this.client);
@@ -18,14 +17,14 @@ export class PaymentOrders extends APIResource {
   /**
    * Create a new Payment Order
    */
-  create(
+  async create(
     params: PaymentOrderCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<PaymentOrder>> {
     const { 'Content-Type': contentType, 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(
       '/api/payment_orders',
-      maybeMultipartFormRequestOptions({
+      await maybeMultipartFormRequestOptions({
         body,
         ...options,
         headers: {
@@ -739,7 +738,7 @@ export namespace PaymentOrderCreateParams {
   }
 
   export interface Document {
-    file: FormData.Blob | FormData.File;
+    file: Uploadable;
 
     /**
      * A category given to the document, can be `null`.

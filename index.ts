@@ -4,9 +4,9 @@ import qs from 'qs';
 import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources';
-import * as Errors from '~/error';
+import * as Errors from './error';
 import type { Agent } from 'http';
-import * as FileFromPath from 'formdata-node/file-from-path';
+import * as Uploads from './uploads';
 
 type Config = {
   /**
@@ -32,7 +32,7 @@ export class ModernTreasury extends Core.APIClient {
 
   constructor(config: Config) {
     const options: Config = {
-      apiKey: process.env['MODERN_TREASURY_API_KEY'] || '',
+      apiKey: typeof process === 'undefined' ? '' : process.env['MODERN_TREASURY_API_KEY'] || '',
       baseURL: 'https://app.moderntreasury.com',
       ...config,
     };
@@ -147,11 +147,13 @@ export const {
   UnprocessableEntityError,
 } = Errors;
 
-export import fileFromPath = FileFromPath.fileFromPath;
+export import toFile = Uploads.toFile;
+export import fileFromPath = Uploads.fileFromPath;
 
 export namespace ModernTreasury {
   // Helper functions
-  export import fileFromPath = FileFromPath.fileFromPath;
+  export import toFile = Uploads.toFile;
+  export import fileFromPath = Uploads.fileFromPath;
 
   export import Page = Pagination.Page;
   export import PageParams = Pagination.PageParams;
@@ -369,6 +371,4 @@ export namespace ModernTreasury {
   export import AsyncResponse = API.AsyncResponse;
   export import Currency = API.Currency;
 }
-
-exports = module.exports = ModernTreasury;
 export default ModernTreasury;
