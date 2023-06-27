@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { fileFromPath } from 'formdata-node/file-from-path';
+import { toFile } from 'modern-treasury';
 import ModernTreasury from '~/index';
 
 const modernTreasury = new ModernTreasury({
@@ -37,9 +37,9 @@ describe('resource paymentOrders', () => {
       currency: 'AED',
       description: 'string',
       documents: [
-        { document_type: 'string', file: await fileFromPath('README.md') },
-        { document_type: 'string', file: await fileFromPath('README.md') },
-        { document_type: 'string', file: await fileFromPath('README.md') },
+        { document_type: 'string', file: await toFile(Buffer.from('# my file contents'), 'README.md') },
+        { document_type: 'string', file: await toFile(Buffer.from('# my file contents'), 'README.md') },
+        { document_type: 'string', file: await toFile(Buffer.from('# my file contents'), 'README.md') },
       ],
       effective_date: '2019-12-27',
       expires_at: '2019-12-27T18:11:19.117Z',

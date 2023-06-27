@@ -1,5 +1,5 @@
-import { createResponseHeaders } from '~/core';
-import { Headers } from 'node-fetch';
+import { createResponseHeaders } from '../core';
+import { Headers } from 'modern-treasury/_shims/fetch';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

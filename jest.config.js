@@ -4,5 +4,7 @@ module.exports = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '^~/(.*)$': '<rootDir>/$1',
+    '^modern-treasury/_shims/(.*)$': '<rootDir>/_shims/$1.node',
   },
+  modulePathIgnorePatterns: ['<rootDir>/ecosystem-tests/'],
 };
