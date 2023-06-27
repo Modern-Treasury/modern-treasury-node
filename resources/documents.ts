@@ -4,15 +4,17 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as API from './';
-import type * as FormData from 'formdata-node';
+import { type Uploadable, multipartFormRequestOptions } from '~/core';
 import { Page, PageParams } from '~/pagination';
-import { multipartFormRequestOptions } from '~/core';
 
 export class Documents extends APIResource {
   /**
    * Create a document.
    */
-  create(params: DocumentCreateParams, options?: Core.RequestOptions): Promise<Core.APIResponse<Document>> {
+  async create(
+    params: DocumentCreateParams,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Document>> {
     const {
       documentable_id: documentableId,
       documentable_type: documentableType,
@@ -21,7 +23,7 @@ export class Documents extends APIResource {
     } = params;
     return this.post(
       '/api/documents',
-      multipartFormRequestOptions({
+      await multipartFormRequestOptions({
         query: { documentable_id: documentableId, documentable_type: documentableType },
         body,
         ...options,
@@ -179,7 +181,7 @@ export interface DocumentCreateParams {
   /**
    * Body param:
    */
-  file: FormData.Blob | FormData.File;
+  file: Uploadable;
 
   /**
    * Body param: A category given to the document, can be `null`.

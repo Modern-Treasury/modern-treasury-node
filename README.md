@@ -67,18 +67,49 @@ Documentation for each method, request param, and response field are available i
 
 ## File Uploads
 
-Request parameters that correspond to file uploads can be passed as either a `FormData.Blob` or a `FormData.File` instance.
+Request parameters that correspond to file uploads can be passed in many different forms:
 
-We provide a `fileFromPath` helper function to easily create `FormData.File` instances from a given class.
+- `File` (or an object with the same structure)
+- a `fetch` `Response` (or an object with the same structure)
+- an `fs.ReadStream`
+- the return value of our `toFile` helper
 
 ```ts
-import ModernTreasury, { fileFromPath } from 'modern-treasury';
+import fs from 'fs';
+import fetch from 'node-fetch';
+import ModernTreasury, { toFile } from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury();
 
-const file = await fileFromPath('my/file.txt');
+// If you have access to Node `fs` we recommend using `fs.createReadStream()`:
 await modernTreasury.documents.create({
-  file: file,
+  file: fs.createReadStream('my/file.txt'),
+  documentable_type: 'counterparties',
+  documentable_id: '24c6b7a3-02...',
+});
+
+// Or if you have the web `File` API you can pass a `File` instance:
+await modernTreasury.documents.create({
+  file: new File(['my bytes'], 'file.txt'),
+  documentable_type: 'counterparties',
+  documentable_id: '24c6b7a3-02...',
+});
+
+// You can also pass a `fetch` `Response`:
+await modernTreasury.documents.create({
+  file: await fetch('https://somesite/file.txt'),
+  documentable_type: 'counterparties',
+  documentable_id: '24c6b7a3-02...',
+});
+
+// Finally, if none of the above are convenient, you can use our `toFile` helper:
+await modernTreasury.documents.create({
+  file: await toFile(Buffer.from('my bytes'), 'file.txt'),
+  documentable_type: 'counterparties',
+  documentable_id: '24c6b7a3-02...',
+});
+await modernTreasury.documents.create({
+  file: await toFile(new Uint8Array([0, 1, 2]), 'file.txt'),
   documentable_type: 'counterparties',
   documentable_id: '24c6b7a3-02...',
 });

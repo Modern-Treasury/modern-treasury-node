@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { fileFromPath } from 'formdata-node/file-from-path';
+import { toFile } from 'modern-treasury';
 import ModernTreasury from '~/index';
 
 const modernTreasury = new ModernTreasury({
@@ -15,7 +15,7 @@ describe('resource documents', () => {
     const response = await modernTreasury.documents.create({
       documentable_id: 'string',
       documentable_type: 'cases',
-      file: await fileFromPath('README.md'),
+      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
 
@@ -24,7 +24,7 @@ describe('resource documents', () => {
     const response = await modernTreasury.documents.create({
       documentable_id: 'string',
       documentable_type: 'cases',
-      file: await fileFromPath('README.md'),
+      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
       document_type: 'string',
       'Idempotency-Key': 'string',
     });
