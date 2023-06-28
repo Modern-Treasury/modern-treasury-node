@@ -165,6 +165,8 @@ export class LedgerAccountCategories extends APIResource {
 export class LedgerAccountCategoriesPage extends Page<LedgerAccountCategory> {}
 
 export interface LedgerAccountCategory {
+  id: string;
+
   /**
    * The pending, posted, and available balances for this ledger account category.
    * The posted balance is the sum of all posted entries on the account. The pending
@@ -182,8 +184,6 @@ export interface LedgerAccountCategory {
   description: string | null;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * The id of the ledger that this account category belongs to.
@@ -247,6 +247,30 @@ export namespace LedgerAccountCategory {
 
   export namespace Balances {
     /**
+     * The available_balance is the sum of all posted inbound entries and pending
+     * outbound entries. For credit normal, available_amount = posted_credits -
+     * pending_debits; for debit normal, available_amount = posted_debits -
+     * pending_credits.
+     */
+    export interface AvailableBalance {
+      amount: number;
+
+      credits: number;
+
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent: number;
+
+      debits: number;
+    }
+
+    /**
      * The pending_balance is the sum of all pending and posted entries.
      */
     export interface PendingBalance {
@@ -271,30 +295,6 @@ export namespace LedgerAccountCategory {
      * The posted_balance is the sum of all posted entries.
      */
     export interface PostedBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
-
-    /**
-     * The available_balance is the sum of all posted inbound entries and pending
-     * outbound entries. For credit normal, available_amount = posted_credits -
-     * pending_debits; for debit normal, available_amount = posted_debits -
-     * pending_credits.
-     */
-    export interface AvailableBalance {
       amount: number;
 
       credits: number;

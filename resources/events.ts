@@ -33,6 +33,8 @@ export class Events extends APIResource {
 export class EventsPage extends Page<Event> {}
 
 export interface Event {
+  id: string;
+
   created_at: string;
 
   /**
@@ -54,8 +56,6 @@ export interface Event {
    * The time of the event.
    */
   event_time: string;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false

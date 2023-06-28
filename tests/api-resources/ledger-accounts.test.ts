@@ -100,6 +100,7 @@ describe('resource ledgerAccounts', () => {
     await expect(
       modernTreasury.ledgerAccounts.list(
         {
+          id: 'string',
           after_cursor: 'string',
           balances: {
             as_of_date: '2019-12-27',
@@ -108,7 +109,6 @@ describe('resource ledgerAccounts', () => {
             effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
           },
           created_at: { foo: '2019-12-27T18:11:19.117Z' },
-          id: 'string',
           ledger_account_category_id: 'string',
           ledger_id: 'string',
           metadata: { foo: 'string' },

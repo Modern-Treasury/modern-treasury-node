@@ -88,6 +88,8 @@ export class LedgerAccounts extends APIResource {
 export class LedgerAccountsPage extends Page<LedgerAccount> {}
 
 export interface LedgerAccount {
+  id: string;
+
   /**
    * The pending, posted, and available balances for this ledger account. The posted
    * balance is the sum of all posted entries on the account. The pending balance is
@@ -105,8 +107,6 @@ export interface LedgerAccount {
   description: string | null;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * The id of the ledger that this account belongs to.
@@ -200,6 +200,30 @@ export namespace LedgerAccount {
 
   export namespace Balances {
     /**
+     * The available_balance is the sum of all posted inbound entries and pending
+     * outbound entries. For credit normal, available_amount = posted_credits -
+     * pending_debits; for debit normal, available_amount = posted_debits -
+     * pending_credits.
+     */
+    export interface AvailableBalance {
+      amount: number;
+
+      credits: number;
+
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent: number;
+
+      debits: number;
+    }
+
+    /**
      * The pending_balance is the sum of all pending and posted entries.
      */
     export interface PendingBalance {
@@ -224,30 +248,6 @@ export namespace LedgerAccount {
      * The posted_balance is the sum of all posted entries.
      */
     export interface PostedBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
-
-    /**
-     * The available_balance is the sum of all posted inbound entries and pending
-     * outbound entries. For credit normal, available_amount = posted_credits -
-     * pending_debits; for debit normal, available_amount = posted_debits -
-     * pending_credits.
-     */
-    export interface AvailableBalance {
       amount: number;
 
       credits: number;
@@ -371,6 +371,8 @@ export interface LedgerAccountUpdateParams {
 }
 
 export interface LedgerAccountListParams extends PageParams {
+  id?: string;
+
   /**
    * Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
    * get the balances change between the two timestamps. The lower bound is inclusive
@@ -385,8 +387,6 @@ export interface LedgerAccountListParams extends PageParams {
    * created_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
   created_at?: Record<string, string>;
-
-  id?: string;
 
   ledger_account_category_id?: string;
 

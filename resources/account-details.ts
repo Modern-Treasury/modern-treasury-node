@@ -84,6 +84,8 @@ export class AccountDetails extends APIResource {
 export class AccountDetailsPage extends Page<AccountDetail> {}
 
 export interface AccountDetail {
+  id: string;
+
   /**
    * The last 4 digits of the account_number.
    */
@@ -98,8 +100,6 @@ export interface AccountDetail {
   created_at: string;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false

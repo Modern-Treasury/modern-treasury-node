@@ -30,6 +30,8 @@ export class LedgerableEvents extends APIResource {
 }
 
 export interface LedgerableEvent {
+  id: string;
+
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
    * as 1000.
@@ -63,8 +65,6 @@ export interface LedgerableEvent {
    * One of `credit`, `debit`.
    */
   direction: string | null;
-
-  id: string;
 
   /**
    * Id of the ledger event handler that is used to create a ledger transaction.

@@ -34,6 +34,8 @@ export class LineItems extends APIResource {
 export class TransactionLineItemsPage extends Page<TransactionLineItem> {}
 
 export interface TransactionLineItem {
+  id: string;
+
   /**
    * If a matching object exists in Modern Treasury, `amount` will be populated.
    * Value in specified currency's smallest unit (taken from parent Transaction).
@@ -62,8 +64,6 @@ export interface TransactionLineItem {
    * The ID of the reconciled Expected Payment, otherwise `null`.
    */
   expected_payment_id: string;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment, or false

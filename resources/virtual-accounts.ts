@@ -83,6 +83,8 @@ export class VirtualAccounts extends APIResource {
 export class VirtualAccountsPage extends Page<VirtualAccount> {}
 
 export interface VirtualAccount {
+  id: string;
+
   /**
    * An array of account detail objects.
    */
@@ -115,8 +117,6 @@ export interface VirtualAccount {
   description: string | null;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * The ID of the internal account that the virtual account is in.

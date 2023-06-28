@@ -97,6 +97,8 @@ export class Counterparties extends APIResource {
 export class CounterpartiesPage extends Page<Counterparty> {}
 
 export interface Counterparty {
+  id: string;
+
   /**
    * The accounts for this counterparty.
    */
@@ -110,8 +112,6 @@ export interface Counterparty {
    * The counterparty's email.
    */
   email: string | null;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false
@@ -148,6 +148,8 @@ export interface Counterparty {
 
 export namespace Counterparty {
   export interface Account {
+    id?: string;
+
     account_details?: Array<AccountDetails.AccountDetail>;
 
     /**
@@ -160,8 +162,6 @@ export namespace Counterparty {
     created_at?: string;
 
     discarded_at?: string | null;
-
-    id?: string;
 
     /**
      * If the external account links to a ledger account in Modern Treasury, the id of
@@ -212,18 +212,40 @@ export namespace Counterparty {
   }
 
   export namespace Account {
+    export interface ContactDetail {
+      id: string;
+
+      contact_identifier: string;
+
+      contact_identifier_type: 'email' | 'phone_number' | 'website';
+
+      created_at: string;
+
+      discarded_at: string | null;
+
+      /**
+       * This field will be true if this object exists in the live environment or false
+       * if it exists in the test environment.
+       */
+      live_mode: boolean;
+
+      object: string;
+
+      updated_at: string;
+    }
+
     /**
      * The address associated with the owner or `null`.
      */
     export interface PartyAddress {
+      id: string;
+
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
        */
       country: string | null;
 
       created_at: string;
-
-      id: string;
 
       line1: string | null;
 
@@ -254,32 +276,15 @@ export namespace Counterparty {
 
       updated_at: string;
     }
-
-    export interface ContactDetail {
-      contact_identifier: string;
-
-      contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-      created_at: string;
-
-      discarded_at: string | null;
-
-      id: string;
-
-      /**
-       * This field will be true if this object exists in the live environment or false
-       * if it exists in the test environment.
-       */
-      live_mode: boolean;
-
-      object: string;
-
-      updated_at: string;
-    }
   }
 }
 
 export interface CounterpartyCollectAccountResponse {
+  /**
+   * The id of the existing counterparty.
+   */
+  id: string;
+
   /**
    * This is the link to the secure Modern Treasury form. By default, Modern Treasury
    * will send an email to your counterparty that includes a link to this form.
@@ -287,11 +292,6 @@ export interface CounterpartyCollectAccountResponse {
    * will not send the email and you can send it to the counterparty directly.
    */
   form_link: string;
-
-  /**
-   * The id of the existing counterparty.
-   */
-  id: string;
 
   /**
    * This field will be `true` if an email requesting account details has already
@@ -423,74 +423,16 @@ export namespace CounterpartyCreateParams {
   }
 
   export namespace Account {
-    /**
-     * Required if receiving wire payments.
-     */
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
     export interface AccountDetail {
       account_number: string;
 
       account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
-    export interface RoutingDetail {
-      routing_number: string;
+    export interface ContactDetail {
+      contact_identifier?: string;
 
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'swift';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
+      contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
 
     /**
@@ -551,10 +493,68 @@ export namespace CounterpartyCreateParams {
       metadata?: Record<string, string>;
     }
 
-    export interface ContactDetail {
-      contact_identifier?: string;
+    /**
+     * Required if receiving wire payments.
+     */
+    export interface PartyAddress {
+      /**
+       * Country code conforms to [ISO 3166-1 alpha-2]
+       */
+      country?: string | null;
 
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
+      line1?: string | null;
+
+      line2?: string | null;
+
+      /**
+       * Locality or City.
+       */
+      locality?: string | null;
+
+      /**
+       * The postal code of the address.
+       */
+      postal_code?: string | null;
+
+      /**
+       * Region or State.
+       */
+      region?: string | null;
+    }
+
+    export interface RoutingDetail {
+      routing_number: string;
+
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'gb_sort_code'
+        | 'in_ifsc'
+        | 'my_branch_code'
+        | 'swift';
+
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'check'
+        | 'eft'
+        | 'cross_border'
+        | 'interac'
+        | 'masav'
+        | 'neft'
+        | 'provxchange'
+        | 'rtp'
+        | 'sen'
+        | 'sepa'
+        | 'signet'
+        | 'wire';
     }
   }
 }

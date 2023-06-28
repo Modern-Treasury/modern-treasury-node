@@ -46,6 +46,8 @@ export class Returns extends APIResource {
 export class ReturnObjectsPage extends Page<ReturnObject> {}
 
 export interface ReturnObject {
+  id: string;
+
   /**
    * Some returns may include additional information from the bank. In these cases,
    * this string will be present.
@@ -132,8 +134,6 @@ export interface ReturnObject {
    */
   failure_reason: string | null;
 
-  id: string;
-
   /**
    * The ID of the relevant Internal Account.
    */
@@ -216,9 +216,9 @@ export interface ReturnObject {
 
 export namespace ReturnObject {
   export interface ReferenceNumber {
-    created_at: string;
-
     id: string;
+
+    created_at: string;
 
     /**
      * This field will be true if this object exists in the live environment or false

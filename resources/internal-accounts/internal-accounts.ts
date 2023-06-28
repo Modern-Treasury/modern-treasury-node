@@ -78,6 +78,8 @@ export class InternalAccounts extends APIResource {
 export class InternalAccountsPage extends Page<InternalAccount> {}
 
 export interface InternalAccount {
+  id: string;
+
   /**
    * An array of account detail objects.
    */
@@ -104,8 +106,6 @@ export interface InternalAccount {
    * The currency of the account.
    */
   currency: Shared.Currency | null;
-
-  id: string;
 
   /**
    * If the internal account links to a ledger account in Modern Treasury, the id of
@@ -165,14 +165,14 @@ export namespace InternalAccount {
    * The address associated with the owner or null.
    */
   export interface PartyAddress {
+    id: string;
+
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
      */
     country: string | null;
 
     created_at: string;
-
-    id: string;
 
     line1: string | null;
 

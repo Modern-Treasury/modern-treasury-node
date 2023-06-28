@@ -97,6 +97,8 @@ export class PaymentOrders extends APIResource {
 export class PaymentOrdersPage extends Page<PaymentOrder> {}
 
 export interface PaymentOrder {
+  id: string;
+
   accounting: PaymentOrder.Accounting;
 
   /**
@@ -192,8 +194,6 @@ export interface PaymentOrder {
    * currency matches the originating account currency.
    */
   foreign_exchange_indicator: 'fixed_to_variable' | 'variable_to_fixed' | null;
-
-  id: string;
 
   /**
    * The ID of the ledger transaction linked to the payment order.
@@ -364,9 +364,9 @@ export namespace PaymentOrder {
   }
 
   export interface ReferenceNumber {
-    created_at: string;
-
     id: string;
+
+    created_at: string;
 
     /**
      * This field will be true if this object exists in the live environment or false
@@ -956,74 +956,16 @@ export namespace PaymentOrderCreateParams {
   }
 
   export namespace ReceivingAccount {
-    /**
-     * Required if receiving wire payments.
-     */
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
     export interface AccountDetail {
       account_number: string;
 
       account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
-    export interface RoutingDetail {
-      routing_number: string;
+    export interface ContactDetail {
+      contact_identifier?: string;
 
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'swift';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
+      contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
 
     /**
@@ -1084,10 +1026,68 @@ export namespace PaymentOrderCreateParams {
       metadata?: Record<string, string>;
     }
 
-    export interface ContactDetail {
-      contact_identifier?: string;
+    /**
+     * Required if receiving wire payments.
+     */
+    export interface PartyAddress {
+      /**
+       * Country code conforms to [ISO 3166-1 alpha-2]
+       */
+      country?: string | null;
 
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
+      line1?: string | null;
+
+      line2?: string | null;
+
+      /**
+       * Locality or City.
+       */
+      locality?: string | null;
+
+      /**
+       * The postal code of the address.
+       */
+      postal_code?: string | null;
+
+      /**
+       * Region or State.
+       */
+      region?: string | null;
+    }
+
+    export interface RoutingDetail {
+      routing_number: string;
+
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'gb_sort_code'
+        | 'in_ifsc'
+        | 'my_branch_code'
+        | 'swift';
+
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'check'
+        | 'eft'
+        | 'cross_border'
+        | 'interac'
+        | 'masav'
+        | 'neft'
+        | 'provxchange'
+        | 'rtp'
+        | 'sen'
+        | 'sepa'
+        | 'signet'
+        | 'wire';
     }
   }
 }
@@ -1422,74 +1422,16 @@ export namespace PaymentOrderUpdateParams {
   }
 
   export namespace ReceivingAccount {
-    /**
-     * Required if receiving wire payments.
-     */
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
     export interface AccountDetail {
       account_number: string;
 
       account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
-    export interface RoutingDetail {
-      routing_number: string;
+    export interface ContactDetail {
+      contact_identifier?: string;
 
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'swift';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
+      contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
 
     /**
@@ -1550,10 +1492,68 @@ export namespace PaymentOrderUpdateParams {
       metadata?: Record<string, string>;
     }
 
-    export interface ContactDetail {
-      contact_identifier?: string;
+    /**
+     * Required if receiving wire payments.
+     */
+    export interface PartyAddress {
+      /**
+       * Country code conforms to [ISO 3166-1 alpha-2]
+       */
+      country?: string | null;
 
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
+      line1?: string | null;
+
+      line2?: string | null;
+
+      /**
+       * Locality or City.
+       */
+      locality?: string | null;
+
+      /**
+       * The postal code of the address.
+       */
+      postal_code?: string | null;
+
+      /**
+       * Region or State.
+       */
+      region?: string | null;
+    }
+
+    export interface RoutingDetail {
+      routing_number: string;
+
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'gb_sort_code'
+        | 'in_ifsc'
+        | 'my_branch_code'
+        | 'swift';
+
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'check'
+        | 'eft'
+        | 'cross_border'
+        | 'interac'
+        | 'masav'
+        | 'neft'
+        | 'provxchange'
+        | 'rtp'
+        | 'sen'
+        | 'sepa'
+        | 'signet'
+        | 'wire';
     }
   }
 }
@@ -2080,74 +2080,16 @@ export namespace PaymentOrderCreateAsyncParams {
   }
 
   export namespace ReceivingAccount {
-    /**
-     * Required if receiving wire payments.
-     */
-    export interface PartyAddress {
-      /**
-       * Country code conforms to [ISO 3166-1 alpha-2]
-       */
-      country?: string | null;
-
-      line1?: string | null;
-
-      line2?: string | null;
-
-      /**
-       * Locality or City.
-       */
-      locality?: string | null;
-
-      /**
-       * The postal code of the address.
-       */
-      postal_code?: string | null;
-
-      /**
-       * Region or State.
-       */
-      region?: string | null;
-    }
-
     export interface AccountDetail {
       account_number: string;
 
       account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
-    export interface RoutingDetail {
-      routing_number: string;
+    export interface ContactDetail {
+      contact_identifier?: string;
 
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'gb_sort_code'
-        | 'in_ifsc'
-        | 'my_branch_code'
-        | 'swift';
-
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'check'
-        | 'eft'
-        | 'cross_border'
-        | 'interac'
-        | 'masav'
-        | 'neft'
-        | 'provxchange'
-        | 'rtp'
-        | 'sen'
-        | 'sepa'
-        | 'signet'
-        | 'wire';
+      contact_identifier_type?: 'email' | 'phone_number' | 'website';
     }
 
     /**
@@ -2208,10 +2150,68 @@ export namespace PaymentOrderCreateAsyncParams {
       metadata?: Record<string, string>;
     }
 
-    export interface ContactDetail {
-      contact_identifier?: string;
+    /**
+     * Required if receiving wire payments.
+     */
+    export interface PartyAddress {
+      /**
+       * Country code conforms to [ISO 3166-1 alpha-2]
+       */
+      country?: string | null;
 
-      contact_identifier_type?: 'email' | 'phone_number' | 'website';
+      line1?: string | null;
+
+      line2?: string | null;
+
+      /**
+       * Locality or City.
+       */
+      locality?: string | null;
+
+      /**
+       * The postal code of the address.
+       */
+      postal_code?: string | null;
+
+      /**
+       * Region or State.
+       */
+      region?: string | null;
+    }
+
+    export interface RoutingDetail {
+      routing_number: string;
+
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'gb_sort_code'
+        | 'in_ifsc'
+        | 'my_branch_code'
+        | 'swift';
+
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'check'
+        | 'eft'
+        | 'cross_border'
+        | 'interac'
+        | 'masav'
+        | 'neft'
+        | 'provxchange'
+        | 'rtp'
+        | 'sen'
+        | 'sepa'
+        | 'signet'
+        | 'wire';
     }
   }
 }
