@@ -1,6 +1,6 @@
 # Connections
 
-Models:
+Types:
 
 - <code><a href="./resources/connections.ts">Connection</a></code>
 
@@ -10,7 +10,7 @@ Methods:
 
 # Counterparties
 
-Models:
+Types:
 
 - <code><a href="./resources/counterparties.ts">Counterparty</a></code>
 - <code><a href="./resources/counterparties.ts">CounterpartyCollectAccountResponse</a></code>
@@ -26,7 +26,7 @@ Methods:
 
 # Events
 
-Models:
+Types:
 
 - <code><a href="./resources/events.ts">Event</a></code>
 
@@ -37,7 +37,7 @@ Methods:
 
 # ExpectedPayments
 
-Models:
+Types:
 
 - <code><a href="./resources/expected-payments.ts">ExpectedPayment</a></code>
 - <code><a href="./resources/expected-payments.ts">ExpectedPaymentType</a></code>
@@ -52,7 +52,7 @@ Methods:
 
 # ExternalAccounts
 
-Models:
+Types:
 
 - <code><a href="./resources/external-accounts.ts">ExternalAccount</a></code>
 - <code><a href="./resources/external-accounts.ts">ExternalAccountType</a></code>
@@ -69,7 +69,7 @@ Methods:
 
 # IncomingPaymentDetails
 
-Models:
+Types:
 
 - <code><a href="./resources/incoming-payment-details.ts">IncomingPaymentDetail</a></code>
 
@@ -82,7 +82,7 @@ Methods:
 
 # Invoices
 
-Models:
+Types:
 
 - <code><a href="./resources/invoices/invoices.ts">Invoice</a></code>
 
@@ -95,7 +95,7 @@ Methods:
 
 ## LineItems
 
-Models:
+Types:
 
 - <code><a href="./resources/invoices/line-items.ts">InvoiceLineItem</a></code>
 
@@ -109,7 +109,7 @@ Methods:
 
 # Documents
 
-Models:
+Types:
 
 - <code><a href="./resources/documents.ts">Document</a></code>
 
@@ -121,7 +121,7 @@ Methods:
 
 # AccountCollectionFlows
 
-Models:
+Types:
 
 - <code><a href="./resources/account-collection-flows.ts">AccountConnectionFlow</a></code>
 
@@ -134,7 +134,7 @@ Methods:
 
 # AccountDetails
 
-Models:
+Types:
 
 - <code><a href="./resources/account-details.ts">AccountDetail</a></code>
 
@@ -147,7 +147,7 @@ Methods:
 
 # RoutingDetails
 
-Models:
+Types:
 
 - <code><a href="./resources/routing-details.ts">RoutingDetail</a></code>
 
@@ -160,7 +160,7 @@ Methods:
 
 # InternalAccounts
 
-Models:
+Types:
 
 - <code><a href="./resources/internal-accounts/internal-accounts.ts">InternalAccount</a></code>
 
@@ -173,7 +173,7 @@ Methods:
 
 ## BalanceReports
 
-Models:
+Types:
 
 - <code><a href="./resources/internal-accounts/balance-reports.ts">BalanceReport</a></code>
 
@@ -184,7 +184,7 @@ Methods:
 
 # Ledgers
 
-Models:
+Types:
 
 - <code><a href="./resources/ledgers.ts">Ledger</a></code>
 
@@ -198,7 +198,7 @@ Methods:
 
 # LedgerableEvents
 
-Models:
+Types:
 
 - <code><a href="./resources/ledgerable-events.ts">LedgerableEvent</a></code>
 
@@ -209,7 +209,7 @@ Methods:
 
 # LedgerAccountCategories
 
-Models:
+Types:
 
 - <code><a href="./resources/ledger-account-categories.ts">LedgerAccountCategory</a></code>
 
@@ -227,7 +227,7 @@ Methods:
 
 # LedgerAccounts
 
-Models:
+Types:
 
 - <code><a href="./resources/ledger-accounts.ts">LedgerAccount</a></code>
 
@@ -241,7 +241,7 @@ Methods:
 
 # LedgerAccountPayouts
 
-Models:
+Types:
 
 - <code><a href="./resources/ledger-account-payouts.ts">LedgerAccountPayout</a></code>
 
@@ -254,7 +254,7 @@ Methods:
 
 # LedgerAccountStatements
 
-Models:
+Types:
 
 - <code><a href="./resources/ledger-account-statements.ts">LedgerAccountStatementCreateResponse</a></code>
 - <code><a href="./resources/ledger-account-statements.ts">LedgerAccountStatementRetrieveResponse</a></code>
@@ -266,7 +266,7 @@ Methods:
 
 # LedgerEntries
 
-Models:
+Types:
 
 - <code><a href="./resources/ledger-entries.ts">LedgerEntry</a></code>
 
@@ -277,7 +277,7 @@ Methods:
 
 # LedgerEventHandlers
 
-Models:
+Types:
 
 - <code><a href="./resources/ledger-event-handlers.ts">LedgerEventHandlerCreateResponse</a></code>
 - <code><a href="./resources/ledger-event-handlers.ts">LedgerEventHandlerRetrieveResponse</a></code>
@@ -293,7 +293,7 @@ Methods:
 
 # LedgerTransactions
 
-Models:
+Types:
 
 - <code><a href="./resources/ledger-transactions/ledger-transactions.ts">LedgerTransaction</a></code>
 
@@ -307,7 +307,7 @@ Methods:
 
 ## Versions
 
-Models:
+Types:
 
 - <code><a href="./resources/ledger-transactions/versions.ts">LedgerTransactionVersion</a></code>
 
@@ -317,7 +317,7 @@ Methods:
 
 # LineItems
 
-Models:
+Types:
 
 - <code><a href="./resources/line-items.ts">LineItem</a></code>
 
@@ -329,7 +329,7 @@ Methods:
 
 # PaymentFlows
 
-Models:
+Types:
 
 - <code><a href="./resources/payment-flows.ts">PaymentFlow</a></code>
 
@@ -342,7 +342,7 @@ Methods:
 
 # PaymentOrders
 
-Models:
+Types:
 
 - <code><a href="./resources/payment-orders/payment-orders.ts">PaymentOrder</a></code>
 - <code><a href="./resources/payment-orders/payment-orders.ts">PaymentOrderSubtype</a></code>
@@ -358,7 +358,7 @@ Methods:
 
 ## Reversals
 
-Models:
+Types:
 
 - <code><a href="./resources/payment-orders/reversals.ts">Reversal</a></code>
 
@@ -370,7 +370,7 @@ Methods:
 
 # PaymentReferences
 
-Models:
+Types:
 
 - <code><a href="./resources/payment-references.ts">PaymentReference</a></code>
 
@@ -381,7 +381,7 @@ Methods:
 
 # Returns
 
-Models:
+Types:
 
 - <code><a href="./resources/returns.ts">ReturnObject</a></code>
 
@@ -393,7 +393,7 @@ Methods:
 
 # Transactions
 
-Models:
+Types:
 
 - <code><a href="./resources/transactions/transactions.ts">Transaction</a></code>
 
@@ -405,7 +405,7 @@ Methods:
 
 ## LineItems
 
-Models:
+Types:
 
 - <code><a href="./resources/transactions/line-items.ts">TransactionLineItem</a></code>
 
@@ -415,7 +415,7 @@ Methods:
 
 # Validations
 
-Models:
+Types:
 
 - <code><a href="./resources/validations.ts">RoutingNumberLookupRequest</a></code>
 
@@ -425,7 +425,7 @@ Methods:
 
 # PaperItems
 
-Models:
+Types:
 
 - <code><a href="./resources/paper-items.ts">PaperItem</a></code>
 
@@ -436,14 +436,14 @@ Methods:
 
 # Webhooks
 
-Custom Methods:
+Methods:
 
 - `getSignature`
 - `validateSignature`
 
 # VirtualAccounts
 
-Models:
+Types:
 
 - <code><a href="./resources/virtual-accounts.ts">VirtualAccount</a></code>
 
