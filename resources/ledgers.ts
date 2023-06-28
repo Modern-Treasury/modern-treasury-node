@@ -72,6 +72,8 @@ export class Ledgers extends APIResource {
 export class LedgersPage extends Page<Ledger> {}
 
 export interface Ledger {
+  id: string;
+
   created_at: string;
 
   /**
@@ -80,8 +82,6 @@ export interface Ledger {
   description: string | null;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false

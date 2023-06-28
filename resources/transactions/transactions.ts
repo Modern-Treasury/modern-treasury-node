@@ -57,6 +57,8 @@ export class Transactions extends APIResource {
 export class TransactionsPage extends Page<Transaction> {}
 
 export interface Transaction {
+  id: string;
+
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
    * as 1000.
@@ -98,8 +100,6 @@ export interface Transaction {
   direction: string;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * The ID of the relevant Internal Account.

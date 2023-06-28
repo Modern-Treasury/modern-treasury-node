@@ -99,6 +99,8 @@ export class LineItems extends APIResource {
 export class InvoiceLineItemsPage extends Page<InvoiceLineItem> {}
 
 export interface InvoiceLineItem {
+  id: string;
+
   /**
    * The total amount for this line item specified in the invoice currency's smallest
    * unit.
@@ -118,8 +120,6 @@ export interface InvoiceLineItem {
    * intention and effect.
    */
   direction: string;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false
@@ -235,6 +235,8 @@ export interface LineItemUpdateParams {
 
 export namespace LineItemUpdateParams {
   export interface ContactDetail {
+    id: string;
+
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';
@@ -242,8 +244,6 @@ export namespace LineItemUpdateParams {
     created_at: string;
 
     discarded_at: string | null;
-
-    id: string;
 
     /**
      * This field will be true if this object exists in the live environment or false

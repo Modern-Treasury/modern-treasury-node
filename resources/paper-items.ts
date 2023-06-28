@@ -34,6 +34,8 @@ export class PaperItems extends APIResource {
 export class PaperItemsPage extends Page<PaperItem> {}
 
 export interface PaperItem {
+  id: string;
+
   /**
    * The account number on the paper item.
    */
@@ -65,8 +67,6 @@ export interface PaperItem {
    * The date the paper item was deposited into your organization's bank account.
    */
   deposit_date: string;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false

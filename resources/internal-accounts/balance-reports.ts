@@ -47,6 +47,8 @@ export class BalanceReports extends APIResource {
 export class BalanceReportsPage extends Page<BalanceReport> {}
 
 export interface BalanceReport {
+  id: string;
+
   /**
    * The date of the balance report in local time.
    */
@@ -70,8 +72,6 @@ export interface BalanceReport {
 
   created_at: string;
 
-  id: string;
-
   /**
    * The ID of one of your organization's Internal Accounts.
    */
@@ -90,6 +90,8 @@ export interface BalanceReport {
 
 export namespace BalanceReport {
   export interface Balance {
+    id: string;
+
     /**
      * The balance amount.
      */
@@ -117,8 +119,6 @@ export namespace BalanceReport {
      * The currency of the balance.
      */
     currency: Shared.Currency | null;
-
-    id: string;
 
     /**
      * This field will be true if this object exists in the live environment or false

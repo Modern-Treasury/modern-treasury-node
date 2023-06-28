@@ -79,6 +79,8 @@ export class ExpectedPayments extends APIResource {
 export class ExpectedPaymentsPage extends Page<ExpectedPayment> {}
 
 export interface ExpectedPayment {
+  id: string;
+
   /**
    * The lowest amount this expected payment may be equal to. Value in specified
    * currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -123,8 +125,6 @@ export interface ExpectedPayment {
    * being charged, use debit.
    */
   direction: 'credit' | 'debit';
-
-  id: string;
 
   /**
    * The ID of the Internal Account for the expected payment.

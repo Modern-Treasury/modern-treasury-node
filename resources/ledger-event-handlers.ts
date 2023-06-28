@@ -67,6 +67,8 @@ export class LedgerEventHandlers extends APIResource {
 export class LedgerEventHandlerListResponsesPage extends Page<LedgerEventHandlerListResponse> {}
 
 export interface LedgerEventHandlerCreateResponse {
+  id: string;
+
   conditions: LedgerEventHandlerCreateResponse.Conditions | null;
 
   created_at: string;
@@ -77,8 +79,6 @@ export interface LedgerEventHandlerCreateResponse {
   description: string | null;
 
   discarded_at: string | null;
-
-  id: string;
 
   ledger_transaction_template: LedgerEventHandlerCreateResponse.LedgerTransactionTemplate;
 
@@ -105,6 +105,24 @@ export interface LedgerEventHandlerCreateResponse {
 }
 
 export namespace LedgerEventHandlerCreateResponse {
+  export interface Conditions {
+    /**
+     * The field you're fetching from the `ledgerable_event`.
+     */
+    field: string;
+
+    /**
+     * What the operator between the `field` and `value` is. Currently only supports
+     * `equals`.
+     */
+    operator: string;
+
+    /**
+     * What raw string you are comparing the `field` against.
+     */
+    value: string;
+  }
+
   export interface LedgerTransactionTemplate {
     /**
      * An optional description for internal use.
@@ -148,27 +166,11 @@ export namespace LedgerEventHandlerCreateResponse {
       ledger_account_id: string;
     }
   }
-
-  export interface Conditions {
-    /**
-     * The field you're fetching from the `ledgerable_event`.
-     */
-    field: string;
-
-    /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
-     */
-    operator: string;
-
-    /**
-     * What raw string you are comparing the `field` against.
-     */
-    value: string;
-  }
 }
 
 export interface LedgerEventHandlerRetrieveResponse {
+  id: string;
+
   conditions: LedgerEventHandlerRetrieveResponse.Conditions | null;
 
   created_at: string;
@@ -179,8 +181,6 @@ export interface LedgerEventHandlerRetrieveResponse {
   description: string | null;
 
   discarded_at: string | null;
-
-  id: string;
 
   ledger_transaction_template: LedgerEventHandlerRetrieveResponse.LedgerTransactionTemplate;
 
@@ -207,6 +207,24 @@ export interface LedgerEventHandlerRetrieveResponse {
 }
 
 export namespace LedgerEventHandlerRetrieveResponse {
+  export interface Conditions {
+    /**
+     * The field you're fetching from the `ledgerable_event`.
+     */
+    field: string;
+
+    /**
+     * What the operator between the `field` and `value` is. Currently only supports
+     * `equals`.
+     */
+    operator: string;
+
+    /**
+     * What raw string you are comparing the `field` against.
+     */
+    value: string;
+  }
+
   export interface LedgerTransactionTemplate {
     /**
      * An optional description for internal use.
@@ -250,27 +268,11 @@ export namespace LedgerEventHandlerRetrieveResponse {
       ledger_account_id: string;
     }
   }
-
-  export interface Conditions {
-    /**
-     * The field you're fetching from the `ledgerable_event`.
-     */
-    field: string;
-
-    /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
-     */
-    operator: string;
-
-    /**
-     * What raw string you are comparing the `field` against.
-     */
-    value: string;
-  }
 }
 
 export interface LedgerEventHandlerListResponse {
+  id: string;
+
   conditions: LedgerEventHandlerListResponse.Conditions | null;
 
   created_at: string;
@@ -281,8 +283,6 @@ export interface LedgerEventHandlerListResponse {
   description: string | null;
 
   discarded_at: string | null;
-
-  id: string;
 
   ledger_transaction_template: LedgerEventHandlerListResponse.LedgerTransactionTemplate;
 
@@ -309,6 +309,24 @@ export interface LedgerEventHandlerListResponse {
 }
 
 export namespace LedgerEventHandlerListResponse {
+  export interface Conditions {
+    /**
+     * The field you're fetching from the `ledgerable_event`.
+     */
+    field: string;
+
+    /**
+     * What the operator between the `field` and `value` is. Currently only supports
+     * `equals`.
+     */
+    operator: string;
+
+    /**
+     * What raw string you are comparing the `field` against.
+     */
+    value: string;
+  }
+
   export interface LedgerTransactionTemplate {
     /**
      * An optional description for internal use.
@@ -352,27 +370,11 @@ export namespace LedgerEventHandlerListResponse {
       ledger_account_id: string;
     }
   }
-
-  export interface Conditions {
-    /**
-     * The field you're fetching from the `ledgerable_event`.
-     */
-    field: string;
-
-    /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
-     */
-    operator: string;
-
-    /**
-     * What raw string you are comparing the `field` against.
-     */
-    value: string;
-  }
 }
 
 export interface LedgerEventHandlerDeleteResponse {
+  id: string;
+
   conditions: LedgerEventHandlerDeleteResponse.Conditions | null;
 
   created_at: string;
@@ -383,8 +385,6 @@ export interface LedgerEventHandlerDeleteResponse {
   description: string | null;
 
   discarded_at: string | null;
-
-  id: string;
 
   ledger_transaction_template: LedgerEventHandlerDeleteResponse.LedgerTransactionTemplate;
 
@@ -411,6 +411,24 @@ export interface LedgerEventHandlerDeleteResponse {
 }
 
 export namespace LedgerEventHandlerDeleteResponse {
+  export interface Conditions {
+    /**
+     * The field you're fetching from the `ledgerable_event`.
+     */
+    field: string;
+
+    /**
+     * What the operator between the `field` and `value` is. Currently only supports
+     * `equals`.
+     */
+    operator: string;
+
+    /**
+     * What raw string you are comparing the `field` against.
+     */
+    value: string;
+  }
+
   export interface LedgerTransactionTemplate {
     /**
      * An optional description for internal use.
@@ -453,24 +471,6 @@ export namespace LedgerEventHandlerDeleteResponse {
        */
       ledger_account_id: string;
     }
-  }
-
-  export interface Conditions {
-    /**
-     * The field you're fetching from the `ledgerable_event`.
-     */
-    field: string;
-
-    /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
-     */
-    operator: string;
-
-    /**
-     * What raw string you are comparing the `field` against.
-     */
-    value: string;
   }
 }
 

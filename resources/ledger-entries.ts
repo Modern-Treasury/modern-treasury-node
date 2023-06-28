@@ -46,6 +46,8 @@ export class LedgerEntries extends APIResource {
 export class LedgerEntriesPage extends Page<LedgerEntry> {}
 
 export interface LedgerEntry {
+  id: string;
+
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
    * as 1000. Can be any integer up to 36 digits.
@@ -63,8 +65,6 @@ export interface LedgerEntry {
   direction: 'credit' | 'debit';
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * The currency of the ledger account.
@@ -160,6 +160,30 @@ export namespace LedgerEntry {
 
   export namespace ResultingLedgerAccountBalances {
     /**
+     * The available_balance is the sum of all posted inbound entries and pending
+     * outbound entries. For credit normal, available_amount = posted_credits -
+     * pending_debits; for debit normal, available_amount = posted_debits -
+     * pending_credits.
+     */
+    export interface AvailableBalance {
+      amount: number;
+
+      credits: number;
+
+      /**
+       * The currency of the ledger account.
+       */
+      currency: string;
+
+      /**
+       * The currency exponent of the ledger account.
+       */
+      currency_exponent: number;
+
+      debits: number;
+    }
+
+    /**
      * The pending_balance is the sum of all pending and posted entries.
      */
     export interface PendingBalance {
@@ -200,30 +224,6 @@ export namespace LedgerEntry {
 
       debits: number;
     }
-
-    /**
-     * The available_balance is the sum of all posted inbound entries and pending
-     * outbound entries. For credit normal, available_amount = posted_credits -
-     * pending_debits; for debit normal, available_amount = posted_debits -
-     * pending_credits.
-     */
-    export interface AvailableBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
   }
 }
 
@@ -236,6 +236,8 @@ export interface LedgerEntryRetrieveParams {
 }
 
 export interface LedgerEntryListParams extends PageParams {
+  id?: Record<string, string>;
+
   /**
    * Shows all ledger entries that were present on a ledger account at a particular
    * `lock_version`. You must also specify `ledger_account_id`.
@@ -260,8 +262,6 @@ export interface LedgerEntryListParams extends PageParams {
    * transaction's effective date. Format YYYY-MM-DD
    */
   effective_date?: Record<string, string>;
-
-  id?: Record<string, string>;
 
   /**
    * Get all ledger entries that match the direction specified. One of `credit`,

@@ -47,12 +47,12 @@ describe('resource ledgerEntries', () => {
     await expect(
       modernTreasury.ledgerEntries.list(
         {
+          id: { foo: 'string' },
           after_cursor: 'string',
           as_of_lock_version: 0,
           direction: 'credit',
           effective_at: { foo: 'string' },
           effective_date: { foo: '2019-12-27' },
-          id: { foo: 'string' },
           ledger_account_category_id: 'string',
           ledger_account_id: 'string',
           ledger_account_lock_version: { foo: 0 },

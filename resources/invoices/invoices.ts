@@ -70,6 +70,8 @@ export class Invoices extends APIResource {
 export class InvoicesPage extends Page<Invoice> {}
 
 export interface Invoice {
+  id: string;
+
   /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
@@ -111,8 +113,6 @@ export interface Invoice {
    * The URL of the hosted web UI where the invoice can be viewed.
    */
   hosted_url: string;
-
-  id: string;
 
   /**
    * The invoice issuer's business address.
@@ -164,6 +164,8 @@ export interface Invoice {
 
 export namespace Invoice {
   export interface ContactDetail {
+    id: string;
+
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';
@@ -171,8 +173,6 @@ export namespace Invoice {
     created_at: string;
 
     discarded_at: string | null;
-
-    id: string;
 
     /**
      * This field will be true if this object exists in the live environment or false
@@ -330,6 +330,8 @@ export interface InvoiceCreateParams {
 
 export namespace InvoiceCreateParams {
   export interface ContactDetail {
+    id: string;
+
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';
@@ -337,8 +339,6 @@ export namespace InvoiceCreateParams {
     created_at: string;
 
     discarded_at: string | null;
-
-    id: string;
 
     /**
      * This field will be true if this object exists in the live environment or false
@@ -501,6 +501,8 @@ export interface InvoiceUpdateParams {
 
 export namespace InvoiceUpdateParams {
   export interface ContactDetail {
+    id: string;
+
     contact_identifier: string;
 
     contact_identifier_type: 'email' | 'phone_number' | 'website';
@@ -508,8 +510,6 @@ export namespace InvoiceUpdateParams {
     created_at: string;
 
     discarded_at: string | null;
-
-    id: string;
 
     /**
      * This field will be true if this object exists in the live environment or false

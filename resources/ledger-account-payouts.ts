@@ -71,6 +71,8 @@ export class LedgerAccountPayouts extends APIResource {
 export class LedgerAccountPayoutsPage extends Page<LedgerAccountPayout> {}
 
 export interface LedgerAccountPayout {
+  id: string;
+
   /**
    * The amount of the ledger account payout.
    */
@@ -105,8 +107,6 @@ export interface LedgerAccountPayout {
    * payout ledger account.
    */
   funding_ledger_account_id: string;
-
-  id: string;
 
   /**
    * The id of the ledger that this ledger account payout belongs to.

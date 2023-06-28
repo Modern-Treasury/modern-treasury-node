@@ -95,6 +95,8 @@ export interface AccountConnectionFlow {
 
   payment_types: Array<'ach' | 'wire'>;
 
+  id?: string;
+
   /**
    * The client token of the account collection flow. This token can be used to embed
    * account collection in your client-side application.
@@ -107,8 +109,6 @@ export interface AccountConnectionFlow {
    * If present, the ID of the external account created using this flow.
    */
   external_account_id?: string | null;
-
-  id?: string;
 
   /**
    * This field will be true if this object exists in the live environment or false
