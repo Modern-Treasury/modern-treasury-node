@@ -58,6 +58,8 @@ export class Documents extends APIResource {
 export class DocumentsPage extends Page<Document> {}
 
 export interface Document {
+  id: string;
+
   created_at: string;
 
   discarded_at: string | null;
@@ -94,8 +96,6 @@ export interface Document {
 
   file: Document.File;
 
-  id: string;
-
   /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
@@ -114,6 +114,8 @@ export interface Document {
 
 export namespace Document {
   export interface DocumentDetail {
+    id: string;
+
     created_at: string;
 
     discarded_at: string | null;
@@ -121,8 +123,6 @@ export namespace Document {
     document_identifier: string;
 
     document_identifier_type: string;
-
-    id: string;
 
     /**
      * This field will be true if this object exists in the live environment or false

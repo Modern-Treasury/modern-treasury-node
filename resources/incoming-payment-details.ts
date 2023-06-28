@@ -84,6 +84,8 @@ export class IncomingPaymentDetails extends APIResource {
 export class IncomingPaymentDetailsPage extends Page<IncomingPaymentDetail> {}
 
 export interface IncomingPaymentDetail {
+  id: string;
+
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
    * as 1000.
@@ -111,8 +113,6 @@ export interface IncomingPaymentDetail {
    * One of `credit` or `debit`.
    */
   direction: 'credit' | 'debit';
-
-  id: string;
 
   /**
    * The ID of the Internal Account for the incoming payment detail. This is always

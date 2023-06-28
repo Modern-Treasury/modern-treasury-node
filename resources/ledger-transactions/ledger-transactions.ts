@@ -98,6 +98,8 @@ export class LedgerTransactions extends APIResource {
 export class LedgerTransactionsPage extends Page<LedgerTransaction> {}
 
 export interface LedgerTransaction {
+  id: string;
+
   created_at: string;
 
   /**
@@ -122,8 +124,6 @@ export interface LedgerTransaction {
    * ledger transaction may have this ID in the ledger.
    */
   external_id: string | null;
-
-  id: string;
 
   /**
    * An array of ledger entry objects.
@@ -397,6 +397,8 @@ export namespace LedgerTransactionUpdateParams {
 }
 
 export interface LedgerTransactionListParams extends PageParams {
+  id?: Record<string, string>;
+
   /**
    * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
    * effective at. For example, for all transactions after Jan 1 2000, use
@@ -412,8 +414,6 @@ export interface LedgerTransactionListParams extends PageParams {
   effective_date?: Record<string, string>;
 
   external_id?: string;
-
-  id?: Record<string, string>;
 
   ledger_account_category_id?: string;
 

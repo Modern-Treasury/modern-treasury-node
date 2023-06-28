@@ -26,11 +26,11 @@ export class Connections extends APIResource {
 export class ConnectionsPage extends Page<Connection> {}
 
 export interface Connection {
+  id: string;
+
   created_at: string;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false

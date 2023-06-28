@@ -81,6 +81,8 @@ export class LineItems extends APIResource {
 export class LineItemsPage extends Page<LineItem> {}
 
 export interface LineItem {
+  id: string;
+
   accounting: LineItem.Accounting;
 
   /**
@@ -108,8 +110,6 @@ export interface LineItem {
    * A free-form description of the line item.
    */
   description: string | null;
-
-  id: string;
 
   /**
    * The ID of the payment order or expected payment.

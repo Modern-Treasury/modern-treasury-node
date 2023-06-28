@@ -81,6 +81,8 @@ export class PaymentFlows extends APIResource {
 export class PaymentFlowsPage extends Page<PaymentFlow> {}
 
 export interface PaymentFlow {
+  id?: string;
+
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
    * as 1000. Can be any integer up to 36 digits.
@@ -111,8 +113,6 @@ export interface PaymentFlow {
    * `debit`. A `debit` pulls money from someone else's account to your own.
    */
   direction?: 'credit' | 'debit';
-
-  id?: string;
 
   /**
    * This field will be true if this object exists in the live environment or false

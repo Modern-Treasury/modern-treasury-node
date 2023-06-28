@@ -84,6 +84,8 @@ export class RoutingDetails extends APIResource {
 export class RoutingDetailsPage extends Page<RoutingDetail> {}
 
 export interface RoutingDetail {
+  id: string;
+
   bank_address: RoutingDetail.BankAddress | null;
 
   /**
@@ -94,8 +96,6 @@ export interface RoutingDetail {
   created_at: string;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false
@@ -154,14 +154,14 @@ export interface RoutingDetail {
 
 export namespace RoutingDetail {
   export interface BankAddress {
+    id: string;
+
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
      */
     country: string | null;
 
     created_at: string;
-
-    id: string;
 
     line1: string | null;
 

@@ -125,6 +125,8 @@ export class ExternalAccounts extends APIResource {
 export class ExternalAccountsPage extends Page<ExternalAccount> {}
 
 export interface ExternalAccount {
+  id: string;
+
   account_details: Array<AccountDetails.AccountDetail>;
 
   /**
@@ -139,8 +141,6 @@ export interface ExternalAccount {
   created_at: string;
 
   discarded_at: string | null;
-
-  id: string;
 
   /**
    * If the external account links to a ledger account in Modern Treasury, the id of
@@ -191,18 +191,40 @@ export interface ExternalAccount {
 }
 
 export namespace ExternalAccount {
+  export interface ContactDetail {
+    id: string;
+
+    contact_identifier: string;
+
+    contact_identifier_type: 'email' | 'phone_number' | 'website';
+
+    created_at: string;
+
+    discarded_at: string | null;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode: boolean;
+
+    object: string;
+
+    updated_at: string;
+  }
+
   /**
    * The address associated with the owner or `null`.
    */
   export interface PartyAddress {
+    id: string;
+
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
      */
     country: string | null;
 
     created_at: string;
-
-    id: string;
 
     line1: string | null;
 
@@ -230,28 +252,6 @@ export namespace ExternalAccount {
      * Region or State.
      */
     region: string | null;
-
-    updated_at: string;
-  }
-
-  export interface ContactDetail {
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    id: string;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
 
     updated_at: string;
   }

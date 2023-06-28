@@ -61,9 +61,9 @@ export class Reversals extends APIResource {
 export class ReversalsPage extends Page<Reversal> {}
 
 export interface Reversal {
-  created_at: string;
-
   id: string;
+
+  created_at: string;
 
   /**
    * This field will be true if this object exists in the live environment or false

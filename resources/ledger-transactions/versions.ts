@@ -32,6 +32,8 @@ export class Versions extends APIResource {
 export class LedgerTransactionVersionsPage extends Page<LedgerTransactionVersion> {}
 
 export interface LedgerTransactionVersion {
+  id: string;
+
   created_at: string;
 
   /**
@@ -56,8 +58,6 @@ export interface LedgerTransactionVersion {
    * ledger transaction may have this ID in the ledger.
    */
   external_id: string | null;
-
-  id: string;
 
   /**
    * An array of ledger entry objects.
@@ -131,6 +131,8 @@ export interface LedgerTransactionVersion {
 
 export namespace LedgerTransactionVersion {
   export interface LedgerEntry {
+    id: string;
+
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
      * as 1000. Can be any integer up to 36 digits.
@@ -146,8 +148,6 @@ export namespace LedgerTransactionVersion {
      * rtp, and check payments will always be `credit`.
      */
     direction: 'credit' | 'debit';
-
-    id: string;
 
     /**
      * The currency of the ledger account.
@@ -241,6 +241,30 @@ export namespace LedgerTransactionVersion {
 
     export namespace ResultingLedgerAccountBalances {
       /**
+       * The available_balance is the sum of all posted inbound entries and pending
+       * outbound entries. For credit normal, available_amount = posted_credits -
+       * pending_debits; for debit normal, available_amount = posted_debits -
+       * pending_credits.
+       */
+      export interface AvailableBalance {
+        amount: number;
+
+        credits: number;
+
+        /**
+         * The currency of the ledger account.
+         */
+        currency: string;
+
+        /**
+         * The currency exponent of the ledger account.
+         */
+        currency_exponent: number;
+
+        debits: number;
+      }
+
+      /**
        * The pending_balance is the sum of all pending and posted entries.
        */
       export interface PendingBalance {
@@ -265,30 +289,6 @@ export namespace LedgerTransactionVersion {
        * The posted_balance is the sum of all posted entries.
        */
       export interface PostedBalance {
-        amount: number;
-
-        credits: number;
-
-        /**
-         * The currency of the ledger account.
-         */
-        currency: string;
-
-        /**
-         * The currency exponent of the ledger account.
-         */
-        currency_exponent: number;
-
-        debits: number;
-      }
-
-      /**
-       * The available_balance is the sum of all posted inbound entries and pending
-       * outbound entries. For credit normal, available_amount = posted_credits -
-       * pending_debits; for debit normal, available_amount = posted_debits -
-       * pending_credits.
-       */
-      export interface AvailableBalance {
         amount: number;
 
         credits: number;
