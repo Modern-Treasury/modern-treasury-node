@@ -1,3 +1,13 @@
+# ModernTreasury
+
+Types:
+
+- <code><a href="./resources/top-level.ts">PingResponse</a></code>
+
+Methods:
+
+- <code title="get /api/ping">client.<a href="./index.ts">ping</a>() -> PingResponse</code>
+
 # Connections
 
 Types:
@@ -438,8 +448,8 @@ Methods:
 
 Methods:
 
-- `getSignature`
-- `validateSignature`
+- <code>client.webhooks.<a href="./resources/webhooks.ts">getSignature</a>(...args) -> string</code>
+- <code>client.webhooks.<a href="./resources/webhooks.ts">validateSignature</a>(...args) -> boolean</code>
 
 # VirtualAccounts
 
