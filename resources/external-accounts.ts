@@ -73,7 +73,7 @@ export class ExternalAccounts extends APIResource {
   /**
    * delete external account
    */
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
     return this.delete(`/api/external_accounts/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

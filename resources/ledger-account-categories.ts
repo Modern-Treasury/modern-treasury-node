@@ -112,7 +112,7 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     ledgerAccountId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.put(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -126,7 +126,7 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     subCategoryId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.put(`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -140,7 +140,7 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     ledgerAccountId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.delete(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -154,7 +154,7 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     subCategoryId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.delete(`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
