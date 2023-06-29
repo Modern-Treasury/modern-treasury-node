@@ -21,7 +21,7 @@ Methods:
 - <code title="get /api/counterparties/{id}">client.counterparties.<a href="./resources/counterparties.ts">retrieve</a>(id) -> Counterparty</code>
 - <code title="patch /api/counterparties/{id}">client.counterparties.<a href="./resources/counterparties.ts">update</a>(id, { ...params }) -> Counterparty</code>
 - <code title="get /api/counterparties">client.counterparties.<a href="./resources/counterparties.ts">list</a>({ ...params }) -> CounterpartiesPage</code>
-- <code title="delete /api/counterparties/{id}">client.counterparties.<a href="./resources/counterparties.ts">del</a>(id) -> Promise<void></code>
+- <code title="delete /api/counterparties/{id}">client.counterparties.<a href="./resources/counterparties.ts">del</a>(id) -> void</code>
 - <code title="post /api/counterparties/{id}/collect_account">client.counterparties.<a href="./resources/counterparties.ts">collectAccount</a>(id, { ...params }) -> CounterpartyCollectAccountResponse</code>
 
 # Events
@@ -63,7 +63,7 @@ Methods:
 - <code title="get /api/external_accounts/{id}">client.externalAccounts.<a href="./resources/external-accounts.ts">retrieve</a>(id) -> ExternalAccount</code>
 - <code title="patch /api/external_accounts/{id}">client.externalAccounts.<a href="./resources/external-accounts.ts">update</a>(id, { ...params }) -> ExternalAccount</code>
 - <code title="get /api/external_accounts">client.externalAccounts.<a href="./resources/external-accounts.ts">list</a>({ ...params }) -> ExternalAccountsPage</code>
-- <code title="delete /api/external_accounts/{id}">client.externalAccounts.<a href="./resources/external-accounts.ts">del</a>(id) -> Promise<void></code>
+- <code title="delete /api/external_accounts/{id}">client.externalAccounts.<a href="./resources/external-accounts.ts">del</a>(id) -> void</code>
 - <code title="post /api/external_accounts/{id}/complete_verification">client.externalAccounts.<a href="./resources/external-accounts.ts">completeVerification</a>(id, { ...params }) -> ExternalAccount</code>
 - <code title="post /api/external_accounts/{id}/verify">client.externalAccounts.<a href="./resources/external-accounts.ts">verify</a>(id, { ...params }) -> ExternalAccount</code>
 
@@ -143,7 +143,7 @@ Methods:
 - <code title="post /api/{accounts_type}/{account_id}/account_details">client.accountDetails.<a href="./resources/account-details.ts">create</a>(accountsType, accountId, { ...params }) -> AccountDetail</code>
 - <code title="get /api/{accounts_type}/{account_id}/account_details/{id}">client.accountDetails.<a href="./resources/account-details.ts">retrieve</a>(accountsType, accountId, id) -> AccountDetail</code>
 - <code title="get /api/{accounts_type}/{account_id}/account_details">client.accountDetails.<a href="./resources/account-details.ts">list</a>(accountsType, accountId, { ...params }) -> AccountDetailsPage</code>
-- <code title="delete /api/{accounts_type}/{account_id}/account_details/{id}">client.accountDetails.<a href="./resources/account-details.ts">del</a>(accountsType, accountId, id) -> Promise<void></code>
+- <code title="delete /api/{accounts_type}/{account_id}/account_details/{id}">client.accountDetails.<a href="./resources/account-details.ts">del</a>(accountsType, accountId, id) -> void</code>
 
 # RoutingDetails
 
@@ -156,7 +156,7 @@ Methods:
 - <code title="post /api/{accounts_type}/{account_id}/routing_details">client.routingDetails.<a href="./resources/routing-details.ts">create</a>(accountsType, accountId, { ...params }) -> RoutingDetail</code>
 - <code title="get /api/{accounts_type}/{account_id}/routing_details/{id}">client.routingDetails.<a href="./resources/routing-details.ts">retrieve</a>(accountsType, accountId, id) -> RoutingDetail</code>
 - <code title="get /api/{accounts_type}/{account_id}/routing_details">client.routingDetails.<a href="./resources/routing-details.ts">list</a>(accountsType, accountId, { ...params }) -> RoutingDetailsPage</code>
-- <code title="delete /api/{accounts_type}/{account_id}/routing_details/{id}">client.routingDetails.<a href="./resources/routing-details.ts">del</a>(accountsType, accountId, id) -> Promise<void></code>
+- <code title="delete /api/{accounts_type}/{account_id}/routing_details/{id}">client.routingDetails.<a href="./resources/routing-details.ts">del</a>(accountsType, accountId, id) -> void</code>
 
 # InternalAccounts
 
@@ -220,10 +220,10 @@ Methods:
 - <code title="patch /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">update</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="get /api/ledger_account_categories">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">list</a>({ ...params }) -> LedgerAccountCategoriesPage</code>
 - <code title="delete /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">del</a>(id, { ...params }) -> LedgerAccountCategory</code>
-- <code title="put /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">addLedgerAccount</a>(id, ledgerAccountId) -> Promise<void></code>
-- <code title="put /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">addNestedCategory</a>(id, subCategoryId) -> Promise<void></code>
-- <code title="delete /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">removeLedgerAccount</a>(id, ledgerAccountId) -> Promise<void></code>
-- <code title="delete /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">removeNestedCategory</a>(id, subCategoryId) -> Promise<void></code>
+- <code title="put /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">addLedgerAccount</a>(id, ledgerAccountId) -> void</code>
+- <code title="put /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">addNestedCategory</a>(id, subCategoryId) -> void</code>
+- <code title="delete /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">removeLedgerAccount</a>(id, ledgerAccountId) -> void</code>
+- <code title="delete /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./resources/ledger-account-categories.ts">removeNestedCategory</a>(id, subCategoryId) -> void</code>
 
 # LedgerAccounts
 
@@ -450,7 +450,7 @@ Types:
 Methods:
 
 - <code title="post /api/virtual_accounts">client.virtualAccounts.<a href="./resources/virtual-accounts.ts">create</a>({ ...params }) -> VirtualAccount</code>
-- <code title="get /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./resources/virtual-accounts.ts">retrieve</a>(id) -> Promise<void></code>
+- <code title="get /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./resources/virtual-accounts.ts">retrieve</a>(id) -> void</code>
 - <code title="patch /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./resources/virtual-accounts.ts">update</a>(id, { ...params }) -> VirtualAccount</code>
 - <code title="get /api/virtual_accounts">client.virtualAccounts.<a href="./resources/virtual-accounts.ts">list</a>({ ...params }) -> VirtualAccountsPage</code>
 - <code title="delete /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./resources/virtual-accounts.ts">del</a>(id) -> VirtualAccount</code>
