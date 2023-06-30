@@ -1,4 +1,4 @@
-import { multipartFormRequestOptions, createForm } from '../core';
+import { multipartFormRequestOptions, createForm } from 'modern-treasury/core';
 import { Blob } from 'modern-treasury/_shims/formdata';
 import { toFile } from 'modern-treasury';
 

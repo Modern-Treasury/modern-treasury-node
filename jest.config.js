@@ -3,8 +3,9 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   moduleNameMapper: {
-    '^~/(.*)$': '<rootDir>/$1',
-    '^modern-treasury/_shims/(.*)$': '<rootDir>/_shims/$1.node',
+    '^modern-treasury$': '<rootDir>/src/index.ts',
+    '^modern-treasury/_shims/(.*)$': '<rootDir>/src/_shims/$1.node',
+    '^modern-treasury/(.*)$': '<rootDir>/src/$1',
   },
-  modulePathIgnorePatterns: ['<rootDir>/ecosystem-tests/'],
+  modulePathIgnorePatterns: ['<rootDir>/ecosystem-tests/', '<rootDir>/dist/'],
 };

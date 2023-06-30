@@ -1,6 +1,5 @@
 import fs from 'fs';
-import { toFile } from '~/uploads';
-import { ResponseLike } from 'modern-treasury/_shims/uploadable';
+import { toFile, type ResponseLike } from 'modern-treasury/uploads';
 import { File } from 'modern-treasury/_shims/formdata';
 
 class MyClass {

@@ -1,4 +1,4 @@
-import { createResponseHeaders } from '../core';
+import { createResponseHeaders } from 'modern-treasury/core';
 import { Headers } from 'modern-treasury/_shims/fetch';
 
 describe('response parsing', () => {
