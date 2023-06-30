@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { Headers } from '~/core';
-import ModernTreasury from '../index';
+import { Headers } from 'modern-treasury/core';
+import ModernTreasury from 'modern-treasury';
 
 describe('instantiate client', () => {
   const env = process.env;
