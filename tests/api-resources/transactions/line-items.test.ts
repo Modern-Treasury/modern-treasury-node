@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import ModernTreasury from '~/index';
+import ModernTreasury from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
