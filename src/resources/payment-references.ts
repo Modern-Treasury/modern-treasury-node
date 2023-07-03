@@ -34,6 +34,8 @@ export class PaymentReferences extends APIResource {
 }
 
 export class PaymentReferencesPage extends Page<PaymentReference> {}
+// alias so we can export it in the namespace
+type _PaymentReferencesPage = PaymentReferencesPage;
 
 export interface PaymentReference {
   id: string;
@@ -149,6 +151,6 @@ export interface PaymentReferenceListParams extends PageParams {
 
 export namespace PaymentReferences {
   export import PaymentReference = API.PaymentReference;
-  export import PaymentReferencesPage = API.PaymentReferencesPage;
+  export type PaymentReferencesPage = _PaymentReferencesPage;
   export import PaymentReferenceListParams = API.PaymentReferenceListParams;
 }

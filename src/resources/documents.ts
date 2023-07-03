@@ -56,6 +56,8 @@ export class Documents extends APIResource {
 }
 
 export class DocumentsPage extends Page<Document> {}
+// alias so we can export it in the namespace
+type _DocumentsPage = DocumentsPage;
 
 export interface Document {
   id: string;
@@ -222,7 +224,7 @@ export interface DocumentListParams extends PageParams {
 
 export namespace Documents {
   export import Document = API.Document;
-  export import DocumentsPage = API.DocumentsPage;
+  export type DocumentsPage = _DocumentsPage;
   export import DocumentCreateParams = API.DocumentCreateParams;
   export import DocumentListParams = API.DocumentListParams;
 }

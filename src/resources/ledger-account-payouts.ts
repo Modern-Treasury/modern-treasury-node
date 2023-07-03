@@ -69,6 +69,8 @@ export class LedgerAccountPayouts extends APIResource {
 }
 
 export class LedgerAccountPayoutsPage extends Page<LedgerAccountPayout> {}
+// alias so we can export it in the namespace
+type _LedgerAccountPayoutsPage = LedgerAccountPayoutsPage;
 
 export interface LedgerAccountPayout {
   id: string;
@@ -216,7 +218,7 @@ export interface LedgerAccountPayoutListParams extends PageParams {
 
 export namespace LedgerAccountPayouts {
   export import LedgerAccountPayout = API.LedgerAccountPayout;
-  export import LedgerAccountPayoutsPage = API.LedgerAccountPayoutsPage;
+  export type LedgerAccountPayoutsPage = _LedgerAccountPayoutsPage;
   export import LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
   export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
   export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;

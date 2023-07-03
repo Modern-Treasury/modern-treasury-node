@@ -123,6 +123,8 @@ export class ExternalAccounts extends APIResource {
 }
 
 export class ExternalAccountsPage extends Page<ExternalAccount> {}
+// alias so we can export it in the namespace
+type _ExternalAccountsPage = ExternalAccountsPage;
 
 export interface ExternalAccount {
   id: string;
@@ -620,7 +622,7 @@ export interface ExternalAccountVerifyParams {
 export namespace ExternalAccounts {
   export import ExternalAccount = API.ExternalAccount;
   export import ExternalAccountType = API.ExternalAccountType;
-  export import ExternalAccountsPage = API.ExternalAccountsPage;
+  export type ExternalAccountsPage = _ExternalAccountsPage;
   export import ExternalAccountCreateParams = API.ExternalAccountCreateParams;
   export import ExternalAccountUpdateParams = API.ExternalAccountUpdateParams;
   export import ExternalAccountListParams = API.ExternalAccountListParams;

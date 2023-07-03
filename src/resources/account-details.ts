@@ -82,6 +82,8 @@ export class AccountDetails extends APIResource {
 }
 
 export class AccountDetailsPage extends Page<AccountDetail> {}
+// alias so we can export it in the namespace
+type _AccountDetailsPage = AccountDetailsPage;
 
 export interface AccountDetail {
   id: string;
@@ -140,7 +142,7 @@ export interface AccountDetailListParams extends PageParams {}
 
 export namespace AccountDetails {
   export import AccountDetail = API.AccountDetail;
-  export import AccountDetailsPage = API.AccountDetailsPage;
+  export type AccountDetailsPage = _AccountDetailsPage;
   export import AccountDetailCreateParams = API.AccountDetailCreateParams;
   export import AccountDetailListParams = API.AccountDetailListParams;
 }

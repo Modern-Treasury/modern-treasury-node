@@ -97,6 +97,8 @@ export class LineItems extends APIResource {
 }
 
 export class InvoiceLineItemsPage extends Page<InvoiceLineItem> {}
+// alias so we can export it in the namespace
+type _InvoiceLineItemsPage = InvoiceLineItemsPage;
 
 export interface InvoiceLineItem {
   id: string;
@@ -348,7 +350,7 @@ export interface LineItemListParams extends PageParams {}
 
 export namespace LineItems {
   export import InvoiceLineItem = API.InvoiceLineItem;
-  export import InvoiceLineItemsPage = API.InvoiceLineItemsPage;
+  export type InvoiceLineItemsPage = _InvoiceLineItemsPage;
   export import LineItemCreateParams = API.LineItemCreateParams;
   export import LineItemUpdateParams = API.LineItemUpdateParams;
   export import LineItemListParams = API.LineItemListParams;

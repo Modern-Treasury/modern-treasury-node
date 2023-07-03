@@ -79,6 +79,8 @@ export class PaymentFlows extends APIResource {
 }
 
 export class PaymentFlowsPage extends Page<PaymentFlow> {}
+// alias so we can export it in the namespace
+type _PaymentFlowsPage = PaymentFlowsPage;
 
 export interface PaymentFlow {
   id?: string;
@@ -221,7 +223,7 @@ export interface PaymentFlowListParams extends PageParams {
 
 export namespace PaymentFlows {
   export import PaymentFlow = API.PaymentFlow;
-  export import PaymentFlowsPage = API.PaymentFlowsPage;
+  export type PaymentFlowsPage = _PaymentFlowsPage;
   export import PaymentFlowCreateParams = API.PaymentFlowCreateParams;
   export import PaymentFlowRetrieveParams = API.PaymentFlowRetrieveParams;
   export import PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;

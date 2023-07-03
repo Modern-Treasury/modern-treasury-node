@@ -96,6 +96,8 @@ export class LedgerTransactions extends APIResource {
 }
 
 export class LedgerTransactionsPage extends Page<LedgerTransaction> {}
+// alias so we can export it in the namespace
+type _LedgerTransactionsPage = LedgerTransactionsPage;
 
 export interface LedgerTransaction {
   id: string;
@@ -537,7 +539,7 @@ export interface LedgerTransactionCreateReversalParams {
 
 export namespace LedgerTransactions {
   export import LedgerTransaction = API.LedgerTransaction;
-  export import LedgerTransactionsPage = API.LedgerTransactionsPage;
+  export type LedgerTransactionsPage = _LedgerTransactionsPage;
   export import LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
   export import LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
   export import LedgerTransactionListParams = API.LedgerTransactionListParams;

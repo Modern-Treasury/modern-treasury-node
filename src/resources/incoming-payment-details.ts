@@ -82,6 +82,8 @@ export class IncomingPaymentDetails extends APIResource {
 }
 
 export class IncomingPaymentDetailsPage extends Page<IncomingPaymentDetail> {}
+// alias so we can export it in the namespace
+type _IncomingPaymentDetailsPage = IncomingPaymentDetailsPage;
 
 export interface IncomingPaymentDetail {
   id: string;
@@ -318,7 +320,7 @@ export interface IncomingPaymentDetailCreateAsyncParams {
 
 export namespace IncomingPaymentDetails {
   export import IncomingPaymentDetail = API.IncomingPaymentDetail;
-  export import IncomingPaymentDetailsPage = API.IncomingPaymentDetailsPage;
+  export type IncomingPaymentDetailsPage = _IncomingPaymentDetailsPage;
   export import IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
   export import IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
   export import IncomingPaymentDetailCreateAsyncParams = API.IncomingPaymentDetailCreateAsyncParams;

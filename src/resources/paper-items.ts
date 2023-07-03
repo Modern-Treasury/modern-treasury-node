@@ -32,6 +32,8 @@ export class PaperItems extends APIResource {
 }
 
 export class PaperItemsPage extends Page<PaperItem> {}
+// alias so we can export it in the namespace
+type _PaperItemsPage = PaperItemsPage;
 
 export interface PaperItem {
   id: string;
@@ -135,6 +137,6 @@ export interface PaperItemListParams extends PageParams {
 
 export namespace PaperItems {
   export import PaperItem = API.PaperItem;
-  export import PaperItemsPage = API.PaperItemsPage;
+  export type PaperItemsPage = _PaperItemsPage;
   export import PaperItemListParams = API.PaperItemListParams;
 }

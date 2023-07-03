@@ -77,6 +77,8 @@ export class ExpectedPayments extends APIResource {
 }
 
 export class ExpectedPaymentsPage extends Page<ExpectedPayment> {}
+// alias so we can export it in the namespace
+type _ExpectedPaymentsPage = ExpectedPaymentsPage;
 
 export interface ExpectedPayment {
   id: string;
@@ -508,7 +510,7 @@ export interface ExpectedPaymentListParams extends PageParams {
 export namespace ExpectedPayments {
   export import ExpectedPayment = API.ExpectedPayment;
   export import ExpectedPaymentType = API.ExpectedPaymentType;
-  export import ExpectedPaymentsPage = API.ExpectedPaymentsPage;
+  export type ExpectedPaymentsPage = _ExpectedPaymentsPage;
   export import ExpectedPaymentCreateParams = API.ExpectedPaymentCreateParams;
   export import ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
   export import ExpectedPaymentListParams = API.ExpectedPaymentListParams;

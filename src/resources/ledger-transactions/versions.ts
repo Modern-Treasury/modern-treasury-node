@@ -30,6 +30,8 @@ export class Versions extends APIResource {
 }
 
 export class LedgerTransactionVersionsPage extends Page<LedgerTransactionVersion> {}
+// alias so we can export it in the namespace
+type _LedgerTransactionVersionsPage = LedgerTransactionVersionsPage;
 
 export interface LedgerTransactionVersion {
   id: string;
@@ -338,6 +340,6 @@ export interface VersionListParams extends PageParams {
 
 export namespace Versions {
   export import LedgerTransactionVersion = API.LedgerTransactionVersion;
-  export import LedgerTransactionVersionsPage = API.LedgerTransactionVersionsPage;
+  export type LedgerTransactionVersionsPage = _LedgerTransactionVersionsPage;
   export import VersionListParams = API.VersionListParams;
 }
