@@ -18,6 +18,7 @@ type Config = {
   httpAgent?: Agent;
   maxRetries?: number;
   defaultHeaders?: Core.Headers;
+  defaultQuery?: Core.DefaultQuery;
   organizationId?: string | null;
   webhookKey?: string | null;
 };
@@ -101,6 +102,10 @@ export class ModernTreasury extends Core.APIClient {
    */
   ping(options?: Core.RequestOptions): Promise<Core.APIResponse<ModernTreasury.PingResponse>> {
     return this.get('/api/ping', options);
+  }
+
+  protected override defaultQuery(): Core.DefaultQuery | undefined {
+    return this._options.defaultQuery;
   }
 
   protected override defaultHeaders(): Core.Headers {
