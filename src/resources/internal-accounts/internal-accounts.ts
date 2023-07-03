@@ -76,6 +76,8 @@ export class InternalAccounts extends APIResource {
 }
 
 export class InternalAccountsPage extends Page<InternalAccount> {}
+// alias so we can export it in the namespace
+type _InternalAccountsPage = InternalAccountsPage;
 
 export interface InternalAccount {
   id: string;
@@ -356,7 +358,7 @@ export interface InternalAccountListParams extends PageParams {
 
 export namespace InternalAccounts {
   export import InternalAccount = API.InternalAccount;
-  export import InternalAccountsPage = API.InternalAccountsPage;
+  export type InternalAccountsPage = _InternalAccountsPage;
   export import InternalAccountCreateParams = API.InternalAccountCreateParams;
   export import InternalAccountUpdateParams = API.InternalAccountUpdateParams;
   export import InternalAccountListParams = API.InternalAccountListParams;

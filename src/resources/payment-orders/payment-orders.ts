@@ -95,6 +95,8 @@ export class PaymentOrders extends APIResource {
 }
 
 export class PaymentOrdersPage extends Page<PaymentOrder> {}
+// alias so we can export it in the namespace
+type _PaymentOrdersPage = PaymentOrdersPage;
 
 export interface PaymentOrder {
   id: string;
@@ -2220,7 +2222,7 @@ export namespace PaymentOrders {
   export import PaymentOrder = API.PaymentOrder;
   export import PaymentOrderSubtype = API.PaymentOrderSubtype;
   export import PaymentOrderType = API.PaymentOrderType;
-  export import PaymentOrdersPage = API.PaymentOrdersPage;
+  export type PaymentOrdersPage = _PaymentOrdersPage;
   export import PaymentOrderCreateParams = API.PaymentOrderCreateParams;
   export import PaymentOrderUpdateParams = API.PaymentOrderUpdateParams;
   export import PaymentOrderListParams = API.PaymentOrderListParams;

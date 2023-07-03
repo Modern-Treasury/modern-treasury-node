@@ -55,6 +55,8 @@ export class Transactions extends APIResource {
 }
 
 export class TransactionsPage extends Page<Transaction> {}
+// alias so we can export it in the namespace
+type _TransactionsPage = TransactionsPage;
 
 export interface Transaction {
   id: string;
@@ -272,7 +274,7 @@ export interface TransactionListParams extends PageParams {
 
 export namespace Transactions {
   export import Transaction = API.Transaction;
-  export import TransactionsPage = API.TransactionsPage;
+  export type TransactionsPage = _TransactionsPage;
   export import TransactionUpdateParams = API.TransactionUpdateParams;
   export import TransactionListParams = API.TransactionListParams;
 

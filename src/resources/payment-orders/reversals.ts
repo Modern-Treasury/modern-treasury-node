@@ -59,6 +59,8 @@ export class Reversals extends APIResource {
 }
 
 export class ReversalsPage extends Page<Reversal> {}
+// alias so we can export it in the namespace
+type _ReversalsPage = ReversalsPage;
 
 export interface Reversal {
   id: string;
@@ -263,7 +265,7 @@ export interface ReversalListParams extends PageParams {}
 
 export namespace Reversals {
   export import Reversal = API.Reversal;
-  export import ReversalsPage = API.ReversalsPage;
+  export type ReversalsPage = _ReversalsPage;
   export import ReversalCreateParams = API.ReversalCreateParams;
   export import ReversalListParams = API.ReversalListParams;
 }

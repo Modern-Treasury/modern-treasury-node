@@ -81,6 +81,8 @@ export class VirtualAccounts extends APIResource {
 }
 
 export class VirtualAccountsPage extends Page<VirtualAccount> {}
+// alias so we can export it in the namespace
+type _VirtualAccountsPage = VirtualAccountsPage;
 
 export interface VirtualAccount {
   id: string;
@@ -233,7 +235,7 @@ export interface VirtualAccountListParams extends PageParams {
 
 export namespace VirtualAccounts {
   export import VirtualAccount = API.VirtualAccount;
-  export import VirtualAccountsPage = API.VirtualAccountsPage;
+  export type VirtualAccountsPage = _VirtualAccountsPage;
   export import VirtualAccountCreateParams = API.VirtualAccountCreateParams;
   export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
   export import VirtualAccountListParams = API.VirtualAccountListParams;

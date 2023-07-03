@@ -163,6 +163,8 @@ export class LedgerAccountCategories extends APIResource {
 }
 
 export class LedgerAccountCategoriesPage extends Page<LedgerAccountCategory> {}
+// alias so we can export it in the namespace
+type _LedgerAccountCategoriesPage = LedgerAccountCategoriesPage;
 
 export interface LedgerAccountCategory {
   id: string;
@@ -472,7 +474,7 @@ export namespace LedgerAccountCategoryDeleteParams {
 
 export namespace LedgerAccountCategories {
   export import LedgerAccountCategory = API.LedgerAccountCategory;
-  export import LedgerAccountCategoriesPage = API.LedgerAccountCategoriesPage;
+  export type LedgerAccountCategoriesPage = _LedgerAccountCategoriesPage;
   export import LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
   export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
   export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;

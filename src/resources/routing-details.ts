@@ -82,6 +82,8 @@ export class RoutingDetails extends APIResource {
 }
 
 export class RoutingDetailsPage extends Page<RoutingDetail> {}
+// alias so we can export it in the namespace
+type _RoutingDetailsPage = RoutingDetailsPage;
 
 export interface RoutingDetail {
   id: string;
@@ -251,7 +253,7 @@ export interface RoutingDetailListParams extends PageParams {}
 
 export namespace RoutingDetails {
   export import RoutingDetail = API.RoutingDetail;
-  export import RoutingDetailsPage = API.RoutingDetailsPage;
+  export type RoutingDetailsPage = _RoutingDetailsPage;
   export import RoutingDetailCreateParams = API.RoutingDetailCreateParams;
   export import RoutingDetailListParams = API.RoutingDetailListParams;
 }

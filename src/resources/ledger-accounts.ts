@@ -86,6 +86,8 @@ export class LedgerAccounts extends APIResource {
 }
 
 export class LedgerAccountsPage extends Page<LedgerAccount> {}
+// alias so we can export it in the namespace
+type _LedgerAccountsPage = LedgerAccountsPage;
 
 export interface LedgerAccount {
   id: string;
@@ -429,7 +431,7 @@ export namespace LedgerAccountListParams {
 
 export namespace LedgerAccounts {
   export import LedgerAccount = API.LedgerAccount;
-  export import LedgerAccountsPage = API.LedgerAccountsPage;
+  export type LedgerAccountsPage = _LedgerAccountsPage;
   export import LedgerAccountCreateParams = API.LedgerAccountCreateParams;
   export import LedgerAccountRetrieveParams = API.LedgerAccountRetrieveParams;
   export import LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;

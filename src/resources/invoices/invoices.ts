@@ -68,6 +68,8 @@ export class Invoices extends APIResource {
 }
 
 export class InvoicesPage extends Page<Invoice> {}
+// alias so we can export it in the namespace
+type _InvoicesPage = InvoicesPage;
 
 export interface Invoice {
   id: string;
@@ -614,7 +616,7 @@ export interface InvoiceListParams extends PageParams {}
 
 export namespace Invoices {
   export import Invoice = API.Invoice;
-  export import InvoicesPage = API.InvoicesPage;
+  export type InvoicesPage = _InvoicesPage;
   export import InvoiceCreateParams = API.InvoiceCreateParams;
   export import InvoiceUpdateParams = API.InvoiceUpdateParams;
   export import InvoiceListParams = API.InvoiceListParams;

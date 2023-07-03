@@ -32,6 +32,8 @@ export class LineItems extends APIResource {
 }
 
 export class TransactionLineItemsPage extends Page<TransactionLineItem> {}
+// alias so we can export it in the namespace
+type _TransactionLineItemsPage = TransactionLineItemsPage;
 
 export interface TransactionLineItem {
   id: string;
@@ -107,6 +109,6 @@ export interface LineItemListParams extends PageParams {
 
 export namespace LineItems {
   export import TransactionLineItem = API.TransactionLineItem;
-  export import TransactionLineItemsPage = API.TransactionLineItemsPage;
+  export type TransactionLineItemsPage = _TransactionLineItemsPage;
   export import LineItemListParams = API.LineItemListParams;
 }

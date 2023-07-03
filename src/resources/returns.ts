@@ -44,6 +44,8 @@ export class Returns extends APIResource {
 }
 
 export class ReturnObjectsPage extends Page<ReturnObject> {}
+// alias so we can export it in the namespace
+type _ReturnObjectsPage = ReturnObjectsPage;
 
 export interface ReturnObject {
   id: string;
@@ -411,7 +413,7 @@ export interface ReturnListParams extends PageParams {
 
 export namespace Returns {
   export import ReturnObject = API.ReturnObject;
-  export import ReturnObjectsPage = API.ReturnObjectsPage;
+  export type ReturnObjectsPage = _ReturnObjectsPage;
   export import ReturnCreateParams = API.ReturnCreateParams;
   export import ReturnListParams = API.ReturnListParams;
 }
