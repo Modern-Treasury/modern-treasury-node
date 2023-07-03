@@ -95,6 +95,8 @@ export class Counterparties extends APIResource {
 }
 
 export class CounterpartiesPage extends Page<Counterparty> {}
+// alias so we can export it in the namespace
+type _CounterpartiesPage = CounterpartiesPage;
 
 export interface Counterparty {
   id: string;
@@ -684,7 +686,7 @@ export interface CounterpartyCollectAccountParams {
 export namespace Counterparties {
   export import Counterparty = API.Counterparty;
   export import CounterpartyCollectAccountResponse = API.CounterpartyCollectAccountResponse;
-  export import CounterpartiesPage = API.CounterpartiesPage;
+  export type CounterpartiesPage = _CounterpartiesPage;
   export import CounterpartyCreateParams = API.CounterpartyCreateParams;
   export import CounterpartyUpdateParams = API.CounterpartyUpdateParams;
   export import CounterpartyListParams = API.CounterpartyListParams;

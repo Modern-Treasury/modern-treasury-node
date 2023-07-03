@@ -45,6 +45,8 @@ export class BalanceReports extends APIResource {
 }
 
 export class BalanceReportsPage extends Page<BalanceReport> {}
+// alias so we can export it in the namespace
+type _BalanceReportsPage = BalanceReportsPage;
 
 export interface BalanceReport {
   id: string;
@@ -178,6 +180,6 @@ export interface BalanceReportListParams extends PageParams {
 
 export namespace BalanceReports {
   export import BalanceReport = API.BalanceReport;
-  export import BalanceReportsPage = API.BalanceReportsPage;
+  export type BalanceReportsPage = _BalanceReportsPage;
   export import BalanceReportListParams = API.BalanceReportListParams;
 }

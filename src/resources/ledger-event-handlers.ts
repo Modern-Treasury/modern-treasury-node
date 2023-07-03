@@ -65,6 +65,8 @@ export class LedgerEventHandlers extends APIResource {
 }
 
 export class LedgerEventHandlerListResponsesPage extends Page<LedgerEventHandlerListResponse> {}
+// alias so we can export it in the namespace
+type _LedgerEventHandlerListResponsesPage = LedgerEventHandlerListResponsesPage;
 
 export interface LedgerEventHandlerCreateResponse {
   id: string;
@@ -595,7 +597,7 @@ export namespace LedgerEventHandlers {
   export import LedgerEventHandlerRetrieveResponse = API.LedgerEventHandlerRetrieveResponse;
   export import LedgerEventHandlerListResponse = API.LedgerEventHandlerListResponse;
   export import LedgerEventHandlerDeleteResponse = API.LedgerEventHandlerDeleteResponse;
-  export import LedgerEventHandlerListResponsesPage = API.LedgerEventHandlerListResponsesPage;
+  export type LedgerEventHandlerListResponsesPage = _LedgerEventHandlerListResponsesPage;
   export import LedgerEventHandlerCreateParams = API.LedgerEventHandlerCreateParams;
   export import LedgerEventHandlerListParams = API.LedgerEventHandlerListParams;
 }

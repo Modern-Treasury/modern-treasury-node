@@ -85,6 +85,8 @@ export class AccountCollectionFlows extends APIResource {
 }
 
 export class AccountConnectionFlowsPage extends Page<AccountConnectionFlow> {}
+// alias so we can export it in the namespace
+type _AccountConnectionFlowsPage = AccountConnectionFlowsPage;
 
 export interface AccountConnectionFlow {
   /**
@@ -178,7 +180,7 @@ export interface AccountCollectionFlowListParams extends PageParams {
 
 export namespace AccountCollectionFlows {
   export import AccountConnectionFlow = API.AccountConnectionFlow;
-  export import AccountConnectionFlowsPage = API.AccountConnectionFlowsPage;
+  export type AccountConnectionFlowsPage = _AccountConnectionFlowsPage;
   export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
   export import AccountCollectionFlowRetrieveParams = API.AccountCollectionFlowRetrieveParams;
   export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;

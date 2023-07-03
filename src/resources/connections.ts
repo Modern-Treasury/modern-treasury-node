@@ -24,6 +24,8 @@ export class Connections extends APIResource {
 }
 
 export class ConnectionsPage extends Page<Connection> {}
+// alias so we can export it in the namespace
+type _ConnectionsPage = ConnectionsPage;
 
 export interface Connection {
   id: string;
@@ -72,6 +74,6 @@ export interface ConnectionListParams extends PageParams {
 
 export namespace Connections {
   export import Connection = API.Connection;
-  export import ConnectionsPage = API.ConnectionsPage;
+  export type ConnectionsPage = _ConnectionsPage;
   export import ConnectionListParams = API.ConnectionListParams;
 }
