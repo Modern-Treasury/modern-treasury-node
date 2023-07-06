@@ -4,8 +4,8 @@ import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as PaymentOrders from 'modern-treasury/resources/payment-orders/index';
-import { LineItems } from './line-items';
 import * as Shared from 'modern-treasury/resources/shared';
+import { LineItems } from './line-items';
 import * as API from './';
 import { Page, PageParams } from 'modern-treasury/pagination';
 

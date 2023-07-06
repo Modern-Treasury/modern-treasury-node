@@ -3,6 +3,7 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as Shared from 'modern-treasury/resources/shared';
 import * as API from './';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
@@ -28,7 +29,7 @@ export class RoutingDetails extends APIResource {
    * Get a single routing detail for a single internal or external account.
    */
   retrieve(
-    accountsType: 'external_accounts' | 'internal_accounts',
+    accountsType: Shared.AccountsType,
     accountId: string,
     id: string,
     options?: Core.RequestOptions,
@@ -40,18 +41,18 @@ export class RoutingDetails extends APIResource {
    * Get a list of routing details for a single internal or external account.
    */
   list(
-    accountsType: 'external_accounts' | 'internal_accounts',
+    accountsType: Shared.AccountsType,
     accountId: string,
     query?: RoutingDetailListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<RoutingDetailsPage>;
   list(
-    accountsType: 'external_accounts' | 'internal_accounts',
+    accountsType: Shared.AccountsType,
     accountId: string,
     options?: Core.RequestOptions,
   ): Core.PagePromise<RoutingDetailsPage>;
   list(
-    accountsType: 'external_accounts' | 'internal_accounts',
+    accountsType: Shared.AccountsType,
     accountId: string,
     query: RoutingDetailListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
