@@ -6,8 +6,8 @@ import { isRequestOptions } from 'modern-treasury/core';
 import * as AccountDetails from 'modern-treasury/resources/account-details';
 import * as RoutingDetails from 'modern-treasury/resources/routing-details';
 import * as Connections from 'modern-treasury/resources/connections';
-import { BalanceReports } from './balance-reports';
 import * as Shared from 'modern-treasury/resources/shared';
+import { BalanceReports } from './balance-reports';
 import * as API from './';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
