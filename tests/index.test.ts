@@ -2,6 +2,7 @@
 
 import { Headers } from 'modern-treasury/core';
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'modern-treasury/_shims/fetch';
 
 describe('instantiate client', () => {
   const env = process.env;
@@ -79,6 +80,24 @@ describe('instantiate client', () => {
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
     });
+  });
+
+  test('custom fetch', async () => {
+    const client = new ModernTreasury({
+      baseURL: 'http://localhost:5000/',
+      organizationId: 'my-organization-ID',
+      apiKey: 'my api key',
+      fetch: (url) => {
+        return Promise.resolve(
+          new Response(JSON.stringify({ url, custom: true }), {
+            headers: { 'Content-Type': 'application/json' },
+          }),
+        );
+      },
+    });
+
+    const response = await client.get('/foo');
+    expect(response).toEqual({ url: 'http://localhost:5000/foo', custom: true });
   });
 
   describe('baseUrl', () => {
