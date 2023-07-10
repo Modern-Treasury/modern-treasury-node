@@ -37,6 +37,14 @@ type Config = {
   httpAgent?: Agent;
 
   /**
+   * Specify a custom `fetch` function implementation.
+   *
+   * If not provided, we use `node-fetch` on Node.js and otherwise expect that `fetch` is
+   * defined globally.
+   */
+  fetch?: Core.Fetch | undefined;
+
+  /**
    * The maximum number of times that the client will retry a request in case of a
    * temporary failure, like a network error or a 5XX error from the server.
    *
@@ -91,6 +99,7 @@ export class ModernTreasury extends Core.APIClient {
       timeout: options.timeout,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
+      fetch: options.fetch,
     });
     this.apiKey = options.apiKey;
     this._options = options;
