@@ -35,7 +35,8 @@ async function main() {
 
   console.log(externalAccount.id);
 }
-main().catch(console.error);
+
+main();
 ```
 
 ### Usage with TypeScript
@@ -60,7 +61,8 @@ async function main() {
     params,
   );
 }
-main().catch(console.error);
+
+main();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -131,10 +133,13 @@ async function main() {
         console.log(err.name); // BadRequestError
 
         console.log(err.headers); // {server: 'nginx', ...}
+      } else {
+        throw err;
       }
     });
 }
-main().catch(console.error);
+
+main();
 ```
 
 Error codes are as followed:
@@ -167,7 +172,7 @@ const modernTreasury = new ModernTreasury({
 });
 
 // Or, configure per-request:
-modernTreasury.externalAccounts.list({
+await modernTreasury.externalAccounts.list({
   maxRetries: 5,
 });
 ```
@@ -185,7 +190,7 @@ const modernTreasury = new ModernTreasury({
 });
 
 // Override per-request:
-modernTreasury.externalAccounts.list({ party_name: 'my bank' }, {
+await modernTreasury.externalAccounts.list({ party_name: 'my bank' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -243,7 +248,7 @@ const modernTreasury = new ModernTreasury({
 });
 
 // Override per-request:
-modernTreasury.externalAccounts.list({
+await modernTreasury.externalAccounts.list({
   baseURL: 'http://localhost:8080/test-api',
   httpAgent: new http.Agent({ keepAlive: false }),
 })
