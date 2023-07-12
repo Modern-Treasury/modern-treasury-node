@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { Headers } from 'modern-treasury/core';
 import ModernTreasury from 'modern-treasury';
-import { Response } from 'modern-treasury/_shims/fetch';
+import { APIUserAbortError } from 'modern-treasury';
+import { Headers } from 'modern-treasury/core';
+import { Response, fetch as defaultFetch } from 'modern-treasury/_shims/fetch';
 
 describe('instantiate client', () => {
   const env = process.env;
@@ -98,6 +99,33 @@ describe('instantiate client', () => {
 
     const response = await client.get('/foo');
     expect(response).toEqual({ url: 'http://localhost:5000/foo', custom: true });
+  });
+
+  test('custom signal', async () => {
+    const client = new ModernTreasury({
+      baseURL: 'http://127.0.0.1:4010',
+      organizationId: 'my-organization-ID',
+      apiKey: 'my api key',
+      fetch: (...args) => {
+        return new Promise((resolve, reject) =>
+          setTimeout(
+            () =>
+              defaultFetch(...args)
+                .then(resolve)
+                .catch(reject),
+            300,
+          ),
+        );
+      },
+    });
+
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), 200);
+
+    const spy = jest.spyOn(client, 'request');
+
+    await expect(client.get('/foo', { signal: controller.signal })).rejects.toThrowError(APIUserAbortError);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   describe('baseUrl', () => {
