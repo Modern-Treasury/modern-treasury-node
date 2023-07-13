@@ -1,5 +1,44 @@
 # Changelog
 
+## [2.1.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.0.0...v2.1.0) (2023-07-13)
+
+
+### Features
+
+* **client:** add support for passing a `signal` request option ([#148](https://github.com/Modern-Treasury/modern-treasury-node/issues/148)) ([33236e6](https://github.com/Modern-Treasury/modern-treasury-node/commit/33236e6ff2e4f02882fc6717bccee5e51867f0e5))
+* **client:** improve timeout handling to reuse agent ([#140](https://github.com/Modern-Treasury/modern-treasury-node/issues/140)) ([afa8b25](https://github.com/Modern-Treasury/modern-treasury-node/commit/afa8b257c3175b22bf647efe88139638f7fa92d4))
+* **client:** support passing a custom `fetch` function ([#144](https://github.com/Modern-Treasury/modern-treasury-node/issues/144)) ([d32ecbc](https://github.com/Modern-Treasury/modern-treasury-node/commit/d32ecbc8b8ae4288c61c5dd10e236f1883bf21b6))
+* improvements to ecosystem compatibility ([#151](https://github.com/Modern-Treasury/modern-treasury-node/issues/151)) ([9a0343e](https://github.com/Modern-Treasury/modern-treasury-node/commit/9a0343ed4d9310337b6e54c3a63deccea65ca2eb))
+
+
+### Bug Fixes
+
+* **client:** properly handle multi-byte characters in Content-Length ([#145](https://github.com/Modern-Treasury/modern-treasury-node/issues/145)) ([6adf4d8](https://github.com/Modern-Treasury/modern-treasury-node/commit/6adf4d877326e5f57a29101bf05df74fded4bddf))
+* fix errors in package source files when users go to definition in VSCode ([#139](https://github.com/Modern-Treasury/modern-treasury-node/issues/139)) ([148fefe](https://github.com/Modern-Treasury/modern-treasury-node/commit/148fefee55106352d2ce236515ed1e645392b410))
+* include README.md, LICENSE and CHANGELOG.md in published package ([#136](https://github.com/Modern-Treasury/modern-treasury-node/issues/136)) ([e372a1b](https://github.com/Modern-Treasury/modern-treasury-node/commit/e372a1b207fff03bf89f69f14b81f2c065a66c98))
+* **streaming:** do not abort successfully completed streams ([#147](https://github.com/Modern-Treasury/modern-treasury-node/issues/147)) ([5f7f44e](https://github.com/Modern-Treasury/modern-treasury-node/commit/5f7f44e456a3569225f138de56937eaccb25a225))
+* **streaming:** fix response body streaming in non-Chrome environments ([#142](https://github.com/Modern-Treasury/modern-treasury-node/issues/142)) ([cb86104](https://github.com/Modern-Treasury/modern-treasury-node/commit/cb8610457076d6b0e6203f00d086f827da626279))
+* **streaming:** polyfill ReadableStream async iterator and text decoding ([#135](https://github.com/Modern-Treasury/modern-treasury-node/issues/135)) ([1da7d67](https://github.com/Modern-Treasury/modern-treasury-node/commit/1da7d67eb8ca03b32a77f3dfe687e24c9640f06b))
+* support `PromiseLike` input to `toFile` ([#138](https://github.com/Modern-Treasury/modern-treasury-node/issues/138)) ([f157769](https://github.com/Modern-Treasury/modern-treasury-node/commit/f157769ae96eb269697d3491e9bddfbf19377b54))
+
+
+### Refactors
+
+* improve streaming implementation ([#137](https://github.com/Modern-Treasury/modern-treasury-node/issues/137)) ([6716dd2](https://github.com/Modern-Treasury/modern-treasury-node/commit/6716dd2f9e6cba2696f851d6b977cadd5787281f))
+* **streaming:** make response body streaming polyfill more spec-compliant ([#143](https://github.com/Modern-Treasury/modern-treasury-node/issues/143)) ([9f62d25](https://github.com/Modern-Treasury/modern-treasury-node/commit/9f62d2571bb1c15b844f080af9d1c2485cbba4cd))
+
+
+### Documentation
+
+* **readme:** improvements to formatting code snippets ([#149](https://github.com/Modern-Treasury/modern-treasury-node/issues/149)) ([699a630](https://github.com/Modern-Treasury/modern-treasury-node/commit/699a630ca581d0dee599509b972fc44e58d1c9b1))
+* **readme:** minor improvements ([#146](https://github.com/Modern-Treasury/modern-treasury-node/issues/146)) ([09c7bb5](https://github.com/Modern-Treasury/modern-treasury-node/commit/09c7bb514f4894336604cd6e408e0506c1c17e26))
+
+
+### Chores
+
+* **internal:** fix release please version config ([#134](https://github.com/Modern-Treasury/modern-treasury-node/issues/134)) ([1cc2a12](https://github.com/Modern-Treasury/modern-treasury-node/commit/1cc2a1231e6818f7012f2aec653dc9e28d769620))
+* **internal:** remove unused streaming implementation ([#150](https://github.com/Modern-Treasury/modern-treasury-node/issues/150)) ([3665f89](https://github.com/Modern-Treasury/modern-treasury-node/commit/3665f89da6595ab76b4a57721a646f75c1b1e7d0))
+
 ## [2.0.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v1.7.0...v2.0.0) (2023-07-07)
 
 
