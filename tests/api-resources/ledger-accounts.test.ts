@@ -55,6 +55,7 @@ describe('resource ledgerAccounts', () => {
             effective_at: '2019-12-27T18:11:19.117Z',
             effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
             effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
+            as_of_lock_version: 0,
           },
         },
         { path: '/_stainless_unknown_path' },

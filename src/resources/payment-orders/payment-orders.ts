@@ -740,6 +740,24 @@ export namespace PaymentOrderCreateParams {
   }
 
   export interface Document {
+    /**
+     * The unique identifier for the associated object.
+     */
+    documentable_id: string;
+
+    documentable_type:
+      | 'cases'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'internal_accounts'
+      | 'organizations'
+      | 'paper_items'
+      | 'payment_orders'
+      | 'transactions'
+      | 'decisions'
+      | 'connections';
+
     file: Uploadable;
 
     /**

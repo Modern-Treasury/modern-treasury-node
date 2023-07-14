@@ -36,9 +36,24 @@ describe('resource paymentOrders', () => {
       currency: 'AED',
       description: 'string',
       documents: [
-        { document_type: 'string', file: await toFile(Buffer.from('# my file contents'), 'README.md') },
-        { document_type: 'string', file: await toFile(Buffer.from('# my file contents'), 'README.md') },
-        { document_type: 'string', file: await toFile(Buffer.from('# my file contents'), 'README.md') },
+        {
+          documentable_id: 'string',
+          documentable_type: 'cases',
+          document_type: 'string',
+          file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+        },
+        {
+          documentable_id: 'string',
+          documentable_type: 'cases',
+          document_type: 'string',
+          file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+        },
+        {
+          documentable_id: 'string',
+          documentable_type: 'cases',
+          document_type: 'string',
+          file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+        },
       ],
       effective_date: '2019-12-27',
       expires_at: '2019-12-27T18:11:19.117Z',

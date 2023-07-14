@@ -328,23 +328,29 @@ export interface LedgerAccountCreateParams {
 
 export interface LedgerAccountRetrieveParams {
   /**
-   * Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
-   * get the balances change between the two timestamps. The lower bound is inclusive
-   * while the upper bound is exclusive of the provided timestamps. If no value is
-   * supplied the balances will be retrieved not including that bound.
+   * Use `balances[effective_at_lower_bound]` and
+   * `balances[effective_at_upper_bound]` to get the balances change between the two
+   * timestamps. The lower bound is inclusive while the upper bound is exclusive of
+   * the provided timestamps. If no value is supplied the balances will be retrieved
+   * not including that bound. Use `balances[as_of_lock_version]` to retrieve a
+   * balance as of a specific Ledger Account `lock_version`.
    */
   balances?: LedgerAccountRetrieveParams.Balances;
 }
 
 export namespace LedgerAccountRetrieveParams {
   /**
-   * Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
-   * get the balances change between the two timestamps. The lower bound is inclusive
-   * while the upper bound is exclusive of the provided timestamps. If no value is
-   * supplied the balances will be retrieved not including that bound.
+   * Use `balances[effective_at_lower_bound]` and
+   * `balances[effective_at_upper_bound]` to get the balances change between the two
+   * timestamps. The lower bound is inclusive while the upper bound is exclusive of
+   * the provided timestamps. If no value is supplied the balances will be retrieved
+   * not including that bound. Use `balances[as_of_lock_version]` to retrieve a
+   * balance as of a specific Ledger Account `lock_version`.
    */
   export interface Balances {
     as_of_date?: string;
+
+    as_of_lock_version?: number;
 
     effective_at?: string;
 
@@ -376,10 +382,11 @@ export interface LedgerAccountListParams extends PageParams {
   id?: string;
 
   /**
-   * Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
-   * get the balances change between the two timestamps. The lower bound is inclusive
-   * while the upper bound is exclusive of the provided timestamps. If no value is
-   * supplied the balances will be retrieved not including that bound.
+   * Use `balances[effective_at_lower_bound]` and
+   * `balances[effective_at_upper_bound]` to get the balances change between the two
+   * timestamps. The lower bound is inclusive while the upper bound is exclusive of
+   * the provided timestamps. If no value is supplied the balances will be retrieved
+   * not including that bound.
    */
   balances?: LedgerAccountListParams.Balances;
 
@@ -413,10 +420,11 @@ export interface LedgerAccountListParams extends PageParams {
 
 export namespace LedgerAccountListParams {
   /**
-   * Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
-   * get the balances change between the two timestamps. The lower bound is inclusive
-   * while the upper bound is exclusive of the provided timestamps. If no value is
-   * supplied the balances will be retrieved not including that bound.
+   * Use `balances[effective_at_lower_bound]` and
+   * `balances[effective_at_upper_bound]` to get the balances change between the two
+   * timestamps. The lower bound is inclusive while the upper bound is exclusive of
+   * the provided timestamps. If no value is supplied the balances will be retrieved
+   * not including that bound.
    */
   export interface Balances {
     as_of_date?: string;
