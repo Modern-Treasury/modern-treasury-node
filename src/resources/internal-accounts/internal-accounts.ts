@@ -235,11 +235,6 @@ export interface InternalAccountCreateParams {
   counterparty_id?: string;
 
   /**
-   * Body param: The identifier of the entity at Increase which owns the account.
-   */
-  entity_id?: string;
-
-  /**
    * Body param: The parent internal account of this new account.
    */
   parent_account_id?: string;
@@ -248,6 +243,12 @@ export interface InternalAccountCreateParams {
    * Body param: The address associated with the owner or null.
    */
   party_address?: InternalAccountCreateParams.PartyAddress;
+
+  /**
+   * Body param: A hash of vendor specific attributes that will be used when creating
+   * the account at the vendor specified by the given connection.
+   */
+  vendor_attributes?: Record<string, string>;
 
   /**
    * Header param: This key should be something unique, preferably something like an

@@ -27,11 +27,8 @@ export class VirtualAccounts extends APIResource {
   /**
    * get virtual_account
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
-    return this.get(`/api/virtual_accounts/${id}`, {
-      ...options,
-      headers: { Accept: '', ...options?.headers },
-    });
+  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VirtualAccount>> {
+    return this.get(`/api/virtual_accounts/${id}`, options);
   }
 
   /**

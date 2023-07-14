@@ -460,7 +460,7 @@ Types:
 Methods:
 
 - <code title="post /api/virtual_accounts">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">create</a>({ ...params }) -> VirtualAccount</code>
-- <code title="get /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">retrieve</a>(id) -> void</code>
+- <code title="get /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">retrieve</a>(id) -> VirtualAccount</code>
 - <code title="patch /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">update</a>(id, { ...params }) -> VirtualAccount</code>
 - <code title="get /api/virtual_accounts">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">list</a>({ ...params }) -> VirtualAccountsPage</code>
 - <code title="delete /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">del</a>(id) -> VirtualAccount</code>
