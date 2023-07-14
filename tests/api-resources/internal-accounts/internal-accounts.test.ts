@@ -25,7 +25,6 @@ describe('resource internalAccounts', () => {
       name: 'string',
       party_name: 'string',
       counterparty_id: 'string',
-      entity_id: 'string',
       parent_account_id: 'string',
       party_address: {
         line1: 'string',
@@ -35,6 +34,7 @@ describe('resource internalAccounts', () => {
         postal_code: 'string',
         country: 'string',
       },
+      vendor_attributes: { key: 'value', foo: 'bar', modern: 'treasury' },
       'Idempotency-Key': 'string',
     });
   });

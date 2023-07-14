@@ -15,16 +15,10 @@ export class Documents extends APIResource {
     params: DocumentCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<Document>> {
-    const {
-      documentable_id: documentableId,
-      documentable_type: documentableType,
-      'Idempotency-Key': idempotencyKey,
-      ...body
-    } = params;
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(
       '/api/documents',
       await multipartFormRequestOptions({
-        query: { documentable_id: documentableId, documentable_type: documentableType },
         body,
         ...options,
         headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
@@ -157,15 +151,12 @@ export namespace Document {
 
 export interface DocumentCreateParams {
   /**
-   * Query param: The unique identifier for the associated object.
+   * Body param: The unique identifier for the associated object.
    */
   documentable_id: string;
 
   /**
-   * Query param: The type of the associated object. Currently can be one of
-   * `payment_order`, `transaction`, `paper_item`, `expected_payment`,
-   * `counterparty`, `organization`, `case`, `internal_account`, `decision`, or
-   * `external_account`.
+   * Body param:
    */
   documentable_type:
     | 'cases'
