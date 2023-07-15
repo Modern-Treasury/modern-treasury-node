@@ -176,6 +176,8 @@ export class ModernTreasury extends Core.APIClient {
     return { arrayFormat: 'repeat' };
   }
 
+  static ModernTreasury = this;
+
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
