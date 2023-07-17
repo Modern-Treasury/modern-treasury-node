@@ -165,7 +165,7 @@ export interface VirtualAccountCreateParams {
   /**
    * Body param: An array of account detail objects.
    */
-  account_details?: Array<AccountDetails.AccountDetail>;
+  account_details?: Array<VirtualAccountCreateParams.AccountDetail>;
 
   /**
    * Body param: The ID of the counterparty that the virtual account belongs to.
@@ -200,13 +200,74 @@ export interface VirtualAccountCreateParams {
   /**
    * Body param: An array of routing detail objects.
    */
-  routing_details?: Array<RoutingDetails.RoutingDetail>;
+  routing_details?: Array<VirtualAccountCreateParams.RoutingDetail>;
 
   /**
    * Header param: This key should be something unique, preferably something like an
    * UUID.
    */
   'Idempotency-Key'?: string;
+}
+
+export namespace VirtualAccountCreateParams {
+  export interface AccountDetail {
+    /**
+     * The account number for the bank account.
+     */
+    account_number: string;
+
+    /**
+     * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
+     * account number is in a generic format.
+     */
+    account_number_type?: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address';
+  }
+
+  export interface RoutingDetail {
+    /**
+     * The routing number of the bank.
+     */
+    routing_number: string;
+
+    /**
+     * One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
+     */
+    routing_number_type:
+      | 'aba'
+      | 'au_bsb'
+      | 'br_codigo'
+      | 'ca_cpa'
+      | 'chips'
+      | 'cnaps'
+      | 'gb_sort_code'
+      | 'in_ifsc'
+      | 'my_branch_code'
+      | 'swift';
+
+    /**
+     * If the routing detail is to be used for a specific payment type this field will
+     * be populated, otherwise null.
+     */
+    payment_type?:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'book'
+      | 'card'
+      | 'check'
+      | 'cross_border'
+      | 'eft'
+      | 'interac'
+      | 'masav'
+      | 'neft'
+      | 'provxchange'
+      | 'rtp'
+      | 'sen'
+      | 'sepa'
+      | 'signet'
+      | 'wire'
+      | null;
+  }
 }
 
 export interface VirtualAccountUpdateParams {
