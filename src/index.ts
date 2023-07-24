@@ -279,8 +279,8 @@ export namespace ModernTreasury {
   export import DocumentListParams = API.DocumentListParams;
 
   export import AccountCollectionFlows = API.AccountCollectionFlows;
-  export import AccountConnectionFlow = API.AccountConnectionFlow;
-  export import AccountConnectionFlowsPage = API.AccountConnectionFlowsPage;
+  export import AccountCollectionFlow = API.AccountCollectionFlow;
+  export import AccountCollectionFlowsPage = API.AccountCollectionFlowsPage;
   export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
   export import AccountCollectionFlowRetrieveParams = API.AccountCollectionFlowRetrieveParams;
   export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
