@@ -133,14 +133,14 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/account-collection-flows.ts">AccountConnectionFlow</a></code>
+- <code><a href="./src/resources/account-collection-flows.ts">AccountCollectionFlow</a></code>
 
 Methods:
 
-- <code title="post /api/account_collection_flows">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">create</a>({ ...params }) -> AccountConnectionFlow</code>
-- <code title="get /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">retrieve</a>(id, { ...params }) -> AccountConnectionFlow</code>
-- <code title="patch /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">update</a>(id, { ...params }) -> AccountConnectionFlow</code>
-- <code title="get /api/account_collection_flows">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">list</a>({ ...params }) -> AccountConnectionFlowsPage</code>
+- <code title="post /api/account_collection_flows">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">create</a>({ ...params }) -> AccountCollectionFlow</code>
+- <code title="get /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">retrieve</a>(id, { ...params }) -> AccountCollectionFlow</code>
+- <code title="patch /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">update</a>(id, { ...params }) -> AccountCollectionFlow</code>
+- <code title="get /api/account_collection_flows">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">list</a>({ ...params }) -> AccountCollectionFlowsPage</code>
 
 # AccountDetails
 

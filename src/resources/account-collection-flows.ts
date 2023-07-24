@@ -13,7 +13,7 @@ export class AccountCollectionFlows extends APIResource {
   create(
     params: AccountCollectionFlowCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountConnectionFlow>> {
+  ): Promise<Core.APIResponse<AccountCollectionFlow>> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/account_collection_flows', {
       body,
@@ -29,13 +29,13 @@ export class AccountCollectionFlows extends APIResource {
     id: string,
     query?: AccountCollectionFlowRetrieveParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountConnectionFlow>>;
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<AccountConnectionFlow>>;
+  ): Promise<Core.APIResponse<AccountCollectionFlow>>;
+  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<AccountCollectionFlow>>;
   retrieve(
     id: string,
     query: AccountCollectionFlowRetrieveParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountConnectionFlow>> {
+  ): Promise<Core.APIResponse<AccountCollectionFlow>> {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
@@ -53,7 +53,7 @@ export class AccountCollectionFlows extends APIResource {
     id: string,
     params: AccountCollectionFlowUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountConnectionFlow>> {
+  ): Promise<Core.APIResponse<AccountCollectionFlow>> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.patch(`/api/account_collection_flows/${id}`, {
       body,
@@ -68,27 +68,27 @@ export class AccountCollectionFlows extends APIResource {
   list(
     query?: AccountCollectionFlowListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AccountConnectionFlowsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AccountConnectionFlowsPage>;
+  ): Core.PagePromise<AccountCollectionFlowsPage>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AccountCollectionFlowsPage>;
   list(
     query: AccountCollectionFlowListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AccountConnectionFlowsPage> {
+  ): Core.PagePromise<AccountCollectionFlowsPage> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/account_collection_flows', AccountConnectionFlowsPage, {
+    return this.getAPIList('/api/account_collection_flows', AccountCollectionFlowsPage, {
       query,
       ...options,
     });
   }
 }
 
-export class AccountConnectionFlowsPage extends Page<AccountConnectionFlow> {}
+export class AccountCollectionFlowsPage extends Page<AccountCollectionFlow> {}
 // alias so we can export it in the namespace
-type _AccountConnectionFlowsPage = AccountConnectionFlowsPage;
+type _AccountCollectionFlowsPage = AccountCollectionFlowsPage;
 
-export interface AccountConnectionFlow {
+export interface AccountCollectionFlow {
   /**
    * The ID of a counterparty. An external account created with this flow will be
    * associated with this counterparty.
@@ -179,8 +179,8 @@ export interface AccountCollectionFlowListParams extends PageParams {
 }
 
 export namespace AccountCollectionFlows {
-  export import AccountConnectionFlow = API.AccountConnectionFlow;
-  export type AccountConnectionFlowsPage = _AccountConnectionFlowsPage;
+  export import AccountCollectionFlow = API.AccountCollectionFlow;
+  export type AccountCollectionFlowsPage = _AccountCollectionFlowsPage;
   export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
   export import AccountCollectionFlowRetrieveParams = API.AccountCollectionFlowRetrieveParams;
   export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;

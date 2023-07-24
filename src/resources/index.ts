@@ -2,12 +2,12 @@
 
 export * from './shared';
 export {
-  AccountConnectionFlow,
+  AccountCollectionFlow,
   AccountCollectionFlowCreateParams,
   AccountCollectionFlowRetrieveParams,
   AccountCollectionFlowUpdateParams,
   AccountCollectionFlowListParams,
-  AccountConnectionFlowsPage,
+  AccountCollectionFlowsPage,
   AccountCollectionFlows,
 } from './account-collection-flows';
 export {
