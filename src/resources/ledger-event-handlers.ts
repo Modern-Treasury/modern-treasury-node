@@ -498,6 +498,11 @@ export interface LedgerEventHandlerCreateParams {
   description?: string | null;
 
   /**
+   * Body param: The id of the ledger that this account belongs to.
+   */
+  ledger_id?: string;
+
+  /**
    * Body param: Additional data represented as key-value pairs. Both the key and
    * value must be strings.
    */
