@@ -140,15 +140,38 @@ export interface Invoice {
   originating_account_id: string;
 
   /**
+   * Date transactions are to be posted to the participants' account. Defaults to the
+   * current business day or the next business day if the current day is a bank
+   * holiday or weekend. Format: yyyy-mm-dd.
+   */
+  payment_effective_date: string | null;
+
+  /**
+   * When opening an invoice, whether to show the embedded payment UI , automatically
+   * debit the recipient, or rely on manual payment from the recipient.
+   */
+  payment_method: 'ui' | 'manual' | 'automatic' | null;
+
+  /**
    * The payment orders created for paying the invoice through the invoice payment
    * UI.
    */
   payment_orders: Array<PaymentOrders.PaymentOrder>;
 
   /**
+   * One of `ach` or `eft`
+   */
+  payment_type: 'eft' | 'ach' | null;
+
+  /**
    * The URL where the invoice PDF can be downloaded.
    */
   pdf_url: string | null;
+
+  /**
+   * The receiving account ID. Can be an `internal_account`.
+   */
+  receiving_account_id: string | null;
 
   /**
    * The status of the invoice.
@@ -324,6 +347,52 @@ export interface InvoiceCreateParams {
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
 
   /**
+   * Body param: Date transactions are to be posted to the participants' account.
+   * Defaults to the current business day or the next business day if the current day
+   * is a bank holiday or weekend. Format: yyyy-mm-dd.
+   */
+  payment_effective_date?: string;
+
+  /**
+   * Body param: The method by which the invoice can be paid. `ui` will show the
+   * embedded payment collection flow. `automatic` will automatically initiate
+   * payment based upon the account details of the receiving_account id.\nIf the
+   * invoice amount is positive, the automatically initiated payment order's
+   * direction will be debit. If the invoice amount is negative, the automatically
+   * initiated payment order's direction will be credit. One of `manual`, `ui`, or
+   * `automatic`.
+   */
+  payment_method?: 'ui' | 'manual' | 'automatic';
+
+  /**
+   * Body param: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
+   */
+  payment_type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'check'
+    | 'eft'
+    | 'cross_border'
+    | 'interac'
+    | 'masav'
+    | 'neft'
+    | 'provxchange'
+    | 'rtp'
+    | 'sen'
+    | 'sepa'
+    | 'signet'
+    | 'wire';
+
+  /**
+   * Body param: The receiving account ID. Can be an `external_account`.
+   */
+  receiving_account_id?: string;
+
+  /**
    * Header param: This key should be something unique, preferably something like an
    * UUID.
    */
@@ -478,12 +547,6 @@ export interface InvoiceUpdateParams {
   due_date?: string;
 
   /**
-   * When opening an invoice, whether to show the embedded payment UI with the
-   * invoice. Default true.
-   */
-  include_payment_ui?: boolean;
-
-  /**
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceUpdateParams.InvoicerAddress | null;
@@ -492,6 +555,51 @@ export interface InvoiceUpdateParams {
    * The ID of the internal account the invoice should be paid to.
    */
   originating_account_id?: string;
+
+  /**
+   * Date transactions are to be posted to the participants' account. Defaults to the
+   * current business day or the next business day if the current day is a bank
+   * holiday or weekend. Format: yyyy-mm-dd.
+   */
+  payment_effective_date?: string;
+
+  /**
+   * The method by which the invoice can be paid. `ui` will show the embedded payment
+   * collection flow. `automatic` will automatically initiate payment based upon the
+   * account details of the receiving_account id.\nIf the invoice amount is positive,
+   * the automatically initiated payment order's direction will be debit. If the
+   * invoice amount is negative, the automatically initiated payment order's
+   * direction will be credit. One of `manual`, `ui`, or `automatic`.
+   */
+  payment_method?: 'ui' | 'manual' | 'automatic';
+
+  /**
+   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+   * `au_becs`, `interac`, `signet`, `provexchange`.
+   */
+  payment_type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'check'
+    | 'eft'
+    | 'cross_border'
+    | 'interac'
+    | 'masav'
+    | 'neft'
+    | 'provxchange'
+    | 'rtp'
+    | 'sen'
+    | 'sepa'
+    | 'signet'
+    | 'wire';
+
+  /**
+   * The receiving account ID. Can be an `external_account`.
+   */
+  receiving_account_id?: string;
 
   /**
    * Invoice status must be updated in a `PATCH` request that does not modify any

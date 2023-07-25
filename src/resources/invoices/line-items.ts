@@ -233,6 +233,51 @@ export interface LineItemUpdateParams {
    * The ID of the internal account the invoice should be paid to.
    */
   originating_account_id?: string;
+
+  /**
+   * Date transactions are to be posted to the participants' account. Defaults to the
+   * current business day or the next business day if the current day is a bank
+   * holiday or weekend. Format: yyyy-mm-dd.
+   */
+  payment_effective_date?: string;
+
+  /**
+   * The method by which the invoice can be paid. `ui` will show the embedded payment
+   * collection flow. `automatic` will automatically initiate payment based upon the
+   * account details of the receiving_account id.\nIf the invoice amount is positive,
+   * the automatically initiated payment order's direction will be debit. If the
+   * invoice amount is negative, the automatically initiated payment order's
+   * direction will be credit. One of `manual`, `ui`, or `automatic`.
+   */
+  payment_method?: 'ui' | 'manual' | 'automatic';
+
+  /**
+   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+   * `au_becs`, `interac`, `signet`, `provexchange`.
+   */
+  payment_type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'check'
+    | 'eft'
+    | 'cross_border'
+    | 'interac'
+    | 'masav'
+    | 'neft'
+    | 'provxchange'
+    | 'rtp'
+    | 'sen'
+    | 'sepa'
+    | 'signet'
+    | 'wire';
+
+  /**
+   * The receiving account ID. Can be an `external_account`.
+   */
+  receiving_account_id?: string;
 }
 
 export namespace LineItemUpdateParams {

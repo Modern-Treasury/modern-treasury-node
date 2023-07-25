@@ -80,6 +80,10 @@ describe('resource invoices', () => {
         postal_code: 'string',
         country: 'string',
       },
+      payment_effective_date: '2019-12-27',
+      payment_method: 'ui',
+      payment_type: 'ach',
+      receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       'Idempotency-Key': 'string',
     });
   });
@@ -164,7 +168,6 @@ describe('resource invoices', () => {
           currency: 'AED',
           description: 'string',
           due_date: '2019-12-27T18:11:19.117Z',
-          include_payment_ui: true,
           invoicer_address: {
             line1: 'string',
             line2: 'string',
@@ -174,6 +177,10 @@ describe('resource invoices', () => {
             country: 'string',
           },
           originating_account_id: 'string',
+          payment_effective_date: '2019-12-27',
+          payment_method: 'ui',
+          payment_type: 'ach',
+          receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           status: 'string',
         },
         { path: '/_stainless_unknown_path' },
