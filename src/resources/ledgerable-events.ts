@@ -90,16 +90,6 @@ export interface LedgerableEvent {
 
   object: string;
 
-  /**
-   * The ledger account that initiates the money movement.
-   */
-  originating_ledger_account_id: string | null;
-
-  /**
-   * The ledger account that receives the money movement.
-   */
-  receiving_ledger_account_id: string | null;
-
   updated_at: string;
 }
 
@@ -146,16 +136,6 @@ export interface LedgerableEventCreateParams {
    * value must be strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Body param: The ledger account that initiates the money movement.
-   */
-  originating_ledger_account_id?: string | null;
-
-  /**
-   * Body param: The ledger account that receives the money movement.
-   */
-  receiving_ledger_account_id?: string | null;
 
   /**
    * Header param: This key should be something unique, preferably something like an

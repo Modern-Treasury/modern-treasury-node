@@ -196,10 +196,10 @@ export interface LedgerTransaction {
 
 export interface LedgerTransactionCreateParams {
   /**
-   * Body param: The date (YYYY-MM-DD) on which the ledger transaction happened for
-   * reporting purposes.
+   * Body param: The timestamp (ISO8601 format) at which the ledger transaction
+   * happened for reporting purposes.
    */
-  effective_date: string;
+  effective_at: string;
 
   /**
    * Body param: An array of ledger entry objects.
@@ -210,6 +210,12 @@ export interface LedgerTransactionCreateParams {
    * Body param: An optional description for internal use.
    */
   description?: string | null;
+
+  /**
+   * Body param: The date (YYYY-MM-DD) on which the ledger transaction happened for
+   * reporting purposes.
+   */
+  effective_date?: string;
 
   /**
    * Body param: A unique string to represent the ledger transaction. Only one

@@ -68,7 +68,7 @@ export interface ClientOptions {
    */
   defaultQuery?: Core.DefaultQuery;
 
-  organizationId?: string | null;
+  organizationId?: string;
 
   webhookKey?: string | null;
 }
@@ -81,11 +81,21 @@ export class ModernTreasury extends Core.APIClient {
 
   private _options: ClientOptions;
 
-  constructor(opts?: ClientOptions) {
+  constructor(opts: ClientOptions = {}) {
+    const organizationId = opts.organizationId || Core.readEnv('MODERN_TREASURY_ORGANIZATION_ID');
+    if (organizationId === undefined) {
+      throw new Error(
+        "The MODERN_TREASURY_ORGANIZATION_ID environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an organizationId option, like new ModernTreasury({ organizationId: 'my-organization-ID' }).",
+      );
+    }
+    const webhookKey = opts.webhookKey || Core.readEnv('MODERN_TREASURY_WEBHOOK_KEY') || null;
+
     const options: ClientOptions = {
       apiKey: typeof process === 'undefined' ? '' : process.env['MODERN_TREASURY_API_KEY'] || '',
-      baseURL: 'https://app.moderntreasury.com',
+      baseURL: `https://app.moderntreasury.com`,
       ...opts,
+      organizationId,
+      webhookKey,
     };
 
     if (!options.apiKey && options.apiKey !== null) {
@@ -105,14 +115,8 @@ export class ModernTreasury extends Core.APIClient {
     this._options = options;
     this.idempotencyHeader = 'Idempotency-Key';
 
-    const organizationId = options.organizationId || Core.readEnv('MODERN_TREASURY_ORGANIZATION_ID');
-    if (!organizationId) {
-      throw new Error(
-        "The MODERN_TREASURY_ORGANIZATION_ID environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an organizationId option, like new ModernTreasury({ organizationId: 'my-organization-ID' }).",
-      );
-    }
     this.organizationId = organizationId;
-    this.webhookKey = options.webhookKey || Core.readEnv('MODERN_TREASURY_WEBHOOK_KEY') || null;
+    this.webhookKey = webhookKey;
   }
 
   connections: API.Connections = new API.Connections(this);
