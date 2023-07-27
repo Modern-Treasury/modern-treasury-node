@@ -81,7 +81,7 @@ export class ModernTreasury extends Core.APIClient {
 
   private _options: ClientOptions;
 
-  constructor(opts: ClientOptions) {
+  constructor(opts?: ClientOptions) {
     const options: ClientOptions = {
       apiKey: typeof process === 'undefined' ? '' : process.env['MODERN_TREASURY_API_KEY'] || '',
       baseURL: 'https://app.moderntreasury.com',
@@ -105,14 +105,14 @@ export class ModernTreasury extends Core.APIClient {
     this._options = options;
     this.idempotencyHeader = 'Idempotency-Key';
 
-    const organizationId = opts.organizationId || process.env['MODERN_TREASURY_ORGANIZATION_ID'];
+    const organizationId = opts?.organizationId || process.env['MODERN_TREASURY_ORGANIZATION_ID'];
     if (!organizationId) {
       throw new Error(
         "The MODERN_TREASURY_ORGANIZATION_ID environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an organizationId option, like new ModernTreasury({ organizationId: 'my-organization-ID' }).",
       );
     }
     this.organizationId = organizationId;
-    this.webhookKey = opts.webhookKey || process.env['MODERN_TREASURY_WEBHOOK_KEY'] || null;
+    this.webhookKey = opts?.webhookKey || process.env['MODERN_TREASURY_WEBHOOK_KEY'] || null;
   }
 
   connections: API.Connections = new API.Connections(this);
