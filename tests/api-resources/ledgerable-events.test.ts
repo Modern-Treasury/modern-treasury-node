@@ -23,8 +23,6 @@ describe('resource ledgerableEvents', () => {
       description: 'string',
       direction: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      originating_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      receiving_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       'Idempotency-Key': 'string',
     });
   });
