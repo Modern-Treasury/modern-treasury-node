@@ -146,10 +146,10 @@ export namespace ReversalCreateParams {
    */
   export interface LedgerTransaction {
     /**
-     * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-     * purposes.
+     * The timestamp (ISO8601 format) at which the ledger transaction happened for
+     * reporting purposes.
      */
-    effective_date: string;
+    effective_at: string;
 
     /**
      * An array of ledger entry objects.
@@ -160,6 +160,12 @@ export namespace ReversalCreateParams {
      * An optional description for internal use.
      */
     description?: string | null;
+
+    /**
+     * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
+     * purposes.
+     */
+    effective_date?: string;
 
     /**
      * A unique string to represent the ledger transaction. Only one pending or posted
