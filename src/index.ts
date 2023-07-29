@@ -81,28 +81,30 @@ export class ModernTreasury extends Core.APIClient {
 
   private _options: ClientOptions;
 
-  constructor(opts: ClientOptions = {}) {
-    const organizationId = opts.organizationId || Core.readEnv('MODERN_TREASURY_ORGANIZATION_ID');
+  constructor({
+    apiKey = Core.readEnv('MODERN_TREASURY_API_KEY'),
+    organizationId = Core.readEnv('MODERN_TREASURY_ORGANIZATION_ID'),
+    webhookKey = Core.readEnv('MODERN_TREASURY_WEBHOOK_KEY') ?? null,
+    ...opts
+  }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Error(
+        'The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({ apiKey: undefined }).',
+      );
+    }
     if (organizationId === undefined) {
       throw new Error(
         "The MODERN_TREASURY_ORGANIZATION_ID environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an organizationId option, like new ModernTreasury({ organizationId: 'my-organization-ID' }).",
       );
     }
-    const webhookKey = opts.webhookKey || Core.readEnv('MODERN_TREASURY_WEBHOOK_KEY') || null;
 
     const options: ClientOptions = {
-      apiKey: typeof process === 'undefined' ? '' : process.env['MODERN_TREASURY_API_KEY'] || '',
-      baseURL: `https://app.moderntreasury.com`,
-      ...opts,
+      apiKey,
       organizationId,
       webhookKey,
+      baseURL: `https://app.moderntreasury.com`,
+      ...opts,
     };
-
-    if (!options.apiKey && options.apiKey !== null) {
-      throw new Error(
-        "The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({ apiKey: 'my api key' }).",
-      );
-    }
 
     super({
       baseURL: options.baseURL!,
@@ -111,10 +113,10 @@ export class ModernTreasury extends Core.APIClient {
       maxRetries: options.maxRetries,
       fetch: options.fetch,
     });
-    this.apiKey = options.apiKey;
     this._options = options;
     this.idempotencyHeader = 'Idempotency-Key';
 
+    this.apiKey = apiKey;
     this.organizationId = organizationId;
     this.webhookKey = webhookKey;
   }
