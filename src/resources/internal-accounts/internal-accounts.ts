@@ -8,7 +8,7 @@ import * as RoutingDetails from 'modern-treasury/resources/routing-details';
 import * as Connections from 'modern-treasury/resources/connections';
 import * as Shared from 'modern-treasury/resources/shared';
 import { BalanceReports } from './balance-reports';
-import * as API from './';
+import * as API from './index';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
 export class InternalAccounts extends APIResource {
