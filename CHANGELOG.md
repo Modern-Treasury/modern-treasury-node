@@ -1,5 +1,49 @@
 # Changelog
 
+## [2.2.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.1.0...v3.0.0) (2023-08-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **types:** rename account connection flow to account collection flow ([#164](https://github.com/Modern-Treasury/modern-treasury-node/issues/164))
+* **api:** update parameters for virtual account create request ([#157](https://github.com/Modern-Treasury/modern-treasury-node/issues/157))
+
+### Features
+
+* **api:** update parameters for virtual account create request ([#157](https://github.com/Modern-Treasury/modern-treasury-node/issues/157)) ([1e5aebe](https://github.com/Modern-Treasury/modern-treasury-node/commit/1e5aebe5378c24a9400f12736643427941aee98f))
+* **api:** updates ([#166](https://github.com/Modern-Treasury/modern-treasury-node/issues/166)) ([40a3e9e](https://github.com/Modern-Treasury/modern-treasury-node/commit/40a3e9e734d709269fc28319e64fe72d6fb85d61))
+* **api:** updates ([#171](https://github.com/Modern-Treasury/modern-treasury-node/issues/171)) ([c47cae2](https://github.com/Modern-Treasury/modern-treasury-node/commit/c47cae26e89f158823963f826176635cc073ad9d))
+* **client:** export ClientOptions interface ([#161](https://github.com/Modern-Treasury/modern-treasury-node/issues/161)) ([cfc1517](https://github.com/Modern-Treasury/modern-treasury-node/commit/cfc1517a8531fdb29d8581f930ddf199b4e6f9c2))
+* **streaming:** make requests immediately throw an error if an aborted signal is passed in ([#163](https://github.com/Modern-Treasury/modern-treasury-node/issues/163)) ([3282c5d](https://github.com/Modern-Treasury/modern-treasury-node/commit/3282c5d492c0a59c6e57ad4ccd1cf17ee3dac3c1))
+* **test:** unskip file uploads tests ([#175](https://github.com/Modern-Treasury/modern-treasury-node/issues/175)) ([8117843](https://github.com/Modern-Treasury/modern-treasury-node/commit/81178432e87c937dd0937d815de90d7ccdda4dd4))
+
+
+### Bug Fixes
+
+* **api:** add response body to `virtualAccounts.retrieve()` and update resources ([#155](https://github.com/Modern-Treasury/modern-treasury-node/issues/155)) ([b5464dd](https://github.com/Modern-Treasury/modern-treasury-node/commit/b5464dd14855278c5c829f1c664e43465344636e))
+* **client:** fix errors with file uploads in the browser ([#162](https://github.com/Modern-Treasury/modern-treasury-node/issues/162)) ([a2dda93](https://github.com/Modern-Treasury/modern-treasury-node/commit/a2dda93f6af6fc6e8442352b0b06f8ef49e21e6c))
+* **client:** handle undefined process in more places ([#170](https://github.com/Modern-Treasury/modern-treasury-node/issues/170)) ([5d0a45b](https://github.com/Modern-Treasury/modern-treasury-node/commit/5d0a45b774996f02e67e8eec43e256121d1d74b3))
+* **client:** set client options argument as optional ([#168](https://github.com/Modern-Treasury/modern-treasury-node/issues/168)) ([9f2ac54](https://github.com/Modern-Treasury/modern-treasury-node/commit/9f2ac54ce3fddbf620e252812c3f1f16a1dcbd7e))
+* fix error in environments without `TextEncoder` ([#158](https://github.com/Modern-Treasury/modern-treasury-node/issues/158)) ([1dba8bc](https://github.com/Modern-Treasury/modern-treasury-node/commit/1dba8bc1fba59451bd0c94cd00f503080339b7ec))
+* fix errors with "named" client export in CJS ([#156](https://github.com/Modern-Treasury/modern-treasury-node/issues/156)) ([31b4844](https://github.com/Modern-Treasury/modern-treasury-node/commit/31b48446dd720f3b05810434cc4645d05c4b49fd))
+* fix export map order ([#160](https://github.com/Modern-Treasury/modern-treasury-node/issues/160)) ([b47d673](https://github.com/Modern-Treasury/modern-treasury-node/commit/b47d6734e844d5b0c50ffe00d3c198a98517d938))
+* fix undefined message in errors ([#169](https://github.com/Modern-Treasury/modern-treasury-node/issues/169)) ([4c914f4](https://github.com/Modern-Treasury/modern-treasury-node/commit/4c914f4c4c6a87a1be0ee5ae035ef83cb2cbec3e))
+
+
+### Refactors
+
+* create build for deno.land ([#174](https://github.com/Modern-Treasury/modern-treasury-node/issues/174)) ([bb9f890](https://github.com/Modern-Treasury/modern-treasury-node/commit/bb9f890d8daa6e972b010249620b8988ed65df6c))
+* **types:** rename account connection flow to account collection flow ([#164](https://github.com/Modern-Treasury/modern-treasury-node/issues/164)) ([12ae4aa](https://github.com/Modern-Treasury/modern-treasury-node/commit/12ae4aac4820b17be6229efed5ec4d9cee67d802))
+* use destructuring arguments in client constructor and respect false values ([#172](https://github.com/Modern-Treasury/modern-treasury-node/issues/172)) ([2efa6bd](https://github.com/Modern-Treasury/modern-treasury-node/commit/2efa6bd41d784b78d8433e9092c636dd41e988c1))
+
+
+### Chores
+
+* **internal:** allow the build script to be run without yarn installed ([#173](https://github.com/Modern-Treasury/modern-treasury-node/issues/173)) ([c57d134](https://github.com/Modern-Treasury/modern-treasury-node/commit/c57d134106e05d7fa24d790254877d9fc2ae573e))
+* **internal:** fix deno build ([#176](https://github.com/Modern-Treasury/modern-treasury-node/issues/176)) ([660c841](https://github.com/Modern-Treasury/modern-treasury-node/commit/660c8416c8ac208e0e06a17ab7a86eefb16cc521))
+* **internal:** let `toFile` helper accept promises to objects with name/type properties ([#153](https://github.com/Modern-Treasury/modern-treasury-node/issues/153)) ([0965670](https://github.com/Modern-Treasury/modern-treasury-node/commit/096567096abdce934a7f050a35f6fce604a8fb44))
+* **internal:** restructure code to stringify query ([#159](https://github.com/Modern-Treasury/modern-treasury-node/issues/159)) ([82dae5b](https://github.com/Modern-Treasury/modern-treasury-node/commit/82dae5b5a15beb25407c1369865a8d4d74769c06))
+
 ## [2.1.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.0.0...v2.1.0) (2023-07-13)
 
 
