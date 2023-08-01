@@ -9,8 +9,7 @@ const modernTreasury = new ModernTreasury({
 });
 
 describe('resource documents', () => {
-  // skipped: prism mock server is broken for file uploads
-  test.skip('create: only required params', async () => {
+  test('create: only required params', async () => {
     const response = await modernTreasury.documents.create({
       documentable_id: 'string',
       documentable_type: 'cases',
@@ -18,8 +17,7 @@ describe('resource documents', () => {
     });
   });
 
-  // skipped: prism mock server is broken for file uploads
-  test.skip('create: required and optional params', async () => {
+  test('create: required and optional params', async () => {
     const response = await modernTreasury.documents.create({
       documentable_id: 'string',
       documentable_type: 'cases',

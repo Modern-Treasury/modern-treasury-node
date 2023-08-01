@@ -9,7 +9,7 @@ const modernTreasury = new ModernTreasury({
 });
 
 describe('resource paymentOrders', () => {
-  // skipped: prism mock server is broken for file uploads
+  // prism mock server is broken for file uploads
   test.skip('create: only required params', async () => {
     const response = await modernTreasury.paymentOrders.create({
       amount: 0,
@@ -19,7 +19,7 @@ describe('resource paymentOrders', () => {
     });
   });
 
-  // skipped: prism mock server is broken for file uploads
+  // prism mock server is broken for file uploads
   test.skip('create: required and optional params', async () => {
     const response = await modernTreasury.paymentOrders.create({
       amount: 0,
