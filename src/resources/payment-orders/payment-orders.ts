@@ -7,7 +7,7 @@ import * as Returns from 'modern-treasury/resources/returns';
 import * as ExternalAccounts from 'modern-treasury/resources/external-accounts';
 import * as Shared from 'modern-treasury/resources/shared';
 import { Reversals } from './reversals';
-import * as API from './';
+import * as API from './index';
 import { type Uploadable, maybeMultipartFormRequestOptions } from 'modern-treasury/core';
 import { Page, PageParams } from 'modern-treasury/pagination';
 

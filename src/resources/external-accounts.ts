@@ -6,7 +6,7 @@ import { isRequestOptions } from 'modern-treasury/core';
 import * as AccountDetails from 'modern-treasury/resources/account-details';
 import * as RoutingDetails from 'modern-treasury/resources/routing-details';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './';
+import * as API from './index';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
 export class ExternalAccounts extends APIResource {

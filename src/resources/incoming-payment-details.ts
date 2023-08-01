@@ -5,7 +5,7 @@ import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as VirtualAccounts from 'modern-treasury/resources/virtual-accounts';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './';
+import * as API from './index';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
 export class IncomingPaymentDetails extends APIResource {
