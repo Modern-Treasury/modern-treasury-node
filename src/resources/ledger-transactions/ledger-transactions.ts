@@ -5,7 +5,7 @@ import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as LedgerEntries from 'modern-treasury/resources/ledger-entries';
 import { Versions } from './versions';
-import * as API from './';
+import * as API from './index';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
 export class LedgerTransactions extends APIResource {

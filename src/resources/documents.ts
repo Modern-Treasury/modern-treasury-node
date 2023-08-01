@@ -3,7 +3,7 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './';
+import * as API from './index';
 import { type Uploadable, multipartFormRequestOptions } from 'modern-treasury/core';
 import { Page, PageParams } from 'modern-treasury/pagination';
 

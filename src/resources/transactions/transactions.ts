@@ -5,7 +5,7 @@ import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as Shared from 'modern-treasury/resources/shared';
 import { LineItems } from './line-items';
-import * as API from './';
+import * as API from './index';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
 export class Transactions extends APIResource {

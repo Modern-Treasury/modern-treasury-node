@@ -2,7 +2,7 @@
 
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
-import * as API from './';
+import * as API from './index';
 
 export class LedgerAccountStatements extends APIResource {
   /**

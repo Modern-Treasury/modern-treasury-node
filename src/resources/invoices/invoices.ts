@@ -6,7 +6,7 @@ import { isRequestOptions } from 'modern-treasury/core';
 import * as PaymentOrders from 'modern-treasury/resources/payment-orders/index';
 import * as Shared from 'modern-treasury/resources/shared';
 import { LineItems } from './line-items';
-import * as API from './';
+import * as API from './index';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
 export class Invoices extends APIResource {
