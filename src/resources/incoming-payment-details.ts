@@ -291,6 +291,11 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   currency?: Shared.Currency | null;
 
   /**
+   * Body param: Defaults to a random description.
+   */
+  description?: string | null;
+
+  /**
    * Body param: One of `credit`, `debit`.
    */
   direction?: 'credit' | 'debit';

@@ -33,6 +33,7 @@ describe('resource ledgerTransactions', () => {
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
           show_resulting_ledger_account_balances: true,
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         },
         {
           amount: 0,
@@ -43,6 +44,7 @@ describe('resource ledgerTransactions', () => {
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
           show_resulting_ledger_account_balances: true,
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         },
         {
           amount: 0,
@@ -53,6 +55,7 @@ describe('resource ledgerTransactions', () => {
           posted_balance_amount: { foo: 0 },
           available_balance_amount: { foo: 0 },
           show_resulting_ledger_account_balances: true,
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         },
       ],
       description: 'string',
@@ -105,6 +108,7 @@ describe('resource ledgerTransactions', () => {
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
               show_resulting_ledger_account_balances: true,
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
             },
             {
               amount: 0,
@@ -115,6 +119,7 @@ describe('resource ledgerTransactions', () => {
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
               show_resulting_ledger_account_balances: true,
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
             },
             {
               amount: 0,
@@ -125,6 +130,7 @@ describe('resource ledgerTransactions', () => {
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
               show_resulting_ledger_account_balances: true,
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
             },
           ],
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },

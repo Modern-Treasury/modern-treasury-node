@@ -873,6 +873,12 @@ export namespace PaymentOrderCreateParams {
       lock_version?: number | null;
 
       /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
+
+      /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s pending balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
@@ -2001,6 +2007,12 @@ export namespace PaymentOrderCreateAsyncParams {
        * Locking for more details.
        */
       lock_version?: number | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
