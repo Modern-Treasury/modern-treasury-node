@@ -37,6 +37,7 @@ describe('resource reversals', () => {
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
               show_resulting_ledger_account_balances: true,
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
             },
             {
               amount: 0,
@@ -47,6 +48,7 @@ describe('resource reversals', () => {
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
               show_resulting_ledger_account_balances: true,
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
             },
             {
               amount: 0,
@@ -57,6 +59,7 @@ describe('resource reversals', () => {
               posted_balance_amount: { foo: 0 },
               available_balance_amount: { foo: 0 },
               show_resulting_ledger_account_balances: true,
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
             },
           ],
           external_id: 'string',
