@@ -47,20 +47,19 @@ export class LedgerAccountCategories extends APIResource {
    */
   update(
     id: string,
-    params?: LedgerAccountCategoryUpdateParams,
+    body?: LedgerAccountCategoryUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerAccountCategory>>;
   update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>>;
   update(
     id: string,
-    params: LedgerAccountCategoryUpdateParams | Core.RequestOptions = {},
+    body: LedgerAccountCategoryUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerAccountCategory>> {
-    if (isRequestOptions(params)) {
-      return this.update(id, {}, params);
+    if (isRequestOptions(body)) {
+      return this.update(id, {}, body);
     }
-    const { balances, ...body } = params;
-    return this.patch(`/api/ledger_account_categories/${id}`, { query: { balances }, body, ...options });
+    return this.patch(`/api/ledger_account_categories/${id}`, { body, ...options });
   }
 
   /**
@@ -87,26 +86,12 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Delete a ledger account category.
    */
-  del(
-    id: string,
-    body?: LedgerAccountCategoryDeleteParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>>;
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>>;
-  del(
-    id: string,
-    body: LedgerAccountCategoryDeleteParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>> {
-    if (isRequestOptions(body)) {
-      return this.del(id, {}, body);
-    }
-    const { balances } = body;
-    return this.delete(`/api/ledger_account_categories/${id}`, { query: { balances }, ...options });
+  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>> {
+    return this.delete(`/api/ledger_account_categories/${id}`, options);
   }
 
   /**
-   * Add a ledger account category to an account.
+   * Add a ledger account to a ledger account category.
    */
   addLedgerAccount(
     id: string,
@@ -134,7 +119,7 @@ export class LedgerAccountCategories extends APIResource {
   }
 
   /**
-   * Delete a ledger account category from an account.
+   * Remove a ledger account from a ledger account category.
    */
   removeLedgerAccount(
     id: string,
@@ -362,20 +347,18 @@ export interface LedgerAccountCategoryCreateParams {
 
 export interface LedgerAccountCategoryRetrieveParams {
   /**
-   * For example, if you want the balances as of a particular effective date
-   * (YYYY-MM-DD), the encoded query string would be
-   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-   * entries with that exact date.
+   * For example, if you want the balances as of a particular time (ISO8601), the
+   * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+   * The balances as of a time are inclusive of entries with that exact time.
    */
   balances?: LedgerAccountCategoryRetrieveParams.Balances;
 }
 
 export namespace LedgerAccountCategoryRetrieveParams {
   /**
-   * For example, if you want the balances as of a particular effective date
-   * (YYYY-MM-DD), the encoded query string would be
-   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-   * entries with that exact date.
+   * For example, if you want the balances as of a particular time (ISO8601), the
+   * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+   * The balances as of a time are inclusive of entries with that exact time.
    */
   export interface Balances {
     as_of_date?: string;
@@ -386,45 +369,30 @@ export namespace LedgerAccountCategoryRetrieveParams {
 
 export interface LedgerAccountCategoryUpdateParams {
   /**
-   * Query param: For example, if you want the balances as of a particular effective
-   * date (YYYY-MM-DD), the encoded query string would be
-   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-   * entries with that exact date.
-   */
-  balances?: LedgerAccountCategoryUpdateParams.Balances;
-
-  /**
-   * Body param: The description of the ledger account category.
+   * The description of the ledger account category.
    */
   description?: string | null;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: The name of the ledger account category.
+   * The name of the ledger account category.
    */
   name?: string;
 }
 
-export namespace LedgerAccountCategoryUpdateParams {
-  /**
-   * For example, if you want the balances as of a particular effective date
-   * (YYYY-MM-DD), the encoded query string would be
-   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-   * entries with that exact date.
-   */
-  export interface Balances {
-    as_of_date?: string;
-
-    effective_at?: string;
-  }
-}
-
 export interface LedgerAccountCategoryListParams extends PageParams {
+  /**
+   * For example, if you want the balances as of a particular time (ISO8601), the
+   * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+   * The balances as of a time are inclusive of entries with that exact time.
+   */
+  balances?: LedgerAccountCategoryListParams.Balances;
+
   /**
    * Query categories which contain a ledger account directly or through child
    * categories.
@@ -448,26 +416,13 @@ export interface LedgerAccountCategoryListParams extends PageParams {
   parent_ledger_account_category_id?: string;
 }
 
-export interface LedgerAccountCategoryDeleteParams {
+export namespace LedgerAccountCategoryListParams {
   /**
-   * For example, if you want the balances as of a particular effective date
-   * (YYYY-MM-DD), the encoded query string would be
-   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-   * entries with that exact date.
-   */
-  balances?: LedgerAccountCategoryDeleteParams.Balances;
-}
-
-export namespace LedgerAccountCategoryDeleteParams {
-  /**
-   * For example, if you want the balances as of a particular effective date
-   * (YYYY-MM-DD), the encoded query string would be
-   * balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-   * entries with that exact date.
+   * For example, if you want the balances as of a particular time (ISO8601), the
+   * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+   * The balances as of a time are inclusive of entries with that exact time.
    */
   export interface Balances {
-    as_of_date?: string;
-
     effective_at?: string;
   }
 }
@@ -479,5 +434,4 @@ export namespace LedgerAccountCategories {
   export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
   export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
   export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
-  export import LedgerAccountCategoryDeleteParams = API.LedgerAccountCategoryDeleteParams;
 }

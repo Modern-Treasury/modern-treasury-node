@@ -97,7 +97,6 @@ export {
   LedgerAccountCategoryRetrieveParams,
   LedgerAccountCategoryUpdateParams,
   LedgerAccountCategoryListParams,
-  LedgerAccountCategoryDeleteParams,
   LedgerAccountCategoriesPage,
   LedgerAccountCategories,
 } from './ledger-account-categories';

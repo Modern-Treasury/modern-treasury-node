@@ -181,6 +181,12 @@ export interface LedgerAccountPayoutCreateParams {
   metadata?: Record<string, string>;
 
   /**
+   * Body param: It is set to `false` by default. It should be set to `true` when
+   * migrating existing payouts.
+   */
+  skip_payout_ledger_transaction?: boolean | null;
+
+  /**
    * Body param: The status of the ledger account payout. It is set to `pending` by
    * default. To post a ledger account payout at creation, use `posted`.
    */
@@ -213,6 +219,13 @@ export interface LedgerAccountPayoutUpdateParams {
 }
 
 export interface LedgerAccountPayoutListParams extends PageParams {
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: Record<string, string>;
+
   payout_ledger_account_id?: string;
 }
 

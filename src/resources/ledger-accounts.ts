@@ -397,6 +397,8 @@ export interface LedgerAccountListParams extends PageParams {
    */
   created_at?: Record<string, string>;
 
+  currency?: string;
+
   ledger_account_category_id?: string;
 
   ledger_id?: string;

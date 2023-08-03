@@ -110,6 +110,7 @@ describe('resource ledgerAccounts', () => {
             effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
           },
           created_at: { foo: '2019-12-27T18:11:19.117Z' },
+          currency: 'string',
           ledger_account_category_id: 'string',
           ledger_id: 'string',
           metadata: { foo: 'string' },

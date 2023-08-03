@@ -254,7 +254,7 @@ export interface LedgerEntryListParams extends PageParams {
   direction?: 'credit' | 'debit';
 
   /**
-   * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * transaction's effective time. Format ISO8601
    */
   effective_at?: Record<string, string>;
@@ -280,6 +280,8 @@ export interface LedgerEntryListParams extends PageParams {
    * `ledger_account_lock_version%5Blte%5D=1000`.
    */
   ledger_account_lock_version?: Record<string, number>;
+
+  ledger_account_payout_id?: string;
 
   /**
    * Get all ledger entries that are included in the ledger account statement.

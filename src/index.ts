@@ -329,7 +329,6 @@ export namespace ModernTreasury {
   export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
   export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
   export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
-  export import LedgerAccountCategoryDeleteParams = API.LedgerAccountCategoryDeleteParams;
 
   export import LedgerAccounts = API.LedgerAccounts;
   export import LedgerAccount = API.LedgerAccount;

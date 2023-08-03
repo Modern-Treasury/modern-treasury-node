@@ -56,6 +56,7 @@ describe('resource ledgerEntries', () => {
           ledger_account_category_id: 'string',
           ledger_account_id: 'string',
           ledger_account_lock_version: { foo: 0 },
+          ledger_account_payout_id: 'string',
           ledger_account_statement_id: 'string',
           ledger_transaction_id: 'string',
           metadata: { foo: 'string' },
