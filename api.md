@@ -229,7 +229,7 @@ Methods:
 - <code title="get /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">retrieve</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="patch /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">update</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="get /api/ledger_account_categories">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">list</a>({ ...params }) -> LedgerAccountCategoriesPage</code>
-- <code title="delete /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">del</a>(id, { ...params }) -> LedgerAccountCategory</code>
+- <code title="delete /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">del</a>(id) -> LedgerAccountCategory</code>
 - <code title="put /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">addLedgerAccount</a>(id, ledgerAccountId) -> void</code>
 - <code title="put /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">addNestedCategory</a>(id, subCategoryId) -> void</code>
 - <code title="delete /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">removeLedgerAccount</a>(id, ledgerAccountId) -> void</code>
@@ -313,7 +313,7 @@ Methods:
 - <code title="get /api/ledger_transactions/{id}">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">retrieve</a>(id) -> LedgerTransaction</code>
 - <code title="patch /api/ledger_transactions/{id}">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">update</a>(id, { ...params }) -> LedgerTransaction</code>
 - <code title="get /api/ledger_transactions">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">list</a>({ ...params }) -> LedgerTransactionsPage</code>
-- <code title="post /api/ledger_transactions/{ledger_transaction_id}/reversal">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">createReversal</a>(ledgerTransactionId, { ...params }) -> LedgerTransaction</code>
+- <code title="post /api/ledger_transactions/{id}/reversal">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">createReversal</a>(id, { ...params }) -> LedgerTransaction</code>
 
 ## Versions
 

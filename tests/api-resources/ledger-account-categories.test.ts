@@ -69,12 +69,7 @@ describe('resource ledgerAccountCategories', () => {
     await expect(
       modernTreasury.ledgerAccountCategories.update(
         'string',
-        {
-          balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' },
-          description: 'string',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          name: 'string',
-        },
+        { description: 'string', metadata: { key: 'value', foo: 'bar', modern: 'treasury' }, name: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
@@ -97,6 +92,7 @@ describe('resource ledgerAccountCategories', () => {
       modernTreasury.ledgerAccountCategories.list(
         {
           after_cursor: 'string',
+          balances: { effective_at: '2019-12-27T18:11:19.117Z' },
           ledger_account_id: 'string',
           ledger_id: 'string',
           metadata: { foo: 'string' },
@@ -117,17 +113,6 @@ describe('resource ledgerAccountCategories', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountCategories.del('string', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('del: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.ledgerAccountCategories.del(
-        'string',
-        { balances: { as_of_date: '2019-12-27', effective_at: '2019-12-27T18:11:19.117Z' } },
-        { path: '/_stainless_unknown_path' },
-      ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 

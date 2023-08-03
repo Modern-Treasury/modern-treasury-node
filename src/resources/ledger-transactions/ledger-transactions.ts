@@ -75,23 +75,20 @@ export class LedgerTransactions extends APIResource {
    * Create a ledger transaction reversal.
    */
   createReversal(
-    ledgerTransactionId: string,
+    id: string,
     body?: LedgerTransactionCreateReversalParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerTransaction>>;
+  createReversal(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerTransaction>>;
   createReversal(
-    ledgerTransactionId: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerTransaction>>;
-  createReversal(
-    ledgerTransactionId: string,
+    id: string,
     body: LedgerTransactionCreateReversalParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<LedgerTransaction>> {
     if (isRequestOptions(body)) {
-      return this.createReversal(ledgerTransactionId, {}, body);
+      return this.createReversal(id, {}, body);
     }
-    return this.post(`/api/ledger_transactions/${ledgerTransactionId}/reversal`, { body, ...options });
+    return this.post(`/api/ledger_transactions/${id}/reversal`, { body, ...options });
   }
 }
 
@@ -196,12 +193,6 @@ export interface LedgerTransaction {
 
 export interface LedgerTransactionCreateParams {
   /**
-   * Body param: The timestamp (ISO8601 format) at which the ledger transaction
-   * happened for reporting purposes.
-   */
-  effective_at: string;
-
-  /**
    * Body param: An array of ledger entry objects.
    */
   ledger_entries: Array<LedgerTransactionCreateParams.LedgerEntry>;
@@ -210,6 +201,12 @@ export interface LedgerTransactionCreateParams {
    * Body param: An optional description for internal use.
    */
   description?: string | null;
+
+  /**
+   * Body param: The timestamp (ISO8601 format) at which the ledger transaction
+   * happened for reporting purposes.
+   */
+  effective_at?: string;
 
   /**
    * Body param: The date (YYYY-MM-DD) on which the ledger transaction happened for
@@ -336,6 +333,12 @@ export interface LedgerTransactionUpdateParams {
   description?: string | null;
 
   /**
+   * The timestamp (ISO8601 format) at which the ledger transaction happened for
+   * reporting purposes.
+   */
+  effective_at?: string;
+
+  /**
    * An array of ledger entry objects.
    */
   ledger_entries?: Array<LedgerTransactionUpdateParams.LedgerEntry>;
@@ -438,6 +441,8 @@ export interface LedgerTransactionListParams extends PageParams {
   ledger_account_category_id?: string;
 
   ledger_account_id?: string;
+
+  ledger_account_payout_id?: string;
 
   ledger_id?: string;
 

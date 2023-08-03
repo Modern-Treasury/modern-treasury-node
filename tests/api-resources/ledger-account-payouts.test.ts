@@ -23,6 +23,7 @@ describe('resource ledgerAccountPayouts', () => {
       description: 'string',
       effective_at_upper_bound: '14:15:22Z',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      skip_payout_ledger_transaction: true,
       status: 'pending',
       'Idempotency-Key': 'string',
     });
@@ -69,7 +70,12 @@ describe('resource ledgerAccountPayouts', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerAccountPayouts.list(
-        { after_cursor: 'string', payout_ledger_account_id: 'string', per_page: 0 },
+        {
+          after_cursor: 'string',
+          metadata: { foo: 'string' },
+          payout_ledger_account_id: 'string',
+          per_page: 0,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

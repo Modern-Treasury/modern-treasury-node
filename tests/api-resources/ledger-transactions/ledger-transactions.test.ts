@@ -11,7 +11,6 @@ const modernTreasury = new ModernTreasury({
 describe('resource ledgerTransactions', () => {
   test('create: only required params', async () => {
     const response = await modernTreasury.ledgerTransactions.create({
-      effective_at: '2019-12-27',
       ledger_entries: [
         { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
         { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
@@ -22,7 +21,6 @@ describe('resource ledgerTransactions', () => {
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerTransactions.create({
-      effective_at: '2019-12-27',
       ledger_entries: [
         {
           amount: 0,
@@ -59,6 +57,7 @@ describe('resource ledgerTransactions', () => {
         },
       ],
       description: 'string',
+      effective_at: '2019-12-27',
       effective_date: '2019-12-27',
       external_id: 'string',
       ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -98,6 +97,7 @@ describe('resource ledgerTransactions', () => {
         'string',
         {
           description: 'string',
+          effective_at: '2019-12-27',
           ledger_entries: [
             {
               amount: 0,
@@ -164,6 +164,7 @@ describe('resource ledgerTransactions', () => {
           external_id: 'string',
           ledger_account_category_id: 'string',
           ledger_account_id: 'string',
+          ledger_account_payout_id: 'string',
           ledger_id: 'string',
           ledgerable_id: 'string',
           ledgerable_type: 'counterparty',
