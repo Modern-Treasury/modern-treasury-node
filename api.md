@@ -448,8 +448,8 @@ Methods:
 
 Methods:
 
-- <code>client.webhooks.<a href="./src/resources/webhooks.ts">getSignature</a>(...args) -> string</code>
-- <code>client.webhooks.<a href="./src/resources/webhooks.ts">validateSignature</a>(...args) -> boolean</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">getSignature</a>(payload, opts?) -> string</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">validateSignature</a>(payload, headers, opts?) -> boolean</code>
 
 # VirtualAccounts
 
