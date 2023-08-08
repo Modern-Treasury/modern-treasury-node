@@ -13,10 +13,7 @@ export class Counterparties extends APIResource {
   /**
    * Create a new counterparty.
    */
-  create(
-    params: CounterpartyCreateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Counterparty>> {
+  create(params: CounterpartyCreateParams, options?: Core.RequestOptions): Core.APIPromise<Counterparty> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/counterparties', {
       body,
@@ -28,7 +25,7 @@ export class Counterparties extends APIResource {
   /**
    * Get details on a single counterparty.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Counterparty>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Counterparty> {
     return this.get(`/api/counterparties/${id}`, options);
   }
 
@@ -39,13 +36,13 @@ export class Counterparties extends APIResource {
     id: string,
     body?: CounterpartyUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Counterparty>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Counterparty>>;
+  ): Core.APIPromise<Counterparty>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<Counterparty>;
   update(
     id: string,
     body: CounterpartyUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Counterparty>> {
+  ): Core.APIPromise<Counterparty> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -55,12 +52,15 @@ export class Counterparties extends APIResource {
   /**
    * Get a paginated list of all counterparties.
    */
-  list(query?: CounterpartyListParams, options?: Core.RequestOptions): Core.PagePromise<CounterpartiesPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<CounterpartiesPage>;
+  list(
+    query?: CounterpartyListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<CounterpartiesPage, Counterparty>;
+  list(options?: Core.RequestOptions): Core.PagePromise<CounterpartiesPage, Counterparty>;
   list(
     query: CounterpartyListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<CounterpartiesPage> {
+  ): Core.PagePromise<CounterpartiesPage, Counterparty> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -70,7 +70,7 @@ export class Counterparties extends APIResource {
   /**
    * Deletes a given counterparty.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/api/counterparties/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -84,7 +84,7 @@ export class Counterparties extends APIResource {
     id: string,
     params: CounterpartyCollectAccountParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<CounterpartyCollectAccountResponse>> {
+  ): Core.APIPromise<CounterpartyCollectAccountResponse> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(`/api/counterparties/${id}/collect_account`, {
       body,

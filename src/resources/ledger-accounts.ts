@@ -10,10 +10,7 @@ export class LedgerAccounts extends APIResource {
   /**
    * Create a ledger account.
    */
-  create(
-    params: LedgerAccountCreateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccount>> {
+  create(params: LedgerAccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/ledger_accounts', {
       body,
@@ -29,13 +26,13 @@ export class LedgerAccounts extends APIResource {
     id: string,
     query?: LedgerAccountRetrieveParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccount>>;
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccount>>;
+  ): Core.APIPromise<LedgerAccount>;
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount>;
   retrieve(
     id: string,
     query: LedgerAccountRetrieveParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccount>> {
+  ): Core.APIPromise<LedgerAccount> {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
@@ -49,13 +46,13 @@ export class LedgerAccounts extends APIResource {
     id: string,
     body?: LedgerAccountUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccount>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccount>>;
+  ): Core.APIPromise<LedgerAccount>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount>;
   update(
     id: string,
     body: LedgerAccountUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccount>> {
+  ): Core.APIPromise<LedgerAccount> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -65,12 +62,15 @@ export class LedgerAccounts extends APIResource {
   /**
    * Get a list of ledger accounts.
    */
-  list(query?: LedgerAccountListParams, options?: Core.RequestOptions): Core.PagePromise<LedgerAccountsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerAccountsPage>;
+  list(
+    query?: LedgerAccountListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<LedgerAccountsPage, LedgerAccount>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LedgerAccountsPage, LedgerAccount>;
   list(
     query: LedgerAccountListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountsPage> {
+  ): Core.PagePromise<LedgerAccountsPage, LedgerAccount> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -80,7 +80,7 @@ export class LedgerAccounts extends APIResource {
   /**
    * Delete a ledger account.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccount>> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount> {
     return this.delete(`/api/ledger_accounts/${id}`, options);
   }
 }

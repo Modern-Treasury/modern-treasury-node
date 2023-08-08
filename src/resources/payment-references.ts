@@ -13,12 +13,12 @@ export class PaymentReferences extends APIResource {
   list(
     query?: PaymentReferenceListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentReferencesPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PaymentReferencesPage>;
+  ): Core.PagePromise<PaymentReferencesPage, PaymentReference>;
+  list(options?: Core.RequestOptions): Core.PagePromise<PaymentReferencesPage, PaymentReference>;
   list(
     query: PaymentReferenceListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentReferencesPage> {
+  ): Core.PagePromise<PaymentReferencesPage, PaymentReference> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -28,7 +28,7 @@ export class PaymentReferences extends APIResource {
   /**
    * get payment_reference
    */
-  retireve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<PaymentReference>> {
+  retireve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentReference> {
     return this.get(`/api/payment_references/${id}`, options);
   }
 }

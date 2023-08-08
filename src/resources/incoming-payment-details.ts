@@ -12,7 +12,7 @@ export class IncomingPaymentDetails extends APIResource {
   /**
    * Get an existing Incoming Payment Detail.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<IncomingPaymentDetail>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<IncomingPaymentDetail> {
     return this.get(`/api/incoming_payment_details/${id}`, options);
   }
 
@@ -23,13 +23,13 @@ export class IncomingPaymentDetails extends APIResource {
     id: string,
     body?: IncomingPaymentDetailUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<IncomingPaymentDetail>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<IncomingPaymentDetail>>;
+  ): Core.APIPromise<IncomingPaymentDetail>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<IncomingPaymentDetail>;
   update(
     id: string,
     body: IncomingPaymentDetailUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<IncomingPaymentDetail>> {
+  ): Core.APIPromise<IncomingPaymentDetail> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -42,12 +42,12 @@ export class IncomingPaymentDetails extends APIResource {
   list(
     query?: IncomingPaymentDetailListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<IncomingPaymentDetailsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<IncomingPaymentDetailsPage>;
+  ): Core.PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail>;
+  list(options?: Core.RequestOptions): Core.PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail>;
   list(
     query: IncomingPaymentDetailListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<IncomingPaymentDetailsPage> {
+  ): Core.PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -63,12 +63,12 @@ export class IncomingPaymentDetails extends APIResource {
   createAsync(
     params?: IncomingPaymentDetailCreateAsyncParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Shared.AsyncResponse>>;
-  createAsync(options?: Core.RequestOptions): Promise<Core.APIResponse<Shared.AsyncResponse>>;
+  ): Core.APIPromise<Shared.AsyncResponse>;
+  createAsync(options?: Core.RequestOptions): Core.APIPromise<Shared.AsyncResponse>;
   createAsync(
     params: IncomingPaymentDetailCreateAsyncParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Shared.AsyncResponse>> {
+  ): Core.APIPromise<Shared.AsyncResponse> {
     if (isRequestOptions(params)) {
       return this.createAsync({}, params);
     }

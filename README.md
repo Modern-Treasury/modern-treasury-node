@@ -230,6 +230,30 @@ while (page.hasNextPage()) {
 }
 ```
 
+## Advanced Usage
+
+### Accessing raw Response data (e.g., headers)
+
+The "raw" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.
+
+You can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.
+
+```ts
+const modernTreasury = new ModernTreasury();
+
+const response = await modernTreasury.externalAccounts
+  .create({ counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a', name: 'my bank' })
+  .asResponse();
+console.log(response.headers.get('X-My-Header'));
+console.log(response.statusText); // access the underlying Response object
+
+const { data: externalAccounts, response: raw } = await modernTreasury.externalAccounts
+  .create({ counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a', name: 'my bank' })
+  .withResponse();
+console.log(raw.headers.get('X-My-Header'));
+console.log(externalAccounts.id);
+```
+
 ## Configuring an HTTP(S) Agent (e.g., for proxies)
 
 By default, this library uses a stable agent for all http/https requests to reuse TCP connections, eliminating many TCP & TLS handshakes and shaving around 100ms off most requests.

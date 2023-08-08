@@ -11,14 +11,11 @@ export class Documents extends APIResource {
   /**
    * Create a document.
    */
-  async create(
-    params: DocumentCreateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Document>> {
+  create(params: DocumentCreateParams, options?: Core.RequestOptions): Core.APIPromise<Document> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(
       '/api/documents',
-      await multipartFormRequestOptions({
+      multipartFormRequestOptions({
         body,
         ...options,
         headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
@@ -29,19 +26,19 @@ export class Documents extends APIResource {
   /**
    * Get an existing document.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Document>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Document> {
     return this.get(`/api/documents/${id}`, options);
   }
 
   /**
    * Get a list of documents.
    */
-  list(query?: DocumentListParams, options?: Core.RequestOptions): Core.PagePromise<DocumentsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<DocumentsPage>;
+  list(query?: DocumentListParams, options?: Core.RequestOptions): Core.PagePromise<DocumentsPage, Document>;
+  list(options?: Core.RequestOptions): Core.PagePromise<DocumentsPage, Document>;
   list(
     query: DocumentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DocumentsPage> {
+  ): Core.PagePromise<DocumentsPage, Document> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

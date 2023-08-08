@@ -15,7 +15,7 @@ export class Invoices extends APIResource {
   /**
    * create invoice
    */
-  create(params: InvoiceCreateParams, options?: Core.RequestOptions): Promise<Core.APIResponse<Invoice>> {
+  create(params: InvoiceCreateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/invoices', {
       body,
@@ -27,24 +27,20 @@ export class Invoices extends APIResource {
   /**
    * get invoice
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Invoice>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
     return this.get(`/api/invoices/${id}`, options);
   }
 
   /**
    * update invoice
    */
-  update(
-    id: string,
-    body?: InvoiceUpdateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Invoice>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Invoice>>;
+  update(id: string, body?: InvoiceUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<Invoice>;
   update(
     id: string,
     body: InvoiceUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Invoice>> {
+  ): Core.APIPromise<Invoice> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -54,12 +50,12 @@ export class Invoices extends APIResource {
   /**
    * list invoices
    */
-  list(query?: InvoiceListParams, options?: Core.RequestOptions): Core.PagePromise<InvoicesPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<InvoicesPage>;
+  list(query?: InvoiceListParams, options?: Core.RequestOptions): Core.PagePromise<InvoicesPage, Invoice>;
+  list(options?: Core.RequestOptions): Core.PagePromise<InvoicesPage, Invoice>;
   list(
     query: InvoiceListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<InvoicesPage> {
+  ): Core.PagePromise<InvoicesPage, Invoice> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

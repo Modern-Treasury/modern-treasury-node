@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -10,10 +11,17 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource accountCollectionFlows', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.create({
+    const responsePromise = modernTreasury.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_types: ['string', 'string', 'string'],
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -25,7 +33,14 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('retrieve', async () => {
-    const response = await modernTreasury.accountCollectionFlows.retrieve('string');
+    const responsePromise = modernTreasury.accountCollectionFlows.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -47,7 +62,14 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('update: only required params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.update('string', { status: 'cancelled' });
+    const responsePromise = modernTreasury.accountCollectionFlows.update('string', { status: 'cancelled' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('update: required and optional params', async () => {
@@ -58,7 +80,14 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('list', async () => {
-    const response = await modernTreasury.accountCollectionFlows.list();
+    const responsePromise = modernTreasury.accountCollectionFlows.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {

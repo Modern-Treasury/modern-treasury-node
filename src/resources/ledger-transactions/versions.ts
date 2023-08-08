@@ -13,12 +13,14 @@ export class Versions extends APIResource {
   list(
     query?: VersionListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionVersionsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerTransactionVersionsPage>;
+  ): Core.PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion>;
+  list(
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion>;
   list(
     query: VersionListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionVersionsPage> {
+  ): Core.PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

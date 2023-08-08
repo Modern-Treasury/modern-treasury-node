@@ -13,7 +13,7 @@ export class LedgerEventHandlers extends APIResource {
   create(
     params: LedgerEventHandlerCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerEventHandlerCreateResponse>> {
+  ): Core.APIPromise<LedgerEventHandlerCreateResponse> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/ledger_event_handlers', {
       body,
@@ -25,10 +25,7 @@ export class LedgerEventHandlers extends APIResource {
   /**
    * Get details on a single ledger event handler.
    */
-  retrieve(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerEventHandlerRetrieveResponse>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandlerRetrieveResponse> {
     return this.get(`/api/ledger_event_handlers/${id}`, options);
   }
 
@@ -38,12 +35,14 @@ export class LedgerEventHandlers extends APIResource {
   list(
     query?: LedgerEventHandlerListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerEventHandlerListResponsesPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerEventHandlerListResponsesPage>;
+  ): Core.PagePromise<LedgerEventHandlerListResponsesPage, LedgerEventHandlerListResponse>;
+  list(
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<LedgerEventHandlerListResponsesPage, LedgerEventHandlerListResponse>;
   list(
     query: LedgerEventHandlerListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerEventHandlerListResponsesPage> {
+  ): Core.PagePromise<LedgerEventHandlerListResponsesPage, LedgerEventHandlerListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -56,10 +55,7 @@ export class LedgerEventHandlers extends APIResource {
   /**
    * Archive a ledger event handler.
    */
-  del(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerEventHandlerDeleteResponse>> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandlerDeleteResponse> {
     return this.delete(`/api/ledger_event_handlers/${id}`, options);
   }
 }

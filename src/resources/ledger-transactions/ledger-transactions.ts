@@ -17,7 +17,7 @@ export class LedgerTransactions extends APIResource {
   create(
     params: LedgerTransactionCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerTransaction>> {
+  ): Core.APIPromise<LedgerTransaction> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/ledger_transactions', {
       body,
@@ -29,7 +29,7 @@ export class LedgerTransactions extends APIResource {
   /**
    * Get details on a single ledger transaction.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerTransaction>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerTransaction> {
     return this.get(`/api/ledger_transactions/${id}`, options);
   }
 
@@ -40,13 +40,13 @@ export class LedgerTransactions extends APIResource {
     id: string,
     body?: LedgerTransactionUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerTransaction>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerTransaction>>;
+  ): Core.APIPromise<LedgerTransaction>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerTransaction>;
   update(
     id: string,
     body: LedgerTransactionUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerTransaction>> {
+  ): Core.APIPromise<LedgerTransaction> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -59,12 +59,12 @@ export class LedgerTransactions extends APIResource {
   list(
     query?: LedgerTransactionListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerTransactionsPage>;
+  ): Core.PagePromise<LedgerTransactionsPage, LedgerTransaction>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LedgerTransactionsPage, LedgerTransaction>;
   list(
     query: LedgerTransactionListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionsPage> {
+  ): Core.PagePromise<LedgerTransactionsPage, LedgerTransaction> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -78,13 +78,13 @@ export class LedgerTransactions extends APIResource {
     id: string,
     body?: LedgerTransactionCreateReversalParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerTransaction>>;
-  createReversal(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerTransaction>>;
+  ): Core.APIPromise<LedgerTransaction>;
+  createReversal(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerTransaction>;
   createReversal(
     id: string,
     body: LedgerTransactionCreateReversalParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerTransaction>> {
+  ): Core.APIPromise<LedgerTransaction> {
     if (isRequestOptions(body)) {
       return this.createReversal(id, {}, body);
     }

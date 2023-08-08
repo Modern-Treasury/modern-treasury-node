@@ -15,7 +15,7 @@ export class LineItems extends APIResource {
     itemizableId: string,
     id: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LineItem>> {
+  ): Core.APIPromise<LineItem> {
     return this.get(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, options);
   }
 
@@ -28,20 +28,20 @@ export class LineItems extends APIResource {
     id: string,
     body?: LineItemUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LineItem>>;
+  ): Core.APIPromise<LineItem>;
   update(
     itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LineItem>>;
+  ): Core.APIPromise<LineItem>;
   update(
     itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     id: string,
     body: LineItemUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LineItem>> {
+  ): Core.APIPromise<LineItem> {
     if (isRequestOptions(body)) {
       return this.update(itemizableType, itemizableId, id, {}, body);
     }
@@ -56,18 +56,18 @@ export class LineItems extends APIResource {
     itemizableId: string,
     query?: LineItemListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LineItemsPage>;
+  ): Core.PagePromise<LineItemsPage, LineItem>;
   list(
     itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LineItemsPage>;
+  ): Core.PagePromise<LineItemsPage, LineItem>;
   list(
     itemizableType: 'expected_payments' | 'payment_orders',
     itemizableId: string,
     query: LineItemListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LineItemsPage> {
+  ): Core.PagePromise<LineItemsPage, LineItem> {
     if (isRequestOptions(query)) {
       return this.list(itemizableType, itemizableId, {}, query);
     }

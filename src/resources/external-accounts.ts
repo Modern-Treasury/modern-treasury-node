@@ -16,7 +16,7 @@ export class ExternalAccounts extends APIResource {
   create(
     params: ExternalAccountCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExternalAccount>> {
+  ): Core.APIPromise<ExternalAccount> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/external_accounts', {
       body,
@@ -28,7 +28,7 @@ export class ExternalAccounts extends APIResource {
   /**
    * show external account
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExternalAccount>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ExternalAccount> {
     return this.get(`/api/external_accounts/${id}`, options);
   }
 
@@ -39,13 +39,13 @@ export class ExternalAccounts extends APIResource {
     id: string,
     body?: ExternalAccountUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExternalAccount>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExternalAccount>>;
+  ): Core.APIPromise<ExternalAccount>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<ExternalAccount>;
   update(
     id: string,
     body: ExternalAccountUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExternalAccount>> {
+  ): Core.APIPromise<ExternalAccount> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -58,12 +58,12 @@ export class ExternalAccounts extends APIResource {
   list(
     query?: ExternalAccountListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ExternalAccountsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ExternalAccountsPage>;
+  ): Core.PagePromise<ExternalAccountsPage, ExternalAccount>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ExternalAccountsPage, ExternalAccount>;
   list(
     query: ExternalAccountListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ExternalAccountsPage> {
+  ): Core.PagePromise<ExternalAccountsPage, ExternalAccount> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -73,7 +73,7 @@ export class ExternalAccounts extends APIResource {
   /**
    * delete external account
    */
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/api/external_accounts/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -87,13 +87,13 @@ export class ExternalAccounts extends APIResource {
     id: string,
     params?: ExternalAccountCompleteVerificationParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExternalAccount>>;
-  completeVerification(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExternalAccount>>;
+  ): Core.APIPromise<ExternalAccount>;
+  completeVerification(id: string, options?: Core.RequestOptions): Core.APIPromise<ExternalAccount>;
   completeVerification(
     id: string,
     params: ExternalAccountCompleteVerificationParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExternalAccount>> {
+  ): Core.APIPromise<ExternalAccount> {
     if (isRequestOptions(params)) {
       return this.completeVerification(id, {}, params);
     }
@@ -112,7 +112,7 @@ export class ExternalAccounts extends APIResource {
     id: string,
     params: ExternalAccountVerifyParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExternalAccount>> {
+  ): Core.APIPromise<ExternalAccount> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(`/api/external_accounts/${id}/verify`, {
       body,

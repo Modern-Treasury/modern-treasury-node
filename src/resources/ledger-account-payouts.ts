@@ -13,7 +13,7 @@ export class LedgerAccountPayouts extends APIResource {
   create(
     params: LedgerAccountPayoutCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountPayout>> {
+  ): Core.APIPromise<LedgerAccountPayout> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/ledger_account_payouts', {
       body,
@@ -29,13 +29,13 @@ export class LedgerAccountPayouts extends APIResource {
     id: string,
     body?: LedgerAccountPayoutUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountPayout>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountPayout>>;
+  ): Core.APIPromise<LedgerAccountPayout>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountPayout>;
   update(
     id: string,
     body: LedgerAccountPayoutUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountPayout>> {
+  ): Core.APIPromise<LedgerAccountPayout> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -48,12 +48,12 @@ export class LedgerAccountPayouts extends APIResource {
   list(
     query?: LedgerAccountPayoutListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountPayoutsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerAccountPayoutsPage>;
+  ): Core.PagePromise<LedgerAccountPayoutsPage, LedgerAccountPayout>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LedgerAccountPayoutsPage, LedgerAccountPayout>;
   list(
     query: LedgerAccountPayoutListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountPayoutsPage> {
+  ): Core.PagePromise<LedgerAccountPayoutsPage, LedgerAccountPayout> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -63,7 +63,7 @@ export class LedgerAccountPayouts extends APIResource {
   /**
    * Get details on a single ledger account payout.
    */
-  retireve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountPayout>> {
+  retireve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountPayout> {
     return this.get(`/api/ledger_account_payouts/${id}`, options);
   }
 }

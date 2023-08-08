@@ -12,7 +12,7 @@ export class LedgerableEvents extends APIResource {
   create(
     params: LedgerableEventCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerableEvent>> {
+  ): Core.APIPromise<LedgerableEvent> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/ledgerable_events', {
       body,
@@ -24,7 +24,7 @@ export class LedgerableEvents extends APIResource {
   /**
    * Get details on a single ledgerable event.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerableEvent>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerableEvent> {
     return this.get(`/api/ledgerable_events/${id}`, options);
   }
 }

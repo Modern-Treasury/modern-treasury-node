@@ -13,7 +13,7 @@ export class AccountCollectionFlows extends APIResource {
   create(
     params: AccountCollectionFlowCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountCollectionFlow>> {
+  ): Core.APIPromise<AccountCollectionFlow> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/account_collection_flows', {
       body,
@@ -29,13 +29,13 @@ export class AccountCollectionFlows extends APIResource {
     id: string,
     query?: AccountCollectionFlowRetrieveParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountCollectionFlow>>;
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<AccountCollectionFlow>>;
+  ): Core.APIPromise<AccountCollectionFlow>;
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AccountCollectionFlow>;
   retrieve(
     id: string,
     query: AccountCollectionFlowRetrieveParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountCollectionFlow>> {
+  ): Core.APIPromise<AccountCollectionFlow> {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
@@ -53,7 +53,7 @@ export class AccountCollectionFlows extends APIResource {
     id: string,
     params: AccountCollectionFlowUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AccountCollectionFlow>> {
+  ): Core.APIPromise<AccountCollectionFlow> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.patch(`/api/account_collection_flows/${id}`, {
       body,
@@ -68,12 +68,12 @@ export class AccountCollectionFlows extends APIResource {
   list(
     query?: AccountCollectionFlowListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AccountCollectionFlowsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AccountCollectionFlowsPage>;
+  ): Core.PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow>;
   list(
     query: AccountCollectionFlowListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AccountCollectionFlowsPage> {
+  ): Core.PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
