@@ -21,17 +21,13 @@ export class PaymentOrders extends APIResource {
     params: PaymentOrderCreateParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<PaymentOrder>> {
-    const { 'Content-Type': contentType, 'Idempotency-Key': idempotencyKey, ...body } = params;
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(
       '/api/payment_orders',
       await maybeMultipartFormRequestOptions({
         body,
         ...options,
-        headers: {
-          'Content-Type': contentType?.toString() || '',
-          'Idempotency-Key': idempotencyKey || '',
-          ...options?.headers,
-        },
+        headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
       }),
     );
   }
@@ -710,11 +706,6 @@ export interface PaymentOrderCreateParams {
    * Body param: Name of the ultimate funds recipient.
    */
   ultimate_receiving_party_name?: string | null;
-
-  /**
-   * Header param:
-   */
-  'Content-Type'?: 'application/json' | 'multipart/form-data';
 
   /**
    * Header param: This key should be something unique, preferably something like an
