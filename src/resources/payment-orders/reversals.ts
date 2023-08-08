@@ -14,7 +14,7 @@ export class Reversals extends APIResource {
     paymentOrderId: string,
     params: ReversalCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Reversal>> {
+  ): Core.APIPromise<Reversal> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(`/api/payment_orders/${paymentOrderId}/reversals`, {
       body,
@@ -30,7 +30,7 @@ export class Reversals extends APIResource {
     paymentOrderId: string,
     reversalId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Reversal>> {
+  ): Core.APIPromise<Reversal> {
     return this.get(`/api/payment_orders/${paymentOrderId}/reversals/${reversalId}`, options);
   }
 
@@ -41,13 +41,13 @@ export class Reversals extends APIResource {
     paymentOrderId: string,
     query?: ReversalListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ReversalsPage>;
-  list(paymentOrderId: string, options?: Core.RequestOptions): Core.PagePromise<ReversalsPage>;
+  ): Core.PagePromise<ReversalsPage, Reversal>;
+  list(paymentOrderId: string, options?: Core.RequestOptions): Core.PagePromise<ReversalsPage, Reversal>;
   list(
     paymentOrderId: string,
     query: ReversalListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ReversalsPage> {
+  ): Core.PagePromise<ReversalsPage, Reversal> {
     if (isRequestOptions(query)) {
       return this.list(paymentOrderId, {}, query);
     }

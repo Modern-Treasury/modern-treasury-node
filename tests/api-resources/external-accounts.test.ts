@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -10,9 +11,16 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource externalAccounts', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.externalAccounts.create({
+    const responsePromise = modernTreasury.externalAccounts.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -64,7 +72,14 @@ describe('resource externalAccounts', () => {
   });
 
   test('retrieve', async () => {
-    const response = await modernTreasury.externalAccounts.retrieve('string');
+    const responsePromise = modernTreasury.externalAccounts.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -75,7 +90,14 @@ describe('resource externalAccounts', () => {
   });
 
   test('update', async () => {
-    const response = await modernTreasury.externalAccounts.update('string');
+    const responsePromise = modernTreasury.externalAccounts.update('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -112,7 +134,14 @@ describe('resource externalAccounts', () => {
   });
 
   test('list', async () => {
-    const response = await modernTreasury.externalAccounts.list();
+    const responsePromise = modernTreasury.externalAccounts.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -139,7 +168,14 @@ describe('resource externalAccounts', () => {
   });
 
   test('del', async () => {
-    const response = await modernTreasury.externalAccounts.del('string');
+    const responsePromise = modernTreasury.externalAccounts.del('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('del: request options instead of params are passed correctly', async () => {
@@ -150,7 +186,14 @@ describe('resource externalAccounts', () => {
   });
 
   test('completeVerification', async () => {
-    const response = await modernTreasury.externalAccounts.completeVerification('string');
+    const responsePromise = modernTreasury.externalAccounts.completeVerification('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('completeVerification: request options instead of params are passed correctly', async () => {
@@ -172,10 +215,17 @@ describe('resource externalAccounts', () => {
   });
 
   test('verify: only required params', async () => {
-    const response = await modernTreasury.externalAccounts.verify('string', {
+    const responsePromise = modernTreasury.externalAccounts.verify('string', {
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_type: 'ach',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('verify: required and optional params', async () => {

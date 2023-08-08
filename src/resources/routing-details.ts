@@ -16,7 +16,7 @@ export class RoutingDetails extends APIResource {
     accountId: string,
     params: RoutingDetailCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RoutingDetail>> {
+  ): Core.APIPromise<RoutingDetail> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(`/api/${accountsType}/${accountId}/routing_details`, {
       body,
@@ -33,7 +33,7 @@ export class RoutingDetails extends APIResource {
     accountId: string,
     id: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RoutingDetail>> {
+  ): Core.APIPromise<RoutingDetail> {
     return this.get(`/api/${accountsType}/${accountId}/routing_details/${id}`, options);
   }
 
@@ -45,18 +45,18 @@ export class RoutingDetails extends APIResource {
     accountId: string,
     query?: RoutingDetailListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<RoutingDetailsPage>;
+  ): Core.PagePromise<RoutingDetailsPage, RoutingDetail>;
   list(
     accountsType: Shared.AccountsType,
     accountId: string,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<RoutingDetailsPage>;
+  ): Core.PagePromise<RoutingDetailsPage, RoutingDetail>;
   list(
     accountsType: Shared.AccountsType,
     accountId: string,
     query: RoutingDetailListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<RoutingDetailsPage> {
+  ): Core.PagePromise<RoutingDetailsPage, RoutingDetail> {
     if (isRequestOptions(query)) {
       return this.list(accountsType, accountId, {}, query);
     }
@@ -74,7 +74,7 @@ export class RoutingDetails extends APIResource {
     accountId: string,
     id: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  ): Core.APIPromise<void> {
     return this.delete(`/api/${accountsType}/${accountId}/routing_details/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

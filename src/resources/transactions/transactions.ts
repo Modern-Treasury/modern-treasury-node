@@ -14,7 +14,7 @@ export class Transactions extends APIResource {
   /**
    * Get details on a single transaction.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Transaction>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Transaction> {
     return this.get(`/api/transactions/${id}`, options);
   }
 
@@ -25,13 +25,13 @@ export class Transactions extends APIResource {
     id: string,
     body?: TransactionUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Transaction>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Transaction>>;
+  ): Core.APIPromise<Transaction>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<Transaction>;
   update(
     id: string,
     body: TransactionUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Transaction>> {
+  ): Core.APIPromise<Transaction> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -41,12 +41,15 @@ export class Transactions extends APIResource {
   /**
    * Get a list of all transactions.
    */
-  list(query?: TransactionListParams, options?: Core.RequestOptions): Core.PagePromise<TransactionsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<TransactionsPage>;
+  list(
+    query?: TransactionListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<TransactionsPage, Transaction>;
+  list(options?: Core.RequestOptions): Core.PagePromise<TransactionsPage, Transaction>;
   list(
     query: TransactionListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionsPage> {
+  ): Core.PagePromise<TransactionsPage, Transaction> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

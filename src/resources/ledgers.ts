@@ -10,7 +10,7 @@ export class Ledgers extends APIResource {
   /**
    * Create a ledger.
    */
-  create(params: LedgerCreateParams, options?: Core.RequestOptions): Promise<Core.APIResponse<Ledger>> {
+  create(params: LedgerCreateParams, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/ledgers', {
       body,
@@ -22,24 +22,20 @@ export class Ledgers extends APIResource {
   /**
    * Get details on a single ledger.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Ledger>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
     return this.get(`/api/ledgers/${id}`, options);
   }
 
   /**
    * Update the details of a ledger.
    */
-  update(
-    id: string,
-    body?: LedgerUpdateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Ledger>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Ledger>>;
+  update(id: string, body?: LedgerUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Ledger>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger>;
   update(
     id: string,
     body: LedgerUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Ledger>> {
+  ): Core.APIPromise<Ledger> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -49,12 +45,12 @@ export class Ledgers extends APIResource {
   /**
    * Get a list of ledgers.
    */
-  list(query?: LedgerListParams, options?: Core.RequestOptions): Core.PagePromise<LedgersPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgersPage>;
+  list(query?: LedgerListParams, options?: Core.RequestOptions): Core.PagePromise<LedgersPage, Ledger>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LedgersPage, Ledger>;
   list(
     query: LedgerListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgersPage> {
+  ): Core.PagePromise<LedgersPage, Ledger> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -64,7 +60,7 @@ export class Ledgers extends APIResource {
   /**
    * Delete a ledger.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Ledger>> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
     return this.delete(`/api/ledgers/${id}`, options);
   }
 }

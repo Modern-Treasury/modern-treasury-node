@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -10,10 +11,17 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource routingDetails', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.routingDetails.create('external_accounts', 'string', {
+    const responsePromise = modernTreasury.routingDetails.create('external_accounts', 'string', {
       routing_number: 'string',
       routing_number_type: 'aba',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -26,7 +34,14 @@ describe('resource routingDetails', () => {
   });
 
   test('retrieve', async () => {
-    const response = await modernTreasury.routingDetails.retrieve('external_accounts', 'string', 'string');
+    const responsePromise = modernTreasury.routingDetails.retrieve('external_accounts', 'string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -39,7 +54,14 @@ describe('resource routingDetails', () => {
   });
 
   test('list', async () => {
-    const response = await modernTreasury.routingDetails.list('external_accounts', 'string');
+    const responsePromise = modernTreasury.routingDetails.list('external_accounts', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -62,7 +84,14 @@ describe('resource routingDetails', () => {
   });
 
   test('del', async () => {
-    const response = await modernTreasury.routingDetails.del('external_accounts', 'string', 'string');
+    const responsePromise = modernTreasury.routingDetails.del('external_accounts', 'string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('del: request options instead of params are passed correctly', async () => {

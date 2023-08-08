@@ -15,7 +15,7 @@ export class LineItems extends APIResource {
     invoiceId: string,
     params: LineItemCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InvoiceLineItem>> {
+  ): Core.APIPromise<InvoiceLineItem> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(`/api/invoices/${invoiceId}/invoice_line_items`, {
       body,
@@ -27,11 +27,7 @@ export class LineItems extends APIResource {
   /**
    * get invoice_line_item
    */
-  retrieve(
-    invoiceId: string,
-    id: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InvoiceLineItem>> {
+  retrieve(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem> {
     return this.get(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
   }
 
@@ -43,18 +39,14 @@ export class LineItems extends APIResource {
     id: string,
     body?: LineItemUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InvoiceLineItem>>;
-  update(
-    invoiceId: string,
-    id: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InvoiceLineItem>>;
+  ): Core.APIPromise<InvoiceLineItem>;
+  update(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem>;
   update(
     invoiceId: string,
     id: string,
     body: LineItemUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InvoiceLineItem>> {
+  ): Core.APIPromise<InvoiceLineItem> {
     if (isRequestOptions(body)) {
       return this.update(invoiceId, id, {}, body);
     }
@@ -68,13 +60,16 @@ export class LineItems extends APIResource {
     invoiceId: string,
     query?: LineItemListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<InvoiceLineItemsPage>;
-  list(invoiceId: string, options?: Core.RequestOptions): Core.PagePromise<InvoiceLineItemsPage>;
+  ): Core.PagePromise<InvoiceLineItemsPage, InvoiceLineItem>;
+  list(
+    invoiceId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<InvoiceLineItemsPage, InvoiceLineItem>;
   list(
     invoiceId: string,
     query: LineItemListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<InvoiceLineItemsPage> {
+  ): Core.PagePromise<InvoiceLineItemsPage, InvoiceLineItem> {
     if (isRequestOptions(query)) {
       return this.list(invoiceId, {}, query);
     }
@@ -87,11 +82,7 @@ export class LineItems extends APIResource {
   /**
    * delete invoice_line_item
    */
-  del(
-    invoiceId: string,
-    id: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InvoiceLineItem>> {
+  del(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem> {
     return this.delete(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
   }
 }

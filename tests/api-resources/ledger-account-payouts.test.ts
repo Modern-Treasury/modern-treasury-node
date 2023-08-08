@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -10,10 +11,17 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerAccountPayouts', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.ledgerAccountPayouts.create({
+    const responsePromise = modernTreasury.ledgerAccountPayouts.create({
       funding_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -30,7 +38,14 @@ describe('resource ledgerAccountPayouts', () => {
   });
 
   test('update', async () => {
-    const response = await modernTreasury.ledgerAccountPayouts.update('string');
+    const responsePromise = modernTreasury.ledgerAccountPayouts.update('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -56,7 +71,14 @@ describe('resource ledgerAccountPayouts', () => {
   });
 
   test('list', async () => {
-    const response = await modernTreasury.ledgerAccountPayouts.list();
+    const responsePromise = modernTreasury.ledgerAccountPayouts.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -82,7 +104,14 @@ describe('resource ledgerAccountPayouts', () => {
   });
 
   test('retireve', async () => {
-    const response = await modernTreasury.ledgerAccountPayouts.retireve('string');
+    const responsePromise = modernTreasury.ledgerAccountPayouts.retireve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retireve: request options instead of params are passed correctly', async () => {

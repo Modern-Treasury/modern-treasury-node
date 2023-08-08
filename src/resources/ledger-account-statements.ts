@@ -11,7 +11,7 @@ export class LedgerAccountStatements extends APIResource {
   create(
     params: LedgerAccountStatementCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountStatementCreateResponse>> {
+  ): Core.APIPromise<LedgerAccountStatementCreateResponse> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/ledger_account_statements', {
       body,
@@ -26,7 +26,7 @@ export class LedgerAccountStatements extends APIResource {
   retrieve(
     id: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountStatementRetrieveResponse>> {
+  ): Core.APIPromise<LedgerAccountStatementRetrieveResponse> {
     return this.get(`/api/ledger_account_statements/${id}`, options);
   }
 }

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -10,7 +11,14 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource counterparties', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.counterparties.create({ name: 'string' });
+    const responsePromise = modernTreasury.counterparties.create({ name: 'string' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -159,7 +167,14 @@ describe('resource counterparties', () => {
   });
 
   test('retrieve', async () => {
-    const response = await modernTreasury.counterparties.retrieve('string');
+    const responsePromise = modernTreasury.counterparties.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -170,7 +185,14 @@ describe('resource counterparties', () => {
   });
 
   test('update', async () => {
-    const response = await modernTreasury.counterparties.update('string');
+    const responsePromise = modernTreasury.counterparties.update('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -198,7 +220,14 @@ describe('resource counterparties', () => {
   });
 
   test('list', async () => {
-    const response = await modernTreasury.counterparties.list();
+    const responsePromise = modernTreasury.counterparties.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -227,7 +256,14 @@ describe('resource counterparties', () => {
   });
 
   test('del', async () => {
-    const response = await modernTreasury.counterparties.del('string');
+    const responsePromise = modernTreasury.counterparties.del('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('del: request options instead of params are passed correctly', async () => {
@@ -238,7 +274,14 @@ describe('resource counterparties', () => {
   });
 
   test('collectAccount: only required params', async () => {
-    const response = await modernTreasury.counterparties.collectAccount('string', { direction: 'credit' });
+    const responsePromise = modernTreasury.counterparties.collectAccount('string', { direction: 'credit' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('collectAccount: required and optional params', async () => {

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -10,7 +11,14 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource transactions', () => {
   test('retrieve', async () => {
-    const response = await modernTreasury.transactions.retrieve('string');
+    const responsePromise = modernTreasury.transactions.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -21,7 +29,14 @@ describe('resource transactions', () => {
   });
 
   test('update', async () => {
-    const response = await modernTreasury.transactions.update('string');
+    const responsePromise = modernTreasury.transactions.update('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -43,7 +58,14 @@ describe('resource transactions', () => {
   });
 
   test('list', async () => {
-    const response = await modernTreasury.transactions.list();
+    const responsePromise = modernTreasury.transactions.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {

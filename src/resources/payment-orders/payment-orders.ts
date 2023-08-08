@@ -17,14 +17,11 @@ export class PaymentOrders extends APIResource {
   /**
    * Create a new Payment Order
    */
-  async create(
-    params: PaymentOrderCreateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentOrder>> {
+  create(params: PaymentOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post(
       '/api/payment_orders',
-      await maybeMultipartFormRequestOptions({
+      maybeMultipartFormRequestOptions({
         body,
         ...options,
         headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
@@ -35,7 +32,7 @@ export class PaymentOrders extends APIResource {
   /**
    * Get details on a single payment order
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<PaymentOrder>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder> {
     return this.get(`/api/payment_orders/${id}`, options);
   }
 
@@ -46,13 +43,13 @@ export class PaymentOrders extends APIResource {
     id: string,
     body?: PaymentOrderUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentOrder>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<PaymentOrder>>;
+  ): Core.APIPromise<PaymentOrder>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder>;
   update(
     id: string,
     body: PaymentOrderUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentOrder>> {
+  ): Core.APIPromise<PaymentOrder> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -62,12 +59,15 @@ export class PaymentOrders extends APIResource {
   /**
    * Get a list of all payment orders
    */
-  list(query?: PaymentOrderListParams, options?: Core.RequestOptions): Core.PagePromise<PaymentOrdersPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PaymentOrdersPage>;
+  list(
+    query?: PaymentOrderListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<PaymentOrdersPage, PaymentOrder>;
+  list(options?: Core.RequestOptions): Core.PagePromise<PaymentOrdersPage, PaymentOrder>;
   list(
     query: PaymentOrderListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentOrdersPage> {
+  ): Core.PagePromise<PaymentOrdersPage, PaymentOrder> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -80,7 +80,7 @@ export class PaymentOrders extends APIResource {
   createAsync(
     params: PaymentOrderCreateAsyncParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Shared.AsyncResponse>> {
+  ): Core.APIPromise<Shared.AsyncResponse> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/payment_orders/create_async', {
       body,

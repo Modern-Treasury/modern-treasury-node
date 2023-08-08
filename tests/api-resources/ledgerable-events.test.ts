@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -10,7 +11,14 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerableEvents', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.ledgerableEvents.create({ amount: 0, name: 'string' });
+    const responsePromise = modernTreasury.ledgerableEvents.create({ amount: 0, name: 'string' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -28,7 +36,14 @@ describe('resource ledgerableEvents', () => {
   });
 
   test('retrieve', async () => {
-    const response = await modernTreasury.ledgerableEvents.retrieve('string');
+    const responsePromise = modernTreasury.ledgerableEvents.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {

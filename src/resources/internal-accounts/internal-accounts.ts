@@ -20,7 +20,7 @@ export class InternalAccounts extends APIResource {
   create(
     params: InternalAccountCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InternalAccount>> {
+  ): Core.APIPromise<InternalAccount> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/internal_accounts', {
       body,
@@ -32,7 +32,7 @@ export class InternalAccounts extends APIResource {
   /**
    * get internal account
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<InternalAccount>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<InternalAccount> {
     return this.get(`/api/internal_accounts/${id}`, options);
   }
 
@@ -43,13 +43,13 @@ export class InternalAccounts extends APIResource {
     id: string,
     body?: InternalAccountUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InternalAccount>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<InternalAccount>>;
+  ): Core.APIPromise<InternalAccount>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<InternalAccount>;
   update(
     id: string,
     body: InternalAccountUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InternalAccount>> {
+  ): Core.APIPromise<InternalAccount> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -62,12 +62,12 @@ export class InternalAccounts extends APIResource {
   list(
     query?: InternalAccountListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<InternalAccountsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<InternalAccountsPage>;
+  ): Core.PagePromise<InternalAccountsPage, InternalAccount>;
+  list(options?: Core.RequestOptions): Core.PagePromise<InternalAccountsPage, InternalAccount>;
   list(
     query: InternalAccountListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<InternalAccountsPage> {
+  ): Core.PagePromise<InternalAccountsPage, InternalAccount> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
