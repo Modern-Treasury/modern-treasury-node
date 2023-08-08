@@ -183,7 +183,6 @@ describe('resource paymentOrders', () => {
       ultimate_originating_party_name: 'string',
       ultimate_receiving_party_identifier: 'string',
       ultimate_receiving_party_name: 'string',
-      'Content-Type': 'application/json',
       'Idempotency-Key': 'string',
     });
   });
