@@ -12,10 +12,7 @@ export class VirtualAccounts extends APIResource {
   /**
    * create virtual_account
    */
-  create(
-    params: VirtualAccountCreateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<VirtualAccount>> {
+  create(params: VirtualAccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/virtual_accounts', {
       body,
@@ -27,7 +24,7 @@ export class VirtualAccounts extends APIResource {
   /**
    * get virtual_account
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VirtualAccount>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
     return this.get(`/api/virtual_accounts/${id}`, options);
   }
 
@@ -38,13 +35,13 @@ export class VirtualAccounts extends APIResource {
     id: string,
     body?: VirtualAccountUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<VirtualAccount>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VirtualAccount>>;
+  ): Core.APIPromise<VirtualAccount>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount>;
   update(
     id: string,
     body: VirtualAccountUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<VirtualAccount>> {
+  ): Core.APIPromise<VirtualAccount> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -57,12 +54,12 @@ export class VirtualAccounts extends APIResource {
   list(
     query?: VirtualAccountListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<VirtualAccountsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<VirtualAccountsPage>;
+  ): Core.PagePromise<VirtualAccountsPage, VirtualAccount>;
+  list(options?: Core.RequestOptions): Core.PagePromise<VirtualAccountsPage, VirtualAccount>;
   list(
     query: VirtualAccountListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<VirtualAccountsPage> {
+  ): Core.PagePromise<VirtualAccountsPage, VirtualAccount> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -72,7 +69,7 @@ export class VirtualAccounts extends APIResource {
   /**
    * delete virtual_account
    */
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VirtualAccount>> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
     return this.delete(`/api/virtual_accounts/${id}`, options);
   }
 }

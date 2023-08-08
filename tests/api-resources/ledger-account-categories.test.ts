@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -10,12 +11,19 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerAccountCategories', () => {
   test('create: only required params', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.create({
+    const responsePromise = modernTreasury.ledgerAccountCategories.create({
       currency: 'string',
       ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       name: 'string',
       normal_balance: 'credit',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -32,7 +40,14 @@ describe('resource ledgerAccountCategories', () => {
   });
 
   test('retrieve', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.retrieve('string');
+    const responsePromise = modernTreasury.ledgerAccountCategories.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -54,7 +69,14 @@ describe('resource ledgerAccountCategories', () => {
   });
 
   test('update', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.update('string');
+    const responsePromise = modernTreasury.ledgerAccountCategories.update('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -76,7 +98,14 @@ describe('resource ledgerAccountCategories', () => {
   });
 
   test('list', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.list();
+    const responsePromise = modernTreasury.ledgerAccountCategories.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -106,7 +135,14 @@ describe('resource ledgerAccountCategories', () => {
   });
 
   test('del', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.del('string');
+    const responsePromise = modernTreasury.ledgerAccountCategories.del('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('del: request options instead of params are passed correctly', async () => {
@@ -117,7 +153,14 @@ describe('resource ledgerAccountCategories', () => {
   });
 
   test('addLedgerAccount', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.addLedgerAccount('string', 'string');
+    const responsePromise = modernTreasury.ledgerAccountCategories.addLedgerAccount('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('addLedgerAccount: request options instead of params are passed correctly', async () => {
@@ -130,7 +173,14 @@ describe('resource ledgerAccountCategories', () => {
   });
 
   test('addNestedCategory', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.addNestedCategory('string', 'string');
+    const responsePromise = modernTreasury.ledgerAccountCategories.addNestedCategory('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('addNestedCategory: request options instead of params are passed correctly', async () => {
@@ -143,7 +193,14 @@ describe('resource ledgerAccountCategories', () => {
   });
 
   test('removeLedgerAccount', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.removeLedgerAccount('string', 'string');
+    const responsePromise = modernTreasury.ledgerAccountCategories.removeLedgerAccount('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('removeLedgerAccount: request options instead of params are passed correctly', async () => {
@@ -156,7 +213,14 @@ describe('resource ledgerAccountCategories', () => {
   });
 
   test('removeNestedCategory', async () => {
-    const response = await modernTreasury.ledgerAccountCategories.removeNestedCategory('string', 'string');
+    const responsePromise = modernTreasury.ledgerAccountCategories.removeNestedCategory('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('removeNestedCategory: request options instead of params are passed correctly', async () => {

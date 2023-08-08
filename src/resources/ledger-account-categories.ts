@@ -13,7 +13,7 @@ export class LedgerAccountCategories extends APIResource {
   create(
     params: LedgerAccountCategoryCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>> {
+  ): Core.APIPromise<LedgerAccountCategory> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/ledger_account_categories', {
       body,
@@ -29,13 +29,13 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     query?: LedgerAccountCategoryRetrieveParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>>;
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>>;
+  ): Core.APIPromise<LedgerAccountCategory>;
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountCategory>;
   retrieve(
     id: string,
     query: LedgerAccountCategoryRetrieveParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>> {
+  ): Core.APIPromise<LedgerAccountCategory> {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
@@ -49,13 +49,13 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     body?: LedgerAccountCategoryUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>>;
+  ): Core.APIPromise<LedgerAccountCategory>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountCategory>;
   update(
     id: string,
     body: LedgerAccountCategoryUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerAccountCategory>> {
+  ): Core.APIPromise<LedgerAccountCategory> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -68,12 +68,12 @@ export class LedgerAccountCategories extends APIResource {
   list(
     query?: LedgerAccountCategoryListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountCategoriesPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerAccountCategoriesPage>;
+  ): Core.PagePromise<LedgerAccountCategoriesPage, LedgerAccountCategory>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LedgerAccountCategoriesPage, LedgerAccountCategory>;
   list(
     query: LedgerAccountCategoryListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountCategoriesPage> {
+  ): Core.PagePromise<LedgerAccountCategoriesPage, LedgerAccountCategory> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -86,7 +86,7 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Delete a ledger account category.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerAccountCategory>> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountCategory> {
     return this.delete(`/api/ledger_account_categories/${id}`, options);
   }
 
@@ -97,7 +97,7 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     ledgerAccountId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  ): Core.APIPromise<void> {
     return this.put(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -107,11 +107,7 @@ export class LedgerAccountCategories extends APIResource {
   /**
    * Add a ledger account category to a ledger account category.
    */
-  addNestedCategory(
-    id: string,
-    subCategoryId: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  addNestedCategory(id: string, subCategoryId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.put(`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -125,7 +121,7 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     ledgerAccountId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  ): Core.APIPromise<void> {
     return this.delete(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -139,7 +135,7 @@ export class LedgerAccountCategories extends APIResource {
     id: string,
     subCategoryId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  ): Core.APIPromise<void> {
     return this.delete(`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

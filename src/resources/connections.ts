@@ -10,12 +10,15 @@ export class Connections extends APIResource {
   /**
    * Get a list of all connections.
    */
-  list(query?: ConnectionListParams, options?: Core.RequestOptions): Core.PagePromise<ConnectionsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ConnectionsPage>;
+  list(
+    query?: ConnectionListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ConnectionsPage, Connection>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ConnectionsPage, Connection>;
   list(
     query: ConnectionListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ConnectionsPage> {
+  ): Core.PagePromise<ConnectionsPage, Connection> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

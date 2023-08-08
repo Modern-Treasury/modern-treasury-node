@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury, { toFile } from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -11,12 +12,19 @@ const modernTreasury = new ModernTreasury({
 describe('resource paymentOrders', () => {
   // prism mock server is broken for file uploads
   test.skip('create: only required params', async () => {
-    const response = await modernTreasury.paymentOrders.create({
+    const responsePromise = modernTreasury.paymentOrders.create({
       amount: 0,
       direction: 'credit',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       type: 'ach',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   // prism mock server is broken for file uploads
@@ -188,7 +196,14 @@ describe('resource paymentOrders', () => {
   });
 
   test('retrieve', async () => {
-    const response = await modernTreasury.paymentOrders.retrieve('string');
+    const responsePromise = modernTreasury.paymentOrders.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -199,7 +214,14 @@ describe('resource paymentOrders', () => {
   });
 
   test('update', async () => {
-    const response = await modernTreasury.paymentOrders.update('string');
+    const responsePromise = modernTreasury.paymentOrders.update('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('update: request options instead of params are passed correctly', async () => {
@@ -319,7 +341,14 @@ describe('resource paymentOrders', () => {
   });
 
   test('list', async () => {
-    const response = await modernTreasury.paymentOrders.list();
+    const responsePromise = modernTreasury.paymentOrders.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -354,12 +383,19 @@ describe('resource paymentOrders', () => {
   });
 
   test('createAsync: only required params', async () => {
-    const response = await modernTreasury.paymentOrders.createAsync({
+    const responsePromise = modernTreasury.paymentOrders.createAsync({
       amount: 0,
       direction: 'credit',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       type: 'ach',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('createAsync: required and optional params', async () => {

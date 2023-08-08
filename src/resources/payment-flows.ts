@@ -10,10 +10,7 @@ export class PaymentFlows extends APIResource {
   /**
    * create payment_flow
    */
-  create(
-    params: PaymentFlowCreateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentFlow>> {
+  create(params: PaymentFlowCreateParams, options?: Core.RequestOptions): Core.APIPromise<PaymentFlow> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/payment_flows', {
       body,
@@ -29,13 +26,13 @@ export class PaymentFlows extends APIResource {
     id: string,
     query?: PaymentFlowRetrieveParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentFlow>>;
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<PaymentFlow>>;
+  ): Core.APIPromise<PaymentFlow>;
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentFlow>;
   retrieve(
     id: string,
     query: PaymentFlowRetrieveParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentFlow>> {
+  ): Core.APIPromise<PaymentFlow> {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
@@ -53,7 +50,7 @@ export class PaymentFlows extends APIResource {
     id: string,
     params: PaymentFlowUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<PaymentFlow>> {
+  ): Core.APIPromise<PaymentFlow> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.patch(`/api/payment_flows/${id}`, {
       body,
@@ -65,12 +62,15 @@ export class PaymentFlows extends APIResource {
   /**
    * list payment_flows
    */
-  list(query?: PaymentFlowListParams, options?: Core.RequestOptions): Core.PagePromise<PaymentFlowsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PaymentFlowsPage>;
+  list(
+    query?: PaymentFlowListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<PaymentFlowsPage, PaymentFlow>;
+  list(options?: Core.RequestOptions): Core.PagePromise<PaymentFlowsPage, PaymentFlow>;
   list(
     query: PaymentFlowListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentFlowsPage> {
+  ): Core.PagePromise<PaymentFlowsPage, PaymentFlow> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

@@ -11,19 +11,22 @@ export class PaperItems extends APIResource {
   /**
    * Get details on a single paper item.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<PaperItem>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaperItem> {
     return this.get(`/api/paper_items/${id}`, options);
   }
 
   /**
    * Get a list of all paper items.
    */
-  list(query?: PaperItemListParams, options?: Core.RequestOptions): Core.PagePromise<PaperItemsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PaperItemsPage>;
+  list(
+    query?: PaperItemListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<PaperItemsPage, PaperItem>;
+  list(options?: Core.RequestOptions): Core.PagePromise<PaperItemsPage, PaperItem>;
   list(
     query: PaperItemListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<PaperItemsPage> {
+  ): Core.PagePromise<PaperItemsPage, PaperItem> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

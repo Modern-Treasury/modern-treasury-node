@@ -11,7 +11,7 @@ export class Returns extends APIResource {
   /**
    * Create a return.
    */
-  create(params: ReturnCreateParams, options?: Core.RequestOptions): Promise<Core.APIResponse<ReturnObject>> {
+  create(params: ReturnCreateParams, options?: Core.RequestOptions): Core.APIPromise<ReturnObject> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/returns', {
       body,
@@ -23,19 +23,22 @@ export class Returns extends APIResource {
   /**
    * Get a single return.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ReturnObject>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ReturnObject> {
     return this.get(`/api/returns/${id}`, options);
   }
 
   /**
    * Get a list of returns.
    */
-  list(query?: ReturnListParams, options?: Core.RequestOptions): Core.PagePromise<ReturnObjectsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ReturnObjectsPage>;
+  list(
+    query?: ReturnListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ReturnObjectsPage, ReturnObject>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ReturnObjectsPage, ReturnObject>;
   list(
     query: ReturnListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ReturnObjectsPage> {
+  ): Core.PagePromise<ReturnObjectsPage, ReturnObject> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

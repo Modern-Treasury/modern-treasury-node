@@ -14,13 +14,13 @@ export class LedgerEntries extends APIResource {
     id: string,
     query?: LedgerEntryRetrieveParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerEntry>>;
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LedgerEntry>>;
+  ): Core.APIPromise<LedgerEntry>;
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEntry>;
   retrieve(
     id: string,
     query: LedgerEntryRetrieveParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LedgerEntry>> {
+  ): Core.APIPromise<LedgerEntry> {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
@@ -30,12 +30,15 @@ export class LedgerEntries extends APIResource {
   /**
    * Get a list of all ledger entries.
    */
-  list(query?: LedgerEntryListParams, options?: Core.RequestOptions): Core.PagePromise<LedgerEntriesPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerEntriesPage>;
+  list(
+    query?: LedgerEntryListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<LedgerEntriesPage, LedgerEntry>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LedgerEntriesPage, LedgerEntry>;
   list(
     query: LedgerEntryListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerEntriesPage> {
+  ): Core.PagePromise<LedgerEntriesPage, LedgerEntry> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

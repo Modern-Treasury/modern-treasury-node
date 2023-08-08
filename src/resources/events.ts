@@ -10,19 +10,19 @@ export class Events extends APIResource {
   /**
    * get event
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Event>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Event> {
     return this.get(`/api/events/${id}`, options);
   }
 
   /**
    * list events
    */
-  list(query?: EventListParams, options?: Core.RequestOptions): Core.PagePromise<EventsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<EventsPage>;
+  list(query?: EventListParams, options?: Core.RequestOptions): Core.PagePromise<EventsPage, Event>;
+  list(options?: Core.RequestOptions): Core.PagePromise<EventsPage, Event>;
   list(
     query: EventListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<EventsPage> {
+  ): Core.PagePromise<EventsPage, Event> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

@@ -14,13 +14,16 @@ export class LineItems extends APIResource {
     transactionId: string,
     query?: LineItemListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionLineItemsPage>;
-  list(transactionId: string, options?: Core.RequestOptions): Core.PagePromise<TransactionLineItemsPage>;
+  ): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem>;
+  list(
+    transactionId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem>;
   list(
     transactionId: string,
     query: LineItemListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionLineItemsPage> {
+  ): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem> {
     if (isRequestOptions(query)) {
       return this.list(transactionId, {}, query);
     }

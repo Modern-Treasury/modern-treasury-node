@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import ModernTreasury from 'modern-treasury';
+import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'something1234',
@@ -11,11 +12,18 @@ const modernTreasury = new ModernTreasury({
 describe('resource ledgerAccountStatements', () => {
   // Prism is broken in this case
   test.skip('create: only required params', async () => {
-    const response = await modernTreasury.ledgerAccountStatements.create({
+    const responsePromise = modernTreasury.ledgerAccountStatements.create({
       effective_at_lower_bound: 'string',
       effective_at_upper_bound: 'string',
       ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   // Prism is broken in this case
@@ -31,7 +39,14 @@ describe('resource ledgerAccountStatements', () => {
   });
 
   test('retrieve', async () => {
-    const response = await modernTreasury.ledgerAccountStatements.retrieve('string');
+    const responsePromise = modernTreasury.ledgerAccountStatements.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {

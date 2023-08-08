@@ -15,7 +15,7 @@ export class BalanceReports extends APIResource {
     internalAccountId: string,
     id: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<BalanceReport>> {
+  ): Core.APIPromise<BalanceReport> {
     return this.get(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, options);
   }
 
@@ -26,13 +26,16 @@ export class BalanceReports extends APIResource {
     internalAccountId: string,
     query?: BalanceReportListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BalanceReportsPage>;
-  list(internalAccountId: string, options?: Core.RequestOptions): Core.PagePromise<BalanceReportsPage>;
+  ): Core.PagePromise<BalanceReportsPage, BalanceReport>;
+  list(
+    internalAccountId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<BalanceReportsPage, BalanceReport>;
   list(
     internalAccountId: string,
     query: BalanceReportListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BalanceReportsPage> {
+  ): Core.PagePromise<BalanceReportsPage, BalanceReport> {
     if (isRequestOptions(query)) {
       return this.list(internalAccountId, {}, query);
     }

@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { AbstractPage, APIResponse, APIClient, FinalRequestOptions, coerceInteger, PageInfo } from './core';
+import { AbstractPage, Response, APIClient, FinalRequestOptions, coerceInteger, PageInfo } from './core';
 
 export type PageResponse<Item> = Item[];
 
@@ -17,12 +17,12 @@ export class Page<Item> extends AbstractPage<Item> {
 
   after_cursor: string | null;
 
-  constructor(client: APIClient, response: APIResponse<PageResponse<Item>>, options: FinalRequestOptions) {
-    super(client, response, options);
+  constructor(client: APIClient, response: Response, body: PageResponse<Item>, options: FinalRequestOptions) {
+    super(client, response, body, options);
 
-    this.items = response || [];
-    this.per_page = coerceInteger(response.responseHeaders['x-per-page'] || null);
-    this.after_cursor = response.responseHeaders['x-after-cursor'] || null;
+    this.items = body || [];
+    this.per_page = coerceInteger(this.response.headers.get('x-per-page') || null);
+    this.after_cursor = this.response.headers.get('x-after-cursor') || null;
   }
 
   getPaginatedItems(): Item[] {

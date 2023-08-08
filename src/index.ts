@@ -157,7 +157,7 @@ export class ModernTreasury extends Core.APIClient {
    * A test endpoint often used to confirm credentials and headers are being passed
    * in correctly.
    */
-  ping(options?: Core.RequestOptions): Promise<Core.APIResponse<ModernTreasury.PingResponse>> {
+  ping(options?: Core.RequestOptions): Core.APIPromise<ModernTreasury.PingResponse> {
     return this.get('/api/ping', options);
   }
 

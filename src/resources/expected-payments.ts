@@ -14,7 +14,7 @@ export class ExpectedPayments extends APIResource {
   create(
     params: ExpectedPaymentCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExpectedPayment>> {
+  ): Core.APIPromise<ExpectedPayment> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     return this.post('/api/expected_payments', {
       body,
@@ -26,7 +26,7 @@ export class ExpectedPayments extends APIResource {
   /**
    * get expected payment
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExpectedPayment>> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment> {
     return this.get(`/api/expected_payments/${id}`, options);
   }
 
@@ -37,13 +37,13 @@ export class ExpectedPayments extends APIResource {
     id: string,
     body?: ExpectedPaymentUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExpectedPayment>>;
-  update(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExpectedPayment>>;
+  ): Core.APIPromise<ExpectedPayment>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment>;
   update(
     id: string,
     body: ExpectedPaymentUpdateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ExpectedPayment>> {
+  ): Core.APIPromise<ExpectedPayment> {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
@@ -56,12 +56,12 @@ export class ExpectedPayments extends APIResource {
   list(
     query?: ExpectedPaymentListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ExpectedPaymentsPage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ExpectedPaymentsPage>;
+  ): Core.PagePromise<ExpectedPaymentsPage, ExpectedPayment>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ExpectedPaymentsPage, ExpectedPayment>;
   list(
     query: ExpectedPaymentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ExpectedPaymentsPage> {
+  ): Core.PagePromise<ExpectedPaymentsPage, ExpectedPayment> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -71,7 +71,7 @@ export class ExpectedPayments extends APIResource {
   /**
    * delete expected payment
    */
-  del(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ExpectedPayment>> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment> {
     return this.delete(`/api/expected_payments/${id}`, options);
   }
 }
