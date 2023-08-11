@@ -148,6 +148,12 @@ export interface LedgerUpdateParams {
 
 export interface LedgerListParams extends PageParams {
   /**
+   * If you have specific IDs to retrieve in bulk, you can pass them as query
+   * parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+   */
+  id?: Array<string>;
+
+  /**
    * For example, if you want to query for records with metadata key `Type` and value
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.

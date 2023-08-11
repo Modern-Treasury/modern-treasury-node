@@ -3,7 +3,6 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as Shared from 'modern-treasury/resources/shared';
 import * as API from './index';
 import { Page, PageParams } from 'modern-treasury/pagination';
 
@@ -181,205 +180,33 @@ export interface LineItemCreateParams {
 
 export interface LineItemUpdateParams {
   /**
-   * The invoicer's contact details displayed at the top of the invoice.
-   */
-  contact_details?: Array<LineItemUpdateParams.ContactDetail>;
-
-  /**
-   * The counterparty's billing address.
-   */
-  counterparty_billing_address?: LineItemUpdateParams.CounterpartyBillingAddress | null;
-
-  /**
-   * The ID of the counterparty receiving the invoice.
-   */
-  counterparty_id?: string;
-
-  /**
-   * The counterparty's shipping address where physical goods should be delivered.
-   */
-  counterparty_shipping_address?: LineItemUpdateParams.CounterpartyShippingAddress | null;
-
-  /**
-   * Currency that the invoice is denominated in. Defaults to `USD` if not provided.
-   */
-  currency?: Shared.Currency | null;
-
-  /**
-   * A free-form description of the invoice.
+   * An optional free-form description of the line item.
    */
   description?: string;
 
   /**
-   * A future date by when the invoice needs to be paid.
+   * Either `debit` or `credit`. `debit` indicates that a client owes the business
+   * money and increases the invoice's `total_amount` due. `credit` has the opposite
+   * intention and effect.
    */
-  due_date?: string;
+  direction?: string;
 
   /**
-   * The invoice issuer's business address.
+   * The name of the line item, typically a product or SKU name.
    */
-  invoicer_address?: LineItemUpdateParams.InvoicerAddress | null;
+  name?: string;
 
   /**
-   * The ID of the internal account the invoice should be paid to.
+   * The number of units of a product or service that this line item is for. Must be
+   * a whole number. Defaults to 1 if not provided.
    */
-  originating_account_id?: string;
+  quantity?: number;
 
   /**
-   * Date transactions are to be posted to the participants' account. Defaults to the
-   * current business day or the next business day if the current day is a bank
-   * holiday or weekend. Format: yyyy-mm-dd.
+   * The cost per unit of the product or service that this line item is for,
+   * specified in the invoice currency's smallest unit.
    */
-  payment_effective_date?: string;
-
-  /**
-   * The method by which the invoice can be paid. `ui` will show the embedded payment
-   * collection flow. `automatic` will automatically initiate payment based upon the
-   * account details of the receiving_account id.\nIf the invoice amount is positive,
-   * the automatically initiated payment order's direction will be debit. If the
-   * invoice amount is negative, the automatically initiated payment order's
-   * direction will be credit. One of `manual`, `ui`, or `automatic`.
-   */
-  payment_method?: 'ui' | 'manual' | 'automatic';
-
-  /**
-   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-   * `au_becs`, `interac`, `signet`, `provexchange`.
-   */
-  payment_type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'eft'
-    | 'cross_border'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sepa'
-    | 'signet'
-    | 'wire';
-
-  /**
-   * The receiving account ID. Can be an `external_account`.
-   */
-  receiving_account_id?: string;
-}
-
-export namespace LineItemUpdateParams {
-  export interface ContactDetail {
-    id: string;
-
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
-  /**
-   * The counterparty's billing address.
-   */
-  export interface CounterpartyBillingAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
-  /**
-   * The counterparty's shipping address where physical goods should be delivered.
-   */
-  export interface CounterpartyShippingAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
-
-  /**
-   * The invoice issuer's business address.
-   */
-  export interface InvoicerAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string;
-
-    line1: string;
-
-    /**
-     * Locality or City.
-     */
-    locality: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string;
-
-    /**
-     * Region or State.
-     */
-    region: string;
-
-    line2?: string;
-  }
+  unit_amount?: number;
 }
 
 export interface LineItemListParams extends PageParams {}

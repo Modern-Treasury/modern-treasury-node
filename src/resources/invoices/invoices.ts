@@ -124,6 +124,19 @@ export interface Invoice {
   live_mode: boolean;
 
   /**
+   * Emails in addition to the counterparty email to send invoice status
+   * notifications to. At least one email is required if notifications are enabled
+   * and the counterparty doesn't have an email.
+   */
+  notification_email_addresses: Array<string> | null;
+
+  /**
+   * If true, the invoice will send email notifications to the invoice recipients
+   * about invoice status changes.
+   */
+  notifications_enabled: boolean;
+
+  /**
    * A unique record number assigned to each invoice that is issued.
    */
   number: string;
@@ -155,7 +168,7 @@ export interface Invoice {
   payment_orders: Array<PaymentOrders.PaymentOrder>;
 
   /**
-   * One of `ach` or `eft`
+   * One of `ach` or `eft`.
    */
   payment_type: 'eft' | 'ach' | null;
 
@@ -179,6 +192,11 @@ export interface Invoice {
    * represented as 1000.
    */
   total_amount: number;
+
+  /**
+   * IDs of transaction line items associated with an invoice.
+   */
+  transaction_line_item_ids: Array<string>;
 
   updated_at: string;
 }
@@ -341,6 +359,19 @@ export interface InvoiceCreateParams {
    * Body param: The invoice issuer's business address.
    */
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
+
+  /**
+   * Body param: Emails in addition to the counterparty email to send invoice status
+   * notifications to. At least one email is required if notifications are enabled
+   * and the counterparty doesn't have an email.
+   */
+  notification_email_addresses?: Array<string> | null;
+
+  /**
+   * Body param: If true, the invoice will send email notifications to the invoice
+   * recipients about invoice status changes.
+   */
+  notifications_enabled?: boolean;
 
   /**
    * Body param: Date transactions are to be posted to the participants' account.
@@ -548,6 +579,19 @@ export interface InvoiceUpdateParams {
   invoicer_address?: InvoiceUpdateParams.InvoicerAddress | null;
 
   /**
+   * Emails in addition to the counterparty email to send invoice status
+   * notifications to. At least one email is required if notifications are enabled
+   * and the counterparty doesn't have an email.
+   */
+  notification_email_addresses?: Array<string> | null;
+
+  /**
+   * If true, the invoice will send email notifications to the invoice recipients
+   * about invoice status changes.
+   */
+  notifications_enabled?: boolean;
+
+  /**
    * The ID of the internal account the invoice should be paid to.
    */
   originating_account_id?: string;
@@ -599,8 +643,8 @@ export interface InvoiceUpdateParams {
 
   /**
    * Invoice status must be updated in a `PATCH` request that does not modify any
-   * other invoice attributes. Valid state transitions are `draft` to `unpaid` and
-   * `draft` or `unpaid` to `voided`.
+   * other invoice attributes. Valid state transitions are `draft` to `unpaid`,
+   * `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
    */
   status?: string;
 }

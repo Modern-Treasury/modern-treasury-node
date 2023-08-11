@@ -241,7 +241,11 @@ export interface LedgerEntryRetrieveParams {
 }
 
 export interface LedgerEntryListParams extends PageParams {
-  id?: Record<string, string>;
+  /**
+   * If you have specific IDs to retrieve in bulk, you can pass them as query
+   * parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+   */
+  id?: Array<string>;
 
   /**
    * Shows all ledger entries that were present on a ledger account at a particular
