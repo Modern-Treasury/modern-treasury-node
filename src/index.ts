@@ -179,7 +179,7 @@ export class ModernTreasury extends Core.APIClient {
   }
 
   protected override stringifyQuery(query: Record<string, unknown>): string {
-    return qs.stringify(query, {});
+    return qs.stringify(query, { arrayFormat: 'brackets' });
   }
 
   static ModernTreasury = this;
