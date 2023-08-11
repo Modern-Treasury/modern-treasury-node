@@ -186,7 +186,7 @@ describe('resource ledgerTransactions', () => {
     await expect(
       modernTreasury.ledgerTransactions.list(
         {
-          id: { foo: 'string' },
+          id: ['string', 'string', 'string'],
           after_cursor: 'string',
           effective_at: { foo: 'string' },
           effective_date: { foo: '2019-12-27T18:11:19.117Z' },

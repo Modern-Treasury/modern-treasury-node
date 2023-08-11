@@ -62,7 +62,7 @@ describe('resource ledgerEntries', () => {
     await expect(
       modernTreasury.ledgerEntries.list(
         {
-          id: { foo: 'string' },
+          id: ['string', 'string', 'string'],
           after_cursor: 'string',
           as_of_lock_version: 0,
           direction: 'credit',

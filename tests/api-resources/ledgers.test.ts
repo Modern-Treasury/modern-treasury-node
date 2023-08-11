@@ -100,6 +100,7 @@ describe('resource ledgers', () => {
     await expect(
       modernTreasury.ledgers.list(
         {
+          id: ['string', 'string', 'string'],
           after_cursor: 'string',
           metadata: { foo: 'string' },
           per_page: 0,

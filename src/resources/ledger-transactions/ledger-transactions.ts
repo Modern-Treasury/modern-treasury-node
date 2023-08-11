@@ -420,7 +420,11 @@ export namespace LedgerTransactionUpdateParams {
 }
 
 export interface LedgerTransactionListParams extends PageParams {
-  id?: Record<string, string>;
+  /**
+   * If you have specific IDs to retrieve in bulk, you can pass them as query
+   * parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+   */
+  id?: Array<string>;
 
   /**
    * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by

@@ -120,6 +120,7 @@ describe('resource ledgerAccountCategories', () => {
     await expect(
       modernTreasury.ledgerAccountCategories.list(
         {
+          id: ['string', 'string', 'string'],
           after_cursor: 'string',
           balances: { effective_at: '2019-12-27T18:11:19.117Z' },
           ledger_account_id: 'string',
