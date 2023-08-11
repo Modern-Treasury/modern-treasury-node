@@ -93,6 +93,7 @@ describe('resource ledgerAccountPayouts', () => {
     await expect(
       modernTreasury.ledgerAccountPayouts.list(
         {
+          id: ['string', 'string', 'string'],
           after_cursor: 'string',
           metadata: { foo: 'string' },
           payout_ledger_account_id: 'string',

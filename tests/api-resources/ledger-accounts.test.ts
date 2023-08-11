@@ -130,7 +130,7 @@ describe('resource ledgerAccounts', () => {
     await expect(
       modernTreasury.ledgerAccounts.list(
         {
-          id: 'string',
+          id: ['string', 'string', 'string'],
           after_cursor: 'string',
           balances: {
             as_of_date: '2019-12-27',

@@ -379,7 +379,11 @@ export interface LedgerAccountUpdateParams {
 }
 
 export interface LedgerAccountListParams extends PageParams {
-  id?: string;
+  /**
+   * If you have specific IDs to retrieve in bulk, you can pass them as query
+   * parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+   */
+  id?: Array<string>;
 
   /**
    * Use `balances[effective_at_lower_bound]` and
