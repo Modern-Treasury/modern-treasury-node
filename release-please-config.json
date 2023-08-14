@@ -56,6 +56,7 @@
       "hidden": true
     }
   ],
+  "reviewers": ["cleb11", "chen-annie"],
   "release-type": "node",
   "extra-files": ["src/version.ts"]
 }
