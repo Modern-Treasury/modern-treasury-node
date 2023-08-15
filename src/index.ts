@@ -89,7 +89,7 @@ export class ModernTreasury extends Core.APIClient {
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Error(
-        'The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({ apiKey: undefined }).',
+        "The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({ apiKey: 'my apiKey' }).",
       );
     }
     if (organizationId === undefined) {
