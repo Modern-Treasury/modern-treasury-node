@@ -73,7 +73,7 @@ export interface ClientOptions {
   webhookKey?: string | null;
 }
 
-/** Instantiate the API Client. */
+/** API Client for interfacing with the Modern Treasury API. */
 export class ModernTreasury extends Core.APIClient {
   apiKey: string;
   organizationId: string;
@@ -81,6 +81,20 @@ export class ModernTreasury extends Core.APIClient {
 
   private _options: ClientOptions;
 
+  /**
+   * API Client for interfacing with the Modern Treasury API.
+   *
+   * @param {string} [opts.apiKey=process.env['MODERN_TREASURY_API_KEY']] - The API Key to send to the API.
+   * @param {string} [opts.baseURL] - Override the default base URL for the API.
+   * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
+   * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
+   * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
+   * @param {number} [opts.maxRetries=2] - The maximum number of times the client will retry a request.
+   * @param {Core.Headers} opts.defaultHeaders - Default headers to include with every request to the API.
+   * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
+   * @param {string} [opts.organizationId]
+   * @param {string | null} [opts.webhookKey]
+   */
   constructor({
     apiKey = Core.readEnv('MODERN_TREASURY_API_KEY'),
     organizationId = Core.readEnv('MODERN_TREASURY_ORGANIZATION_ID'),
