@@ -17,11 +17,17 @@ export class AccountDetails extends APIResource {
     params: AccountDetailCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AccountDetail> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(`/api/${accountsType}/${accountId}/account_details`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -122,21 +128,15 @@ export interface AccountDetail {
 
 export interface AccountDetailCreateParams {
   /**
-   * Body param: The account number for the bank account.
+   * The account number for the bank account.
    */
   account_number: string;
 
   /**
-   * Body param: One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if
-   * the bank account number is in a generic format.
+   * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
+   * account number is in a generic format.
    */
   account_number_type?: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address';
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface AccountDetailListParams extends PageParams {}

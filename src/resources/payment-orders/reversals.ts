@@ -15,11 +15,17 @@ export class Reversals extends APIResource {
     params: ReversalCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Reversal> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(`/api/payment_orders/${paymentOrderId}/reversals`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -106,8 +112,8 @@ export interface Reversal {
 
 export interface ReversalCreateParams {
   /**
-   * Body param: The reason for the reversal. Must be one of `duplicate`,
-   * `incorrect_amount`, `incorrect_receiving_account`, `date_earlier_than_intended`,
+   * The reason for the reversal. Must be one of `duplicate`, `incorrect_amount`,
+   * `incorrect_receiving_account`, `date_earlier_than_intended`,
    * `date_later_than_intended`.
    */
   reason:
@@ -118,24 +124,17 @@ export interface ReversalCreateParams {
     | 'date_later_than_intended';
 
   /**
-   * Body param: Specifies a ledger transaction object that will be created with the
-   * reversal. If the ledger transaction cannot be created, then the reversal
-   * creation will fail. The resulting ledger transaction will mirror the status of
-   * the reversal.
+   * Specifies a ledger transaction object that will be created with the reversal. If
+   * the ledger transaction cannot be created, then the reversal creation will fail.
+   * The resulting ledger transaction will mirror the status of the reversal.
    */
   ledger_transaction?: ReversalCreateParams.LedgerTransaction;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace ReversalCreateParams {

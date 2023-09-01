@@ -43,7 +43,6 @@ describe('resource internalAccounts', () => {
         country: 'string',
       },
       vendor_attributes: { key: 'value', foo: 'bar', modern: 'treasury' },
-      'Idempotency-Key': 'string',
     });
   });
 

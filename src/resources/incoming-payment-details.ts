@@ -72,11 +72,17 @@ export class IncomingPaymentDetails extends APIResource {
     if (isRequestOptions(params)) {
       return this.createAsync({}, params);
     }
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/simulations/incoming_payment_details/create_async', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 }
@@ -275,52 +281,46 @@ export interface IncomingPaymentDetailListParams extends PageParams {
 
 export interface IncomingPaymentDetailCreateAsyncParams {
   /**
-   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
-   * represented as 1000.
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
    */
   amount?: number;
 
   /**
-   * Body param: Defaults to today.
+   * Defaults to today.
    */
   as_of_date?: string | null;
 
   /**
-   * Body param: Defaults to the currency of the originating account.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency | null;
 
   /**
-   * Body param: Defaults to a random description.
+   * Defaults to a random description.
    */
   description?: string | null;
 
   /**
-   * Body param: One of `credit`, `debit`.
+   * One of `credit`, `debit`.
    */
   direction?: 'credit' | 'debit';
 
   /**
-   * Body param: The ID of one of your internal accounts.
+   * The ID of one of your internal accounts.
    */
   internal_account_id?: string;
 
   /**
-   * Body param: One of `ach`, `wire`, `check`.
+   * One of `ach`, `wire`, `check`.
    */
   type?: 'ach' | 'book' | 'check' | 'eft' | 'interac' | 'rtp' | 'sepa' | 'signet' | 'wire';
 
   /**
-   * Body param: An optional parameter to associate the incoming payment detail to a
-   * virtual account.
+   * An optional parameter to associate the incoming payment detail to a virtual
+   * account.
    */
   virtual_account_id?: string | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace IncomingPaymentDetails {

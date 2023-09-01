@@ -16,11 +16,17 @@ export class Invoices extends APIResource {
    * create invoice
    */
   create(params: InvoiceCreateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/invoices', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -314,86 +320,83 @@ export namespace Invoice {
 
 export interface InvoiceCreateParams {
   /**
-   * Body param: The ID of the counterparty receiving the invoice.
+   * The ID of the counterparty receiving the invoice.
    */
   counterparty_id: string;
 
   /**
-   * Body param: A future date by when the invoice needs to be paid.
+   * A future date by when the invoice needs to be paid.
    */
   due_date: string;
 
   /**
-   * Body param: The ID of the internal account the invoice should be paid to.
+   * The ID of the internal account the invoice should be paid to.
    */
   originating_account_id: string;
 
   /**
-   * Body param: The invoicer's contact details displayed at the top of the invoice.
+   * The invoicer's contact details displayed at the top of the invoice.
    */
   contact_details?: Array<InvoiceCreateParams.ContactDetail>;
 
   /**
-   * Body param: The counterparty's billing address.
+   * The counterparty's billing address.
    */
   counterparty_billing_address?: InvoiceCreateParams.CounterpartyBillingAddress | null;
 
   /**
-   * Body param: The counterparty's shipping address where physical goods should be
-   * delivered.
+   * The counterparty's shipping address where physical goods should be delivered.
    */
   counterparty_shipping_address?: InvoiceCreateParams.CounterpartyShippingAddress | null;
 
   /**
-   * Body param: Currency that the invoice is denominated in. Defaults to `USD` if
-   * not provided.
+   * Currency that the invoice is denominated in. Defaults to `USD` if not provided.
    */
   currency?: Shared.Currency | null;
 
   /**
-   * Body param: A free-form description of the invoice.
+   * A free-form description of the invoice.
    */
   description?: string;
 
   /**
-   * Body param: The invoice issuer's business address.
+   * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
 
   /**
-   * Body param: Emails in addition to the counterparty email to send invoice status
+   * Emails in addition to the counterparty email to send invoice status
    * notifications to. At least one email is required if notifications are enabled
    * and the counterparty doesn't have an email.
    */
   notification_email_addresses?: Array<string> | null;
 
   /**
-   * Body param: If true, the invoice will send email notifications to the invoice
-   * recipients about invoice status changes.
+   * If true, the invoice will send email notifications to the invoice recipients
+   * about invoice status changes.
    */
   notifications_enabled?: boolean;
 
   /**
-   * Body param: Date transactions are to be posted to the participants' account.
-   * Defaults to the current business day or the next business day if the current day
-   * is a bank holiday or weekend. Format: yyyy-mm-dd.
+   * Date transactions are to be posted to the participants' account. Defaults to the
+   * current business day or the next business day if the current day is a bank
+   * holiday or weekend. Format: yyyy-mm-dd.
    */
   payment_effective_date?: string;
 
   /**
-   * Body param: The method by which the invoice can be paid. `ui` will show the
-   * embedded payment collection flow. `automatic` will automatically initiate
-   * payment based upon the account details of the receiving_account id.\nIf the
-   * invoice amount is positive, the automatically initiated payment order's
-   * direction will be debit. If the invoice amount is negative, the automatically
-   * initiated payment order's direction will be credit. One of `manual`, `ui`, or
-   * `automatic`.
+   * The method by which the invoice can be paid. `ui` will show the embedded payment
+   * collection flow. `automatic` will automatically initiate payment based upon the
+   * account details of the receiving_account id.\nIf the invoice amount is positive,
+   * the automatically initiated payment order's direction will be debit. If the
+   * invoice amount is negative, the automatically initiated payment order's
+   * direction will be credit. One of `manual`, `ui`, or `automatic`.
    */
   payment_method?: 'ui' | 'manual' | 'automatic';
 
   /**
-   * Body param: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+   * `au_becs`, `interac`, `signet`, `provexchange`.
    */
   payment_type?:
     | 'ach'
@@ -415,15 +418,9 @@ export interface InvoiceCreateParams {
     | 'wire';
 
   /**
-   * Body param: The receiving account ID. Can be an `external_account`.
+   * The receiving account ID. Can be an `external_account`.
    */
   receiving_account_id?: string;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace InvoiceCreateParams {

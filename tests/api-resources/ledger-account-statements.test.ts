@@ -34,7 +34,6 @@ describe('resource ledgerAccountStatements', () => {
       ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      'Idempotency-Key': 'string',
     });
   });
 

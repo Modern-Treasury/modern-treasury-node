@@ -31,7 +31,6 @@ describe('resource documents', () => {
       documentable_type: 'cases',
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
       document_type: 'string',
-      'Idempotency-Key': 'string',
     });
   });
 

@@ -11,11 +11,17 @@ export class Ledgers extends APIResource {
    * Create a ledger.
    */
   create(params: LedgerCreateParams, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/ledgers', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -106,26 +112,20 @@ export interface Ledger {
 
 export interface LedgerCreateParams {
   /**
-   * Body param: The name of the ledger.
+   * The name of the ledger.
    */
   name: string;
 
   /**
-   * Body param: An optional free-form description for internal use.
+   * An optional free-form description for internal use.
    */
   description?: string | null;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface LedgerUpdateParams {

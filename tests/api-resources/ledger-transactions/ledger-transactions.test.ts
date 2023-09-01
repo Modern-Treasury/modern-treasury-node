@@ -72,7 +72,6 @@ describe('resource ledgerTransactions', () => {
       ledgerable_type: 'counterparty',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       status: 'archived',
-      'Idempotency-Key': 'string',
     });
   });
 

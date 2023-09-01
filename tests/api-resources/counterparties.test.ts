@@ -162,7 +162,6 @@ describe('resource counterparties', () => {
       send_remittance_advice: true,
       taxpayer_identifier: 'string',
       verification_status: 'denied',
-      'Idempotency-Key': 'string',
     });
   });
 
@@ -290,7 +289,6 @@ describe('resource counterparties', () => {
       custom_redirect: 'https://example.com',
       fields: ['name', 'name', 'name'],
       send_email: true,
-      'Idempotency-Key': 'string',
     });
   });
 });

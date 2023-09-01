@@ -14,11 +14,17 @@ export class LedgerAccountCategories extends APIResource {
     params: LedgerAccountCategoryCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LedgerAccountCategory> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/ledger_account_categories', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -299,46 +305,40 @@ export namespace LedgerAccountCategory {
 
 export interface LedgerAccountCategoryCreateParams {
   /**
-   * Body param: The currency of the ledger account category.
+   * The currency of the ledger account category.
    */
   currency: string;
 
   /**
-   * Body param: The id of the ledger that this account category belongs to.
+   * The id of the ledger that this account category belongs to.
    */
   ledger_id: string;
 
   /**
-   * Body param: The name of the ledger account category.
+   * The name of the ledger account category.
    */
   name: string;
 
   /**
-   * Body param: The normal balance of the ledger account category.
+   * The normal balance of the ledger account category.
    */
   normal_balance: 'credit' | 'debit';
 
   /**
-   * Body param: The currency exponent of the ledger account category.
+   * The currency exponent of the ledger account category.
    */
   currency_exponent?: number | null;
 
   /**
-   * Body param: The description of the ledger account category.
+   * The description of the ledger account category.
    */
   description?: string | null;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface LedgerAccountCategoryRetrieveParams {

@@ -31,7 +31,6 @@ describe('resource ledgerableEvents', () => {
       description: 'string',
       direction: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      'Idempotency-Key': 'string',
     });
   });
 
