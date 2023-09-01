@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "modern-treasury/_shims/*": ["src/_shims/*.node"],
+      "modern-treasury/_shims/*": ["src/_shims/*-node"],
       "modern-treasury": ["src/index.ts"],
       "modern-treasury/*": ["src/*"],
       "digest-fetch": ["./typings/digest-fetch"]

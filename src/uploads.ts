@@ -1,7 +1,7 @@
 import { type RequestOptions } from './core';
 import { type Readable } from 'modern-treasury/_shims/node-readable';
 import { type BodyInit } from 'modern-treasury/_shims/fetch';
-import { FormData, File, type Blob, type FilePropertyBag } from 'modern-treasury/_shims/formdata';
+import { FormData, File, type Blob, type FilePropertyBag } from 'modern-treasury/_shims/form-data';
 import { getMultipartRequestOptions } from 'modern-treasury/_shims/getMultipartRequestOptions';
 import { fileFromPath } from 'modern-treasury/_shims/fileFromPath';
 import { type FsReadStream, isFsReadStream } from 'modern-treasury/_shims/node-readable';
