@@ -13,11 +13,17 @@ export class VirtualAccounts extends APIResource {
    * create virtual_account
    */
   create(params: VirtualAccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/virtual_accounts', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -149,61 +155,54 @@ export interface VirtualAccount {
 
 export interface VirtualAccountCreateParams {
   /**
-   * Body param: The ID of the internal account that this virtual account is
-   * associated with.
+   * The ID of the internal account that this virtual account is associated with.
    */
   internal_account_id: string;
 
   /**
-   * Body param: The name of the virtual account.
+   * The name of the virtual account.
    */
   name: string;
 
   /**
-   * Body param: An array of account detail objects.
+   * An array of account detail objects.
    */
   account_details?: Array<VirtualAccountCreateParams.AccountDetail>;
 
   /**
-   * Body param: The ID of the counterparty that the virtual account belongs to.
+   * The ID of the counterparty that the virtual account belongs to.
    */
   counterparty_id?: string;
 
   /**
-   * Body param: The ID of a credit normal ledger account. When money leaves the
-   * virtual account, this ledger account will be credited. Must be accompanied by a
+   * The ID of a credit normal ledger account. When money leaves the virtual account,
+   * this ledger account will be credited. Must be accompanied by a
    * debit_ledger_account_id if present.
    */
   credit_ledger_account_id?: string;
 
   /**
-   * Body param: The ID of a debit normal ledger account. When money enters the
-   * virtual account, this ledger account will be debited. Must be accompanied by a
+   * The ID of a debit normal ledger account. When money enters the virtual account,
+   * this ledger account will be debited. Must be accompanied by a
    * credit_ledger_account_id if present.
    */
   debit_ledger_account_id?: string;
 
   /**
-   * Body param: An optional description for internal use.
+   * An optional description for internal use.
    */
   description?: string;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: An array of routing detail objects.
+   * An array of routing detail objects.
    */
   routing_details?: Array<VirtualAccountCreateParams.RoutingDetail>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace VirtualAccountCreateParams {

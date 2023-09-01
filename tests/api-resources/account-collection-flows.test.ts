@@ -28,7 +28,6 @@ describe('resource accountCollectionFlows', () => {
     const response = await modernTreasury.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_types: ['string', 'string', 'string'],
-      'Idempotency-Key': 'string',
     });
   });
 
@@ -50,17 +49,6 @@ describe('resource accountCollectionFlows', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('retrieve: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.accountCollectionFlows.retrieve(
-        'string',
-        { 'Idempotency-Key': 'string' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
   test('update: only required params', async () => {
     const responsePromise = modernTreasury.accountCollectionFlows.update('string', { status: 'cancelled' });
     const rawResponse = await responsePromise.asResponse();
@@ -73,10 +61,7 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.update('string', {
-      status: 'cancelled',
-      'Idempotency-Key': 'string',
-    });
+    const response = await modernTreasury.accountCollectionFlows.update('string', { status: 'cancelled' });
   });
 
   test('list', async () => {

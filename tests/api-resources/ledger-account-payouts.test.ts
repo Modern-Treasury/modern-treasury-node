@@ -33,7 +33,6 @@ describe('resource ledgerAccountPayouts', () => {
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       skip_payout_ledger_transaction: true,
       status: 'pending',
-      'Idempotency-Key': 'string',
     });
   });
 

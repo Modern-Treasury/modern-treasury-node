@@ -12,11 +12,17 @@ export class Returns extends APIResource {
    * Create a return.
    */
   create(params: ReturnCreateParams, options?: Core.RequestOptions): Core.APIPromise<ReturnObject> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/returns', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -304,25 +310,24 @@ export namespace ReturnObject {
 
 export interface ReturnCreateParams {
   /**
-   * Body param: The ID of the object being returned or `null`.
+   * The ID of the object being returned or `null`.
    */
   returnable_id: string | null;
 
   /**
-   * Body param: The type of object being returned. Currently, this may only be
+   * The type of object being returned. Currently, this may only be
    * incoming_payment_detail.
    */
   returnable_type: 'incoming_payment_detail';
 
   /**
-   * Body param: Some returns may include additional information from the bank. In
-   * these cases, this string will be present.
+   * Some returns may include additional information from the bank. In these cases,
+   * this string will be present.
    */
   additional_information?: string | null;
 
   /**
-   * Body param: The return code. For ACH returns, this is the required ACH return
-   * code.
+   * The return code. For ACH returns, this is the required ACH return code.
    */
   code?:
     | '901'
@@ -371,22 +376,16 @@ export interface ReturnCreateParams {
     | null;
 
   /**
-   * Body param: If the return code is `R14` or `R15` this is the date the deceased
-   * counterparty passed away.
+   * If the return code is `R14` or `R15` this is the date the deceased counterparty
+   * passed away.
    */
   date_of_death?: string | null;
 
   /**
-   * Body param: An optional description of the reason for the return. This is for
-   * internal usage and will not be transmitted to the bank.”
+   * An optional description of the reason for the return. This is for internal usage
+   * and will not be transmitted to the bank.”
    */
   reason?: string | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface ReturnListParams extends PageParams {

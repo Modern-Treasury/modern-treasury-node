@@ -63,7 +63,6 @@ describe('resource expectedPayments', () => {
       remittance_information: 'string',
       statement_descriptor: 'string',
       type: 'ach',
-      'Idempotency-Key': 'string',
     });
   });
 

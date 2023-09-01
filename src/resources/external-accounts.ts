@@ -17,11 +17,17 @@ export class ExternalAccounts extends APIResource {
     params: ExternalAccountCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<ExternalAccount> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/external_accounts', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -97,11 +103,17 @@ export class ExternalAccounts extends APIResource {
     if (isRequestOptions(params)) {
       return this.completeVerification(id, {}, params);
     }
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(`/api/external_accounts/${id}/complete_verification`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -113,11 +125,17 @@ export class ExternalAccounts extends APIResource {
     params: ExternalAccountVerifyParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<ExternalAccount> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(`/api/external_accounts/${id}/verify`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 }
@@ -272,84 +290,62 @@ export type ExternalAccountType =
   | 'savings';
 
 export interface ExternalAccountCreateParams {
-  /**
-   * Body param:
-   */
   counterparty_id: string | null;
 
-  /**
-   * Body param:
-   */
   account_details?: Array<ExternalAccountCreateParams.AccountDetail>;
 
   /**
-   * Body param: Can be `checking`, `savings` or `other`.
+   * Can be `checking`, `savings` or `other`.
    */
   account_type?: ExternalAccountType;
 
-  /**
-   * Body param:
-   */
   contact_details?: Array<ExternalAccountCreateParams.ContactDetail>;
 
   /**
-   * Body param: Specifies a ledger account object that will be created with the
-   * external account. The resulting ledger account is linked to the external account
-   * for auto-ledgering Payment objects. See
+   * Specifies a ledger account object that will be created with the external
+   * account. The resulting ledger account is linked to the external account for
+   * auto-ledgering Payment objects. See
    * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
    * for more details.
    */
   ledger_account?: ExternalAccountCreateParams.LedgerAccount;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: A nickname for the external account. This is only for internal usage
-   * and won't affect any payments
+   * A nickname for the external account. This is only for internal usage and won't
+   * affect any payments
    */
   name?: string | null;
 
   /**
-   * Body param: Required if receiving wire payments.
+   * Required if receiving wire payments.
    */
   party_address?: ExternalAccountCreateParams.PartyAddress;
 
-  /**
-   * Body param:
-   */
   party_identifier?: string;
 
   /**
-   * Body param: If this value isn't provided, it will be inherited from the
-   * counterparty's name.
+   * If this value isn't provided, it will be inherited from the counterparty's name.
    */
   party_name?: string;
 
   /**
-   * Body param: Either `individual` or `business`.
+   * Either `individual` or `business`.
    */
   party_type?: 'business' | 'individual' | null;
 
   /**
-   * Body param: If you've enabled the Modern Treasury + Plaid integration in your
-   * Plaid account, you can pass the processor token in this field.
+   * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
+   * you can pass the processor token in this field.
    */
   plaid_processor_token?: string;
 
-  /**
-   * Body param:
-   */
   routing_details?: Array<ExternalAccountCreateParams.RoutingDetail>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace ExternalAccountCreateParams {
@@ -566,27 +562,18 @@ export interface ExternalAccountListParams extends PageParams {
 }
 
 export interface ExternalAccountCompleteVerificationParams {
-  /**
-   * Body param:
-   */
   amounts?: Array<number>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface ExternalAccountVerifyParams {
   /**
-   * Body param: The ID of the internal account where the micro-deposits originate
-   * from. Both credit and debit capabilities must be enabled.
+   * The ID of the internal account where the micro-deposits originate from. Both
+   * credit and debit capabilities must be enabled.
    */
   originating_account_id: string;
 
   /**
-   * Body param: Both ach and eft are supported payment types.
+   * Both ach and eft are supported payment types.
    */
   payment_type:
     | 'ach'
@@ -608,15 +595,9 @@ export interface ExternalAccountVerifyParams {
     | 'wire';
 
   /**
-   * Body param: Defaults to the currency of the originating account.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace ExternalAccounts {

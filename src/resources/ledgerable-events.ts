@@ -13,11 +13,17 @@ export class LedgerableEvents extends APIResource {
     params: LedgerableEventCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LedgerableEvent> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/ledgerable_events', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -95,53 +101,47 @@ export interface LedgerableEvent {
 
 export interface LedgerableEventCreateParams {
   /**
-   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
-   * represented as 1000.
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
    */
   amount: number;
 
   /**
-   * Body param: Name of the ledgerable event.
+   * Name of the ledgerable event.
    */
   name: string;
 
   /**
-   * Body param: An ISO 4217 conformed currency or a custom currency.
+   * An ISO 4217 conformed currency or a custom currency.
    */
   currency?: string | null;
 
   /**
-   * Body param: Must be included if currency is a custom currency. The
-   * currency_exponent cannot exceed 30.
+   * Must be included if currency is a custom currency. The currency_exponent cannot
+   * exceed 30.
    */
   currency_exponent?: number | null;
 
   /**
-   * Body param: Additionally data to be used by the Ledger Event Handler.
+   * Additionally data to be used by the Ledger Event Handler.
    */
   custom_data?: unknown | null;
 
   /**
-   * Body param: Description of the ledgerable event.
+   * Description of the ledgerable event.
    */
   description?: string | null;
 
   /**
-   * Body param: One of `credit`, `debit`.
+   * One of `credit`, `debit`.
    */
   direction?: string | null;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace LedgerableEvents {

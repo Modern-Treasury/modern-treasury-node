@@ -18,13 +18,19 @@ export class PaymentOrders extends APIResource {
    * Create a new Payment Order
    */
   create(params: PaymentOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(
       '/api/payment_orders',
       maybeMultipartFormRequestOptions({
         body,
         ...options,
-        headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+        headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
       }),
     );
   }
@@ -81,11 +87,17 @@ export class PaymentOrders extends APIResource {
     params: PaymentOrderCreateAsyncParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.AsyncResponse> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/payment_orders/create_async', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 }
@@ -487,149 +499,141 @@ export type PaymentOrderType =
 
 export interface PaymentOrderCreateParams {
   /**
-   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
-   * represented as 1000 (cents). For RTP, the maximum amount allowed by the network
-   * is $100,000.
+   * Value in specified currency's smallest unit. e.g. $10 would be represented as
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
    */
   amount: number;
 
   /**
-   * Body param: One of `credit`, `debit`. Describes the direction money is flowing
-   * in the transaction. A `credit` moves money from your account to someone else's.
-   * A `debit` pulls money from someone else's account to your own. Note that wire,
+   * One of `credit`, `debit`. Describes the direction money is flowing in the
+   * transaction. A `credit` moves money from your account to someone else's. A
+   * `debit` pulls money from someone else's account to your own. Note that wire,
    * rtp, and check payments will always be `credit`.
    */
   direction: 'credit' | 'debit';
 
   /**
-   * Body param: The ID of one of your organization's internal accounts.
+   * The ID of one of your organization's internal accounts.
    */
   originating_account_id: string;
 
   /**
-   * Body param: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+   * `au_becs`, `interac`, `signet`, `provexchange`.
    */
   type: PaymentOrderType;
 
-  /**
-   * Body param:
-   */
   accounting?: PaymentOrderCreateParams.Accounting;
 
   /**
-   * Body param: The ID of one of your accounting categories. Note that these will
-   * only be accessible if your accounting system has been connected.
+   * The ID of one of your accounting categories. Note that these will only be
+   * accessible if your accounting system has been connected.
    */
   accounting_category_id?: string | null;
 
   /**
-   * Body param: The ID of one of your accounting ledger classes. Note that these
-   * will only be accessible if your accounting system has been connected.
+   * The ID of one of your accounting ledger classes. Note that these will only be
+   * accessible if your accounting system has been connected.
    */
   accounting_ledger_class_id?: string | null;
 
   /**
-   * Body param: The party that will pay the fees for the payment order. Only applies
-   * to wire payment orders. Can be one of shared, sender, or receiver, which
-   * correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+   * The party that will pay the fees for the payment order. Only applies to wire
+   * payment orders. Can be one of shared, sender, or receiver, which correspond
+   * respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
    */
   charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
 
   /**
-   * Body param: Defaults to the currency of the originating account.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency | null;
 
   /**
-   * Body param: An optional description for internal use.
+   * An optional description for internal use.
    */
   description?: string | null;
 
   /**
-   * Body param: An array of documents to be attached to the payment order. Note that
-   * if you attach documents, the request's content type must be
-   * `multipart/form-data`.
+   * An array of documents to be attached to the payment order. Note that if you
+   * attach documents, the request's content type must be `multipart/form-data`.
    */
   documents?: Array<PaymentOrderCreateParams.Document>;
 
   /**
-   * Body param: Date transactions are to be posted to the participants' account.
-   * Defaults to the current business day or the next business day if the current day
-   * is a bank holiday or weekend. Format: yyyy-mm-dd.
+   * Date transactions are to be posted to the participants' account. Defaults to the
+   * current business day or the next business day if the current day is a bank
+   * holiday or weekend. Format: yyyy-mm-dd.
    */
   effective_date?: string;
 
   /**
-   * Body param: RFP payments require an expires_at. This value must be past the
-   * effective_date.
+   * RFP payments require an expires_at. This value must be past the effective_date.
    */
   expires_at?: string | null;
 
   /**
-   * Body param: A payment type to fallback to if the original type is not valid for
-   * the receiving account. Currently, this only supports falling back from RTP to
-   * ACH (type=rtp and fallback_type=ach)
+   * A payment type to fallback to if the original type is not valid for the
+   * receiving account. Currently, this only supports falling back from RTP to ACH
+   * (type=rtp and fallback_type=ach)
    */
   fallback_type?: 'ach';
 
   /**
-   * Body param: If present, indicates a specific foreign exchange contract number
-   * that has been generated by your financial institution.
+   * If present, indicates a specific foreign exchange contract number that has been
+   * generated by your financial institution.
    */
   foreign_exchange_contract?: string | null;
 
   /**
-   * Body param: Indicates the type of FX transfer to initiate, can be either
+   * Indicates the type of FX transfer to initiate, can be either
    * `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order
    * currency matches the originating account currency.
    */
   foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed' | null;
 
   /**
-   * Body param: Specifies a ledger transaction object that will be created with the
-   * payment order. If the ledger transaction cannot be created, then the payment
-   * order creation will fail. The resulting ledger transaction will mirror the
-   * status of the payment order.
+   * Specifies a ledger transaction object that will be created with the payment
+   * order. If the ledger transaction cannot be created, then the payment order
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the payment order.
    */
   ledger_transaction?: PaymentOrderCreateParams.LedgerTransaction;
 
   /**
-   * Body param: An array of line items that must sum up to the amount of the payment
-   * order.
+   * An array of line items that must sum up to the amount of the payment order.
    */
   line_items?: Array<PaymentOrderCreateParams.LineItem>;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: A boolean to determine if NSF Protection is enabled for this payment
-   * order. Note that this setting must also be turned on in your organization
-   * settings page.
+   * A boolean to determine if NSF Protection is enabled for this payment order. Note
+   * that this setting must also be turned on in your organization settings page.
    */
   nsf_protected?: boolean;
 
   /**
-   * Body param: If present, this will replace your default company name on
-   * receiver's bank statement. This field can only be used for ACH payments
-   * currently. For ACH, only the first 16 characters of this string will be used.
-   * Any additional characters will be truncated.
+   * If present, this will replace your default company name on receiver's bank
+   * statement. This field can only be used for ACH payments currently. For ACH, only
+   * the first 16 characters of this string will be used. Any additional characters
+   * will be truncated.
    */
   originating_party_name?: string | null;
 
   /**
-   * Body param: Either `normal` or `high`. For ACH and EFT payments, `high`
-   * represents a same-day ACH or EFT transfer, respectively. For check payments,
-   * `high` can mean an overnight check rather than standard mail.
+   * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
+   * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
+   * an overnight check rather than standard mail.
    */
   priority?: 'high' | 'normal';
 
   /**
-   * Body param: For `wire`, this is usually the purpose which is transmitted via the
+   * For `wire`, this is usually the purpose which is transmitted via the
    * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
    * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
    * CPA Code that will be attached to the payment.
@@ -637,81 +641,75 @@ export interface PaymentOrderCreateParams {
   purpose?: string | null;
 
   /**
-   * Body param: Either `receiving_account` or `receiving_account_id` must be
-   * present. When using `receiving_account_id`, you may pass the id of an external
-   * account or an internal account.
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
    */
   receiving_account?: PaymentOrderCreateParams.ReceivingAccount;
 
   /**
-   * Body param: Either `receiving_account` or `receiving_account_id` must be
-   * present. When using `receiving_account_id`, you may pass the id of an external
-   * account or an internal account.
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
    */
   receiving_account_id?: string;
 
   /**
-   * Body param: For `ach`, this field will be passed through on an addenda record.
-   * For `wire` payments the field will be passed through as the "Originator to
-   * Beneficiary Information", also known as OBI or Fedwire tag 6000.
+   * For `ach`, this field will be passed through on an addenda record. For `wire`
+   * payments the field will be passed through as the "Originator to Beneficiary
+   * Information", also known as OBI or Fedwire tag 6000.
    */
   remittance_information?: string | null;
 
   /**
-   * Body param: Send an email to the counterparty when the payment order is sent to
-   * the bank. If `null`, `send_remittance_advice` on the Counterparty is used.
+   * Send an email to the counterparty when the payment order is sent to the bank. If
+   * `null`, `send_remittance_advice` on the Counterparty is used.
    */
   send_remittance_advice?: boolean | null;
 
   /**
-   * Body param: An optional descriptor which will appear in the receiver's
-   * statement. For `check` payments this field will be used as the memo line. For
-   * `ach` the maximum length is 10 characters. Note that for ACH payments, the name
-   * on your bank account will be included automatically by the bank, so you can use
-   * the characters for other useful information. For `eft` the maximum length is 15
+   * An optional descriptor which will appear in the receiver's statement. For
+   * `check` payments this field will be used as the memo line. For `ach` the maximum
+   * length is 10 characters. Note that for ACH payments, the name on your bank
+   * account will be included automatically by the bank, so you can use the
+   * characters for other useful information. For `eft` the maximum length is 15
    * characters.
    */
   statement_descriptor?: string | null;
 
   /**
-   * Body param: An additional layer of classification for the type of payment order
-   * you are doing. This field is only used for `ach` payment orders currently. For
-   * `ach` payment orders, the `subtype` represents the SEC code. We currently
-   * support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
+   * An additional layer of classification for the type of payment order you are
+   * doing. This field is only used for `ach` payment orders currently. For `ach`
+   * payment orders, the `subtype` represents the SEC code. We currently support
+   * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * Body param: A flag that determines whether a payment order should go through
-   * transaction monitoring.
+   * A flag that determines whether a payment order should go through transaction
+   * monitoring.
    */
   transaction_monitoring_enabled?: boolean;
 
   /**
-   * Body param: Identifier of the ultimate originator of the payment order.
+   * Identifier of the ultimate originator of the payment order.
    */
   ultimate_originating_party_identifier?: string | null;
 
   /**
-   * Body param: Name of the ultimate originator of the payment order.
+   * Name of the ultimate originator of the payment order.
    */
   ultimate_originating_party_name?: string | null;
 
   /**
-   * Body param: Identifier of the ultimate funds recipient.
+   * Identifier of the ultimate funds recipient.
    */
   ultimate_receiving_party_identifier?: string | null;
 
   /**
-   * Body param: Name of the ultimate funds recipient.
+   * Name of the ultimate funds recipient.
    */
   ultimate_receiving_party_name?: string | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace PaymentOrderCreateParams {
@@ -1657,142 +1655,135 @@ export interface PaymentOrderListParams extends PageParams {
 
 export interface PaymentOrderCreateAsyncParams {
   /**
-   * Body param: Value in specified currency's smallest unit. e.g. $10 would be
-   * represented as 1000 (cents). For RTP, the maximum amount allowed by the network
-   * is $100,000.
+   * Value in specified currency's smallest unit. e.g. $10 would be represented as
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
    */
   amount: number;
 
   /**
-   * Body param: One of `credit`, `debit`. Describes the direction money is flowing
-   * in the transaction. A `credit` moves money from your account to someone else's.
-   * A `debit` pulls money from someone else's account to your own. Note that wire,
+   * One of `credit`, `debit`. Describes the direction money is flowing in the
+   * transaction. A `credit` moves money from your account to someone else's. A
+   * `debit` pulls money from someone else's account to your own. Note that wire,
    * rtp, and check payments will always be `credit`.
    */
   direction: 'credit' | 'debit';
 
   /**
-   * Body param: The ID of one of your organization's internal accounts.
+   * The ID of one of your organization's internal accounts.
    */
   originating_account_id: string;
 
   /**
-   * Body param: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+   * `au_becs`, `interac`, `signet`, `provexchange`.
    */
   type: PaymentOrderType;
 
-  /**
-   * Body param:
-   */
   accounting?: PaymentOrderCreateAsyncParams.Accounting;
 
   /**
-   * Body param: The ID of one of your accounting categories. Note that these will
-   * only be accessible if your accounting system has been connected.
+   * The ID of one of your accounting categories. Note that these will only be
+   * accessible if your accounting system has been connected.
    */
   accounting_category_id?: string | null;
 
   /**
-   * Body param: The ID of one of your accounting ledger classes. Note that these
-   * will only be accessible if your accounting system has been connected.
+   * The ID of one of your accounting ledger classes. Note that these will only be
+   * accessible if your accounting system has been connected.
    */
   accounting_ledger_class_id?: string | null;
 
   /**
-   * Body param: The party that will pay the fees for the payment order. Only applies
-   * to wire payment orders. Can be one of shared, sender, or receiver, which
-   * correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+   * The party that will pay the fees for the payment order. Only applies to wire
+   * payment orders. Can be one of shared, sender, or receiver, which correspond
+   * respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
    */
   charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
 
   /**
-   * Body param: Defaults to the currency of the originating account.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency | null;
 
   /**
-   * Body param: An optional description for internal use.
+   * An optional description for internal use.
    */
   description?: string | null;
 
   /**
-   * Body param: Date transactions are to be posted to the participants' account.
-   * Defaults to the current business day or the next business day if the current day
-   * is a bank holiday or weekend. Format: yyyy-mm-dd.
+   * Date transactions are to be posted to the participants' account. Defaults to the
+   * current business day or the next business day if the current day is a bank
+   * holiday or weekend. Format: yyyy-mm-dd.
    */
   effective_date?: string;
 
   /**
-   * Body param: RFP payments require an expires_at. This value must be past the
-   * effective_date.
+   * RFP payments require an expires_at. This value must be past the effective_date.
    */
   expires_at?: string | null;
 
   /**
-   * Body param: A payment type to fallback to if the original type is not valid for
-   * the receiving account. Currently, this only supports falling back from RTP to
-   * ACH (type=rtp and fallback_type=ach)
+   * A payment type to fallback to if the original type is not valid for the
+   * receiving account. Currently, this only supports falling back from RTP to ACH
+   * (type=rtp and fallback_type=ach)
    */
   fallback_type?: 'ach';
 
   /**
-   * Body param: If present, indicates a specific foreign exchange contract number
-   * that has been generated by your financial institution.
+   * If present, indicates a specific foreign exchange contract number that has been
+   * generated by your financial institution.
    */
   foreign_exchange_contract?: string | null;
 
   /**
-   * Body param: Indicates the type of FX transfer to initiate, can be either
+   * Indicates the type of FX transfer to initiate, can be either
    * `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order
    * currency matches the originating account currency.
    */
   foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed' | null;
 
   /**
-   * Body param: Specifies a ledger transaction object that will be created with the
-   * payment order. If the ledger transaction cannot be created, then the payment
-   * order creation will fail. The resulting ledger transaction will mirror the
-   * status of the payment order.
+   * Specifies a ledger transaction object that will be created with the payment
+   * order. If the ledger transaction cannot be created, then the payment order
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the payment order.
    */
   ledger_transaction?: PaymentOrderCreateAsyncParams.LedgerTransaction;
 
   /**
-   * Body param: An array of line items that must sum up to the amount of the payment
-   * order.
+   * An array of line items that must sum up to the amount of the payment order.
    */
   line_items?: Array<PaymentOrderCreateAsyncParams.LineItem>;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: A boolean to determine if NSF Protection is enabled for this payment
-   * order. Note that this setting must also be turned on in your organization
-   * settings page.
+   * A boolean to determine if NSF Protection is enabled for this payment order. Note
+   * that this setting must also be turned on in your organization settings page.
    */
   nsf_protected?: boolean;
 
   /**
-   * Body param: If present, this will replace your default company name on
-   * receiver's bank statement. This field can only be used for ACH payments
-   * currently. For ACH, only the first 16 characters of this string will be used.
-   * Any additional characters will be truncated.
+   * If present, this will replace your default company name on receiver's bank
+   * statement. This field can only be used for ACH payments currently. For ACH, only
+   * the first 16 characters of this string will be used. Any additional characters
+   * will be truncated.
    */
   originating_party_name?: string | null;
 
   /**
-   * Body param: Either `normal` or `high`. For ACH and EFT payments, `high`
-   * represents a same-day ACH or EFT transfer, respectively. For check payments,
-   * `high` can mean an overnight check rather than standard mail.
+   * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
+   * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
+   * an overnight check rather than standard mail.
    */
   priority?: 'high' | 'normal';
 
   /**
-   * Body param: For `wire`, this is usually the purpose which is transmitted via the
+   * For `wire`, this is usually the purpose which is transmitted via the
    * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
    * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
    * CPA Code that will be attached to the payment.
@@ -1800,81 +1791,75 @@ export interface PaymentOrderCreateAsyncParams {
   purpose?: string | null;
 
   /**
-   * Body param: Either `receiving_account` or `receiving_account_id` must be
-   * present. When using `receiving_account_id`, you may pass the id of an external
-   * account or an internal account.
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
    */
   receiving_account?: PaymentOrderCreateAsyncParams.ReceivingAccount;
 
   /**
-   * Body param: Either `receiving_account` or `receiving_account_id` must be
-   * present. When using `receiving_account_id`, you may pass the id of an external
-   * account or an internal account.
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
    */
   receiving_account_id?: string;
 
   /**
-   * Body param: For `ach`, this field will be passed through on an addenda record.
-   * For `wire` payments the field will be passed through as the "Originator to
-   * Beneficiary Information", also known as OBI or Fedwire tag 6000.
+   * For `ach`, this field will be passed through on an addenda record. For `wire`
+   * payments the field will be passed through as the "Originator to Beneficiary
+   * Information", also known as OBI or Fedwire tag 6000.
    */
   remittance_information?: string | null;
 
   /**
-   * Body param: Send an email to the counterparty when the payment order is sent to
-   * the bank. If `null`, `send_remittance_advice` on the Counterparty is used.
+   * Send an email to the counterparty when the payment order is sent to the bank. If
+   * `null`, `send_remittance_advice` on the Counterparty is used.
    */
   send_remittance_advice?: boolean | null;
 
   /**
-   * Body param: An optional descriptor which will appear in the receiver's
-   * statement. For `check` payments this field will be used as the memo line. For
-   * `ach` the maximum length is 10 characters. Note that for ACH payments, the name
-   * on your bank account will be included automatically by the bank, so you can use
-   * the characters for other useful information. For `eft` the maximum length is 15
+   * An optional descriptor which will appear in the receiver's statement. For
+   * `check` payments this field will be used as the memo line. For `ach` the maximum
+   * length is 10 characters. Note that for ACH payments, the name on your bank
+   * account will be included automatically by the bank, so you can use the
+   * characters for other useful information. For `eft` the maximum length is 15
    * characters.
    */
   statement_descriptor?: string | null;
 
   /**
-   * Body param: An additional layer of classification for the type of payment order
-   * you are doing. This field is only used for `ach` payment orders currently. For
-   * `ach` payment orders, the `subtype` represents the SEC code. We currently
-   * support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
+   * An additional layer of classification for the type of payment order you are
+   * doing. This field is only used for `ach` payment orders currently. For `ach`
+   * payment orders, the `subtype` represents the SEC code. We currently support
+   * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
    */
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * Body param: A flag that determines whether a payment order should go through
-   * transaction monitoring.
+   * A flag that determines whether a payment order should go through transaction
+   * monitoring.
    */
   transaction_monitoring_enabled?: boolean;
 
   /**
-   * Body param: Identifier of the ultimate originator of the payment order.
+   * Identifier of the ultimate originator of the payment order.
    */
   ultimate_originating_party_identifier?: string | null;
 
   /**
-   * Body param: Name of the ultimate originator of the payment order.
+   * Name of the ultimate originator of the payment order.
    */
   ultimate_originating_party_name?: string | null;
 
   /**
-   * Body param: Identifier of the ultimate funds recipient.
+   * Identifier of the ultimate funds recipient.
    */
   ultimate_receiving_party_identifier?: string | null;
 
   /**
-   * Body param: Name of the ultimate funds recipient.
+   * Name of the ultimate funds recipient.
    */
   ultimate_receiving_party_name?: string | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace PaymentOrderCreateAsyncParams {

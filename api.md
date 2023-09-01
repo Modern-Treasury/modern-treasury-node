@@ -138,7 +138,7 @@ Types:
 Methods:
 
 - <code title="post /api/account_collection_flows">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">create</a>({ ...params }) -> AccountCollectionFlow</code>
-- <code title="get /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">retrieve</a>(id, { ...params }) -> AccountCollectionFlow</code>
+- <code title="get /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">retrieve</a>(id) -> AccountCollectionFlow</code>
 - <code title="patch /api/account_collection_flows/{id}">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">update</a>(id, { ...params }) -> AccountCollectionFlow</code>
 - <code title="get /api/account_collection_flows">client.accountCollectionFlows.<a href="./src/resources/account-collection-flows.ts">list</a>({ ...params }) -> AccountCollectionFlowsPage</code>
 
@@ -346,7 +346,7 @@ Types:
 Methods:
 
 - <code title="post /api/payment_flows">client.paymentFlows.<a href="./src/resources/payment-flows.ts">create</a>({ ...params }) -> PaymentFlow</code>
-- <code title="get /api/payment_flows/{id}">client.paymentFlows.<a href="./src/resources/payment-flows.ts">retrieve</a>(id, { ...params }) -> PaymentFlow</code>
+- <code title="get /api/payment_flows/{id}">client.paymentFlows.<a href="./src/resources/payment-flows.ts">retrieve</a>(id) -> PaymentFlow</code>
 - <code title="patch /api/payment_flows/{id}">client.paymentFlows.<a href="./src/resources/payment-flows.ts">update</a>(id, { ...params }) -> PaymentFlow</code>
 - <code title="get /api/payment_flows">client.paymentFlows.<a href="./src/resources/payment-flows.ts">list</a>({ ...params }) -> PaymentFlowsPage</code>
 

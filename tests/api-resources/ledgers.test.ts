@@ -26,7 +26,6 @@ describe('resource ledgers', () => {
       name: 'string',
       description: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      'Idempotency-Key': 'string',
     });
   });
 

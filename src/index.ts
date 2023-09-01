@@ -304,7 +304,6 @@ export namespace ModernTreasury {
   export import AccountCollectionFlow = API.AccountCollectionFlow;
   export import AccountCollectionFlowsPage = API.AccountCollectionFlowsPage;
   export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
-  export import AccountCollectionFlowRetrieveParams = API.AccountCollectionFlowRetrieveParams;
   export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
   export import AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
 
@@ -399,7 +398,6 @@ export namespace ModernTreasury {
   export import PaymentFlow = API.PaymentFlow;
   export import PaymentFlowsPage = API.PaymentFlowsPage;
   export import PaymentFlowCreateParams = API.PaymentFlowCreateParams;
-  export import PaymentFlowRetrieveParams = API.PaymentFlowRetrieveParams;
   export import PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;
   export import PaymentFlowListParams = API.PaymentFlowListParams;
 

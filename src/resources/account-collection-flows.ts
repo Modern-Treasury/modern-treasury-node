@@ -14,36 +14,25 @@ export class AccountCollectionFlows extends APIResource {
     params: AccountCollectionFlowCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AccountCollectionFlow> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/account_collection_flows', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
   /**
    * get account_collection_flow
    */
-  retrieve(
-    id: string,
-    query?: AccountCollectionFlowRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AccountCollectionFlow>;
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AccountCollectionFlow>;
-  retrieve(
-    id: string,
-    query: AccountCollectionFlowRetrieveParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AccountCollectionFlow> {
-    if (isRequestOptions(query)) {
-      return this.retrieve(id, {}, query);
-    }
-    const { 'Idempotency-Key': idempotencyKey } = query;
-    return this.get(`/api/account_collection_flows/${id}`, {
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AccountCollectionFlow> {
+    return this.get(`/api/account_collection_flows/${id}`, options);
   }
 
   /**
@@ -54,11 +43,17 @@ export class AccountCollectionFlows extends APIResource {
     params: AccountCollectionFlowUpdateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AccountCollectionFlow> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.patch(`/api/account_collection_flows/${id}`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -131,41 +126,19 @@ export interface AccountCollectionFlow {
 
 export interface AccountCollectionFlowCreateParams {
   /**
-   * Body param: Required.
+   * Required.
    */
   counterparty_id: string;
 
-  /**
-   * Body param:
-   */
   payment_types: Array<string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
-}
-
-export interface AccountCollectionFlowRetrieveParams {
-  /**
-   * This key should be something unique, preferably something like an UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface AccountCollectionFlowUpdateParams {
   /**
-   * Body param: Required. The updated status of the account collection flow. Can
-   * only be used to mark a flow as `cancelled`.
+   * Required. The updated status of the account collection flow. Can only be used to
+   * mark a flow as `cancelled`.
    */
   status: 'cancelled';
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface AccountCollectionFlowListParams extends PageParams {
@@ -182,7 +155,6 @@ export namespace AccountCollectionFlows {
   export import AccountCollectionFlow = API.AccountCollectionFlow;
   export type AccountCollectionFlowsPage = _AccountCollectionFlowsPage;
   export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
-  export import AccountCollectionFlowRetrieveParams = API.AccountCollectionFlowRetrieveParams;
   export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
   export import AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
 }

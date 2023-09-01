@@ -43,7 +43,6 @@ describe('resource virtualAccounts', () => {
         { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
         { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
       ],
-      'Idempotency-Key': 'string',
     });
   });
 

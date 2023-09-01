@@ -4,7 +4,6 @@ export * from './shared';
 export {
   AccountCollectionFlow,
   AccountCollectionFlowCreateParams,
-  AccountCollectionFlowRetrieveParams,
   AccountCollectionFlowUpdateParams,
   AccountCollectionFlowListParams,
   AccountCollectionFlowsPage,
@@ -146,7 +145,6 @@ export { PaperItem, PaperItemListParams, PaperItemsPage, PaperItems } from './pa
 export {
   PaymentFlow,
   PaymentFlowCreateParams,
-  PaymentFlowRetrieveParams,
   PaymentFlowUpdateParams,
   PaymentFlowListParams,
   PaymentFlowsPage,
