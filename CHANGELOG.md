@@ -1,5 +1,36 @@
 # Changelog
 
+## 2.4.0 (2023-09-05)
+
+Full Changelog: [v2.3.0...v2.4.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.3.0...v2.4.0)
+
+### Features
+
+* **client:** improve compatibility with Bun ([#204](https://github.com/Modern-Treasury/modern-treasury-node/issues/204)) ([1248e3a](https://github.com/Modern-Treasury/modern-treasury-node/commit/1248e3afb21ce1a2cdf1524094f4a2ecd4718c45))
+* **docs:** add documentation to the client constructor ([#203](https://github.com/Modern-Treasury/modern-treasury-node/issues/203)) ([e558d7b](https://github.com/Modern-Treasury/modern-treasury-node/commit/e558d7b0fcaa7cd3be30b224058d56c3b3f4e882))
+* **package:** add Bun export map ([#215](https://github.com/Modern-Treasury/modern-treasury-node/issues/215)) ([e796a08](https://github.com/Modern-Treasury/modern-treasury-node/commit/e796a0801f5b6d18d9b3fc67db290af0e67fbb23))
+* **types:** export RequestOptions type ([#209](https://github.com/Modern-Treasury/modern-treasury-node/issues/209)) ([0b46351](https://github.com/Modern-Treasury/modern-treasury-node/commit/0b463516c8fe941cb66adb56ab9f922e43ffeca8))
+* **types:** remove incorrectly included Idempotency-Key param ([#218](https://github.com/Modern-Treasury/modern-treasury-node/issues/218)) ([905b43e](https://github.com/Modern-Treasury/modern-treasury-node/commit/905b43e16f599be6ec6f542da435ea68ecca5334))
+
+
+### Bug Fixes
+
+* **client:** fix TS errors that appear when users Go to Source in VSCode ([#219](https://github.com/Modern-Treasury/modern-treasury-node/issues/219)) ([de2b2a1](https://github.com/Modern-Treasury/modern-treasury-node/commit/de2b2a17f7b5d2ae7c8af4154fca52c371cfa9a2))
+* **client:** fix TypeError when a request gets retried ([#201](https://github.com/Modern-Treasury/modern-treasury-node/issues/201)) ([ad59570](https://github.com/Modern-Treasury/modern-treasury-node/commit/ad59570a2801c4d393b3802decd880e1743f05a7))
+* **client:** handle case where the client is instantiated with a undefined baseURL ([#220](https://github.com/Modern-Treasury/modern-treasury-node/issues/220)) ([894890e](https://github.com/Modern-Treasury/modern-treasury-node/commit/894890e6c584c607092f71eeb9ad31a2fa5e3706))
+* **client:** use explicit file extensions in _shims imports ([#217](https://github.com/Modern-Treasury/modern-treasury-node/issues/217)) ([15df031](https://github.com/Modern-Treasury/modern-treasury-node/commit/15df03142c07c7ab1d2a0d983df67c8fb23bbdeb))
+* **core:** fix navigator check for strange environments ([#207](https://github.com/Modern-Treasury/modern-treasury-node/issues/207)) ([2b6e569](https://github.com/Modern-Treasury/modern-treasury-node/commit/2b6e5695c924f779825de7464c3d9aba821ab266))
+* **types:** improve getNextPage() return type ([#214](https://github.com/Modern-Treasury/modern-treasury-node/issues/214)) ([eb7e51f](https://github.com/Modern-Treasury/modern-treasury-node/commit/eb7e51fbf51ce3771a382cee983f540c089bea18))
+
+
+### Chores
+
+* **ci:** setup workflows to create releases and release PRs ([#212](https://github.com/Modern-Treasury/modern-treasury-node/issues/212)) ([fb97629](https://github.com/Modern-Treasury/modern-treasury-node/commit/fb9762939152c2752365ac4b044851f07bc69b70))
+* **internal:** add helper method ([#211](https://github.com/Modern-Treasury/modern-treasury-node/issues/211)) ([a9d85e6](https://github.com/Modern-Treasury/modern-treasury-node/commit/a9d85e6edf6cf503b29c51e704514cbd952556fb))
+* **internal:** add missing eslint-plugin-prettier ([#206](https://github.com/Modern-Treasury/modern-treasury-node/issues/206)) ([baa9264](https://github.com/Modern-Treasury/modern-treasury-node/commit/baa926436226ba74cafc24937261e10d853fb0db))
+* **internal:** export HeadersInit type shim ([#210](https://github.com/Modern-Treasury/modern-treasury-node/issues/210)) ([a5e0cfe](https://github.com/Modern-Treasury/modern-treasury-node/commit/a5e0cfe4b3025d5263b5739d6a59bb5f519628a8))
+* **internal:** minor reformatting of code ([#205](https://github.com/Modern-Treasury/modern-treasury-node/issues/205)) ([709c87f](https://github.com/Modern-Treasury/modern-treasury-node/commit/709c87ffe9130a6191ed145a57c0f16398a62bb8))
+
 ## [2.3.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.2.0...v2.3.0) (2023-08-15)
 
 
