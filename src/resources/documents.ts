@@ -12,13 +12,19 @@ export class Documents extends APIResource {
    * Create a document.
    */
   create(params: DocumentCreateParams, options?: Core.RequestOptions): Core.APIPromise<Document> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(
       '/api/documents',
       multipartFormRequestOptions({
         body,
         ...options,
-        headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+        headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
       }),
     );
   }
@@ -148,13 +154,10 @@ export namespace Document {
 
 export interface DocumentCreateParams {
   /**
-   * Body param: The unique identifier for the associated object.
+   * The unique identifier for the associated object.
    */
   documentable_id: string;
 
-  /**
-   * Body param:
-   */
   documentable_type:
     | 'cases'
     | 'counterparties'
@@ -168,21 +171,12 @@ export interface DocumentCreateParams {
     | 'decisions'
     | 'connections';
 
-  /**
-   * Body param:
-   */
   file: Uploadable;
 
   /**
-   * Body param: A category given to the document, can be `null`.
+   * A category given to the document, can be `null`.
    */
   document_type?: string;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface DocumentListParams extends PageParams {

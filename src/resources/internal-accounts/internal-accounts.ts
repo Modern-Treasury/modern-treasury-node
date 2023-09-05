@@ -21,11 +21,17 @@ export class InternalAccounts extends APIResource {
     params: InternalAccountCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<InternalAccount> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/internal_accounts', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -209,52 +215,46 @@ export namespace InternalAccount {
 
 export interface InternalAccountCreateParams {
   /**
-   * Body param: The identifier of the financial institution the account belongs to.
+   * The identifier of the financial institution the account belongs to.
    */
   connection_id: string;
 
   /**
-   * Body param: Either "USD" or "CAD". Internal accounts created at Increase only
-   * supports "USD".
+   * Either "USD" or "CAD". Internal accounts created at Increase only supports
+   * "USD".
    */
   currency: 'USD' | 'CAD';
 
   /**
-   * Body param: The nickname of the account.
+   * The nickname of the account.
    */
   name: string;
 
   /**
-   * Body param: The legal name of the entity which owns the account.
+   * The legal name of the entity which owns the account.
    */
   party_name: string;
 
   /**
-   * Body param: The Counterparty associated to this account.
+   * The Counterparty associated to this account.
    */
   counterparty_id?: string;
 
   /**
-   * Body param: The parent internal account of this new account.
+   * The parent internal account of this new account.
    */
   parent_account_id?: string;
 
   /**
-   * Body param: The address associated with the owner or null.
+   * The address associated with the owner or null.
    */
   party_address?: InternalAccountCreateParams.PartyAddress;
 
   /**
-   * Body param: A hash of vendor specific attributes that will be used when creating
-   * the account at the vendor specified by the given connection.
+   * A hash of vendor specific attributes that will be used when creating the account
+   * at the vendor specified by the given connection.
    */
   vendor_attributes?: Record<string, string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace InternalAccountCreateParams {

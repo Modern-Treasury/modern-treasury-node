@@ -31,7 +31,6 @@ describe('resource lineItems', () => {
       description: 'string',
       direction: 'string',
       quantity: 0,
-      'Idempotency-Key': 'string',
     });
   });
 

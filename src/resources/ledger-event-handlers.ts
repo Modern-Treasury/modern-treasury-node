@@ -14,11 +14,17 @@ export class LedgerEventHandlers extends APIResource {
     params: LedgerEventHandlerCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LedgerEventHandlerCreateResponse> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/ledger_event_handlers', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -473,42 +479,30 @@ export namespace LedgerEventHandlerDeleteResponse {
 }
 
 export interface LedgerEventHandlerCreateParams {
-  /**
-   * Body param:
-   */
   ledger_transaction_template: LedgerEventHandlerCreateParams.LedgerTransactionTemplate;
 
   /**
-   * Body param: Name of the ledger event handler.
+   * Name of the ledger event handler.
    */
   name: string;
 
-  /**
-   * Body param:
-   */
   conditions?: LedgerEventHandlerCreateParams.Conditions | null;
 
   /**
-   * Body param: An optional description.
+   * An optional description.
    */
   description?: string | null;
 
   /**
-   * Body param: The id of the ledger that this account belongs to.
+   * The id of the ledger that this account belongs to.
    */
   ledger_id?: string;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string> | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace LedgerEventHandlerCreateParams {

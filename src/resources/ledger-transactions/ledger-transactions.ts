@@ -18,11 +18,17 @@ export class LedgerTransactions extends APIResource {
     params: LedgerTransactionCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LedgerTransaction> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/ledger_transactions', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -193,44 +199,43 @@ export interface LedgerTransaction {
 
 export interface LedgerTransactionCreateParams {
   /**
-   * Body param: An array of ledger entry objects.
+   * An array of ledger entry objects.
    */
   ledger_entries: Array<LedgerTransactionCreateParams.LedgerEntry>;
 
   /**
-   * Body param: An optional description for internal use.
+   * An optional description for internal use.
    */
   description?: string | null;
 
   /**
-   * Body param: The timestamp (ISO8601 format) at which the ledger transaction
-   * happened for reporting purposes.
+   * The timestamp (ISO8601 format) at which the ledger transaction happened for
+   * reporting purposes.
    */
   effective_at?: string;
 
   /**
-   * Body param: The date (YYYY-MM-DD) on which the ledger transaction happened for
-   * reporting purposes.
+   * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
+   * purposes.
    */
   effective_date?: string;
 
   /**
-   * Body param: A unique string to represent the ledger transaction. Only one
-   * pending or posted ledger transaction may have this ID in the ledger.
+   * A unique string to represent the ledger transaction. Only one pending or posted
+   * ledger transaction may have this ID in the ledger.
    */
   external_id?: string;
 
   /**
-   * Body param: If the ledger transaction can be reconciled to another object in
-   * Modern Treasury, the id will be populated here, otherwise null.
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the id will be populated here, otherwise null.
    */
   ledgerable_id?: string;
 
   /**
-   * Body param: If the ledger transaction can be reconciled to another object in
-   * Modern Treasury, the type will be populated here, otherwise null. This can be
-   * one of payment_order, incoming_payment_detail, expected_payment, return, or
-   * reversal.
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the type will be populated here, otherwise null. This can be one of
+   * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
    */
   ledgerable_type?:
     | 'counterparty'
@@ -245,21 +250,15 @@ export interface LedgerTransactionCreateParams {
     | 'reversal';
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: To post a ledger transaction at creation, use `posted`.
+   * To post a ledger transaction at creation, use `posted`.
    */
   status?: 'archived' | 'pending' | 'posted';
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace LedgerTransactionCreateParams {

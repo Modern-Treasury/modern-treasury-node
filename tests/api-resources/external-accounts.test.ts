@@ -67,7 +67,6 @@ describe('resource externalAccounts', () => {
         { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
         { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
       ],
-      'Idempotency-Key': 'string',
     });
   });
 
@@ -208,7 +207,7 @@ describe('resource externalAccounts', () => {
     await expect(
       modernTreasury.externalAccounts.completeVerification(
         'string',
-        { amounts: [0, 0], 'Idempotency-Key': 'string' },
+        { amounts: [0, 0] },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
@@ -233,7 +232,6 @@ describe('resource externalAccounts', () => {
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_type: 'ach',
       currency: 'AED',
-      'Idempotency-Key': 'string',
     });
   });
 });

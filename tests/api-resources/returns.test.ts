@@ -32,7 +32,6 @@ describe('resource returns', () => {
       code: '901',
       date_of_death: '2019-12-27',
       reason: 'string',
-      'Idempotency-Key': 'string',
     });
   });
 

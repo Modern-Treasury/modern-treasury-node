@@ -35,7 +35,6 @@ describe('resource ledgerAccountCategories', () => {
       currency_exponent: 0,
       description: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      'Idempotency-Key': 'string',
     });
   });
 

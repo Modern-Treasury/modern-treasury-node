@@ -1,5 +1,5 @@
 import { multipartFormRequestOptions, createForm } from 'modern-treasury/core';
-import { Blob } from 'modern-treasury/_shims/formdata';
+import { Blob } from 'modern-treasury/_shims/form-data';
 import { toFile } from 'modern-treasury';
 
 describe('form data validation', () => {

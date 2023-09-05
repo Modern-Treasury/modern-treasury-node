@@ -14,11 +14,17 @@ export class Counterparties extends APIResource {
    * Create a new counterparty.
    */
   create(params: CounterpartyCreateParams, options?: Core.RequestOptions): Core.APIPromise<Counterparty> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/counterparties', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -85,11 +91,17 @@ export class Counterparties extends APIResource {
     params: CounterpartyCollectAccountParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<CounterpartyCollectAccountResponse> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(`/api/counterparties/${id}/collect_account`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 }
@@ -304,58 +316,49 @@ export interface CounterpartyCollectAccountResponse {
 
 export interface CounterpartyCreateParams {
   /**
-   * Body param: A human friendly name for this counterparty.
+   * A human friendly name for this counterparty.
    */
   name: string | null;
 
-  /**
-   * Body param:
-   */
   accounting?: CounterpartyCreateParams.Accounting;
 
   /**
-   * Body param: The accounts for this counterparty.
+   * The accounts for this counterparty.
    */
   accounts?: Array<CounterpartyCreateParams.Account>;
 
   /**
-   * Body param: The counterparty's email.
+   * The counterparty's email.
    */
   email?: string | null;
 
   /**
-   * Body param: An optional type to auto-sync the counterparty to your ledger.
-   * Either `customer` or `vendor`.
+   * An optional type to auto-sync the counterparty to your ledger. Either `customer`
+   * or `vendor`.
    */
   ledger_type?: 'customer' | 'vendor';
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: Send an email to the counterparty whenever an associated payment
-   * order is sent to the bank.
+   * Send an email to the counterparty whenever an associated payment order is sent
+   * to the bank.
    */
   send_remittance_advice?: boolean;
 
   /**
-   * Body param: Either a valid SSN or EIN.
+   * Either a valid SSN or EIN.
    */
   taxpayer_identifier?: string;
 
   /**
-   * Body param: The verification status of the counterparty.
+   * The verification status of the counterparty.
    */
   verification_status?: 'denied' | 'needs_approval' | 'unverified' | 'verified';
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace CounterpartyCreateParams {
@@ -623,26 +626,25 @@ export interface CounterpartyListParams extends PageParams {
 
 export interface CounterpartyCollectAccountParams {
   /**
-   * Body param: One of `credit` or `debit`. Use `credit` when you want to pay a
-   * counterparty. Use `debit` when you need to charge a counterparty. This field
-   * helps us send a more tailored email to your counterparties."
+   * One of `credit` or `debit`. Use `credit` when you want to pay a counterparty.
+   * Use `debit` when you need to charge a counterparty. This field helps us send a
+   * more tailored email to your counterparties."
    */
   direction: 'credit' | 'debit';
 
   /**
-   * Body param: The URL you want your customer to visit upon filling out the form.
-   * By default, they will be sent to a Modern Treasury landing page. This must be a
-   * valid HTTPS URL if set.
+   * The URL you want your customer to visit upon filling out the form. By default,
+   * they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
+   * URL if set.
    */
   custom_redirect?: string;
 
   /**
-   * Body param: The list of fields you want on the form. This field is optional and
-   * if it is not set, will default to [\"nameOnAccount\", \"accountType\",
-   * \"accountNumber\", \"routingNumber\", \"address\"]. The full list of options is
-   * [\"name\", \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\",
-   * \"accountNumber\", \"routingNumber\", \"address\", \"ibanNumber\",
-   * \"swiftCode\"].
+   * The list of fields you want on the form. This field is optional and if it is not
+   * set, will default to [\"nameOnAccount\", \"accountType\", \"accountNumber\",
+   * \"routingNumber\", \"address\"]. The full list of options is [\"name\",
+   * \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
+   * \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
    */
   fields?: Array<
     | 'name'
@@ -669,18 +671,12 @@ export interface CounterpartyCollectAccountParams {
   >;
 
   /**
-   * Body param: By default, Modern Treasury will send an email to your counterparty
-   * that includes a link to the form they must fill out. However, if you would like
-   * to send the counterparty the link, you can set this parameter to `false`. The
-   * JSON body will include the link to the secure Modern Treasury form.
+   * By default, Modern Treasury will send an email to your counterparty that
+   * includes a link to the form they must fill out. However, if you would like to
+   * send the counterparty the link, you can set this parameter to `false`. The JSON
+   * body will include the link to the secure Modern Treasury form.
    */
   send_email?: boolean;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace Counterparties {

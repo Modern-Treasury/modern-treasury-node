@@ -12,11 +12,17 @@ export class LedgerAccountStatements extends APIResource {
     params: LedgerAccountStatementCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LedgerAccountStatementCreateResponse> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/ledger_account_statements', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -573,39 +579,33 @@ export namespace LedgerAccountStatementRetrieveResponse {
 
 export interface LedgerAccountStatementCreateParams {
   /**
-   * Body param: The inclusive lower bound of the effective_at timestamp of the
-   * ledger entries to be included in the ledger account statement.
+   * The inclusive lower bound of the effective_at timestamp of the ledger entries to
+   * be included in the ledger account statement.
    */
   effective_at_lower_bound: string;
 
   /**
-   * Body param: The exclusive upper bound of the effective_at timestamp of the
-   * ledger entries to be included in the ledger account statement.
+   * The exclusive upper bound of the effective_at timestamp of the ledger entries to
+   * be included in the ledger account statement.
    */
   effective_at_upper_bound: string;
 
   /**
-   * Body param: The id of the ledger account whose ledger entries are queried
-   * against, and its balances are computed as a result.
+   * The id of the ledger account whose ledger entries are queried against, and its
+   * balances are computed as a result.
    */
   ledger_account_id: string;
 
   /**
-   * Body param: The description of the ledger account statement.
+   * The description of the ledger account statement.
    */
   description?: string | null;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace LedgerAccountStatements {

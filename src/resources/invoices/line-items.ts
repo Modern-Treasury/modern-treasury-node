@@ -15,11 +15,17 @@ export class LineItems extends APIResource {
     params: LineItemCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<InvoiceLineItem> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(`/api/invoices/${invoiceId}/invoice_line_items`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -143,39 +149,33 @@ export interface InvoiceLineItem {
 
 export interface LineItemCreateParams {
   /**
-   * Body param: The name of the line item, typically a product or SKU name.
+   * The name of the line item, typically a product or SKU name.
    */
   name: string;
 
   /**
-   * Body param: The cost per unit of the product or service that this line item is
-   * for, specified in the invoice currency's smallest unit.
+   * The cost per unit of the product or service that this line item is for,
+   * specified in the invoice currency's smallest unit.
    */
   unit_amount: number;
 
   /**
-   * Body param: An optional free-form description of the line item.
+   * An optional free-form description of the line item.
    */
   description?: string;
 
   /**
-   * Body param: Either `debit` or `credit`. `debit` indicates that a client owes the
-   * business money and increases the invoice's `total_amount` due. `credit` has the
-   * opposite intention and effect.
+   * Either `debit` or `credit`. `debit` indicates that a client owes the business
+   * money and increases the invoice's `total_amount` due. `credit` has the opposite
+   * intention and effect.
    */
   direction?: string;
 
   /**
-   * Body param: The number of units of a product or service that this line item is
-   * for. Must be a whole number. Defaults to 1 if not provided.
+   * The number of units of a product or service that this line item is for. Must be
+   * a whole number. Defaults to 1 if not provided.
    */
   quantity?: number;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface LineItemUpdateParams {

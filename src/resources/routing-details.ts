@@ -17,11 +17,17 @@ export class RoutingDetails extends APIResource {
     params: RoutingDetailCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<RoutingDetail> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post(`/api/${accountsType}/${accountId}/routing_details`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -199,13 +205,12 @@ export namespace RoutingDetail {
 
 export interface RoutingDetailCreateParams {
   /**
-   * Body param: The routing number of the bank.
+   * The routing number of the bank.
    */
   routing_number: string;
 
   /**
-   * Body param: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`,
-   * `in_ifsc`, `cnaps`.
+   * One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
    */
   routing_number_type:
     | 'aba'
@@ -220,8 +225,8 @@ export interface RoutingDetailCreateParams {
     | 'swift';
 
   /**
-   * Body param: If the routing detail is to be used for a specific payment type this
-   * field will be populated, otherwise null.
+   * If the routing detail is to be used for a specific payment type this field will
+   * be populated, otherwise null.
    */
   payment_type?:
     | 'ach'
@@ -242,12 +247,6 @@ export interface RoutingDetailCreateParams {
     | 'signet'
     | 'wire'
     | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface RoutingDetailListParams extends PageParams {}

@@ -11,11 +11,17 @@ export class LedgerAccounts extends APIResource {
    * Create a ledger account.
    */
   create(params: LedgerAccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/ledger_accounts', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -271,59 +277,53 @@ export namespace LedgerAccount {
 
 export interface LedgerAccountCreateParams {
   /**
-   * Body param: The currency of the ledger account.
+   * The currency of the ledger account.
    */
   currency: string;
 
   /**
-   * Body param: The id of the ledger that this account belongs to.
+   * The id of the ledger that this account belongs to.
    */
   ledger_id: string;
 
   /**
-   * Body param: The name of the ledger account.
+   * The name of the ledger account.
    */
   name: string;
 
   /**
-   * Body param: The normal balance of the ledger account.
+   * The normal balance of the ledger account.
    */
   normal_balance: 'credit' | 'debit';
 
   /**
-   * Body param: The currency exponent of the ledger account.
+   * The currency exponent of the ledger account.
    */
   currency_exponent?: number | null;
 
   /**
-   * Body param: The description of the ledger account.
+   * The description of the ledger account.
    */
   description?: string | null;
 
   /**
-   * Body param: If the ledger account links to another object in Modern Treasury,
-   * the id will be populated here, otherwise null.
+   * If the ledger account links to another object in Modern Treasury, the id will be
+   * populated here, otherwise null.
    */
   ledgerable_id?: string;
 
   /**
-   * Body param: If the ledger account links to another object in Modern Treasury,
-   * the type will be populated here, otherwise null. The value is one of
-   * internal_account or external_account.
+   * If the ledger account links to another object in Modern Treasury, the type will
+   * be populated here, otherwise null. The value is one of internal_account or
+   * external_account.
    */
   ledgerable_type?: 'external_account' | 'internal_account';
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface LedgerAccountRetrieveParams {

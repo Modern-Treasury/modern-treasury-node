@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { toFile, type ResponseLike } from 'modern-treasury/uploads';
-import { File } from 'modern-treasury/_shims/formdata';
+import { File } from 'modern-treasury/_shims/form-data';
 
 class MyClass {
   name: string = 'foo';

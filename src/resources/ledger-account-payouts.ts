@@ -14,11 +14,17 @@ export class LedgerAccountPayouts extends APIResource {
     params: LedgerAccountPayoutCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LedgerAccountPayout> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
     return this.post('/api/ledger_account_payouts', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -151,52 +157,46 @@ export interface LedgerAccountPayout {
 
 export interface LedgerAccountPayoutCreateParams {
   /**
-   * Body param: The id of the funding ledger account that sends to or receives funds
-   * from the payout ledger account.
+   * The id of the funding ledger account that sends to or receives funds from the
+   * payout ledger account.
    */
   funding_ledger_account_id: string;
 
   /**
-   * Body param: The id of the payout ledger account whose ledger entries are queried
-   * against, and its balance is reduced as a result.
+   * The id of the payout ledger account whose ledger entries are queried against,
+   * and its balance is reduced as a result.
    */
   payout_ledger_account_id: string;
 
   /**
-   * Body param: The description of the ledger account payout.
+   * The description of the ledger account payout.
    */
   description?: string | null;
 
   /**
-   * Body param: The exclusive upper bound of the effective_at timestamp of the
-   * ledger entries to be included in the ledger account payout. The default value is
-   * the created_at timestamp of the ledger account payout.
+   * The exclusive upper bound of the effective_at timestamp of the ledger entries to
+   * be included in the ledger account payout. The default value is the created_at
+   * timestamp of the ledger account payout.
    */
   effective_at_upper_bound?: string | null;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: Record<string, string>;
 
   /**
-   * Body param: It is set to `false` by default. It should be set to `true` when
-   * migrating existing payouts.
+   * It is set to `false` by default. It should be set to `true` when migrating
+   * existing payouts.
    */
   skip_payout_ledger_transaction?: boolean | null;
 
   /**
-   * Body param: The status of the ledger account payout. It is set to `pending` by
-   * default. To post a ledger account payout at creation, use `posted`.
+   * The status of the ledger account payout. It is set to `pending` by default. To
+   * post a ledger account payout at creation, use `posted`.
    */
   status?: 'pending' | 'posted' | null;
-
-  /**
-   * Header param: This key should be something unique, preferably something like an
-   * UUID.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export interface LedgerAccountPayoutUpdateParams {

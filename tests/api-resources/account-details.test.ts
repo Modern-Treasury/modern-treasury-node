@@ -27,7 +27,6 @@ describe('resource accountDetails', () => {
     const response = await modernTreasury.accountDetails.create('external_accounts', 'string', {
       account_number: 'string',
       account_number_type: 'clabe',
-      'Idempotency-Key': 'string',
     });
   });
 
