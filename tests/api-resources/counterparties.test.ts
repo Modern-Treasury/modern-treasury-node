@@ -287,7 +287,7 @@ describe('resource counterparties', () => {
     const response = await modernTreasury.counterparties.collectAccount('string', {
       direction: 'credit',
       custom_redirect: 'https://example.com',
-      fields: ['name', 'name', 'name'],
+      fields: ['name', 'nameOnAccount', 'taxpayerIdentifier'],
       send_email: true,
     });
   });
