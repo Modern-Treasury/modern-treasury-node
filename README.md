@@ -16,6 +16,8 @@ yarn add modern-treasury
 
 ## Usage
 
+The full API of this library can be found in [api.md](https://www.github.com/Modern-Treasury/modern-treasury-node/blob/master/api.md).
+
 ```js
 import ModernTreasury from 'modern-treasury';
 
