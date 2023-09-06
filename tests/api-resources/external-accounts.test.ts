@@ -207,7 +207,7 @@ describe('resource externalAccounts', () => {
     await expect(
       modernTreasury.externalAccounts.completeVerification(
         'string',
-        { amounts: [0, 0] },
+        { amounts: [2, 4] },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
