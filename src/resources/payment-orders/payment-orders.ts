@@ -3,9 +3,9 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as Shared from 'modern-treasury/resources/shared';
 import * as Returns from 'modern-treasury/resources/returns';
 import * as ExternalAccounts from 'modern-treasury/resources/external-accounts';
-import * as Shared from 'modern-treasury/resources/shared';
 import { Reversals } from './reversals';
 import * as API from './index';
 import { type Uploadable, maybeMultipartFormRequestOptions } from 'modern-treasury/core';
