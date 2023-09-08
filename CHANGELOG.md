@@ -1,5 +1,30 @@
 # Changelog
 
+## 2.5.0 (2023-09-08)
+
+Full Changelog: [v2.4.0...v2.5.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.4.0...v2.5.0)
+
+### Features
+
+* fixes tests where an array has to have unique enum values ([#221](https://github.com/Modern-Treasury/modern-treasury-node/issues/221)) ([0aa1909](https://github.com/Modern-Treasury/modern-treasury-node/commit/0aa190930b6dbed836dbcd291b5cd099aa6c1ff5))
+
+
+### Bug Fixes
+
+* fix module not found errors in Vercel edge ([#227](https://github.com/Modern-Treasury/modern-treasury-node/issues/227)) ([554b457](https://github.com/Modern-Treasury/modern-treasury-node/commit/554b4576ebef5bd9145d9eb117ea415140eeed42))
+* **readme:** update link to api.md to use the correct branch ([#224](https://github.com/Modern-Treasury/modern-treasury-node/issues/224)) ([902b8aa](https://github.com/Modern-Treasury/modern-treasury-node/commit/902b8aa4e846c85fa15c4fa6a335e07d76b53fb8))
+
+
+### Chores
+
+* **internal:** export helper from core ([#225](https://github.com/Modern-Treasury/modern-treasury-node/issues/225)) ([01dc5e2](https://github.com/Modern-Treasury/modern-treasury-node/commit/01dc5e287392d627366d1e47098b1fc4d17e369d))
+* **internal:** minor formatting changes ([#226](https://github.com/Modern-Treasury/modern-treasury-node/issues/226)) ([08d6cc7](https://github.com/Modern-Treasury/modern-treasury-node/commit/08d6cc774e89c12585e22f845ff93eccc53c8b8a))
+
+
+### Documentation
+
+* **readme:** add link to api.md ([#223](https://github.com/Modern-Treasury/modern-treasury-node/issues/223)) ([34b5da6](https://github.com/Modern-Treasury/modern-treasury-node/commit/34b5da6163b16df8a0f10a9b4136bc84025ac293))
+
 ## 2.4.0 (2023-09-05)
 
 Full Changelog: [v2.3.0...v2.4.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.3.0...v2.4.0)
