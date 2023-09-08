@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as ExternalAccounts from 'modern-treasury/resources/external-accounts';
 import * as AccountDetails from 'modern-treasury/resources/account-details';
+import * as ExternalAccounts from 'modern-treasury/resources/external-accounts';
 import * as RoutingDetails from 'modern-treasury/resources/routing-details';
 import * as API from './index';
 import { Page, PageParams } from 'modern-treasury/pagination';
