@@ -296,7 +296,7 @@ The following runtimes are supported:
 
 - Node.js 16 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
 - Deno v1.28.0 or higher, using `import ModernTreasury from "npm:modern-treasury"`.
-  Deno Deploy is not yet supported.
+- Bun 1.0 or later.
 - Cloudflare Workers.
 - Vercel Edge Runtime.
 
