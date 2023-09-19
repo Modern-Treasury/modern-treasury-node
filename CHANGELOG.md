@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.6.0 (2023-09-19)
+
+Full Changelog: [v2.5.0...v2.6.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.5.0...v2.6.0)
+
+### Features
+
+* **api:** updates ([#235](https://github.com/Modern-Treasury/modern-treasury-node/issues/235)) ([ce16952](https://github.com/Modern-Treasury/modern-treasury-node/commit/ce16952f489ab95028a1678b2b61dc9b3bfc498c))
+* **client:** retry on 408 Request Timeout ([#229](https://github.com/Modern-Treasury/modern-treasury-node/issues/229)) ([bb3c483](https://github.com/Modern-Treasury/modern-treasury-node/commit/bb3c483e8f4e4d0ab39b72b364937906b51bbea1))
+* **errors:** add status code to error message ([#234](https://github.com/Modern-Treasury/modern-treasury-node/issues/234)) ([c2d9f18](https://github.com/Modern-Treasury/modern-treasury-node/commit/c2d9f182986dbfa5fa0e4853b08e730cf56219e0))
+
+
+### Documentation
+
+* declare Bun 1.0 officially supported ([#233](https://github.com/Modern-Treasury/modern-treasury-node/issues/233)) ([ecaf5b8](https://github.com/Modern-Treasury/modern-treasury-node/commit/ecaf5b81c3522e4b28e10d015dc2377f67b8c626))
+
 ## 2.5.0 (2023-09-08)
 
 Full Changelog: [v2.4.0...v2.5.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.4.0...v2.5.0)
