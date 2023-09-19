@@ -8,6 +8,13 @@ import { Page, PageParams } from 'modern-treasury/pagination';
 
 export class PaymentReferences extends APIResource {
   /**
+   * get payment_reference
+   */
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentReference> {
+    return this.get(`/api/payment_references/${id}`, options);
+  }
+
+  /**
    * list payment_references
    */
   list(
@@ -26,11 +33,9 @@ export class PaymentReferences extends APIResource {
   }
 
   /**
-   * get payment_reference
+   * @deprecated use `retrieve` instead
    */
-  retireve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentReference> {
-    return this.get(`/api/payment_references/${id}`, options);
-  }
+  retireve = this.retrieve;
 }
 
 export class PaymentReferencesPage extends Page<PaymentReference> {}

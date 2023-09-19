@@ -8,29 +8,28 @@ import { Page, PageParams } from 'modern-treasury/pagination';
 
 export class LineItems extends APIResource {
   /**
+   * get transaction line item
+   */
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<TransactionLineItem> {
+    return this.get(`/api/transaction_line_items/${id}`, options);
+  }
+
+  /**
    * list transaction_line_items
    */
   list(
-    transactionId: string,
     query?: LineItemListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem>;
+  list(options?: Core.RequestOptions): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem>;
   list(
-    transactionId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem>;
-  list(
-    transactionId: string,
     query: LineItemListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem> {
     if (isRequestOptions(query)) {
-      return this.list(transactionId, {}, query);
+      return this.list({}, query);
     }
-    return this.getAPIList(`/api/transactions/${transactionId}/line_items`, TransactionLineItemsPage, {
-      query,
-      ...options,
-    });
+    return this.getAPIList('/api/transaction_line_items', TransactionLineItemsPage, { query, ...options });
   }
 }
 
@@ -50,7 +49,7 @@ export interface TransactionLineItem {
   /**
    * The ID for the counterparty for this transaction line item.
    */
-  counterparty_id: string;
+  counterparty_id: string | null;
 
   created_at: string;
 
@@ -68,7 +67,7 @@ export interface TransactionLineItem {
   /**
    * The ID of the reconciled Expected Payment, otherwise `null`.
    */
-  expected_payment_id: string;
+  expected_payment_id: string | null;
 
   /**
    * This field will be true if this object exists in the live environment, or false
@@ -98,6 +97,11 @@ export interface TransactionLineItem {
     | null;
 
   /**
+   * The ID of the parent transaction.
+   */
+  transaction_id: string;
+
+  /**
    * Indicates whether the line item is `originating` or `receiving` (see
    * https://www.moderntreasury.com/journal/beginners-guide-to-ach for more).
    */
@@ -107,6 +111,10 @@ export interface TransactionLineItem {
 }
 
 export interface LineItemListParams extends PageParams {
+  id?: Record<string, string>;
+
+  transaction_id?: string;
+
   type?: 'originating' | 'receiving' | null;
 }
 

@@ -91,6 +91,14 @@ export {
   LedgerAccounts,
 } from './ledger-accounts';
 export {
+  LedgerAccountBalanceMonitor,
+  LedgerAccountBalanceMonitorCreateParams,
+  LedgerAccountBalanceMonitorUpdateParams,
+  LedgerAccountBalanceMonitorListParams,
+  LedgerAccountBalanceMonitorsPage,
+  LedgerAccountBalanceMonitors,
+} from './ledger-account-balance-monitors';
+export {
   LedgerAccountCategory,
   LedgerAccountCategoryCreateParams,
   LedgerAccountCategoryRetrieveParams,

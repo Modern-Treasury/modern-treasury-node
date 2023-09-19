@@ -193,7 +193,7 @@ export interface ExpectedPayment {
   /**
    * One of unreconciled, reconciled, or archived.
    */
-  status: 'archived' | 'reconciled' | 'unreconciled';
+  status: 'archived' | 'partially_reconciled' | 'reconciled' | 'unreconciled';
 
   /**
    * The ID of the Transaction this expected payment object has been matched to.
@@ -230,12 +230,16 @@ export type ExpectedPaymentType =
   | 'interac'
   | 'masav'
   | 'neft'
+  | 'nics'
   | 'provxchange'
   | 'rtp'
+  | 'se_bankgirot'
   | 'sen'
   | 'sepa'
+  | 'sic'
   | 'signet'
   | 'wire'
+  | 'zengin'
   | null;
 
 export interface ExpectedPaymentCreateParams {
@@ -477,7 +481,7 @@ export interface ExpectedPaymentListParams extends PageParams {
   /**
    * One of unreconciled, reconciled, or archived.
    */
-  status?: 'archived' | 'reconciled' | 'unreconciled';
+  status?: 'archived' | 'partially_reconciled' | 'reconciled' | 'unreconciled';
 
   /**
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
@@ -495,12 +499,16 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
+    | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sic'
     | 'signet'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 }
 
 export namespace ExpectedPayments {

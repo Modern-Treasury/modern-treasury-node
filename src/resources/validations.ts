@@ -35,11 +35,18 @@ export interface RoutingNumberLookupRequest {
 
   /**
    * One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-   * `in_ifsc`, `my_branch_code`, or `swift`. In sandbox mode we currently only
-   * support `aba` and `swift` with routing numbers '123456789' and 'GRINUST0XXX'
-   * respectively.
+   * `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
+   * mode we currently only support `aba` and `swift` with routing numbers
+   * '123456789' and 'GRINUST0XXX' respectively.
    */
-  routing_number_type?: 'aba' | 'au_bsb' | 'ca_cpa' | 'gb_sort_code' | 'in_ifsc' | 'swift';
+  routing_number_type?:
+    | 'aba'
+    | 'au_bsb'
+    | 'ca_cpa'
+    | 'gb_sort_code'
+    | 'in_ifsc'
+    | 'se_bankgiro_clearing_code'
+    | 'swift';
 
   /**
    * An object containing key-value pairs, each with a sanctions list as the key and
@@ -64,12 +71,16 @@ export interface RoutingNumberLookupRequest {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
+    | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sic'
     | 'signet'
     | 'wire'
+    | 'zengin'
   >;
 }
 
@@ -112,9 +123,9 @@ export interface ValidationValidateRoutingNumberParams {
 
   /**
    * One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-   * `in_ifsc`, `my_branch_code`, or `swift`. In sandbox mode we currently only
-   * support `aba` and `swift` with routing numbers '123456789' and 'GRINUST0XXX'
-   * respectively.
+   * `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
+   * mode we currently only support `aba` and `swift` with routing numbers
+   * '123456789' and 'GRINUST0XXX' respectively.
    */
   routing_number_type:
     | 'aba'
@@ -125,7 +136,9 @@ export interface ValidationValidateRoutingNumberParams {
     | 'cnaps'
     | 'gb_sort_code'
     | 'in_ifsc'
+    | 'jp_zengin_code'
     | 'my_branch_code'
+    | 'se_bankgiro_clearing_code'
     | 'swift';
 }
 

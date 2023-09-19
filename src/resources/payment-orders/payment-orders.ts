@@ -329,8 +329,9 @@ export interface PaymentOrder {
   transaction_monitoring_enabled: boolean;
 
   /**
-   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-   * `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+   * `zengin`.
    */
   type: PaymentOrderType;
 
@@ -475,8 +476,9 @@ export type PaymentOrderSubtype =
   | null;
 
 /**
- * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
- * `au_becs`, `interac`, `signet`, `provexchange`.
+ * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+ * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+ * `zengin`.
  */
 export type PaymentOrderType =
   | 'ach'
@@ -490,12 +492,16 @@ export type PaymentOrderType =
   | 'interac'
   | 'masav'
   | 'neft'
+  | 'nics'
   | 'provxchange'
   | 'rtp'
+  | 'se_bankgirot'
   | 'sen'
   | 'sepa'
+  | 'sic'
   | 'signet'
-  | 'wire';
+  | 'wire'
+  | 'zengin';
 
 export interface PaymentOrderCreateParams {
   /**
@@ -518,8 +524,9 @@ export interface PaymentOrderCreateParams {
   originating_account_id: string;
 
   /**
-   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-   * `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+   * `zengin`.
    */
   type: PaymentOrderType;
 
@@ -1082,6 +1089,7 @@ export namespace PaymentOrderCreateParams {
       routing_number_type:
         | 'aba'
         | 'au_bsb'
+        | 'se_bankgiro_clearing_code'
         | 'br_codigo'
         | 'ca_cpa'
         | 'chips'
@@ -1089,11 +1097,13 @@ export namespace PaymentOrderCreateParams {
         | 'gb_sort_code'
         | 'in_ifsc'
         | 'my_branch_code'
-        | 'swift';
+        | 'swift'
+        | 'jp_zengin_code';
 
       payment_type?:
         | 'ach'
         | 'au_becs'
+        | 'se_bankgirot'
         | 'bacs'
         | 'book'
         | 'card'
@@ -1103,12 +1113,15 @@ export namespace PaymentOrderCreateParams {
         | 'interac'
         | 'masav'
         | 'neft'
+        | 'nics'
         | 'provxchange'
         | 'rtp'
         | 'sen'
+        | 'sic'
         | 'sepa'
         | 'signet'
-        | 'wire';
+        | 'wire'
+        | 'zengin';
     }
   }
 }
@@ -1305,8 +1318,9 @@ export interface PaymentOrderUpdateParams {
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-   * `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+   * `zengin`.
    */
   type?: PaymentOrderType;
 
@@ -1548,6 +1562,7 @@ export namespace PaymentOrderUpdateParams {
       routing_number_type:
         | 'aba'
         | 'au_bsb'
+        | 'se_bankgiro_clearing_code'
         | 'br_codigo'
         | 'ca_cpa'
         | 'chips'
@@ -1555,11 +1570,13 @@ export namespace PaymentOrderUpdateParams {
         | 'gb_sort_code'
         | 'in_ifsc'
         | 'my_branch_code'
-        | 'swift';
+        | 'swift'
+        | 'jp_zengin_code';
 
       payment_type?:
         | 'ach'
         | 'au_becs'
+        | 'se_bankgirot'
         | 'bacs'
         | 'book'
         | 'card'
@@ -1569,12 +1586,15 @@ export namespace PaymentOrderUpdateParams {
         | 'interac'
         | 'masav'
         | 'neft'
+        | 'nics'
         | 'provxchange'
         | 'rtp'
         | 'sen'
+        | 'sic'
         | 'sepa'
         | 'signet'
-        | 'wire';
+        | 'wire'
+        | 'zengin';
     }
   }
 }
@@ -1645,12 +1665,16 @@ export interface PaymentOrderListParams extends PageParams {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
+    | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sic'
     | 'signet'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 }
 
 export interface PaymentOrderCreateAsyncParams {
@@ -1674,8 +1698,9 @@ export interface PaymentOrderCreateAsyncParams {
   originating_account_id: string;
 
   /**
-   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-   * `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+   * `zengin`.
    */
   type: PaymentOrderType;
 
@@ -2205,6 +2230,7 @@ export namespace PaymentOrderCreateAsyncParams {
       routing_number_type:
         | 'aba'
         | 'au_bsb'
+        | 'se_bankgiro_clearing_code'
         | 'br_codigo'
         | 'ca_cpa'
         | 'chips'
@@ -2212,11 +2238,13 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'gb_sort_code'
         | 'in_ifsc'
         | 'my_branch_code'
-        | 'swift';
+        | 'swift'
+        | 'jp_zengin_code';
 
       payment_type?:
         | 'ach'
         | 'au_becs'
+        | 'se_bankgirot'
         | 'bacs'
         | 'book'
         | 'card'
@@ -2226,12 +2254,15 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'interac'
         | 'masav'
         | 'neft'
+        | 'nics'
         | 'provxchange'
         | 'rtp'
         | 'sen'
+        | 'sic'
         | 'sepa'
         | 'signet'
-        | 'wire';
+        | 'wire'
+        | 'zengin';
     }
   }
 }

@@ -533,6 +533,7 @@ export namespace CounterpartyCreateParams {
       routing_number_type:
         | 'aba'
         | 'au_bsb'
+        | 'se_bankgiro_clearing_code'
         | 'br_codigo'
         | 'ca_cpa'
         | 'chips'
@@ -540,11 +541,13 @@ export namespace CounterpartyCreateParams {
         | 'gb_sort_code'
         | 'in_ifsc'
         | 'my_branch_code'
-        | 'swift';
+        | 'swift'
+        | 'jp_zengin_code';
 
       payment_type?:
         | 'ach'
         | 'au_becs'
+        | 'se_bankgirot'
         | 'bacs'
         | 'book'
         | 'card'
@@ -554,12 +557,15 @@ export namespace CounterpartyCreateParams {
         | 'interac'
         | 'masav'
         | 'neft'
+        | 'nics'
         | 'provxchange'
         | 'rtp'
         | 'sen'
+        | 'sic'
         | 'sepa'
         | 'signet'
-        | 'wire';
+        | 'wire'
+        | 'zengin';
     }
   }
 }
@@ -668,6 +674,7 @@ export interface CounterpartyCollectAccountParams {
     | 'brCodigo'
     | 'routingNumberType'
     | 'address'
+    | 'jp_zengin_code'
   >;
 
   /**
