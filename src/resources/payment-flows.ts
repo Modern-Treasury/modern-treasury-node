@@ -112,6 +112,18 @@ export interface PaymentFlow {
   direction?: 'credit' | 'debit';
 
   /**
+   * The due date for the flow. Can only be passed in when
+   * `effective_date_selection_enabled` is `true`.
+   */
+  due_date?: string | null;
+
+  /**
+   * When `true`, your end-user can schedule the payment `effective_date` while
+   * completing the pre-built UI.
+   */
+  effective_date_selection_enabled?: boolean;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -133,6 +145,13 @@ export interface PaymentFlow {
    * If present, the ID of the external account created using this flow.
    */
   receiving_account_id?: string | null;
+
+  /**
+   * This field is set after your end-user selects a payment date while completing
+   * the pre-built UI. This field is always `null` unless
+   * `effective_date_selection_enabled` is `true`.
+   */
+  selected_effective_date?: string | null;
 
   /**
    * The current status of the payment flow. One of `pending`, `completed`,
@@ -171,6 +190,13 @@ export interface PaymentFlowCreateParams {
    * Required. The ID of one of your organization's internal accounts.
    */
   originating_account_id: string;
+
+  /**
+   * Optional. Can only be passed in when `effective_date_selection_enabled` is
+   * `true`. When set, the due date is shown to your end-user in the pre-built UI as
+   * they are selecting a payment `effective_date`.
+   */
+  due_date?: string;
 }
 
 export interface PaymentFlowUpdateParams {

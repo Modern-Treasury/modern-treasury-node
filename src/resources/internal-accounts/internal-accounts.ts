@@ -349,12 +349,16 @@ export interface InternalAccountListParams extends PageParams {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
+    | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sic'
     | 'signet'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 }
 
 export namespace InternalAccounts {

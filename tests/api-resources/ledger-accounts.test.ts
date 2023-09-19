@@ -131,6 +131,7 @@ describe('resource ledgerAccounts', () => {
         {
           id: ['string', 'string', 'string'],
           after_cursor: 'string',
+          available_balance_amount: { gt: 0, lt: 0, gte: 0, lte: 0, eq: 0, not_eq: 0 },
           balances: {
             as_of_date: '2019-12-27',
             effective_at: '2019-12-27T18:11:19.117Z',
@@ -143,7 +144,9 @@ describe('resource ledgerAccounts', () => {
           ledger_id: 'string',
           metadata: { foo: 'string' },
           name: 'string',
+          pending_balance_amount: { gt: 0, lt: 0, gte: 0, lte: 0, eq: 0, not_eq: 0 },
           per_page: 0,
+          posted_balance_amount: { gt: 0, lt: 0, gte: 0, lte: 0, eq: 0, not_eq: 0 },
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
         },
         { path: '/_stainless_unknown_path' },

@@ -153,12 +153,16 @@ export interface Transaction {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
+    | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sic'
     | 'signet'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 
   updated_at: string;
 
