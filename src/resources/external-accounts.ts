@@ -454,6 +454,7 @@ export namespace ExternalAccountCreateParams {
     routing_number_type:
       | 'aba'
       | 'au_bsb'
+      | 'se_bankgiro_clearing_code'
       | 'br_codigo'
       | 'ca_cpa'
       | 'chips'
@@ -461,11 +462,13 @@ export namespace ExternalAccountCreateParams {
       | 'gb_sort_code'
       | 'in_ifsc'
       | 'my_branch_code'
-      | 'swift';
+      | 'swift'
+      | 'jp_zengin_code';
 
     payment_type?:
       | 'ach'
       | 'au_becs'
+      | 'se_bankgirot'
       | 'bacs'
       | 'book'
       | 'card'
@@ -475,12 +478,15 @@ export namespace ExternalAccountCreateParams {
       | 'interac'
       | 'masav'
       | 'neft'
+      | 'nics'
       | 'provxchange'
       | 'rtp'
       | 'sen'
+      | 'sic'
       | 'sepa'
       | 'signet'
-      | 'wire';
+      | 'wire'
+      | 'zengin';
   }
 }
 
@@ -587,12 +593,16 @@ export interface ExternalAccountVerifyParams {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
+    | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sic'
     | 'signet'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 
   /**
    * Defaults to the currency of the originating account.

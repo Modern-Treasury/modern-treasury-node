@@ -94,6 +94,9 @@ describe('resource invoices', () => {
       payment_method: 'ui',
       payment_type: 'ach',
       receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      recipient_email: 'string',
+      recipient_name: 'string',
+      virtual_account_id: 'string',
     });
   });
 
@@ -206,7 +209,10 @@ describe('resource invoices', () => {
           payment_method: 'ui',
           payment_type: 'ach',
           receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          recipient_email: 'string',
+          recipient_name: 'string',
           status: 'string',
+          virtual_account_id: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -238,6 +244,24 @@ describe('resource invoices', () => {
         { after_cursor: 'string', per_page: 0 },
         { path: '/_stainless_unknown_path' },
       ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('addPaymentOrder', async () => {
+    const responsePromise = modernTreasury.invoices.addPaymentOrder('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('addPaymentOrder: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      modernTreasury.invoices.addPaymentOrder('string', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

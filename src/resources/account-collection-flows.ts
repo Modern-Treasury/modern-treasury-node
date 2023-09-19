@@ -115,6 +115,26 @@ export interface AccountCollectionFlow {
 
   object?: string;
 
+  receiving_countries?: Array<
+    | 'USA'
+    | 'AUS'
+    | 'BEL'
+    | 'CAN'
+    | 'CHL'
+    | 'CHN'
+    | 'COL'
+    | 'FRA'
+    | 'DEU'
+    | 'HKG'
+    | 'IND'
+    | 'IRL'
+    | 'ITA'
+    | 'MEX'
+    | 'NLD'
+    | 'PER'
+    | 'ESP'
+  >;
+
   /**
    * The current status of the account collection flow. One of `pending`,
    * `completed`, `expired`, or `cancelled`.
@@ -131,6 +151,26 @@ export interface AccountCollectionFlowCreateParams {
   counterparty_id: string;
 
   payment_types: Array<string>;
+
+  receiving_countries?: Array<
+    | 'USA'
+    | 'AUS'
+    | 'BEL'
+    | 'CAN'
+    | 'CHL'
+    | 'CHN'
+    | 'COL'
+    | 'FRA'
+    | 'DEU'
+    | 'HKG'
+    | 'IND'
+    | 'IRL'
+    | 'ITA'
+    | 'MEX'
+    | 'NLD'
+    | 'PER'
+    | 'ESP'
+  >;
 }
 
 export interface AccountCollectionFlowUpdateParams {

@@ -67,6 +67,16 @@ export class Invoices extends APIResource {
     }
     return this.getAPIList('/api/invoices', InvoicesPage, { query, ...options });
   }
+
+  /**
+   * Add a payment order to an invoice.
+   */
+  addPaymentOrder(id: string, paymentOrderId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this.put(`/api/invoices/${id}/payment_orders/${paymentOrderId}`, {
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
+  }
 }
 
 export class InvoicesPage extends Page<Invoice> {}
@@ -189,6 +199,18 @@ export interface Invoice {
   receiving_account_id: string | null;
 
   /**
+   * The email of the recipient of the invoice. Leaving this value as null will
+   * fallback to using the counterparty's name.
+   */
+  recipient_email: string | null;
+
+  /**
+   * The name of the recipient of the invoice. Leaving this value as null will
+   * fallback to using the counterparty's name.
+   */
+  recipient_name: string | null;
+
+  /**
    * The status of the invoice.
    */
   status: 'draft' | 'paid' | 'payment_pending' | 'unpaid' | 'voided';
@@ -205,6 +227,11 @@ export interface Invoice {
   transaction_line_item_ids: Array<string>;
 
   updated_at: string;
+
+  /**
+   * The ID of the virtual account the invoice should be paid to.
+   */
+  virtual_account_id: string | null;
 }
 
 export namespace Invoice {
@@ -395,12 +422,14 @@ export interface InvoiceCreateParams {
   payment_method?: 'ui' | 'manual' | 'automatic';
 
   /**
-   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-   * `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+   * `zengin`.
    */
   payment_type?:
     | 'ach'
     | 'au_becs'
+    | 'se_bankgirot'
     | 'bacs'
     | 'book'
     | 'card'
@@ -410,17 +439,37 @@ export interface InvoiceCreateParams {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
     | 'sen'
+    | 'sic'
     | 'sepa'
     | 'signet'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 
   /**
    * The receiving account ID. Can be an `external_account`.
    */
   receiving_account_id?: string;
+
+  /**
+   * The email of the recipient of the invoice. Leaving this value as null will
+   * fallback to using the counterparty's name.
+   */
+  recipient_email?: string | null;
+
+  /**
+   * The name of the recipient of the invoice. Leaving this value as null will
+   * fallback to using the counterparty's name.
+   */
+  recipient_name?: string | null;
+
+  /**
+   * The ID of the virtual account the invoice should be paid to.
+   */
+  virtual_account_id?: string | null;
 }
 
 export namespace InvoiceCreateParams {
@@ -611,12 +660,14 @@ export interface InvoiceUpdateParams {
   payment_method?: 'ui' | 'manual' | 'automatic';
 
   /**
-   * One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-   * `au_becs`, `interac`, `signet`, `provexchange`.
+   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+   * `zengin`.
    */
   payment_type?:
     | 'ach'
     | 'au_becs'
+    | 'se_bankgirot'
     | 'bacs'
     | 'book'
     | 'card'
@@ -626,12 +677,15 @@ export interface InvoiceUpdateParams {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
     | 'sen'
+    | 'sic'
     | 'sepa'
     | 'signet'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 
   /**
    * The receiving account ID. Can be an `external_account`.
@@ -639,11 +693,28 @@ export interface InvoiceUpdateParams {
   receiving_account_id?: string;
 
   /**
+   * The email of the recipient of the invoice. Leaving this value as null will
+   * fallback to using the counterparty's name.
+   */
+  recipient_email?: string | null;
+
+  /**
+   * The name of the recipient of the invoice. Leaving this value as null will
+   * fallback to using the counterparty's name.
+   */
+  recipient_name?: string | null;
+
+  /**
    * Invoice status must be updated in a `PATCH` request that does not modify any
    * other invoice attributes. Valid state transitions are `draft` to `unpaid`,
    * `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
    */
   status?: string;
+
+  /**
+   * The ID of the virtual account the invoice should be paid to.
+   */
+  virtual_account_id?: string | null;
 }
 
 export namespace InvoiceUpdateParams {

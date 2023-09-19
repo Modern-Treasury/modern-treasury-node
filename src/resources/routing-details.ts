@@ -130,12 +130,16 @@ export interface RoutingDetail {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
+    | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sic'
     | 'signet'
     | 'wire'
+    | 'zengin'
     | null;
 
   /**
@@ -155,7 +159,9 @@ export interface RoutingDetail {
     | 'cnaps'
     | 'gb_sort_code'
     | 'in_ifsc'
+    | 'jp_zengin_code'
     | 'my_branch_code'
+    | 'se_bankgiro_clearing_code'
     | 'swift';
 
   updated_at: string;
@@ -221,7 +227,9 @@ export interface RoutingDetailCreateParams {
     | 'cnaps'
     | 'gb_sort_code'
     | 'in_ifsc'
+    | 'jp_zengin_code'
     | 'my_branch_code'
+    | 'se_bankgiro_clearing_code'
     | 'swift';
 
   /**
@@ -240,12 +248,16 @@ export interface RoutingDetailCreateParams {
     | 'interac'
     | 'masav'
     | 'neft'
+    | 'nics'
     | 'provxchange'
     | 'rtp'
+    | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sic'
     | 'signet'
     | 'wire'
+    | 'zengin'
     | null;
 }
 

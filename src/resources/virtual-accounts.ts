@@ -237,7 +237,9 @@ export namespace VirtualAccountCreateParams {
       | 'cnaps'
       | 'gb_sort_code'
       | 'in_ifsc'
+      | 'jp_zengin_code'
       | 'my_branch_code'
+      | 'se_bankgiro_clearing_code'
       | 'swift';
 
     /**
@@ -256,12 +258,16 @@ export namespace VirtualAccountCreateParams {
       | 'interac'
       | 'masav'
       | 'neft'
+      | 'nics'
       | 'provxchange'
       | 'rtp'
+      | 'se_bankgirot'
       | 'sen'
       | 'sepa'
+      | 'sic'
       | 'signet'
       | 'wire'
+      | 'zengin'
       | null;
   }
 }

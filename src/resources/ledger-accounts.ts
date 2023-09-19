@@ -386,6 +386,12 @@ export interface LedgerAccountListParams extends PageParams {
   id?: Array<string>;
 
   /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+   * filter by balance amount.
+   */
+  available_balance_amount?: LedgerAccountListParams.AvailableBalanceAmount;
+
+  /**
    * Use `balances[effective_at_lower_bound]` and
    * `balances[effective_at_upper_bound]` to get the balances change between the two
    * timestamps. The lower bound is inclusive while the upper bound is exclusive of
@@ -417,6 +423,18 @@ export interface LedgerAccountListParams extends PageParams {
   name?: string;
 
   /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+   * filter by balance amount.
+   */
+  pending_balance_amount?: LedgerAccountListParams.PendingBalanceAmount;
+
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+   * filter by balance amount.
+   */
+  posted_balance_amount?: LedgerAccountListParams.PostedBalanceAmount;
+
+  /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
@@ -425,6 +443,24 @@ export interface LedgerAccountListParams extends PageParams {
 }
 
 export namespace LedgerAccountListParams {
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+   * filter by balance amount.
+   */
+  export interface AvailableBalanceAmount {
+    eq?: number;
+
+    gt?: number;
+
+    gte?: number;
+
+    lt?: number;
+
+    lte?: number;
+
+    not_eq?: number;
+  }
+
   /**
    * Use `balances[effective_at_lower_bound]` and
    * `balances[effective_at_upper_bound]` to get the balances change between the two
@@ -440,6 +476,42 @@ export namespace LedgerAccountListParams {
     effective_at_lower_bound?: string;
 
     effective_at_upper_bound?: string;
+  }
+
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+   * filter by balance amount.
+   */
+  export interface PendingBalanceAmount {
+    eq?: number;
+
+    gt?: number;
+
+    gte?: number;
+
+    lt?: number;
+
+    lte?: number;
+
+    not_eq?: number;
+  }
+
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+   * filter by balance amount.
+   */
+  export interface PostedBalanceAmount {
+    eq?: number;
+
+    gt?: number;
+
+    gte?: number;
+
+    lt?: number;
+
+    lte?: number;
+
+    not_eq?: number;
   }
 }
 

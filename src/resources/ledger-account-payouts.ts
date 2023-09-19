@@ -29,6 +29,13 @@ export class LedgerAccountPayouts extends APIResource {
   }
 
   /**
+   * Get details on a single ledger account payout.
+   */
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountPayout> {
+    return this.get(`/api/ledger_account_payouts/${id}`, options);
+  }
+
+  /**
    * Update the details of a ledger account payout.
    */
   update(
@@ -67,11 +74,9 @@ export class LedgerAccountPayouts extends APIResource {
   }
 
   /**
-   * Get details on a single ledger account payout.
+   * @deprecated use `retrieve` instead
    */
-  retireve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountPayout> {
-    return this.get(`/api/ledger_account_payouts/${id}`, options);
-  }
+  retireve = this.retrieve;
 }
 
 export class LedgerAccountPayoutsPage extends Page<LedgerAccountPayout> {}

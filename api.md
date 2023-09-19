@@ -102,6 +102,7 @@ Methods:
 - <code title="get /api/invoices/{id}">client.invoices.<a href="./src/resources/invoices/invoices.ts">retrieve</a>(id) -> Invoice</code>
 - <code title="patch /api/invoices/{id}">client.invoices.<a href="./src/resources/invoices/invoices.ts">update</a>(id, { ...params }) -> Invoice</code>
 - <code title="get /api/invoices">client.invoices.<a href="./src/resources/invoices/invoices.ts">list</a>({ ...params }) -> InvoicesPage</code>
+- <code title="put /api/invoices/{id}/payment_orders/{payment_order_id}">client.invoices.<a href="./src/resources/invoices/invoices.ts">addPaymentOrder</a>(id, paymentOrderId) -> void</code>
 
 ## LineItems
 
@@ -249,6 +250,20 @@ Methods:
 - <code title="get /api/ledger_accounts">client.ledgerAccounts.<a href="./src/resources/ledger-accounts.ts">list</a>({ ...params }) -> LedgerAccountsPage</code>
 - <code title="delete /api/ledger_accounts/{id}">client.ledgerAccounts.<a href="./src/resources/ledger-accounts.ts">del</a>(id) -> LedgerAccount</code>
 
+# LedgerAccountBalanceMonitors
+
+Types:
+
+- <code><a href="./src/resources/ledger-account-balance-monitors.ts">LedgerAccountBalanceMonitor</a></code>
+
+Methods:
+
+- <code title="post /api/ledger_account_balance_monitors">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">create</a>({ ...params }) -> LedgerAccountBalanceMonitor</code>
+- <code title="get /api/ledger_account_balance_monitors/{id}">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">retrieve</a>(id) -> LedgerAccountBalanceMonitor</code>
+- <code title="patch /api/ledger_account_balance_monitors/{id}">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">update</a>(id, { ...params }) -> LedgerAccountBalanceMonitor</code>
+- <code title="get /api/ledger_account_balance_monitors">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">list</a>({ ...params }) -> LedgerAccountBalanceMonitorsPage</code>
+- <code title="delete /api/ledger_account_balance_monitors/{id}">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">del</a>(id) -> LedgerAccountBalanceMonitor</code>
+
 # LedgerAccountPayouts
 
 Types:
@@ -258,9 +273,9 @@ Types:
 Methods:
 
 - <code title="post /api/ledger_account_payouts">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">create</a>({ ...params }) -> LedgerAccountPayout</code>
+- <code title="get /api/ledger_account_payouts/{id}">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">retrieve</a>(id) -> LedgerAccountPayout</code>
 - <code title="patch /api/ledger_account_payouts/{id}">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">update</a>(id, { ...params }) -> LedgerAccountPayout</code>
 - <code title="get /api/ledger_account_payouts">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">list</a>({ ...params }) -> LedgerAccountPayoutsPage</code>
-- <code title="get /api/ledger_account_payouts/{id}">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">retireve</a>(id) -> LedgerAccountPayout</code>
 
 # LedgerAccountStatements
 
@@ -386,8 +401,8 @@ Types:
 
 Methods:
 
+- <code title="get /api/payment_references/{id}">client.paymentReferences.<a href="./src/resources/payment-references.ts">retrieve</a>(id) -> PaymentReference</code>
 - <code title="get /api/payment_references">client.paymentReferences.<a href="./src/resources/payment-references.ts">list</a>({ ...params }) -> PaymentReferencesPage</code>
-- <code title="get /api/payment_references/{id}">client.paymentReferences.<a href="./src/resources/payment-references.ts">retireve</a>(id) -> PaymentReference</code>
 
 # Returns
 
@@ -421,7 +436,8 @@ Types:
 
 Methods:
 
-- <code title="get /api/transactions/{transaction_id}/line_items">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">list</a>(transactionId, { ...params }) -> TransactionLineItemsPage</code>
+- <code title="get /api/transaction_line_items/{id}">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">retrieve</a>(id) -> TransactionLineItem</code>
+- <code title="get /api/transaction_line_items">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">list</a>({ ...params }) -> TransactionLineItemsPage</code>
 
 # Validations
 
