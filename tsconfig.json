@@ -1,6 +1,6 @@
 {
   "include": ["src", "tests", "examples"],
-  "exclude": ["src/_shims/*.deno.ts"],
+  "exclude": ["src/_shims/**/*-deno.ts"],
   "compilerOptions": {
     "target": "es2019",
     "lib": ["es2020"],
@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "modern-treasury/_shims/*": ["src/_shims/*-node"],
-      "modern-treasury": ["src/index.ts"],
+      "modern-treasury/_shims/auto/*": ["src/_shims/auto/*-node"],
       "modern-treasury/*": ["src/*"],
+      "modern-treasury": ["src/index.ts"],
       "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,
