@@ -3,12 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { APIUserAbortError } from 'modern-treasury';
 import { Headers } from 'modern-treasury/core';
-import {
-  Response,
-  fetch as defaultFetch,
-  type RequestInit,
-  type RequestInfo,
-} from 'modern-treasury/_shims/fetch';
+import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {
   const env = process.env;

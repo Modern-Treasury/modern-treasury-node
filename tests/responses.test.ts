@@ -1,5 +1,5 @@
 import { createResponseHeaders } from 'modern-treasury/core';
-import { Headers } from 'modern-treasury/_shims/fetch';
+import { Headers } from 'modern-treasury/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters
