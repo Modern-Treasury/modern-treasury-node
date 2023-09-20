@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/modern-treasury.svg)](https://npmjs.org/package/modern-treasury)
 
-This library provides convenient access to the Modern Treasury Node REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Modern Treasury REST API from server-side TypeScript or JavaScript.
 
 The API documentation can be found [here](https://docs.moderntreasury.com).
 
