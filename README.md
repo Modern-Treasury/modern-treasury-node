@@ -245,11 +245,11 @@ const response = await modernTreasury.externalAccounts
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: externalAccounts, response: raw } = await modernTreasury.externalAccounts
+const { data: externalAccount, response: raw } = await modernTreasury.externalAccounts
   .create({ counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a', name: 'my bank' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(externalAccounts.id);
+console.log(externalAccount.id);
 ```
 
 ## Configuring an HTTP(S) Agent (e.g., for proxies)
