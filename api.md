@@ -8,6 +8,14 @@ Methods:
 
 - <code title="get /api/ping">client.<a href="./src/index.ts">ping</a>() -> PingResponse</code>
 
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">AccountsType</a></code>
+- <code><a href="./src/resources/shared.ts">AsyncResponse</a></code>
+- <code><a href="./src/resources/shared.ts">Currency</a></code>
+
 # Connections
 
 Types:
