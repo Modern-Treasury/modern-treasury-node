@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.7.0 (2023-09-25)
+
+Full Changelog: [v2.6.0...v2.7.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.6.0...v2.7.0)
+
+### Features
+
+* **client:** handle retry-after with a date ([#242](https://github.com/Modern-Treasury/modern-treasury-node/issues/242)) ([ca21e25](https://github.com/Modern-Treasury/modern-treasury-node/commit/ca21e25f68698fdc6d2ed57d7cdf3cb54498bd82))
+* **client:** support importing node or web shims manually ([#238](https://github.com/Modern-Treasury/modern-treasury-node/issues/238)) ([ce14a0e](https://github.com/Modern-Treasury/modern-treasury-node/commit/ce14a0e1c74e115c77630d8d404c0e57c29c49de))
+* **package:** export a root error type ([#241](https://github.com/Modern-Treasury/modern-treasury-node/issues/241)) ([c8b64f9](https://github.com/Modern-Treasury/modern-treasury-node/commit/c8b64f9ffdc28b63ecc7c7f4609742ca76180b94))
+
+
+### Documentation
+
+* **api.md:** add shared models ([#240](https://github.com/Modern-Treasury/modern-treasury-node/issues/240)) ([1a30c77](https://github.com/Modern-Treasury/modern-treasury-node/commit/1a30c779072efc9138105880419c4d22957943db))
+* **README:** fix variable names in some examples ([#239](https://github.com/Modern-Treasury/modern-treasury-node/issues/239)) ([4a4178f](https://github.com/Modern-Treasury/modern-treasury-node/commit/4a4178f335ac2c67719254f85d0b03e826ab86a3))
+* **readme:** remove incorrect wording in opening ([#236](https://github.com/Modern-Treasury/modern-treasury-node/issues/236)) ([8098776](https://github.com/Modern-Treasury/modern-treasury-node/commit/8098776cb99957b789f4a0dda6fa185b8cc7c069))
+
 ## 2.6.0 (2023-09-19)
 
 Full Changelog: [v2.5.0...v2.6.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.5.0...v2.6.0)
