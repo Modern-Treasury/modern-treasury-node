@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.1 (2023-10-02)
+
+Full Changelog: [v2.7.0...v2.7.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.7.0...v2.7.1)
+
+### Chores
+
+* **internal:** update lock file ([#244](https://github.com/Modern-Treasury/modern-treasury-node/issues/244)) ([088933a](https://github.com/Modern-Treasury/modern-treasury-node/commit/088933ab6558f327a988d539bfc183f9807968c1))
+
 ## 2.7.0 (2023-09-25)
 
 Full Changelog: [v2.6.0...v2.7.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.6.0...v2.7.0)
