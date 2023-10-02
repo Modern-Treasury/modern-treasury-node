@@ -103,7 +103,7 @@ describe('instantiate client', () => {
 
   test('custom signal', async () => {
     const client = new ModernTreasury({
-      baseURL: 'http://127.0.0.1:4010',
+      baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
       organizationId: 'my-organization-ID',
       apiKey: 'my api key',
       fetch: (...args) => {
@@ -196,8 +196,8 @@ describe('idempotency', () => {
   test('key can be set per-request', async () => {
     const client = new ModernTreasury({
       apiKey: 'my api key',
+      baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
       organizationId: 'my-organization-ID',
-      baseURL: 'http://127.0.0.1:4010',
     });
     await client.counterparties.create({ name: 'string' }, { idempotencyKey: 'my-idempotency-key' });
   });
