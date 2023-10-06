@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.2 (2023-10-06)
+
+Full Changelog: [v2.7.1...v2.7.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.7.1...v2.7.2)
+
+### Bug Fixes
+
+* prevent ReferenceError, update compatibility to ES2020 and Node 18+ ([#248](https://github.com/Modern-Treasury/modern-treasury-node/issues/248)) ([03620a3](https://github.com/Modern-Treasury/modern-treasury-node/commit/03620a3d8c24e203b98352554b4c88e7b051345a))
+
 ## 2.7.1 (2023-10-02)
 
 Full Changelog: [v2.7.0...v2.7.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.7.0...v2.7.1)
