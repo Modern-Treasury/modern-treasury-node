@@ -180,7 +180,7 @@ export interface BalanceReportListParams extends PageParams {
 }
 
 export namespace BalanceReports {
-  export type BalanceReport = BalanceReportsAPI.BalanceReport;
+  export import BalanceReport = BalanceReportsAPI.BalanceReport;
   export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
-  export type BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
+  export import BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
 }

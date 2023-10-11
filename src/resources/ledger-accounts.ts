@@ -514,10 +514,10 @@ export namespace LedgerAccountListParams {
 }
 
 export namespace LedgerAccounts {
-  export type LedgerAccount = LedgerAccountsAPI.LedgerAccount;
+  export import LedgerAccount = LedgerAccountsAPI.LedgerAccount;
   export import LedgerAccountsPage = LedgerAccountsAPI.LedgerAccountsPage;
-  export type LedgerAccountCreateParams = LedgerAccountsAPI.LedgerAccountCreateParams;
-  export type LedgerAccountRetrieveParams = LedgerAccountsAPI.LedgerAccountRetrieveParams;
-  export type LedgerAccountUpdateParams = LedgerAccountsAPI.LedgerAccountUpdateParams;
-  export type LedgerAccountListParams = LedgerAccountsAPI.LedgerAccountListParams;
+  export import LedgerAccountCreateParams = LedgerAccountsAPI.LedgerAccountCreateParams;
+  export import LedgerAccountRetrieveParams = LedgerAccountsAPI.LedgerAccountRetrieveParams;
+  export import LedgerAccountUpdateParams = LedgerAccountsAPI.LedgerAccountUpdateParams;
+  export import LedgerAccountListParams = LedgerAccountsAPI.LedgerAccountListParams;
 }

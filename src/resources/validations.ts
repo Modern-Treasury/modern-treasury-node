@@ -143,6 +143,6 @@ export interface ValidationValidateRoutingNumberParams {
 }
 
 export namespace Validations {
-  export type RoutingNumberLookupRequest = ValidationsAPI.RoutingNumberLookupRequest;
-  export type ValidationValidateRoutingNumberParams = ValidationsAPI.ValidationValidateRoutingNumberParams;
+  export import RoutingNumberLookupRequest = ValidationsAPI.RoutingNumberLookupRequest;
+  export import ValidationValidateRoutingNumberParams = ValidationsAPI.ValidationValidateRoutingNumberParams;
 }

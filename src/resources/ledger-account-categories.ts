@@ -428,13 +428,10 @@ export namespace LedgerAccountCategoryListParams {
 }
 
 export namespace LedgerAccountCategories {
-  export type LedgerAccountCategory = LedgerAccountCategoriesAPI.LedgerAccountCategory;
+  export import LedgerAccountCategory = LedgerAccountCategoriesAPI.LedgerAccountCategory;
   export import LedgerAccountCategoriesPage = LedgerAccountCategoriesAPI.LedgerAccountCategoriesPage;
-  export type LedgerAccountCategoryCreateParams =
-    LedgerAccountCategoriesAPI.LedgerAccountCategoryCreateParams;
-  export type LedgerAccountCategoryRetrieveParams =
-    LedgerAccountCategoriesAPI.LedgerAccountCategoryRetrieveParams;
-  export type LedgerAccountCategoryUpdateParams =
-    LedgerAccountCategoriesAPI.LedgerAccountCategoryUpdateParams;
-  export type LedgerAccountCategoryListParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryListParams;
+  export import LedgerAccountCategoryCreateParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryCreateParams;
+  export import LedgerAccountCategoryRetrieveParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryRetrieveParams;
+  export import LedgerAccountCategoryUpdateParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryUpdateParams;
+  export import LedgerAccountCategoryListParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryListParams;
 }

@@ -829,15 +829,15 @@ export namespace InvoiceUpdateParams {
 export interface InvoiceListParams extends PageParams {}
 
 export namespace Invoices {
-  export type Invoice = InvoicesAPI.Invoice;
+  export import Invoice = InvoicesAPI.Invoice;
   export import InvoicesPage = InvoicesAPI.InvoicesPage;
-  export type InvoiceCreateParams = InvoicesAPI.InvoiceCreateParams;
-  export type InvoiceUpdateParams = InvoicesAPI.InvoiceUpdateParams;
-  export type InvoiceListParams = InvoicesAPI.InvoiceListParams;
+  export import InvoiceCreateParams = InvoicesAPI.InvoiceCreateParams;
+  export import InvoiceUpdateParams = InvoicesAPI.InvoiceUpdateParams;
+  export import InvoiceListParams = InvoicesAPI.InvoiceListParams;
   export import LineItems = LineItemsAPI.LineItems;
-  export type InvoiceLineItem = LineItemsAPI.InvoiceLineItem;
+  export import InvoiceLineItem = LineItemsAPI.InvoiceLineItem;
   export import InvoiceLineItemsPage = LineItemsAPI.InvoiceLineItemsPage;
-  export type LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
-  export type LineItemUpdateParams = LineItemsAPI.LineItemUpdateParams;
-  export type LineItemListParams = LineItemsAPI.LineItemListParams;
+  export import LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
+  export import LineItemUpdateParams = LineItemsAPI.LineItemUpdateParams;
+  export import LineItemListParams = LineItemsAPI.LineItemListParams;
 }

@@ -360,13 +360,13 @@ export interface InternalAccountListParams extends PageParams {
 }
 
 export namespace InternalAccounts {
-  export type InternalAccount = InternalAccountsAPI.InternalAccount;
+  export import InternalAccount = InternalAccountsAPI.InternalAccount;
   export import InternalAccountsPage = InternalAccountsAPI.InternalAccountsPage;
-  export type InternalAccountCreateParams = InternalAccountsAPI.InternalAccountCreateParams;
-  export type InternalAccountUpdateParams = InternalAccountsAPI.InternalAccountUpdateParams;
-  export type InternalAccountListParams = InternalAccountsAPI.InternalAccountListParams;
+  export import InternalAccountCreateParams = InternalAccountsAPI.InternalAccountCreateParams;
+  export import InternalAccountUpdateParams = InternalAccountsAPI.InternalAccountUpdateParams;
+  export import InternalAccountListParams = InternalAccountsAPI.InternalAccountListParams;
   export import BalanceReports = BalanceReportsAPI.BalanceReports;
-  export type BalanceReport = BalanceReportsAPI.BalanceReport;
+  export import BalanceReport = BalanceReportsAPI.BalanceReport;
   export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
-  export type BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
+  export import BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
 }

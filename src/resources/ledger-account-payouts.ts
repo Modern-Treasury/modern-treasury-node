@@ -239,9 +239,9 @@ export interface LedgerAccountPayoutListParams extends PageParams {
 }
 
 export namespace LedgerAccountPayouts {
-  export type LedgerAccountPayout = LedgerAccountPayoutsAPI.LedgerAccountPayout;
+  export import LedgerAccountPayout = LedgerAccountPayoutsAPI.LedgerAccountPayout;
   export import LedgerAccountPayoutsPage = LedgerAccountPayoutsAPI.LedgerAccountPayoutsPage;
-  export type LedgerAccountPayoutCreateParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutCreateParams;
-  export type LedgerAccountPayoutUpdateParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutUpdateParams;
-  export type LedgerAccountPayoutListParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutListParams;
+  export import LedgerAccountPayoutCreateParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutCreateParams;
+  export import LedgerAccountPayoutUpdateParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutUpdateParams;
+  export import LedgerAccountPayoutListParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutListParams;
 }
