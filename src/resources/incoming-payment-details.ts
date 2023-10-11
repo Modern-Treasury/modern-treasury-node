@@ -324,10 +324,9 @@ export interface IncomingPaymentDetailCreateAsyncParams {
 }
 
 export namespace IncomingPaymentDetails {
-  export type IncomingPaymentDetail = IncomingPaymentDetailsAPI.IncomingPaymentDetail;
+  export import IncomingPaymentDetail = IncomingPaymentDetailsAPI.IncomingPaymentDetail;
   export import IncomingPaymentDetailsPage = IncomingPaymentDetailsAPI.IncomingPaymentDetailsPage;
-  export type IncomingPaymentDetailUpdateParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailUpdateParams;
-  export type IncomingPaymentDetailListParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailListParams;
-  export type IncomingPaymentDetailCreateAsyncParams =
-    IncomingPaymentDetailsAPI.IncomingPaymentDetailCreateAsyncParams;
+  export import IncomingPaymentDetailUpdateParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailUpdateParams;
+  export import IncomingPaymentDetailListParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailListParams;
+  export import IncomingPaymentDetailCreateAsyncParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailCreateAsyncParams;
 }

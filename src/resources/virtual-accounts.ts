@@ -292,9 +292,9 @@ export interface VirtualAccountListParams extends PageParams {
 }
 
 export namespace VirtualAccounts {
-  export type VirtualAccount = VirtualAccountsAPI.VirtualAccount;
+  export import VirtualAccount = VirtualAccountsAPI.VirtualAccount;
   export import VirtualAccountsPage = VirtualAccountsAPI.VirtualAccountsPage;
-  export type VirtualAccountCreateParams = VirtualAccountsAPI.VirtualAccountCreateParams;
-  export type VirtualAccountUpdateParams = VirtualAccountsAPI.VirtualAccountUpdateParams;
-  export type VirtualAccountListParams = VirtualAccountsAPI.VirtualAccountListParams;
+  export import VirtualAccountCreateParams = VirtualAccountsAPI.VirtualAccountCreateParams;
+  export import VirtualAccountUpdateParams = VirtualAccountsAPI.VirtualAccountUpdateParams;
+  export import VirtualAccountListParams = VirtualAccountsAPI.VirtualAccountListParams;
 }

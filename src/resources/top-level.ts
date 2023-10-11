@@ -7,5 +7,5 @@ export interface PingResponse {
 }
 
 export namespace TopLevel {
-  export type PingResponse = TopLevelAPI.PingResponse;
+  export import PingResponse = TopLevelAPI.PingResponse;
 }

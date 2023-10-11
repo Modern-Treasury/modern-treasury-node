@@ -278,12 +278,12 @@ export interface TransactionListParams extends PageParams {
 }
 
 export namespace Transactions {
-  export type Transaction = TransactionsAPI.Transaction;
+  export import Transaction = TransactionsAPI.Transaction;
   export import TransactionsPage = TransactionsAPI.TransactionsPage;
-  export type TransactionUpdateParams = TransactionsAPI.TransactionUpdateParams;
-  export type TransactionListParams = TransactionsAPI.TransactionListParams;
+  export import TransactionUpdateParams = TransactionsAPI.TransactionUpdateParams;
+  export import TransactionListParams = TransactionsAPI.TransactionListParams;
   export import LineItems = LineItemsAPI.LineItems;
-  export type TransactionLineItem = LineItemsAPI.TransactionLineItem;
+  export import TransactionLineItem = LineItemsAPI.TransactionLineItem;
   export import TransactionLineItemsPage = LineItemsAPI.TransactionLineItemsPage;
-  export type LineItemListParams = LineItemsAPI.LineItemListParams;
+  export import LineItemListParams = LineItemsAPI.LineItemListParams;
 }

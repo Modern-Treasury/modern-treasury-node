@@ -2266,17 +2266,17 @@ export namespace PaymentOrderCreateAsyncParams {
 }
 
 export namespace PaymentOrders {
-  export type PaymentOrder = PaymentOrdersAPI.PaymentOrder;
-  export type PaymentOrderSubtype = PaymentOrdersAPI.PaymentOrderSubtype;
-  export type PaymentOrderType = PaymentOrdersAPI.PaymentOrderType;
+  export import PaymentOrder = PaymentOrdersAPI.PaymentOrder;
+  export import PaymentOrderSubtype = PaymentOrdersAPI.PaymentOrderSubtype;
+  export import PaymentOrderType = PaymentOrdersAPI.PaymentOrderType;
   export import PaymentOrdersPage = PaymentOrdersAPI.PaymentOrdersPage;
-  export type PaymentOrderCreateParams = PaymentOrdersAPI.PaymentOrderCreateParams;
-  export type PaymentOrderUpdateParams = PaymentOrdersAPI.PaymentOrderUpdateParams;
-  export type PaymentOrderListParams = PaymentOrdersAPI.PaymentOrderListParams;
-  export type PaymentOrderCreateAsyncParams = PaymentOrdersAPI.PaymentOrderCreateAsyncParams;
+  export import PaymentOrderCreateParams = PaymentOrdersAPI.PaymentOrderCreateParams;
+  export import PaymentOrderUpdateParams = PaymentOrdersAPI.PaymentOrderUpdateParams;
+  export import PaymentOrderListParams = PaymentOrdersAPI.PaymentOrderListParams;
+  export import PaymentOrderCreateAsyncParams = PaymentOrdersAPI.PaymentOrderCreateAsyncParams;
   export import Reversals = ReversalsAPI.Reversals;
-  export type Reversal = ReversalsAPI.Reversal;
+  export import Reversal = ReversalsAPI.Reversal;
   export import ReversalsPage = ReversalsAPI.ReversalsPage;
-  export type ReversalCreateParams = ReversalsAPI.ReversalCreateParams;
-  export type ReversalListParams = ReversalsAPI.ReversalListParams;
+  export import ReversalCreateParams = ReversalsAPI.ReversalCreateParams;
+  export import ReversalListParams = ReversalsAPI.ReversalListParams;
 }
