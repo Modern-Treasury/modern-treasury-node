@@ -2,11 +2,12 @@
 
 import * as Core from './core';
 import * as Pagination from './pagination';
-import * as API from './resources/index';
 import * as Errors from './error';
 import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
 import * as qs from 'qs';
+import * as API from 'modern-treasury/resources/index';
+import * as TopLevelAPI from 'modern-treasury/resources/top-level';
 
 export interface ClientOptions {
   /**
@@ -172,7 +173,7 @@ export class ModernTreasury extends Core.APIClient {
    * A test endpoint often used to confirm credentials and headers are being passed
    * in correctly.
    */
-  ping(options?: Core.RequestOptions): Core.APIPromise<ModernTreasury.PingResponse> {
+  ping(options?: Core.RequestOptions): Core.APIPromise<TopLevelAPI.PingResponse> {
     return this.get('/api/ping', options);
   }
 
@@ -244,217 +245,217 @@ export namespace ModernTreasury {
   export import PageParams = Pagination.PageParams;
   export import PageResponse = Pagination.PageResponse;
 
-  export import PingResponse = API.PingResponse;
+  export type PingResponse = API.PingResponse;
 
   export import Connections = API.Connections;
-  export import Connection = API.Connection;
+  export type Connection = API.Connection;
   export import ConnectionsPage = API.ConnectionsPage;
-  export import ConnectionListParams = API.ConnectionListParams;
+  export type ConnectionListParams = API.ConnectionListParams;
 
   export import Counterparties = API.Counterparties;
-  export import Counterparty = API.Counterparty;
-  export import CounterpartyCollectAccountResponse = API.CounterpartyCollectAccountResponse;
+  export type Counterparty = API.Counterparty;
+  export type CounterpartyCollectAccountResponse = API.CounterpartyCollectAccountResponse;
   export import CounterpartiesPage = API.CounterpartiesPage;
-  export import CounterpartyCreateParams = API.CounterpartyCreateParams;
-  export import CounterpartyUpdateParams = API.CounterpartyUpdateParams;
-  export import CounterpartyListParams = API.CounterpartyListParams;
-  export import CounterpartyCollectAccountParams = API.CounterpartyCollectAccountParams;
+  export type CounterpartyCreateParams = API.CounterpartyCreateParams;
+  export type CounterpartyUpdateParams = API.CounterpartyUpdateParams;
+  export type CounterpartyListParams = API.CounterpartyListParams;
+  export type CounterpartyCollectAccountParams = API.CounterpartyCollectAccountParams;
 
   export import Events = API.Events;
-  export import Event = API.Event;
+  export type Event = API.Event;
   export import EventsPage = API.EventsPage;
-  export import EventListParams = API.EventListParams;
+  export type EventListParams = API.EventListParams;
 
   export import ExpectedPayments = API.ExpectedPayments;
-  export import ExpectedPayment = API.ExpectedPayment;
-  export import ExpectedPaymentType = API.ExpectedPaymentType;
+  export type ExpectedPayment = API.ExpectedPayment;
+  export type ExpectedPaymentType = API.ExpectedPaymentType;
   export import ExpectedPaymentsPage = API.ExpectedPaymentsPage;
-  export import ExpectedPaymentCreateParams = API.ExpectedPaymentCreateParams;
-  export import ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
-  export import ExpectedPaymentListParams = API.ExpectedPaymentListParams;
+  export type ExpectedPaymentCreateParams = API.ExpectedPaymentCreateParams;
+  export type ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
+  export type ExpectedPaymentListParams = API.ExpectedPaymentListParams;
 
   export import ExternalAccounts = API.ExternalAccounts;
-  export import ExternalAccount = API.ExternalAccount;
-  export import ExternalAccountType = API.ExternalAccountType;
+  export type ExternalAccount = API.ExternalAccount;
+  export type ExternalAccountType = API.ExternalAccountType;
   export import ExternalAccountsPage = API.ExternalAccountsPage;
-  export import ExternalAccountCreateParams = API.ExternalAccountCreateParams;
-  export import ExternalAccountUpdateParams = API.ExternalAccountUpdateParams;
-  export import ExternalAccountListParams = API.ExternalAccountListParams;
-  export import ExternalAccountCompleteVerificationParams = API.ExternalAccountCompleteVerificationParams;
-  export import ExternalAccountVerifyParams = API.ExternalAccountVerifyParams;
+  export type ExternalAccountCreateParams = API.ExternalAccountCreateParams;
+  export type ExternalAccountUpdateParams = API.ExternalAccountUpdateParams;
+  export type ExternalAccountListParams = API.ExternalAccountListParams;
+  export type ExternalAccountCompleteVerificationParams = API.ExternalAccountCompleteVerificationParams;
+  export type ExternalAccountVerifyParams = API.ExternalAccountVerifyParams;
 
   export import IncomingPaymentDetails = API.IncomingPaymentDetails;
-  export import IncomingPaymentDetail = API.IncomingPaymentDetail;
+  export type IncomingPaymentDetail = API.IncomingPaymentDetail;
   export import IncomingPaymentDetailsPage = API.IncomingPaymentDetailsPage;
-  export import IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
-  export import IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
-  export import IncomingPaymentDetailCreateAsyncParams = API.IncomingPaymentDetailCreateAsyncParams;
+  export type IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
+  export type IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
+  export type IncomingPaymentDetailCreateAsyncParams = API.IncomingPaymentDetailCreateAsyncParams;
 
   export import Invoices = API.Invoices;
-  export import Invoice = API.Invoice;
+  export type Invoice = API.Invoice;
   export import InvoicesPage = API.InvoicesPage;
-  export import InvoiceCreateParams = API.InvoiceCreateParams;
-  export import InvoiceUpdateParams = API.InvoiceUpdateParams;
-  export import InvoiceListParams = API.InvoiceListParams;
+  export type InvoiceCreateParams = API.InvoiceCreateParams;
+  export type InvoiceUpdateParams = API.InvoiceUpdateParams;
+  export type InvoiceListParams = API.InvoiceListParams;
 
   export import Documents = API.Documents;
-  export import Document = API.Document;
+  export type Document = API.Document;
   export import DocumentsPage = API.DocumentsPage;
-  export import DocumentCreateParams = API.DocumentCreateParams;
-  export import DocumentListParams = API.DocumentListParams;
+  export type DocumentCreateParams = API.DocumentCreateParams;
+  export type DocumentListParams = API.DocumentListParams;
 
   export import AccountCollectionFlows = API.AccountCollectionFlows;
-  export import AccountCollectionFlow = API.AccountCollectionFlow;
+  export type AccountCollectionFlow = API.AccountCollectionFlow;
   export import AccountCollectionFlowsPage = API.AccountCollectionFlowsPage;
-  export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
-  export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
-  export import AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
+  export type AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
+  export type AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
+  export type AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
 
   export import AccountDetails = API.AccountDetails;
-  export import AccountDetail = API.AccountDetail;
+  export type AccountDetail = API.AccountDetail;
   export import AccountDetailsPage = API.AccountDetailsPage;
-  export import AccountDetailCreateParams = API.AccountDetailCreateParams;
-  export import AccountDetailListParams = API.AccountDetailListParams;
+  export type AccountDetailCreateParams = API.AccountDetailCreateParams;
+  export type AccountDetailListParams = API.AccountDetailListParams;
 
   export import RoutingDetails = API.RoutingDetails;
-  export import RoutingDetail = API.RoutingDetail;
+  export type RoutingDetail = API.RoutingDetail;
   export import RoutingDetailsPage = API.RoutingDetailsPage;
-  export import RoutingDetailCreateParams = API.RoutingDetailCreateParams;
-  export import RoutingDetailListParams = API.RoutingDetailListParams;
+  export type RoutingDetailCreateParams = API.RoutingDetailCreateParams;
+  export type RoutingDetailListParams = API.RoutingDetailListParams;
 
   export import InternalAccounts = API.InternalAccounts;
-  export import InternalAccount = API.InternalAccount;
+  export type InternalAccount = API.InternalAccount;
   export import InternalAccountsPage = API.InternalAccountsPage;
-  export import InternalAccountCreateParams = API.InternalAccountCreateParams;
-  export import InternalAccountUpdateParams = API.InternalAccountUpdateParams;
-  export import InternalAccountListParams = API.InternalAccountListParams;
+  export type InternalAccountCreateParams = API.InternalAccountCreateParams;
+  export type InternalAccountUpdateParams = API.InternalAccountUpdateParams;
+  export type InternalAccountListParams = API.InternalAccountListParams;
 
   export import Ledgers = API.Ledgers;
-  export import Ledger = API.Ledger;
+  export type Ledger = API.Ledger;
   export import LedgersPage = API.LedgersPage;
-  export import LedgerCreateParams = API.LedgerCreateParams;
-  export import LedgerUpdateParams = API.LedgerUpdateParams;
-  export import LedgerListParams = API.LedgerListParams;
+  export type LedgerCreateParams = API.LedgerCreateParams;
+  export type LedgerUpdateParams = API.LedgerUpdateParams;
+  export type LedgerListParams = API.LedgerListParams;
 
   export import LedgerableEvents = API.LedgerableEvents;
-  export import LedgerableEvent = API.LedgerableEvent;
-  export import LedgerableEventCreateParams = API.LedgerableEventCreateParams;
+  export type LedgerableEvent = API.LedgerableEvent;
+  export type LedgerableEventCreateParams = API.LedgerableEventCreateParams;
 
   export import LedgerAccountCategories = API.LedgerAccountCategories;
-  export import LedgerAccountCategory = API.LedgerAccountCategory;
+  export type LedgerAccountCategory = API.LedgerAccountCategory;
   export import LedgerAccountCategoriesPage = API.LedgerAccountCategoriesPage;
-  export import LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
-  export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
-  export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
-  export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
+  export type LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
+  export type LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
+  export type LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
+  export type LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
 
   export import LedgerAccounts = API.LedgerAccounts;
-  export import LedgerAccount = API.LedgerAccount;
+  export type LedgerAccount = API.LedgerAccount;
   export import LedgerAccountsPage = API.LedgerAccountsPage;
-  export import LedgerAccountCreateParams = API.LedgerAccountCreateParams;
-  export import LedgerAccountRetrieveParams = API.LedgerAccountRetrieveParams;
-  export import LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;
-  export import LedgerAccountListParams = API.LedgerAccountListParams;
+  export type LedgerAccountCreateParams = API.LedgerAccountCreateParams;
+  export type LedgerAccountRetrieveParams = API.LedgerAccountRetrieveParams;
+  export type LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;
+  export type LedgerAccountListParams = API.LedgerAccountListParams;
 
   export import LedgerAccountBalanceMonitors = API.LedgerAccountBalanceMonitors;
-  export import LedgerAccountBalanceMonitor = API.LedgerAccountBalanceMonitor;
+  export type LedgerAccountBalanceMonitor = API.LedgerAccountBalanceMonitor;
   export import LedgerAccountBalanceMonitorsPage = API.LedgerAccountBalanceMonitorsPage;
-  export import LedgerAccountBalanceMonitorCreateParams = API.LedgerAccountBalanceMonitorCreateParams;
-  export import LedgerAccountBalanceMonitorUpdateParams = API.LedgerAccountBalanceMonitorUpdateParams;
-  export import LedgerAccountBalanceMonitorListParams = API.LedgerAccountBalanceMonitorListParams;
+  export type LedgerAccountBalanceMonitorCreateParams = API.LedgerAccountBalanceMonitorCreateParams;
+  export type LedgerAccountBalanceMonitorUpdateParams = API.LedgerAccountBalanceMonitorUpdateParams;
+  export type LedgerAccountBalanceMonitorListParams = API.LedgerAccountBalanceMonitorListParams;
 
   export import LedgerAccountPayouts = API.LedgerAccountPayouts;
-  export import LedgerAccountPayout = API.LedgerAccountPayout;
+  export type LedgerAccountPayout = API.LedgerAccountPayout;
   export import LedgerAccountPayoutsPage = API.LedgerAccountPayoutsPage;
-  export import LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
-  export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
-  export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
+  export type LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
+  export type LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
+  export type LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
 
   export import LedgerAccountStatements = API.LedgerAccountStatements;
-  export import LedgerAccountStatementCreateResponse = API.LedgerAccountStatementCreateResponse;
-  export import LedgerAccountStatementRetrieveResponse = API.LedgerAccountStatementRetrieveResponse;
-  export import LedgerAccountStatementCreateParams = API.LedgerAccountStatementCreateParams;
+  export type LedgerAccountStatementCreateResponse = API.LedgerAccountStatementCreateResponse;
+  export type LedgerAccountStatementRetrieveResponse = API.LedgerAccountStatementRetrieveResponse;
+  export type LedgerAccountStatementCreateParams = API.LedgerAccountStatementCreateParams;
 
   export import LedgerEntries = API.LedgerEntries;
-  export import LedgerEntry = API.LedgerEntry;
+  export type LedgerEntry = API.LedgerEntry;
   export import LedgerEntriesPage = API.LedgerEntriesPage;
-  export import LedgerEntryRetrieveParams = API.LedgerEntryRetrieveParams;
-  export import LedgerEntryListParams = API.LedgerEntryListParams;
+  export type LedgerEntryRetrieveParams = API.LedgerEntryRetrieveParams;
+  export type LedgerEntryListParams = API.LedgerEntryListParams;
 
   export import LedgerEventHandlers = API.LedgerEventHandlers;
-  export import LedgerEventHandlerCreateResponse = API.LedgerEventHandlerCreateResponse;
-  export import LedgerEventHandlerRetrieveResponse = API.LedgerEventHandlerRetrieveResponse;
-  export import LedgerEventHandlerListResponse = API.LedgerEventHandlerListResponse;
-  export import LedgerEventHandlerDeleteResponse = API.LedgerEventHandlerDeleteResponse;
+  export type LedgerEventHandlerCreateResponse = API.LedgerEventHandlerCreateResponse;
+  export type LedgerEventHandlerRetrieveResponse = API.LedgerEventHandlerRetrieveResponse;
+  export type LedgerEventHandlerListResponse = API.LedgerEventHandlerListResponse;
+  export type LedgerEventHandlerDeleteResponse = API.LedgerEventHandlerDeleteResponse;
   export import LedgerEventHandlerListResponsesPage = API.LedgerEventHandlerListResponsesPage;
-  export import LedgerEventHandlerCreateParams = API.LedgerEventHandlerCreateParams;
-  export import LedgerEventHandlerListParams = API.LedgerEventHandlerListParams;
+  export type LedgerEventHandlerCreateParams = API.LedgerEventHandlerCreateParams;
+  export type LedgerEventHandlerListParams = API.LedgerEventHandlerListParams;
 
   export import LedgerTransactions = API.LedgerTransactions;
-  export import LedgerTransaction = API.LedgerTransaction;
+  export type LedgerTransaction = API.LedgerTransaction;
   export import LedgerTransactionsPage = API.LedgerTransactionsPage;
-  export import LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
-  export import LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
-  export import LedgerTransactionListParams = API.LedgerTransactionListParams;
-  export import LedgerTransactionCreateReversalParams = API.LedgerTransactionCreateReversalParams;
+  export type LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
+  export type LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
+  export type LedgerTransactionListParams = API.LedgerTransactionListParams;
+  export type LedgerTransactionCreateReversalParams = API.LedgerTransactionCreateReversalParams;
 
   export import LineItems = API.LineItems;
-  export import LineItem = API.LineItem;
+  export type LineItem = API.LineItem;
   export import LineItemsPage = API.LineItemsPage;
-  export import LineItemUpdateParams = API.LineItemUpdateParams;
-  export import LineItemListParams = API.LineItemListParams;
+  export type LineItemUpdateParams = API.LineItemUpdateParams;
+  export type LineItemListParams = API.LineItemListParams;
 
   export import PaymentFlows = API.PaymentFlows;
-  export import PaymentFlow = API.PaymentFlow;
+  export type PaymentFlow = API.PaymentFlow;
   export import PaymentFlowsPage = API.PaymentFlowsPage;
-  export import PaymentFlowCreateParams = API.PaymentFlowCreateParams;
-  export import PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;
-  export import PaymentFlowListParams = API.PaymentFlowListParams;
+  export type PaymentFlowCreateParams = API.PaymentFlowCreateParams;
+  export type PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;
+  export type PaymentFlowListParams = API.PaymentFlowListParams;
 
   export import PaymentOrders = API.PaymentOrders;
-  export import PaymentOrder = API.PaymentOrder;
-  export import PaymentOrderSubtype = API.PaymentOrderSubtype;
-  export import PaymentOrderType = API.PaymentOrderType;
+  export type PaymentOrder = API.PaymentOrder;
+  export type PaymentOrderSubtype = API.PaymentOrderSubtype;
+  export type PaymentOrderType = API.PaymentOrderType;
   export import PaymentOrdersPage = API.PaymentOrdersPage;
-  export import PaymentOrderCreateParams = API.PaymentOrderCreateParams;
-  export import PaymentOrderUpdateParams = API.PaymentOrderUpdateParams;
-  export import PaymentOrderListParams = API.PaymentOrderListParams;
-  export import PaymentOrderCreateAsyncParams = API.PaymentOrderCreateAsyncParams;
+  export type PaymentOrderCreateParams = API.PaymentOrderCreateParams;
+  export type PaymentOrderUpdateParams = API.PaymentOrderUpdateParams;
+  export type PaymentOrderListParams = API.PaymentOrderListParams;
+  export type PaymentOrderCreateAsyncParams = API.PaymentOrderCreateAsyncParams;
 
   export import PaymentReferences = API.PaymentReferences;
-  export import PaymentReference = API.PaymentReference;
+  export type PaymentReference = API.PaymentReference;
   export import PaymentReferencesPage = API.PaymentReferencesPage;
-  export import PaymentReferenceListParams = API.PaymentReferenceListParams;
+  export type PaymentReferenceListParams = API.PaymentReferenceListParams;
 
   export import Returns = API.Returns;
-  export import ReturnObject = API.ReturnObject;
+  export type ReturnObject = API.ReturnObject;
   export import ReturnObjectsPage = API.ReturnObjectsPage;
-  export import ReturnCreateParams = API.ReturnCreateParams;
-  export import ReturnListParams = API.ReturnListParams;
+  export type ReturnCreateParams = API.ReturnCreateParams;
+  export type ReturnListParams = API.ReturnListParams;
 
   export import Transactions = API.Transactions;
-  export import Transaction = API.Transaction;
+  export type Transaction = API.Transaction;
   export import TransactionsPage = API.TransactionsPage;
-  export import TransactionUpdateParams = API.TransactionUpdateParams;
-  export import TransactionListParams = API.TransactionListParams;
+  export type TransactionUpdateParams = API.TransactionUpdateParams;
+  export type TransactionListParams = API.TransactionListParams;
 
   export import Validations = API.Validations;
-  export import RoutingNumberLookupRequest = API.RoutingNumberLookupRequest;
-  export import ValidationValidateRoutingNumberParams = API.ValidationValidateRoutingNumberParams;
+  export type RoutingNumberLookupRequest = API.RoutingNumberLookupRequest;
+  export type ValidationValidateRoutingNumberParams = API.ValidationValidateRoutingNumberParams;
 
   export import PaperItems = API.PaperItems;
-  export import PaperItem = API.PaperItem;
+  export type PaperItem = API.PaperItem;
   export import PaperItemsPage = API.PaperItemsPage;
-  export import PaperItemListParams = API.PaperItemListParams;
+  export type PaperItemListParams = API.PaperItemListParams;
 
   export import Webhooks = API.Webhooks;
 
   export import VirtualAccounts = API.VirtualAccounts;
-  export import VirtualAccount = API.VirtualAccount;
+  export type VirtualAccount = API.VirtualAccount;
   export import VirtualAccountsPage = API.VirtualAccountsPage;
-  export import VirtualAccountCreateParams = API.VirtualAccountCreateParams;
-  export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
-  export import VirtualAccountListParams = API.VirtualAccountListParams;
+  export type VirtualAccountCreateParams = API.VirtualAccountCreateParams;
+  export type VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
+  export type VirtualAccountListParams = API.VirtualAccountListParams;
 
   export import AccountsType = API.AccountsType;
   export import AsyncResponse = API.AsyncResponse;

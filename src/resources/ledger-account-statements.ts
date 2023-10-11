@@ -2,7 +2,7 @@
 
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
-import * as API from './index';
+import * as LedgerAccountStatementsAPI from 'modern-treasury/resources/ledger-account-statements';
 
 export class LedgerAccountStatements extends APIResource {
   /**
@@ -609,7 +609,10 @@ export interface LedgerAccountStatementCreateParams {
 }
 
 export namespace LedgerAccountStatements {
-  export import LedgerAccountStatementCreateResponse = API.LedgerAccountStatementCreateResponse;
-  export import LedgerAccountStatementRetrieveResponse = API.LedgerAccountStatementRetrieveResponse;
-  export import LedgerAccountStatementCreateParams = API.LedgerAccountStatementCreateParams;
+  export type LedgerAccountStatementCreateResponse =
+    LedgerAccountStatementsAPI.LedgerAccountStatementCreateResponse;
+  export type LedgerAccountStatementRetrieveResponse =
+    LedgerAccountStatementsAPI.LedgerAccountStatementRetrieveResponse;
+  export type LedgerAccountStatementCreateParams =
+    LedgerAccountStatementsAPI.LedgerAccountStatementCreateParams;
 }

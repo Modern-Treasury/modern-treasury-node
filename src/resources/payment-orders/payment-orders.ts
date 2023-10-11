@@ -3,16 +3,16 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/payment-orders';
+import * as ExternalAccountsAPI from 'modern-treasury/resources/external-accounts';
+import * as ReturnsAPI from 'modern-treasury/resources/returns';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as Returns from 'modern-treasury/resources/returns';
-import * as ExternalAccounts from 'modern-treasury/resources/external-accounts';
-import { Reversals } from './reversals';
-import * as API from './index';
+import * as ReversalsAPI from 'modern-treasury/resources/payment-orders/reversals';
 import { type Uploadable, maybeMultipartFormRequestOptions } from 'modern-treasury/core';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class PaymentOrders extends APIResource {
-  reversals: Reversals = new Reversals(this.client);
+  reversals: ReversalsAPI.Reversals = new ReversalsAPI.Reversals(this.client);
 
   /**
    * Create a new Payment Order
@@ -103,8 +103,6 @@ export class PaymentOrders extends APIResource {
 }
 
 export class PaymentOrdersPage extends Page<PaymentOrder> {}
-// alias so we can export it in the namespace
-type _PaymentOrdersPage = PaymentOrdersPage;
 
 export interface PaymentOrder {
   id: string;
@@ -159,7 +157,7 @@ export interface PaymentOrder {
    * If the payment order's status is `returned`, this will include the return
    * object's data.
    */
-  current_return: Returns.ReturnObject | null;
+  current_return: ReturnsAPI.ReturnObject | null;
 
   /**
    * The ID of the compliance decision for the payment order, if transaction
@@ -932,7 +930,7 @@ export namespace PaymentOrderCreateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: ExternalAccounts.ExternalAccountType;
+    account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<ReceivingAccount.ContactDetail>;
 
@@ -1405,7 +1403,7 @@ export namespace PaymentOrderUpdateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: ExternalAccounts.ExternalAccountType;
+    account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<ReceivingAccount.ContactDetail>;
 
@@ -2073,7 +2071,7 @@ export namespace PaymentOrderCreateAsyncParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: ExternalAccounts.ExternalAccountType;
+    account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<ReceivingAccount.ContactDetail>;
 
@@ -2268,18 +2266,17 @@ export namespace PaymentOrderCreateAsyncParams {
 }
 
 export namespace PaymentOrders {
-  export import PaymentOrder = API.PaymentOrder;
-  export import PaymentOrderSubtype = API.PaymentOrderSubtype;
-  export import PaymentOrderType = API.PaymentOrderType;
-  export type PaymentOrdersPage = _PaymentOrdersPage;
-  export import PaymentOrderCreateParams = API.PaymentOrderCreateParams;
-  export import PaymentOrderUpdateParams = API.PaymentOrderUpdateParams;
-  export import PaymentOrderListParams = API.PaymentOrderListParams;
-  export import PaymentOrderCreateAsyncParams = API.PaymentOrderCreateAsyncParams;
-
-  export import Reversals = API.Reversals;
-  export import Reversal = API.Reversal;
-  export import ReversalsPage = API.ReversalsPage;
-  export import ReversalCreateParams = API.ReversalCreateParams;
-  export import ReversalListParams = API.ReversalListParams;
+  export type PaymentOrder = PaymentOrdersAPI.PaymentOrder;
+  export type PaymentOrderSubtype = PaymentOrdersAPI.PaymentOrderSubtype;
+  export type PaymentOrderType = PaymentOrdersAPI.PaymentOrderType;
+  export import PaymentOrdersPage = PaymentOrdersAPI.PaymentOrdersPage;
+  export type PaymentOrderCreateParams = PaymentOrdersAPI.PaymentOrderCreateParams;
+  export type PaymentOrderUpdateParams = PaymentOrdersAPI.PaymentOrderUpdateParams;
+  export type PaymentOrderListParams = PaymentOrdersAPI.PaymentOrderListParams;
+  export type PaymentOrderCreateAsyncParams = PaymentOrdersAPI.PaymentOrderCreateAsyncParams;
+  export import Reversals = ReversalsAPI.Reversals;
+  export type Reversal = ReversalsAPI.Reversal;
+  export import ReversalsPage = ReversalsAPI.ReversalsPage;
+  export type ReversalCreateParams = ReversalsAPI.ReversalCreateParams;
+  export type ReversalListParams = ReversalsAPI.ReversalListParams;
 }

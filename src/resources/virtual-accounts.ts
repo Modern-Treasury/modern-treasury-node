@@ -3,10 +3,10 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as AccountDetails from 'modern-treasury/resources/account-details';
-import * as RoutingDetails from 'modern-treasury/resources/routing-details';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as VirtualAccountsAPI from 'modern-treasury/resources/virtual-accounts';
+import * as AccountDetailsAPI from 'modern-treasury/resources/account-details';
+import * as RoutingDetailsAPI from 'modern-treasury/resources/routing-details';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class VirtualAccounts extends APIResource {
   /**
@@ -81,8 +81,6 @@ export class VirtualAccounts extends APIResource {
 }
 
 export class VirtualAccountsPage extends Page<VirtualAccount> {}
-// alias so we can export it in the namespace
-type _VirtualAccountsPage = VirtualAccountsPage;
 
 export interface VirtualAccount {
   id: string;
@@ -90,7 +88,7 @@ export interface VirtualAccount {
   /**
    * An array of account detail objects.
    */
-  account_details: Array<AccountDetails.AccountDetail>;
+  account_details: Array<AccountDetailsAPI.AccountDetail>;
 
   /**
    * The ID of a counterparty that the virtual account belongs to. Optional.
@@ -148,7 +146,7 @@ export interface VirtualAccount {
    * An array of routing detail objects. These will be the routing details of the
    * internal account.
    */
-  routing_details: Array<RoutingDetails.RoutingDetail>;
+  routing_details: Array<RoutingDetailsAPI.RoutingDetail>;
 
   updated_at: string;
 }
@@ -294,9 +292,9 @@ export interface VirtualAccountListParams extends PageParams {
 }
 
 export namespace VirtualAccounts {
-  export import VirtualAccount = API.VirtualAccount;
-  export type VirtualAccountsPage = _VirtualAccountsPage;
-  export import VirtualAccountCreateParams = API.VirtualAccountCreateParams;
-  export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
-  export import VirtualAccountListParams = API.VirtualAccountListParams;
+  export type VirtualAccount = VirtualAccountsAPI.VirtualAccount;
+  export import VirtualAccountsPage = VirtualAccountsAPI.VirtualAccountsPage;
+  export type VirtualAccountCreateParams = VirtualAccountsAPI.VirtualAccountCreateParams;
+  export type VirtualAccountUpdateParams = VirtualAccountsAPI.VirtualAccountUpdateParams;
+  export type VirtualAccountListParams = VirtualAccountsAPI.VirtualAccountListParams;
 }

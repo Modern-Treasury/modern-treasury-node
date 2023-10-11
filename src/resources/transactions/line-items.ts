@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LineItemsAPI from 'modern-treasury/resources/transactions/line-items';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LineItems extends APIResource {
   /**
@@ -34,8 +34,6 @@ export class LineItems extends APIResource {
 }
 
 export class TransactionLineItemsPage extends Page<TransactionLineItem> {}
-// alias so we can export it in the namespace
-type _TransactionLineItemsPage = TransactionLineItemsPage;
 
 export interface TransactionLineItem {
   id: string;
@@ -119,7 +117,7 @@ export interface LineItemListParams extends PageParams {
 }
 
 export namespace LineItems {
-  export import TransactionLineItem = API.TransactionLineItem;
-  export type TransactionLineItemsPage = _TransactionLineItemsPage;
-  export import LineItemListParams = API.LineItemListParams;
+  export type TransactionLineItem = LineItemsAPI.TransactionLineItem;
+  export import TransactionLineItemsPage = LineItemsAPI.TransactionLineItemsPage;
+  export type LineItemListParams = LineItemsAPI.LineItemListParams;
 }

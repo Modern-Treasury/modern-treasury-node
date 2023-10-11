@@ -3,9 +3,9 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as RoutingDetailsAPI from 'modern-treasury/resources/routing-details';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class RoutingDetails extends APIResource {
   /**
@@ -89,8 +89,6 @@ export class RoutingDetails extends APIResource {
 }
 
 export class RoutingDetailsPage extends Page<RoutingDetail> {}
-// alias so we can export it in the namespace
-type _RoutingDetailsPage = RoutingDetailsPage;
 
 export interface RoutingDetail {
   id: string;
@@ -264,8 +262,8 @@ export interface RoutingDetailCreateParams {
 export interface RoutingDetailListParams extends PageParams {}
 
 export namespace RoutingDetails {
-  export import RoutingDetail = API.RoutingDetail;
-  export type RoutingDetailsPage = _RoutingDetailsPage;
-  export import RoutingDetailCreateParams = API.RoutingDetailCreateParams;
-  export import RoutingDetailListParams = API.RoutingDetailListParams;
+  export type RoutingDetail = RoutingDetailsAPI.RoutingDetail;
+  export import RoutingDetailsPage = RoutingDetailsAPI.RoutingDetailsPage;
+  export type RoutingDetailCreateParams = RoutingDetailsAPI.RoutingDetailCreateParams;
+  export type RoutingDetailListParams = RoutingDetailsAPI.RoutingDetailListParams;
 }

@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LedgerAccountBalanceMonitorsAPI from 'modern-treasury/resources/ledger-account-balance-monitors';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerAccountBalanceMonitors extends APIResource {
   /**
@@ -87,8 +87,6 @@ export class LedgerAccountBalanceMonitors extends APIResource {
 }
 
 export class LedgerAccountBalanceMonitorsPage extends Page<LedgerAccountBalanceMonitor> {}
-// alias so we can export it in the namespace
-type _LedgerAccountBalanceMonitorsPage = LedgerAccountBalanceMonitorsPage;
 
 export interface LedgerAccountBalanceMonitor {
   id: string;
@@ -355,9 +353,12 @@ export interface LedgerAccountBalanceMonitorListParams extends PageParams {
 }
 
 export namespace LedgerAccountBalanceMonitors {
-  export import LedgerAccountBalanceMonitor = API.LedgerAccountBalanceMonitor;
-  export type LedgerAccountBalanceMonitorsPage = _LedgerAccountBalanceMonitorsPage;
-  export import LedgerAccountBalanceMonitorCreateParams = API.LedgerAccountBalanceMonitorCreateParams;
-  export import LedgerAccountBalanceMonitorUpdateParams = API.LedgerAccountBalanceMonitorUpdateParams;
-  export import LedgerAccountBalanceMonitorListParams = API.LedgerAccountBalanceMonitorListParams;
+  export type LedgerAccountBalanceMonitor = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitor;
+  export import LedgerAccountBalanceMonitorsPage = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorsPage;
+  export type LedgerAccountBalanceMonitorCreateParams =
+    LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorCreateParams;
+  export type LedgerAccountBalanceMonitorUpdateParams =
+    LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorUpdateParams;
+  export type LedgerAccountBalanceMonitorListParams =
+    LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorListParams;
 }

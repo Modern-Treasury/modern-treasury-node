@@ -3,13 +3,13 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as LedgerEntries from 'modern-treasury/resources/ledger-entries';
-import { Versions } from './versions';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LedgerTransactionsAPI from 'modern-treasury/resources/ledger-transactions/ledger-transactions';
+import * as LedgerEntriesAPI from 'modern-treasury/resources/ledger-entries';
+import * as VersionsAPI from 'modern-treasury/resources/ledger-transactions/versions';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerTransactions extends APIResource {
-  versions: Versions = new Versions(this.client);
+  versions: VersionsAPI.Versions = new VersionsAPI.Versions(this.client);
 
   /**
    * Create a ledger transaction.
@@ -99,8 +99,6 @@ export class LedgerTransactions extends APIResource {
 }
 
 export class LedgerTransactionsPage extends Page<LedgerTransaction> {}
-// alias so we can export it in the namespace
-type _LedgerTransactionsPage = LedgerTransactionsPage;
 
 export interface LedgerTransaction {
   id: string;
@@ -133,7 +131,7 @@ export interface LedgerTransaction {
   /**
    * An array of ledger entry objects.
    */
-  ledger_entries: Array<LedgerEntries.LedgerEntry>;
+  ledger_entries: Array<LedgerEntriesAPI.LedgerEntry>;
 
   /**
    * The ID of the ledger this ledger transaction belongs to.
@@ -564,15 +562,15 @@ export interface LedgerTransactionCreateReversalParams {
 }
 
 export namespace LedgerTransactions {
-  export import LedgerTransaction = API.LedgerTransaction;
-  export type LedgerTransactionsPage = _LedgerTransactionsPage;
-  export import LedgerTransactionCreateParams = API.LedgerTransactionCreateParams;
-  export import LedgerTransactionUpdateParams = API.LedgerTransactionUpdateParams;
-  export import LedgerTransactionListParams = API.LedgerTransactionListParams;
-  export import LedgerTransactionCreateReversalParams = API.LedgerTransactionCreateReversalParams;
-
-  export import Versions = API.Versions;
-  export import LedgerTransactionVersion = API.LedgerTransactionVersion;
-  export import LedgerTransactionVersionsPage = API.LedgerTransactionVersionsPage;
-  export import VersionListParams = API.VersionListParams;
+  export type LedgerTransaction = LedgerTransactionsAPI.LedgerTransaction;
+  export import LedgerTransactionsPage = LedgerTransactionsAPI.LedgerTransactionsPage;
+  export type LedgerTransactionCreateParams = LedgerTransactionsAPI.LedgerTransactionCreateParams;
+  export type LedgerTransactionUpdateParams = LedgerTransactionsAPI.LedgerTransactionUpdateParams;
+  export type LedgerTransactionListParams = LedgerTransactionsAPI.LedgerTransactionListParams;
+  export type LedgerTransactionCreateReversalParams =
+    LedgerTransactionsAPI.LedgerTransactionCreateReversalParams;
+  export import Versions = VersionsAPI.Versions;
+  export type LedgerTransactionVersion = VersionsAPI.LedgerTransactionVersion;
+  export import LedgerTransactionVersionsPage = VersionsAPI.LedgerTransactionVersionsPage;
+  export type VersionListParams = VersionsAPI.VersionListParams;
 }

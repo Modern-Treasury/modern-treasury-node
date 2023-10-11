@@ -3,9 +3,9 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as PaperItemsAPI from 'modern-treasury/resources/paper-items';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class PaperItems extends APIResource {
   /**
@@ -35,8 +35,6 @@ export class PaperItems extends APIResource {
 }
 
 export class PaperItemsPage extends Page<PaperItem> {}
-// alias so we can export it in the namespace
-type _PaperItemsPage = PaperItemsPage;
 
 export interface PaperItem {
   id: string;
@@ -139,7 +137,7 @@ export interface PaperItemListParams extends PageParams {
 }
 
 export namespace PaperItems {
-  export import PaperItem = API.PaperItem;
-  export type PaperItemsPage = _PaperItemsPage;
-  export import PaperItemListParams = API.PaperItemListParams;
+  export type PaperItem = PaperItemsAPI.PaperItem;
+  export import PaperItemsPage = PaperItemsAPI.PaperItemsPage;
+  export type PaperItemListParams = PaperItemsAPI.PaperItemListParams;
 }

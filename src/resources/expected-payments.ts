@@ -3,9 +3,9 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as ExpectedPaymentsAPI from 'modern-treasury/resources/expected-payments';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class ExpectedPayments extends APIResource {
   /**
@@ -83,8 +83,6 @@ export class ExpectedPayments extends APIResource {
 }
 
 export class ExpectedPaymentsPage extends Page<ExpectedPayment> {}
-// alias so we can export it in the namespace
-type _ExpectedPaymentsPage = ExpectedPaymentsPage;
 
 export interface ExpectedPayment {
   id: string;
@@ -512,10 +510,10 @@ export interface ExpectedPaymentListParams extends PageParams {
 }
 
 export namespace ExpectedPayments {
-  export import ExpectedPayment = API.ExpectedPayment;
-  export import ExpectedPaymentType = API.ExpectedPaymentType;
-  export type ExpectedPaymentsPage = _ExpectedPaymentsPage;
-  export import ExpectedPaymentCreateParams = API.ExpectedPaymentCreateParams;
-  export import ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
-  export import ExpectedPaymentListParams = API.ExpectedPaymentListParams;
+  export type ExpectedPayment = ExpectedPaymentsAPI.ExpectedPayment;
+  export type ExpectedPaymentType = ExpectedPaymentsAPI.ExpectedPaymentType;
+  export import ExpectedPaymentsPage = ExpectedPaymentsAPI.ExpectedPaymentsPage;
+  export type ExpectedPaymentCreateParams = ExpectedPaymentsAPI.ExpectedPaymentCreateParams;
+  export type ExpectedPaymentUpdateParams = ExpectedPaymentsAPI.ExpectedPaymentUpdateParams;
+  export type ExpectedPaymentListParams = ExpectedPaymentsAPI.ExpectedPaymentListParams;
 }

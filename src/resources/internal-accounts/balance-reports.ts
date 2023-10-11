@@ -3,9 +3,9 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as BalanceReportsAPI from 'modern-treasury/resources/internal-accounts/balance-reports';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class BalanceReports extends APIResource {
   /**
@@ -48,8 +48,6 @@ export class BalanceReports extends APIResource {
 }
 
 export class BalanceReportsPage extends Page<BalanceReport> {}
-// alias so we can export it in the namespace
-type _BalanceReportsPage = BalanceReportsPage;
 
 export interface BalanceReport {
   id: string;
@@ -182,7 +180,7 @@ export interface BalanceReportListParams extends PageParams {
 }
 
 export namespace BalanceReports {
-  export import BalanceReport = API.BalanceReport;
-  export type BalanceReportsPage = _BalanceReportsPage;
-  export import BalanceReportListParams = API.BalanceReportListParams;
+  export type BalanceReport = BalanceReportsAPI.BalanceReport;
+  export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
+  export type BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
 }

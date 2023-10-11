@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LedgerEntriesAPI from 'modern-treasury/resources/ledger-entries';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerEntries extends APIResource {
   /**
@@ -47,8 +47,6 @@ export class LedgerEntries extends APIResource {
 }
 
 export class LedgerEntriesPage extends Page<LedgerEntry> {}
-// alias so we can export it in the namespace
-type _LedgerEntriesPage = LedgerEntriesPage;
 
 export interface LedgerEntry {
   id: string;
@@ -352,8 +350,8 @@ export namespace LedgerEntryListParams {
 }
 
 export namespace LedgerEntries {
-  export import LedgerEntry = API.LedgerEntry;
-  export type LedgerEntriesPage = _LedgerEntriesPage;
-  export import LedgerEntryRetrieveParams = API.LedgerEntryRetrieveParams;
-  export import LedgerEntryListParams = API.LedgerEntryListParams;
+  export type LedgerEntry = LedgerEntriesAPI.LedgerEntry;
+  export import LedgerEntriesPage = LedgerEntriesAPI.LedgerEntriesPage;
+  export type LedgerEntryRetrieveParams = LedgerEntriesAPI.LedgerEntryRetrieveParams;
+  export type LedgerEntryListParams = LedgerEntriesAPI.LedgerEntryListParams;
 }

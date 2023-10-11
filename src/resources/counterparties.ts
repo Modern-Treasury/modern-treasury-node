@@ -3,11 +3,11 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as AccountDetails from 'modern-treasury/resources/account-details';
-import * as ExternalAccounts from 'modern-treasury/resources/external-accounts';
-import * as RoutingDetails from 'modern-treasury/resources/routing-details';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as CounterpartiesAPI from 'modern-treasury/resources/counterparties';
+import * as AccountDetailsAPI from 'modern-treasury/resources/account-details';
+import * as ExternalAccountsAPI from 'modern-treasury/resources/external-accounts';
+import * as RoutingDetailsAPI from 'modern-treasury/resources/routing-details';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Counterparties extends APIResource {
   /**
@@ -107,8 +107,6 @@ export class Counterparties extends APIResource {
 }
 
 export class CounterpartiesPage extends Page<Counterparty> {}
-// alias so we can export it in the namespace
-type _CounterpartiesPage = CounterpartiesPage;
 
 export interface Counterparty {
   id: string;
@@ -164,12 +162,12 @@ export namespace Counterparty {
   export interface Account {
     id?: string;
 
-    account_details?: Array<AccountDetails.AccountDetail>;
+    account_details?: Array<AccountDetailsAPI.AccountDetail>;
 
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: ExternalAccounts.ExternalAccountType;
+    account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<Account.ContactDetail>;
 
@@ -218,7 +216,7 @@ export namespace Counterparty {
      */
     party_type?: 'business' | 'individual' | null;
 
-    routing_details?: Array<RoutingDetails.RoutingDetail>;
+    routing_details?: Array<RoutingDetailsAPI.RoutingDetail>;
 
     updated_at?: string;
 
@@ -376,7 +374,7 @@ export namespace CounterpartyCreateParams {
     /**
      * Can be `checking`, `savings` or `other`.
      */
-    account_type?: ExternalAccounts.ExternalAccountType;
+    account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<Account.ContactDetail>;
 
@@ -687,11 +685,11 @@ export interface CounterpartyCollectAccountParams {
 }
 
 export namespace Counterparties {
-  export import Counterparty = API.Counterparty;
-  export import CounterpartyCollectAccountResponse = API.CounterpartyCollectAccountResponse;
-  export type CounterpartiesPage = _CounterpartiesPage;
-  export import CounterpartyCreateParams = API.CounterpartyCreateParams;
-  export import CounterpartyUpdateParams = API.CounterpartyUpdateParams;
-  export import CounterpartyListParams = API.CounterpartyListParams;
-  export import CounterpartyCollectAccountParams = API.CounterpartyCollectAccountParams;
+  export type Counterparty = CounterpartiesAPI.Counterparty;
+  export type CounterpartyCollectAccountResponse = CounterpartiesAPI.CounterpartyCollectAccountResponse;
+  export import CounterpartiesPage = CounterpartiesAPI.CounterpartiesPage;
+  export type CounterpartyCreateParams = CounterpartiesAPI.CounterpartyCreateParams;
+  export type CounterpartyUpdateParams = CounterpartiesAPI.CounterpartyUpdateParams;
+  export type CounterpartyListParams = CounterpartiesAPI.CounterpartyListParams;
+  export type CounterpartyCollectAccountParams = CounterpartiesAPI.CounterpartyCollectAccountParams;
 }

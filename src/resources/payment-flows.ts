@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as PaymentFlowsAPI from 'modern-treasury/resources/payment-flows';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class PaymentFlows extends APIResource {
   /**
@@ -74,8 +74,6 @@ export class PaymentFlows extends APIResource {
 }
 
 export class PaymentFlowsPage extends Page<PaymentFlow> {}
-// alias so we can export it in the namespace
-type _PaymentFlowsPage = PaymentFlowsPage;
 
 export interface PaymentFlow {
   id?: string;
@@ -222,9 +220,9 @@ export interface PaymentFlowListParams extends PageParams {
 }
 
 export namespace PaymentFlows {
-  export import PaymentFlow = API.PaymentFlow;
-  export type PaymentFlowsPage = _PaymentFlowsPage;
-  export import PaymentFlowCreateParams = API.PaymentFlowCreateParams;
-  export import PaymentFlowUpdateParams = API.PaymentFlowUpdateParams;
-  export import PaymentFlowListParams = API.PaymentFlowListParams;
+  export type PaymentFlow = PaymentFlowsAPI.PaymentFlow;
+  export import PaymentFlowsPage = PaymentFlowsAPI.PaymentFlowsPage;
+  export type PaymentFlowCreateParams = PaymentFlowsAPI.PaymentFlowCreateParams;
+  export type PaymentFlowUpdateParams = PaymentFlowsAPI.PaymentFlowUpdateParams;
+  export type PaymentFlowListParams = PaymentFlowsAPI.PaymentFlowListParams;
 }
