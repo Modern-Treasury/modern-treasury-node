@@ -3,9 +3,9 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
+import * as DocumentsAPI from 'modern-treasury/resources/documents';
 import { type Uploadable, multipartFormRequestOptions } from 'modern-treasury/core';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Documents extends APIResource {
   /**
@@ -53,8 +53,6 @@ export class Documents extends APIResource {
 }
 
 export class DocumentsPage extends Page<Document> {}
-// alias so we can export it in the namespace
-type _DocumentsPage = DocumentsPage;
 
 export interface Document {
   id: string;
@@ -205,8 +203,8 @@ export interface DocumentListParams extends PageParams {
 }
 
 export namespace Documents {
-  export import Document = API.Document;
-  export type DocumentsPage = _DocumentsPage;
-  export import DocumentCreateParams = API.DocumentCreateParams;
-  export import DocumentListParams = API.DocumentListParams;
+  export type Document = DocumentsAPI.Document;
+  export import DocumentsPage = DocumentsAPI.DocumentsPage;
+  export type DocumentCreateParams = DocumentsAPI.DocumentCreateParams;
+  export type DocumentListParams = DocumentsAPI.DocumentListParams;
 }

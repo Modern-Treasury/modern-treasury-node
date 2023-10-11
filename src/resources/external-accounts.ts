@@ -3,11 +3,11 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as AccountDetails from 'modern-treasury/resources/account-details';
-import * as RoutingDetails from 'modern-treasury/resources/routing-details';
+import * as ExternalAccountsAPI from 'modern-treasury/resources/external-accounts';
+import * as AccountDetailsAPI from 'modern-treasury/resources/account-details';
+import * as RoutingDetailsAPI from 'modern-treasury/resources/routing-details';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class ExternalAccounts extends APIResource {
   /**
@@ -141,13 +141,11 @@ export class ExternalAccounts extends APIResource {
 }
 
 export class ExternalAccountsPage extends Page<ExternalAccount> {}
-// alias so we can export it in the namespace
-type _ExternalAccountsPage = ExternalAccountsPage;
 
 export interface ExternalAccount {
   id: string;
 
-  account_details: Array<AccountDetails.AccountDetail>;
+  account_details: Array<AccountDetailsAPI.AccountDetail>;
 
   /**
    * Can be `checking`, `savings` or `other`.
@@ -203,7 +201,7 @@ export interface ExternalAccount {
    */
   party_type: 'business' | 'individual' | null;
 
-  routing_details: Array<RoutingDetails.RoutingDetail>;
+  routing_details: Array<RoutingDetailsAPI.RoutingDetail>;
 
   updated_at: string;
 
@@ -611,12 +609,13 @@ export interface ExternalAccountVerifyParams {
 }
 
 export namespace ExternalAccounts {
-  export import ExternalAccount = API.ExternalAccount;
-  export import ExternalAccountType = API.ExternalAccountType;
-  export type ExternalAccountsPage = _ExternalAccountsPage;
-  export import ExternalAccountCreateParams = API.ExternalAccountCreateParams;
-  export import ExternalAccountUpdateParams = API.ExternalAccountUpdateParams;
-  export import ExternalAccountListParams = API.ExternalAccountListParams;
-  export import ExternalAccountCompleteVerificationParams = API.ExternalAccountCompleteVerificationParams;
-  export import ExternalAccountVerifyParams = API.ExternalAccountVerifyParams;
+  export type ExternalAccount = ExternalAccountsAPI.ExternalAccount;
+  export type ExternalAccountType = ExternalAccountsAPI.ExternalAccountType;
+  export import ExternalAccountsPage = ExternalAccountsAPI.ExternalAccountsPage;
+  export type ExternalAccountCreateParams = ExternalAccountsAPI.ExternalAccountCreateParams;
+  export type ExternalAccountUpdateParams = ExternalAccountsAPI.ExternalAccountUpdateParams;
+  export type ExternalAccountListParams = ExternalAccountsAPI.ExternalAccountListParams;
+  export type ExternalAccountCompleteVerificationParams =
+    ExternalAccountsAPI.ExternalAccountCompleteVerificationParams;
+  export type ExternalAccountVerifyParams = ExternalAccountsAPI.ExternalAccountVerifyParams;
 }

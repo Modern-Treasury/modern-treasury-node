@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LedgerAccountPayoutsAPI from 'modern-treasury/resources/ledger-account-payouts';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerAccountPayouts extends APIResource {
   /**
@@ -80,8 +80,6 @@ export class LedgerAccountPayouts extends APIResource {
 }
 
 export class LedgerAccountPayoutsPage extends Page<LedgerAccountPayout> {}
-// alias so we can export it in the namespace
-type _LedgerAccountPayoutsPage = LedgerAccountPayoutsPage;
 
 export interface LedgerAccountPayout {
   id: string;
@@ -241,9 +239,9 @@ export interface LedgerAccountPayoutListParams extends PageParams {
 }
 
 export namespace LedgerAccountPayouts {
-  export import LedgerAccountPayout = API.LedgerAccountPayout;
-  export type LedgerAccountPayoutsPage = _LedgerAccountPayoutsPage;
-  export import LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
-  export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
-  export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
+  export type LedgerAccountPayout = LedgerAccountPayoutsAPI.LedgerAccountPayout;
+  export import LedgerAccountPayoutsPage = LedgerAccountPayoutsAPI.LedgerAccountPayoutsPage;
+  export type LedgerAccountPayoutCreateParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutCreateParams;
+  export type LedgerAccountPayoutUpdateParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutUpdateParams;
+  export type LedgerAccountPayoutListParams = LedgerAccountPayoutsAPI.LedgerAccountPayoutListParams;
 }

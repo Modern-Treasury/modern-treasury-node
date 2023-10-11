@@ -3,10 +3,10 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as IncomingPaymentDetailsAPI from 'modern-treasury/resources/incoming-payment-details';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as VirtualAccounts from 'modern-treasury/resources/virtual-accounts';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as VirtualAccountsAPI from 'modern-treasury/resources/virtual-accounts';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
@@ -88,8 +88,6 @@ export class IncomingPaymentDetails extends APIResource {
 }
 
 export class IncomingPaymentDetailsPage extends Page<IncomingPaymentDetail> {}
-// alias so we can export it in the namespace
-type _IncomingPaymentDetailsPage = IncomingPaymentDetailsPage;
 
 export interface IncomingPaymentDetail {
   id: string;
@@ -215,7 +213,7 @@ export interface IncomingPaymentDetail {
    * If the incoming payment detail is in a virtual account, the serialized virtual
    * account object.
    */
-  virtual_account: VirtualAccounts.VirtualAccount | null;
+  virtual_account: VirtualAccountsAPI.VirtualAccount | null;
 
   /**
    * If the incoming payment detail is in a virtual account, the ID of the Virtual
@@ -326,9 +324,10 @@ export interface IncomingPaymentDetailCreateAsyncParams {
 }
 
 export namespace IncomingPaymentDetails {
-  export import IncomingPaymentDetail = API.IncomingPaymentDetail;
-  export type IncomingPaymentDetailsPage = _IncomingPaymentDetailsPage;
-  export import IncomingPaymentDetailUpdateParams = API.IncomingPaymentDetailUpdateParams;
-  export import IncomingPaymentDetailListParams = API.IncomingPaymentDetailListParams;
-  export import IncomingPaymentDetailCreateAsyncParams = API.IncomingPaymentDetailCreateAsyncParams;
+  export type IncomingPaymentDetail = IncomingPaymentDetailsAPI.IncomingPaymentDetail;
+  export import IncomingPaymentDetailsPage = IncomingPaymentDetailsAPI.IncomingPaymentDetailsPage;
+  export type IncomingPaymentDetailUpdateParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailUpdateParams;
+  export type IncomingPaymentDetailListParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailListParams;
+  export type IncomingPaymentDetailCreateAsyncParams =
+    IncomingPaymentDetailsAPI.IncomingPaymentDetailCreateAsyncParams;
 }

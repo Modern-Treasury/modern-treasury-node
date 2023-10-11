@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as ReversalsAPI from 'modern-treasury/resources/payment-orders/reversals';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Reversals extends APIResource {
   /**
@@ -65,8 +65,6 @@ export class Reversals extends APIResource {
 }
 
 export class ReversalsPage extends Page<Reversal> {}
-// alias so we can export it in the namespace
-type _ReversalsPage = ReversalsPage;
 
 export interface Reversal {
   id: string;
@@ -275,8 +273,8 @@ export namespace ReversalCreateParams {
 export interface ReversalListParams extends PageParams {}
 
 export namespace Reversals {
-  export import Reversal = API.Reversal;
-  export type ReversalsPage = _ReversalsPage;
-  export import ReversalCreateParams = API.ReversalCreateParams;
-  export import ReversalListParams = API.ReversalListParams;
+  export type Reversal = ReversalsAPI.Reversal;
+  export import ReversalsPage = ReversalsAPI.ReversalsPage;
+  export type ReversalCreateParams = ReversalsAPI.ReversalCreateParams;
+  export type ReversalListParams = ReversalsAPI.ReversalListParams;
 }

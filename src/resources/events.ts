@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as EventsAPI from 'modern-treasury/resources/events';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Events extends APIResource {
   /**
@@ -31,8 +31,6 @@ export class Events extends APIResource {
 }
 
 export class EventsPage extends Page<Event> {}
-// alias so we can export it in the namespace
-type _EventsPage = EventsPage;
 
 export interface Event {
   id: string;
@@ -94,7 +92,7 @@ export interface EventListParams extends PageParams {
 }
 
 export namespace Events {
-  export import Event = API.Event;
-  export type EventsPage = _EventsPage;
-  export import EventListParams = API.EventListParams;
+  export type Event = EventsAPI.Event;
+  export import EventsPage = EventsAPI.EventsPage;
+  export type EventListParams = EventsAPI.EventListParams;
 }

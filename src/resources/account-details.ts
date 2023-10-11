@@ -3,9 +3,9 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as AccountDetailsAPI from 'modern-treasury/resources/account-details';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class AccountDetails extends APIResource {
   /**
@@ -89,8 +89,6 @@ export class AccountDetails extends APIResource {
 }
 
 export class AccountDetailsPage extends Page<AccountDetail> {}
-// alias so we can export it in the namespace
-type _AccountDetailsPage = AccountDetailsPage;
 
 export interface AccountDetail {
   id: string;
@@ -142,8 +140,8 @@ export interface AccountDetailCreateParams {
 export interface AccountDetailListParams extends PageParams {}
 
 export namespace AccountDetails {
-  export import AccountDetail = API.AccountDetail;
-  export type AccountDetailsPage = _AccountDetailsPage;
-  export import AccountDetailCreateParams = API.AccountDetailCreateParams;
-  export import AccountDetailListParams = API.AccountDetailListParams;
+  export type AccountDetail = AccountDetailsAPI.AccountDetail;
+  export import AccountDetailsPage = AccountDetailsAPI.AccountDetailsPage;
+  export type AccountDetailCreateParams = AccountDetailsAPI.AccountDetailCreateParams;
+  export type AccountDetailListParams = AccountDetailsAPI.AccountDetailListParams;
 }

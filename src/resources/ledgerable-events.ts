@@ -2,7 +2,7 @@
 
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
-import * as API from './index';
+import * as LedgerableEventsAPI from 'modern-treasury/resources/ledgerable-events';
 
 export class LedgerableEvents extends APIResource {
   /**
@@ -145,6 +145,6 @@ export interface LedgerableEventCreateParams {
 }
 
 export namespace LedgerableEvents {
-  export import LedgerableEvent = API.LedgerableEvent;
-  export import LedgerableEventCreateParams = API.LedgerableEventCreateParams;
+  export type LedgerableEvent = LedgerableEventsAPI.LedgerableEvent;
+  export type LedgerableEventCreateParams = LedgerableEventsAPI.LedgerableEventCreateParams;
 }

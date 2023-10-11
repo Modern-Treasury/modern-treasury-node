@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LedgerEventHandlersAPI from 'modern-treasury/resources/ledger-event-handlers';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerEventHandlers extends APIResource {
   /**
@@ -67,8 +67,6 @@ export class LedgerEventHandlers extends APIResource {
 }
 
 export class LedgerEventHandlerListResponsesPage extends Page<LedgerEventHandlerListResponse> {}
-// alias so we can export it in the namespace
-type _LedgerEventHandlerListResponsesPage = LedgerEventHandlerListResponsesPage;
 
 export interface LedgerEventHandlerCreateResponse {
   id: string;
@@ -588,11 +586,11 @@ export interface LedgerEventHandlerListParams extends PageParams {
 }
 
 export namespace LedgerEventHandlers {
-  export import LedgerEventHandlerCreateResponse = API.LedgerEventHandlerCreateResponse;
-  export import LedgerEventHandlerRetrieveResponse = API.LedgerEventHandlerRetrieveResponse;
-  export import LedgerEventHandlerListResponse = API.LedgerEventHandlerListResponse;
-  export import LedgerEventHandlerDeleteResponse = API.LedgerEventHandlerDeleteResponse;
-  export type LedgerEventHandlerListResponsesPage = _LedgerEventHandlerListResponsesPage;
-  export import LedgerEventHandlerCreateParams = API.LedgerEventHandlerCreateParams;
-  export import LedgerEventHandlerListParams = API.LedgerEventHandlerListParams;
+  export type LedgerEventHandlerCreateResponse = LedgerEventHandlersAPI.LedgerEventHandlerCreateResponse;
+  export type LedgerEventHandlerRetrieveResponse = LedgerEventHandlersAPI.LedgerEventHandlerRetrieveResponse;
+  export type LedgerEventHandlerListResponse = LedgerEventHandlersAPI.LedgerEventHandlerListResponse;
+  export type LedgerEventHandlerDeleteResponse = LedgerEventHandlersAPI.LedgerEventHandlerDeleteResponse;
+  export import LedgerEventHandlerListResponsesPage = LedgerEventHandlersAPI.LedgerEventHandlerListResponsesPage;
+  export type LedgerEventHandlerCreateParams = LedgerEventHandlersAPI.LedgerEventHandlerCreateParams;
+  export type LedgerEventHandlerListParams = LedgerEventHandlersAPI.LedgerEventHandlerListParams;
 }

@@ -3,14 +3,14 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as InvoicesAPI from 'modern-treasury/resources/invoices/invoices';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as PaymentOrders from 'modern-treasury/resources/payment-orders/index';
-import { LineItems } from './line-items';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LineItemsAPI from 'modern-treasury/resources/invoices/line-items';
+import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/payment-orders';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Invoices extends APIResource {
-  lineItems: LineItems = new LineItems(this.client);
+  lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this.client);
 
   /**
    * create invoice
@@ -80,8 +80,6 @@ export class Invoices extends APIResource {
 }
 
 export class InvoicesPage extends Page<Invoice> {}
-// alias so we can export it in the namespace
-type _InvoicesPage = InvoicesPage;
 
 export interface Invoice {
   id: string;
@@ -181,7 +179,7 @@ export interface Invoice {
    * The payment orders created for paying the invoice through the invoice payment
    * UI.
    */
-  payment_orders: Array<PaymentOrders.PaymentOrder>;
+  payment_orders: Array<PaymentOrdersAPI.PaymentOrder>;
 
   /**
    * One of `ach` or `eft`.
@@ -831,16 +829,15 @@ export namespace InvoiceUpdateParams {
 export interface InvoiceListParams extends PageParams {}
 
 export namespace Invoices {
-  export import Invoice = API.Invoice;
-  export type InvoicesPage = _InvoicesPage;
-  export import InvoiceCreateParams = API.InvoiceCreateParams;
-  export import InvoiceUpdateParams = API.InvoiceUpdateParams;
-  export import InvoiceListParams = API.InvoiceListParams;
-
-  export import LineItems = API.LineItems;
-  export import InvoiceLineItem = API.InvoiceLineItem;
-  export import InvoiceLineItemsPage = API.InvoiceLineItemsPage;
-  export import LineItemCreateParams = API.LineItemCreateParams;
-  export import LineItemUpdateParams = API.LineItemUpdateParams;
-  export import LineItemListParams = API.LineItemListParams;
+  export type Invoice = InvoicesAPI.Invoice;
+  export import InvoicesPage = InvoicesAPI.InvoicesPage;
+  export type InvoiceCreateParams = InvoicesAPI.InvoiceCreateParams;
+  export type InvoiceUpdateParams = InvoicesAPI.InvoiceUpdateParams;
+  export type InvoiceListParams = InvoicesAPI.InvoiceListParams;
+  export import LineItems = LineItemsAPI.LineItems;
+  export type InvoiceLineItem = LineItemsAPI.InvoiceLineItem;
+  export import InvoiceLineItemsPage = LineItemsAPI.InvoiceLineItemsPage;
+  export type LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
+  export type LineItemUpdateParams = LineItemsAPI.LineItemUpdateParams;
+  export type LineItemListParams = LineItemsAPI.LineItemListParams;
 }

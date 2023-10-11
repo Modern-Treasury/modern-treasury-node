@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as AccountCollectionFlowsAPI from 'modern-treasury/resources/account-collection-flows';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class AccountCollectionFlows extends APIResource {
   /**
@@ -80,8 +80,6 @@ export class AccountCollectionFlows extends APIResource {
 }
 
 export class AccountCollectionFlowsPage extends Page<AccountCollectionFlow> {}
-// alias so we can export it in the namespace
-type _AccountCollectionFlowsPage = AccountCollectionFlowsPage;
 
 export interface AccountCollectionFlow {
   /**
@@ -192,9 +190,9 @@ export interface AccountCollectionFlowListParams extends PageParams {
 }
 
 export namespace AccountCollectionFlows {
-  export import AccountCollectionFlow = API.AccountCollectionFlow;
-  export type AccountCollectionFlowsPage = _AccountCollectionFlowsPage;
-  export import AccountCollectionFlowCreateParams = API.AccountCollectionFlowCreateParams;
-  export import AccountCollectionFlowUpdateParams = API.AccountCollectionFlowUpdateParams;
-  export import AccountCollectionFlowListParams = API.AccountCollectionFlowListParams;
+  export type AccountCollectionFlow = AccountCollectionFlowsAPI.AccountCollectionFlow;
+  export import AccountCollectionFlowsPage = AccountCollectionFlowsAPI.AccountCollectionFlowsPage;
+  export type AccountCollectionFlowCreateParams = AccountCollectionFlowsAPI.AccountCollectionFlowCreateParams;
+  export type AccountCollectionFlowUpdateParams = AccountCollectionFlowsAPI.AccountCollectionFlowUpdateParams;
+  export type AccountCollectionFlowListParams = AccountCollectionFlowsAPI.AccountCollectionFlowListParams;
 }

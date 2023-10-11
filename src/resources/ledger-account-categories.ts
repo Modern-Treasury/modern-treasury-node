@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LedgerAccountCategoriesAPI from 'modern-treasury/resources/ledger-account-categories';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerAccountCategories extends APIResource {
   /**
@@ -150,8 +150,6 @@ export class LedgerAccountCategories extends APIResource {
 }
 
 export class LedgerAccountCategoriesPage extends Page<LedgerAccountCategory> {}
-// alias so we can export it in the namespace
-type _LedgerAccountCategoriesPage = LedgerAccountCategoriesPage;
 
 export interface LedgerAccountCategory {
   id: string;
@@ -430,10 +428,13 @@ export namespace LedgerAccountCategoryListParams {
 }
 
 export namespace LedgerAccountCategories {
-  export import LedgerAccountCategory = API.LedgerAccountCategory;
-  export type LedgerAccountCategoriesPage = _LedgerAccountCategoriesPage;
-  export import LedgerAccountCategoryCreateParams = API.LedgerAccountCategoryCreateParams;
-  export import LedgerAccountCategoryRetrieveParams = API.LedgerAccountCategoryRetrieveParams;
-  export import LedgerAccountCategoryUpdateParams = API.LedgerAccountCategoryUpdateParams;
-  export import LedgerAccountCategoryListParams = API.LedgerAccountCategoryListParams;
+  export type LedgerAccountCategory = LedgerAccountCategoriesAPI.LedgerAccountCategory;
+  export import LedgerAccountCategoriesPage = LedgerAccountCategoriesAPI.LedgerAccountCategoriesPage;
+  export type LedgerAccountCategoryCreateParams =
+    LedgerAccountCategoriesAPI.LedgerAccountCategoryCreateParams;
+  export type LedgerAccountCategoryRetrieveParams =
+    LedgerAccountCategoriesAPI.LedgerAccountCategoryRetrieveParams;
+  export type LedgerAccountCategoryUpdateParams =
+    LedgerAccountCategoriesAPI.LedgerAccountCategoryUpdateParams;
+  export type LedgerAccountCategoryListParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryListParams;
 }

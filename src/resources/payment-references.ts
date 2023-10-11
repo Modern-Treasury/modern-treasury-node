@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as PaymentReferencesAPI from 'modern-treasury/resources/payment-references';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class PaymentReferences extends APIResource {
   /**
@@ -39,8 +39,6 @@ export class PaymentReferences extends APIResource {
 }
 
 export class PaymentReferencesPage extends Page<PaymentReference> {}
-// alias so we can export it in the namespace
-type _PaymentReferencesPage = PaymentReferencesPage;
 
 export interface PaymentReference {
   id: string;
@@ -155,7 +153,7 @@ export interface PaymentReferenceListParams extends PageParams {
 }
 
 export namespace PaymentReferences {
-  export import PaymentReference = API.PaymentReference;
-  export type PaymentReferencesPage = _PaymentReferencesPage;
-  export import PaymentReferenceListParams = API.PaymentReferenceListParams;
+  export type PaymentReference = PaymentReferencesAPI.PaymentReference;
+  export import PaymentReferencesPage = PaymentReferencesAPI.PaymentReferencesPage;
+  export type PaymentReferenceListParams = PaymentReferencesAPI.PaymentReferenceListParams;
 }

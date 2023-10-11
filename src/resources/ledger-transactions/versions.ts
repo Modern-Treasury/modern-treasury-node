@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as VersionsAPI from 'modern-treasury/resources/ledger-transactions/versions';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Versions extends APIResource {
   /**
@@ -32,8 +32,6 @@ export class Versions extends APIResource {
 }
 
 export class LedgerTransactionVersionsPage extends Page<LedgerTransactionVersion> {}
-// alias so we can export it in the namespace
-type _LedgerTransactionVersionsPage = LedgerTransactionVersionsPage;
 
 export interface LedgerTransactionVersion {
   id: string;
@@ -341,7 +339,7 @@ export interface VersionListParams extends PageParams {
 }
 
 export namespace Versions {
-  export import LedgerTransactionVersion = API.LedgerTransactionVersion;
-  export type LedgerTransactionVersionsPage = _LedgerTransactionVersionsPage;
-  export import VersionListParams = API.VersionListParams;
+  export type LedgerTransactionVersion = VersionsAPI.LedgerTransactionVersion;
+  export import LedgerTransactionVersionsPage = VersionsAPI.LedgerTransactionVersionsPage;
+  export type VersionListParams = VersionsAPI.VersionListParams;
 }
