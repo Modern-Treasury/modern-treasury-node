@@ -3,16 +3,16 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as AccountDetails from 'modern-treasury/resources/account-details';
-import * as Connections from 'modern-treasury/resources/connections';
+import * as InternalAccountsAPI from 'modern-treasury/resources/internal-accounts/internal-accounts';
+import * as AccountDetailsAPI from 'modern-treasury/resources/account-details';
+import * as ConnectionsAPI from 'modern-treasury/resources/connections';
+import * as RoutingDetailsAPI from 'modern-treasury/resources/routing-details';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as RoutingDetails from 'modern-treasury/resources/routing-details';
-import { BalanceReports } from './balance-reports';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as BalanceReportsAPI from 'modern-treasury/resources/internal-accounts/balance-reports';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class InternalAccounts extends APIResource {
-  balanceReports: BalanceReports = new BalanceReports(this.client);
+  balanceReports: BalanceReportsAPI.BalanceReports = new BalanceReportsAPI.BalanceReports(this.client);
 
   /**
    * create internal account
@@ -82,8 +82,6 @@ export class InternalAccounts extends APIResource {
 }
 
 export class InternalAccountsPage extends Page<InternalAccount> {}
-// alias so we can export it in the namespace
-type _InternalAccountsPage = InternalAccountsPage;
 
 export interface InternalAccount {
   id: string;
@@ -91,7 +89,7 @@ export interface InternalAccount {
   /**
    * An array of account detail objects.
    */
-  account_details: Array<AccountDetails.AccountDetail>;
+  account_details: Array<AccountDetailsAPI.AccountDetail>;
 
   /**
    * Can be checking, savings or other.
@@ -101,7 +99,7 @@ export interface InternalAccount {
   /**
    * Specifies which financial institution the accounts belong to.
    */
-  connection: Connections.Connection;
+  connection: ConnectionsAPI.Connection;
 
   /**
    * The Counterparty associated to this account.
@@ -163,7 +161,7 @@ export interface InternalAccount {
   /**
    * An array of routing detail objects.
    */
-  routing_details: Array<RoutingDetails.RoutingDetail>;
+  routing_details: Array<RoutingDetailsAPI.RoutingDetail>;
 
   updated_at: string;
 }
@@ -362,14 +360,13 @@ export interface InternalAccountListParams extends PageParams {
 }
 
 export namespace InternalAccounts {
-  export import InternalAccount = API.InternalAccount;
-  export type InternalAccountsPage = _InternalAccountsPage;
-  export import InternalAccountCreateParams = API.InternalAccountCreateParams;
-  export import InternalAccountUpdateParams = API.InternalAccountUpdateParams;
-  export import InternalAccountListParams = API.InternalAccountListParams;
-
-  export import BalanceReports = API.BalanceReports;
-  export import BalanceReport = API.BalanceReport;
-  export import BalanceReportsPage = API.BalanceReportsPage;
-  export import BalanceReportListParams = API.BalanceReportListParams;
+  export type InternalAccount = InternalAccountsAPI.InternalAccount;
+  export import InternalAccountsPage = InternalAccountsAPI.InternalAccountsPage;
+  export type InternalAccountCreateParams = InternalAccountsAPI.InternalAccountCreateParams;
+  export type InternalAccountUpdateParams = InternalAccountsAPI.InternalAccountUpdateParams;
+  export type InternalAccountListParams = InternalAccountsAPI.InternalAccountListParams;
+  export import BalanceReports = BalanceReportsAPI.BalanceReports;
+  export type BalanceReport = BalanceReportsAPI.BalanceReport;
+  export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
+  export type BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
 }

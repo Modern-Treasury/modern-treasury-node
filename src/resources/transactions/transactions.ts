@@ -3,13 +3,13 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as TransactionsAPI from 'modern-treasury/resources/transactions/transactions';
 import * as Shared from 'modern-treasury/resources/shared';
-import { LineItems } from './line-items';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LineItemsAPI from 'modern-treasury/resources/transactions/line-items';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Transactions extends APIResource {
-  lineItems: LineItems = new LineItems(this.client);
+  lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this.client);
 
   /**
    * Get details on a single transaction.
@@ -58,8 +58,6 @@ export class Transactions extends APIResource {
 }
 
 export class TransactionsPage extends Page<Transaction> {}
-// alias so we can export it in the namespace
-type _TransactionsPage = TransactionsPage;
 
 export interface Transaction {
   id: string;
@@ -280,13 +278,12 @@ export interface TransactionListParams extends PageParams {
 }
 
 export namespace Transactions {
-  export import Transaction = API.Transaction;
-  export type TransactionsPage = _TransactionsPage;
-  export import TransactionUpdateParams = API.TransactionUpdateParams;
-  export import TransactionListParams = API.TransactionListParams;
-
-  export import LineItems = API.LineItems;
-  export import TransactionLineItem = API.TransactionLineItem;
-  export import TransactionLineItemsPage = API.TransactionLineItemsPage;
-  export import LineItemListParams = API.LineItemListParams;
+  export type Transaction = TransactionsAPI.Transaction;
+  export import TransactionsPage = TransactionsAPI.TransactionsPage;
+  export type TransactionUpdateParams = TransactionsAPI.TransactionUpdateParams;
+  export type TransactionListParams = TransactionsAPI.TransactionListParams;
+  export import LineItems = LineItemsAPI.LineItems;
+  export type TransactionLineItem = LineItemsAPI.TransactionLineItem;
+  export import TransactionLineItemsPage = LineItemsAPI.TransactionLineItemsPage;
+  export type LineItemListParams = LineItemsAPI.LineItemListParams;
 }

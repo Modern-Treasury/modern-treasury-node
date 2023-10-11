@@ -3,9 +3,9 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
+import * as ReturnsAPI from 'modern-treasury/resources/returns';
 import * as Shared from 'modern-treasury/resources/shared';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Returns extends APIResource {
   /**
@@ -53,8 +53,6 @@ export class Returns extends APIResource {
 }
 
 export class ReturnObjectsPage extends Page<ReturnObject> {}
-// alias so we can export it in the namespace
-type _ReturnObjectsPage = ReturnObjectsPage;
 
 export interface ReturnObject {
   id: string;
@@ -414,8 +412,8 @@ export interface ReturnListParams extends PageParams {
 }
 
 export namespace Returns {
-  export import ReturnObject = API.ReturnObject;
-  export type ReturnObjectsPage = _ReturnObjectsPage;
-  export import ReturnCreateParams = API.ReturnCreateParams;
-  export import ReturnListParams = API.ReturnListParams;
+  export type ReturnObject = ReturnsAPI.ReturnObject;
+  export import ReturnObjectsPage = ReturnsAPI.ReturnObjectsPage;
+  export type ReturnCreateParams = ReturnsAPI.ReturnCreateParams;
+  export type ReturnListParams = ReturnsAPI.ReturnListParams;
 }

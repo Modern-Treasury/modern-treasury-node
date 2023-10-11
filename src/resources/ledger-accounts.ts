@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LedgerAccountsAPI from 'modern-treasury/resources/ledger-accounts';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerAccounts extends APIResource {
   /**
@@ -92,8 +92,6 @@ export class LedgerAccounts extends APIResource {
 }
 
 export class LedgerAccountsPage extends Page<LedgerAccount> {}
-// alias so we can export it in the namespace
-type _LedgerAccountsPage = LedgerAccountsPage;
 
 export interface LedgerAccount {
   id: string;
@@ -516,10 +514,10 @@ export namespace LedgerAccountListParams {
 }
 
 export namespace LedgerAccounts {
-  export import LedgerAccount = API.LedgerAccount;
-  export type LedgerAccountsPage = _LedgerAccountsPage;
-  export import LedgerAccountCreateParams = API.LedgerAccountCreateParams;
-  export import LedgerAccountRetrieveParams = API.LedgerAccountRetrieveParams;
-  export import LedgerAccountUpdateParams = API.LedgerAccountUpdateParams;
-  export import LedgerAccountListParams = API.LedgerAccountListParams;
+  export type LedgerAccount = LedgerAccountsAPI.LedgerAccount;
+  export import LedgerAccountsPage = LedgerAccountsAPI.LedgerAccountsPage;
+  export type LedgerAccountCreateParams = LedgerAccountsAPI.LedgerAccountCreateParams;
+  export type LedgerAccountRetrieveParams = LedgerAccountsAPI.LedgerAccountRetrieveParams;
+  export type LedgerAccountUpdateParams = LedgerAccountsAPI.LedgerAccountUpdateParams;
+  export type LedgerAccountListParams = LedgerAccountsAPI.LedgerAccountListParams;
 }

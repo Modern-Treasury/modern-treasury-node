@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as ConnectionsAPI from 'modern-treasury/resources/connections';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Connections extends APIResource {
   /**
@@ -27,8 +27,6 @@ export class Connections extends APIResource {
 }
 
 export class ConnectionsPage extends Page<Connection> {}
-// alias so we can export it in the namespace
-type _ConnectionsPage = ConnectionsPage;
 
 export interface Connection {
   id: string;
@@ -76,7 +74,7 @@ export interface ConnectionListParams extends PageParams {
 }
 
 export namespace Connections {
-  export import Connection = API.Connection;
-  export type ConnectionsPage = _ConnectionsPage;
-  export import ConnectionListParams = API.ConnectionListParams;
+  export type Connection = ConnectionsAPI.Connection;
+  export import ConnectionsPage = ConnectionsAPI.ConnectionsPage;
+  export type ConnectionListParams = ConnectionsAPI.ConnectionListParams;
 }

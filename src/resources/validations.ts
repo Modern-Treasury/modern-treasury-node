@@ -2,7 +2,7 @@
 
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
-import * as API from './index';
+import * as ValidationsAPI from 'modern-treasury/resources/validations';
 
 export class Validations extends APIResource {
   /**
@@ -143,6 +143,6 @@ export interface ValidationValidateRoutingNumberParams {
 }
 
 export namespace Validations {
-  export import RoutingNumberLookupRequest = API.RoutingNumberLookupRequest;
-  export import ValidationValidateRoutingNumberParams = API.ValidationValidateRoutingNumberParams;
+  export type RoutingNumberLookupRequest = ValidationsAPI.RoutingNumberLookupRequest;
+  export type ValidationValidateRoutingNumberParams = ValidationsAPI.ValidationValidateRoutingNumberParams;
 }

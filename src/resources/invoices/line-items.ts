@@ -3,8 +3,8 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
-import * as API from './index';
-import { Page, PageParams } from 'modern-treasury/pagination';
+import * as LineItemsAPI from 'modern-treasury/resources/invoices/line-items';
+import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LineItems extends APIResource {
   /**
@@ -93,8 +93,6 @@ export class LineItems extends APIResource {
 }
 
 export class InvoiceLineItemsPage extends Page<InvoiceLineItem> {}
-// alias so we can export it in the namespace
-type _InvoiceLineItemsPage = InvoiceLineItemsPage;
 
 export interface InvoiceLineItem {
   id: string;
@@ -212,9 +210,9 @@ export interface LineItemUpdateParams {
 export interface LineItemListParams extends PageParams {}
 
 export namespace LineItems {
-  export import InvoiceLineItem = API.InvoiceLineItem;
-  export type InvoiceLineItemsPage = _InvoiceLineItemsPage;
-  export import LineItemCreateParams = API.LineItemCreateParams;
-  export import LineItemUpdateParams = API.LineItemUpdateParams;
-  export import LineItemListParams = API.LineItemListParams;
+  export type InvoiceLineItem = LineItemsAPI.InvoiceLineItem;
+  export import InvoiceLineItemsPage = LineItemsAPI.InvoiceLineItemsPage;
+  export type LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
+  export type LineItemUpdateParams = LineItemsAPI.LineItemUpdateParams;
+  export type LineItemListParams = LineItemsAPI.LineItemListParams;
 }
