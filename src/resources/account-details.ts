@@ -140,8 +140,8 @@ export interface AccountDetailCreateParams {
 export interface AccountDetailListParams extends PageParams {}
 
 export namespace AccountDetails {
-  export type AccountDetail = AccountDetailsAPI.AccountDetail;
+  export import AccountDetail = AccountDetailsAPI.AccountDetail;
   export import AccountDetailsPage = AccountDetailsAPI.AccountDetailsPage;
-  export type AccountDetailCreateParams = AccountDetailsAPI.AccountDetailCreateParams;
-  export type AccountDetailListParams = AccountDetailsAPI.AccountDetailListParams;
+  export import AccountDetailCreateParams = AccountDetailsAPI.AccountDetailCreateParams;
+  export import AccountDetailListParams = AccountDetailsAPI.AccountDetailListParams;
 }

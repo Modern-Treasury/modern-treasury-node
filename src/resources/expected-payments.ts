@@ -510,10 +510,10 @@ export interface ExpectedPaymentListParams extends PageParams {
 }
 
 export namespace ExpectedPayments {
-  export type ExpectedPayment = ExpectedPaymentsAPI.ExpectedPayment;
-  export type ExpectedPaymentType = ExpectedPaymentsAPI.ExpectedPaymentType;
+  export import ExpectedPayment = ExpectedPaymentsAPI.ExpectedPayment;
+  export import ExpectedPaymentType = ExpectedPaymentsAPI.ExpectedPaymentType;
   export import ExpectedPaymentsPage = ExpectedPaymentsAPI.ExpectedPaymentsPage;
-  export type ExpectedPaymentCreateParams = ExpectedPaymentsAPI.ExpectedPaymentCreateParams;
-  export type ExpectedPaymentUpdateParams = ExpectedPaymentsAPI.ExpectedPaymentUpdateParams;
-  export type ExpectedPaymentListParams = ExpectedPaymentsAPI.ExpectedPaymentListParams;
+  export import ExpectedPaymentCreateParams = ExpectedPaymentsAPI.ExpectedPaymentCreateParams;
+  export import ExpectedPaymentUpdateParams = ExpectedPaymentsAPI.ExpectedPaymentUpdateParams;
+  export import ExpectedPaymentListParams = ExpectedPaymentsAPI.ExpectedPaymentListParams;
 }

@@ -586,11 +586,11 @@ export interface LedgerEventHandlerListParams extends PageParams {
 }
 
 export namespace LedgerEventHandlers {
-  export type LedgerEventHandlerCreateResponse = LedgerEventHandlersAPI.LedgerEventHandlerCreateResponse;
-  export type LedgerEventHandlerRetrieveResponse = LedgerEventHandlersAPI.LedgerEventHandlerRetrieveResponse;
-  export type LedgerEventHandlerListResponse = LedgerEventHandlersAPI.LedgerEventHandlerListResponse;
-  export type LedgerEventHandlerDeleteResponse = LedgerEventHandlersAPI.LedgerEventHandlerDeleteResponse;
+  export import LedgerEventHandlerCreateResponse = LedgerEventHandlersAPI.LedgerEventHandlerCreateResponse;
+  export import LedgerEventHandlerRetrieveResponse = LedgerEventHandlersAPI.LedgerEventHandlerRetrieveResponse;
+  export import LedgerEventHandlerListResponse = LedgerEventHandlersAPI.LedgerEventHandlerListResponse;
+  export import LedgerEventHandlerDeleteResponse = LedgerEventHandlersAPI.LedgerEventHandlerDeleteResponse;
   export import LedgerEventHandlerListResponsesPage = LedgerEventHandlersAPI.LedgerEventHandlerListResponsesPage;
-  export type LedgerEventHandlerCreateParams = LedgerEventHandlersAPI.LedgerEventHandlerCreateParams;
-  export type LedgerEventHandlerListParams = LedgerEventHandlersAPI.LedgerEventHandlerListParams;
+  export import LedgerEventHandlerCreateParams = LedgerEventHandlersAPI.LedgerEventHandlerCreateParams;
+  export import LedgerEventHandlerListParams = LedgerEventHandlersAPI.LedgerEventHandlerListParams;
 }

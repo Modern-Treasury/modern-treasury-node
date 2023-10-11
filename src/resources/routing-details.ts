@@ -262,8 +262,8 @@ export interface RoutingDetailCreateParams {
 export interface RoutingDetailListParams extends PageParams {}
 
 export namespace RoutingDetails {
-  export type RoutingDetail = RoutingDetailsAPI.RoutingDetail;
+  export import RoutingDetail = RoutingDetailsAPI.RoutingDetail;
   export import RoutingDetailsPage = RoutingDetailsAPI.RoutingDetailsPage;
-  export type RoutingDetailCreateParams = RoutingDetailsAPI.RoutingDetailCreateParams;
-  export type RoutingDetailListParams = RoutingDetailsAPI.RoutingDetailListParams;
+  export import RoutingDetailCreateParams = RoutingDetailsAPI.RoutingDetailCreateParams;
+  export import RoutingDetailListParams = RoutingDetailsAPI.RoutingDetailListParams;
 }
