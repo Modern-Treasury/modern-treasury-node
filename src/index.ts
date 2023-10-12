@@ -11,9 +11,19 @@ import * as TopLevelAPI from 'modern-treasury/resources/top-level';
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env["MODERN_TREASURY_API_KEY"].
+   * Defaults to process.env['MODERN_TREASURY_API_KEY'].
    */
   apiKey?: string;
+
+  /**
+   * Defaults to process.env['MODERN_TREASURY_ORGANIZATION_ID'].
+   */
+  organizationId?: string;
+
+  /**
+   * Defaults to process.env['MODERN_TREASURY_WEBHOOK_KEY'].
+   */
+  webhookKey?: string | null;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -68,24 +78,22 @@ export interface ClientOptions {
    * param to `undefined` in request options.
    */
   defaultQuery?: Core.DefaultQuery;
-
-  organizationId?: string;
-
-  webhookKey?: string | null;
 }
 
 /** API Client for interfacing with the Modern Treasury API. */
 export class ModernTreasury extends Core.APIClient {
   apiKey: string;
   organizationId: string;
-  webhookKey?: string | null;
+  webhookKey: string | null;
 
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Modern Treasury API.
    *
-   * @param {string} [opts.apiKey=process.env['MODERN_TREASURY_API_KEY']] - The API Key to send to the API.
+   * @param {string} [opts.apiKey==process.env['MODERN_TREASURY_API_KEY'] ?? undefined]
+   * @param {string} [opts.organizationId==process.env['MODERN_TREASURY_ORGANIZATION_ID'] ?? undefined]
+   * @param {string | null} [opts.webhookKey==process.env['MODERN_TREASURY_WEBHOOK_KEY'] ?? null]
    * @param {string} [opts.baseURL] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -93,8 +101,6 @@ export class ModernTreasury extends Core.APIClient {
    * @param {number} [opts.maxRetries=2] - The maximum number of times the client will retry a request.
    * @param {Core.Headers} opts.defaultHeaders - Default headers to include with every request to the API.
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
-   * @param {string} [opts.organizationId]
-   * @param {string | null} [opts.webhookKey]
    */
   constructor({
     apiKey = Core.readEnv('MODERN_TREASURY_API_KEY'),
@@ -104,7 +110,7 @@ export class ModernTreasury extends Core.APIClient {
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Errors.ModernTreasuryError(
-        "The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({ apiKey: 'my apiKey' }).",
+        "The MODERN_TREASURY_API_KEY environment variable is missing or empty; either provide it, or instantiate the ModernTreasury client with an apiKey option, like new ModernTreasury({ apiKey: 'My API Key' }).",
       );
     }
     if (organizationId === undefined) {
