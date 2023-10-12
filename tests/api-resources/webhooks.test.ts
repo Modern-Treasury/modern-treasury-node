@@ -52,7 +52,7 @@ describe('resource webhooks', () => {
   it('validateSignature: Throws an error when the X-Signature header is not present', () => {
     expect(() =>
       modernTreasury.webhooks.validateSignature('bar', /* headers */ {}, { key: 'foo' }),
-    ).toThrowError('Could not find an X-Signature header');
+    ).toThrowError('Could not find X-Signature header');
   });
 
   it('validateSignature: Correctly verifies against the expected signature', () => {

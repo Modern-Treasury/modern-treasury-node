@@ -3,7 +3,7 @@
 import { APIResource } from 'modern-treasury/resource';
 import { createHmac } from 'crypto';
 import type { HeadersLike } from 'modern-treasury/core';
-import { getHeader } from 'modern-treasury/core';
+import { getRequiredHeader } from 'modern-treasury/core';
 
 export class Webhooks extends APIResource {
   /**
@@ -40,8 +40,9 @@ export class Webhooks extends APIResource {
     opts?: { key?: string | null | undefined },
   ): boolean {
     const signature = this.getSignature(payload, opts);
-    const expectedSignature = typeof headers === 'string' ? headers : getHeader(headers, 'X-Signature');
-    if (!expectedSignature) throw new Error('Could not find an X-Signature header');
+    const expectedSignature =
+      typeof headers === 'string' ? headers : getRequiredHeader(headers, 'X-Signature');
+    if (!expectedSignature) throw new Error('Could not find X-Signature header');
     return signature === expectedSignature;
   }
 }
