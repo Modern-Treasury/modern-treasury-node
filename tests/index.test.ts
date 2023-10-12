@@ -23,8 +23,8 @@ describe('instantiate client', () => {
     const client = new ModernTreasury({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
+      apiKey: 'My API Key',
       organizationId: 'my-organization-ID',
-      apiKey: 'my api key',
     });
 
     test('they are used in the request', () => {
@@ -56,8 +56,8 @@ describe('instantiate client', () => {
       const client = new ModernTreasury({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
+        apiKey: 'My API Key',
         organizationId: 'my-organization-ID',
-        apiKey: 'my api key',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
     });
@@ -66,8 +66,8 @@ describe('instantiate client', () => {
       const client = new ModernTreasury({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
+        apiKey: 'My API Key',
         organizationId: 'my-organization-ID',
-        apiKey: 'my api key',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
     });
@@ -76,8 +76,8 @@ describe('instantiate client', () => {
       const client = new ModernTreasury({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
+        apiKey: 'My API Key',
         organizationId: 'my-organization-ID',
-        apiKey: 'my api key',
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
     });
@@ -86,8 +86,8 @@ describe('instantiate client', () => {
   test('custom fetch', async () => {
     const client = new ModernTreasury({
       baseURL: 'http://localhost:5000/',
+      apiKey: 'My API Key',
       organizationId: 'my-organization-ID',
-      apiKey: 'my api key',
       fetch: (url) => {
         return Promise.resolve(
           new Response(JSON.stringify({ url, custom: true }), {
@@ -104,8 +104,8 @@ describe('instantiate client', () => {
   test('custom signal', async () => {
     const client = new ModernTreasury({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+      apiKey: 'My API Key',
       organizationId: 'my-organization-ID',
-      apiKey: 'my api key',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
           setTimeout(
@@ -132,8 +132,8 @@ describe('instantiate client', () => {
     test('trailing slash', () => {
       const client = new ModernTreasury({
         baseURL: 'http://localhost:5000/custom/path/',
+        apiKey: 'My API Key',
         organizationId: 'my-organization-ID',
-        apiKey: 'my api key',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
@@ -141,8 +141,8 @@ describe('instantiate client', () => {
     test('no trailing slash', () => {
       const client = new ModernTreasury({
         baseURL: 'http://localhost:5000/custom/path',
+        apiKey: 'My API Key',
         organizationId: 'my-organization-ID',
-        apiKey: 'my api key',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
@@ -151,52 +151,40 @@ describe('instantiate client', () => {
   test('maxRetries option is correctly set', () => {
     const client = new ModernTreasury({
       maxRetries: 1,
+      apiKey: 'My API Key',
       organizationId: 'my-organization-ID',
-      apiKey: 'my api key',
     });
     expect(client.maxRetries).toEqual(1);
 
     // default
-    const client2 = new ModernTreasury({ organizationId: 'my-organization-ID', apiKey: 'my api key' });
+    const client2 = new ModernTreasury({ apiKey: 'My API Key', organizationId: 'my-organization-ID' });
     expect(client2.maxRetries).toEqual(2);
   });
 
-  test('with minimal arguments', () => {
-    // set API Key via env var
-    process.env['MODERN_TREASURY_API_KEY'] = 'env var api key';
-    const client = new ModernTreasury({ organizationId: 'my-organization-ID' });
-    expect(client.apiKey).toBe('env var api key');
+  test('with environment variable arguments', () => {
+    // set options via env var
+    process.env['MODERN_TREASURY_API_KEY'] = 'My API Key';
+    process.env['MODERN_TREASURY_ORGANIZATION_ID'] = 'my-organization-ID';
+    const client = new ModernTreasury();
+    expect(client.apiKey).toBe('My API Key');
     expect(client.organizationId).toBe('my-organization-ID');
   });
 
-  test('with apiKey argument', () => {
-    process.env['MODERN_TREASURY_API_KEY'] = 'env var api key';
-
-    const client = new ModernTreasury({ apiKey: 'another api key', organizationId: 'my-organization-ID' });
-    expect(client.apiKey).toBe('another api key');
-  });
-
-  test('with options argument', () => {
-    process.env['MODERN_TREASURY_API_KEY'] = 'env var api key';
-
-    // apiKey and custom options
-    const client = new ModernTreasury({ apiKey: 'my api key', organizationId: 'my-organization-ID' });
-    expect(client.apiKey).toBe('my api key');
-  });
-
-  test('with disabled authentication', () => {
-    // fails if no API Key provided
-    expect(() => {
-      new ModernTreasury({ organizationId: 'my-organization-ID' });
-    }).toThrow();
+  test('with overriden environment variable arguments', () => {
+    // set options via env var
+    process.env['MODERN_TREASURY_API_KEY'] = 'another My API Key';
+    process.env['MODERN_TREASURY_ORGANIZATION_ID'] = 'another my-organization-ID';
+    const client = new ModernTreasury({ apiKey: 'My API Key', organizationId: 'my-organization-ID' });
+    expect(client.apiKey).toBe('My API Key');
+    expect(client.organizationId).toBe('my-organization-ID');
   });
 });
 
 describe('idempotency', () => {
   test('key can be set per-request', async () => {
     const client = new ModernTreasury({
-      apiKey: 'my api key',
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+      apiKey: 'My API Key',
       organizationId: 'my-organization-ID',
     });
     await client.counterparties.create({ name: 'string' }, { idempotencyKey: 'my-idempotency-key' });
@@ -204,7 +192,7 @@ describe('idempotency', () => {
 });
 
 describe('request building', () => {
-  const client = new ModernTreasury({ organizationId: 'my-organization-ID', apiKey: 'my api key' });
+  const client = new ModernTreasury({ apiKey: 'My API Key', organizationId: 'my-organization-ID' });
 
   describe('Content-Length', () => {
     test('handles multi-byte characters', () => {
@@ -231,8 +219,8 @@ describe('retries', () => {
     };
 
     const client = new ModernTreasury({
+      apiKey: 'My API Key',
       organizationId: 'my-organization-ID',
-      apiKey: 'my api key',
       timeout: 2000,
       fetch: testFetch,
     });
