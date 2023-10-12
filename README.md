@@ -22,8 +22,8 @@ The full API of this library can be found in [api.md](https://www.github.com/Mod
 import ModernTreasury from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury({
-  apiKey: 'my api key', // defaults to process.env["MODERN_TREASURY_API_KEY"]
-  organizationId: 'my-organization-ID',
+  organizationId: 'my-organization-ID', // defaults to process.env["MODERN_TREASURY_ORGANIZATION_ID"]
+  apiKey: 'My API Key', // defaults to process.env["MODERN_TREASURY_API_KEY"]
 });
 
 async function main() {
@@ -46,8 +46,8 @@ This library includes TypeScript definitions for all request params and response
 import ModernTreasury from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury({
-  apiKey: 'my api key', // defaults to process.env["MODERN_TREASURY_API_KEY"]
-  organizationId: 'my-organization-ID',
+  organizationId: 'my-organization-ID', // defaults to process.env["MODERN_TREASURY_ORGANIZATION_ID"]
+  apiKey: 'My API Key', // defaults to process.env["MODERN_TREASURY_API_KEY"]
 });
 
 async function main() {
@@ -166,7 +166,6 @@ You can use the `maxRetries` option to configure or disable this:
 // Configure the default for all requests:
 const modernTreasury = new ModernTreasury({
   maxRetries: 0, // default is 2
-  organizationId: 'my-organization-ID',
 });
 
 // Or, configure per-request:
@@ -184,7 +183,6 @@ Requests time out after 1 minute by default. You can configure this with a `time
 // Configure the default for all requests:
 const modernTreasury = new ModernTreasury({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
-  organizationId: 'my-organization-ID',
 });
 
 // Override per-request:
@@ -266,7 +264,6 @@ import HttpsProxyAgent from 'https-proxy-agent';
 // Configure the default for all requests:
 const modernTreasury = new ModernTreasury({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
-  organizationId: 'my-organization-ID',
 });
 
 // Override per-request:
