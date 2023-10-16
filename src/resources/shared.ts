@@ -202,3 +202,5 @@ export type Currency =
   | 'ZWN'
   | 'ZWR'
   | null;
+
+export type TransactionDirection = 'credit' | 'debit';

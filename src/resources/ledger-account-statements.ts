@@ -3,6 +3,7 @@
 import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import * as LedgerAccountStatementsAPI from 'modern-treasury/resources/ledger-account-statements';
+import * as Shared from 'modern-treasury/resources/shared';
 
 export class LedgerAccountStatements extends APIResource {
   /**
@@ -82,7 +83,7 @@ export interface LedgerAccountStatementCreateResponse {
   /**
    * The normal balance of the ledger account.
    */
-  ledger_account_normal_balance: 'credit' | 'debit';
+  ledger_account_normal_balance: Shared.TransactionDirection;
 
   /**
    * The id of the ledger that this ledger account statement belongs to.
@@ -352,7 +353,7 @@ export interface LedgerAccountStatementRetrieveResponse {
   /**
    * The normal balance of the ledger account.
    */
-  ledger_account_normal_balance: 'credit' | 'debit';
+  ledger_account_normal_balance: Shared.TransactionDirection;
 
   /**
    * The id of the ledger that this ledger account statement belongs to.

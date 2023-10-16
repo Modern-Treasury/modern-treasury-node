@@ -844,7 +844,7 @@ export namespace PaymentOrderCreateParams {
        * `debit` pulls money from someone else's account to your own. Note that wire,
        * rtp, and check payments will always be `credit`.
        */
-      direction: 'credit' | 'debit';
+      direction: Shared.TransactionDirection;
 
       /**
        * The ledger account that this ledger entry is associated with.
@@ -1020,7 +1020,7 @@ export namespace PaymentOrderCreateParams {
       /**
        * The normal balance of the ledger account.
        */
-      normal_balance: 'credit' | 'debit';
+      normal_balance: Shared.TransactionDirection;
 
       /**
        * The currency exponent of the ledger account.
@@ -1493,7 +1493,7 @@ export namespace PaymentOrderUpdateParams {
       /**
        * The normal balance of the ledger account.
        */
-      normal_balance: 'credit' | 'debit';
+      normal_balance: Shared.TransactionDirection;
 
       /**
        * The currency exponent of the ledger account.
@@ -1600,7 +1600,7 @@ export namespace PaymentOrderUpdateParams {
 export interface PaymentOrderListParams extends PageParams {
   counterparty_id?: string;
 
-  direction?: 'credit' | 'debit';
+  direction?: Shared.TransactionDirection;
 
   /**
    * An inclusive upper bound for searching effective_date
@@ -1985,7 +1985,7 @@ export namespace PaymentOrderCreateAsyncParams {
        * `debit` pulls money from someone else's account to your own. Note that wire,
        * rtp, and check payments will always be `credit`.
        */
-      direction: 'credit' | 'debit';
+      direction: Shared.TransactionDirection;
 
       /**
        * The ledger account that this ledger entry is associated with.
@@ -2161,7 +2161,7 @@ export namespace PaymentOrderCreateAsyncParams {
       /**
        * The normal balance of the ledger account.
        */
-      normal_balance: 'credit' | 'debit';
+      normal_balance: Shared.TransactionDirection;
 
       /**
        * The currency exponent of the ledger account.

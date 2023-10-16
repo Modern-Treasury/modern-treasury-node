@@ -385,7 +385,7 @@ export namespace ExternalAccountCreateParams {
     /**
      * The normal balance of the ledger account.
      */
-    normal_balance: 'credit' | 'debit';
+    normal_balance: Shared.TransactionDirection;
 
     /**
      * The currency exponent of the ledger account.

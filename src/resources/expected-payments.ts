@@ -130,7 +130,7 @@ export interface ExpectedPayment {
    * One of credit or debit. When you are receiving money, use credit. When you are
    * being charged, use debit.
    */
-  direction: 'credit' | 'debit';
+  direction: Shared.TransactionDirection;
 
   /**
    * The ID of the Internal Account for the expected payment.
@@ -257,7 +257,7 @@ export interface ExpectedPaymentCreateParams {
    * One of credit or debit. When you are receiving money, use credit. When you are
    * being charged, use debit.
    */
-  direction: 'credit' | 'debit';
+  direction: Shared.TransactionDirection;
 
   /**
    * The ID of the Internal Account for the expected payment.
@@ -398,7 +398,7 @@ export interface ExpectedPaymentUpdateParams {
    * One of credit or debit. When you are receiving money, use credit. When you are
    * being charged, use debit.
    */
-  direction?: 'credit' | 'debit';
+  direction?: Shared.TransactionDirection;
 
   /**
    * The ID of the Internal Account for the expected payment.
@@ -462,7 +462,7 @@ export interface ExpectedPaymentListParams extends PageParams {
   /**
    * One of credit, debit
    */
-  direction?: 'credit' | 'debit';
+  direction?: Shared.TransactionDirection;
 
   /**
    * Specify internal_account_id to see expected_payments for a specific account.

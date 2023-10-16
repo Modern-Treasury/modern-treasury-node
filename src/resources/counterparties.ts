@@ -7,6 +7,7 @@ import * as CounterpartiesAPI from 'modern-treasury/resources/counterparties';
 import * as AccountDetailsAPI from 'modern-treasury/resources/account-details';
 import * as ExternalAccountsAPI from 'modern-treasury/resources/external-accounts';
 import * as RoutingDetailsAPI from 'modern-treasury/resources/routing-details';
+import * as Shared from 'modern-treasury/resources/shared';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Counterparties extends APIResource {
@@ -464,7 +465,7 @@ export namespace CounterpartyCreateParams {
       /**
        * The normal balance of the ledger account.
        */
-      normal_balance: 'credit' | 'debit';
+      normal_balance: Shared.TransactionDirection;
 
       /**
        * The currency exponent of the ledger account.
@@ -634,7 +635,7 @@ export interface CounterpartyCollectAccountParams {
    * Use `debit` when you need to charge a counterparty. This field helps us send a
    * more tailored email to your counterparties."
    */
-  direction: 'credit' | 'debit';
+  direction: Shared.TransactionDirection;
 
   /**
    * The URL you want your customer to visit upon filling out the form. By default,
