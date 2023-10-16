@@ -15,6 +15,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">AccountsType</a></code>
 - <code><a href="./src/resources/shared.ts">AsyncResponse</a></code>
 - <code><a href="./src/resources/shared.ts">Currency</a></code>
+- <code><a href="./src/resources/shared.ts">TransactionDirection</a></code>
 
 # Connections
 

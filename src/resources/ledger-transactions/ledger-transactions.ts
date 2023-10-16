@@ -5,6 +5,7 @@ import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as LedgerTransactionsAPI from 'modern-treasury/resources/ledger-transactions/ledger-transactions';
 import * as LedgerEntriesAPI from 'modern-treasury/resources/ledger-entries';
+import * as Shared from 'modern-treasury/resources/shared';
 import * as VersionsAPI from 'modern-treasury/resources/ledger-transactions/versions';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
@@ -273,7 +274,7 @@ export namespace LedgerTransactionCreateParams {
      * `debit` pulls money from someone else's account to your own. Note that wire,
      * rtp, and check payments will always be `credit`.
      */
-    direction: 'credit' | 'debit';
+    direction: Shared.TransactionDirection;
 
     /**
      * The ledger account that this ledger entry is associated with.
@@ -366,7 +367,7 @@ export namespace LedgerTransactionUpdateParams {
      * `debit` pulls money from someone else's account to your own. Note that wire,
      * rtp, and check payments will always be `credit`.
      */
-    direction: 'credit' | 'debit';
+    direction: Shared.TransactionDirection;
 
     /**
      * The ledger account that this ledger entry is associated with.

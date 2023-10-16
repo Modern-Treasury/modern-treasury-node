@@ -118,7 +118,7 @@ export interface IncomingPaymentDetail {
   /**
    * One of `credit` or `debit`.
    */
-  direction: 'credit' | 'debit';
+  direction: Shared.TransactionDirection;
 
   /**
    * The ID of the Internal Account for the incoming payment detail. This is always
@@ -251,7 +251,7 @@ export interface IncomingPaymentDetailListParams extends PageParams {
   /**
    * One of `credit` or `debit`.
    */
-  direction?: 'credit' | 'debit';
+  direction?: Shared.TransactionDirection;
 
   /**
    * For example, if you want to query for records with metadata key `Type` and value

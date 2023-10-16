@@ -4,6 +4,7 @@ import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as LedgerAccountsAPI from 'modern-treasury/resources/ledger-accounts';
+import * as Shared from 'modern-treasury/resources/shared';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerAccounts extends APIResource {
@@ -157,7 +158,7 @@ export interface LedgerAccount {
   /**
    * The normal balance of the ledger account.
    */
-  normal_balance: 'credit' | 'debit';
+  normal_balance: Shared.TransactionDirection;
 
   object: string;
 
@@ -292,7 +293,7 @@ export interface LedgerAccountCreateParams {
   /**
    * The normal balance of the ledger account.
    */
-  normal_balance: 'credit' | 'debit';
+  normal_balance: Shared.TransactionDirection;
 
   /**
    * The currency exponent of the ledger account.

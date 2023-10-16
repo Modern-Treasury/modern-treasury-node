@@ -4,6 +4,7 @@ import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as ReversalsAPI from 'modern-treasury/resources/payment-orders/reversals';
+import * as Shared from 'modern-treasury/resources/shared';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Reversals extends APIResource {
@@ -219,7 +220,7 @@ export namespace ReversalCreateParams {
        * `debit` pulls money from someone else's account to your own. Note that wire,
        * rtp, and check payments will always be `credit`.
        */
-      direction: 'credit' | 'debit';
+      direction: Shared.TransactionDirection;
 
       /**
        * The ledger account that this ledger entry is associated with.

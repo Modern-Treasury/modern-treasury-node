@@ -4,6 +4,7 @@ import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as LedgerEntriesAPI from 'modern-treasury/resources/ledger-entries';
+import * as Shared from 'modern-treasury/resources/shared';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerEntries extends APIResource {
@@ -65,7 +66,7 @@ export interface LedgerEntry {
    * `debit` pulls money from someone else's account to your own. Note that wire,
    * rtp, and check payments will always be `credit`.
    */
-  direction: 'credit' | 'debit';
+  direction: Shared.TransactionDirection;
 
   discarded_at: string | null;
 
@@ -256,7 +257,7 @@ export interface LedgerEntryListParams extends PageParams {
    * a ledger transaction to specify a new set of entries, the previous entries are
    * deleted.
    */
-  direction?: 'credit' | 'debit';
+  direction?: Shared.TransactionDirection;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the

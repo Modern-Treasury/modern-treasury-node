@@ -330,7 +330,7 @@ export interface InternalAccountListParams extends PageParams {
   /**
    * The direction of payments that can be made by internal account.
    */
-  payment_direction?: 'credit' | 'debit';
+  payment_direction?: Shared.TransactionDirection;
 
   /**
    * The type of payment that can be made by the internal account.
