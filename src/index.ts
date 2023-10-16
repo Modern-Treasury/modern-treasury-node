@@ -466,6 +466,7 @@ export namespace ModernTreasury {
   export import AccountsType = API.AccountsType;
   export import AsyncResponse = API.AsyncResponse;
   export import Currency = API.Currency;
+  export import TransactionDirection = API.TransactionDirection;
 }
 
 export default ModernTreasury;

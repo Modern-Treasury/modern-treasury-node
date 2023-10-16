@@ -4,6 +4,7 @@ import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as VersionsAPI from 'modern-treasury/resources/ledger-transactions/versions';
+import * as Shared from 'modern-treasury/resources/shared';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Versions extends APIResource {
@@ -149,7 +150,7 @@ export namespace LedgerTransactionVersion {
      * `debit` pulls money from someone else's account to your own. Note that wire,
      * rtp, and check payments will always be `credit`.
      */
-    direction: 'credit' | 'debit';
+    direction: Shared.TransactionDirection;
 
     /**
      * The currency of the ledger account.
