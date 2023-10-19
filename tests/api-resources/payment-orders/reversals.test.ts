@@ -33,7 +33,7 @@ describe('resource reversals', () => {
           description: 'string',
           status: 'archived',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          effective_at: '2019-12-27',
+          effective_at: '2019-12-27T18:11:19.117Z',
           effective_date: '2019-12-27',
           ledger_entries: [
             {

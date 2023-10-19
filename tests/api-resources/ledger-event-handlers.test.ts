@@ -14,7 +14,7 @@ describe('resource ledgerEventHandlers', () => {
     const responsePromise = modernTreasury.ledgerEventHandlers.create({
       ledger_transaction_template: {
         description: 'string',
-        effective_at: 'string',
+        effective_at: '2019-12-27T18:11:19.117Z',
         ledger_entries: [
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
@@ -37,7 +37,7 @@ describe('resource ledgerEventHandlers', () => {
     const response = await modernTreasury.ledgerEventHandlers.create({
       ledger_transaction_template: {
         description: 'string',
-        effective_at: 'string',
+        effective_at: '2019-12-27T18:11:19.117Z',
         ledger_entries: [
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
