@@ -150,11 +150,11 @@ describe('instantiate client', () => {
 
   test('maxRetries option is correctly set', () => {
     const client = new ModernTreasury({
-      maxRetries: 1,
+      maxRetries: 4,
       apiKey: 'My API Key',
       organizationId: 'my-organization-ID',
     });
-    expect(client.maxRetries).toEqual(1);
+    expect(client.maxRetries).toEqual(4);
 
     // default
     const client2 = new ModernTreasury({ apiKey: 'My API Key', organizationId: 'my-organization-ID' });
