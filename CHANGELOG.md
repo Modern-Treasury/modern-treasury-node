@@ -1,5 +1,43 @@
 # Changelog
 
+## 2.8.0 (2023-10-24)
+
+Full Changelog: [v2.7.2...v2.8.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.7.2...v2.8.0)
+
+### Features
+
+* **api:** updates ([#266](https://github.com/Modern-Treasury/modern-treasury-node/issues/266)) ([53bd88a](https://github.com/Modern-Treasury/modern-treasury-node/commit/53bd88a4045e1becbb2e6b75c548801959cbe7ae))
+* **client:** adjust retry behavior to be exponential backoff ([#267](https://github.com/Modern-Treasury/modern-treasury-node/issues/267)) ([926baf6](https://github.com/Modern-Treasury/modern-treasury-node/commit/926baf6df118d0b0f5cd857d619662f3dd5bfae0))
+* handle 204 No Content gracefully ([#264](https://github.com/Modern-Treasury/modern-treasury-node/issues/264)) ([2fd00e6](https://github.com/Modern-Treasury/modern-treasury-node/commit/2fd00e6611df803eb50caee77bb5bcffed189f2c))
+* make webhook headers case insensitive ([#256](https://github.com/Modern-Treasury/modern-treasury-node/issues/256)) ([c838d5c](https://github.com/Modern-Treasury/modern-treasury-node/commit/c838d5c0a0502487116caecfaae720b4a6ceb4d3))
+* **types:** consolidate direction enums into a shared TransactionDirection type ([#259](https://github.com/Modern-Treasury/modern-treasury-node/issues/259)) ([b63fb03](https://github.com/Modern-Treasury/modern-treasury-node/commit/b63fb03c6e28f0255bf7dd6d6db766c294c52343))
+
+
+### Bug Fixes
+
+* **api:** use date-time for effective_at ([#265](https://github.com/Modern-Treasury/modern-treasury-node/issues/265)) ([d9a8150](https://github.com/Modern-Treasury/modern-treasury-node/commit/d9a8150cc051579560b98fbc249482dd929a4519))
+* **client:** eliminate circular imports, which cause runtime errors in webpack dev bundles ([#249](https://github.com/Modern-Treasury/modern-treasury-node/issues/249)) ([cad5c73](https://github.com/Modern-Treasury/modern-treasury-node/commit/cad5c73020b30cbe9879ebf1673bbaaf71655abd))
+* fix namespace exports regression ([#251](https://github.com/Modern-Treasury/modern-treasury-node/issues/251)) ([f7f367c](https://github.com/Modern-Treasury/modern-treasury-node/commit/f7f367ce6b33fb146b5f43ffc37704be62a94ee9))
+* import web-streams-polyfill without overriding globals ([#262](https://github.com/Modern-Treasury/modern-treasury-node/issues/262)) ([d83ec78](https://github.com/Modern-Treasury/modern-treasury-node/commit/d83ec78c9a48c5219e192c645fb24ea184758565))
+* improve status code in error messages ([#260](https://github.com/Modern-Treasury/modern-treasury-node/issues/260)) ([b2e8b90](https://github.com/Modern-Treasury/modern-treasury-node/commit/b2e8b9009c972d92df628c68f97fa937ca41ab3b))
+
+
+### Chores
+
+* **internal:** refactor status code printing in error ([#253](https://github.com/Modern-Treasury/modern-treasury-node/issues/253)) ([8478f61](https://github.com/Modern-Treasury/modern-treasury-node/commit/8478f614668237dd16a59672166c24ffb959bf6e))
+* update comment ([#257](https://github.com/Modern-Treasury/modern-treasury-node/issues/257)) ([57b558a](https://github.com/Modern-Treasury/modern-treasury-node/commit/57b558af74756719bf33f0e9b594b0bb20d26a4e))
+* update README ([#252](https://github.com/Modern-Treasury/modern-treasury-node/issues/252)) ([f3983f1](https://github.com/Modern-Treasury/modern-treasury-node/commit/f3983f16925e6781b7a4213512cc689f1e613962))
+
+
+### Documentation
+
+* organisation -&gt; organization (UK to US English) ([#261](https://github.com/Modern-Treasury/modern-treasury-node/issues/261)) ([c9fb49b](https://github.com/Modern-Treasury/modern-treasury-node/commit/c9fb49b747e62ee4419e394db4461e9a905bea90))
+
+
+### Refactors
+
+* **test:** refactor authentication tests ([#254](https://github.com/Modern-Treasury/modern-treasury-node/issues/254)) ([bfaebfd](https://github.com/Modern-Treasury/modern-treasury-node/commit/bfaebfdb7300adefbb72fef6e21a34a096ff1650))
+
 ## 2.7.2 (2023-10-06)
 
 Full Changelog: [v2.7.1...v2.7.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.7.1...v2.7.2)
