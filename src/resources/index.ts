@@ -129,13 +129,11 @@ export {
   LedgerEntries,
 } from './ledger-entries';
 export {
-  LedgerEventHandlerCreateResponse,
-  LedgerEventHandlerRetrieveResponse,
-  LedgerEventHandlerListResponse,
-  LedgerEventHandlerDeleteResponse,
+  LedgerEventHandler,
+  LedgerEventHandlerVariable,
   LedgerEventHandlerCreateParams,
   LedgerEventHandlerListParams,
-  LedgerEventHandlerListResponsesPage,
+  LedgerEventHandlersPage,
   LedgerEventHandlers,
 } from './ledger-event-handlers';
 export {

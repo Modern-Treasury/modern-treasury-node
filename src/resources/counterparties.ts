@@ -538,30 +538,34 @@ export namespace CounterpartyCreateParams {
         | 'chips'
         | 'cnaps'
         | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
         | 'in_ifsc'
         | 'my_branch_code'
+        | 'nz_national_clearing_code'
         | 'swift'
         | 'jp_zengin_code';
 
       payment_type?:
         | 'ach'
         | 'au_becs'
-        | 'se_bankgirot'
         | 'bacs'
         | 'book'
         | 'card'
+        | 'chats'
         | 'check'
-        | 'eft'
         | 'cross_border'
+        | 'eft'
         | 'interac'
         | 'masav'
         | 'neft'
         | 'nics'
+        | 'nz_becs'
         | 'provxchange'
         | 'rtp'
+        | 'se_bankgirot'
         | 'sen'
-        | 'sic'
         | 'sepa'
+        | 'sic'
         | 'signet'
         | 'wire'
         | 'zengin';
@@ -674,6 +678,8 @@ export interface CounterpartyCollectAccountParams {
     | 'routingNumberType'
     | 'address'
     | 'jp_zengin_code'
+    | 'se_bankgiro_clearing_code'
+    | 'nz_national_clearing_code'
   >;
 
   /**

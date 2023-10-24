@@ -173,9 +173,11 @@ export interface IncomingPaymentDetail {
     | 'chips'
     | 'cnaps'
     | 'gb_sort_code'
+    | 'hk_interbank_clearing_code'
     | 'in_ifsc'
     | 'jp_zengin_code'
     | 'my_branch_code'
+    | 'nz_national_clearing_code'
     | 'se_bankgiro_clearing_code'
     | 'swift'
     | null;

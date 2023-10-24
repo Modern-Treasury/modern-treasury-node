@@ -76,6 +76,12 @@ export interface TransactionLineItem {
   object: string;
 
   /**
+   * Describes whether this line item should be counted towards the corresponding
+   * transaction’s reconciliation.
+   */
+  reconcilable: boolean;
+
+  /**
    * If a matching object exists in Modern Treasury, the ID will be populated here,
    * otherwise `null`.
    */

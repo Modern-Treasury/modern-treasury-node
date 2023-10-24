@@ -313,17 +313,15 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/ledger-event-handlers.ts">LedgerEventHandlerCreateResponse</a></code>
-- <code><a href="./src/resources/ledger-event-handlers.ts">LedgerEventHandlerRetrieveResponse</a></code>
-- <code><a href="./src/resources/ledger-event-handlers.ts">LedgerEventHandlerListResponse</a></code>
-- <code><a href="./src/resources/ledger-event-handlers.ts">LedgerEventHandlerDeleteResponse</a></code>
+- <code><a href="./src/resources/ledger-event-handlers.ts">LedgerEventHandler</a></code>
+- <code><a href="./src/resources/ledger-event-handlers.ts">LedgerEventHandlerVariable</a></code>
 
 Methods:
 
-- <code title="post /api/ledger_event_handlers">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">create</a>({ ...params }) -> LedgerEventHandlerCreateResponse</code>
-- <code title="get /api/ledger_event_handlers/{id}">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">retrieve</a>(id) -> LedgerEventHandlerRetrieveResponse</code>
-- <code title="get /api/ledger_event_handlers">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">list</a>({ ...params }) -> LedgerEventHandlerListResponsesPage</code>
-- <code title="delete /api/ledger_event_handlers/{id}">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">del</a>(id) -> LedgerEventHandlerDeleteResponse</code>
+- <code title="post /api/ledger_event_handlers">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">create</a>({ ...params }) -> LedgerEventHandler</code>
+- <code title="get /api/ledger_event_handlers/{id}">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">retrieve</a>(id) -> LedgerEventHandler</code>
+- <code title="get /api/ledger_event_handlers">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">list</a>({ ...params }) -> LedgerEventHandlersPage</code>
+- <code title="delete /api/ledger_event_handlers/{id}">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">del</a>(id) -> LedgerEventHandler</code>
 
 # LedgerTransactions
 
