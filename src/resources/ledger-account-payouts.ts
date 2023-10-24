@@ -144,6 +144,11 @@ export interface LedgerAccountPayout {
   object: string;
 
   /**
+   * The direction of the ledger entry with the payout_ledger_account.
+   */
+  payout_entry_direction: string | null;
+
+  /**
    * The id of the payout ledger account whose ledger entries are queried against,
    * and its balance is reduced as a result.
    */
@@ -170,6 +175,12 @@ export interface LedgerAccountPayoutCreateParams {
    * and its balance is reduced as a result.
    */
   payout_ledger_account_id: string;
+
+  /**
+   * If true, the payout amount and payout_entry_direction will bring the payout
+   * ledger account’s balance closer to zero, even if the balance is negative.
+   */
+  allow_either_direction?: boolean | null;
 
   /**
    * The description of the ledger account payout.
@@ -234,6 +245,8 @@ export interface LedgerAccountPayoutListParams extends PageParams {
    * parameters.
    */
   metadata?: Record<string, string>;
+
+  payout_entry_direction?: string;
 
   payout_ledger_account_id?: string;
 }

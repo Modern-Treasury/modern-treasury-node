@@ -187,7 +187,7 @@ describe('resource ledgerTransactions', () => {
         {
           id: ['string', 'string', 'string'],
           after_cursor: 'string',
-          effective_at: { foo: 'string' },
+          effective_at: { foo: '2019-12-27T18:11:19.117Z' },
           effective_date: { foo: '2019-12-27T18:11:19.117Z' },
           external_id: 'string',
           ledger_account_category_id: 'string',

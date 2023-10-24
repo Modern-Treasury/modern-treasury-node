@@ -58,12 +58,6 @@ export interface ReturnObject {
   id: string;
 
   /**
-   * Some returns may include additional information from the bank. In these cases,
-   * this string will be present.
-   */
-  additional_information: string | null;
-
-  /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
    * as 1000.
    */
@@ -221,6 +215,12 @@ export interface ReturnObject {
     | 'wire';
 
   updated_at: string;
+
+  /**
+   * Some returns may include additional information from the bank. In these cases,
+   * this string will be present.
+   */
+  additional_information?: string | null;
 }
 
 export namespace ReturnObject {

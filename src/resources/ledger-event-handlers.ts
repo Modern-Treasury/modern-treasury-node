@@ -13,7 +13,7 @@ export class LedgerEventHandlers extends APIResource {
   create(
     params: LedgerEventHandlerCreateParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerEventHandlerCreateResponse> {
+  ): Core.APIPromise<LedgerEventHandler> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     if (idempotencyKey) {
@@ -31,7 +31,7 @@ export class LedgerEventHandlers extends APIResource {
   /**
    * Get details on a single ledger event handler.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandlerRetrieveResponse> {
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandler> {
     return this.get(`/api/ledger_event_handlers/${id}`, options);
   }
 
@@ -41,37 +41,32 @@ export class LedgerEventHandlers extends APIResource {
   list(
     query?: LedgerEventHandlerListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerEventHandlerListResponsesPage, LedgerEventHandlerListResponse>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerEventHandlerListResponsesPage, LedgerEventHandlerListResponse>;
+  ): Core.PagePromise<LedgerEventHandlersPage, LedgerEventHandler>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LedgerEventHandlersPage, LedgerEventHandler>;
   list(
     query: LedgerEventHandlerListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerEventHandlerListResponsesPage, LedgerEventHandlerListResponse> {
+  ): Core.PagePromise<LedgerEventHandlersPage, LedgerEventHandler> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledger_event_handlers', LedgerEventHandlerListResponsesPage, {
-      query,
-      ...options,
-    });
+    return this.getAPIList('/api/ledger_event_handlers', LedgerEventHandlersPage, { query, ...options });
   }
 
   /**
    * Archive a ledger event handler.
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandlerDeleteResponse> {
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandler> {
     return this.delete(`/api/ledger_event_handlers/${id}`, options);
   }
 }
 
-export class LedgerEventHandlerListResponsesPage extends Page<LedgerEventHandlerListResponse> {}
+export class LedgerEventHandlersPage extends Page<LedgerEventHandler> {}
 
-export interface LedgerEventHandlerCreateResponse {
+export interface LedgerEventHandler {
   id: string;
 
-  conditions: LedgerEventHandlerCreateResponse.Conditions | null;
+  conditions: LedgerEventHandler.Conditions | null;
 
   created_at: string;
 
@@ -82,7 +77,12 @@ export interface LedgerEventHandlerCreateResponse {
 
   discarded_at: string | null;
 
-  ledger_transaction_template: LedgerEventHandlerCreateResponse.LedgerTransactionTemplate;
+  /**
+   * The id of the ledger that this event handler belongs to.
+   */
+  ledger_id: string | null;
+
+  ledger_transaction_template: LedgerEventHandler.LedgerTransactionTemplate;
 
   /**
    * This field will be true if this object exists in the live environment or false
@@ -104,23 +104,24 @@ export interface LedgerEventHandlerCreateResponse {
   object: string;
 
   updated_at: string;
+
+  variables: Record<string, LedgerEventHandlerVariable> | null;
 }
 
-export namespace LedgerEventHandlerCreateResponse {
+export namespace LedgerEventHandler {
   export interface Conditions {
     /**
-     * The field you're fetching from the `ledgerable_event`.
+     * The LHS of the conditional.
      */
     field: string;
 
     /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
+     * What the operator between the `field` and `value` is.
      */
     operator: string;
 
     /**
-     * What raw string you are comparing the `field` against.
+     * The RHS of the conditional.
      */
     value: string;
   }
@@ -143,336 +144,57 @@ export namespace LedgerEventHandlerCreateResponse {
     ledger_entries: Array<LedgerTransactionTemplate.LedgerEntry>;
 
     /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
+     * To post a ledger transaction at creation, use `posted`.
      */
-    metadata: Record<string, string> | null;
+    status: string | null;
   }
 
   export namespace LedgerTransactionTemplate {
     export interface LedgerEntry {
       /**
-       * The field you're fetching from the `ledgerable_event`.
+       * The LHS of the conditional.
        */
       amount: string;
 
       /**
-       * What the operator between the `field` and `value` is. Currently only supports
-       * `equals`.
+       * What the operator between the `field` and `value` is.
        */
       direction: string;
 
       /**
-       * What raw string you are comparing the `field` against.
+       * The RHS of the conditional.
        */
       ledger_account_id: string;
     }
   }
 }
 
-export interface LedgerEventHandlerRetrieveResponse {
-  id: string;
-
-  conditions: LedgerEventHandlerRetrieveResponse.Conditions | null;
-
-  created_at: string;
+export interface LedgerEventHandlerVariable {
+  query: LedgerEventHandlerVariable.Query;
 
   /**
-   * An optional description.
+   * The type of object this variable is. Currently, only "ledger_account" is
+   * supported.
    */
-  description: string | null;
-
-  discarded_at: string | null;
-
-  ledger_transaction_template: LedgerEventHandlerRetrieveResponse.LedgerTransactionTemplate;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode: boolean;
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata: Record<string, string> | null;
-
-  /**
-   * Name of the ledger event handler.
-   */
-  name: string;
-
-  object: string;
-
-  updated_at: string;
+  type: string;
 }
 
-export namespace LedgerEventHandlerRetrieveResponse {
-  export interface Conditions {
+export namespace LedgerEventHandlerVariable {
+  export interface Query {
     /**
-     * The field you're fetching from the `ledgerable_event`.
+     * The LHS of the conditional.
      */
     field: string;
 
     /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
+     * What the operator between the `field` and `value` is.
      */
     operator: string;
 
     /**
-     * What raw string you are comparing the `field` against.
+     * The RHS of the conditional.
      */
     value: string;
-  }
-
-  export interface LedgerTransactionTemplate {
-    /**
-     * An optional description for internal use.
-     */
-    description: string | null;
-
-    /**
-     * The timestamp (ISO8601 format) at which the ledger transaction happened for
-     * reporting purposes.
-     */
-    effective_at: string | null;
-
-    /**
-     * An array of ledger entry objects.
-     */
-    ledger_entries: Array<LedgerTransactionTemplate.LedgerEntry>;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata: Record<string, string> | null;
-  }
-
-  export namespace LedgerTransactionTemplate {
-    export interface LedgerEntry {
-      /**
-       * The field you're fetching from the `ledgerable_event`.
-       */
-      amount: string;
-
-      /**
-       * What the operator between the `field` and `value` is. Currently only supports
-       * `equals`.
-       */
-      direction: string;
-
-      /**
-       * What raw string you are comparing the `field` against.
-       */
-      ledger_account_id: string;
-    }
-  }
-}
-
-export interface LedgerEventHandlerListResponse {
-  id: string;
-
-  conditions: LedgerEventHandlerListResponse.Conditions | null;
-
-  created_at: string;
-
-  /**
-   * An optional description.
-   */
-  description: string | null;
-
-  discarded_at: string | null;
-
-  ledger_transaction_template: LedgerEventHandlerListResponse.LedgerTransactionTemplate;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode: boolean;
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata: Record<string, string> | null;
-
-  /**
-   * Name of the ledger event handler.
-   */
-  name: string;
-
-  object: string;
-
-  updated_at: string;
-}
-
-export namespace LedgerEventHandlerListResponse {
-  export interface Conditions {
-    /**
-     * The field you're fetching from the `ledgerable_event`.
-     */
-    field: string;
-
-    /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
-     */
-    operator: string;
-
-    /**
-     * What raw string you are comparing the `field` against.
-     */
-    value: string;
-  }
-
-  export interface LedgerTransactionTemplate {
-    /**
-     * An optional description for internal use.
-     */
-    description: string | null;
-
-    /**
-     * The timestamp (ISO8601 format) at which the ledger transaction happened for
-     * reporting purposes.
-     */
-    effective_at: string | null;
-
-    /**
-     * An array of ledger entry objects.
-     */
-    ledger_entries: Array<LedgerTransactionTemplate.LedgerEntry>;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata: Record<string, string> | null;
-  }
-
-  export namespace LedgerTransactionTemplate {
-    export interface LedgerEntry {
-      /**
-       * The field you're fetching from the `ledgerable_event`.
-       */
-      amount: string;
-
-      /**
-       * What the operator between the `field` and `value` is. Currently only supports
-       * `equals`.
-       */
-      direction: string;
-
-      /**
-       * What raw string you are comparing the `field` against.
-       */
-      ledger_account_id: string;
-    }
-  }
-}
-
-export interface LedgerEventHandlerDeleteResponse {
-  id: string;
-
-  conditions: LedgerEventHandlerDeleteResponse.Conditions | null;
-
-  created_at: string;
-
-  /**
-   * An optional description.
-   */
-  description: string | null;
-
-  discarded_at: string | null;
-
-  ledger_transaction_template: LedgerEventHandlerDeleteResponse.LedgerTransactionTemplate;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode: boolean;
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata: Record<string, string> | null;
-
-  /**
-   * Name of the ledger event handler.
-   */
-  name: string;
-
-  object: string;
-
-  updated_at: string;
-}
-
-export namespace LedgerEventHandlerDeleteResponse {
-  export interface Conditions {
-    /**
-     * The field you're fetching from the `ledgerable_event`.
-     */
-    field: string;
-
-    /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
-     */
-    operator: string;
-
-    /**
-     * What raw string you are comparing the `field` against.
-     */
-    value: string;
-  }
-
-  export interface LedgerTransactionTemplate {
-    /**
-     * An optional description for internal use.
-     */
-    description: string | null;
-
-    /**
-     * The timestamp (ISO8601 format) at which the ledger transaction happened for
-     * reporting purposes.
-     */
-    effective_at: string | null;
-
-    /**
-     * An array of ledger entry objects.
-     */
-    ledger_entries: Array<LedgerTransactionTemplate.LedgerEntry>;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata: Record<string, string> | null;
-  }
-
-  export namespace LedgerTransactionTemplate {
-    export interface LedgerEntry {
-      /**
-       * The field you're fetching from the `ledgerable_event`.
-       */
-      amount: string;
-
-      /**
-       * What the operator between the `field` and `value` is. Currently only supports
-       * `equals`.
-       */
-      direction: string;
-
-      /**
-       * What raw string you are comparing the `field` against.
-       */
-      ledger_account_id: string;
-    }
   }
 }
 
@@ -501,6 +223,8 @@ export interface LedgerEventHandlerCreateParams {
    * strings.
    */
   metadata?: Record<string, string> | null;
+
+  variables?: Record<string, LedgerEventHandlerVariable> | null;
 }
 
 export namespace LedgerEventHandlerCreateParams {
@@ -522,27 +246,25 @@ export namespace LedgerEventHandlerCreateParams {
     ledger_entries: Array<LedgerTransactionTemplate.LedgerEntry>;
 
     /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
+     * To post a ledger transaction at creation, use `posted`.
      */
-    metadata: Record<string, string> | null;
+    status: string | null;
   }
 
   export namespace LedgerTransactionTemplate {
     export interface LedgerEntry {
       /**
-       * The field you're fetching from the `ledgerable_event`.
+       * The LHS of the conditional.
        */
       amount: string;
 
       /**
-       * What the operator between the `field` and `value` is. Currently only supports
-       * `equals`.
+       * What the operator between the `field` and `value` is.
        */
       direction: string;
 
       /**
-       * What raw string you are comparing the `field` against.
+       * The RHS of the conditional.
        */
       ledger_account_id: string;
     }
@@ -550,18 +272,17 @@ export namespace LedgerEventHandlerCreateParams {
 
   export interface Conditions {
     /**
-     * The field you're fetching from the `ledgerable_event`.
+     * The LHS of the conditional.
      */
     field: string;
 
     /**
-     * What the operator between the `field` and `value` is. Currently only supports
-     * `equals`.
+     * What the operator between the `field` and `value` is.
      */
     operator: string;
 
     /**
-     * What raw string you are comparing the `field` against.
+     * The RHS of the conditional.
      */
     value: string;
   }
@@ -586,11 +307,9 @@ export interface LedgerEventHandlerListParams extends PageParams {
 }
 
 export namespace LedgerEventHandlers {
-  export import LedgerEventHandlerCreateResponse = LedgerEventHandlersAPI.LedgerEventHandlerCreateResponse;
-  export import LedgerEventHandlerRetrieveResponse = LedgerEventHandlersAPI.LedgerEventHandlerRetrieveResponse;
-  export import LedgerEventHandlerListResponse = LedgerEventHandlersAPI.LedgerEventHandlerListResponse;
-  export import LedgerEventHandlerDeleteResponse = LedgerEventHandlersAPI.LedgerEventHandlerDeleteResponse;
-  export import LedgerEventHandlerListResponsesPage = LedgerEventHandlersAPI.LedgerEventHandlerListResponsesPage;
+  export import LedgerEventHandler = LedgerEventHandlersAPI.LedgerEventHandler;
+  export import LedgerEventHandlerVariable = LedgerEventHandlersAPI.LedgerEventHandlerVariable;
+  export import LedgerEventHandlersPage = LedgerEventHandlersAPI.LedgerEventHandlersPage;
   export import LedgerEventHandlerCreateParams = LedgerEventHandlersAPI.LedgerEventHandlerCreateParams;
   export import LedgerEventHandlerListParams = LedgerEventHandlersAPI.LedgerEventHandlerListParams;
 }

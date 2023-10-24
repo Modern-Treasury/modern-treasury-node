@@ -131,6 +131,7 @@ export interface AccountCollectionFlow {
     | 'NLD'
     | 'PER'
     | 'ESP'
+    | 'GBR'
   >;
 
   /**
@@ -168,6 +169,7 @@ export interface AccountCollectionFlowCreateParams {
     | 'NLD'
     | 'PER'
     | 'ESP'
+    | 'GBR'
   >;
 }
 

@@ -121,8 +121,8 @@ describe('resource virtualAccounts', () => {
       modernTreasury.virtualAccounts.list(
         {
           after_cursor: 'string',
-          counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          counterparty_id: 'string',
+          internal_account_id: 'string',
           metadata: { foo: 'string' },
           per_page: 0,
         },

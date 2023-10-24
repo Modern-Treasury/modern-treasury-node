@@ -389,11 +389,9 @@ export namespace ModernTreasury {
   export import LedgerEntryListParams = API.LedgerEntryListParams;
 
   export import LedgerEventHandlers = API.LedgerEventHandlers;
-  export import LedgerEventHandlerCreateResponse = API.LedgerEventHandlerCreateResponse;
-  export import LedgerEventHandlerRetrieveResponse = API.LedgerEventHandlerRetrieveResponse;
-  export import LedgerEventHandlerListResponse = API.LedgerEventHandlerListResponse;
-  export import LedgerEventHandlerDeleteResponse = API.LedgerEventHandlerDeleteResponse;
-  export import LedgerEventHandlerListResponsesPage = API.LedgerEventHandlerListResponsesPage;
+  export import LedgerEventHandler = API.LedgerEventHandler;
+  export import LedgerEventHandlerVariable = API.LedgerEventHandlerVariable;
+  export import LedgerEventHandlersPage = API.LedgerEventHandlersPage;
   export import LedgerEventHandlerCreateParams = API.LedgerEventHandlerCreateParams;
   export import LedgerEventHandlerListParams = API.LedgerEventHandlerListParams;
 

@@ -28,6 +28,7 @@ describe('resource ledgerAccountPayouts', () => {
     const response = await modernTreasury.ledgerAccountPayouts.create({
       funding_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payout_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      allow_either_direction: true,
       description: 'string',
       effective_at_upper_bound: '14:15:22Z',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
@@ -113,6 +114,7 @@ describe('resource ledgerAccountPayouts', () => {
           id: ['string', 'string', 'string'],
           after_cursor: 'string',
           metadata: { foo: 'string' },
+          payout_entry_direction: 'string',
           payout_ledger_account_id: 'string',
           per_page: 0,
         },

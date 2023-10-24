@@ -34,10 +34,10 @@ export interface RoutingNumberLookupRequest {
   routing_number?: string;
 
   /**
-   * One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-   * `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
-   * mode we currently only support `aba` and `swift` with routing numbers
-   * '123456789' and 'GRINUST0XXX' respectively.
+   * The type of routing number. See
+   * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+   * more details. In sandbox mode we currently only support `aba` and `swift` with
+   * routing numbers '123456789' and 'GRINUST0XXX' respectively.
    */
   routing_number_type?:
     | 'aba'
@@ -45,6 +45,7 @@ export interface RoutingNumberLookupRequest {
     | 'ca_cpa'
     | 'gb_sort_code'
     | 'in_ifsc'
+    | 'nz_national_clearing_code'
     | 'se_bankgiro_clearing_code'
     | 'swift';
 
@@ -65,6 +66,7 @@ export interface RoutingNumberLookupRequest {
     | 'bacs'
     | 'book'
     | 'card'
+    | 'chats'
     | 'check'
     | 'cross_border'
     | 'eft'
@@ -72,6 +74,7 @@ export interface RoutingNumberLookupRequest {
     | 'masav'
     | 'neft'
     | 'nics'
+    | 'nz_becs'
     | 'provxchange'
     | 'rtp'
     | 'se_bankgirot'
@@ -122,10 +125,10 @@ export interface ValidationValidateRoutingNumberParams {
   routing_number: string;
 
   /**
-   * One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-   * `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
-   * mode we currently only support `aba` and `swift` with routing numbers
-   * '123456789' and 'GRINUST0XXX' respectively.
+   * The type of routing number. See
+   * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+   * more details. In sandbox mode we currently only support `aba` and `swift` with
+   * routing numbers '123456789' and 'GRINUST0XXX' respectively.
    */
   routing_number_type:
     | 'aba'
@@ -135,9 +138,11 @@ export interface ValidationValidateRoutingNumberParams {
     | 'chips'
     | 'cnaps'
     | 'gb_sort_code'
+    | 'hk_interbank_clearing_code'
     | 'in_ifsc'
     | 'jp_zengin_code'
     | 'my_branch_code'
+    | 'nz_national_clearing_code'
     | 'se_bankgiro_clearing_code'
     | 'swift';
 }

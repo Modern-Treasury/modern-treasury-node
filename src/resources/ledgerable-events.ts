@@ -6,8 +6,7 @@ import * as LedgerableEventsAPI from 'modern-treasury/resources/ledgerable-event
 
 export class LedgerableEvents extends APIResource {
   /**
-   * Translation missing:
-   * en.openapi.descriptions.ledger.operations.create_ledgerable_event
+   * Create a ledgerable event.
    */
   create(
     params: LedgerableEventCreateParams,
@@ -38,24 +37,7 @@ export class LedgerableEvents extends APIResource {
 export interface LedgerableEvent {
   id: string;
 
-  /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000.
-   */
-  amount: number;
-
   created_at: string;
-
-  /**
-   * An ISO 4217 conformed currency or a custom currency.
-   */
-  currency: string;
-
-  /**
-   * Must be included if currency is a custom currency. The currency_exponent cannot
-   * exceed 30.
-   */
-  currency_exponent: number | null;
 
   /**
    * Additionally data to be used by the Ledger Event Handler.
@@ -66,11 +48,6 @@ export interface LedgerableEvent {
    * Description of the ledgerable event.
    */
   description: string | null;
-
-  /**
-   * One of `credit`, `debit`.
-   */
-  direction: string | null;
 
   /**
    * Id of the ledger event handler that is used to create a ledger transaction.
@@ -101,26 +78,9 @@ export interface LedgerableEvent {
 
 export interface LedgerableEventCreateParams {
   /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000.
-   */
-  amount: number;
-
-  /**
    * Name of the ledgerable event.
    */
   name: string;
-
-  /**
-   * An ISO 4217 conformed currency or a custom currency.
-   */
-  currency?: string | null;
-
-  /**
-   * Must be included if currency is a custom currency. The currency_exponent cannot
-   * exceed 30.
-   */
-  currency_exponent?: number | null;
 
   /**
    * Additionally data to be used by the Ledger Event Handler.
@@ -131,11 +91,6 @@ export interface LedgerableEventCreateParams {
    * Description of the ledgerable event.
    */
   description?: string | null;
-
-  /**
-   * One of `credit`, `debit`.
-   */
-  direction?: string | null;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
