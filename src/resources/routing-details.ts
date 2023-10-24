@@ -122,6 +122,7 @@ export interface RoutingDetail {
     | 'bacs'
     | 'book'
     | 'card'
+    | 'chats'
     | 'check'
     | 'cross_border'
     | 'eft'
@@ -129,6 +130,7 @@ export interface RoutingDetail {
     | 'masav'
     | 'neft'
     | 'nics'
+    | 'nz_becs'
     | 'provxchange'
     | 'rtp'
     | 'se_bankgirot'
@@ -146,7 +148,9 @@ export interface RoutingDetail {
   routing_number: string;
 
   /**
-   * One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
+   * The type of routing number. See
+   * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+   * more details.
    */
   routing_number_type:
     | 'aba'
@@ -156,9 +160,11 @@ export interface RoutingDetail {
     | 'chips'
     | 'cnaps'
     | 'gb_sort_code'
+    | 'hk_interbank_clearing_code'
     | 'in_ifsc'
     | 'jp_zengin_code'
     | 'my_branch_code'
+    | 'nz_national_clearing_code'
     | 'se_bankgiro_clearing_code'
     | 'swift';
 
@@ -214,7 +220,9 @@ export interface RoutingDetailCreateParams {
   routing_number: string;
 
   /**
-   * One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
+   * The type of routing number. See
+   * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+   * more details.
    */
   routing_number_type:
     | 'aba'
@@ -224,9 +232,11 @@ export interface RoutingDetailCreateParams {
     | 'chips'
     | 'cnaps'
     | 'gb_sort_code'
+    | 'hk_interbank_clearing_code'
     | 'in_ifsc'
     | 'jp_zengin_code'
     | 'my_branch_code'
+    | 'nz_national_clearing_code'
     | 'se_bankgiro_clearing_code'
     | 'swift';
 
@@ -240,6 +250,7 @@ export interface RoutingDetailCreateParams {
     | 'bacs'
     | 'book'
     | 'card'
+    | 'chats'
     | 'check'
     | 'cross_border'
     | 'eft'
@@ -247,6 +258,7 @@ export interface RoutingDetailCreateParams {
     | 'masav'
     | 'neft'
     | 'nics'
+    | 'nz_becs'
     | 'provxchange'
     | 'rtp'
     | 'se_bankgirot'

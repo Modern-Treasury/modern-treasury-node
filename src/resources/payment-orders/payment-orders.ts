@@ -7,6 +7,8 @@ import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/paym
 import * as ExternalAccountsAPI from 'modern-treasury/resources/external-accounts';
 import * as ReturnsAPI from 'modern-treasury/resources/returns';
 import * as Shared from 'modern-treasury/resources/shared';
+import * as VirtualAccountsAPI from 'modern-treasury/resources/virtual-accounts';
+import * as InternalAccountsAPI from 'modern-treasury/resources/internal-accounts/internal-accounts';
 import * as ReversalsAPI from 'modern-treasury/resources/payment-orders/reversals';
 import { type Uploadable, maybeMultipartFormRequestOptions } from 'modern-treasury/core';
 import { Page, type PageParams } from 'modern-treasury/pagination';
@@ -328,10 +330,27 @@ export interface PaymentOrder {
 
   /**
    * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-   * `zengin`.
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+   * `sic`, `signet`, `provexchange`, `zengin`.
    */
   type: PaymentOrderType;
+
+  /**
+   * The account to which the originating of this payment should be attributed to.
+   * Can be a `virtual_account` or `internal_account`.
+   */
+  ultimate_originating_account:
+    | VirtualAccountsAPI.VirtualAccount
+    | InternalAccountsAPI.InternalAccount
+    | null;
+
+  /**
+   * The ultimate originating account ID. Can be a `virtual_account` or
+   * `internal_account`.
+   */
+  ultimate_originating_account_id: string | null;
+
+  ultimate_originating_account_type: 'internal_account' | 'virtual_account' | null;
 
   /**
    * Identifier of the ultimate originator of the payment order.
@@ -475,8 +494,8 @@ export type PaymentOrderSubtype =
 
 /**
  * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
- * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
- * `zengin`.
+ * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+ * `sic`, `signet`, `provexchange`, `zengin`.
  */
 export type PaymentOrderType =
   | 'ach'
@@ -484,6 +503,7 @@ export type PaymentOrderType =
   | 'bacs'
   | 'book'
   | 'card'
+  | 'chats'
   | 'check'
   | 'cross_border'
   | 'eft'
@@ -491,6 +511,7 @@ export type PaymentOrderType =
   | 'masav'
   | 'neft'
   | 'nics'
+  | 'nz_becs'
   | 'provxchange'
   | 'rtp'
   | 'se_bankgirot'
@@ -523,8 +544,8 @@ export interface PaymentOrderCreateParams {
 
   /**
    * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-   * `zengin`.
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+   * `sic`, `signet`, `provexchange`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -744,6 +765,7 @@ export namespace PaymentOrderCreateParams {
       | 'counterparties'
       | 'expected_payments'
       | 'external_accounts'
+      | 'incoming_payment_details'
       | 'internal_accounts'
       | 'organizations'
       | 'paper_items'
@@ -1093,30 +1115,34 @@ export namespace PaymentOrderCreateParams {
         | 'chips'
         | 'cnaps'
         | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
         | 'in_ifsc'
         | 'my_branch_code'
+        | 'nz_national_clearing_code'
         | 'swift'
         | 'jp_zengin_code';
 
       payment_type?:
         | 'ach'
         | 'au_becs'
-        | 'se_bankgirot'
         | 'bacs'
         | 'book'
         | 'card'
+        | 'chats'
         | 'check'
-        | 'eft'
         | 'cross_border'
+        | 'eft'
         | 'interac'
         | 'masav'
         | 'neft'
         | 'nics'
+        | 'nz_becs'
         | 'provxchange'
         | 'rtp'
+        | 'se_bankgirot'
         | 'sen'
-        | 'sic'
         | 'sepa'
+        | 'sic'
         | 'signet'
         | 'wire'
         | 'zengin';
@@ -1317,8 +1343,8 @@ export interface PaymentOrderUpdateParams {
 
   /**
    * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-   * `zengin`.
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+   * `sic`, `signet`, `provexchange`, `zengin`.
    */
   type?: PaymentOrderType;
 
@@ -1566,30 +1592,34 @@ export namespace PaymentOrderUpdateParams {
         | 'chips'
         | 'cnaps'
         | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
         | 'in_ifsc'
         | 'my_branch_code'
+        | 'nz_national_clearing_code'
         | 'swift'
         | 'jp_zengin_code';
 
       payment_type?:
         | 'ach'
         | 'au_becs'
-        | 'se_bankgirot'
         | 'bacs'
         | 'book'
         | 'card'
+        | 'chats'
         | 'check'
-        | 'eft'
         | 'cross_border'
+        | 'eft'
         | 'interac'
         | 'masav'
         | 'neft'
         | 'nics'
+        | 'nz_becs'
         | 'provxchange'
         | 'rtp'
+        | 'se_bankgirot'
         | 'sen'
-        | 'sic'
         | 'sepa'
+        | 'sic'
         | 'signet'
         | 'wire'
         | 'zengin';
@@ -1657,6 +1687,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'bacs'
     | 'book'
     | 'card'
+    | 'chats'
     | 'check'
     | 'cross_border'
     | 'eft'
@@ -1664,6 +1695,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'masav'
     | 'neft'
     | 'nics'
+    | 'nz_becs'
     | 'provxchange'
     | 'rtp'
     | 'se_bankgirot'
@@ -1697,8 +1729,8 @@ export interface PaymentOrderCreateAsyncParams {
 
   /**
    * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-   * `zengin`.
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+   * `sic`, `signet`, `provexchange`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -2234,30 +2266,34 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'chips'
         | 'cnaps'
         | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
         | 'in_ifsc'
         | 'my_branch_code'
+        | 'nz_national_clearing_code'
         | 'swift'
         | 'jp_zengin_code';
 
       payment_type?:
         | 'ach'
         | 'au_becs'
-        | 'se_bankgirot'
         | 'bacs'
         | 'book'
         | 'card'
+        | 'chats'
         | 'check'
-        | 'eft'
         | 'cross_border'
+        | 'eft'
         | 'interac'
         | 'masav'
         | 'neft'
         | 'nics'
+        | 'nz_becs'
         | 'provxchange'
         | 'rtp'
+        | 'se_bankgirot'
         | 'sen'
-        | 'sic'
         | 'sepa'
+        | 'sic'
         | 'signet'
         | 'wire'
         | 'zengin';

@@ -13,8 +13,8 @@ describe('resource ledgerAccountStatements', () => {
   // Prism is broken in this case
   test.skip('create: only required params', async () => {
     const responsePromise = modernTreasury.ledgerAccountStatements.create({
-      effective_at_lower_bound: 'string',
-      effective_at_upper_bound: 'string',
+      effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
+      effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
       ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,8 +29,8 @@ describe('resource ledgerAccountStatements', () => {
   // Prism is broken in this case
   test.skip('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerAccountStatements.create({
-      effective_at_lower_bound: 'string',
-      effective_at_upper_bound: 'string',
+      effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
+      effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
       ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },

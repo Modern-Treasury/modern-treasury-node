@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerableEvents', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.ledgerableEvents.create({ amount: 0, name: 'string' });
+    const responsePromise = modernTreasury.ledgerableEvents.create({ name: 'string' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,13 +23,9 @@ describe('resource ledgerableEvents', () => {
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerableEvents.create({
-      amount: 0,
       name: 'string',
-      currency: 'string',
-      currency_exponent: 0,
       custom_data: {},
       description: 'string',
-      direction: 'string',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
     });
   });

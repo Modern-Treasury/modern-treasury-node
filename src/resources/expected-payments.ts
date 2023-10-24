@@ -174,6 +174,11 @@ export interface ExpectedPayment {
   reconciliation_method: 'automatic' | 'manual' | null;
 
   /**
+   * An array of reconciliation rule variables for this payment.
+   */
+  reconciliation_rule_variables: Array<unknown> | null;
+
+  /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
    * payments the field will be passed through as the "Originator to Beneficiary
    * Information", also known as OBI or Fedwire tag 6000.
@@ -222,6 +227,7 @@ export type ExpectedPaymentType =
   | 'bacs'
   | 'book'
   | 'card'
+  | 'chats'
   | 'check'
   | 'cross_border'
   | 'eft'
@@ -229,6 +235,7 @@ export type ExpectedPaymentType =
   | 'masav'
   | 'neft'
   | 'nics'
+  | 'nz_becs'
   | 'provxchange'
   | 'rtp'
   | 'se_bankgirot'
@@ -306,6 +313,11 @@ export interface ExpectedPaymentCreateParams {
    * The reconciliation groups you have for this payment.
    */
   reconciliation_groups?: unknown | null;
+
+  /**
+   * An array of reconciliation rule variables for this payment.
+   */
+  reconciliation_rule_variables?: Array<unknown> | null;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -422,6 +434,11 @@ export interface ExpectedPaymentUpdateParams {
   reconciliation_groups?: unknown | null;
 
   /**
+   * An array of reconciliation rule variables for this payment.
+   */
+  reconciliation_rule_variables?: Array<unknown> | null;
+
+  /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
    * payments the field will be passed through as the "Originator to Beneficiary
    * Information", also known as OBI or Fedwire tag 6000.
@@ -491,6 +508,7 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'bacs'
     | 'book'
     | 'card'
+    | 'chats'
     | 'check'
     | 'cross_border'
     | 'eft'
@@ -498,6 +516,7 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'masav'
     | 'neft'
     | 'nics'
+    | 'nz_becs'
     | 'provxchange'
     | 'rtp'
     | 'se_bankgirot'

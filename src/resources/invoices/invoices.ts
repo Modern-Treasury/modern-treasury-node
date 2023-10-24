@@ -4,6 +4,7 @@ import * as Core from 'modern-treasury/core';
 import { APIResource } from 'modern-treasury/resource';
 import { isRequestOptions } from 'modern-treasury/core';
 import * as InvoicesAPI from 'modern-treasury/resources/invoices/invoices';
+import * as ExpectedPaymentsAPI from 'modern-treasury/resources/expected-payments';
 import * as Shared from 'modern-treasury/resources/shared';
 import * as LineItemsAPI from 'modern-treasury/resources/invoices/line-items';
 import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/payment-orders';
@@ -85,6 +86,18 @@ export interface Invoice {
   id: string;
 
   /**
+   * Amount paid on the invoice in specified currency's smallest unit, e.g., $10 USD
+   * would be represented as 1000.
+   */
+  amount_paid: number;
+
+  /**
+   * Amount remaining due on the invoice in specified currency's smallest unit, e.g.,
+   * $10 USD would be represented as 1000.
+   */
+  amount_remaining: number;
+
+  /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
   contact_details: Array<Invoice.ContactDetail>;
@@ -120,6 +133,11 @@ export interface Invoice {
    * A future date by when the invoice needs to be paid.
    */
   due_date: string;
+
+  /**
+   * The expected payments created for an unpaid invoice.
+   */
+  expected_payments: Array<ExpectedPaymentsAPI.ExpectedPayment>;
 
   /**
    * The URL of the hosted web UI where the invoice can be viewed.
@@ -211,7 +229,7 @@ export interface Invoice {
   /**
    * The status of the invoice.
    */
-  status: 'draft' | 'paid' | 'payment_pending' | 'unpaid' | 'voided';
+  status: 'draft' | 'paid' | 'partially_paid' | 'payment_pending' | 'unpaid' | 'voided';
 
   /**
    * Total amount due in specified currency's smallest unit, e.g., $10 USD would be
@@ -421,31 +439,10 @@ export interface InvoiceCreateParams {
 
   /**
    * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-   * `zengin`.
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+   * `sic`, `signet`, `provexchange`, `zengin`.
    */
-  payment_type?:
-    | 'ach'
-    | 'au_becs'
-    | 'se_bankgirot'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'eft'
-    | 'cross_border'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'nics'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sic'
-    | 'sepa'
-    | 'signet'
-    | 'wire'
-    | 'zengin';
+  payment_type?: PaymentOrdersAPI.PaymentOrderType;
 
   /**
    * The receiving account ID. Can be an `external_account`.
@@ -659,31 +656,10 @@ export interface InvoiceUpdateParams {
 
   /**
    * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-   * `zengin`.
+   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+   * `sic`, `signet`, `provexchange`, `zengin`.
    */
-  payment_type?:
-    | 'ach'
-    | 'au_becs'
-    | 'se_bankgirot'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'check'
-    | 'eft'
-    | 'cross_border'
-    | 'interac'
-    | 'masav'
-    | 'neft'
-    | 'nics'
-    | 'provxchange'
-    | 'rtp'
-    | 'sen'
-    | 'sic'
-    | 'sepa'
-    | 'signet'
-    | 'wire'
-    | 'zengin';
+  payment_type?: PaymentOrdersAPI.PaymentOrderType;
 
   /**
    * The receiving account ID. Can be an `external_account`.

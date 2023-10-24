@@ -32,12 +32,7 @@ describe('resource connections', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.connections.list(
-        {
-          after_cursor: 'string',
-          entity: 'string',
-          per_page: 0,
-          vendor_customer_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        },
+        { after_cursor: 'string', entity: 'string', per_page: 0, vendor_customer_id: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

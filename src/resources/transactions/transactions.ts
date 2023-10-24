@@ -87,17 +87,6 @@ export interface Transaction {
   currency: Shared.Currency | null;
 
   /**
-   * This field contains additional information that the bank provided about the
-   * transaction. This is structured data. Some of the data in here might overlap
-   * with what is in the `vendor_description`. For example, the OBI could be a part
-   * of the vendor description, and it would also be included in here. The attributes
-   * that are passed through the details field will vary based on your banking
-   * partner. Currently, the following keys may be in the details object:
-   * `originator_name`, `originator_to_beneficiary_information`.
-   */
-  details: Record<string, string>;
-
-  /**
    * Either `credit` or `debit`.
    */
   direction: string;
@@ -145,6 +134,7 @@ export interface Transaction {
     | 'bacs'
     | 'book'
     | 'card'
+    | 'chats'
     | 'check'
     | 'cross_border'
     | 'eft'
@@ -152,6 +142,7 @@ export interface Transaction {
     | 'masav'
     | 'neft'
     | 'nics'
+    | 'nz_becs'
     | 'provxchange'
     | 'rtp'
     | 'se_bankgirot'
@@ -205,15 +196,26 @@ export interface Transaction {
   vendor_customer_id: string | null;
 
   /**
-   * The transaction detail text that often appears in on your bank statement and in
-   * your banking portal.
-   */
-  vendor_description: string | null;
-
-  /**
    * An identifier given to this transaction by the bank.
    */
   vendor_id: string | null;
+
+  /**
+   * This field contains additional information that the bank provided about the
+   * transaction. This is structured data. Some of the data in here might overlap
+   * with what is in the `vendor_description`. For example, the OBI could be a part
+   * of the vendor description, and it would also be included in here. The attributes
+   * that are passed through the details field will vary based on your banking
+   * partner. Currently, the following keys may be in the details object:
+   * `originator_name`, `originator_to_beneficiary_information`.
+   */
+  details?: Record<string, string>;
+
+  /**
+   * The transaction detail text that often appears in on your bank statement and in
+   * your banking portal.
+   */
+  vendor_description?: string | null;
 }
 
 export interface TransactionUpdateParams {

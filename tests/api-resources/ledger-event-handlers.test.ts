@@ -13,14 +13,14 @@ describe('resource ledgerEventHandlers', () => {
   test('create: only required params', async () => {
     const responsePromise = modernTreasury.ledgerEventHandlers.create({
       ledger_transaction_template: {
-        description: 'string',
-        effective_at: '2019-12-27T18:11:19.117Z',
+        description: 'My Ledger Transaction Template Description',
+        effective_at: '{{ledgerable_event.custom_data.effective_at}}',
+        status: 'posted',
         ledger_entries: [
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
         ],
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       },
       name: 'string',
     });
@@ -36,20 +36,26 @@ describe('resource ledgerEventHandlers', () => {
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerEventHandlers.create({
       ledger_transaction_template: {
-        description: 'string',
-        effective_at: '2019-12-27T18:11:19.117Z',
+        description: 'My Ledger Transaction Template Description',
+        effective_at: '{{ledgerable_event.custom_data.effective_at}}',
+        status: 'posted',
         ledger_entries: [
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
           { amount: 'string', direction: 'string', ledger_account_id: 'string' },
         ],
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       },
       name: 'string',
-      conditions: { field: 'string', operator: 'string', value: 'string' },
+      conditions: { field: 'ledgerable_event.name', operator: 'equals', value: 'credit_card_swipe' },
       description: 'string',
       ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      variables: {
+        credit_account: {
+          type: 'ledger_account',
+          query: { field: 'name', operator: 'equals', value: 'my_credit_account' },
+        },
+      },
     });
   });
 
