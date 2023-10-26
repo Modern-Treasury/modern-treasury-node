@@ -268,6 +268,7 @@ export namespace VirtualAccountCreateParams {
       | 'se_bankgirot'
       | 'sen'
       | 'sepa'
+      | 'sg_giro'
       | 'sic'
       | 'signet'
       | 'wire'

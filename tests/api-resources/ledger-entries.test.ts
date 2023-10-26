@@ -66,7 +66,7 @@ describe('resource ledgerEntries', () => {
           after_cursor: 'string',
           as_of_lock_version: 0,
           direction: 'credit',
-          effective_at: { foo: 'string' },
+          effective_at: { foo: '2019-12-27T18:11:19.117Z' },
           effective_date: { foo: '2019-12-27' },
           ledger_account_category_id: 'string',
           ledger_account_id: 'string',
