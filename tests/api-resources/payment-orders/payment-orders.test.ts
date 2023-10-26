@@ -113,6 +113,7 @@ describe('resource paymentOrders', () => {
         ledgerable_type: 'counterparty',
         ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       },
+      ledger_transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       line_items: [
         {
           amount: 0,
@@ -462,6 +463,7 @@ describe('resource paymentOrders', () => {
         ledgerable_type: 'counterparty',
         ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       },
+      ledger_transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       line_items: [
         {
           amount: 0,

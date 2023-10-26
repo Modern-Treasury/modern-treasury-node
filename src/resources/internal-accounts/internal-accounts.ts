@@ -293,6 +293,11 @@ export interface InternalAccountUpdateParams {
   counterparty_id?: string;
 
   /**
+   * The Ledger Account associated to this account.
+   */
+  ledger_account_id?: string;
+
+  /**
    * Additional data in the form of key-value pairs. Pairs can be removed by passing
    * an empty string or `null` as the value.
    */
@@ -355,6 +360,7 @@ export interface InternalAccountListParams extends PageParams {
     | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sg_giro'
     | 'sic'
     | 'signet'
     | 'wire'
