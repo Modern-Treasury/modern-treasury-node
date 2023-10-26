@@ -517,6 +517,7 @@ export type PaymentOrderType =
   | 'se_bankgirot'
   | 'sen'
   | 'sepa'
+  | 'sg_giro'
   | 'sic'
   | 'signet'
   | 'wire'
@@ -625,6 +626,14 @@ export interface PaymentOrderCreateParams {
    * the payment order.
    */
   ledger_transaction?: PaymentOrderCreateParams.LedgerTransaction;
+
+  /**
+   * Either ledger_transaction or ledger_transaction_id can be provided. Only a
+   * pending ledger transaction can be attached upon payment order creation. Once the
+   * payment order is created, the status of the ledger transaction tracks the
+   * payment order automatically.
+   */
+  ledger_transaction_id?: string;
 
   /**
    * An array of line items that must sum up to the amount of the payment order.
@@ -1139,6 +1148,7 @@ export namespace PaymentOrderCreateParams {
         | 'nz_becs'
         | 'provxchange'
         | 'rtp'
+        | 'sg_giro'
         | 'se_bankgirot'
         | 'sen'
         | 'sepa'
@@ -1616,6 +1626,7 @@ export namespace PaymentOrderUpdateParams {
         | 'nz_becs'
         | 'provxchange'
         | 'rtp'
+        | 'sg_giro'
         | 'se_bankgirot'
         | 'sen'
         | 'sepa'
@@ -1701,6 +1712,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'se_bankgirot'
     | 'sen'
     | 'sepa'
+    | 'sg_giro'
     | 'sic'
     | 'signet'
     | 'wire'
@@ -1804,6 +1816,14 @@ export interface PaymentOrderCreateAsyncParams {
    * the payment order.
    */
   ledger_transaction?: PaymentOrderCreateAsyncParams.LedgerTransaction;
+
+  /**
+   * Either ledger_transaction or ledger_transaction_id can be provided. Only a
+   * pending ledger transaction can be attached upon payment order creation. Once the
+   * payment order is created, the status of the ledger transaction tracks the
+   * payment order automatically.
+   */
+  ledger_transaction_id?: string;
 
   /**
    * An array of line items that must sum up to the amount of the payment order.
@@ -2290,6 +2310,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'nz_becs'
         | 'provxchange'
         | 'rtp'
+        | 'sg_giro'
         | 'se_bankgirot'
         | 'sen'
         | 'sepa'

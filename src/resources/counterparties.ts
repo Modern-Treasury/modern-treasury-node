@@ -562,6 +562,7 @@ export namespace CounterpartyCreateParams {
         | 'nz_becs'
         | 'provxchange'
         | 'rtp'
+        | 'sg_giro'
         | 'se_bankgirot'
         | 'sen'
         | 'sepa'

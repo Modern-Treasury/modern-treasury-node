@@ -178,7 +178,7 @@ export interface LedgerAccountPayoutCreateParams {
 
   /**
    * If true, the payout amount and payout_entry_direction will bring the payout
-   * ledger account’s balance closer to zero, even if the balance is negative.
+   * ledger account's balance closer to zero, even if the balance is negative.
    */
   allow_either_direction?: boolean | null;
 

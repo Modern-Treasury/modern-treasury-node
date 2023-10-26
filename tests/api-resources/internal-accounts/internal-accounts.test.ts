@@ -89,6 +89,7 @@ describe('resource internalAccounts', () => {
         'string',
         {
           counterparty_id: 'string',
+          ledger_account_id: 'string',
           metadata: { foo: 'string' },
           name: 'string',
           parent_account_id: 'string',
