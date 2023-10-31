@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.9.0 (2023-10-31)
+
+Full Changelog: [v2.8.0...v2.9.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.8.0...v2.9.0)
+
+### Features
+
+* **api:** updates ([#271](https://github.com/Modern-Treasury/modern-treasury-node/issues/271)) ([e7341c5](https://github.com/Modern-Treasury/modern-treasury-node/commit/e7341c5150cfe3d77e712c3314deee3fc7dc7472))
+* **github:** include a devcontainer setup ([#273](https://github.com/Modern-Treasury/modern-treasury-node/issues/273)) ([077d2f7](https://github.com/Modern-Treasury/modern-treasury-node/commit/077d2f7a42d38749a9bb49eb6c788a142b4cc969))
+
+
+### Bug Fixes
+
+* typo in build script ([#270](https://github.com/Modern-Treasury/modern-treasury-node/issues/270)) ([b8d797b](https://github.com/Modern-Treasury/modern-treasury-node/commit/b8d797bae6e53090be5f30f1d13003ca873b64e7))
+
+
+### Chores
+
+* **internal:** update gitignore ([#272](https://github.com/Modern-Treasury/modern-treasury-node/issues/272)) ([6204f12](https://github.com/Modern-Treasury/modern-treasury-node/commit/6204f1279d1f36edd1dd80efb042cecdee367d7d))
+
 ## 2.8.0 (2023-10-24)
 
 Full Changelog: [v2.7.2...v2.8.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.7.2...v2.8.0)
