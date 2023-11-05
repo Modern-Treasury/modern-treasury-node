@@ -129,7 +129,6 @@ async function main() {
       if (err instanceof ModernTreasury.APIError) {
         console.log(err.status); // 400
         console.log(err.name); // BadRequestError
-
         console.log(err.headers); // {server: 'nginx', ...}
       } else {
         throw err;
