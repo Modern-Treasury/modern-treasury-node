@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.10.0 (2023-11-07)
+
+Full Changelog: [v2.9.0...v2.10.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.9.0...v2.10.0)
+
+### Features
+
+* **client:** allow binary returns ([#274](https://github.com/Modern-Treasury/modern-treasury-node/issues/274)) ([b45f08d](https://github.com/Modern-Treasury/modern-treasury-node/commit/b45f08dbec40e80a8540628d33aa8836a042b8b3))
+
+
+### Chores
+
+* **ci:** update release-please config ([#278](https://github.com/Modern-Treasury/modern-treasury-node/issues/278)) ([493cc4b](https://github.com/Modern-Treasury/modern-treasury-node/commit/493cc4b7f4a91bdeb9df30556ac557e1c0ce0c66))
+* **docs:** fix github links ([#279](https://github.com/Modern-Treasury/modern-treasury-node/issues/279)) ([4305621](https://github.com/Modern-Treasury/modern-treasury-node/commit/4305621c54cffe956273da80bd1418384b204d96))
+* **internal:** update tsconfig ([#280](https://github.com/Modern-Treasury/modern-treasury-node/issues/280)) ([2389558](https://github.com/Modern-Treasury/modern-treasury-node/commit/2389558af8f124c56352da82310660dfb485f7c5))
+
+
+### Documentation
+
+* document customizing fetch ([#276](https://github.com/Modern-Treasury/modern-treasury-node/issues/276)) ([f65af0a](https://github.com/Modern-Treasury/modern-treasury-node/commit/f65af0abc1b4d22d3acfba8d3322d95fa662db7e))
+* **readme:** remove redundant whitespace ([#277](https://github.com/Modern-Treasury/modern-treasury-node/issues/277)) ([6b1674d](https://github.com/Modern-Treasury/modern-treasury-node/commit/6b1674df348afc4068f811f42dbc8c72913ab104))
+
 ## 2.9.0 (2023-10-31)
 
 Full Changelog: [v2.8.0...v2.9.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.8.0...v2.9.0)
