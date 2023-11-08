@@ -16,6 +16,14 @@ export {
   AccountDetailsPage,
   AccountDetails,
 } from './account-details';
+export {
+  BulkRequest,
+  BulkRequestCreateParams,
+  BulkRequestListParams,
+  BulkRequestsPage,
+  BulkRequests,
+} from './bulk-requests';
+export { BulkResult, BulkResultListParams, BulkResultsPage, BulkResults } from './bulk-results';
 export { Connection, ConnectionListParams, ConnectionsPage, Connections } from './connections';
 export {
   Counterparty,
@@ -189,6 +197,7 @@ export {
 } from './validations';
 export {
   Transaction,
+  TransactionCreateParams,
   TransactionUpdateParams,
   TransactionListParams,
   TransactionsPage,
