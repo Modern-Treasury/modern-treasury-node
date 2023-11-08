@@ -2,6 +2,7 @@
 
 export {
   Transaction,
+  TransactionCreateParams,
   TransactionUpdateParams,
   TransactionListParams,
   TransactionsPage,

@@ -12,6 +12,24 @@ export class Transactions extends APIResource {
   lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this.client);
 
   /**
+   * create transaction
+   */
+  create(params: TransactionCreateParams, options?: Core.RequestOptions): Core.APIPromise<Transaction> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
+    return this.post('/api/transactions', {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
+    });
+  }
+
+  /**
    * Get details on a single transaction.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Transaction> {
@@ -54,6 +72,16 @@ export class Transactions extends APIResource {
       return this.list({}, query);
     }
     return this.getAPIList('/api/transactions', TransactionsPage, { query, ...options });
+  }
+
+  /**
+   * delete transaction
+   */
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this.delete(`/api/transactions/${id}`, {
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
   }
 }
 
@@ -166,7 +194,7 @@ export interface Transaction {
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
    * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
    * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-   * `swift`, or `us_bank`.
+   * `swift`, `us_bank`, or others.
    */
   vendor_code_type:
     | 'bai2'
@@ -211,6 +239,60 @@ export interface Transaction {
    * `originator_name`, `originator_to_beneficiary_information`.
    */
   details?: Record<string, string>;
+
+  /**
+   * The transaction detail text that often appears in on your bank statement and in
+   * your banking portal.
+   */
+  vendor_description?: string | null;
+}
+
+export interface TransactionCreateParams {
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
+   */
+  amount: number;
+
+  /**
+   * The date on which the transaction occurred.
+   */
+  as_of_date: string | null;
+
+  /**
+   * Either `credit` or `debit`.
+   */
+  direction: string;
+
+  /**
+   * When applicable, the bank-given code that determines the transaction's category.
+   * For most banks this is the BAI2/BTRS transaction code.
+   */
+  vendor_code: string;
+
+  /**
+   * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
+   * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
+   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+   * `swift`, `us_bank`, or others.
+   */
+  vendor_code_type: string;
+
+  /**
+   * The ID of the relevant Internal Account.
+   */
+  internal_account_id?: string;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string>;
+
+  /**
+   * This field will be `true` if the transaction has posted to the account.
+   */
+  posted?: boolean;
 
   /**
    * The transaction detail text that often appears in on your bank statement and in
@@ -283,6 +365,7 @@ export interface TransactionListParams extends PageParams {
 export namespace Transactions {
   export import Transaction = TransactionsAPI.Transaction;
   export import TransactionsPage = TransactionsAPI.TransactionsPage;
+  export import TransactionCreateParams = TransactionsAPI.TransactionCreateParams;
   export import TransactionUpdateParams = TransactionsAPI.TransactionUpdateParams;
   export import TransactionListParams = TransactionsAPI.TransactionListParams;
   export import LineItems = LineItemsAPI.LineItems;

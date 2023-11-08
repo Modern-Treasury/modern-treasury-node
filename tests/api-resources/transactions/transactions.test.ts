@@ -10,6 +10,37 @@ const modernTreasury = new ModernTreasury({
 });
 
 describe('resource transactions', () => {
+  test('create: only required params', async () => {
+    const responsePromise = modernTreasury.transactions.create({
+      amount: 0,
+      as_of_date: '2019-12-27',
+      direction: 'string',
+      vendor_code: 'string',
+      vendor_code_type: 'string',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('create: required and optional params', async () => {
+    const response = await modernTreasury.transactions.create({
+      amount: 0,
+      as_of_date: '2019-12-27',
+      direction: 'string',
+      vendor_code: 'string',
+      vendor_code_type: 'string',
+      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      posted: true,
+      vendor_description: 'string',
+    });
+  });
+
   test('retrieve', async () => {
     const responsePromise = modernTreasury.transactions.retrieve('string');
     const rawResponse = await responsePromise.asResponse();
@@ -97,6 +128,24 @@ describe('resource transactions', () => {
         },
         { path: '/_stainless_unknown_path' },
       ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('del', async () => {
+    const responsePromise = modernTreasury.transactions.del('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('del: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      modernTreasury.transactions.del('string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });
