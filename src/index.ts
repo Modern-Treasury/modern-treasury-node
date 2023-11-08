@@ -174,6 +174,8 @@ export class ModernTreasury extends Core.APIClient {
   paperItems: API.PaperItems = new API.PaperItems(this);
   webhooks: API.Webhooks = new API.Webhooks(this);
   virtualAccounts: API.VirtualAccounts = new API.VirtualAccounts(this);
+  bulkRequests: API.BulkRequests = new API.BulkRequests(this);
+  bulkResults: API.BulkResults = new API.BulkResults(this);
 
   /**
    * A test endpoint often used to confirm credentials and headers are being passed
@@ -440,6 +442,7 @@ export namespace ModernTreasury {
   export import Transactions = API.Transactions;
   export import Transaction = API.Transaction;
   export import TransactionsPage = API.TransactionsPage;
+  export import TransactionCreateParams = API.TransactionCreateParams;
   export import TransactionUpdateParams = API.TransactionUpdateParams;
   export import TransactionListParams = API.TransactionListParams;
 
@@ -460,6 +463,17 @@ export namespace ModernTreasury {
   export import VirtualAccountCreateParams = API.VirtualAccountCreateParams;
   export import VirtualAccountUpdateParams = API.VirtualAccountUpdateParams;
   export import VirtualAccountListParams = API.VirtualAccountListParams;
+
+  export import BulkRequests = API.BulkRequests;
+  export import BulkRequest = API.BulkRequest;
+  export import BulkRequestsPage = API.BulkRequestsPage;
+  export import BulkRequestCreateParams = API.BulkRequestCreateParams;
+  export import BulkRequestListParams = API.BulkRequestListParams;
+
+  export import BulkResults = API.BulkResults;
+  export import BulkResult = API.BulkResult;
+  export import BulkResultsPage = API.BulkResultsPage;
+  export import BulkResultListParams = API.BulkResultListParams;
 
   export import AccountsType = API.AccountsType;
   export import AsyncResponse = API.AsyncResponse;

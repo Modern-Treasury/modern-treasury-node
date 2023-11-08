@@ -142,6 +142,13 @@ export interface InvoiceLineItem {
    */
   unit_amount: number;
 
+  /**
+   * The cost per unit of the product or service that this line item is for,
+   * specified in the invoice currency's smallest unit. Accepts decimal strings with
+   * up to 12 decimals
+   */
+  unit_amount_decimal: string;
+
   updated_at: string;
 }
 
@@ -174,6 +181,13 @@ export interface LineItemCreateParams {
    * a whole number. Defaults to 1 if not provided.
    */
   quantity?: number;
+
+  /**
+   * The cost per unit of the product or service that this line item is for,
+   * specified in the invoice currency's smallest unit. Accepts decimal strings with
+   * up to 12 decimals
+   */
+  unit_amount_decimal?: string;
 }
 
 export interface LineItemUpdateParams {
@@ -205,6 +219,13 @@ export interface LineItemUpdateParams {
    * specified in the invoice currency's smallest unit.
    */
   unit_amount?: number;
+
+  /**
+   * The cost per unit of the product or service that this line item is for,
+   * specified in the invoice currency's smallest unit. Accepts decimal strings with
+   * up to 12 decimals
+   */
+  unit_amount_decimal?: string;
 }
 
 export interface LineItemListParams extends PageParams {}

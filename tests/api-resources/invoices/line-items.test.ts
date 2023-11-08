@@ -31,6 +31,7 @@ describe('resource lineItems', () => {
       description: 'string',
       direction: 'string',
       quantity: 0,
+      unit_amount_decimal: 'string',
     });
   });
 
@@ -76,7 +77,14 @@ describe('resource lineItems', () => {
       modernTreasury.invoices.lineItems.update(
         'string',
         'string',
-        { description: 'string', direction: 'string', name: 'string', quantity: 0, unit_amount: 0 },
+        {
+          description: 'string',
+          direction: 'string',
+          name: 'string',
+          quantity: 0,
+          unit_amount: 0,
+          unit_amount_decimal: 'string',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

@@ -122,6 +122,20 @@ export interface PaymentFlow {
   effective_date_selection_enabled?: boolean;
 
   /**
+   * When `verified` and `external_account_collection` is `enabled`, filters the list
+   * of external accounts your end-user can select to those with a
+   * `verification_status` of `verified`.
+   */
+  existing_external_accounts_filter?: 'verified' | null;
+
+  /**
+   * When `enabled`, your end-user can select from an existing external account when
+   * completing the flow. When `disabled`, your end-user must add new payment details
+   * when completing the flow.
+   */
+  external_account_collection?: 'disabled' | 'enabled';
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */

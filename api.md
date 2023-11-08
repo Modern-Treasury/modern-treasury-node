@@ -431,9 +431,11 @@ Types:
 
 Methods:
 
+- <code title="post /api/transactions">client.transactions.<a href="./src/resources/transactions/transactions.ts">create</a>({ ...params }) -> Transaction</code>
 - <code title="get /api/transactions/{id}">client.transactions.<a href="./src/resources/transactions/transactions.ts">retrieve</a>(id) -> Transaction</code>
 - <code title="patch /api/transactions/{id}">client.transactions.<a href="./src/resources/transactions/transactions.ts">update</a>(id, { ...params }) -> Transaction</code>
 - <code title="get /api/transactions">client.transactions.<a href="./src/resources/transactions/transactions.ts">list</a>({ ...params }) -> TransactionsPage</code>
+- <code title="delete /api/transactions/{id}">client.transactions.<a href="./src/resources/transactions/transactions.ts">del</a>(id) -> void</code>
 
 ## LineItems
 
@@ -487,3 +489,26 @@ Methods:
 - <code title="patch /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">update</a>(id, { ...params }) -> VirtualAccount</code>
 - <code title="get /api/virtual_accounts">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">list</a>({ ...params }) -> VirtualAccountsPage</code>
 - <code title="delete /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">del</a>(id) -> VirtualAccount</code>
+
+# BulkRequests
+
+Types:
+
+- <code><a href="./src/resources/bulk-requests.ts">BulkRequest</a></code>
+
+Methods:
+
+- <code title="post /api/bulk_requests">client.bulkRequests.<a href="./src/resources/bulk-requests.ts">create</a>({ ...params }) -> BulkRequest</code>
+- <code title="get /api/bulk_requests/{id}">client.bulkRequests.<a href="./src/resources/bulk-requests.ts">retrieve</a>(id) -> BulkRequest</code>
+- <code title="get /api/bulk_requests">client.bulkRequests.<a href="./src/resources/bulk-requests.ts">list</a>({ ...params }) -> BulkRequestsPage</code>
+
+# BulkResults
+
+Types:
+
+- <code><a href="./src/resources/bulk-results.ts">BulkResult</a></code>
+
+Methods:
+
+- <code title="get /api/bulk_results/{id}">client.bulkResults.<a href="./src/resources/bulk-results.ts">retrieve</a>(id) -> BulkResult</code>
+- <code title="get /api/bulk_results">client.bulkResults.<a href="./src/resources/bulk-results.ts">list</a>({ ...params }) -> BulkResultsPage</code>
