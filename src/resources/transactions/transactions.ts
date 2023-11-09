@@ -165,6 +165,7 @@ export interface Transaction {
     | 'chats'
     | 'check'
     | 'cross_border'
+    | 'dk_nets'
     | 'eft'
     | 'interac'
     | 'masav'
@@ -265,6 +266,11 @@ export interface TransactionCreateParams {
   direction: string;
 
   /**
+   * The ID of the relevant Internal Account.
+   */
+  internal_account_id: string;
+
+  /**
    * When applicable, the bank-given code that determines the transaction's category.
    * For most banks this is the BAI2/BTRS transaction code.
    */
@@ -277,11 +283,6 @@ export interface TransactionCreateParams {
    * `swift`, `us_bank`, or others.
    */
   vendor_code_type: string;
-
-  /**
-   * The ID of the relevant Internal Account.
-   */
-  internal_account_id?: string;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
