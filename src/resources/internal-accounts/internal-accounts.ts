@@ -349,6 +349,7 @@ export interface InternalAccountListParams extends PageParams {
     | 'chats'
     | 'check'
     | 'cross_border'
+    | 'dk_nets'
     | 'eft'
     | 'interac'
     | 'masav'
