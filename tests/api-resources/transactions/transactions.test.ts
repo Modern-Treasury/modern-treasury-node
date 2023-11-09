@@ -15,6 +15,7 @@ describe('resource transactions', () => {
       amount: 0,
       as_of_date: '2019-12-27',
       direction: 'string',
+      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       vendor_code: 'string',
       vendor_code_type: 'string',
     });
@@ -32,9 +33,9 @@ describe('resource transactions', () => {
       amount: 0,
       as_of_date: '2019-12-27',
       direction: 'string',
+      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       vendor_code: 'string',
       vendor_code_type: 'string',
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       posted: true,
       vendor_description: 'string',
