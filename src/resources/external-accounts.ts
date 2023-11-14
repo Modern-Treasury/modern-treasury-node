@@ -24,7 +24,7 @@ export class ExternalAccounts extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/external_accounts', {
+    return this._client.post('/api/external_accounts', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -35,7 +35,7 @@ export class ExternalAccounts extends APIResource {
    * show external account
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ExternalAccount> {
-    return this.get(`/api/external_accounts/${id}`, options);
+    return this._client.get(`/api/external_accounts/${id}`, options);
   }
 
   /**
@@ -55,7 +55,7 @@ export class ExternalAccounts extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/external_accounts/${id}`, { body, ...options });
+    return this._client.patch(`/api/external_accounts/${id}`, { body, ...options });
   }
 
   /**
@@ -73,14 +73,14 @@ export class ExternalAccounts extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/external_accounts', ExternalAccountsPage, { query, ...options });
+    return this._client.getAPIList('/api/external_accounts', ExternalAccountsPage, { query, ...options });
   }
 
   /**
    * delete external account
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/api/external_accounts/${id}`, {
+    return this._client.delete(`/api/external_accounts/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -110,7 +110,7 @@ export class ExternalAccounts extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post(`/api/external_accounts/${id}/complete_verification`, {
+    return this._client.post(`/api/external_accounts/${id}/complete_verification`, {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -132,7 +132,7 @@ export class ExternalAccounts extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post(`/api/external_accounts/${id}/verify`, {
+    return this._client.post(`/api/external_accounts/${id}/verify`, {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },

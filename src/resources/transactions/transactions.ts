@@ -9,7 +9,7 @@ import * as LineItemsAPI from 'modern-treasury/resources/transactions/line-items
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Transactions extends APIResource {
-  lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this.client);
+  lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this._client);
 
   /**
    * create transaction
@@ -22,7 +22,7 @@ export class Transactions extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/transactions', {
+    return this._client.post('/api/transactions', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -33,7 +33,7 @@ export class Transactions extends APIResource {
    * Get details on a single transaction.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Transaction> {
-    return this.get(`/api/transactions/${id}`, options);
+    return this._client.get(`/api/transactions/${id}`, options);
   }
 
   /**
@@ -53,7 +53,7 @@ export class Transactions extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/transactions/${id}`, { body, ...options });
+    return this._client.patch(`/api/transactions/${id}`, { body, ...options });
   }
 
   /**
@@ -71,14 +71,14 @@ export class Transactions extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/transactions', TransactionsPage, { query, ...options });
+    return this._client.getAPIList('/api/transactions', TransactionsPage, { query, ...options });
   }
 
   /**
    * delete transaction
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/api/transactions/${id}`, {
+    return this._client.delete(`/api/transactions/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });

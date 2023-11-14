@@ -22,7 +22,7 @@ export class LineItems extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post(`/api/invoices/${invoiceId}/invoice_line_items`, {
+    return this._client.post(`/api/invoices/${invoiceId}/invoice_line_items`, {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -33,7 +33,7 @@ export class LineItems extends APIResource {
    * get invoice_line_item
    */
   retrieve(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem> {
-    return this.get(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
+    return this._client.get(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
   }
 
   /**
@@ -55,7 +55,7 @@ export class LineItems extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(invoiceId, id, {}, body);
     }
-    return this.patch(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, { body, ...options });
+    return this._client.patch(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, { body, ...options });
   }
 
   /**
@@ -78,7 +78,7 @@ export class LineItems extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(invoiceId, {}, query);
     }
-    return this.getAPIList(`/api/invoices/${invoiceId}/invoice_line_items`, InvoiceLineItemsPage, {
+    return this._client.getAPIList(`/api/invoices/${invoiceId}/invoice_line_items`, InvoiceLineItemsPage, {
       query,
       ...options,
     });
@@ -88,7 +88,7 @@ export class LineItems extends APIResource {
    * delete invoice_line_item
    */
   del(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem> {
-    return this.delete(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
+    return this._client.delete(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
   }
 }
 

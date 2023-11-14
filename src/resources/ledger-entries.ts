@@ -25,7 +25,7 @@ export class LedgerEntries extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
-    return this.get(`/api/ledger_entries/${id}`, { query, ...options });
+    return this._client.get(`/api/ledger_entries/${id}`, { query, ...options });
   }
 
   /**
@@ -43,7 +43,7 @@ export class LedgerEntries extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledger_entries', LedgerEntriesPage, { query, ...options });
+    return this._client.getAPIList('/api/ledger_entries', LedgerEntriesPage, { query, ...options });
   }
 }
 

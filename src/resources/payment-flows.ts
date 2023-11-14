@@ -18,7 +18,7 @@ export class PaymentFlows extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/payment_flows', {
+    return this._client.post('/api/payment_flows', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -29,7 +29,7 @@ export class PaymentFlows extends APIResource {
    * get payment_flow
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentFlow> {
-    return this.get(`/api/payment_flows/${id}`, options);
+    return this._client.get(`/api/payment_flows/${id}`, options);
   }
 
   /**
@@ -47,7 +47,7 @@ export class PaymentFlows extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.patch(`/api/payment_flows/${id}`, {
+    return this._client.patch(`/api/payment_flows/${id}`, {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -69,7 +69,7 @@ export class PaymentFlows extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/payment_flows', PaymentFlowsPage, { query, ...options });
+    return this._client.getAPIList('/api/payment_flows', PaymentFlowsPage, { query, ...options });
   }
 }
 

@@ -11,7 +11,7 @@ export class Events extends APIResource {
    * get event
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Event> {
-    return this.get(`/api/events/${id}`, options);
+    return this._client.get(`/api/events/${id}`, options);
   }
 
   /**
@@ -26,7 +26,7 @@ export class Events extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/events', EventsPage, { query, ...options });
+    return this._client.getAPIList('/api/events', EventsPage, { query, ...options });
   }
 }
 

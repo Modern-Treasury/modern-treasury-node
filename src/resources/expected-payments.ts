@@ -22,7 +22,7 @@ export class ExpectedPayments extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/expected_payments', {
+    return this._client.post('/api/expected_payments', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -33,7 +33,7 @@ export class ExpectedPayments extends APIResource {
    * get expected payment
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment> {
-    return this.get(`/api/expected_payments/${id}`, options);
+    return this._client.get(`/api/expected_payments/${id}`, options);
   }
 
   /**
@@ -53,7 +53,7 @@ export class ExpectedPayments extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/expected_payments/${id}`, { body, ...options });
+    return this._client.patch(`/api/expected_payments/${id}`, { body, ...options });
   }
 
   /**
@@ -71,14 +71,14 @@ export class ExpectedPayments extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/expected_payments', ExpectedPaymentsPage, { query, ...options });
+    return this._client.getAPIList('/api/expected_payments', ExpectedPaymentsPage, { query, ...options });
   }
 
   /**
    * delete expected payment
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment> {
-    return this.delete(`/api/expected_payments/${id}`, options);
+    return this._client.delete(`/api/expected_payments/${id}`, options);
   }
 }
 

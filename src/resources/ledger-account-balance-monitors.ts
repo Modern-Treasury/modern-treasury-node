@@ -21,7 +21,7 @@ export class LedgerAccountBalanceMonitors extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/ledger_account_balance_monitors', {
+    return this._client.post('/api/ledger_account_balance_monitors', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -32,7 +32,7 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    * Get details on a single ledger account balance monitor.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountBalanceMonitor> {
-    return this.get(`/api/ledger_account_balance_monitors/${id}`, options);
+    return this._client.get(`/api/ledger_account_balance_monitors/${id}`, options);
   }
 
   /**
@@ -52,7 +52,7 @@ export class LedgerAccountBalanceMonitors extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/ledger_account_balance_monitors/${id}`, { body, ...options });
+    return this._client.patch(`/api/ledger_account_balance_monitors/${id}`, { body, ...options });
   }
 
   /**
@@ -72,7 +72,7 @@ export class LedgerAccountBalanceMonitors extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledger_account_balance_monitors', LedgerAccountBalanceMonitorsPage, {
+    return this._client.getAPIList('/api/ledger_account_balance_monitors', LedgerAccountBalanceMonitorsPage, {
       query,
       ...options,
     });
@@ -82,7 +82,7 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    * Delete a ledger account balance monitor.
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountBalanceMonitor> {
-    return this.delete(`/api/ledger_account_balance_monitors/${id}`, options);
+    return this._client.delete(`/api/ledger_account_balance_monitors/${id}`, options);
   }
 }
 

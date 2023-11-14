@@ -16,7 +16,7 @@ export class BalanceReports extends APIResource {
     id: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<BalanceReport> {
-    return this.get(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, options);
+    return this._client.get(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, options);
   }
 
   /**
@@ -39,7 +39,7 @@ export class BalanceReports extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(internalAccountId, {}, query);
     }
-    return this.getAPIList(
+    return this._client.getAPIList(
       `/api/internal_accounts/${internalAccountId}/balance_reports`,
       BalanceReportsPage,
       { query, ...options },

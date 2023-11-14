@@ -13,7 +13,7 @@ export class IncomingPaymentDetails extends APIResource {
    * Get an existing Incoming Payment Detail.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<IncomingPaymentDetail> {
-    return this.get(`/api/incoming_payment_details/${id}`, options);
+    return this._client.get(`/api/incoming_payment_details/${id}`, options);
   }
 
   /**
@@ -33,7 +33,7 @@ export class IncomingPaymentDetails extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/incoming_payment_details/${id}`, { body, ...options });
+    return this._client.patch(`/api/incoming_payment_details/${id}`, { body, ...options });
   }
 
   /**
@@ -51,7 +51,7 @@ export class IncomingPaymentDetails extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/incoming_payment_details', IncomingPaymentDetailsPage, {
+    return this._client.getAPIList('/api/incoming_payment_details', IncomingPaymentDetailsPage, {
       query,
       ...options,
     });
@@ -79,7 +79,7 @@ export class IncomingPaymentDetails extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/simulations/incoming_payment_details/create_async', {
+    return this._client.post('/api/simulations/incoming_payment_details/create_async', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },

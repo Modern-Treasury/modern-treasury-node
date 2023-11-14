@@ -20,7 +20,7 @@ export class LedgerAccountStatements extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/ledger_account_statements', {
+    return this._client.post('/api/ledger_account_statements', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -34,7 +34,7 @@ export class LedgerAccountStatements extends APIResource {
     id: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LedgerAccountStatementRetrieveResponse> {
-    return this.get(`/api/ledger_account_statements/${id}`, options);
+    return this._client.get(`/api/ledger_account_statements/${id}`, options);
   }
 }
 

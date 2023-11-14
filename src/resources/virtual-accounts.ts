@@ -20,7 +20,7 @@ export class VirtualAccounts extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/virtual_accounts', {
+    return this._client.post('/api/virtual_accounts', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -31,7 +31,7 @@ export class VirtualAccounts extends APIResource {
    * get virtual_account
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
-    return this.get(`/api/virtual_accounts/${id}`, options);
+    return this._client.get(`/api/virtual_accounts/${id}`, options);
   }
 
   /**
@@ -51,7 +51,7 @@ export class VirtualAccounts extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/virtual_accounts/${id}`, { body, ...options });
+    return this._client.patch(`/api/virtual_accounts/${id}`, { body, ...options });
   }
 
   /**
@@ -69,14 +69,14 @@ export class VirtualAccounts extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/virtual_accounts', VirtualAccountsPage, { query, ...options });
+    return this._client.getAPIList('/api/virtual_accounts', VirtualAccountsPage, { query, ...options });
   }
 
   /**
    * delete virtual_account
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
-    return this.delete(`/api/virtual_accounts/${id}`, options);
+    return this._client.delete(`/api/virtual_accounts/${id}`, options);
   }
 }
 

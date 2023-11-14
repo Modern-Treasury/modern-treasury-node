@@ -14,7 +14,7 @@ import { type Uploadable, maybeMultipartFormRequestOptions } from 'modern-treasu
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class PaymentOrders extends APIResource {
-  reversals: ReversalsAPI.Reversals = new ReversalsAPI.Reversals(this.client);
+  reversals: ReversalsAPI.Reversals = new ReversalsAPI.Reversals(this._client);
 
   /**
    * Create a new Payment Order
@@ -27,7 +27,7 @@ export class PaymentOrders extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post(
+    return this._client.post(
       '/api/payment_orders',
       maybeMultipartFormRequestOptions({
         body,
@@ -41,7 +41,7 @@ export class PaymentOrders extends APIResource {
    * Get details on a single payment order
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder> {
-    return this.get(`/api/payment_orders/${id}`, options);
+    return this._client.get(`/api/payment_orders/${id}`, options);
   }
 
   /**
@@ -61,7 +61,7 @@ export class PaymentOrders extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/payment_orders/${id}`, { body, ...options });
+    return this._client.patch(`/api/payment_orders/${id}`, { body, ...options });
   }
 
   /**
@@ -79,7 +79,7 @@ export class PaymentOrders extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/payment_orders', PaymentOrdersPage, { query, ...options });
+    return this._client.getAPIList('/api/payment_orders', PaymentOrdersPage, { query, ...options });
   }
 
   /**
@@ -96,7 +96,7 @@ export class PaymentOrders extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/payment_orders/create_async', {
+    return this._client.post('/api/payment_orders/create_async', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
