@@ -18,7 +18,7 @@ export class Ledgers extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/ledgers', {
+    return this._client.post('/api/ledgers', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -29,7 +29,7 @@ export class Ledgers extends APIResource {
    * Get details on a single ledger.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
-    return this.get(`/api/ledgers/${id}`, options);
+    return this._client.get(`/api/ledgers/${id}`, options);
   }
 
   /**
@@ -45,7 +45,7 @@ export class Ledgers extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/ledgers/${id}`, { body, ...options });
+    return this._client.patch(`/api/ledgers/${id}`, { body, ...options });
   }
 
   /**
@@ -60,14 +60,14 @@ export class Ledgers extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledgers', LedgersPage, { query, ...options });
+    return this._client.getAPIList('/api/ledgers', LedgersPage, { query, ...options });
   }
 
   /**
    * Delete a ledger.
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
-    return this.delete(`/api/ledgers/${id}`, options);
+    return this._client.delete(`/api/ledgers/${id}`, options);
   }
 }
 

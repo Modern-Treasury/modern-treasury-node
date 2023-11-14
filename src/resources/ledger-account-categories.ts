@@ -22,7 +22,7 @@ export class LedgerAccountCategories extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/ledger_account_categories', {
+    return this._client.post('/api/ledger_account_categories', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -46,7 +46,7 @@ export class LedgerAccountCategories extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieve(id, {}, query);
     }
-    return this.get(`/api/ledger_account_categories/${id}`, { query, ...options });
+    return this._client.get(`/api/ledger_account_categories/${id}`, { query, ...options });
   }
 
   /**
@@ -66,7 +66,7 @@ export class LedgerAccountCategories extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/ledger_account_categories/${id}`, { body, ...options });
+    return this._client.patch(`/api/ledger_account_categories/${id}`, { body, ...options });
   }
 
   /**
@@ -84,7 +84,7 @@ export class LedgerAccountCategories extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledger_account_categories', LedgerAccountCategoriesPage, {
+    return this._client.getAPIList('/api/ledger_account_categories', LedgerAccountCategoriesPage, {
       query,
       ...options,
     });
@@ -94,7 +94,7 @@ export class LedgerAccountCategories extends APIResource {
    * Delete a ledger account category.
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountCategory> {
-    return this.delete(`/api/ledger_account_categories/${id}`, options);
+    return this._client.delete(`/api/ledger_account_categories/${id}`, options);
   }
 
   /**
@@ -105,7 +105,7 @@ export class LedgerAccountCategories extends APIResource {
     ledgerAccountId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.put(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
+    return this._client.put(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -115,10 +115,10 @@ export class LedgerAccountCategories extends APIResource {
    * Add a ledger account category to a ledger account category.
    */
   addNestedCategory(id: string, subCategoryId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.put(`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`, {
-      ...options,
-      headers: { Accept: '', ...options?.headers },
-    });
+    return this._client.put(
+      `/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`,
+      { ...options, headers: { Accept: '', ...options?.headers } },
+    );
   }
 
   /**
@@ -129,7 +129,7 @@ export class LedgerAccountCategories extends APIResource {
     ledgerAccountId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.delete(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
+    return this._client.delete(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -143,10 +143,10 @@ export class LedgerAccountCategories extends APIResource {
     subCategoryId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.delete(`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`, {
-      ...options,
-      headers: { Accept: '', ...options?.headers },
-    });
+    return this._client.delete(
+      `/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`,
+      { ...options, headers: { Accept: '', ...options?.headers } },
+    );
   }
 }
 

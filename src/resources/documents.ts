@@ -19,7 +19,7 @@ export class Documents extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post(
+    return this._client.post(
       '/api/documents',
       multipartFormRequestOptions({
         body,
@@ -33,7 +33,7 @@ export class Documents extends APIResource {
    * Get an existing document.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Document> {
-    return this.get(`/api/documents/${id}`, options);
+    return this._client.get(`/api/documents/${id}`, options);
   }
 
   /**
@@ -48,7 +48,7 @@ export class Documents extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/documents', DocumentsPage, { query, ...options });
+    return this._client.getAPIList('/api/documents', DocumentsPage, { query, ...options });
   }
 }
 

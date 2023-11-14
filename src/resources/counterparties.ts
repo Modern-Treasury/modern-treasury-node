@@ -22,7 +22,7 @@ export class Counterparties extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/counterparties', {
+    return this._client.post('/api/counterparties', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -33,7 +33,7 @@ export class Counterparties extends APIResource {
    * Get details on a single counterparty.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Counterparty> {
-    return this.get(`/api/counterparties/${id}`, options);
+    return this._client.get(`/api/counterparties/${id}`, options);
   }
 
   /**
@@ -53,7 +53,7 @@ export class Counterparties extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/counterparties/${id}`, { body, ...options });
+    return this._client.patch(`/api/counterparties/${id}`, { body, ...options });
   }
 
   /**
@@ -71,14 +71,14 @@ export class Counterparties extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/counterparties', CounterpartiesPage, { query, ...options });
+    return this._client.getAPIList('/api/counterparties', CounterpartiesPage, { query, ...options });
   }
 
   /**
    * Deletes a given counterparty.
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/api/counterparties/${id}`, {
+    return this._client.delete(`/api/counterparties/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -99,7 +99,7 @@ export class Counterparties extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post(`/api/counterparties/${id}/collect_account`, {
+    return this._client.post(`/api/counterparties/${id}/collect_account`, {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },

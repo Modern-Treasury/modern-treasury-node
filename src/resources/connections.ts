@@ -22,7 +22,7 @@ export class Connections extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/connections', ConnectionsPage, { query, ...options });
+    return this._client.getAPIList('/api/connections', ConnectionsPage, { query, ...options });
   }
 }
 

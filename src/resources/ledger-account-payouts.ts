@@ -21,7 +21,7 @@ export class LedgerAccountPayouts extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/ledger_account_payouts', {
+    return this._client.post('/api/ledger_account_payouts', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -32,7 +32,7 @@ export class LedgerAccountPayouts extends APIResource {
    * Get details on a single ledger account payout.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountPayout> {
-    return this.get(`/api/ledger_account_payouts/${id}`, options);
+    return this._client.get(`/api/ledger_account_payouts/${id}`, options);
   }
 
   /**
@@ -52,7 +52,7 @@ export class LedgerAccountPayouts extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/ledger_account_payouts/${id}`, { body, ...options });
+    return this._client.patch(`/api/ledger_account_payouts/${id}`, { body, ...options });
   }
 
   /**
@@ -70,7 +70,10 @@ export class LedgerAccountPayouts extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledger_account_payouts', LedgerAccountPayoutsPage, { query, ...options });
+    return this._client.getAPIList('/api/ledger_account_payouts', LedgerAccountPayoutsPage, {
+      query,
+      ...options,
+    });
   }
 
   /**

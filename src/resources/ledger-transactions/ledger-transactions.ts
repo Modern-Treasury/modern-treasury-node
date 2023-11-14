@@ -10,7 +10,7 @@ import * as VersionsAPI from 'modern-treasury/resources/ledger-transactions/vers
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LedgerTransactions extends APIResource {
-  versions: VersionsAPI.Versions = new VersionsAPI.Versions(this.client);
+  versions: VersionsAPI.Versions = new VersionsAPI.Versions(this._client);
 
   /**
    * Create a ledger transaction.
@@ -26,7 +26,7 @@ export class LedgerTransactions extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/ledger_transactions', {
+    return this._client.post('/api/ledger_transactions', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -37,7 +37,7 @@ export class LedgerTransactions extends APIResource {
    * Get details on a single ledger transaction.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerTransaction> {
-    return this.get(`/api/ledger_transactions/${id}`, options);
+    return this._client.get(`/api/ledger_transactions/${id}`, options);
   }
 
   /**
@@ -57,7 +57,7 @@ export class LedgerTransactions extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/ledger_transactions/${id}`, { body, ...options });
+    return this._client.patch(`/api/ledger_transactions/${id}`, { body, ...options });
   }
 
   /**
@@ -75,7 +75,7 @@ export class LedgerTransactions extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledger_transactions', LedgerTransactionsPage, { query, ...options });
+    return this._client.getAPIList('/api/ledger_transactions', LedgerTransactionsPage, { query, ...options });
   }
 
   /**
@@ -95,7 +95,7 @@ export class LedgerTransactions extends APIResource {
     if (isRequestOptions(body)) {
       return this.createReversal(id, {}, body);
     }
-    return this.post(`/api/ledger_transactions/${id}/reversal`, { body, ...options });
+    return this._client.post(`/api/ledger_transactions/${id}/reversal`, { body, ...options });
   }
 }
 
