@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.11.0 (2023-11-14)
+
+Full Changelog: [v2.10.0...v2.11.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.10.0...v2.11.0)
+
+### Features
+
+* **api:** add dk_interbank_clearing_code and dk_nets enum members ([#283](https://github.com/Modern-Treasury/modern-treasury-node/issues/283)) ([f833e0d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f833e0de66bbdb4ea6673071ce886cdda5a51447))
+* **api:** updates ([#281](https://github.com/Modern-Treasury/modern-treasury-node/issues/281)) ([fe78a82](https://github.com/Modern-Treasury/modern-treasury-node/commit/fe78a8214edf98798232e72c237f4a1ad6e26d43))
+
+
+### Chores
+
+* **internal:** skip bulk requests tests ([#284](https://github.com/Modern-Treasury/modern-treasury-node/issues/284)) ([7662f86](https://github.com/Modern-Treasury/modern-treasury-node/commit/7662f867923d2626bbbf4494941c38f2c7cdf05e))
+* **internal:** update APIResource structure ([#285](https://github.com/Modern-Treasury/modern-treasury-node/issues/285)) ([d391c7f](https://github.com/Modern-Treasury/modern-treasury-node/commit/d391c7fd5c3cc568e419def94e52a617c097f2a8))
+
 ## 2.10.0 (2023-11-07)
 
 Full Changelog: [v2.9.0...v2.10.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.9.0...v2.10.0)
