@@ -16,7 +16,7 @@ export class LineItems extends APIResource {
     id: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LineItem> {
-    return this.get(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, options);
+    return this._client.get(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, options);
   }
 
   /**
@@ -45,7 +45,10 @@ export class LineItems extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(itemizableType, itemizableId, id, {}, body);
     }
-    return this.patch(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, { body, ...options });
+    return this._client.patch(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, {
+      body,
+      ...options,
+    });
   }
 
   /**
@@ -71,7 +74,7 @@ export class LineItems extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(itemizableType, itemizableId, {}, query);
     }
-    return this.getAPIList(`/api/${itemizableType}/${itemizableId}/line_items`, LineItemsPage, {
+    return this._client.getAPIList(`/api/${itemizableType}/${itemizableId}/line_items`, LineItemsPage, {
       query,
       ...options,
     });

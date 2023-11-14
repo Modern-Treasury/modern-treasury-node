@@ -12,7 +12,7 @@ import * as BalanceReportsAPI from 'modern-treasury/resources/internal-accounts/
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class InternalAccounts extends APIResource {
-  balanceReports: BalanceReportsAPI.BalanceReports = new BalanceReportsAPI.BalanceReports(this.client);
+  balanceReports: BalanceReportsAPI.BalanceReports = new BalanceReportsAPI.BalanceReports(this._client);
 
   /**
    * create internal account
@@ -28,7 +28,7 @@ export class InternalAccounts extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/internal_accounts', {
+    return this._client.post('/api/internal_accounts', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -39,7 +39,7 @@ export class InternalAccounts extends APIResource {
    * get internal account
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<InternalAccount> {
-    return this.get(`/api/internal_accounts/${id}`, options);
+    return this._client.get(`/api/internal_accounts/${id}`, options);
   }
 
   /**
@@ -59,7 +59,7 @@ export class InternalAccounts extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/internal_accounts/${id}`, { body, ...options });
+    return this._client.patch(`/api/internal_accounts/${id}`, { body, ...options });
   }
 
   /**
@@ -77,7 +77,7 @@ export class InternalAccounts extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/internal_accounts', InternalAccountsPage, { query, ...options });
+    return this._client.getAPIList('/api/internal_accounts', InternalAccountsPage, { query, ...options });
   }
 }
 

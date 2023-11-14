@@ -21,7 +21,7 @@ export class LedgerEventHandlers extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/ledger_event_handlers', {
+    return this._client.post('/api/ledger_event_handlers', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -32,7 +32,7 @@ export class LedgerEventHandlers extends APIResource {
    * Get details on a single ledger event handler.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandler> {
-    return this.get(`/api/ledger_event_handlers/${id}`, options);
+    return this._client.get(`/api/ledger_event_handlers/${id}`, options);
   }
 
   /**
@@ -50,14 +50,17 @@ export class LedgerEventHandlers extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledger_event_handlers', LedgerEventHandlersPage, { query, ...options });
+    return this._client.getAPIList('/api/ledger_event_handlers', LedgerEventHandlersPage, {
+      query,
+      ...options,
+    });
   }
 
   /**
    * Archive a ledger event handler.
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandler> {
-    return this.delete(`/api/ledger_event_handlers/${id}`, options);
+    return this._client.delete(`/api/ledger_event_handlers/${id}`, options);
   }
 }
 

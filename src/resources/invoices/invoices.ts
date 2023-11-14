@@ -11,7 +11,7 @@ import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/paym
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class Invoices extends APIResource {
-  lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this.client);
+  lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this._client);
 
   /**
    * create invoice
@@ -24,7 +24,7 @@ export class Invoices extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/invoices', {
+    return this._client.post('/api/invoices', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -35,7 +35,7 @@ export class Invoices extends APIResource {
    * get invoice
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
-    return this.get(`/api/invoices/${id}`, options);
+    return this._client.get(`/api/invoices/${id}`, options);
   }
 
   /**
@@ -51,7 +51,7 @@ export class Invoices extends APIResource {
     if (isRequestOptions(body)) {
       return this.update(id, {}, body);
     }
-    return this.patch(`/api/invoices/${id}`, { body, ...options });
+    return this._client.patch(`/api/invoices/${id}`, { body, ...options });
   }
 
   /**
@@ -66,14 +66,14 @@ export class Invoices extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/invoices', InvoicesPage, { query, ...options });
+    return this._client.getAPIList('/api/invoices', InvoicesPage, { query, ...options });
   }
 
   /**
    * Add a payment order to an invoice.
    */
   addPaymentOrder(id: string, paymentOrderId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.put(`/api/invoices/${id}/payment_orders/${paymentOrderId}`, {
+    return this._client.put(`/api/invoices/${id}/payment_orders/${paymentOrderId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });

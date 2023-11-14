@@ -19,7 +19,7 @@ export class Returns extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/returns', {
+    return this._client.post('/api/returns', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -30,7 +30,7 @@ export class Returns extends APIResource {
    * Get a single return.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ReturnObject> {
-    return this.get(`/api/returns/${id}`, options);
+    return this._client.get(`/api/returns/${id}`, options);
   }
 
   /**
@@ -48,7 +48,7 @@ export class Returns extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/returns', ReturnObjectsPage, { query, ...options });
+    return this._client.getAPIList('/api/returns', ReturnObjectsPage, { query, ...options });
   }
 }
 

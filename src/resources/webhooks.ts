@@ -18,7 +18,7 @@ export class Webhooks extends APIResource {
    * request, if they match then the webhook was sent by Modern Treasury.
    */
   getSignature(payload: string, opts?: { key?: string | null | undefined }): string {
-    const key = opts?.key || this.client.webhookKey;
+    const key = opts?.key || this._client.webhookKey;
     if (key == null) {
       throw new Error(
         "The webhook key must either be set using the env var, MODERN_TREASURY_WEBHOOK_KEY, on the client class, new ModernTreasury({ webhookKey: '123' }) or passed to this function",

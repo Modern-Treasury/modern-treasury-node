@@ -14,7 +14,7 @@ export class BulkResults extends APIResource {
    * get bulk_result
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BulkResult> {
-    return this.get(`/api/bulk_results/${id}`, options);
+    return this._client.get(`/api/bulk_results/${id}`, options);
   }
 
   /**
@@ -32,7 +32,7 @@ export class BulkResults extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/bulk_results', BulkResultsPage, { query, ...options });
+    return this._client.getAPIList('/api/bulk_results', BulkResultsPage, { query, ...options });
   }
 }
 

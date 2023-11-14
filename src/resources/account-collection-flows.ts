@@ -21,7 +21,7 @@ export class AccountCollectionFlows extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/account_collection_flows', {
+    return this._client.post('/api/account_collection_flows', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -32,7 +32,7 @@ export class AccountCollectionFlows extends APIResource {
    * get account_collection_flow
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AccountCollectionFlow> {
-    return this.get(`/api/account_collection_flows/${id}`, options);
+    return this._client.get(`/api/account_collection_flows/${id}`, options);
   }
 
   /**
@@ -50,7 +50,7 @@ export class AccountCollectionFlows extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.patch(`/api/account_collection_flows/${id}`, {
+    return this._client.patch(`/api/account_collection_flows/${id}`, {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -72,7 +72,7 @@ export class AccountCollectionFlows extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/account_collection_flows', AccountCollectionFlowsPage, {
+    return this._client.getAPIList('/api/account_collection_flows', AccountCollectionFlowsPage, {
       query,
       ...options,
     });

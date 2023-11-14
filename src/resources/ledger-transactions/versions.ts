@@ -25,7 +25,7 @@ export class Versions extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/ledger_transaction_versions', LedgerTransactionVersionsPage, {
+    return this._client.getAPIList('/api/ledger_transaction_versions', LedgerTransactionVersionsPage, {
       query,
       ...options,
     });

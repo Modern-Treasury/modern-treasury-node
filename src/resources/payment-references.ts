@@ -11,7 +11,7 @@ export class PaymentReferences extends APIResource {
    * get payment_reference
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentReference> {
-    return this.get(`/api/payment_references/${id}`, options);
+    return this._client.get(`/api/payment_references/${id}`, options);
   }
 
   /**
@@ -29,7 +29,7 @@ export class PaymentReferences extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/payment_references', PaymentReferencesPage, { query, ...options });
+    return this._client.getAPIList('/api/payment_references', PaymentReferencesPage, { query, ...options });
   }
 
   /**

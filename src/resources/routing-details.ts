@@ -24,7 +24,7 @@ export class RoutingDetails extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post(`/api/${accountsType}/${accountId}/routing_details`, {
+    return this._client.post(`/api/${accountsType}/${accountId}/routing_details`, {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -40,7 +40,7 @@ export class RoutingDetails extends APIResource {
     id: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<RoutingDetail> {
-    return this.get(`/api/${accountsType}/${accountId}/routing_details/${id}`, options);
+    return this._client.get(`/api/${accountsType}/${accountId}/routing_details/${id}`, options);
   }
 
   /**
@@ -66,7 +66,7 @@ export class RoutingDetails extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(accountsType, accountId, {}, query);
     }
-    return this.getAPIList(`/api/${accountsType}/${accountId}/routing_details`, RoutingDetailsPage, {
+    return this._client.getAPIList(`/api/${accountsType}/${accountId}/routing_details`, RoutingDetailsPage, {
       query,
       ...options,
     });
@@ -81,7 +81,7 @@ export class RoutingDetails extends APIResource {
     id: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.delete(`/api/${accountsType}/${accountId}/routing_details/${id}`, {
+    return this._client.delete(`/api/${accountsType}/${accountId}/routing_details/${id}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });

@@ -19,7 +19,7 @@ export class LedgerableEvents extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/ledgerable_events', {
+    return this._client.post('/api/ledgerable_events', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -30,7 +30,7 @@ export class LedgerableEvents extends APIResource {
    * Get details on a single ledgerable event.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerableEvent> {
-    return this.get(`/api/ledgerable_events/${id}`, options);
+    return this._client.get(`/api/ledgerable_events/${id}`, options);
   }
 }
 

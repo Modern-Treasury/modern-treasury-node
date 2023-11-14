@@ -23,7 +23,7 @@ export class Reversals extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post(`/api/payment_orders/${paymentOrderId}/reversals`, {
+    return this._client.post(`/api/payment_orders/${paymentOrderId}/reversals`, {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -38,7 +38,7 @@ export class Reversals extends APIResource {
     reversalId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Reversal> {
-    return this.get(`/api/payment_orders/${paymentOrderId}/reversals/${reversalId}`, options);
+    return this._client.get(`/api/payment_orders/${paymentOrderId}/reversals/${reversalId}`, options);
   }
 
   /**
@@ -58,7 +58,7 @@ export class Reversals extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(paymentOrderId, {}, query);
     }
-    return this.getAPIList(`/api/payment_orders/${paymentOrderId}/reversals`, ReversalsPage, {
+    return this._client.getAPIList(`/api/payment_orders/${paymentOrderId}/reversals`, ReversalsPage, {
       query,
       ...options,
     });

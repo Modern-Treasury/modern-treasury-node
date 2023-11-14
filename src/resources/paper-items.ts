@@ -12,7 +12,7 @@ export class PaperItems extends APIResource {
    * Get details on a single paper item.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaperItem> {
-    return this.get(`/api/paper_items/${id}`, options);
+    return this._client.get(`/api/paper_items/${id}`, options);
   }
 
   /**
@@ -30,7 +30,7 @@ export class PaperItems extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/paper_items', PaperItemsPage, { query, ...options });
+    return this._client.getAPIList('/api/paper_items', PaperItemsPage, { query, ...options });
   }
 }
 

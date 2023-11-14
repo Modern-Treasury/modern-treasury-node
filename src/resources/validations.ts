@@ -13,7 +13,7 @@ export class Validations extends APIResource {
     query: ValidationValidateRoutingNumberParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<RoutingNumberLookupRequest> {
-    return this.get('/api/validations/routing_numbers', { query, ...options });
+    return this._client.get('/api/validations/routing_numbers', { query, ...options });
   }
 }
 

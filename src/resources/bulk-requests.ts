@@ -23,7 +23,7 @@ export class BulkRequests extends APIResource {
         "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
       );
     }
-    return this.post('/api/bulk_requests', {
+    return this._client.post('/api/bulk_requests', {
       body,
       ...options,
       headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -34,7 +34,7 @@ export class BulkRequests extends APIResource {
    * get bulk_request
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BulkRequest> {
-    return this.get(`/api/bulk_requests/${id}`, options);
+    return this._client.get(`/api/bulk_requests/${id}`, options);
   }
 
   /**
@@ -52,7 +52,7 @@ export class BulkRequests extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/bulk_requests', BulkRequestsPage, { query, ...options });
+    return this._client.getAPIList('/api/bulk_requests', BulkRequestsPage, { query, ...options });
   }
 }
 

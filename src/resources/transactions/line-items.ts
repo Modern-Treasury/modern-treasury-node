@@ -11,7 +11,7 @@ export class LineItems extends APIResource {
    * get transaction line item
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<TransactionLineItem> {
-    return this.get(`/api/transaction_line_items/${id}`, options);
+    return this._client.get(`/api/transaction_line_items/${id}`, options);
   }
 
   /**
@@ -29,7 +29,10 @@ export class LineItems extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/api/transaction_line_items', TransactionLineItemsPage, { query, ...options });
+    return this._client.getAPIList('/api/transaction_line_items', TransactionLineItemsPage, {
+      query,
+      ...options,
+    });
   }
 }
 
