@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.12.0 (2023-11-21)
+
+Full Changelog: [v2.11.0...v2.12.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.11.0...v2.12.0)
+
+### Features
+
+* **api:** updates ([#286](https://github.com/Modern-Treasury/modern-treasury-node/issues/286)) ([6ecb0e1](https://github.com/Modern-Treasury/modern-treasury-node/commit/6ecb0e156b3fc31270c7b5499c59c6f9f57d8a4c))
+
 ## 2.11.0 (2023-11-14)
 
 Full Changelog: [v2.10.0...v2.11.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.10.0...v2.11.0)
