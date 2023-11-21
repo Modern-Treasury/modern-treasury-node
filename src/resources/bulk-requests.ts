@@ -8,7 +8,6 @@ import * as ExpectedPaymentsAPI from 'modern-treasury/resources/expected-payment
 import * as ExternalAccountsAPI from 'modern-treasury/resources/external-accounts';
 import * as Shared from 'modern-treasury/resources/shared';
 import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/payment-orders';
-import { type Uploadable } from 'modern-treasury/core';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class BulkRequests extends APIResource {
@@ -128,7 +127,7 @@ export interface BulkRequestCreateParams {
    * `action_type` request on a `resource_type` resource
    */
   resources: Array<
-    | BulkRequestCreateParams.PaymentOrderCreateRequest
+    | BulkRequestCreateParams.PaymentOrderAsyncCreateRequest
     | BulkRequestCreateParams.ExpectedPaymentCreateRequest
     | BulkRequestCreateParams.LedgerTransactionCreateRequest
     | BulkRequestCreateParams.PaymentOrderUpdateRequestWithID
@@ -144,7 +143,7 @@ export interface BulkRequestCreateParams {
 }
 
 export namespace BulkRequestCreateParams {
-  export interface PaymentOrderCreateRequest {
+  export interface PaymentOrderAsyncCreateRequest {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented as
      * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
@@ -171,7 +170,7 @@ export namespace BulkRequestCreateParams {
      */
     type: PaymentOrdersAPI.PaymentOrderType;
 
-    accounting?: PaymentOrderCreateRequest.Accounting;
+    accounting?: PaymentOrderAsyncCreateRequest.Accounting;
 
     /**
      * The ID of one of your accounting categories. Note that these will only be
@@ -201,12 +200,6 @@ export namespace BulkRequestCreateParams {
      * An optional description for internal use.
      */
     description?: string | null;
-
-    /**
-     * An array of documents to be attached to the payment order. Note that if you
-     * attach documents, the request's content type must be `multipart/form-data`.
-     */
-    documents?: Array<PaymentOrderCreateRequest.Document>;
 
     /**
      * Date transactions are to be posted to the participants' account. Defaults to the
@@ -246,7 +239,7 @@ export namespace BulkRequestCreateParams {
      * creation will fail. The resulting ledger transaction will mirror the status of
      * the payment order.
      */
-    ledger_transaction?: PaymentOrderCreateRequest.LedgerTransaction;
+    ledger_transaction?: PaymentOrderAsyncCreateRequest.LedgerTransaction;
 
     /**
      * Either ledger_transaction or ledger_transaction_id can be provided. Only a
@@ -259,7 +252,7 @@ export namespace BulkRequestCreateParams {
     /**
      * An array of line items that must sum up to the amount of the payment order.
      */
-    line_items?: Array<PaymentOrderCreateRequest.LineItem>;
+    line_items?: Array<PaymentOrderAsyncCreateRequest.LineItem>;
 
     /**
      * Additional data represented as key-value pairs. Both the key and value must be
@@ -301,7 +294,7 @@ export namespace BulkRequestCreateParams {
      * `receiving_account_id`, you may pass the id of an external account or an
      * internal account.
      */
-    receiving_account?: PaymentOrderCreateRequest.ReceivingAccount;
+    receiving_account?: PaymentOrderAsyncCreateRequest.ReceivingAccount;
 
     /**
      * Either `receiving_account` or `receiving_account_id` must be present. When using
@@ -368,7 +361,7 @@ export namespace BulkRequestCreateParams {
     ultimate_receiving_party_name?: string | null;
   }
 
-  export namespace PaymentOrderCreateRequest {
+  export namespace PaymentOrderAsyncCreateRequest {
     export interface Accounting {
       /**
        * The ID of one of your accounting categories. Note that these will only be
@@ -382,34 +375,6 @@ export namespace BulkRequestCreateParams {
        * these will only be accessible if your accounting system has been connected.
        */
       class_id?: string | null;
-    }
-
-    export interface Document {
-      /**
-       * The unique identifier for the associated object.
-       */
-      documentable_id: string;
-
-      documentable_type:
-        | 'cases'
-        | 'counterparties'
-        | 'expected_payments'
-        | 'external_accounts'
-        | 'incoming_payment_details'
-        | 'internal_accounts'
-        | 'organizations'
-        | 'paper_items'
-        | 'payment_orders'
-        | 'transactions'
-        | 'decisions'
-        | 'connections';
-
-      file: Uploadable;
-
-      /**
-       * A category given to the document, can be `null`.
-       */
-      document_type?: string;
     }
 
     /**
@@ -739,7 +704,6 @@ export namespace BulkRequestCreateParams {
         routing_number_type:
           | 'aba'
           | 'au_bsb'
-          | 'se_bankgiro_clearing_code'
           | 'br_codigo'
           | 'ca_cpa'
           | 'chips'
@@ -747,11 +711,13 @@ export namespace BulkRequestCreateParams {
           | 'dk_interbank_clearing_code'
           | 'gb_sort_code'
           | 'hk_interbank_clearing_code'
+          | 'hu_interbank_clearing_code'
           | 'in_ifsc'
+          | 'jp_zengin_code'
           | 'my_branch_code'
           | 'nz_national_clearing_code'
-          | 'swift'
-          | 'jp_zengin_code';
+          | 'se_bankgiro_clearing_code'
+          | 'swift';
 
         payment_type?:
           | 'ach'
@@ -764,12 +730,14 @@ export namespace BulkRequestCreateParams {
           | 'cross_border'
           | 'dk_nets'
           | 'eft'
+          | 'hu_ics'
           | 'interac'
           | 'masav'
           | 'neft'
           | 'nics'
           | 'nz_becs'
           | 'provxchange'
+          | 'ro_sent'
           | 'rtp'
           | 'sg_giro'
           | 'se_bankgirot'
@@ -1470,7 +1438,6 @@ export namespace BulkRequestCreateParams {
         routing_number_type:
           | 'aba'
           | 'au_bsb'
-          | 'se_bankgiro_clearing_code'
           | 'br_codigo'
           | 'ca_cpa'
           | 'chips'
@@ -1478,11 +1445,13 @@ export namespace BulkRequestCreateParams {
           | 'dk_interbank_clearing_code'
           | 'gb_sort_code'
           | 'hk_interbank_clearing_code'
+          | 'hu_interbank_clearing_code'
           | 'in_ifsc'
+          | 'jp_zengin_code'
           | 'my_branch_code'
           | 'nz_national_clearing_code'
-          | 'swift'
-          | 'jp_zengin_code';
+          | 'se_bankgiro_clearing_code'
+          | 'swift';
 
         payment_type?:
           | 'ach'
@@ -1495,12 +1464,14 @@ export namespace BulkRequestCreateParams {
           | 'cross_border'
           | 'dk_nets'
           | 'eft'
+          | 'hu_ics'
           | 'interac'
           | 'masav'
           | 'neft'
           | 'nics'
           | 'nz_becs'
           | 'provxchange'
+          | 'ro_sent'
           | 'rtp'
           | 'sg_giro'
           | 'se_bankgirot'

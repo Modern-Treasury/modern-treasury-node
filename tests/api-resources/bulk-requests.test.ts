@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import ModernTreasury, { toFile } from 'modern-treasury';
+import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
 const modernTreasury = new ModernTreasury({
@@ -194,26 +194,6 @@ describe('resource bulkRequests', () => {
             },
           ],
           transaction_monitoring_enabled: true,
-          documents: [
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-          ],
         },
         {
           type: 'ach',
@@ -358,26 +338,6 @@ describe('resource bulkRequests', () => {
             },
           ],
           transaction_monitoring_enabled: true,
-          documents: [
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-          ],
         },
         {
           type: 'ach',
@@ -522,26 +482,6 @@ describe('resource bulkRequests', () => {
             },
           ],
           transaction_monitoring_enabled: true,
-          documents: [
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-            {
-              documentable_id: 'string',
-              documentable_type: 'cases',
-              document_type: 'string',
-              file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            },
-          ],
         },
       ],
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
