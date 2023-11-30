@@ -146,6 +146,25 @@ describe('instantiate client', () => {
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
+
+    afterEach(() => {
+      process.env['SINK_BASE_URL'] = undefined;
+    });
+
+    test('explicit option', () => {
+      const client = new ModernTreasury({
+        baseURL: 'https://example.com',
+        apiKey: 'My API Key',
+        organizationId: 'my-organization-ID',
+      });
+      expect(client.baseURL).toEqual('https://example.com');
+    });
+
+    test('env variable', () => {
+      process.env['MODERN_TREASURY_BASE_URL'] = 'https://example.com/from_env';
+      const client = new ModernTreasury({ apiKey: 'My API Key', organizationId: 'my-organization-ID' });
+      expect(client.baseURL).toEqual('https://example.com/from_env');
+    });
   });
 
   test('maxRetries option is correctly set', () => {
