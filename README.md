@@ -22,8 +22,8 @@ The full API of this library can be found in [api.md](https://www.github.com/Mod
 import ModernTreasury from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury({
-  organizationId: 'my-organization-ID', // defaults to process.env["MODERN_TREASURY_ORGANIZATION_ID"]
-  apiKey: 'My API Key', // defaults to process.env["MODERN_TREASURY_API_KEY"]
+  organizationId: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted
+  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
@@ -46,8 +46,8 @@ This library includes TypeScript definitions for all request params and response
 import ModernTreasury from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury({
-  organizationId: 'my-organization-ID', // defaults to process.env["MODERN_TREASURY_ORGANIZATION_ID"]
-  apiKey: 'My API Key', // defaults to process.env["MODERN_TREASURY_API_KEY"]
+  organizationId: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted
+  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
