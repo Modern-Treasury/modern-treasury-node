@@ -27,8 +27,10 @@ export interface ClientOptions {
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
+   *
+   * Defaults to process.env['MODERN_TREASURY_BASE_URL'].
    */
-  baseURL?: string;
+  baseURL?: string | null | undefined;
 
   /**
    * The maximum amount of time (in milliseconds) that the client should wait for a response
@@ -91,10 +93,10 @@ export class ModernTreasury extends Core.APIClient {
   /**
    * API Client for interfacing with the Modern Treasury API.
    *
-   * @param {string} [opts.apiKey==process.env['MODERN_TREASURY_API_KEY'] ?? undefined]
-   * @param {string} [opts.organizationId==process.env['MODERN_TREASURY_ORGANIZATION_ID'] ?? undefined]
-   * @param {string | null} [opts.webhookKey==process.env['MODERN_TREASURY_WEBHOOK_KEY'] ?? null]
-   * @param {string} [opts.baseURL] - Override the default base URL for the API.
+   * @param {string} [opts.apiKey=process.env['MODERN_TREASURY_API_KEY'] ?? undefined]
+   * @param {string} [opts.organizationId=process.env['MODERN_TREASURY_ORGANIZATION_ID'] ?? undefined]
+   * @param {string | null} [opts.webhookKey=process.env['MODERN_TREASURY_WEBHOOK_KEY'] ?? null]
+   * @param {string} [opts.baseURL=process.env['MODERN_TREASURY_BASE_URL'] ?? https://app.moderntreasury.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -103,6 +105,7 @@ export class ModernTreasury extends Core.APIClient {
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
+    baseURL = Core.readEnv('MODERN_TREASURY_BASE_URL'),
     apiKey = Core.readEnv('MODERN_TREASURY_API_KEY'),
     organizationId = Core.readEnv('MODERN_TREASURY_ORGANIZATION_ID'),
     webhookKey = Core.readEnv('MODERN_TREASURY_WEBHOOK_KEY') ?? null,
@@ -124,7 +127,7 @@ export class ModernTreasury extends Core.APIClient {
       organizationId,
       webhookKey,
       ...opts,
-      baseURL: opts.baseURL ?? `https://app.moderntreasury.com`,
+      baseURL: baseURL ?? `https://app.moderntreasury.com`,
     };
 
     super({
