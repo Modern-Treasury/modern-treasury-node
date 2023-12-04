@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.13.0 (2023-12-04)
+
+Full Changelog: [v2.12.0...v2.13.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.12.0...v2.13.0)
+
+### Features
+
+* allow installing package directly from github ([#288](https://github.com/Modern-Treasury/modern-treasury-node/issues/288)) ([c846884](https://github.com/Modern-Treasury/modern-treasury-node/commit/c846884ef237964c0385cbb78c94e32ef79b1494))
+* **client:** support reading the base url from an env variable ([#294](https://github.com/Modern-Treasury/modern-treasury-node/issues/294)) ([3df3200](https://github.com/Modern-Treasury/modern-treasury-node/commit/3df32005dd47ffe7e93ab81c5eeb4e88c799bfeb))
+
+
+### Chores
+
+* **internal:** don't call prepare in dist ([#290](https://github.com/Modern-Treasury/modern-treasury-node/issues/290)) ([e04bf7c](https://github.com/Modern-Treasury/modern-treasury-node/commit/e04bf7cd0eb6ed3d2153c209fc1edf504e20bcfe))
+* **internal:** remove file import and conditionally run prepare ([#291](https://github.com/Modern-Treasury/modern-treasury-node/issues/291)) ([2a1a743](https://github.com/Modern-Treasury/modern-treasury-node/commit/2a1a743e3f9e260ef26d3ee4a052ea40396687bf))
+
+
+### Documentation
+
+* **readme:** update example snippets ([#293](https://github.com/Modern-Treasury/modern-treasury-node/issues/293)) ([ed90597](https://github.com/Modern-Treasury/modern-treasury-node/commit/ed9059751ba3efcc0a8925dc3d81748b1f4d7972))
+
 ## 2.12.0 (2023-11-21)
 
 Full Changelog: [v2.11.0...v2.12.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.11.0...v2.12.0)
