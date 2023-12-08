@@ -29,6 +29,26 @@ export class LedgerEntries extends APIResource {
   }
 
   /**
+   * Update the details of a ledger entry.
+   */
+  update(
+    id: string,
+    body?: LedgerEntryUpdateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LedgerEntry>;
+  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEntry>;
+  update(
+    id: string,
+    body: LedgerEntryUpdateParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LedgerEntry> {
+    if (isRequestOptions(body)) {
+      return this.update(id, {}, body);
+    }
+    return this._client.patch(`/api/ledger_entries/${id}`, { body, ...options });
+  }
+
+  /**
    * Get a list of all ledger entries.
    */
   list(
@@ -239,6 +259,14 @@ export interface LedgerEntryRetrieveParams {
   show_balances?: boolean;
 }
 
+export interface LedgerEntryUpdateParams {
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string>;
+}
+
 export interface LedgerEntryListParams extends PageParams {
   /**
    * If you have specific IDs to retrieve in bulk, you can pass them as query
@@ -288,6 +316,8 @@ export interface LedgerEntryListParams extends PageParams {
   ledger_account_lock_version?: Record<string, number>;
 
   ledger_account_payout_id?: string;
+
+  ledger_account_settlement_id?: string;
 
   /**
    * Get all ledger entries that are included in the ledger account statement.
@@ -354,5 +384,6 @@ export namespace LedgerEntries {
   export import LedgerEntry = LedgerEntriesAPI.LedgerEntry;
   export import LedgerEntriesPage = LedgerEntriesAPI.LedgerEntriesPage;
   export import LedgerEntryRetrieveParams = LedgerEntriesAPI.LedgerEntryRetrieveParams;
+  export import LedgerEntryUpdateParams = LedgerEntriesAPI.LedgerEntryUpdateParams;
   export import LedgerEntryListParams = LedgerEntriesAPI.LedgerEntryListParams;
 }

@@ -140,6 +140,12 @@ export interface Invoice {
   expected_payments: Array<ExpectedPaymentsAPI.ExpectedPayment>;
 
   /**
+   * When payment_method is automatic, the fallback payment method to use when an
+   * automatic payment fails. One of `manual` or `ui`.
+   */
+  fallback_payment_method: string | null;
+
+  /**
    * The URL of the hosted web UI where the invoice can be viewed.
    */
   hosted_url: string;
@@ -154,6 +160,12 @@ export interface Invoice {
    * if it exists in the test environment.
    */
   live_mode: boolean;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata: Record<string, string>;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
@@ -403,6 +415,12 @@ export interface InvoiceCreateParams {
   description?: string;
 
   /**
+   * When payment_method is automatic, the fallback payment method to use when an
+   * automatic payment fails. One of `manual` or `ui`.
+   */
+  fallback_payment_method?: string | null;
+
+  /**
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
@@ -456,9 +474,11 @@ export interface InvoiceCreateParams {
     | 'hu_ics'
     | 'interac'
     | 'masav'
+    | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
+    | 'pl_elixir'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -468,6 +488,7 @@ export interface InvoiceCreateParams {
     | 'sepa'
     | 'sic'
     | 'signet'
+    | 'sknbi'
     | 'wire'
     | 'zengin';
 
@@ -642,6 +663,12 @@ export interface InvoiceUpdateParams {
   due_date?: string;
 
   /**
+   * When payment_method is automatic, the fallback payment method to use when an
+   * automatic payment fails. One of `manual` or `ui`.
+   */
+  fallback_payment_method?: string | null;
+
+  /**
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceUpdateParams.InvoicerAddress | null;
@@ -700,9 +727,11 @@ export interface InvoiceUpdateParams {
     | 'hu_ics'
     | 'interac'
     | 'masav'
+    | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
+    | 'pl_elixir'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -712,6 +741,7 @@ export interface InvoiceUpdateParams {
     | 'sepa'
     | 'sic'
     | 'signet'
+    | 'sknbi'
     | 'wire'
     | 'zengin';
 

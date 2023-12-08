@@ -365,6 +365,8 @@ describe('resource paymentOrders', () => {
         {
           after_cursor: 'string',
           counterparty_id: 'string',
+          created_at_end: '2019-12-27',
+          created_at_start: '2019-12-27',
           direction: 'credit',
           effective_date_end: '2019-12-27',
           effective_date_start: '2019-12-27',
