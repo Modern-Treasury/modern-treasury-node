@@ -354,9 +354,11 @@ export interface InternalAccountListParams extends PageParams {
     | 'hu_ics'
     | 'interac'
     | 'masav'
+    | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
+    | 'pl_elixir'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -366,6 +368,7 @@ export interface InternalAccountListParams extends PageParams {
     | 'sg_giro'
     | 'sic'
     | 'signet'
+    | 'sknbi'
     | 'wire'
     | 'zengin';
 }

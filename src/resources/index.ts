@@ -124,6 +124,14 @@ export {
   LedgerAccountPayouts,
 } from './ledger-account-payouts';
 export {
+  LedgerAccountSettlement,
+  LedgerAccountSettlementCreateParams,
+  LedgerAccountSettlementUpdateParams,
+  LedgerAccountSettlementListParams,
+  LedgerAccountSettlementsPage,
+  LedgerAccountSettlements,
+} from './ledger-account-settlements';
+export {
   LedgerAccountStatementCreateResponse,
   LedgerAccountStatementRetrieveResponse,
   LedgerAccountStatementCreateParams,
@@ -132,6 +140,7 @@ export {
 export {
   LedgerEntry,
   LedgerEntryRetrieveParams,
+  LedgerEntryUpdateParams,
   LedgerEntryListParams,
   LedgerEntriesPage,
   LedgerEntries,

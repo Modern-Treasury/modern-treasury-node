@@ -179,6 +179,7 @@ export class ModernTreasury extends Core.APIClient {
   virtualAccounts: API.VirtualAccounts = new API.VirtualAccounts(this);
   bulkRequests: API.BulkRequests = new API.BulkRequests(this);
   bulkResults: API.BulkResults = new API.BulkResults(this);
+  ledgerAccountSettlements: API.LedgerAccountSettlements = new API.LedgerAccountSettlements(this);
 
   /**
    * A test endpoint often used to confirm credentials and headers are being passed
@@ -391,6 +392,7 @@ export namespace ModernTreasury {
   export import LedgerEntry = API.LedgerEntry;
   export import LedgerEntriesPage = API.LedgerEntriesPage;
   export import LedgerEntryRetrieveParams = API.LedgerEntryRetrieveParams;
+  export import LedgerEntryUpdateParams = API.LedgerEntryUpdateParams;
   export import LedgerEntryListParams = API.LedgerEntryListParams;
 
   export import LedgerEventHandlers = API.LedgerEventHandlers;
@@ -477,6 +479,13 @@ export namespace ModernTreasury {
   export import BulkResult = API.BulkResult;
   export import BulkResultsPage = API.BulkResultsPage;
   export import BulkResultListParams = API.BulkResultListParams;
+
+  export import LedgerAccountSettlements = API.LedgerAccountSettlements;
+  export import LedgerAccountSettlement = API.LedgerAccountSettlement;
+  export import LedgerAccountSettlementsPage = API.LedgerAccountSettlementsPage;
+  export import LedgerAccountSettlementCreateParams = API.LedgerAccountSettlementCreateParams;
+  export import LedgerAccountSettlementUpdateParams = API.LedgerAccountSettlementUpdateParams;
+  export import LedgerAccountSettlementListParams = API.LedgerAccountSettlementListParams;
 
   export import AccountsType = API.AccountsType;
   export import AsyncResponse = API.AsyncResponse;
