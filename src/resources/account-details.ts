@@ -102,7 +102,7 @@ export interface AccountDetail {
    * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
    * account number is in a generic format.
    */
-  account_number_type: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address';
+  account_number_type: 'clabe' | 'hk_number' | 'iban' | 'other' | 'pan' | 'wallet_address';
 
   created_at: string;
 
@@ -134,7 +134,7 @@ export interface AccountDetailCreateParams {
    * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
    * account number is in a generic format.
    */
-  account_number_type?: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address';
+  account_number_type?: 'clabe' | 'hk_number' | 'iban' | 'other' | 'pan' | 'wallet_address';
 }
 
 export interface AccountDetailListParams extends PageParams {}

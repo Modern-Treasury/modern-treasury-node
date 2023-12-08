@@ -155,7 +155,7 @@ export interface IncomingPaymentDetail {
   /**
    * The type of the originating account number for the incoming payment detail.
    */
-  originating_account_number_type: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address' | null;
+  originating_account_number_type: 'clabe' | 'hk_number' | 'iban' | 'other' | 'pan' | 'wallet_address' | null;
 
   /**
    * The routing number of the originating account for the incoming payment detail.
@@ -176,10 +176,12 @@ export interface IncomingPaymentDetail {
     | 'gb_sort_code'
     | 'hk_interbank_clearing_code'
     | 'hu_interbank_clearing_code'
+    | 'id_sknbi_code'
     | 'in_ifsc'
     | 'jp_zengin_code'
     | 'my_branch_code'
     | 'nz_national_clearing_code'
+    | 'pl_national_clearing_code'
     | 'se_bankgiro_clearing_code'
     | 'swift'
     | null;

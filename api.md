@@ -307,6 +307,7 @@ Types:
 Methods:
 
 - <code title="get /api/ledger_entries/{id}">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">retrieve</a>(id, { ...params }) -> LedgerEntry</code>
+- <code title="patch /api/ledger_entries/{id}">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">update</a>(id, { ...params }) -> LedgerEntry</code>
 - <code title="get /api/ledger_entries">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">list</a>({ ...params }) -> LedgerEntriesPage</code>
 
 # LedgerEventHandlers
@@ -512,3 +513,16 @@ Methods:
 
 - <code title="get /api/bulk_results/{id}">client.bulkResults.<a href="./src/resources/bulk-results.ts">retrieve</a>(id) -> BulkResult</code>
 - <code title="get /api/bulk_results">client.bulkResults.<a href="./src/resources/bulk-results.ts">list</a>({ ...params }) -> BulkResultsPage</code>
+
+# LedgerAccountSettlements
+
+Types:
+
+- <code><a href="./src/resources/ledger-account-settlements.ts">LedgerAccountSettlement</a></code>
+
+Methods:
+
+- <code title="post /api/ledger_account_settlements">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">create</a>({ ...params }) -> LedgerAccountSettlement</code>
+- <code title="get /api/ledger_account_settlements/{id}">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">retrieve</a>(id) -> LedgerAccountSettlement</code>
+- <code title="patch /api/ledger_account_settlements/{id}">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">update</a>(id, { ...params }) -> LedgerAccountSettlement</code>
+- <code title="get /api/ledger_account_settlements">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">list</a>({ ...params }) -> LedgerAccountSettlementsPage</code>

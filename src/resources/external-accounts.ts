@@ -350,7 +350,7 @@ export namespace ExternalAccountCreateParams {
   export interface AccountDetail {
     account_number: string;
 
-    account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
+    account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'wallet_address' | 'pan' | 'other';
   }
 
   export interface ContactDetail {
@@ -460,10 +460,12 @@ export namespace ExternalAccountCreateParams {
       | 'gb_sort_code'
       | 'hk_interbank_clearing_code'
       | 'hu_interbank_clearing_code'
+      | 'id_sknbi_code'
       | 'in_ifsc'
       | 'jp_zengin_code'
       | 'my_branch_code'
       | 'nz_national_clearing_code'
+      | 'pl_national_clearing_code'
       | 'se_bankgiro_clearing_code'
       | 'swift';
 
@@ -481,9 +483,11 @@ export namespace ExternalAccountCreateParams {
       | 'hu_ics'
       | 'interac'
       | 'masav'
+      | 'mx_ccen'
       | 'neft'
       | 'nics'
       | 'nz_becs'
+      | 'pl_elixir'
       | 'provxchange'
       | 'ro_sent'
       | 'rtp'
@@ -493,6 +497,7 @@ export namespace ExternalAccountCreateParams {
       | 'sepa'
       | 'sic'
       | 'signet'
+      | 'sknbi'
       | 'wire'
       | 'zengin';
   }
@@ -603,9 +608,11 @@ export interface ExternalAccountVerifyParams {
     | 'hu_ics'
     | 'interac'
     | 'masav'
+    | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
+    | 'pl_elixir'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -615,6 +622,7 @@ export interface ExternalAccountVerifyParams {
     | 'sg_giro'
     | 'sic'
     | 'signet'
+    | 'sknbi'
     | 'wire'
     | 'zengin';
 

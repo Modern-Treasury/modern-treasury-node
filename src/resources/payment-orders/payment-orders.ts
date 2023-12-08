@@ -513,9 +513,11 @@ export type PaymentOrderType =
   | 'hu_ics'
   | 'interac'
   | 'masav'
+  | 'mx_ccen'
   | 'neft'
   | 'nics'
   | 'nz_becs'
+  | 'pl_elixir'
   | 'provxchange'
   | 'ro_sent'
   | 'rtp'
@@ -525,6 +527,7 @@ export type PaymentOrderType =
   | 'sg_giro'
   | 'sic'
   | 'signet'
+  | 'sknbi'
   | 'wire'
   | 'zengin';
 
@@ -1021,7 +1024,7 @@ export namespace PaymentOrderCreateParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
+      account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
     export interface ContactDetail {
@@ -1131,10 +1134,12 @@ export namespace PaymentOrderCreateParams {
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
         | 'hu_interbank_clearing_code'
+        | 'id_sknbi_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
         | 'my_branch_code'
         | 'nz_national_clearing_code'
+        | 'pl_national_clearing_code'
         | 'se_bankgiro_clearing_code'
         | 'swift';
 
@@ -1152,9 +1157,11 @@ export namespace PaymentOrderCreateParams {
         | 'hu_ics'
         | 'interac'
         | 'masav'
+        | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
+        | 'pl_elixir'
         | 'provxchange'
         | 'ro_sent'
         | 'rtp'
@@ -1164,6 +1171,7 @@ export namespace PaymentOrderCreateParams {
         | 'sepa'
         | 'sic'
         | 'signet'
+        | 'sknbi'
         | 'wire'
         | 'zengin';
     }
@@ -1504,7 +1512,7 @@ export namespace PaymentOrderUpdateParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
+      account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
     export interface ContactDetail {
@@ -1614,10 +1622,12 @@ export namespace PaymentOrderUpdateParams {
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
         | 'hu_interbank_clearing_code'
+        | 'id_sknbi_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
         | 'my_branch_code'
         | 'nz_national_clearing_code'
+        | 'pl_national_clearing_code'
         | 'se_bankgiro_clearing_code'
         | 'swift';
 
@@ -1635,9 +1645,11 @@ export namespace PaymentOrderUpdateParams {
         | 'hu_ics'
         | 'interac'
         | 'masav'
+        | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
+        | 'pl_elixir'
         | 'provxchange'
         | 'ro_sent'
         | 'rtp'
@@ -1647,6 +1659,7 @@ export namespace PaymentOrderUpdateParams {
         | 'sepa'
         | 'sic'
         | 'signet'
+        | 'sknbi'
         | 'wire'
         | 'zengin';
     }
@@ -1655,6 +1668,16 @@ export namespace PaymentOrderUpdateParams {
 
 export interface PaymentOrderListParams extends PageParams {
   counterparty_id?: string;
+
+  /**
+   * An inclusive upper bound for searching created_at
+   */
+  created_at_end?: string;
+
+  /**
+   * An inclusive lower bound for searching created_at
+   */
+  created_at_start?: string;
 
   direction?: Shared.TransactionDirection;
 
@@ -1721,9 +1744,11 @@ export interface PaymentOrderListParams extends PageParams {
     | 'hu_ics'
     | 'interac'
     | 'masav'
+    | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
+    | 'pl_elixir'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -1733,6 +1758,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'sg_giro'
     | 'sic'
     | 'signet'
+    | 'sknbi'
     | 'wire'
     | 'zengin';
 }
@@ -2196,7 +2222,7 @@ export namespace PaymentOrderCreateAsyncParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'iban' | 'clabe' | 'wallet_address' | 'pan' | 'other';
+      account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'wallet_address' | 'pan' | 'other';
     }
 
     export interface ContactDetail {
@@ -2306,10 +2332,12 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
         | 'hu_interbank_clearing_code'
+        | 'id_sknbi_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
         | 'my_branch_code'
         | 'nz_national_clearing_code'
+        | 'pl_national_clearing_code'
         | 'se_bankgiro_clearing_code'
         | 'swift';
 
@@ -2327,9 +2355,11 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'hu_ics'
         | 'interac'
         | 'masav'
+        | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
+        | 'pl_elixir'
         | 'provxchange'
         | 'ro_sent'
         | 'rtp'
@@ -2339,6 +2369,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'sepa'
         | 'sic'
         | 'signet'
+        | 'sknbi'
         | 'wire'
         | 'zengin';
     }

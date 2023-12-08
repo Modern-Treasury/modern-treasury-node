@@ -214,7 +214,7 @@ export namespace VirtualAccountCreateParams {
      * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
      * account number is in a generic format.
      */
-    account_number_type?: 'clabe' | 'iban' | 'other' | 'pan' | 'wallet_address';
+    account_number_type?: 'clabe' | 'hk_number' | 'iban' | 'other' | 'pan' | 'wallet_address';
   }
 
   export interface RoutingDetail {
@@ -239,10 +239,12 @@ export namespace VirtualAccountCreateParams {
       | 'gb_sort_code'
       | 'hk_interbank_clearing_code'
       | 'hu_interbank_clearing_code'
+      | 'id_sknbi_code'
       | 'in_ifsc'
       | 'jp_zengin_code'
       | 'my_branch_code'
       | 'nz_national_clearing_code'
+      | 'pl_national_clearing_code'
       | 'se_bankgiro_clearing_code'
       | 'swift';
 
@@ -264,9 +266,11 @@ export namespace VirtualAccountCreateParams {
       | 'hu_ics'
       | 'interac'
       | 'masav'
+      | 'mx_ccen'
       | 'neft'
       | 'nics'
       | 'nz_becs'
+      | 'pl_elixir'
       | 'provxchange'
       | 'ro_sent'
       | 'rtp'
@@ -276,6 +280,7 @@ export namespace VirtualAccountCreateParams {
       | 'sg_giro'
       | 'sic'
       | 'signet'
+      | 'sknbi'
       | 'wire'
       | 'zengin'
       | null;
