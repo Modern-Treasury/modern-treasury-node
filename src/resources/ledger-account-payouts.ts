@@ -159,9 +159,9 @@ export interface LedgerAccountPayout {
 
   /**
    * The status of the ledger account payout. One of `processing`, `pending`,
-   * `posted`, `archiving`, `archived`, `reversing` or `reversed`.
+   * `posted`, `archiving`, `archived`.
    */
-  status: 'archived' | 'archiving' | 'pending' | 'posted' | 'processing' | 'reversed' | 'reversing';
+  status: 'archived' | 'archiving' | 'pending' | 'posted' | 'processing';
 
   updated_at: string;
 }
