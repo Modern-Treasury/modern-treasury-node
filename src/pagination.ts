@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { AbstractPage, Response, APIClient, FinalRequestOptions, coerceInteger, PageInfo } from './core';
+import { AbstractPage, Response, APIClient, FinalRequestOptions, PageInfo } from './core';
+import * as Core from 'modern-treasury/core';
 
 export type PageResponse<Item> = Item[];
 
@@ -21,12 +22,12 @@ export class Page<Item> extends AbstractPage<Item> {
     super(client, response, body, options);
 
     this.items = body || [];
-    this.per_page = coerceInteger(this.response.headers.get('x-per-page') || null);
-    this.after_cursor = this.response.headers.get('x-after-cursor') || null;
+    this.per_page = Core.maybeCoerceInteger(this.response.headers.get('x-per-page')) ?? null;
+    this.after_cursor = this.response.headers.get('x-after-cursor') ?? null;
   }
 
   getPaginatedItems(): Item[] {
-    return this.items;
+    return this.items ?? [];
   }
 
   // @deprecated Please use `nextPageInfo()` instead
@@ -40,8 +41,15 @@ export class Page<Item> extends AbstractPage<Item> {
   }
 
   nextPageInfo(): PageInfo | null {
-    if (!this.after_cursor) return null;
+    const cursor = this.after_cursor;
+    if (!cursor) {
+      return null;
+    }
 
-    return { params: { after_cursor: this.after_cursor } };
+    return {
+      params: {
+        after_cursor: cursor,
+      },
+    };
   }
 }
