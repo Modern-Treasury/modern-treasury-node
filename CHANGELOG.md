@@ -1,5 +1,40 @@
 # Changelog
 
+## 2.14.0 (2024-01-02)
+
+Full Changelog: [v2.13.0...v2.14.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.13.0...v2.14.0)
+
+### Features
+
+* **api:** remove reversed and reversing ledger account status type ([#304](https://github.com/Modern-Treasury/modern-treasury-node/issues/304)) ([f971086](https://github.com/Modern-Treasury/modern-treasury-node/commit/f971086d665d2ed70f3b6a686530a3f8cff2e1e6))
+* **api:** updates ([#298](https://github.com/Modern-Treasury/modern-treasury-node/issues/298)) ([201d725](https://github.com/Modern-Treasury/modern-treasury-node/commit/201d7250a84269faf64fea68c33af28fa50d18d5))
+
+
+### Chores
+
+* **ci:** run release workflow once per day ([#302](https://github.com/Modern-Treasury/modern-treasury-node/issues/302)) ([80f7239](https://github.com/Modern-Treasury/modern-treasury-node/commit/80f72392ffabd42d5a73b84c73de1c328dd28742))
+* **deps:** update dependency ts-jest to v29.1.1 ([#303](https://github.com/Modern-Treasury/modern-treasury-node/issues/303)) ([31637e8](https://github.com/Modern-Treasury/modern-treasury-node/commit/31637e80664311d9341ac422ce56d994b9b0c39e))
+* **deps:** update jest ([#305](https://github.com/Modern-Treasury/modern-treasury-node/issues/305)) ([a03e4b2](https://github.com/Modern-Treasury/modern-treasury-node/commit/a03e4b2dc8b6699f5b0f14c0414307b0d4a51fd8))
+* **internal:** bump license ([#309](https://github.com/Modern-Treasury/modern-treasury-node/issues/309)) ([1afc0c7](https://github.com/Modern-Treasury/modern-treasury-node/commit/1afc0c74b1fb5cd6d1b98688660cf89990c06eb5))
+* **internal:** minor updates to pagination ([#307](https://github.com/Modern-Treasury/modern-treasury-node/issues/307)) ([b702324](https://github.com/Modern-Treasury/modern-treasury-node/commit/b702324f375a321f72e560b3aacbf0d94c2b5fff))
+* update dependencies ([#301](https://github.com/Modern-Treasury/modern-treasury-node/issues/301)) ([9183aac](https://github.com/Modern-Treasury/modern-treasury-node/commit/9183aac5ba907e57234e3f1e94011a144ce1da4f))
+* update prettier ([#300](https://github.com/Modern-Treasury/modern-treasury-node/issues/300)) ([a11c96b](https://github.com/Modern-Treasury/modern-treasury-node/commit/a11c96b484ebc1828c126ab53707d417338dcc80))
+
+
+### Documentation
+
+* reformat README.md ([#308](https://github.com/Modern-Treasury/modern-treasury-node/issues/308)) ([9376d13](https://github.com/Modern-Treasury/modern-treasury-node/commit/9376d137d6c5306adb987dbae55877de8c5f19dd))
+
+
+### Refactors
+
+* write jest config in typescript ([#306](https://github.com/Modern-Treasury/modern-treasury-node/issues/306)) ([2f33830](https://github.com/Modern-Treasury/modern-treasury-node/commit/2f33830788132324f81d8c04a7225010a51e06a9))
+
+
+### Build System
+
+* specify `packageManager: yarn` ([#299](https://github.com/Modern-Treasury/modern-treasury-node/issues/299)) ([4673b38](https://github.com/Modern-Treasury/modern-treasury-node/commit/4673b383d63757ac9558d35579228107777aecf5))
+
 ## 2.13.0 (2023-12-04)
 
 Full Changelog: [v2.12.0...v2.13.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.12.0...v2.13.0)
