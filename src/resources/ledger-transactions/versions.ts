@@ -122,7 +122,18 @@ export interface LedgerTransactionVersion {
   posted_at: string | null;
 
   /**
-   * One of `pending`, `posted`, or `archived`
+   * The ID of the ledger transaction that reversed this ledger transaction.
+   */
+  reversed_by_ledger_transaction_id: string | null;
+
+  /**
+   * The ID of the original ledger transaction. that this ledger transaction
+   * reverses.
+   */
+  reverses_ledger_transaction_id: string | null;
+
+  /**
+   * One of `pending`, `posted`, or `archived`.
    */
   status: 'archived' | 'pending' | 'posted';
 

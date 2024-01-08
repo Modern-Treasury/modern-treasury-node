@@ -303,6 +303,22 @@ export interface ExpectedPaymentCreateParams {
    */
   description?: string | null;
 
+  /**
+   * Specifies a ledger transaction object that will be created with the expected
+   * payment. If the ledger transaction cannot be created, then the expected payment
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the expected payment.
+   */
+  ledger_transaction?: ExpectedPaymentCreateParams.LedgerTransaction;
+
+  /**
+   * Either ledger_transaction or ledger_transaction_id can be provided. Only a
+   * pending ledger transaction can be attached upon expected payment creation. Once
+   * the expected payment is created, the status of the ledger transaction tracks the
+   * expected payment automatically.
+   */
+  ledger_transaction_id?: string;
+
   line_items?: Array<ExpectedPaymentCreateParams.LineItem>;
 
   /**
@@ -349,6 +365,140 @@ export interface ExpectedPaymentCreateParams {
 }
 
 export namespace ExpectedPaymentCreateParams {
+  /**
+   * Specifies a ledger transaction object that will be created with the expected
+   * payment. If the ledger transaction cannot be created, then the expected payment
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the expected payment.
+   */
+  export interface LedgerTransaction {
+    /**
+     * An array of ledger entry objects.
+     */
+    ledger_entries: Array<LedgerTransaction.LedgerEntry>;
+
+    /**
+     * An optional description for internal use.
+     */
+    description?: string | null;
+
+    /**
+     * The timestamp (ISO8601 format) at which the ledger transaction happened for
+     * reporting purposes.
+     */
+    effective_at?: string;
+
+    /**
+     * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
+     * purposes.
+     */
+    effective_date?: string;
+
+    /**
+     * A unique string to represent the ledger transaction. Only one pending or posted
+     * ledger transaction may have this ID in the ledger.
+     */
+    external_id?: string;
+
+    /**
+     * If the ledger transaction can be reconciled to another object in Modern
+     * Treasury, the id will be populated here, otherwise null.
+     */
+    ledgerable_id?: string;
+
+    /**
+     * If the ledger transaction can be reconciled to another object in Modern
+     * Treasury, the type will be populated here, otherwise null. This can be one of
+     * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+     */
+    ledgerable_type?:
+      | 'counterparty'
+      | 'expected_payment'
+      | 'incoming_payment_detail'
+      | 'internal_account'
+      | 'line_item'
+      | 'paper_item'
+      | 'payment_order'
+      | 'payment_order_attempt'
+      | 'return'
+      | 'reversal';
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: Record<string, string>;
+
+    /**
+     * To post a ledger transaction at creation, use `posted`.
+     */
+    status?: 'archived' | 'pending' | 'posted';
+  }
+
+  export namespace LedgerTransaction {
+    export interface LedgerEntry {
+      /**
+       * Value in specified currency's smallest unit. e.g. $10 would be represented
+       * as 1000. Can be any integer up to 36 digits.
+       */
+      amount: number;
+
+      /**
+       * One of `credit`, `debit`. Describes the direction money is flowing in the
+       * transaction. A `credit` moves money from your account to someone else's. A
+       * `debit` pulls money from someone else's account to your own. Note that wire,
+       * rtp, and check payments will always be `credit`.
+       */
+      direction: Shared.TransactionDirection;
+
+      /**
+       * The ledger account that this ledger entry is associated with.
+       */
+      ledger_account_id: string;
+
+      /**
+       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * account’s available balance. If any of these conditions would be false after the
+       * transaction is created, the entire call will fail with error code 422.
+       */
+      available_balance_amount?: Record<string, number> | null;
+
+      /**
+       * Lock version of the ledger account. This can be passed when creating a ledger
+       * transaction to only succeed if no ledger transactions have posted since the
+       * given version. See our post about Designing the Ledgers API with Optimistic
+       * Locking for more details.
+       */
+      lock_version?: number | null;
+
+      /**
+       * Additional data represented as key-value pairs. Both the key and value must be
+       * strings.
+       */
+      metadata?: Record<string, string>;
+
+      /**
+       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * account’s pending balance. If any of these conditions would be false after the
+       * transaction is created, the entire call will fail with error code 422.
+       */
+      pending_balance_amount?: Record<string, number> | null;
+
+      /**
+       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+       * account’s posted balance. If any of these conditions would be false after the
+       * transaction is created, the entire call will fail with error code 422.
+       */
+      posted_balance_amount?: Record<string, number> | null;
+
+      /**
+       * If true, response will include the balance of the associated ledger account for
+       * the entry.
+       */
+      show_resulting_ledger_account_balances?: boolean | null;
+    }
+  }
+
   export interface LineItem {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
