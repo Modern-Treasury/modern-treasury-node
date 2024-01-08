@@ -184,6 +184,11 @@ export interface LedgerTransaction {
   posted_at: string | null;
 
   /**
+   * The ID of the ledger transaction that reversed this ledger transaction.
+   */
+  reversed_by_ledger_transaction_id: string | null;
+
+  /**
    * The ID of the original ledger transaction that this ledger transaction reverses.
    */
   reverses_ledger_transaction_id: string | null;
