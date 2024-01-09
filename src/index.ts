@@ -201,6 +201,14 @@ export class ModernTreasury extends Core.APIClient {
   }
 
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    if (!this.organizationId) {
+      return {};
+    }
+
+    if (!this.apiKey) {
+      return {};
+    }
+
     const credentials = `${this.organizationId}:${this.apiKey}`;
     const Authorization = `Basic ${Core.toBase64(credentials)}`;
     return { Authorization };
