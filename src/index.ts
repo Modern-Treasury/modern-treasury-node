@@ -127,7 +127,7 @@ export class ModernTreasury extends Core.APIClient {
       organizationId,
       webhookKey,
       ...opts,
-      baseURL: baseURL ?? `https://app.moderntreasury.com`,
+      baseURL: baseURL || `https://app.moderntreasury.com`,
     };
 
     super({
