@@ -382,5 +382,6 @@ export namespace InternalAccounts {
   export import BalanceReports = BalanceReportsAPI.BalanceReports;
   export import BalanceReport = BalanceReportsAPI.BalanceReport;
   export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
+  export import BalanceReportCreateParams = BalanceReportsAPI.BalanceReportCreateParams;
   export import BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
 }

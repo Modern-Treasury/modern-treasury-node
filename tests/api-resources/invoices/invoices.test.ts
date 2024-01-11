@@ -81,6 +81,7 @@ describe('resource invoices', () => {
       currency: 'AED',
       description: 'string',
       fallback_payment_method: 'string',
+      ingest_ledger_entries: true,
       invoicer_address: {
         line1: 'string',
         line2: 'string',
@@ -89,6 +90,7 @@ describe('resource invoices', () => {
         postal_code: 'string',
         country: 'string',
       },
+      ledger_account_settlement_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       notification_email_addresses: ['string', 'string', 'string'],
       notifications_enabled: true,
       payment_effective_date: '2019-12-27',
@@ -97,7 +99,7 @@ describe('resource invoices', () => {
       receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       recipient_email: 'string',
       recipient_name: 'string',
-      virtual_account_id: 'string',
+      virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
@@ -196,6 +198,7 @@ describe('resource invoices', () => {
           description: 'string',
           due_date: '2019-12-27T18:11:19.117Z',
           fallback_payment_method: 'string',
+          ingest_ledger_entries: true,
           invoicer_address: {
             line1: 'string',
             line2: 'string',
@@ -204,6 +207,7 @@ describe('resource invoices', () => {
             postal_code: 'string',
             country: 'string',
           },
+          ledger_account_settlement_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           notification_email_addresses: ['string', 'string', 'string'],
           notifications_enabled: true,
           originating_account_id: 'string',
@@ -214,7 +218,7 @@ describe('resource invoices', () => {
           recipient_email: 'string',
           recipient_name: 'string',
           status: 'string',
-          virtual_account_id: 'string',
+          virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         },
         { path: '/_stainless_unknown_path' },
       ),

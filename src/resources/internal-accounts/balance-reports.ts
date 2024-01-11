@@ -9,6 +9,28 @@ import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class BalanceReports extends APIResource {
   /**
+   * create balance reports
+   */
+  create(
+    internalAccountId: string,
+    params: BalanceReportCreateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<BalanceReport> {
+    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
+    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
+    if (idempotencyKey) {
+      console.warn(
+        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
+      );
+    }
+    return this._client.post(`/api/internal_accounts/${internalAccountId}/balance_reports`, {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
+    });
+  }
+
+  /**
    * Get a single balance report for a given internal account.
    */
   retrieve(
@@ -44,6 +66,16 @@ export class BalanceReports extends APIResource {
       BalanceReportsPage,
       { query, ...options },
     );
+  }
+
+  /**
+   * Deletes a given balance report.
+   */
+  del(internalAccountId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, {
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
   }
 }
 
@@ -139,30 +171,79 @@ export namespace BalanceReport {
     vendor_code: string;
 
     /**
+     * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
+     * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
+     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+     * `swift`, or `us_bank`.
+     */
+    vendor_code_type: string | null;
+  }
+}
+
+export interface BalanceReportCreateParams {
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
+   */
+  amount: number;
+
+  /**
+   * The date of the balance report in local time.
+   */
+  as_of_date: string;
+
+  /**
+   * The time (24-hour clock) of the balance report in local time.
+   */
+  as_of_time: string;
+
+  /**
+   * The specific type of balance report. One of `intraday`, `previous_day`,
+   * `real_time`, or `other`.
+   */
+  balance_report_type: 'intraday' | 'other' | 'previous_day' | 'real_time';
+
+  /**
+   * An array of `Balance` objects.
+   */
+  balances: Array<BalanceReportCreateParams.Balance>;
+}
+
+export namespace BalanceReportCreateParams {
+  export interface Balance {
+    /**
+     * The balance amount.
+     */
+    amount: number;
+
+    /**
+     * The specific type of balance reported. One of `opening_ledger`,
+     * `closing_ledger`, `current_ledger`, `opening_available`,
+     * `opening_available_next_business_day`, `closing_available`, `current_available`,
+     * or `other`.
+     */
+    balance_type:
+      | 'closing_available'
+      | 'closing_ledger'
+      | 'current_available'
+      | 'current_ledger'
+      | 'opening_available'
+      | 'opening_available_next_business_day'
+      | 'opening_ledger'
+      | 'other';
+
+    /**
      * The code used by the bank when reporting this specific balance.
      */
-    vendor_code_type:
-      | 'bai2'
-      | 'bankprov'
-      | 'bnk_dev'
-      | 'cleartouch'
-      | 'column'
-      | 'cross_river'
-      | 'currencycloud'
-      | 'dc_bank'
-      | 'dwolla'
-      | 'evolve'
-      | 'goldman_sachs'
-      | 'iso20022'
-      | 'jpmc'
-      | 'mx'
-      | 'plaid'
-      | 'rspec_vendor'
-      | 'signet'
-      | 'silvergate'
-      | 'swift'
-      | 'us_bank'
-      | null;
+    vendor_code: string;
+
+    /**
+     * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
+     * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
+     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+     * `swift`, or `us_bank`.
+     */
+    vendor_code_type: string | null;
   }
 }
 
@@ -182,5 +263,6 @@ export interface BalanceReportListParams extends PageParams {
 export namespace BalanceReports {
   export import BalanceReport = BalanceReportsAPI.BalanceReport;
   export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
+  export import BalanceReportCreateParams = BalanceReportsAPI.BalanceReportCreateParams;
   export import BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
 }
