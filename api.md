@@ -199,8 +199,10 @@ Types:
 
 Methods:
 
+- <code title="post /api/internal_accounts/{internal_account_id}/balance_reports">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">create</a>(internalAccountId, { ...params }) -> BalanceReport</code>
 - <code title="get /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">retrieve</a>(internalAccountId, id) -> BalanceReport</code>
 - <code title="get /api/internal_accounts/{internal_account_id}/balance_reports">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">list</a>(internalAccountId, { ...params }) -> BalanceReportsPage</code>
+- <code title="delete /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">del</a>(internalAccountId, id) -> void</code>
 
 # Ledgers
 

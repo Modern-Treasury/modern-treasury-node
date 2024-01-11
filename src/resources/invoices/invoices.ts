@@ -156,6 +156,11 @@ export interface Invoice {
   invoicer_address: Invoice.InvoicerAddress | null;
 
   /**
+   * The ledger account settlment object linked to the invoice.
+   */
+  ledger_account_settlement_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -421,9 +426,21 @@ export interface InvoiceCreateParams {
   fallback_payment_method?: string | null;
 
   /**
+   * Whether to ingest the ledger_entries to populate the invoice line items. If this
+   * is false, then a line item must be provided. If this is true, line_items must be
+   * empty. Ignored if ledger_account_settlement_id is empty.
+   */
+  ingest_ledger_entries?: boolean | null;
+
+  /**
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
+
+  /**
+   * The ID of the virtual account the invoice should be paid to.
+   */
+  ledger_account_settlement_id?: string | null;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
@@ -669,9 +686,21 @@ export interface InvoiceUpdateParams {
   fallback_payment_method?: string | null;
 
   /**
+   * Whether to ingest the ledger_entries to populate the invoice line items. If this
+   * is false, then a line item must be provided. If this is true, line_items must be
+   * empty. Ignored if ledger_account_settlement_id is empty.
+   */
+  ingest_ledger_entries?: boolean | null;
+
+  /**
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceUpdateParams.InvoicerAddress | null;
+
+  /**
+   * The ID of the virtual account the invoice should be paid to.
+   */
+  ledger_account_settlement_id?: string | null;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
