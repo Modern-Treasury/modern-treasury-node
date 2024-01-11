@@ -2,6 +2,7 @@
 
 export {
   BalanceReport,
+  BalanceReportCreateParams,
   BalanceReportListParams,
   BalanceReportsPage,
   BalanceReports,
