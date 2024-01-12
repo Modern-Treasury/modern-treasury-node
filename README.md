@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Modern Treasury REST API from server-side TypeScript or JavaScript.
 
-The API documentation can be found [here](https://docs.moderntreasury.com).
+The REST API documentation can be found [on docs.moderntreasury.com](https://docs.moderntreasury.com). The full API of this library can be found in [api.md](https://www.github.com/Modern-Treasury/modern-treasury-node/blob/main/api.md).
 
 ## Installation
 
