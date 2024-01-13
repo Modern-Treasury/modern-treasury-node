@@ -57,8 +57,9 @@ async function main() {
     counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a',
     name: 'my bank',
   };
-  const externalAccount: ModernTreasury.ExternalAccount =
-    await modernTreasury.externalAccounts.create(params);
+  const externalAccount: ModernTreasury.ExternalAccount = await modernTreasury.externalAccounts.create(
+    params,
+  );
 }
 
 main();
