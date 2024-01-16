@@ -1,5 +1,35 @@
 # Changelog
 
+## 2.15.0 (2024-01-16)
+
+Full Changelog: [v2.14.0...v2.15.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.14.0...v2.15.0)
+
+### Features
+
+* **api:** add `ledger_transactions` to expected payment request ([#313](https://github.com/Modern-Treasury/modern-treasury-node/issues/313)) ([28d72d1](https://github.com/Modern-Treasury/modern-treasury-node/commit/28d72d1cf984b1c653202dfc402ec214454c4613))
+* **api:** add create and delete operations for internal accounts balance reports ([#317](https://github.com/Modern-Treasury/modern-treasury-node/issues/317)) ([583efb5](https://github.com/Modern-Treasury/modern-treasury-node/commit/583efb599dacfc3ef41daf2b46795ddca393b001))
+
+
+### Bug Fixes
+
+* **headers:** always send lowercase headers and strip undefined (BREAKING in rare cases) ([#310](https://github.com/Modern-Treasury/modern-treasury-node/issues/310)) ([c943e03](https://github.com/Modern-Treasury/modern-treasury-node/commit/c943e031c7045d3fbcb4dfb6e9eb1a37a293ed7e))
+* use default base url if BASE_URL env var is blank ([#316](https://github.com/Modern-Treasury/modern-treasury-node/issues/316)) ([38a3e62](https://github.com/Modern-Treasury/modern-treasury-node/commit/38a3e627c692cdb32bcd52e9d5b1d86f85b42865))
+
+
+### Chores
+
+* add .keep files for examples and custom code directories ([#314](https://github.com/Modern-Treasury/modern-treasury-node/issues/314)) ([0218448](https://github.com/Modern-Treasury/modern-treasury-node/commit/0218448f62ed1ac2124bcf20c32dec305b9cef24))
+* formatting ([#320](https://github.com/Modern-Treasury/modern-treasury-node/issues/320)) ([9ae7fc2](https://github.com/Modern-Treasury/modern-treasury-node/commit/9ae7fc27ebd3fa6c31bfa5b9c172ff904907062a))
+* **internal:** improve type signatures ([#312](https://github.com/Modern-Treasury/modern-treasury-node/issues/312)) ([78d58a7](https://github.com/Modern-Treasury/modern-treasury-node/commit/78d58a7bb8b9b2b1b272fcae457593e9676274e8))
+* **internal:** minor improvements to auth code ([#315](https://github.com/Modern-Treasury/modern-treasury-node/issues/315)) ([e06c3a0](https://github.com/Modern-Treasury/modern-treasury-node/commit/e06c3a0b6abd2300e9ca43e0c570e28b1b7d26ed))
+* **internal:** narrow type into stringifyQuery ([#318](https://github.com/Modern-Treasury/modern-treasury-node/issues/318)) ([4dcf22d](https://github.com/Modern-Treasury/modern-treasury-node/commit/4dcf22de337a6918200e41a588d28ab4d32f188f))
+
+
+### Documentation
+
+* fix missing async in readme code sample ([#321](https://github.com/Modern-Treasury/modern-treasury-node/issues/321)) ([4eace99](https://github.com/Modern-Treasury/modern-treasury-node/commit/4eace99b7f96b5087dec0783d59026a2588aa3d8))
+* **readme:** improve api reference ([#319](https://github.com/Modern-Treasury/modern-treasury-node/issues/319)) ([3b44290](https://github.com/Modern-Treasury/modern-treasury-node/commit/3b442906627657d9b0bf57bb1c75cdda920b3ab8))
+
 ## 2.14.0 (2024-01-02)
 
 Full Changelog: [v2.13.0...v2.14.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.13.0...v2.14.0)
