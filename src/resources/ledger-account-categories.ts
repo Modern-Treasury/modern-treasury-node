@@ -107,7 +107,7 @@ export class LedgerAccountCategories extends APIResource {
   ): Core.APIPromise<void> {
     return this._client.put(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -117,7 +117,7 @@ export class LedgerAccountCategories extends APIResource {
   addNestedCategory(id: string, subCategoryId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(
       `/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`,
-      { ...options, headers: { Accept: '', ...options?.headers } },
+      { ...options, headers: { Accept: '*/*', ...options?.headers } },
     );
   }
 
@@ -131,7 +131,7 @@ export class LedgerAccountCategories extends APIResource {
   ): Core.APIPromise<void> {
     return this._client.delete(`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -145,7 +145,7 @@ export class LedgerAccountCategories extends APIResource {
   ): Core.APIPromise<void> {
     return this._client.delete(
       `/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryId}`,
-      { ...options, headers: { Accept: '', ...options?.headers } },
+      { ...options, headers: { Accept: '*/*', ...options?.headers } },
     );
   }
 }

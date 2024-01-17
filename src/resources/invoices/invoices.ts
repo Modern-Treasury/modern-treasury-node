@@ -75,7 +75,7 @@ export class Invoices extends APIResource {
   addPaymentOrder(id: string, paymentOrderId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(`/api/invoices/${id}/payment_orders/${paymentOrderId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }

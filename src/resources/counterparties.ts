@@ -80,7 +80,7 @@ export class Counterparties extends APIResource {
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/counterparties/${id}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
