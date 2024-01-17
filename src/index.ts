@@ -13,17 +13,17 @@ export interface ClientOptions {
   /**
    * Defaults to process.env['MODERN_TREASURY_API_KEY'].
    */
-  apiKey?: string;
+  apiKey?: string | undefined;
 
   /**
    * Defaults to process.env['MODERN_TREASURY_ORGANIZATION_ID'].
    */
-  organizationId?: string;
+  organizationId?: string | undefined;
 
   /**
    * Defaults to process.env['MODERN_TREASURY_WEBHOOK_KEY'].
    */
-  webhookKey?: string | null;
+  webhookKey?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -93,9 +93,9 @@ export class ModernTreasury extends Core.APIClient {
   /**
    * API Client for interfacing with the Modern Treasury API.
    *
-   * @param {string} [opts.apiKey=process.env['MODERN_TREASURY_API_KEY'] ?? undefined]
-   * @param {string} [opts.organizationId=process.env['MODERN_TREASURY_ORGANIZATION_ID'] ?? undefined]
-   * @param {string | null} [opts.webhookKey=process.env['MODERN_TREASURY_WEBHOOK_KEY'] ?? null]
+   * @param {string | undefined} [opts.apiKey=process.env['MODERN_TREASURY_API_KEY'] ?? undefined]
+   * @param {string | undefined} [opts.organizationId=process.env['MODERN_TREASURY_ORGANIZATION_ID'] ?? undefined]
+   * @param {string | null | undefined} [opts.webhookKey=process.env['MODERN_TREASURY_WEBHOOK_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['MODERN_TREASURY_BASE_URL'] ?? https://app.moderntreasury.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
