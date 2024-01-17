@@ -74,7 +74,7 @@ export class BalanceReports extends APIResource {
   del(internalAccountId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }
