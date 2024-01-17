@@ -83,7 +83,7 @@ export class RoutingDetails extends APIResource {
   ): Core.APIPromise<void> {
     return this._client.delete(`/api/${accountsType}/${accountId}/routing_details/${id}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }

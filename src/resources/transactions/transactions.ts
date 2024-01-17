@@ -80,7 +80,7 @@ export class Transactions extends APIResource {
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/transactions/${id}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }

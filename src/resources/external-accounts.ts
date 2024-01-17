@@ -82,7 +82,7 @@ export class ExternalAccounts extends APIResource {
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/external_accounts/${id}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
