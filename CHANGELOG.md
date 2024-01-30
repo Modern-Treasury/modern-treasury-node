@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.15.1 (2024-01-30)
+
+Full Changelog: [v2.15.0...v2.15.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.15.0...v2.15.1)
+
+### Bug Fixes
+
+* allow body type in RequestOptions to be null ([#327](https://github.com/Modern-Treasury/modern-treasury-node/issues/327)) ([ee5625d](https://github.com/Modern-Treasury/modern-treasury-node/commit/ee5625d278d992b3d28a2b8559663e5e188d293f))
+* **ci:** ignore stainless-app edits to release PR title ([#326](https://github.com/Modern-Treasury/modern-treasury-node/issues/326)) ([4d265d4](https://github.com/Modern-Treasury/modern-treasury-node/commit/4d265d495cd2e56f6ce8699b324368a01c6a0252))
+* **types:** accept undefined for optional client options ([#325](https://github.com/Modern-Treasury/modern-treasury-node/issues/325)) ([cd306c1](https://github.com/Modern-Treasury/modern-treasury-node/commit/cd306c134afdb7696bb13e84fa63de27311231f9))
+* use `Accept: */*` as a default Header for void endpoints ([#322](https://github.com/Modern-Treasury/modern-treasury-node/issues/322)) ([eb7bc21](https://github.com/Modern-Treasury/modern-treasury-node/commit/eb7bc21e7c61801250a1cf4289c027470c09387b))
+
+
+### Chores
+
+* **internal:** add internal helpers & improve build scripts ([#328](https://github.com/Modern-Treasury/modern-treasury-node/issues/328)) ([163792e](https://github.com/Modern-Treasury/modern-treasury-node/commit/163792e8322aa9a8093db2cb2b65ecdadf0db4fd))
+* **internal:** debug logging for retries; speculative retry-after-ms support ([#324](https://github.com/Modern-Treasury/modern-treasury-node/issues/324)) ([5464949](https://github.com/Modern-Treasury/modern-treasury-node/commit/5464949e139f6317059673286eed1e5e4ca1644a))
+
 ## 2.15.0 (2024-01-16)
 
 Full Changelog: [v2.14.0...v2.15.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.14.0...v2.15.0)
