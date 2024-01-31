@@ -156,7 +156,7 @@ export interface Invoice {
   invoicer_address: Invoice.InvoicerAddress | null;
 
   /**
-   * The ledger account settlment object linked to the invoice.
+   * The ledger account settlement object linked to the invoice.
    */
   ledger_account_settlement_id: string | null;
 

@@ -282,6 +282,12 @@ export namespace BulkRequestCreateParams {
     priority?: 'high' | 'normal';
 
     /**
+     * If present, the time until which the payment may not be processed. Format is
+     * ISO8601 timestamp.
+     */
+    process_after?: string | null;
+
+    /**
      * For `wire`, this is usually the purpose which is transmitted via the
      * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
      * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -650,6 +656,12 @@ export namespace BulkRequestCreateParams {
         description?: string | null;
 
         /**
+         * The array of ledger account category ids that this ledger account should be a
+         * child of.
+         */
+        ledger_account_category_ids?: Array<string>;
+
+        /**
          * If the ledger account links to another object in Modern Treasury, the id will be
          * populated here, otherwise null.
          */
@@ -716,6 +728,7 @@ export namespace BulkRequestCreateParams {
           | 'in_ifsc'
           | 'jp_zengin_code'
           | 'my_branch_code'
+          | 'mx_bank_identifier'
           | 'nz_national_clearing_code'
           | 'pl_national_clearing_code'
           | 'se_bankgiro_clearing_code'
@@ -1278,6 +1291,12 @@ export namespace BulkRequestCreateParams {
     priority?: 'high' | 'normal';
 
     /**
+     * If present, the time until which the payment may not be processed. Format is
+     * ISO8601 timestamp.
+     */
+    process_after?: string | null;
+
+    /**
      * For `wire`, this is usually the purpose which is transmitted via the
      * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
      * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -1539,6 +1558,12 @@ export namespace BulkRequestCreateParams {
         description?: string | null;
 
         /**
+         * The array of ledger account category ids that this ledger account should be a
+         * child of.
+         */
+        ledger_account_category_ids?: Array<string>;
+
+        /**
          * If the ledger account links to another object in Modern Treasury, the id will be
          * populated here, otherwise null.
          */
@@ -1605,6 +1630,7 @@ export namespace BulkRequestCreateParams {
           | 'in_ifsc'
           | 'jp_zengin_code'
           | 'my_branch_code'
+          | 'mx_bank_identifier'
           | 'nz_national_clearing_code'
           | 'pl_national_clearing_code'
           | 'se_bankgiro_clearing_code'
