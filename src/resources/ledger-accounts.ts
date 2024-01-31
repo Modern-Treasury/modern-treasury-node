@@ -306,6 +306,12 @@ export interface LedgerAccountCreateParams {
   description?: string | null;
 
   /**
+   * The array of ledger account category ids that this ledger account should be a
+   * child of.
+   */
+  ledger_account_category_ids?: Array<string>;
+
+  /**
    * If the ledger account links to another object in Modern Treasury, the id will be
    * populated here, otherwise null.
    */
