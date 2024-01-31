@@ -240,6 +240,8 @@ export interface LedgerAccountSettlementListParams extends PageParams {
    */
   id?: Array<string>;
 
+  ledger_transaction_id?: string;
+
   /**
    * For example, if you want to query for records with metadata key `Type` and value
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query

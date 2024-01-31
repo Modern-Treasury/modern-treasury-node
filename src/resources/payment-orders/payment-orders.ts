@@ -251,6 +251,12 @@ export interface PaymentOrder {
   priority: 'high' | 'normal';
 
   /**
+   * If present, the time until which the payment may not be processed. Format is
+   * ISO8601 timestamp.
+   */
+  process_after: string | null;
+
+  /**
    * For `wire`, this is usually the purpose which is transmitted via the
    * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
    * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -680,6 +686,12 @@ export interface PaymentOrderCreateParams {
   priority?: 'high' | 'normal';
 
   /**
+   * If present, the time until which the payment may not be processed. Format is
+   * ISO8601 timestamp.
+   */
+  process_after?: string | null;
+
+  /**
    * For `wire`, this is usually the purpose which is transmitted via the
    * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
    * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -1076,6 +1088,12 @@ export namespace PaymentOrderCreateParams {
       description?: string | null;
 
       /**
+       * The array of ledger account category ids that this ledger account should be a
+       * child of.
+       */
+      ledger_account_category_ids?: Array<string>;
+
+      /**
        * If the ledger account links to another object in Modern Treasury, the id will be
        * populated here, otherwise null.
        */
@@ -1142,6 +1160,7 @@ export namespace PaymentOrderCreateParams {
         | 'in_ifsc'
         | 'jp_zengin_code'
         | 'my_branch_code'
+        | 'mx_bank_identifier'
         | 'nz_national_clearing_code'
         | 'pl_national_clearing_code'
         | 'se_bankgiro_clearing_code'
@@ -1301,6 +1320,12 @@ export interface PaymentOrderUpdateParams {
    * an overnight check rather than standard mail.
    */
   priority?: 'high' | 'normal';
+
+  /**
+   * If present, the time until which the payment may not be processed. Format is
+   * ISO8601 timestamp.
+   */
+  process_after?: string | null;
 
   /**
    * For `wire`, this is usually the purpose which is transmitted via the
@@ -1564,6 +1589,12 @@ export namespace PaymentOrderUpdateParams {
       description?: string | null;
 
       /**
+       * The array of ledger account category ids that this ledger account should be a
+       * child of.
+       */
+      ledger_account_category_ids?: Array<string>;
+
+      /**
        * If the ledger account links to another object in Modern Treasury, the id will be
        * populated here, otherwise null.
        */
@@ -1630,6 +1661,7 @@ export namespace PaymentOrderUpdateParams {
         | 'in_ifsc'
         | 'jp_zengin_code'
         | 'my_branch_code'
+        | 'mx_bank_identifier'
         | 'nz_national_clearing_code'
         | 'pl_national_clearing_code'
         | 'se_bankgiro_clearing_code'
@@ -1710,6 +1742,16 @@ export interface PaymentOrderListParams extends PageParams {
    * an overnight check rather than standard mail.
    */
   priority?: 'high' | 'normal';
+
+  /**
+   * An inclusive upper bound for searching process_after
+   */
+  process_after_end?: string;
+
+  /**
+   * An inclusive lower bound for searching process_after
+   */
+  process_after_start?: string;
 
   /**
    * Query for records with the provided reference number
@@ -1904,6 +1946,12 @@ export interface PaymentOrderCreateAsyncParams {
    * an overnight check rather than standard mail.
    */
   priority?: 'high' | 'normal';
+
+  /**
+   * If present, the time until which the payment may not be processed. Format is
+   * ISO8601 timestamp.
+   */
+  process_after?: string | null;
 
   /**
    * For `wire`, this is usually the purpose which is transmitted via the
@@ -2274,6 +2322,12 @@ export namespace PaymentOrderCreateAsyncParams {
       description?: string | null;
 
       /**
+       * The array of ledger account category ids that this ledger account should be a
+       * child of.
+       */
+      ledger_account_category_ids?: Array<string>;
+
+      /**
        * If the ledger account links to another object in Modern Treasury, the id will be
        * populated here, otherwise null.
        */
@@ -2340,6 +2394,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'in_ifsc'
         | 'jp_zengin_code'
         | 'my_branch_code'
+        | 'mx_bank_identifier'
         | 'nz_national_clearing_code'
         | 'pl_national_clearing_code'
         | 'se_bankgiro_clearing_code'
