@@ -180,6 +180,7 @@ export class ModernTreasury extends Core.APIClient {
   bulkRequests: API.BulkRequests = new API.BulkRequests(this);
   bulkResults: API.BulkResults = new API.BulkResults(this);
   ledgerAccountSettlements: API.LedgerAccountSettlements = new API.LedgerAccountSettlements(this);
+  foreignExchangeQuotes: API.ForeignExchangeQuotes = new API.ForeignExchangeQuotes(this);
 
   /**
    * A test endpoint often used to confirm credentials and headers are being passed
@@ -494,6 +495,12 @@ export namespace ModernTreasury {
   export import LedgerAccountSettlementCreateParams = API.LedgerAccountSettlementCreateParams;
   export import LedgerAccountSettlementUpdateParams = API.LedgerAccountSettlementUpdateParams;
   export import LedgerAccountSettlementListParams = API.LedgerAccountSettlementListParams;
+
+  export import ForeignExchangeQuotes = API.ForeignExchangeQuotes;
+  export import ForeignExchangeQuote = API.ForeignExchangeQuote;
+  export import ForeignExchangeQuotesPage = API.ForeignExchangeQuotesPage;
+  export import ForeignExchangeQuoteCreateParams = API.ForeignExchangeQuoteCreateParams;
+  export import ForeignExchangeQuoteListParams = API.ForeignExchangeQuoteListParams;
 
   export import AccountsType = API.AccountsType;
   export import AsyncResponse = API.AsyncResponse;

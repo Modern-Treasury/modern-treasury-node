@@ -251,8 +251,11 @@ export interface PaymentOrder {
   priority: 'high' | 'normal';
 
   /**
-   * If present, the time until which the payment may not be processed. Format is
-   * ISO8601 timestamp.
+   * If present, Modern Treasury will not process the payment until after this time.
+   * If `process_after` is past the cutoff for `effective_date`, `process_after` will
+   * take precedence and `effective_date` will automatically update to reflect the
+   * earliest possible sending date after `process_after`. Format is ISO8601
+   * timestamp.
    */
   process_after: string | null;
 
@@ -686,8 +689,11 @@ export interface PaymentOrderCreateParams {
   priority?: 'high' | 'normal';
 
   /**
-   * If present, the time until which the payment may not be processed. Format is
-   * ISO8601 timestamp.
+   * If present, Modern Treasury will not process the payment until after this time.
+   * If `process_after` is past the cutoff for `effective_date`, `process_after` will
+   * take precedence and `effective_date` will automatically update to reflect the
+   * earliest possible sending date after `process_after`. Format is ISO8601
+   * timestamp.
    */
   process_after?: string | null;
 
@@ -1104,7 +1110,7 @@ export namespace PaymentOrderCreateParams {
        * be populated here, otherwise null. The value is one of internal_account or
        * external_account.
        */
-      ledgerable_type?: 'external_account' | 'internal_account';
+      ledgerable_type?: 'external_account' | 'internal_account' | 'virtual_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -1322,8 +1328,11 @@ export interface PaymentOrderUpdateParams {
   priority?: 'high' | 'normal';
 
   /**
-   * If present, the time until which the payment may not be processed. Format is
-   * ISO8601 timestamp.
+   * If present, Modern Treasury will not process the payment until after this time.
+   * If `process_after` is past the cutoff for `effective_date`, `process_after` will
+   * take precedence and `effective_date` will automatically update to reflect the
+   * earliest possible sending date after `process_after`. Format is ISO8601
+   * timestamp.
    */
   process_after?: string | null;
 
@@ -1605,7 +1614,7 @@ export namespace PaymentOrderUpdateParams {
        * be populated here, otherwise null. The value is one of internal_account or
        * external_account.
        */
-      ledgerable_type?: 'external_account' | 'internal_account';
+      ledgerable_type?: 'external_account' | 'internal_account' | 'virtual_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -1948,8 +1957,11 @@ export interface PaymentOrderCreateAsyncParams {
   priority?: 'high' | 'normal';
 
   /**
-   * If present, the time until which the payment may not be processed. Format is
-   * ISO8601 timestamp.
+   * If present, Modern Treasury will not process the payment until after this time.
+   * If `process_after` is past the cutoff for `effective_date`, `process_after` will
+   * take precedence and `effective_date` will automatically update to reflect the
+   * earliest possible sending date after `process_after`. Format is ISO8601
+   * timestamp.
    */
   process_after?: string | null;
 
@@ -2338,7 +2350,7 @@ export namespace PaymentOrderCreateAsyncParams {
        * be populated here, otherwise null. The value is one of internal_account or
        * external_account.
        */
-      ledgerable_type?: 'external_account' | 'internal_account';
+      ledgerable_type?: 'external_account' | 'internal_account' | 'virtual_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
