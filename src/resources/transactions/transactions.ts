@@ -186,7 +186,8 @@ export interface Transaction {
     | 'signet'
     | 'sknbi'
     | 'wire'
-    | 'zengin';
+    | 'zengin'
+    | 'other';
 
   updated_at: string;
 

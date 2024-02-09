@@ -6,6 +6,7 @@ import { isRequestOptions } from 'modern-treasury/core';
 import * as VirtualAccountsAPI from 'modern-treasury/resources/virtual-accounts';
 import * as AccountDetailsAPI from 'modern-treasury/resources/account-details';
 import * as RoutingDetailsAPI from 'modern-treasury/resources/routing-details';
+import * as Shared from 'modern-treasury/resources/shared';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class VirtualAccounts extends APIResource {
@@ -124,6 +125,12 @@ export interface VirtualAccount {
   internal_account_id: string;
 
   /**
+   * If the virtual account links to a ledger account in Modern Treasury, the id of
+   * the ledger account will be populated here.
+   */
+  ledger_account_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -192,6 +199,13 @@ export interface VirtualAccountCreateParams {
   description?: string;
 
   /**
+   * Specifies a ledger account object that will be created with the virtual account.
+   * The resulting ledger account is linked to the virtual account for auto-ledgering
+   * IPDs.
+   */
+  ledger_account?: VirtualAccountCreateParams.LedgerAccount;
+
+  /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
@@ -215,6 +229,68 @@ export namespace VirtualAccountCreateParams {
      * account number is in a generic format.
      */
     account_number_type?: 'clabe' | 'hk_number' | 'iban' | 'other' | 'pan' | 'wallet_address';
+  }
+
+  /**
+   * Specifies a ledger account object that will be created with the virtual account.
+   * The resulting ledger account is linked to the virtual account for auto-ledgering
+   * IPDs.
+   */
+  export interface LedgerAccount {
+    /**
+     * The currency of the ledger account.
+     */
+    currency: string;
+
+    /**
+     * The id of the ledger that this account belongs to.
+     */
+    ledger_id: string;
+
+    /**
+     * The name of the ledger account.
+     */
+    name: string;
+
+    /**
+     * The normal balance of the ledger account.
+     */
+    normal_balance: Shared.TransactionDirection;
+
+    /**
+     * The currency exponent of the ledger account.
+     */
+    currency_exponent?: number | null;
+
+    /**
+     * The description of the ledger account.
+     */
+    description?: string | null;
+
+    /**
+     * The array of ledger account category ids that this ledger account should be a
+     * child of.
+     */
+    ledger_account_category_ids?: Array<string>;
+
+    /**
+     * If the ledger account links to another object in Modern Treasury, the id will be
+     * populated here, otherwise null.
+     */
+    ledgerable_id?: string;
+
+    /**
+     * If the ledger account links to another object in Modern Treasury, the type will
+     * be populated here, otherwise null. The value is one of internal_account or
+     * external_account.
+     */
+    ledgerable_type?: 'external_account' | 'internal_account' | 'virtual_account';
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: Record<string, string>;
   }
 
   export interface RoutingDetail {
@@ -290,6 +366,11 @@ export namespace VirtualAccountCreateParams {
 
 export interface VirtualAccountUpdateParams {
   counterparty_id?: string;
+
+  /**
+   * The ledger account that you'd like to link to the virtual account.
+   */
+  ledger_account_id?: string;
 
   metadata?: Record<string, string>;
 

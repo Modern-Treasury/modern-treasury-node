@@ -58,6 +58,13 @@ export {
   ExternalAccounts,
 } from './external-accounts';
 export {
+  ForeignExchangeQuote,
+  ForeignExchangeQuoteCreateParams,
+  ForeignExchangeQuoteListParams,
+  ForeignExchangeQuotesPage,
+  ForeignExchangeQuotes,
+} from './foreign-exchange-quotes';
+export {
   IncomingPaymentDetail,
   IncomingPaymentDetailUpdateParams,
   IncomingPaymentDetailListParams,

@@ -94,7 +94,16 @@ export interface InternalAccount {
   /**
    * Can be checking, savings or other.
    */
-  account_type: 'cash' | 'checking' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'savings' | null;
+  account_type:
+    | 'cash'
+    | 'checking'
+    | 'general_ledger'
+    | 'loan'
+    | 'non_resident'
+    | 'other'
+    | 'overdraft'
+    | 'savings'
+    | null;
 
   /**
    * Specifies which financial institution the accounts belong to.
