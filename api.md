@@ -528,3 +528,15 @@ Methods:
 - <code title="get /api/ledger_account_settlements/{id}">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">retrieve</a>(id) -> LedgerAccountSettlement</code>
 - <code title="patch /api/ledger_account_settlements/{id}">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">update</a>(id, { ...params }) -> LedgerAccountSettlement</code>
 - <code title="get /api/ledger_account_settlements">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">list</a>({ ...params }) -> LedgerAccountSettlementsPage</code>
+
+# ForeignExchangeQuotes
+
+Types:
+
+- <code><a href="./src/resources/foreign-exchange-quotes.ts">ForeignExchangeQuote</a></code>
+
+Methods:
+
+- <code title="post /api/foreign_exchange_quotes">client.foreignExchangeQuotes.<a href="./src/resources/foreign-exchange-quotes.ts">create</a>({ ...params }) -> ForeignExchangeQuote</code>
+- <code title="get /api/foreign_exchange_quotes/{id}">client.foreignExchangeQuotes.<a href="./src/resources/foreign-exchange-quotes.ts">retrieve</a>(id) -> ForeignExchangeQuote</code>
+- <code title="get /api/foreign_exchange_quotes">client.foreignExchangeQuotes.<a href="./src/resources/foreign-exchange-quotes.ts">list</a>({ ...params }) -> ForeignExchangeQuotesPage</code>
