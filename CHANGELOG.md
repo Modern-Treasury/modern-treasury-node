@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.16.0 (2024-02-13)
+
+Full Changelog: [v2.15.1...v2.16.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.15.1...v2.16.0)
+
+### Features
+
+* **api:** updates ([#337](https://github.com/Modern-Treasury/modern-treasury-node/issues/337)) ([16c9afc](https://github.com/Modern-Treasury/modern-treasury-node/commit/16c9afc66d5d92110fbb5b7e4f32ec396285fc5a))
+* **api:** updates parameters, error codes ([#331](https://github.com/Modern-Treasury/modern-treasury-node/issues/331)) ([02dc472](https://github.com/Modern-Treasury/modern-treasury-node/commit/02dc4723d5488d0f3245d440a58063838dc251b5))
+
+
+### Chores
+
+* **interal:** make link to api.md relative ([#332](https://github.com/Modern-Treasury/modern-treasury-node/issues/332)) ([f9efd58](https://github.com/Modern-Treasury/modern-treasury-node/commit/f9efd583f6310dd2674440b75708129e09bd822f))
+* **internal:** enable building when git installed ([#334](https://github.com/Modern-Treasury/modern-treasury-node/issues/334)) ([018af15](https://github.com/Modern-Treasury/modern-treasury-node/commit/018af151d35b967fba889630f7f6003c1afc5c08))
+* **internal:** re-order pagination import ([#333](https://github.com/Modern-Treasury/modern-treasury-node/issues/333)) ([463224a](https://github.com/Modern-Treasury/modern-treasury-node/commit/463224acdc62bfa27c28b5a82b20b3c3e751bca4))
+* **internal:** support pre-release versioning ([#329](https://github.com/Modern-Treasury/modern-treasury-node/issues/329)) ([412b7af](https://github.com/Modern-Treasury/modern-treasury-node/commit/412b7af969e3b6ca0316cfe93618bf97b46bf23b))
+* respect `application/vnd.api+json` content-type header ([#336](https://github.com/Modern-Treasury/modern-treasury-node/issues/336)) ([13c22e1](https://github.com/Modern-Treasury/modern-treasury-node/commit/13c22e1ae3fc4826ef209b84cb1e8e339edcebcd))
+
+
+### Documentation
+
+* add a CONTRIBUTING.md ([#335](https://github.com/Modern-Treasury/modern-treasury-node/issues/335)) ([b9e9e32](https://github.com/Modern-Treasury/modern-treasury-node/commit/b9e9e325a06a87fe1cfa0ed11f75ae9f303611e2))
+
 ## 2.15.1 (2024-01-30)
 
 Full Changelog: [v2.15.0...v2.15.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.15.0...v2.15.1)
