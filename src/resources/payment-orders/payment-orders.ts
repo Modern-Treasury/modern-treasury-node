@@ -206,6 +206,11 @@ export interface PaymentOrder {
   foreign_exchange_indicator: 'fixed_to_variable' | 'variable_to_fixed' | null;
 
   /**
+   * Associated serialized foreign exchange rate information.
+   */
+  foreign_exchange_rate: PaymentOrder.ForeignExchangeRate | null;
+
+  /**
    * The ID of the ledger transaction linked to the payment order.
    */
   ledger_transaction_id: string | null;
@@ -398,6 +403,50 @@ export namespace PaymentOrder {
      * these will only be accessible if your accounting system has been connected.
      */
     class_id?: string | null;
+  }
+
+  /**
+   * Associated serialized foreign exchange rate information.
+   */
+  export interface ForeignExchangeRate {
+    /**
+     * Amount in the lowest denomination of the `base_currency` to convert, often
+     * called the "sell" amount.
+     */
+    base_amount: number;
+
+    /**
+     * Currency to convert, often called the "sell" currency.
+     */
+    base_currency: Shared.Currency | null;
+
+    /**
+     * The exponent component of the rate. The decimal is calculated as `value` / (10 ^
+     * `exponent`).
+     */
+    exponent: number;
+
+    /**
+     * A string representation of the rate.
+     */
+    rate_string: string;
+
+    /**
+     * Amount in the lowest denomination of the `target_currency`, often called the
+     * "buy" amount.
+     */
+    target_amount: number;
+
+    /**
+     * Currency to convert the `base_currency` to, often called the "buy" currency.
+     */
+    target_currency: Shared.Currency | null;
+
+    /**
+     * The whole number component of the rate. The decimal is calculated as `value` /
+     * (10 ^ `exponent`).
+     */
+    value: number;
   }
 
   export interface ReferenceNumber {
