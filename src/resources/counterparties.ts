@@ -127,6 +127,11 @@ export interface Counterparty {
   email: string | null;
 
   /**
+   * The id of the legal entity.
+   */
+  legal_entity_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -336,6 +341,13 @@ export interface CounterpartyCreateParams {
    * or `vendor`.
    */
   ledger_type?: 'customer' | 'vendor';
+
+  legal_entity?: CounterpartyCreateParams.LegalEntity;
+
+  /**
+   * The id of the legal entity.
+   */
+  legal_entity_id?: string | null;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -589,6 +601,134 @@ export namespace CounterpartyCreateParams {
         | 'zengin';
     }
   }
+
+  export interface LegalEntity {
+    /**
+     * The type of legal entity.
+     */
+    legal_entity_type: 'business' | 'individual';
+
+    /**
+     * A list of addresses for the entity.
+     */
+    addresses?: Array<LegalEntity.Address>;
+
+    /**
+     * The business's legal business name.
+     */
+    business_name?: string | null;
+
+    /**
+     * An individual's data of birth (YYYY-MM-DD).
+     */
+    date_of_birth?: string | null;
+
+    doing_business_as_names?: Array<string>;
+
+    /**
+     * The entity's primary email.
+     */
+    email?: string | null;
+
+    /**
+     * An individual's first name.
+     */
+    first_name?: string | null;
+
+    /**
+     * A list of identifications for the legal entity.
+     */
+    identifications?: Array<LegalEntity.Identification>;
+
+    /**
+     * An individual's last name.
+     */
+    last_name?: string | null;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: Record<string, string>;
+
+    phone_numbers?: Array<LegalEntity.PhoneNumber>;
+
+    /**
+     * The entity's primary website URL.
+     */
+    website?: string | null;
+  }
+
+  export namespace LegalEntity {
+    export interface Address {
+      /**
+       * Country code conforms to [ISO 3166-1 alpha-2]
+       */
+      country: string | null;
+
+      line1: string | null;
+
+      /**
+       * Locality or City.
+       */
+      locality: string | null;
+
+      /**
+       * The postal code of the address.
+       */
+      postal_code: string | null;
+
+      /**
+       * Region or State.
+       */
+      region: string | null;
+
+      /**
+       * The types of this address.
+       */
+      address_types?: Array<string>;
+
+      line2?: string | null;
+    }
+
+    export interface Identification {
+      /**
+       * The ID number of identification document.
+       */
+      id_number: string;
+
+      /**
+       * The type of ID number.
+       */
+      id_type:
+        | 'ar_cuil'
+        | 'ar_cuit'
+        | 'br_cnpj'
+        | 'br_cpf'
+        | 'cl_nut'
+        | 'co_cedulas'
+        | 'co_nit'
+        | 'hn_id'
+        | 'hn_rtn'
+        | 'passport'
+        | 'us_ein'
+        | 'us_itin'
+        | 'us_ssn';
+
+      /**
+       * The ISO 3166-1 alpha-2 country code of the country that issued the
+       * identification
+       */
+      issuing_country?: string | null;
+    }
+
+    /**
+     * A list of phone numbers in E.164 format.
+     */
+    export interface PhoneNumber {
+      phone_number?: string;
+    }
+  }
 }
 
 export interface CounterpartyUpdateParams {
@@ -596,6 +736,11 @@ export interface CounterpartyUpdateParams {
    * A new email for the counterparty.
    */
   email?: string;
+
+  /**
+   * The id of the legal entity.
+   */
+  legal_entity_id?: string | null;
 
   /**
    * Additional data in the form of key-value pairs. Pairs can be removed by passing
@@ -636,6 +781,11 @@ export interface CounterpartyListParams extends PageParams {
    * insensitive.
    */
   email?: string;
+
+  /**
+   * Filters for counterparties with the given legal entity ID.
+   */
+  legal_entity_id?: string;
 
   /**
    * For example, if you want to query for records with metadata key `Type` and value

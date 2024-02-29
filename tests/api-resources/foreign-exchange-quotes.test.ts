@@ -78,7 +78,8 @@ describe('resource foreignExchangeQuotes', () => {
         {
           after_cursor: 'string',
           base_currency: 'string',
-          effective_at: '2019-12-27T18:11:19.117Z',
+          effective_at_end: '2019-12-27',
+          effective_at_start: '2019-12-27',
           expires_at: '2019-12-27T18:11:19.117Z',
           internal_account_id: 'string',
           metadata: { foo: 'string' },

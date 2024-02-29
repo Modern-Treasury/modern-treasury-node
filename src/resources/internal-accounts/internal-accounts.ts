@@ -129,6 +129,11 @@ export interface InternalAccount {
   ledger_account_id: string | null;
 
   /**
+   * The Legal Entity associated to this account
+   */
+  legal_entity_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -248,6 +253,11 @@ export interface InternalAccountCreateParams {
   counterparty_id?: string;
 
   /**
+   * The LegalEntity associated to this account.
+   */
+  legal_entity_id?: string;
+
+  /**
    * The parent internal account of this new account.
    */
   parent_account_id?: string;
@@ -325,14 +335,19 @@ export interface InternalAccountUpdateParams {
 
 export interface InternalAccountListParams extends PageParams {
   /**
-   * The counterparty associated with the internal account.
+   * Only return internal accounts associated with this counterparty.
    */
   counterparty_id?: string;
 
   /**
-   * The currency associated with the internal account.
+   * Only return internal accounts with this currency.
    */
   currency?: Shared.Currency | null;
+
+  /**
+   * Only return internal accounts associated with this legal entity.
+   */
+  legal_entity_id?: string;
 
   /**
    * For example, if you want to query for records with metadata key `Type` and value
@@ -342,12 +357,12 @@ export interface InternalAccountListParams extends PageParams {
   metadata?: Record<string, string>;
 
   /**
-   * The direction of payments that can be made by internal account.
+   * Only return internal accounts that can originate payments with this direction.
    */
   payment_direction?: Shared.TransactionDirection;
 
   /**
-   * The type of payment that can be made by the internal account.
+   * Only return internal accounts that can make this type of payment.
    */
   payment_type?:
     | 'ach'

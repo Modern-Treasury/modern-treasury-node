@@ -9,14 +9,9 @@ const modernTreasury = new ModernTreasury({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource internalAccounts', () => {
+describe('resource legalEntities', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.internalAccounts.create({
-      connection_id: 'string',
-      currency: 'USD',
-      name: 'string',
-      party_name: 'string',
-    });
+    const responsePromise = modernTreasury.legalEntities.create({ legal_entity_type: 'business' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,28 +22,56 @@ describe('resource internalAccounts', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.internalAccounts.create({
-      connection_id: 'string',
-      currency: 'USD',
-      name: 'string',
-      party_name: 'string',
-      counterparty_id: 'string',
-      legal_entity_id: 'string',
-      parent_account_id: 'string',
-      party_address: {
-        line1: 'string',
-        line2: 'string',
-        locality: 'string',
-        region: 'string',
-        postal_code: 'string',
-        country: 'string',
-      },
-      vendor_attributes: { key: 'value', foo: 'bar', modern: 'treasury' },
+    const response = await modernTreasury.legalEntities.create({
+      legal_entity_type: 'business',
+      addresses: [
+        {
+          address_types: ['string', 'string', 'string'],
+          line1: 'string',
+          line2: 'string',
+          locality: 'string',
+          region: 'string',
+          postal_code: 'string',
+          country: 'string',
+        },
+        {
+          address_types: ['string', 'string', 'string'],
+          line1: 'string',
+          line2: 'string',
+          locality: 'string',
+          region: 'string',
+          postal_code: 'string',
+          country: 'string',
+        },
+        {
+          address_types: ['string', 'string', 'string'],
+          line1: 'string',
+          line2: 'string',
+          locality: 'string',
+          region: 'string',
+          postal_code: 'string',
+          country: 'string',
+        },
+      ],
+      business_name: 'string',
+      date_of_birth: '2019-12-27',
+      doing_business_as_names: ['string', 'string', 'string'],
+      email: 'string',
+      first_name: 'string',
+      identifications: [
+        { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
+        { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
+        { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
+      ],
+      last_name: 'string',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
+      website: 'string',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.internalAccounts.retrieve('string');
+    const responsePromise = modernTreasury.legalEntities.retrieve('string');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -61,12 +84,12 @@ describe('resource internalAccounts', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.internalAccounts.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.legalEntities.retrieve('string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.internalAccounts.update('string');
+    const responsePromise = modernTreasury.legalEntities.update('string');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -79,21 +102,25 @@ describe('resource internalAccounts', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.internalAccounts.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.legalEntities.update('string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.internalAccounts.update(
+      modernTreasury.legalEntities.update(
         'string',
         {
-          counterparty_id: 'string',
-          ledger_account_id: 'string',
-          metadata: { foo: 'string' },
-          name: 'string',
-          parent_account_id: 'string',
+          business_name: 'string',
+          date_of_birth: '2019-12-27',
+          doing_business_as_names: ['string', 'string', 'string'],
+          email: 'string',
+          first_name: 'string',
+          last_name: 'string',
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
+          website: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -101,7 +128,7 @@ describe('resource internalAccounts', () => {
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.internalAccounts.list();
+    const responsePromise = modernTreasury.legalEntities.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -113,7 +140,7 @@ describe('resource internalAccounts', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.internalAccounts.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(modernTreasury.legalEntities.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
@@ -121,16 +148,13 @@ describe('resource internalAccounts', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.internalAccounts.list(
+      modernTreasury.legalEntities.list(
         {
           after_cursor: 'string',
-          counterparty_id: 'string',
-          currency: 'AED',
-          legal_entity_id: 'string',
+          legal_entity_type: 'business',
           metadata: { foo: 'string' },
-          payment_direction: 'credit',
-          payment_type: 'ach',
           per_page: 0,
+          show_deleted: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),
