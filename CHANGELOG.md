@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.17.0 (2024-02-29)
+
+Full Changelog: [v2.16.0...v2.17.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.16.0...v2.17.0)
+
+### Features
+
+* **api:** add legal_entities resource ([#346](https://github.com/Modern-Treasury/modern-treasury-node/issues/346)) ([6a8a76c](https://github.com/Modern-Treasury/modern-treasury-node/commit/6a8a76c29aa325152227c2ec297f5082c6ab6631))
+* **api:** added foreign exchange rate information ([#342](https://github.com/Modern-Treasury/modern-treasury-node/issues/342)) ([4128ecf](https://github.com/Modern-Treasury/modern-treasury-node/commit/4128ecf5860065eda5a337c6a31a80031efc345d))
+
+
+### Chores
+
+* **ci:** update actions/setup-node action to v4 ([#343](https://github.com/Modern-Treasury/modern-treasury-node/issues/343)) ([48beb5d](https://github.com/Modern-Treasury/modern-treasury-node/commit/48beb5df80a3706bfecaedba9b8e5768e910c990))
+* **ci:** uses Stainless GitHub App for releases ([#338](https://github.com/Modern-Treasury/modern-treasury-node/issues/338)) ([d5d8aaf](https://github.com/Modern-Treasury/modern-treasury-node/commit/d5d8aaf91289dbc42b558b98baa5d984c6cf1860))
+* **internal:** refactor release environment script ([#340](https://github.com/Modern-Treasury/modern-treasury-node/issues/340)) ([566839f](https://github.com/Modern-Treasury/modern-treasury-node/commit/566839f09e786e39065a8e97e42b4d198aadf343))
+* **internal:** update deps ([#344](https://github.com/Modern-Treasury/modern-treasury-node/issues/344)) ([f155295](https://github.com/Modern-Treasury/modern-treasury-node/commit/f1552954a27f3cd810d917cf98025d742b0d69ea))
+
+
+### Documentation
+
+* **contributing:** improve wording ([#345](https://github.com/Modern-Treasury/modern-treasury-node/issues/345)) ([9b37bea](https://github.com/Modern-Treasury/modern-treasury-node/commit/9b37bea6ed28579f8fb6238be050e1ad68b7e241))
+* **readme:** fix typo in custom fetch implementation ([#347](https://github.com/Modern-Treasury/modern-treasury-node/issues/347)) ([a0a1721](https://github.com/Modern-Treasury/modern-treasury-node/commit/a0a17218201678f22e09d60010d80101003526f1))
+
 ## 2.16.0 (2024-02-13)
 
 Full Changelog: [v2.15.1...v2.16.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.15.1...v2.16.0)
