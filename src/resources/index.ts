@@ -26,6 +26,14 @@ export {
 export { BulkResult, BulkResultListParams, BulkResultsPage, BulkResults } from './bulk-results';
 export { Connection, ConnectionListParams, ConnectionsPage, Connections } from './connections';
 export {
+  ConnectionLegalEntity,
+  ConnectionLegalEntityCreateParams,
+  ConnectionLegalEntityUpdateParams,
+  ConnectionLegalEntityListParams,
+  ConnectionLegalEntitiesPage,
+  ConnectionLegalEntities,
+} from './connection-legal-entities';
+export {
   Counterparty,
   CounterpartyCollectAccountResponse,
   CounterpartyCreateParams,
@@ -170,6 +178,19 @@ export {
   LedgerTransactions,
 } from './ledger-transactions/ledger-transactions';
 export { LedgerableEvent, LedgerableEventCreateParams, LedgerableEvents } from './ledgerable-events';
+export {
+  LegalEntity,
+  LegalEntityCreateParams,
+  LegalEntityUpdateParams,
+  LegalEntityListParams,
+  LegalEntitiesPage,
+  LegalEntities,
+} from './legal-entities';
+export {
+  LegalEntityAssociation,
+  LegalEntityAssociationCreateParams,
+  LegalEntityAssociations,
+} from './legal-entity-associations';
 export { LineItem, LineItemUpdateParams, LineItemListParams, LineItemsPage, LineItems } from './line-items';
 export { PaperItem, PaperItemListParams, PaperItemsPage, PaperItems } from './paper-items';
 export {
