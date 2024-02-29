@@ -540,3 +540,39 @@ Methods:
 - <code title="post /api/foreign_exchange_quotes">client.foreignExchangeQuotes.<a href="./src/resources/foreign-exchange-quotes.ts">create</a>({ ...params }) -> ForeignExchangeQuote</code>
 - <code title="get /api/foreign_exchange_quotes/{id}">client.foreignExchangeQuotes.<a href="./src/resources/foreign-exchange-quotes.ts">retrieve</a>(id) -> ForeignExchangeQuote</code>
 - <code title="get /api/foreign_exchange_quotes">client.foreignExchangeQuotes.<a href="./src/resources/foreign-exchange-quotes.ts">list</a>({ ...params }) -> ForeignExchangeQuotesPage</code>
+
+# ConnectionLegalEntities
+
+Types:
+
+- <code><a href="./src/resources/connection-legal-entities.ts">ConnectionLegalEntity</a></code>
+
+Methods:
+
+- <code title="post /api/connection_legal_entities">client.connectionLegalEntities.<a href="./src/resources/connection-legal-entities.ts">create</a>({ ...params }) -> ConnectionLegalEntity</code>
+- <code title="get /api/connection_legal_entities/{id}">client.connectionLegalEntities.<a href="./src/resources/connection-legal-entities.ts">retrieve</a>(id) -> ConnectionLegalEntity</code>
+- <code title="patch /api/connection_legal_entities/{id}">client.connectionLegalEntities.<a href="./src/resources/connection-legal-entities.ts">update</a>(id, { ...params }) -> ConnectionLegalEntity</code>
+- <code title="get /api/connection_legal_entities">client.connectionLegalEntities.<a href="./src/resources/connection-legal-entities.ts">list</a>({ ...params }) -> ConnectionLegalEntitiesPage</code>
+
+# LegalEntities
+
+Types:
+
+- <code><a href="./src/resources/legal-entities.ts">LegalEntity</a></code>
+
+Methods:
+
+- <code title="post /api/legal_entities">client.legalEntities.<a href="./src/resources/legal-entities.ts">create</a>({ ...params }) -> LegalEntity</code>
+- <code title="get /api/legal_entities/{id}">client.legalEntities.<a href="./src/resources/legal-entities.ts">retrieve</a>(id) -> LegalEntity</code>
+- <code title="patch /api/legal_entities/{id}">client.legalEntities.<a href="./src/resources/legal-entities.ts">update</a>(id, { ...params }) -> LegalEntity</code>
+- <code title="get /api/legal_entities">client.legalEntities.<a href="./src/resources/legal-entities.ts">list</a>({ ...params }) -> LegalEntitiesPage</code>
+
+# LegalEntityAssociations
+
+Types:
+
+- <code><a href="./src/resources/legal-entity-associations.ts">LegalEntityAssociation</a></code>
+
+Methods:
+
+- <code title="post /api/legal_entity_associations">client.legalEntityAssociations.<a href="./src/resources/legal-entity-associations.ts">create</a>({ ...params }) -> LegalEntityAssociation</code>

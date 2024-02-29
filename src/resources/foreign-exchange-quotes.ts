@@ -201,9 +201,14 @@ export interface ForeignExchangeQuoteListParams extends PageParams {
   base_currency?: string;
 
   /**
-   * The timestamp until when the quoted rate is valid.
+   * An inclusive upper bound for searching effective_at
    */
-  effective_at?: string;
+  effective_at_end?: string;
+
+  /**
+   * An inclusive lower bound for searching effective_at
+   */
+  effective_at_start?: string;
 
   /**
    * The timestamp until which the quote must be booked by.

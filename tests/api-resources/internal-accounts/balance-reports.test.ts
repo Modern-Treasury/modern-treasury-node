@@ -12,7 +12,6 @@ const modernTreasury = new ModernTreasury({
 describe('resource balanceReports', () => {
   test('create: only required params', async () => {
     const responsePromise = modernTreasury.internalAccounts.balanceReports.create('string', {
-      amount: 0,
       as_of_date: '2019-12-27',
       as_of_time: 'string',
       balance_report_type: 'intraday',
@@ -33,7 +32,6 @@ describe('resource balanceReports', () => {
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.internalAccounts.balanceReports.create('string', {
-      amount: 0,
       as_of_date: '2019-12-27',
       as_of_time: 'string',
       balance_report_type: 'intraday',

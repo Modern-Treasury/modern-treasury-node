@@ -181,6 +181,9 @@ export class ModernTreasury extends Core.APIClient {
   bulkResults: API.BulkResults = new API.BulkResults(this);
   ledgerAccountSettlements: API.LedgerAccountSettlements = new API.LedgerAccountSettlements(this);
   foreignExchangeQuotes: API.ForeignExchangeQuotes = new API.ForeignExchangeQuotes(this);
+  connectionLegalEntities: API.ConnectionLegalEntities = new API.ConnectionLegalEntities(this);
+  legalEntities: API.LegalEntities = new API.LegalEntities(this);
+  legalEntityAssociations: API.LegalEntityAssociations = new API.LegalEntityAssociations(this);
 
   /**
    * A test endpoint often used to confirm credentials and headers are being passed
@@ -501,6 +504,24 @@ export namespace ModernTreasury {
   export import ForeignExchangeQuotesPage = API.ForeignExchangeQuotesPage;
   export import ForeignExchangeQuoteCreateParams = API.ForeignExchangeQuoteCreateParams;
   export import ForeignExchangeQuoteListParams = API.ForeignExchangeQuoteListParams;
+
+  export import ConnectionLegalEntities = API.ConnectionLegalEntities;
+  export import ConnectionLegalEntity = API.ConnectionLegalEntity;
+  export import ConnectionLegalEntitiesPage = API.ConnectionLegalEntitiesPage;
+  export import ConnectionLegalEntityCreateParams = API.ConnectionLegalEntityCreateParams;
+  export import ConnectionLegalEntityUpdateParams = API.ConnectionLegalEntityUpdateParams;
+  export import ConnectionLegalEntityListParams = API.ConnectionLegalEntityListParams;
+
+  export import LegalEntities = API.LegalEntities;
+  export import LegalEntity = API.LegalEntity;
+  export import LegalEntitiesPage = API.LegalEntitiesPage;
+  export import LegalEntityCreateParams = API.LegalEntityCreateParams;
+  export import LegalEntityUpdateParams = API.LegalEntityUpdateParams;
+  export import LegalEntityListParams = API.LegalEntityListParams;
+
+  export import LegalEntityAssociations = API.LegalEntityAssociations;
+  export import LegalEntityAssociation = API.LegalEntityAssociation;
+  export import LegalEntityAssociationCreateParams = API.LegalEntityAssociationCreateParams;
 
   export import AccountsType = API.AccountsType;
   export import AsyncResponse = API.AsyncResponse;

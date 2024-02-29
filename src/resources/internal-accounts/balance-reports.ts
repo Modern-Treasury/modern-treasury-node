@@ -182,12 +182,6 @@ export namespace BalanceReport {
 
 export interface BalanceReportCreateParams {
   /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000.
-   */
-  amount: number;
-
-  /**
    * The date of the balance report in local time.
    */
   as_of_date: string;
