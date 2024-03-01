@@ -9,6 +9,7 @@ The REST API documentation can be found [on docs.moderntreasury.com](https://doc
 ## Installation
 
 ```sh
+# install from NPM
 npm install --save modern-treasury
 # or
 yarn add modern-treasury
