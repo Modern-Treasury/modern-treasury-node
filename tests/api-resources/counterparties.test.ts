@@ -180,13 +180,14 @@ describe('resource counterparties', () => {
         date_of_birth: '2019-12-27',
         business_name: 'string',
         doing_business_as_names: ['string', 'string', 'string'],
+        legal_structure: 'corporation',
         phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
         email: 'string',
         website: 'string',
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         addresses: [
           {
-            address_types: ['string', 'string', 'string'],
+            address_types: ['business', 'mailing', 'other'],
             line1: 'string',
             line2: 'string',
             locality: 'string',
@@ -195,7 +196,7 @@ describe('resource counterparties', () => {
             country: 'string',
           },
           {
-            address_types: ['string', 'string', 'string'],
+            address_types: ['business', 'mailing', 'other'],
             line1: 'string',
             line2: 'string',
             locality: 'string',
@@ -204,7 +205,7 @@ describe('resource counterparties', () => {
             country: 'string',
           },
           {
-            address_types: ['string', 'string', 'string'],
+            address_types: ['business', 'mailing', 'other'],
             line1: 'string',
             line2: 'string',
             locality: 'string',
