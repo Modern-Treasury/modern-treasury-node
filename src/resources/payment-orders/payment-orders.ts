@@ -484,6 +484,7 @@ export namespace PaymentOrder {
       | 'column_reversal_pair_transfer_id'
       | 'column_transfer_id'
       | 'cross_river_payment_id'
+      | 'cross_river_service_message'
       | 'cross_river_transaction_id'
       | 'currencycloud_conversion_id'
       | 'currencycloud_payment_id'
