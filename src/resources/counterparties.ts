@@ -646,6 +646,18 @@ export namespace CounterpartyCreateParams {
     last_name?: string | null;
 
     /**
+     * The business's legal structure.
+     */
+    legal_structure?:
+      | 'corporation'
+      | 'llc'
+      | 'non_profit'
+      | 'partnership'
+      | 'sole_proprietorship'
+      | 'trust'
+      | null;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -686,7 +698,7 @@ export namespace CounterpartyCreateParams {
       /**
        * The types of this address.
        */
-      address_types?: Array<string>;
+      address_types?: Array<'business' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
       line2?: string | null;
     }

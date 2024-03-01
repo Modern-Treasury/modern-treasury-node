@@ -26,7 +26,7 @@ describe('resource legalEntities', () => {
       legal_entity_type: 'business',
       addresses: [
         {
-          address_types: ['string', 'string', 'string'],
+          address_types: ['business', 'mailing', 'other'],
           line1: 'string',
           line2: 'string',
           locality: 'string',
@@ -35,7 +35,7 @@ describe('resource legalEntities', () => {
           country: 'string',
         },
         {
-          address_types: ['string', 'string', 'string'],
+          address_types: ['business', 'mailing', 'other'],
           line1: 'string',
           line2: 'string',
           locality: 'string',
@@ -44,7 +44,7 @@ describe('resource legalEntities', () => {
           country: 'string',
         },
         {
-          address_types: ['string', 'string', 'string'],
+          address_types: ['business', 'mailing', 'other'],
           line1: 'string',
           line2: 'string',
           locality: 'string',
@@ -64,6 +64,7 @@ describe('resource legalEntities', () => {
         { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
       ],
       last_name: 'string',
+      legal_structure: 'corporation',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
       website: 'string',
@@ -118,6 +119,7 @@ describe('resource legalEntities', () => {
           email: 'string',
           first_name: 'string',
           last_name: 'string',
+          legal_structure: 'corporation',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
           website: 'string',

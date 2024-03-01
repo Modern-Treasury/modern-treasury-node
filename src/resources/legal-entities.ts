@@ -123,6 +123,18 @@ export interface LegalEntity {
   legal_entity_type?: 'business' | 'individual' | 'joint';
 
   /**
+   * The business's legal structure.
+   */
+  legal_structure?:
+    | 'corporation'
+    | 'llc'
+    | 'non_profit'
+    | 'partnership'
+    | 'sole_proprietorship'
+    | 'trust'
+    | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -153,7 +165,7 @@ export namespace LegalEntity {
     /**
      * The types of this address.
      */
-    address_types: Array<string>;
+    address_types: Array<'business' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -288,6 +300,18 @@ export interface LegalEntityCreateParams {
   last_name?: string | null;
 
   /**
+   * The business's legal structure.
+   */
+  legal_structure?:
+    | 'corporation'
+    | 'llc'
+    | 'non_profit'
+    | 'partnership'
+    | 'sole_proprietorship'
+    | 'trust'
+    | null;
+
+  /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
@@ -328,7 +352,7 @@ export namespace LegalEntityCreateParams {
     /**
      * The types of this address.
      */
-    address_types?: Array<string>;
+    address_types?: Array<'business' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
     line2?: string | null;
   }
@@ -399,6 +423,18 @@ export interface LegalEntityUpdateParams {
    * An individual's last name.
    */
   last_name?: string | null;
+
+  /**
+   * The business's legal structure.
+   */
+  legal_structure?:
+    | 'corporation'
+    | 'llc'
+    | 'non_profit'
+    | 'partnership'
+    | 'sole_proprietorship'
+    | 'trust'
+    | null;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
