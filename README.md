@@ -129,7 +129,7 @@ a subclass of `APIError` will be thrown:
 async function main() {
   const externalAccount = await modernTreasury.externalAccounts
     .create({ counterparty_id: 'missing' })
-    .catch((err) => {
+    .catch(async (err) => {
       if (err instanceof ModernTreasury.APIError) {
         console.log(err.status); // 400
         console.log(err.name); // BadRequestError
