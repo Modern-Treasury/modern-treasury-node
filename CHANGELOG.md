@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.18.0 (2024-03-07)
+
+Full Changelog: [v2.17.0...v2.18.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.17.0...v2.18.0)
+
+### Features
+
+* **api:** add legal_structure enum member ([#350](https://github.com/Modern-Treasury/modern-treasury-node/issues/350)) ([9b0d264](https://github.com/Modern-Treasury/modern-treasury-node/commit/9b0d2644f3fb302fb21438db80b05ef091f5e81e))
+
+
+### Chores
+
+* **docs:** mention install from git repo ([#348](https://github.com/Modern-Treasury/modern-treasury-node/issues/348)) ([2059850](https://github.com/Modern-Treasury/modern-treasury-node/commit/2059850d97544230b5b693c76ec4b2f9dce31e36))
+* fix error handler in readme ([#351](https://github.com/Modern-Treasury/modern-treasury-node/issues/351)) ([9945dc2](https://github.com/Modern-Treasury/modern-treasury-node/commit/9945dc2044abb688d9facbd5f536f3ad4bdc0b1f))
+
+
+### Documentation
+
+* **readme:** fix https proxy example ([#352](https://github.com/Modern-Treasury/modern-treasury-node/issues/352)) ([142890f](https://github.com/Modern-Treasury/modern-treasury-node/commit/142890f21d48ce288c038439cfc4dc9d83eaf8f8))
+* remove extraneous --save and yarn install instructions ([#353](https://github.com/Modern-Treasury/modern-treasury-node/issues/353)) ([085dae2](https://github.com/Modern-Treasury/modern-treasury-node/commit/085dae29b1478576f31c791e29e26fa675417209))
+* use [@deprecated](https://github.com/deprecated) decorator for deprecated params ([#354](https://github.com/Modern-Treasury/modern-treasury-node/issues/354)) ([e8e2144](https://github.com/Modern-Treasury/modern-treasury-node/commit/e8e21442db2464df3f047da24f5cd92d8c61621a))
+
 ## 2.17.0 (2024-02-29)
 
 Full Changelog: [v2.16.0...v2.17.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.16.0...v2.17.0)
