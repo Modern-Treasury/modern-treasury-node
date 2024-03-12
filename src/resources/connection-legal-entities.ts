@@ -145,7 +145,12 @@ export namespace ConnectionLegalEntityCreateParams {
     business_name?: string | null;
 
     /**
-     * An individual's data of birth (YYYY-MM-DD).
+     * A business's formation date (YYYY-MM-DD).
+     */
+    date_formed?: string | null;
+
+    /**
+     * An individual's date of birth (YYYY-MM-DD).
      */
     date_of_birth?: string | null;
 
