@@ -29,6 +29,7 @@ describe('resource connectionLegalEntities', () => {
         first_name: 'string',
         last_name: 'string',
         date_of_birth: '2019-12-27',
+        date_formed: '2019-12-27',
         business_name: 'string',
         doing_business_as_names: ['string', 'string', 'string'],
         legal_structure: 'corporation',

@@ -54,6 +54,7 @@ describe('resource legalEntities', () => {
         },
       ],
       business_name: 'string',
+      date_formed: '2019-12-27',
       date_of_birth: '2019-12-27',
       doing_business_as_names: ['string', 'string', 'string'],
       email: 'string',
@@ -114,6 +115,7 @@ describe('resource legalEntities', () => {
         'string',
         {
           business_name: 'string',
+          date_formed: '2019-12-27',
           date_of_birth: '2019-12-27',
           doing_business_as_names: ['string', 'string', 'string'],
           email: 'string',
