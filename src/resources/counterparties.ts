@@ -506,7 +506,7 @@ export namespace CounterpartyCreateParams {
        * be populated here, otherwise null. The value is one of internal_account or
        * external_account.
        */
-      ledgerable_type?: 'external_account' | 'internal_account' | 'virtual_account';
+      ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -651,6 +651,11 @@ export namespace CounterpartyCreateParams {
     last_name?: string | null;
 
     /**
+     * The legal entity associations and its associated legal entities.
+     */
+    legal_entity_associations?: Array<LegalEntity.LegalEntityAssociation> | null;
+
+    /**
      * The business's legal structure.
      */
     legal_structure?:
@@ -737,6 +742,180 @@ export namespace CounterpartyCreateParams {
        * identification
        */
       issuing_country?: string | null;
+    }
+
+    export interface LegalEntityAssociation {
+      relationship_types: Array<'beneficial_owner' | 'control_person'>;
+
+      /**
+       * The associated legal entity.
+       */
+      associated_legal_entity?: LegalEntityAssociation.AssociatedLegalEntity;
+
+      /**
+       * The ID of the associated legal entity.
+       */
+      associated_legal_entity_id?: string;
+
+      /**
+       * The associated entity's ownership percentage iff they are a beneficial owner.
+       */
+      ownership_percentage?: number | null;
+
+      /**
+       * The job title of the associated entity at the associator entity.
+       */
+      title?: string | null;
+    }
+
+    export namespace LegalEntityAssociation {
+      /**
+       * The associated legal entity.
+       */
+      export interface AssociatedLegalEntity {
+        /**
+         * A list of addresses for the entity.
+         */
+        addresses?: Array<AssociatedLegalEntity.Address>;
+
+        /**
+         * The business's legal business name.
+         */
+        business_name?: string | null;
+
+        /**
+         * A business's formation date (YYYY-MM-DD).
+         */
+        date_formed?: string | null;
+
+        /**
+         * An individual's date of birth (YYYY-MM-DD).
+         */
+        date_of_birth?: string | null;
+
+        doing_business_as_names?: Array<string>;
+
+        /**
+         * The entity's primary email.
+         */
+        email?: string | null;
+
+        /**
+         * An individual's first name.
+         */
+        first_name?: string | null;
+
+        /**
+         * A list of identifications for the legal entity.
+         */
+        identifications?: Array<AssociatedLegalEntity.Identification>;
+
+        /**
+         * An individual's last name.
+         */
+        last_name?: string | null;
+
+        /**
+         * The type of legal entity.
+         */
+        legal_entity_type?: 'business' | 'individual';
+
+        /**
+         * The business's legal structure.
+         */
+        legal_structure?:
+          | 'corporation'
+          | 'llc'
+          | 'non_profit'
+          | 'partnership'
+          | 'sole_proprietorship'
+          | 'trust'
+          | null;
+
+        /**
+         * Additional data represented as key-value pairs. Both the key and value must be
+         * strings.
+         */
+        metadata?: Record<string, string>;
+
+        phone_numbers?: Array<AssociatedLegalEntity.PhoneNumber>;
+
+        /**
+         * The entity's primary website URL.
+         */
+        website?: string | null;
+      }
+
+      export namespace AssociatedLegalEntity {
+        export interface Address {
+          /**
+           * Country code conforms to [ISO 3166-1 alpha-2]
+           */
+          country: string | null;
+
+          line1: string | null;
+
+          /**
+           * Locality or City.
+           */
+          locality: string | null;
+
+          /**
+           * The postal code of the address.
+           */
+          postal_code: string | null;
+
+          /**
+           * Region or State.
+           */
+          region: string | null;
+
+          /**
+           * The types of this address.
+           */
+          address_types?: Array<'business' | 'mailing' | 'other' | 'po_box' | 'residential'>;
+
+          line2?: string | null;
+        }
+
+        export interface Identification {
+          /**
+           * The ID number of identification document.
+           */
+          id_number: string;
+
+          /**
+           * The type of ID number.
+           */
+          id_type:
+            | 'ar_cuil'
+            | 'ar_cuit'
+            | 'br_cnpj'
+            | 'br_cpf'
+            | 'cl_nut'
+            | 'co_cedulas'
+            | 'co_nit'
+            | 'hn_id'
+            | 'hn_rtn'
+            | 'passport'
+            | 'us_ein'
+            | 'us_itin'
+            | 'us_ssn';
+
+          /**
+           * The ISO 3166-1 alpha-2 country code of the country that issued the
+           * identification
+           */
+          issuing_country?: string | null;
+        }
+
+        /**
+         * A list of phone numbers in E.164 format.
+         */
+        export interface PhoneNumber {
+          phone_number?: string;
+        }
+      }
     }
 
     /**

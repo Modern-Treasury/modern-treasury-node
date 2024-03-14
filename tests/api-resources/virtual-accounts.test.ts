@@ -50,7 +50,7 @@ describe('resource virtualAccounts', () => {
           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         ],
         ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        ledgerable_type: 'external_account',
+        ledgerable_type: 'counterparty',
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       },
       metadata: { foo: 'string' },
