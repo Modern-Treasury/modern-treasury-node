@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.19.0 (2024-03-14)
+
+Full Changelog: [v2.18.0...v2.19.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.18.0...v2.19.0)
+
+### Features
+
+* **api:** add date_formed property to legal entities ([#355](https://github.com/Modern-Treasury/modern-treasury-node/issues/355)) ([b403083](https://github.com/Modern-Treasury/modern-treasury-node/commit/b403083ea26849dda585793c2b1ba2abc5dae3a5))
+* **api:** extend list invoices query params ([#357](https://github.com/Modern-Treasury/modern-treasury-node/issues/357)) ([05b1e41](https://github.com/Modern-Treasury/modern-treasury-node/commit/05b1e41628c439a901850dd5b405fba60c67f96f))
+
 ## 2.18.0 (2024-03-07)
 
 Full Changelog: [v2.17.0...v2.18.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.17.0...v2.18.0)
