@@ -247,7 +247,19 @@ describe('resource invoices', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.invoices.list(
-        { after_cursor: 'string', per_page: 0 },
+        {
+          after_cursor: 'string',
+          counterparty_id: 'string',
+          due_date_end: '2019-12-27',
+          due_date_start: '2019-12-27',
+          expected_payment_id: 'string',
+          metadata: { foo: 'string' },
+          number: 'string',
+          originating_account_id: 'string',
+          payment_order_id: 'string',
+          per_page: 0,
+          status: 'draft',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

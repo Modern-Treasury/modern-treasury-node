@@ -675,7 +675,7 @@ export namespace BulkRequestCreateParams {
          * be populated here, otherwise null. The value is one of internal_account or
          * external_account.
          */
-        ledgerable_type?: 'external_account' | 'internal_account' | 'virtual_account';
+        ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
 
         /**
          * Additional data represented as key-value pairs. Both the key and value must be
@@ -858,7 +858,7 @@ export namespace BulkRequestCreateParams {
     /**
      * An array of reconciliation rule variables for this payment.
      */
-    reconciliation_rule_variables?: Array<unknown> | null;
+    reconciliation_rule_variables?: Array<Record<string, string>> | null;
 
     /**
      * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1580,7 +1580,7 @@ export namespace BulkRequestCreateParams {
          * be populated here, otherwise null. The value is one of internal_account or
          * external_account.
          */
-        ledgerable_type?: 'external_account' | 'internal_account' | 'virtual_account';
+        ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
 
         /**
          * Additional data represented as key-value pairs. Both the key and value must be
@@ -1747,7 +1747,7 @@ export namespace BulkRequestCreateParams {
     /**
      * An array of reconciliation rule variables for this payment.
      */
-    reconciliation_rule_variables?: Array<unknown> | null;
+    reconciliation_rule_variables?: Array<Record<string, string>> | null;
 
     /**
      * For `ach`, this field will be passed through on an addenda record. For `wire`

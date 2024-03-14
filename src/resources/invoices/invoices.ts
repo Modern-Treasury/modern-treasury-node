@@ -915,7 +915,39 @@ export namespace InvoiceUpdateParams {
   }
 }
 
-export interface InvoiceListParams extends PageParams {}
+export interface InvoiceListParams extends PageParams {
+  counterparty_id?: string;
+
+  /**
+   * An inclusive upper bound for searching due_date
+   */
+  due_date_end?: string;
+
+  /**
+   * An inclusive lower bound for searching due_date
+   */
+  due_date_start?: string;
+
+  expected_payment_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: Record<string, string>;
+
+  /**
+   * A unique record number assigned to each invoice that is issued.
+   */
+  number?: string;
+
+  originating_account_id?: string;
+
+  payment_order_id?: string;
+
+  status?: 'draft' | 'paid' | 'partially_paid' | 'payment_pending' | 'unpaid' | 'voided';
+}
 
 export namespace Invoices {
   export import Invoice = InvoicesAPI.Invoice;
