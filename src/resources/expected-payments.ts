@@ -176,7 +176,7 @@ export interface ExpectedPayment {
   /**
    * An array of reconciliation rule variables for this payment.
    */
-  reconciliation_rule_variables: Array<unknown> | null;
+  reconciliation_rule_variables: Array<Record<string, string>> | null;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -340,7 +340,7 @@ export interface ExpectedPaymentCreateParams {
   /**
    * An array of reconciliation rule variables for this payment.
    */
-  reconciliation_rule_variables?: Array<unknown> | null;
+  reconciliation_rule_variables?: Array<Record<string, string>> | null;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -593,7 +593,7 @@ export interface ExpectedPaymentUpdateParams {
   /**
    * An array of reconciliation rule variables for this payment.
    */
-  reconciliation_rule_variables?: Array<unknown> | null;
+  reconciliation_rule_variables?: Array<Record<string, string>> | null;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
