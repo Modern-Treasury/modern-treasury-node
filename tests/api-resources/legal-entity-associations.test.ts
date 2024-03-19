@@ -26,7 +26,7 @@ describe('resource legalEntityAssociations', () => {
   test('create: required and optional params', async () => {
     const response = await modernTreasury.legalEntityAssociations.create({
       relationship_types: ['beneficial_owner', 'control_person'],
-      associated_legal_entity: {
+      child_legal_entity: {
         legal_entity_type: 'business',
         first_name: 'string',
         last_name: 'string',
@@ -74,9 +74,9 @@ describe('resource legalEntityAssociations', () => {
           { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
         ],
       },
-      associated_legal_entity_id: 'string',
-      associator_legal_entity_id: 'string',
+      child_legal_entity_id: 'string',
       ownership_percentage: 0,
+      parent_legal_entity_id: 'string',
       title: 'string',
     });
   });
