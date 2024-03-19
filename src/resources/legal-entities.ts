@@ -124,7 +124,7 @@ export interface LegalEntity {
   last_name?: string | null;
 
   /**
-   * The legal entity associations and its associated legal entities.
+   * The legal entity associations and its child legal entities.
    */
   legal_entity_associations?: Array<LegalEntityAssociationsAPI.LegalEntityAssociation> | null;
 
@@ -232,7 +232,7 @@ export namespace LegalEntity {
       | 'ar_cuit'
       | 'br_cnpj'
       | 'br_cpf'
-      | 'cl_nut'
+      | 'cl_rut'
       | 'co_cedulas'
       | 'co_nit'
       | 'hn_id'
@@ -316,7 +316,7 @@ export interface LegalEntityCreateParams {
   last_name?: string | null;
 
   /**
-   * The legal entity associations and its associated legal entities.
+   * The legal entity associations and its child legal entities.
    */
   legal_entity_associations?: Array<LegalEntityCreateParams.LegalEntityAssociation> | null;
 
@@ -392,7 +392,7 @@ export namespace LegalEntityCreateParams {
       | 'ar_cuit'
       | 'br_cnpj'
       | 'br_cpf'
-      | 'cl_nut'
+      | 'cl_rut'
       | 'co_cedulas'
       | 'co_nit'
       | 'hn_id'
@@ -413,35 +413,35 @@ export namespace LegalEntityCreateParams {
     relationship_types: Array<'beneficial_owner' | 'control_person'>;
 
     /**
-     * The associated legal entity.
+     * The child legal entity.
      */
-    associated_legal_entity?: LegalEntityAssociation.AssociatedLegalEntity;
+    child_legal_entity?: LegalEntityAssociation.ChildLegalEntity;
 
     /**
-     * The ID of the associated legal entity.
+     * The ID of the child legal entity.
      */
-    associated_legal_entity_id?: string;
+    child_legal_entity_id?: string;
 
     /**
-     * The associated entity's ownership percentage iff they are a beneficial owner.
+     * The child entity's ownership percentage iff they are a beneficial owner.
      */
     ownership_percentage?: number | null;
 
     /**
-     * The job title of the associated entity at the associator entity.
+     * The job title of the child entity at the parent entity.
      */
     title?: string | null;
   }
 
   export namespace LegalEntityAssociation {
     /**
-     * The associated legal entity.
+     * The child legal entity.
      */
-    export interface AssociatedLegalEntity {
+    export interface ChildLegalEntity {
       /**
        * A list of addresses for the entity.
        */
-      addresses?: Array<AssociatedLegalEntity.Address>;
+      addresses?: Array<ChildLegalEntity.Address>;
 
       /**
        * The business's legal business name.
@@ -473,7 +473,7 @@ export namespace LegalEntityCreateParams {
       /**
        * A list of identifications for the legal entity.
        */
-      identifications?: Array<AssociatedLegalEntity.Identification>;
+      identifications?: Array<ChildLegalEntity.Identification>;
 
       /**
        * An individual's last name.
@@ -503,7 +503,7 @@ export namespace LegalEntityCreateParams {
        */
       metadata?: Record<string, string>;
 
-      phone_numbers?: Array<AssociatedLegalEntity.PhoneNumber>;
+      phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
 
       /**
        * The entity's primary website URL.
@@ -511,7 +511,7 @@ export namespace LegalEntityCreateParams {
       website?: string | null;
     }
 
-    export namespace AssociatedLegalEntity {
+    export namespace ChildLegalEntity {
       export interface Address {
         /**
          * Country code conforms to [ISO 3166-1 alpha-2]
@@ -557,7 +557,7 @@ export namespace LegalEntityCreateParams {
           | 'ar_cuit'
           | 'br_cnpj'
           | 'br_cpf'
-          | 'cl_nut'
+          | 'cl_rut'
           | 'co_cedulas'
           | 'co_nit'
           | 'hn_id'

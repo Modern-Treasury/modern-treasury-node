@@ -31,15 +31,9 @@ export interface LegalEntityAssociation {
   id?: string;
 
   /**
-   * The associated legal entity.
+   * The child legal entity.
    */
-  associated_legal_entity?: LegalEntityAssociation.AssociatedLegalEntity;
-
-  /**
-   * The ID of the associator legal entity. This must be a business or joint legal
-   * entity.
-   */
-  associator_legal_entity_id?: string;
+  child_legal_entity?: LegalEntityAssociation.ChildLegalEntity;
 
   created_at?: string;
 
@@ -54,14 +48,20 @@ export interface LegalEntityAssociation {
   object?: string;
 
   /**
-   * The associated entity's ownership percentage iff they are a beneficial owner.
+   * The child entity's ownership percentage iff they are a beneficial owner.
    */
   ownership_percentage?: number | null;
+
+  /**
+   * The ID of the parent legal entity. This must be a business or joint legal
+   * entity.
+   */
+  parent_legal_entity_id?: string;
 
   relationship_types?: Array<'beneficial_owner' | 'control_person'>;
 
   /**
-   * The job title of the associated entity at the associator entity.
+   * The job title of the child entity at the parent entity.
    */
   title?: string | null;
 
@@ -70,15 +70,15 @@ export interface LegalEntityAssociation {
 
 export namespace LegalEntityAssociation {
   /**
-   * The associated legal entity.
+   * The child legal entity.
    */
-  export interface AssociatedLegalEntity {
+  export interface ChildLegalEntity {
     id?: string;
 
     /**
      * A list of addresses for the entity.
      */
-    addresses?: Array<AssociatedLegalEntity.Address>;
+    addresses?: Array<ChildLegalEntity.Address>;
 
     /**
      * The business's legal business name.
@@ -114,7 +114,7 @@ export namespace LegalEntityAssociation {
     /**
      * A list of identifications for the legal entity.
      */
-    identifications?: Array<AssociatedLegalEntity.Identification>;
+    identifications?: Array<ChildLegalEntity.Identification>;
 
     /**
      * An individual's last name.
@@ -152,7 +152,7 @@ export namespace LegalEntityAssociation {
 
     object?: string;
 
-    phone_numbers?: Array<AssociatedLegalEntity.PhoneNumber>;
+    phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
 
     updated_at?: string;
 
@@ -162,7 +162,7 @@ export namespace LegalEntityAssociation {
     website?: string | null;
   }
 
-  export namespace AssociatedLegalEntity {
+  export namespace ChildLegalEntity {
     export interface Address {
       id: string;
 
@@ -225,7 +225,7 @@ export namespace LegalEntityAssociation {
         | 'ar_cuit'
         | 'br_cnpj'
         | 'br_cpf'
-        | 'cl_nut'
+        | 'cl_rut'
         | 'co_cedulas'
         | 'co_nit'
         | 'hn_id'
@@ -265,41 +265,41 @@ export interface LegalEntityAssociationCreateParams {
   relationship_types: Array<'beneficial_owner' | 'control_person'>;
 
   /**
-   * The associated legal entity.
+   * The child legal entity.
    */
-  associated_legal_entity?: LegalEntityAssociationCreateParams.AssociatedLegalEntity;
+  child_legal_entity?: LegalEntityAssociationCreateParams.ChildLegalEntity;
 
   /**
-   * The ID of the associated legal entity.
+   * The ID of the child legal entity.
    */
-  associated_legal_entity_id?: string;
+  child_legal_entity_id?: string;
 
   /**
-   * The ID of the associator legal entity. This must be a business or joint legal
-   * entity.
-   */
-  associator_legal_entity_id?: string;
-
-  /**
-   * The associated entity's ownership percentage iff they are a beneficial owner.
+   * The child entity's ownership percentage iff they are a beneficial owner.
    */
   ownership_percentage?: number | null;
 
   /**
-   * The job title of the associated entity at the associator entity.
+   * The ID of the parent legal entity. This must be a business or joint legal
+   * entity.
+   */
+  parent_legal_entity_id?: string;
+
+  /**
+   * The job title of the child entity at the parent entity.
    */
   title?: string | null;
 }
 
 export namespace LegalEntityAssociationCreateParams {
   /**
-   * The associated legal entity.
+   * The child legal entity.
    */
-  export interface AssociatedLegalEntity {
+  export interface ChildLegalEntity {
     /**
      * A list of addresses for the entity.
      */
-    addresses?: Array<AssociatedLegalEntity.Address>;
+    addresses?: Array<ChildLegalEntity.Address>;
 
     /**
      * The business's legal business name.
@@ -331,7 +331,7 @@ export namespace LegalEntityAssociationCreateParams {
     /**
      * A list of identifications for the legal entity.
      */
-    identifications?: Array<AssociatedLegalEntity.Identification>;
+    identifications?: Array<ChildLegalEntity.Identification>;
 
     /**
      * An individual's last name.
@@ -361,7 +361,7 @@ export namespace LegalEntityAssociationCreateParams {
      */
     metadata?: Record<string, string>;
 
-    phone_numbers?: Array<AssociatedLegalEntity.PhoneNumber>;
+    phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
 
     /**
      * The entity's primary website URL.
@@ -369,7 +369,7 @@ export namespace LegalEntityAssociationCreateParams {
     website?: string | null;
   }
 
-  export namespace AssociatedLegalEntity {
+  export namespace ChildLegalEntity {
     export interface Address {
       /**
        * Country code conforms to [ISO 3166-1 alpha-2]
@@ -415,7 +415,7 @@ export namespace LegalEntityAssociationCreateParams {
         | 'ar_cuit'
         | 'br_cnpj'
         | 'br_cpf'
-        | 'cl_nut'
+        | 'cl_rut'
         | 'co_cedulas'
         | 'co_nit'
         | 'hn_id'

@@ -76,7 +76,7 @@ describe('resource connectionLegalEntities', () => {
             relationship_types: ['beneficial_owner', 'control_person'],
             title: 'string',
             ownership_percentage: 0,
-            associated_legal_entity: {
+            child_legal_entity: {
               legal_entity_type: 'business',
               first_name: 'string',
               last_name: 'string',
@@ -128,13 +128,13 @@ describe('resource connectionLegalEntities', () => {
                 { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
               ],
             },
-            associated_legal_entity_id: 'string',
+            child_legal_entity_id: 'string',
           },
           {
             relationship_types: ['beneficial_owner', 'control_person'],
             title: 'string',
             ownership_percentage: 0,
-            associated_legal_entity: {
+            child_legal_entity: {
               legal_entity_type: 'business',
               first_name: 'string',
               last_name: 'string',
@@ -186,13 +186,13 @@ describe('resource connectionLegalEntities', () => {
                 { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
               ],
             },
-            associated_legal_entity_id: 'string',
+            child_legal_entity_id: 'string',
           },
           {
             relationship_types: ['beneficial_owner', 'control_person'],
             title: 'string',
             ownership_percentage: 0,
-            associated_legal_entity: {
+            child_legal_entity: {
               legal_entity_type: 'business',
               first_name: 'string',
               last_name: 'string',
@@ -244,7 +244,7 @@ describe('resource connectionLegalEntities', () => {
                 { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
               ],
             },
-            associated_legal_entity_id: 'string',
+            child_legal_entity_id: 'string',
           },
         ],
       },
