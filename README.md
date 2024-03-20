@@ -65,7 +65,7 @@ main();
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
 
-## File Uploads
+## File uploads
 
 Request parameters that correspond to file uploads can be passed in many different forms:
 
@@ -311,7 +311,7 @@ await modernTreasury.externalAccounts.list({
 });
 ```
 
-## Semantic Versioning
+## Semantic versioning
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
