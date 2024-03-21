@@ -7,6 +7,7 @@ import * as BulkResultsAPI from 'modern-treasury/resources/bulk-results';
 import * as ExpectedPaymentsAPI from 'modern-treasury/resources/expected-payments';
 import * as LedgerTransactionsAPI from 'modern-treasury/resources/ledger-transactions/ledger-transactions';
 import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/payment-orders';
+import * as TransactionsAPI from 'modern-treasury/resources/transactions/transactions';
 import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class BulkResults extends APIResource {
@@ -52,6 +53,7 @@ export interface BulkResult {
     | PaymentOrdersAPI.PaymentOrder
     | ExpectedPaymentsAPI.ExpectedPayment
     | LedgerTransactionsAPI.LedgerTransaction
+    | TransactionsAPI.Transaction
     | BulkResult.BulkError;
 
   /**
@@ -64,7 +66,7 @@ export interface BulkResult {
    * same as the `resource_type` of the bulk request. For a failed bulk result, this
    * is always bulk_error
    */
-  entity_type: 'payment_order' | 'ledger_transaction' | 'expected_payment' | 'bulk_error';
+  entity_type: 'payment_order' | 'ledger_transaction' | 'transaction' | 'expected_payment' | 'bulk_error';
 
   /**
    * This field will be true if this object exists in the live environment or false
@@ -141,7 +143,7 @@ export interface BulkResultListParams extends PageParams {
    * The type of the request that created this result. bulk_request is the only
    * supported `request_type`
    */
-  entity_type?: 'payment_order' | 'ledger_transaction' | 'expected_payment' | 'bulk_error';
+  entity_type?: 'payment_order' | 'ledger_transaction' | 'transaction' | 'expected_payment' | 'bulk_error';
 
   /**
    * Unique identifier for the request that created this bulk result. This is the ID
