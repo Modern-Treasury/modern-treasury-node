@@ -30,6 +30,7 @@ describe('resource lineItems', () => {
       unit_amount: 0,
       description: 'string',
       direction: 'string',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       quantity: 0,
       unit_amount_decimal: 'string',
     });
@@ -80,6 +81,7 @@ describe('resource lineItems', () => {
         {
           description: 'string',
           direction: 'string',
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           name: 'string',
           quantity: 0,
           unit_amount: 0,
