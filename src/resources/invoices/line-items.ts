@@ -124,6 +124,12 @@ export interface InvoiceLineItem {
   live_mode: boolean;
 
   /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata: Record<string, string>;
+
+  /**
    * The name of the line item, typically a product or SKU name.
    */
   name: string;
@@ -177,6 +183,12 @@ export interface LineItemCreateParams {
   direction?: string;
 
   /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string>;
+
+  /**
    * The number of units of a product or service that this line item is for. Must be
    * a whole number. Defaults to 1 if not provided.
    */
@@ -202,6 +214,12 @@ export interface LineItemUpdateParams {
    * intention and effect.
    */
   direction?: string;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string>;
 
   /**
    * The name of the line item, typically a product or SKU name.
