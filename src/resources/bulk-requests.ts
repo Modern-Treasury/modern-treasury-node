@@ -131,8 +131,10 @@ export interface BulkRequestCreateParams {
     | BulkRequestCreateParams.ExpectedPaymentCreateRequest
     | BulkRequestCreateParams.LedgerTransactionCreateRequest
     | BulkRequestCreateParams.TransactionCreateRequest
+    | BulkRequestCreateParams.ID
     | BulkRequestCreateParams.PaymentOrderUpdateRequestWithID
     | BulkRequestCreateParams.ExpectedPaymentUpdateRequestWithID
+    | BulkRequestCreateParams.TransactionUpdateRequestWithID
     | BulkRequestCreateParams.LedgerTransactionUpdateRequestWithID
   >;
 
@@ -1226,6 +1228,10 @@ export namespace BulkRequestCreateParams {
     vendor_description?: string | null;
   }
 
+  export interface ID {
+    id?: string;
+  }
+
   export interface PaymentOrderUpdateRequestWithID {
     id?: string;
 
@@ -1824,6 +1830,16 @@ export namespace BulkRequestCreateParams {
      * sepa, signet, wire.
      */
     type?: ExpectedPaymentsAPI.ExpectedPaymentType | null;
+  }
+
+  export interface TransactionUpdateRequestWithID {
+    id?: string;
+
+    /**
+     * Additional data in the form of key-value pairs. Pairs can be removed by passing
+     * an empty string or `null` as the value.
+     */
+    metadata?: Record<string, string>;
   }
 
   export interface LedgerTransactionUpdateRequestWithID {
