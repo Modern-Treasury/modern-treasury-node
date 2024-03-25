@@ -231,9 +231,12 @@ export namespace LegalEntityAssociation {
         | 'hn_id'
         | 'hn_rtn'
         | 'passport'
+        | 'sa_tin'
+        | 'sa_vat'
         | 'us_ein'
         | 'us_itin'
-        | 'us_ssn';
+        | 'us_ssn'
+        | 'vn_tin';
 
       /**
        * The ISO 3166-1 alpha-2 country code of the country that issued the
@@ -421,9 +424,12 @@ export namespace LegalEntityAssociationCreateParams {
         | 'hn_id'
         | 'hn_rtn'
         | 'passport'
+        | 'sa_tin'
+        | 'sa_vat'
         | 'us_ein'
         | 'us_itin'
-        | 'us_ssn';
+        | 'us_ssn'
+        | 'vn_tin';
 
       /**
        * The ISO 3166-1 alpha-2 country code of the country that issued the
