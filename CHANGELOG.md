@@ -1,5 +1,39 @@
 # Changelog
 
+## 2.20.0 (2024-03-26)
+
+Full Changelog: [v2.19.0...v2.20.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.19.0...v2.20.0)
+
+### Features
+
+* **api:** add citibank enums ([#369](https://github.com/Modern-Treasury/modern-treasury-node/issues/369)) ([4bf2db2](https://github.com/Modern-Treasury/modern-treasury-node/commit/4bf2db271494204a2e7854e6d7ff5c03aeb4afac))
+* **api:** add line item metadata ([1114cc5](https://github.com/Modern-Treasury/modern-treasury-node/commit/1114cc5653b10eedc834b136eb1c5683adc834d7))
+* **api:** introduce bulk transaction create ([#365](https://github.com/Modern-Treasury/modern-treasury-node/issues/365)) ([1114cc5](https://github.com/Modern-Treasury/modern-treasury-node/commit/1114cc5653b10eedc834b136eb1c5683adc834d7))
+* **api:** rename `associated_legal_entity` to `child_legal_entity` ([#361](https://github.com/Modern-Treasury/modern-treasury-node/issues/361)) ([5da0450](https://github.com/Modern-Treasury/modern-treasury-node/commit/5da0450d76fa88df0fce1fa427762830d2903f6c))
+* **api:** rename `id_type` enum from `cl_nut` to `cl_rut` ([5da0450](https://github.com/Modern-Treasury/modern-treasury-node/commit/5da0450d76fa88df0fce1fa427762830d2903f6c))
+* **api:** updates ([#367](https://github.com/Modern-Treasury/modern-treasury-node/issues/367)) ([9829324](https://github.com/Modern-Treasury/modern-treasury-node/commit/9829324c34b09c2f3407c55e598870602a7daba3))
+
+
+### Bug Fixes
+
+* **client:** correctly send deno version header ([#368](https://github.com/Modern-Treasury/modern-treasury-node/issues/368)) ([52436c1](https://github.com/Modern-Treasury/modern-treasury-node/commit/52436c1f87d906f6ef31f29785cd1e2cbdf4de91))
+* handle process.env being undefined in debug func ([#366](https://github.com/Modern-Treasury/modern-treasury-node/issues/366)) ([dab08f7](https://github.com/Modern-Treasury/modern-treasury-node/commit/dab08f7f47eb1afbb62217b3aad135c52f18d7ee))
+* **internal:** make toFile use input file's options ([#362](https://github.com/Modern-Treasury/modern-treasury-node/issues/362)) ([35f0b12](https://github.com/Modern-Treasury/modern-treasury-node/commit/35f0b12ffdb86602010a8a303f69ad9c31e2d9cc))
+
+
+### Chores
+
+* add back removed code ([0d813f2](https://github.com/Modern-Treasury/modern-treasury-node/commit/0d813f2af3cea7e7d79620021663fb8ce391322e))
+* **internal:** temporary commit ([#370](https://github.com/Modern-Treasury/modern-treasury-node/issues/370)) ([f8a9dd8](https://github.com/Modern-Treasury/modern-treasury-node/commit/f8a9dd8ef9edeb75e4e8fa1439a9ff86e81bddc5))
+* **internal:** update generated pragma comment ([#360](https://github.com/Modern-Treasury/modern-treasury-node/issues/360)) ([008af46](https://github.com/Modern-Treasury/modern-treasury-node/commit/008af4670416ea80ba63ceb46ceaa072ad8ab162))
+
+
+### Documentation
+
+* fix typo in CONTRIBUTING.md ([#358](https://github.com/Modern-Treasury/modern-treasury-node/issues/358)) ([06980b8](https://github.com/Modern-Treasury/modern-treasury-node/commit/06980b8405af9950940a4d4fc6317e11d2903315))
+* **readme:** consistent use of sentence case in headings ([#363](https://github.com/Modern-Treasury/modern-treasury-node/issues/363)) ([9c1e738](https://github.com/Modern-Treasury/modern-treasury-node/commit/9c1e7381d9f2c41b5d4c2ba128aea4a500dbb16a))
+* **readme:** document how to make undocumented requests ([#364](https://github.com/Modern-Treasury/modern-treasury-node/issues/364)) ([770f57a](https://github.com/Modern-Treasury/modern-treasury-node/commit/770f57acf6eb1b0baa7e797b0bbf1d9790601102))
+
 ## 2.19.0 (2024-03-14)
 
 Full Changelog: [v2.18.0...v2.19.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.18.0...v2.19.0)
