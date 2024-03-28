@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.20.1 (2024-03-28)
+
+Full Changelog: [v2.20.0...v2.20.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.20.0...v2.20.1)
+
+### Chores
+
+* **internal:** bump dependencies ([#371](https://github.com/Modern-Treasury/modern-treasury-node/issues/371)) ([913dfb4](https://github.com/Modern-Treasury/modern-treasury-node/commit/913dfb4844cdb7972d8d220c0faf3280a9b1ff09))
+
 ## 2.20.0 (2024-03-26)
 
 Full Changelog: [v2.19.0...v2.20.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.19.0...v2.20.0)
