@@ -614,7 +614,14 @@ export namespace BulkRequestCreateParams {
       export interface AccountDetail {
         account_number: string;
 
-        account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'wallet_address' | 'pan' | 'other';
+        account_number_type?:
+          | 'iban'
+          | 'hk_number'
+          | 'clabe'
+          | 'nz_number'
+          | 'wallet_address'
+          | 'pan'
+          | 'other';
       }
 
       export interface ContactDetail {
@@ -1577,7 +1584,14 @@ export namespace BulkRequestCreateParams {
       export interface AccountDetail {
         account_number: string;
 
-        account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'wallet_address' | 'pan' | 'other';
+        account_number_type?:
+          | 'iban'
+          | 'hk_number'
+          | 'clabe'
+          | 'nz_number'
+          | 'wallet_address'
+          | 'pan'
+          | 'other';
       }
 
       export interface ContactDetail {
