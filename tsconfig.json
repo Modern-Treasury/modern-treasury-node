@@ -12,7 +12,6 @@
       "modern-treasury/_shims/auto/*": ["src/_shims/auto/*-node"],
       "modern-treasury/*": ["src/*"],
       "modern-treasury": ["src/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,
 
