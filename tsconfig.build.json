@@ -7,7 +7,6 @@
     "paths": {
       "modern-treasury/*": ["dist/src/*"],
       "modern-treasury": ["dist/src/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": false,
     "declaration": true,

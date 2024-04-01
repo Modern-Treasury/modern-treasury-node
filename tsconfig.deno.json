@@ -9,7 +9,6 @@
       "modern-treasury/_shims/auto/*": ["deno/_shims/auto/*-deno"],
       "modern-treasury/*": ["deno/*"],
       "modern-treasury": ["deno/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,
     "declaration": true,
