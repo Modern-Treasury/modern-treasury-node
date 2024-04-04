@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.21.0 (2024-04-04)
+
+Full Changelog: [v2.20.0...v2.21.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.20.0...v2.21.0)
+
+### Features
+
+* **api:** add id type in_lei ([#377](https://github.com/Modern-Treasury/modern-treasury-node/issues/377)) ([62a2b7b](https://github.com/Modern-Treasury/modern-treasury-node/commit/62a2b7b69706672bb35b562126f25a2d8b06a8ea))
+* **api:** update account number type enum ([#373](https://github.com/Modern-Treasury/modern-treasury-node/issues/373)) ([b178165](https://github.com/Modern-Treasury/modern-treasury-node/commit/b178165a0335b1d6dc36ffbf76a760cfe8d9df81))
+
+
+### Chores
+
+* **deps:** bump yarn to v1.22.22 ([#376](https://github.com/Modern-Treasury/modern-treasury-node/issues/376)) ([6e480ae](https://github.com/Modern-Treasury/modern-treasury-node/commit/6e480aee7249758e071bc185242adefa9249e6b1))
+* **deps:** remove unused dependency digest-fetch ([#375](https://github.com/Modern-Treasury/modern-treasury-node/issues/375)) ([f9b8060](https://github.com/Modern-Treasury/modern-treasury-node/commit/f9b806046ee671b78d1bbf99b871bc237dfbfa24))
+* **internal:** bump dependencies ([#371](https://github.com/Modern-Treasury/modern-treasury-node/issues/371)) ([913dfb4](https://github.com/Modern-Treasury/modern-treasury-node/commit/913dfb4844cdb7972d8d220c0faf3280a9b1ff09))
+
 ## 2.20.0 (2024-03-26)
 
 Full Changelog: [v2.19.0...v2.20.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.19.0...v2.20.0)
