@@ -26,12 +26,9 @@ const modernTreasury = new ModernTreasury({
 });
 
 async function main() {
-  const externalAccount = await modernTreasury.externalAccounts.create({
-    counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a',
-    name: 'my bank',
-  });
+  const counterparty = await modernTreasury.counterparties.create({ name: 'my first counterparty' });
 
-  console.log(externalAccount.id);
+  console.log(counterparty.id);
 }
 
 main();
@@ -51,13 +48,8 @@ const modernTreasury = new ModernTreasury({
 });
 
 async function main() {
-  const params: ModernTreasury.ExternalAccountCreateParams = {
-    counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a',
-    name: 'my bank',
-  };
-  const externalAccount: ModernTreasury.ExternalAccount = await modernTreasury.externalAccounts.create(
-    params,
-  );
+  const params: ModernTreasury.CounterpartyCreateParams = { name: 'my first counterparty' };
+  const counterparty: ModernTreasury.Counterparty = await modernTreasury.counterparties.create(params);
 }
 
 main();
@@ -169,7 +161,7 @@ const modernTreasury = new ModernTreasury({
 });
 
 // Or, configure per-request:
-await modernTreasury.externalAccounts.list({
+await modernTreasury.counterparties.create({ name: 'my first counterparty' }, {
   maxRetries: 5,
 });
 ```
@@ -186,7 +178,7 @@ const modernTreasury = new ModernTreasury({
 });
 
 // Override per-request:
-await modernTreasury.externalAccounts.list({ party_name: 'my bank' }, {
+await modernTreasury.counterparties.create({ name: 'my first counterparty' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -201,22 +193,22 @@ List methods in the ModernTreasury API are paginated.
 You can use `for await … of` syntax to iterate through items across all pages:
 
 ```ts
-async function fetchAllExternalAccounts(params) {
-  const allExternalAccounts = [];
+async function fetchAllCounterparties(params) {
+  const allCounterparties = [];
   // Automatically fetches more pages as needed.
-  for await (const externalAccount of modernTreasury.externalAccounts.list()) {
-    allExternalAccounts.push(externalAccount);
+  for await (const counterparty of modernTreasury.counterparties.list()) {
+    allCounterparties.push(counterparty);
   }
-  return allExternalAccounts;
+  return allCounterparties;
 }
 ```
 
 Alternatively, you can make request a single page at a time:
 
 ```ts
-let page = await modernTreasury.externalAccounts.list();
-for (const externalAccount of page.items) {
-  console.log(externalAccount);
+let page = await modernTreasury.counterparties.list();
+for (const counterparty of page.items) {
+  console.log(counterparty);
 }
 
 // Convenience methods are provided for manually paginating:
@@ -238,17 +230,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const modernTreasury = new ModernTreasury();
 
-const response = await modernTreasury.externalAccounts
-  .create({ counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a', name: 'my bank' })
-  .asResponse();
+const response = await modernTreasury.counterparties.create({ name: 'my first counterparty' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: externalAccount, response: raw } = await modernTreasury.externalAccounts
-  .create({ counterparty_id: '9eba513a-53fd-4d6d-ad52-ccce122ab92a', name: 'my bank' })
+const { data: counterparty, response: raw } = await modernTreasury.counterparties
+  .create({ name: 'my first counterparty' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(externalAccount.id);
+console.log(counterparty.id);
 ```
 
 ### Making custom/undocumented requests
@@ -352,9 +342,12 @@ const modernTreasury = new ModernTreasury({
 });
 
 // Override per-request:
-await modernTreasury.externalAccounts.list({
-  httpAgent: new http.Agent({ keepAlive: false }),
-});
+await modernTreasury.counterparties.create(
+  { name: 'my first counterparty' },
+  {
+    httpAgent: new http.Agent({ keepAlive: false }),
+  },
+);
 ```
 
 ## Semantic versioning
