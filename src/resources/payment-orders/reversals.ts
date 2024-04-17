@@ -73,6 +73,11 @@ export interface Reversal {
   created_at: string;
 
   /**
+   * The ID of the ledger transaction linked to the reversal.
+   */
+  ledger_transaction_id: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
