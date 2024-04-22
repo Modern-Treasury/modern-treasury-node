@@ -1,5 +1,30 @@
 # Changelog
 
+## 2.22.0 (2024-04-22)
+
+Full Changelog: [v2.21.0...v2.22.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.21.0...v2.22.0)
+
+### Features
+
+* **api:** add ledger_transaction_id field to reversal ([#383](https://github.com/Modern-Treasury/modern-treasury-node/issues/383)) ([538de7b](https://github.com/Modern-Treasury/modern-treasury-node/commit/538de7b6349aaac9a9825ba47970803aa7487d54))
+
+
+### Chores
+
+* **internal:** formatting ([#381](https://github.com/Modern-Treasury/modern-treasury-node/issues/381)) ([530915a](https://github.com/Modern-Treasury/modern-treasury-node/commit/530915a8a9f3db1452363561ddf89e741d8df393))
+* **internal:** update gitignore ([#380](https://github.com/Modern-Treasury/modern-treasury-node/issues/380)) ([a8519b7](https://github.com/Modern-Treasury/modern-treasury-node/commit/a8519b7b0363196407b316fdb43313fa16261e98))
+* **internal:** use @swc/jest for running tests ([#385](https://github.com/Modern-Treasury/modern-treasury-node/issues/385)) ([ca96e64](https://github.com/Modern-Treasury/modern-treasury-node/commit/ca96e643191c69d392960caaee78e5eb3ae82e19))
+
+
+### Documentation
+
+* **examples:** use counterparties in snippets ([#378](https://github.com/Modern-Treasury/modern-treasury-node/issues/378)) ([a24994c](https://github.com/Modern-Treasury/modern-treasury-node/commit/a24994cb220a7a423fff9178429dd35b13c4eb53))
+
+
+### Build System
+
+* configure UTF-8 locale in devcontainer ([#382](https://github.com/Modern-Treasury/modern-treasury-node/issues/382)) ([fd4aa7a](https://github.com/Modern-Treasury/modern-treasury-node/commit/fd4aa7a9cc400aff850e483795ebd579c90df295))
+
 ## 2.21.0 (2024-04-04)
 
 Full Changelog: [v2.20.0...v2.21.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.20.0...v2.21.0)
