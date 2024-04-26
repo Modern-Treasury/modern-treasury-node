@@ -8,6 +8,13 @@ import { Page, type PageParams } from 'modern-treasury/pagination';
 
 export class LineItems extends APIResource {
   /**
+   * create transaction line items
+   */
+  create(body: LineItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<TransactionLineItem> {
+    return this._client.post('/api/transaction_line_items', { body, ...options });
+  }
+
+  /**
    * get transaction line item
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<TransactionLineItem> {
@@ -32,6 +39,16 @@ export class LineItems extends APIResource {
     return this._client.getAPIList('/api/transaction_line_items', TransactionLineItemsPage, {
       query,
       ...options,
+    });
+  }
+
+  /**
+   * delete transaction line item
+   */
+  del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/api/transaction_line_items/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }
@@ -117,6 +134,24 @@ export interface TransactionLineItem {
   updated_at: string;
 }
 
+export interface LineItemCreateParams {
+  /**
+   * If a matching object exists in Modern Treasury, `amount` will be populated.
+   * Value in specified currency's smallest unit (taken from parent Transaction).
+   */
+  amount: number;
+
+  /**
+   * The ID of the reconciled Expected Payment, otherwise `null`.
+   */
+  expected_payment_id: string;
+
+  /**
+   * The ID of the parent transaction.
+   */
+  transaction_id: string;
+}
+
 export interface LineItemListParams extends PageParams {
   id?: Record<string, string>;
 
@@ -128,5 +163,6 @@ export interface LineItemListParams extends PageParams {
 export namespace LineItems {
   export import TransactionLineItem = LineItemsAPI.TransactionLineItem;
   export import TransactionLineItemsPage = LineItemsAPI.TransactionLineItemsPage;
+  export import LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
   export import LineItemListParams = LineItemsAPI.LineItemListParams;
 }

@@ -148,17 +148,14 @@ export interface LedgerTransaction {
   /**
    * If the ledger transaction can be reconciled to another object in Modern
    * Treasury, the type will be populated here, otherwise null. This can be one of
-   * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+   * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+   * reversal.
    */
   ledgerable_type:
-    | 'counterparty'
     | 'expected_payment'
     | 'incoming_payment_detail'
-    | 'internal_account'
-    | 'line_item'
     | 'paper_item'
     | 'payment_order'
-    | 'payment_order_attempt'
     | 'return'
     | 'reversal'
     | null;
@@ -239,17 +236,14 @@ export interface LedgerTransactionCreateParams {
   /**
    * If the ledger transaction can be reconciled to another object in Modern
    * Treasury, the type will be populated here, otherwise null. This can be one of
-   * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+   * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+   * reversal.
    */
   ledgerable_type?:
-    | 'counterparty'
     | 'expected_payment'
     | 'incoming_payment_detail'
-    | 'internal_account'
-    | 'line_item'
     | 'paper_item'
     | 'payment_order'
-    | 'payment_order_attempt'
     | 'return'
     | 'reversal';
 
@@ -345,6 +339,26 @@ export interface LedgerTransactionUpdateParams {
    * An array of ledger entry objects.
    */
   ledger_entries?: Array<LedgerTransactionUpdateParams.LedgerEntry>;
+
+  /**
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the id will be populated here, otherwise null.
+   */
+  ledgerable_id?: string;
+
+  /**
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the type will be populated here, otherwise null. This can be one of
+   * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+   * reversal.
+   */
+  ledgerable_type?:
+    | 'expected_payment'
+    | 'incoming_payment_detail'
+    | 'paper_item'
+    | 'payment_order'
+    | 'return'
+    | 'reversal';
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -458,14 +472,10 @@ export interface LedgerTransactionListParams extends PageParams {
   ledgerable_id?: string;
 
   ledgerable_type?:
-    | 'counterparty'
     | 'expected_payment'
     | 'incoming_payment_detail'
-    | 'internal_account'
-    | 'line_item'
     | 'paper_item'
     | 'payment_order'
-    | 'payment_order_attempt'
     | 'return'
     | 'reversal';
 
@@ -545,14 +555,10 @@ export interface LedgerTransactionCreateReversalParams {
    * object like Return or Reversal.
    */
   ledgerable_type?:
-    | 'counterparty'
     | 'expected_payment'
     | 'incoming_payment_detail'
-    | 'internal_account'
-    | 'line_item'
     | 'paper_item'
     | 'payment_order'
-    | 'payment_order_attempt'
     | 'return'
     | 'reversal';
 
