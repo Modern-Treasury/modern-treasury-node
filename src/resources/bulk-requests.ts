@@ -433,17 +433,14 @@ export namespace BulkRequestCreateParams {
       /**
        * If the ledger transaction can be reconciled to another object in Modern
        * Treasury, the type will be populated here, otherwise null. This can be one of
-       * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+       * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+       * reversal.
        */
       ledgerable_type?:
-        | 'counterparty'
         | 'expected_payment'
         | 'incoming_payment_detail'
-        | 'internal_account'
-        | 'line_item'
         | 'paper_item'
         | 'payment_order'
-        | 'payment_order_attempt'
         | 'return'
         | 'reversal';
 
@@ -937,17 +934,14 @@ export namespace BulkRequestCreateParams {
       /**
        * If the ledger transaction can be reconciled to another object in Modern
        * Treasury, the type will be populated here, otherwise null. This can be one of
-       * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+       * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+       * reversal.
        */
       ledgerable_type?:
-        | 'counterparty'
         | 'expected_payment'
         | 'incoming_payment_detail'
-        | 'internal_account'
-        | 'line_item'
         | 'paper_item'
         | 'payment_order'
-        | 'payment_order_attempt'
         | 'return'
         | 'reversal';
 
@@ -1091,17 +1085,14 @@ export namespace BulkRequestCreateParams {
     /**
      * If the ledger transaction can be reconciled to another object in Modern
      * Treasury, the type will be populated here, otherwise null. This can be one of
-     * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+     * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+     * reversal.
      */
     ledgerable_type?:
-      | 'counterparty'
       | 'expected_payment'
       | 'incoming_payment_detail'
-      | 'internal_account'
-      | 'line_item'
       | 'paper_item'
       | 'payment_order'
-      | 'payment_order_attempt'
       | 'return'
       | 'reversal';
 
@@ -1207,7 +1198,7 @@ export namespace BulkRequestCreateParams {
      * When applicable, the bank-given code that determines the transaction's category.
      * For most banks this is the BAI2/BTRS transaction code.
      */
-    vendor_code: string;
+    vendor_code: string | null;
 
     /**
      * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
@@ -1215,7 +1206,7 @@ export namespace BulkRequestCreateParams {
      * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
      * `swift`, `us_bank`, or others.
      */
-    vendor_code_type: string;
+    vendor_code_type: string | null;
 
     /**
      * Additional data represented as key-value pairs. Both the key and value must be
@@ -1227,6 +1218,44 @@ export namespace BulkRequestCreateParams {
      * This field will be `true` if the transaction has posted to the account.
      */
     posted?: boolean;
+
+    /**
+     * The type of the transaction. Examples could be
+     * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+     */
+    type?:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'book'
+      | 'card'
+      | 'chats'
+      | 'check'
+      | 'cross_border'
+      | 'dk_nets'
+      | 'eft'
+      | 'hu_ics'
+      | 'interac'
+      | 'masav'
+      | 'mx_ccen'
+      | 'neft'
+      | 'nics'
+      | 'nz_becs'
+      | 'pl_elixir'
+      | 'provxchange'
+      | 'ro_sent'
+      | 'rtp'
+      | 'se_bankgirot'
+      | 'sen'
+      | 'sepa'
+      | 'sg_giro'
+      | 'sic'
+      | 'signet'
+      | 'sknbi'
+      | 'wire'
+      | 'zengin'
+      | 'other'
+      | null;
 
     /**
      * The transaction detail text that often appears in on your bank statement and in
@@ -1840,6 +1869,12 @@ export namespace BulkRequestCreateParams {
     statement_descriptor?: string | null;
 
     /**
+     * The Expected Payment's status can be updated from partially_reconciled to
+     * reconciled.
+     */
+    status?: 'reconciled' | null;
+
+    /**
      * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
      * sepa, signet, wire.
      */
@@ -1874,6 +1909,26 @@ export namespace BulkRequestCreateParams {
      * An array of ledger entry objects.
      */
     ledger_entries?: Array<LedgerTransactionUpdateRequestWithID.LedgerEntry>;
+
+    /**
+     * If the ledger transaction can be reconciled to another object in Modern
+     * Treasury, the id will be populated here, otherwise null.
+     */
+    ledgerable_id?: string;
+
+    /**
+     * If the ledger transaction can be reconciled to another object in Modern
+     * Treasury, the type will be populated here, otherwise null. This can be one of
+     * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+     * reversal.
+     */
+    ledgerable_type?:
+      | 'expected_payment'
+      | 'incoming_payment_detail'
+      | 'paper_item'
+      | 'payment_order'
+      | 'return'
+      | 'reversal';
 
     /**
      * Additional data represented as key-value pairs. Both the key and value must be

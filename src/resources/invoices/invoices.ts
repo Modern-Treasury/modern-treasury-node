@@ -433,6 +433,13 @@ export interface InvoiceCreateParams {
   ingest_ledger_entries?: boolean | null;
 
   /**
+   * An array of invoice line items. The API supports a maximum of 50 invoice line
+   * items per invoice. If a greater number of invoice line items is required, please
+   * contact support.
+   */
+  invoice_line_items?: Array<InvoiceCreateParams.InvoiceLineItem> | null;
+
+  /**
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
@@ -613,6 +620,50 @@ export namespace InvoiceCreateParams {
     line2?: string;
   }
 
+  export interface InvoiceLineItem {
+    /**
+     * The name of the line item, typically a product or SKU name.
+     */
+    name: string;
+
+    /**
+     * The cost per unit of the product or service that this line item is for,
+     * specified in the invoice currency's smallest unit.
+     */
+    unit_amount: number;
+
+    /**
+     * An optional free-form description of the line item.
+     */
+    description?: string;
+
+    /**
+     * Either `debit` or `credit`. `debit` indicates that a client owes the business
+     * money and increases the invoice's `total_amount` due. `credit` has the opposite
+     * intention and effect.
+     */
+    direction?: string;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: Record<string, string>;
+
+    /**
+     * The number of units of a product or service that this line item is for. Must be
+     * a whole number. Defaults to 1 if not provided.
+     */
+    quantity?: number;
+
+    /**
+     * The cost per unit of the product or service that this line item is for,
+     * specified in the invoice currency's smallest unit. Accepts decimal strings with
+     * up to 12 decimals
+     */
+    unit_amount_decimal?: string;
+  }
+
   /**
    * The invoice issuer's business address.
    */
@@ -691,6 +742,13 @@ export interface InvoiceUpdateParams {
    * empty. Ignored if ledger_account_settlement_id is empty.
    */
   ingest_ledger_entries?: boolean | null;
+
+  /**
+   * An array of invoice line items. The API supports a maximum of 50 invoice line
+   * items per invoice. If a greater number of invoice line items is required, please
+   * contact support.
+   */
+  invoice_line_items?: Array<InvoiceUpdateParams.InvoiceLineItem> | null;
 
   /**
    * The invoice issuer's business address.
@@ -883,6 +941,50 @@ export namespace InvoiceUpdateParams {
     region: string;
 
     line2?: string;
+  }
+
+  export interface InvoiceLineItem {
+    /**
+     * The name of the line item, typically a product or SKU name.
+     */
+    name: string;
+
+    /**
+     * The cost per unit of the product or service that this line item is for,
+     * specified in the invoice currency's smallest unit.
+     */
+    unit_amount: number;
+
+    /**
+     * An optional free-form description of the line item.
+     */
+    description?: string;
+
+    /**
+     * Either `debit` or `credit`. `debit` indicates that a client owes the business
+     * money and increases the invoice's `total_amount` due. `credit` has the opposite
+     * intention and effect.
+     */
+    direction?: string;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: Record<string, string>;
+
+    /**
+     * The number of units of a product or service that this line item is for. Must be
+     * a whole number. Defaults to 1 if not provided.
+     */
+    quantity?: number;
+
+    /**
+     * The cost per unit of the product or service that this line item is for,
+     * specified in the invoice currency's smallest unit. Accepts decimal strings with
+     * up to 12 decimals
+     */
+    unit_amount_decimal?: string;
   }
 
   /**

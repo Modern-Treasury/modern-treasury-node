@@ -8,4 +8,10 @@ export {
   TransactionsPage,
   Transactions,
 } from './transactions';
-export { TransactionLineItem, LineItemListParams, TransactionLineItemsPage, LineItems } from './line-items';
+export {
+  TransactionLineItem,
+  LineItemCreateParams,
+  LineItemListParams,
+  TransactionLineItemsPage,
+  LineItems,
+} from './line-items';

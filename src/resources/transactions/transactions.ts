@@ -158,8 +158,8 @@ export interface Transaction {
   reconciled: boolean;
 
   /**
-   * The type of the transaction. Can be one of `ach`, `wire`, `check`, `rtp`,
-   * `book`, or `sen`.
+   * The type of the transaction. Examples could be
+   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
    */
   type:
     | 'ach'
@@ -229,6 +229,7 @@ export interface Transaction {
     | 'silvergate'
     | 'swift'
     | 'us_bank'
+    | 'user'
     | null;
 
   /**
@@ -331,7 +332,7 @@ export interface TransactionCreateParams {
    * When applicable, the bank-given code that determines the transaction's category.
    * For most banks this is the BAI2/BTRS transaction code.
    */
-  vendor_code: string;
+  vendor_code: string | null;
 
   /**
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
@@ -339,7 +340,7 @@ export interface TransactionCreateParams {
    * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
    * `swift`, `us_bank`, or others.
    */
-  vendor_code_type: string;
+  vendor_code_type: string | null;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -351,6 +352,44 @@ export interface TransactionCreateParams {
    * This field will be `true` if the transaction has posted to the account.
    */
   posted?: boolean;
+
+  /**
+   * The type of the transaction. Examples could be
+   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+   */
+  type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'wire'
+    | 'zengin'
+    | 'other'
+    | null;
 
   /**
    * The transaction detail text that often appears in on your bank statement and in
@@ -429,5 +468,6 @@ export namespace Transactions {
   export import LineItems = LineItemsAPI.LineItems;
   export import TransactionLineItem = LineItemsAPI.TransactionLineItem;
   export import TransactionLineItemsPage = LineItemsAPI.TransactionLineItemsPage;
+  export import LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
   export import LineItemListParams = LineItemsAPI.LineItemListParams;
 }
