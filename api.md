@@ -448,8 +448,10 @@ Types:
 
 Methods:
 
+- <code title="post /api/transaction_line_items">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">create</a>({ ...params }) -> TransactionLineItem</code>
 - <code title="get /api/transaction_line_items/{id}">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">retrieve</a>(id) -> TransactionLineItem</code>
 - <code title="get /api/transaction_line_items">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">list</a>({ ...params }) -> TransactionLineItemsPage</code>
+- <code title="delete /api/transaction_line_items/{id}">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">del</a>(id) -> void</code>
 
 # Validations
 

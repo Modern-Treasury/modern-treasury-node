@@ -89,14 +89,10 @@ export interface LedgerTransactionVersion {
    * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
    */
   ledgerable_type:
-    | 'counterparty'
     | 'expected_payment'
     | 'incoming_payment_detail'
-    | 'internal_account'
-    | 'line_item'
     | 'paper_item'
     | 'payment_order'
-    | 'payment_order_attempt'
     | 'return'
     | 'reversal'
     | null;
