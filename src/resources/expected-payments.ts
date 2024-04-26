@@ -194,7 +194,7 @@ export interface ExpectedPayment {
   statement_descriptor: string | null;
 
   /**
-   * One of unreconciled, reconciled, or archived.
+   * One of unreconciled, partially_reconciled, reconciled, or archived.
    */
   status: 'archived' | 'partially_reconciled' | 'reconciled' | 'unreconciled';
 
@@ -409,17 +409,14 @@ export namespace ExpectedPaymentCreateParams {
     /**
      * If the ledger transaction can be reconciled to another object in Modern
      * Treasury, the type will be populated here, otherwise null. This can be one of
-     * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+     * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+     * reversal.
      */
     ledgerable_type?:
-      | 'counterparty'
       | 'expected_payment'
       | 'incoming_payment_detail'
-      | 'internal_account'
-      | 'line_item'
       | 'paper_item'
       | 'payment_order'
-      | 'payment_order_attempt'
       | 'return'
       | 'reversal';
 
@@ -609,6 +606,12 @@ export interface ExpectedPaymentUpdateParams {
    * be the memo field.
    */
   statement_descriptor?: string | null;
+
+  /**
+   * The Expected Payment's status can be updated from partially_reconciled to
+   * reconciled.
+   */
+  status?: 'reconciled' | null;
 
   /**
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
