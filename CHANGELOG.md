@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.23.0 (2024-04-26)
+
+Full Changelog: [v2.22.0...v2.23.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.22.0...v2.23.0)
+
+### Features
+
+* **api:** various API updates ([#388](https://github.com/Modern-Treasury/modern-treasury-node/issues/388)) ([a03403f](https://github.com/Modern-Treasury/modern-treasury-node/commit/a03403fb770e475473088208253e907edc43c3d4))
+
+
+### Chores
+
+* **internal:** add scripts/test and scripts/mock ([#389](https://github.com/Modern-Treasury/modern-treasury-node/issues/389)) ([cd3ac6d](https://github.com/Modern-Treasury/modern-treasury-node/commit/cd3ac6d441c6fce0417377cd973e9756c7cc5af8))
+* **internal:** use actions/checkout@v4 for codeflow ([#386](https://github.com/Modern-Treasury/modern-treasury-node/issues/386)) ([6d2a5d9](https://github.com/Modern-Treasury/modern-treasury-node/commit/6d2a5d913d73f33caacc181e668ab3d0797a0229))
+
 ## 2.22.0 (2024-04-22)
 
 Full Changelog: [v2.21.0...v2.22.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.21.0...v2.22.0)
