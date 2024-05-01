@@ -240,6 +240,8 @@ export interface LedgerAccountSettlementListParams extends PageParams {
    */
   id?: Array<string>;
 
+  ledger_id?: string;
+
   ledger_transaction_id?: string;
 
   /**
