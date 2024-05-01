@@ -113,6 +113,7 @@ describe('resource ledgerAccountSettlements', () => {
         {
           id: ['string', 'string', 'string'],
           after_cursor: 'string',
+          ledger_id: 'string',
           ledger_transaction_id: 'string',
           metadata: { foo: 'string' },
           per_page: 0,
