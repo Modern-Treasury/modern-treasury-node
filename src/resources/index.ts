@@ -248,3 +248,4 @@ export {
   VirtualAccountsPage,
   VirtualAccounts,
 } from './virtual-accounts';
+export { Webhooks } from './webhooks';

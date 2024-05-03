@@ -474,6 +474,13 @@ Methods:
 - <code title="get /api/paper_items/{id}">client.paperItems.<a href="./src/resources/paper-items.ts">retrieve</a>(id) -> PaperItem</code>
 - <code title="get /api/paper_items">client.paperItems.<a href="./src/resources/paper-items.ts">list</a>({ ...params }) -> PaperItemsPage</code>
 
+# Webhooks
+
+Methods:
+
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">getSignature</a>(payload, opts?) -> string</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">validateSignature</a>(payload, headers, opts?) -> boolean</code>
+
 # VirtualAccounts
 
 Types:

@@ -175,6 +175,7 @@ export class ModernTreasury extends Core.APIClient {
   transactions: API.Transactions = new API.Transactions(this);
   validations: API.Validations = new API.Validations(this);
   paperItems: API.PaperItems = new API.PaperItems(this);
+  webhooks: API.Webhooks = new API.Webhooks(this);
   virtualAccounts: API.VirtualAccounts = new API.VirtualAccounts(this);
   bulkRequests: API.BulkRequests = new API.BulkRequests(this);
   bulkResults: API.BulkResults = new API.BulkResults(this);
@@ -450,6 +451,8 @@ export namespace ModernTreasury {
   export import PaperItem = API.PaperItem;
   export import PaperItemsPage = API.PaperItemsPage;
   export import PaperItemListParams = API.PaperItemListParams;
+
+  export import Webhooks = API.Webhooks;
 
   export import VirtualAccounts = API.VirtualAccounts;
   export import VirtualAccount = API.VirtualAccount;
