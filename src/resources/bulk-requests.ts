@@ -295,9 +295,8 @@ export namespace BulkRequestCreateParams {
 
     /**
      * For `wire`, this is usually the purpose which is transmitted via the
-     * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
-     * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
-     * CPA Code that will be attached to the payment.
+     * "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+     * digit CPA Code that will be attached to the payment.
      */
     purpose?: string | null;
 
@@ -1401,9 +1400,8 @@ export namespace BulkRequestCreateParams {
 
     /**
      * For `wire`, this is usually the purpose which is transmitted via the
-     * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
-     * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
-     * CPA Code that will be attached to the payment.
+     * "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+     * digit CPA Code that will be attached to the payment.
      */
     purpose?: string | null;
 
