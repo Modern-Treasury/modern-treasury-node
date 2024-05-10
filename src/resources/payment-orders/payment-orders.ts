@@ -266,9 +266,8 @@ export interface PaymentOrder {
 
   /**
    * For `wire`, this is usually the purpose which is transmitted via the
-   * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
-   * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
-   * CPA Code that will be attached to the payment.
+   * "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+   * digit CPA Code that will be attached to the payment.
    */
   purpose: string | null;
 
@@ -383,8 +382,8 @@ export interface PaymentOrder {
   updated_at: string;
 
   /**
-   * This field will be populated if a vendor (e.g. Currencycloud) failure occurs.
-   * Logic shouldn't be built on its value as it is free-form.
+   * This field will be populated if a vendor failure occurs. Logic shouldn't be
+   * built on its value as it is free-form.
    */
   vendor_failure_reason: string | null;
 }
@@ -751,9 +750,8 @@ export interface PaymentOrderCreateParams {
 
   /**
    * For `wire`, this is usually the purpose which is transmitted via the
-   * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
-   * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
-   * CPA Code that will be attached to the payment.
+   * "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+   * digit CPA Code that will be attached to the payment.
    */
   purpose?: string | null;
 
@@ -1387,9 +1385,8 @@ export interface PaymentOrderUpdateParams {
 
   /**
    * For `wire`, this is usually the purpose which is transmitted via the
-   * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
-   * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
-   * CPA Code that will be attached to the payment.
+   * "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+   * digit CPA Code that will be attached to the payment.
    */
   purpose?: string | null;
 
@@ -2016,9 +2013,8 @@ export interface PaymentOrderCreateAsyncParams {
 
   /**
    * For `wire`, this is usually the purpose which is transmitted via the
-   * "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
-   * this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
-   * CPA Code that will be attached to the payment.
+   * "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+   * digit CPA Code that will be attached to the payment.
    */
   purpose?: string | null;
 
