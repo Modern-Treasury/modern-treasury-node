@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import { isRequestOptions } from 'modern-treasury/core';
-import * as LegalEntitiesAPI from 'modern-treasury/resources/legal-entities';
-import * as LegalEntityAssociationsAPI from 'modern-treasury/resources/legal-entity-associations';
-import { Page, type PageParams } from 'modern-treasury/pagination';
+import * as Core from '../core';
+import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
+import * as LegalEntitiesAPI from './legal-entities';
+import * as LegalEntityAssociationsAPI from './legal-entity-associations';
+import { Page, type PageParams } from '../pagination';
 
 export class LegalEntities extends APIResource {
   /**

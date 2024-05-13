@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import { isRequestOptions } from 'modern-treasury/core';
-import * as LedgerAccountCategoriesAPI from 'modern-treasury/resources/ledger-account-categories';
-import * as Shared from 'modern-treasury/resources/shared';
-import { Page, type PageParams } from 'modern-treasury/pagination';
+import * as Core from '../core';
+import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
+import * as LedgerAccountCategoriesAPI from './ledger-account-categories';
+import * as Shared from './shared';
+import { Page, type PageParams } from '../pagination';
 
 export class LedgerAccountCategories extends APIResource {
   /**

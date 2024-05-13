@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import { isRequestOptions } from 'modern-treasury/core';
-import * as DocumentsAPI from 'modern-treasury/resources/documents';
-import { type Uploadable, multipartFormRequestOptions } from 'modern-treasury/core';
-import { Page, type PageParams } from 'modern-treasury/pagination';
+import * as Core from '../core';
+import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
+import * as DocumentsAPI from './documents';
+import { type Uploadable, multipartFormRequestOptions } from '../core';
+import { Page, type PageParams } from '../pagination';
 
 export class Documents extends APIResource {
   /**

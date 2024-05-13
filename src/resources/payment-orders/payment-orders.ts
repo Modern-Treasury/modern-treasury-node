@@ -1,17 +1,17 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import { isRequestOptions } from 'modern-treasury/core';
-import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/payment-orders';
-import * as ExternalAccountsAPI from 'modern-treasury/resources/external-accounts';
-import * as ReturnsAPI from 'modern-treasury/resources/returns';
-import * as Shared from 'modern-treasury/resources/shared';
-import * as VirtualAccountsAPI from 'modern-treasury/resources/virtual-accounts';
-import * as InternalAccountsAPI from 'modern-treasury/resources/internal-accounts/internal-accounts';
-import * as ReversalsAPI from 'modern-treasury/resources/payment-orders/reversals';
-import { type Uploadable, maybeMultipartFormRequestOptions } from 'modern-treasury/core';
-import { Page, type PageParams } from 'modern-treasury/pagination';
+import * as Core from '../../core';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as PaymentOrdersAPI from './payment-orders';
+import * as ExternalAccountsAPI from '../external-accounts';
+import * as ReturnsAPI from '../returns';
+import * as Shared from '../shared';
+import * as VirtualAccountsAPI from '../virtual-accounts';
+import * as InternalAccountsAPI from '../internal-accounts/internal-accounts';
+import * as ReversalsAPI from './reversals';
+import { type Uploadable, maybeMultipartFormRequestOptions } from '../../core';
+import { Page, type PageParams } from '../../pagination';
 
 export class PaymentOrders extends APIResource {
   reversals: ReversalsAPI.Reversals = new ReversalsAPI.Reversals(this._client);
