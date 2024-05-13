@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import * as ValidationsAPI from 'modern-treasury/resources/validations';
+import * as Core from '../core';
+import { APIResource } from '../resource';
+import * as ValidationsAPI from './validations';
 
 export class Validations extends APIResource {
   /**
