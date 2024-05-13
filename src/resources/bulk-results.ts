@@ -1,14 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import { isRequestOptions } from 'modern-treasury/core';
-import * as BulkResultsAPI from 'modern-treasury/resources/bulk-results';
-import * as ExpectedPaymentsAPI from 'modern-treasury/resources/expected-payments';
-import * as LedgerTransactionsAPI from 'modern-treasury/resources/ledger-transactions/ledger-transactions';
-import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/payment-orders';
-import * as TransactionsAPI from 'modern-treasury/resources/transactions/transactions';
-import { Page, type PageParams } from 'modern-treasury/pagination';
+import * as Core from '../core';
+import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
+import * as BulkResultsAPI from './bulk-results';
+import * as ExpectedPaymentsAPI from './expected-payments';
+import * as LedgerTransactionsAPI from './ledger-transactions/ledger-transactions';
+import * as PaymentOrdersAPI from './payment-orders/payment-orders';
+import * as TransactionsAPI from './transactions/transactions';
+import { Page, type PageParams } from '../pagination';
 
 export class BulkResults extends APIResource {
   /**

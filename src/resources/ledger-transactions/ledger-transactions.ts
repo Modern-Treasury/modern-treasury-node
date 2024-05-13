@@ -1,13 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import { isRequestOptions } from 'modern-treasury/core';
-import * as LedgerTransactionsAPI from 'modern-treasury/resources/ledger-transactions/ledger-transactions';
-import * as LedgerEntriesAPI from 'modern-treasury/resources/ledger-entries';
-import * as Shared from 'modern-treasury/resources/shared';
-import * as VersionsAPI from 'modern-treasury/resources/ledger-transactions/versions';
-import { Page, type PageParams } from 'modern-treasury/pagination';
+import * as Core from '../../core';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as LedgerTransactionsAPI from './ledger-transactions';
+import * as LedgerEntriesAPI from '../ledger-entries';
+import * as Shared from '../shared';
+import * as VersionsAPI from './versions';
+import { Page, type PageParams } from '../../pagination';
 
 export class LedgerTransactions extends APIResource {
   versions: VersionsAPI.Versions = new VersionsAPI.Versions(this._client);

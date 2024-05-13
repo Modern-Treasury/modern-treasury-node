@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import { isRequestOptions } from 'modern-treasury/core';
-import * as ConnectionsAPI from 'modern-treasury/resources/connections';
-import { Page, type PageParams } from 'modern-treasury/pagination';
+import * as Core from '../core';
+import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
+import * as ConnectionsAPI from './connections';
+import { Page, type PageParams } from '../pagination';
 
 export class Connections extends APIResource {
   /**

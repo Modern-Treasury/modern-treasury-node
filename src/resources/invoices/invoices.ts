@@ -1,14 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'modern-treasury/core';
-import { APIResource } from 'modern-treasury/resource';
-import { isRequestOptions } from 'modern-treasury/core';
-import * as InvoicesAPI from 'modern-treasury/resources/invoices/invoices';
-import * as ExpectedPaymentsAPI from 'modern-treasury/resources/expected-payments';
-import * as Shared from 'modern-treasury/resources/shared';
-import * as LineItemsAPI from 'modern-treasury/resources/invoices/line-items';
-import * as PaymentOrdersAPI from 'modern-treasury/resources/payment-orders/payment-orders';
-import { Page, type PageParams } from 'modern-treasury/pagination';
+import * as Core from '../../core';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as InvoicesAPI from './invoices';
+import * as ExpectedPaymentsAPI from '../expected-payments';
+import * as Shared from '../shared';
+import * as LineItemsAPI from './line-items';
+import * as PaymentOrdersAPI from '../payment-orders/payment-orders';
+import { Page, type PageParams } from '../../pagination';
 
 export class Invoices extends APIResource {
   lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this._client);
