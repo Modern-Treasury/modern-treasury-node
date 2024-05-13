@@ -5,9 +5,9 @@ import * as Errors from './error';
 import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
 import * as qs from 'qs';
-import * as Pagination from 'modern-treasury/pagination';
-import * as API from 'modern-treasury/resources/index';
-import * as TopLevelAPI from 'modern-treasury/resources/top-level';
+import * as Pagination from './pagination';
+import * as API from './resources/index';
+import * as TopLevelAPI from './resources/top-level';
 
 export interface ClientOptions {
   /**
