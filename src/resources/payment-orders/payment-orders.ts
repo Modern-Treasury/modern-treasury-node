@@ -382,6 +382,12 @@ export interface PaymentOrder {
   updated_at: string;
 
   /**
+   * Additional vendor specific fields for this payment. Data must be represented as
+   * key-value pairs.
+   */
+  vendor_attributes: unknown | null;
+
+  /**
    * This field will be populated if a vendor failure occurs. Logic shouldn't be
    * built on its value as it is free-form.
    */
