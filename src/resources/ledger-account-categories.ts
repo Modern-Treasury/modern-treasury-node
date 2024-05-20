@@ -394,6 +394,8 @@ export interface LedgerAccountCategoryListParams extends PageParams {
    */
   balances?: LedgerAccountCategoryListParams.Balances;
 
+  currency?: string;
+
   /**
    * Query categories which contain a ledger account directly or through child
    * categories.

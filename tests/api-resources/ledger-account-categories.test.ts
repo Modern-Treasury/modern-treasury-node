@@ -122,6 +122,7 @@ describe('resource ledgerAccountCategories', () => {
           id: ['string', 'string', 'string'],
           after_cursor: 'string',
           balances: { effective_at: '2019-12-27T18:11:19.117Z' },
+          currency: 'string',
           ledger_account_id: 'string',
           ledger_id: 'string',
           metadata: { foo: 'string' },
