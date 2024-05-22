@@ -463,8 +463,6 @@ export interface LedgerTransactionListParams extends PageParams {
 
   ledger_account_id?: string;
 
-  ledger_account_payout_id?: string;
-
   ledger_account_settlement_id?: string;
 
   ledger_id?: string;

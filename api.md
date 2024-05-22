@@ -275,19 +275,6 @@ Methods:
 - <code title="get /api/ledger_account_balance_monitors">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">list</a>({ ...params }) -> LedgerAccountBalanceMonitorsPage</code>
 - <code title="delete /api/ledger_account_balance_monitors/{id}">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">del</a>(id) -> LedgerAccountBalanceMonitor</code>
 
-# LedgerAccountPayouts
-
-Types:
-
-- <code><a href="./src/resources/ledger-account-payouts.ts">LedgerAccountPayout</a></code>
-
-Methods:
-
-- <code title="post /api/ledger_account_payouts">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">create</a>({ ...params }) -> LedgerAccountPayout</code>
-- <code title="get /api/ledger_account_payouts/{id}">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">retrieve</a>(id) -> LedgerAccountPayout</code>
-- <code title="patch /api/ledger_account_payouts/{id}">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">update</a>(id, { ...params }) -> LedgerAccountPayout</code>
-- <code title="get /api/ledger_account_payouts">client.ledgerAccountPayouts.<a href="./src/resources/ledger-account-payouts.ts">list</a>({ ...params }) -> LedgerAccountPayoutsPage</code>
-
 # LedgerAccountStatements
 
 Types:
