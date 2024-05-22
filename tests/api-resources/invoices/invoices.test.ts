@@ -128,6 +128,7 @@ describe('resource invoices', () => {
       receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       recipient_email: 'string',
       recipient_name: 'string',
+      remind_after_overdue_days: [0, 0, 0],
       virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
@@ -275,6 +276,7 @@ describe('resource invoices', () => {
           receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           recipient_email: 'string',
           recipient_name: 'string',
+          remind_after_overdue_days: [0, 0, 0],
           status: 'string',
           virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         },

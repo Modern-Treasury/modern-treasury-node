@@ -162,7 +162,6 @@ export class ModernTreasury extends Core.APIClient {
   ledgerAccountCategories: API.LedgerAccountCategories = new API.LedgerAccountCategories(this);
   ledgerAccounts: API.LedgerAccounts = new API.LedgerAccounts(this);
   ledgerAccountBalanceMonitors: API.LedgerAccountBalanceMonitors = new API.LedgerAccountBalanceMonitors(this);
-  ledgerAccountPayouts: API.LedgerAccountPayouts = new API.LedgerAccountPayouts(this);
   ledgerAccountStatements: API.LedgerAccountStatements = new API.LedgerAccountStatements(this);
   ledgerEntries: API.LedgerEntries = new API.LedgerEntries(this);
   ledgerEventHandlers: API.LedgerEventHandlers = new API.LedgerEventHandlers(this);
@@ -385,13 +384,6 @@ export namespace ModernTreasury {
   export import LedgerAccountBalanceMonitorCreateParams = API.LedgerAccountBalanceMonitorCreateParams;
   export import LedgerAccountBalanceMonitorUpdateParams = API.LedgerAccountBalanceMonitorUpdateParams;
   export import LedgerAccountBalanceMonitorListParams = API.LedgerAccountBalanceMonitorListParams;
-
-  export import LedgerAccountPayouts = API.LedgerAccountPayouts;
-  export import LedgerAccountPayout = API.LedgerAccountPayout;
-  export import LedgerAccountPayoutsPage = API.LedgerAccountPayoutsPage;
-  export import LedgerAccountPayoutCreateParams = API.LedgerAccountPayoutCreateParams;
-  export import LedgerAccountPayoutUpdateParams = API.LedgerAccountPayoutUpdateParams;
-  export import LedgerAccountPayoutListParams = API.LedgerAccountPayoutListParams;
 
   export import LedgerAccountStatements = API.LedgerAccountStatements;
   export import LedgerAccountStatementCreateResponse = API.LedgerAccountStatementCreateResponse;
