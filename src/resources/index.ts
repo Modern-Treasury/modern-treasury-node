@@ -131,14 +131,6 @@ export {
   LedgerAccountCategories,
 } from './ledger-account-categories';
 export {
-  LedgerAccountPayout,
-  LedgerAccountPayoutCreateParams,
-  LedgerAccountPayoutUpdateParams,
-  LedgerAccountPayoutListParams,
-  LedgerAccountPayoutsPage,
-  LedgerAccountPayouts,
-} from './ledger-account-payouts';
-export {
   LedgerAccountSettlement,
   LedgerAccountSettlementCreateParams,
   LedgerAccountSettlementUpdateParams,

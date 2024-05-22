@@ -244,6 +244,12 @@ export interface Invoice {
   recipient_name: string | null;
 
   /**
+   * Number of days after due date when overdue reminder emails will be sent out to
+   * invoice recipients.
+   */
+  remind_after_overdue_days: Array<number> | null;
+
+  /**
    * The status of the invoice.
    */
   status: 'draft' | 'paid' | 'partially_paid' | 'payment_pending' | 'unpaid' | 'voided';
@@ -532,6 +538,12 @@ export interface InvoiceCreateParams {
    * fallback to using the counterparty's name.
    */
   recipient_name?: string | null;
+
+  /**
+   * Number of days after due date when overdue reminder emails will be sent out to
+   * invoice recipients.
+   */
+  remind_after_overdue_days?: Array<number> | null;
 
   /**
    * The ID of the virtual account the invoice should be paid to.
@@ -848,6 +860,12 @@ export interface InvoiceUpdateParams {
    * fallback to using the counterparty's name.
    */
   recipient_name?: string | null;
+
+  /**
+   * Number of days after due date when overdue reminder emails will be sent out to
+   * invoice recipients.
+   */
+  remind_after_overdue_days?: Array<number> | null;
 
   /**
    * Invoice status must be updated in a `PATCH` request that does not modify any
