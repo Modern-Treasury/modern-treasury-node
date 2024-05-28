@@ -490,37 +490,7 @@ export interface InvoiceCreateParams {
    * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
    * `sic`, `signet`, `provexchange`, `zengin`.
    */
-  payment_type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'sg_giro'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'wire'
-    | 'zengin';
+  payment_type?: PaymentOrdersAPI.PaymentOrderType;
 
   /**
    * The receiving account ID. Can be an `external_account`.
@@ -812,37 +782,7 @@ export interface InvoiceUpdateParams {
    * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
    * `sic`, `signet`, `provexchange`, `zengin`.
    */
-  payment_type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'sg_giro'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'wire'
-    | 'zengin';
+  payment_type?: PaymentOrdersAPI.PaymentOrderType;
 
   /**
    * The receiving account ID. Can be an `external_account`.
