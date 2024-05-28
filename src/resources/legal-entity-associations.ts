@@ -28,44 +28,44 @@ export class LegalEntityAssociations extends APIResource {
 }
 
 export interface LegalEntityAssociation {
-  id?: string;
+  id: string;
 
   /**
    * The child legal entity.
    */
-  child_legal_entity?: LegalEntityAssociation.ChildLegalEntity;
+  child_legal_entity: LegalEntityAssociation.ChildLegalEntity;
 
-  created_at?: string;
+  created_at: string;
 
-  discarded_at?: string | null;
+  discarded_at: string | null;
 
   /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
-  live_mode?: boolean;
+  live_mode: boolean;
 
-  object?: string;
+  object: string;
 
   /**
    * The child entity's ownership percentage iff they are a beneficial owner.
    */
-  ownership_percentage?: number | null;
+  ownership_percentage: number | null;
 
   /**
    * The ID of the parent legal entity. This must be a business or joint legal
    * entity.
    */
-  parent_legal_entity_id?: string;
+  parent_legal_entity_id: string;
 
-  relationship_types?: Array<'beneficial_owner' | 'control_person'>;
+  relationship_types: Array<'beneficial_owner' | 'control_person'>;
 
   /**
    * The job title of the child entity at the parent entity.
    */
-  title?: string | null;
+  title: string | null;
 
-  updated_at?: string;
+  updated_at: string;
 }
 
 export namespace LegalEntityAssociation {
@@ -73,63 +73,63 @@ export namespace LegalEntityAssociation {
    * The child legal entity.
    */
   export interface ChildLegalEntity {
-    id?: string;
+    id: string;
 
     /**
      * A list of addresses for the entity.
      */
-    addresses?: Array<ChildLegalEntity.Address>;
+    addresses: Array<ChildLegalEntity.Address>;
 
     /**
      * The business's legal business name.
      */
-    business_name?: string | null;
+    business_name: string | null;
 
-    created_at?: string;
+    created_at: string;
 
     /**
      * A business's formation date (YYYY-MM-DD).
      */
-    date_formed?: string | null;
+    date_formed: string | null;
 
     /**
      * An individual's date of birth (YYYY-MM-DD).
      */
-    date_of_birth?: string | null;
+    date_of_birth: string | null;
 
-    discarded_at?: string | null;
+    discarded_at: string | null;
 
-    doing_business_as_names?: Array<string>;
+    doing_business_as_names: Array<string>;
 
     /**
      * The entity's primary email.
      */
-    email?: string | null;
+    email: string | null;
 
     /**
      * An individual's first name.
      */
-    first_name?: string | null;
+    first_name: string | null;
 
     /**
      * A list of identifications for the legal entity.
      */
-    identifications?: Array<ChildLegalEntity.Identification>;
+    identifications: Array<ChildLegalEntity.Identification>;
 
     /**
      * An individual's last name.
      */
-    last_name?: string | null;
+    last_name: string | null;
 
     /**
      * The type of legal entity.
      */
-    legal_entity_type?: 'business' | 'individual' | 'joint';
+    legal_entity_type: 'business' | 'individual' | 'joint';
 
     /**
      * The business's legal structure.
      */
-    legal_structure?:
+    legal_structure:
       | 'corporation'
       | 'llc'
       | 'non_profit'
@@ -142,24 +142,24 @@ export namespace LegalEntityAssociation {
      * This field will be true if this object exists in the live environment or false
      * if it exists in the test environment.
      */
-    live_mode?: boolean;
+    live_mode: boolean;
 
     /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata: Record<string, string>;
 
-    object?: string;
+    object: string;
 
-    phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
+    phone_numbers: Array<ChildLegalEntity.PhoneNumber>;
 
-    updated_at?: string;
+    updated_at: string;
 
     /**
      * The entity's primary website URL.
      */
-    website?: string | null;
+    website: string | null;
   }
 
   export namespace ChildLegalEntity {
@@ -266,6 +266,12 @@ export namespace LegalEntityAssociation {
 }
 
 export interface LegalEntityAssociationCreateParams {
+  /**
+   * The ID of the parent legal entity. This must be a business or joint legal
+   * entity.
+   */
+  parent_legal_entity_id: string;
+
   relationship_types: Array<'beneficial_owner' | 'control_person'>;
 
   /**
@@ -282,12 +288,6 @@ export interface LegalEntityAssociationCreateParams {
    * The child entity's ownership percentage iff they are a beneficial owner.
    */
   ownership_percentage?: number | null;
-
-  /**
-   * The ID of the parent legal entity. This must be a business or joint legal
-   * entity.
-   */
-  parent_legal_entity_id?: string;
 
   /**
    * The job title of the child entity at the parent entity.
