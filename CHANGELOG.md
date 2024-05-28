@@ -1,5 +1,39 @@
 # Changelog
 
+## 2.24.0 (2024-05-28)
+
+Full Changelog: [v2.23.0...v2.24.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.23.0...v2.24.0)
+
+### Features
+
+* **api:** add currency to ledger account categories ([#405](https://github.com/Modern-Treasury/modern-treasury-node/issues/405)) ([84bc4a0](https://github.com/Modern-Treasury/modern-treasury-node/commit/84bc4a0f89ba2abd4c232cd346a0978d9f437bda))
+* **api:** invoice overdue reminders ([59e3638](https://github.com/Modern-Treasury/modern-treasury-node/commit/59e36383759b57f7c30277a1bb4eda746720a8f7))
+* **api:** mark ConnectionLegalEntity response properties as required ([#407](https://github.com/Modern-Treasury/modern-treasury-node/issues/407)) ([843dd77](https://github.com/Modern-Treasury/modern-treasury-node/commit/843dd7759ae5eded8ac565816ea26c837885a69b))
+* **api:** remove deprecated ledger account payouts ([#406](https://github.com/Modern-Treasury/modern-treasury-node/issues/406)) ([59e3638](https://github.com/Modern-Treasury/modern-treasury-node/commit/59e36383759b57f7c30277a1bb4eda746720a8f7))
+* **api:** updates ([#395](https://github.com/Modern-Treasury/modern-treasury-node/issues/395)) ([d627950](https://github.com/Modern-Treasury/modern-treasury-node/commit/d6279508016f41e6c4e095ea555313508ff64314))
+
+
+### Bug Fixes
+
+* **package:** revert recent client file change ([#398](https://github.com/Modern-Treasury/modern-treasury-node/issues/398)) ([e25a0fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/e25a0fab22a47c779aac58d14d87cec0a3768442))
+
+
+### Chores
+
+* **docs:** add SECURITY.md ([#401](https://github.com/Modern-Treasury/modern-treasury-node/issues/401)) ([7da6a83](https://github.com/Modern-Treasury/modern-treasury-node/commit/7da6a8304155395bc5c0d0984df76d665306350e))
+* **docs:** streamline payment purpose and vendor failure handling ([#402](https://github.com/Modern-Treasury/modern-treasury-node/issues/402)) ([d816b92](https://github.com/Modern-Treasury/modern-treasury-node/commit/d816b926e4891f4ff0a0da3c64742e87bd0c1348))
+* **internal:** add link to openapi spec ([#392](https://github.com/Modern-Treasury/modern-treasury-node/issues/392)) ([272d794](https://github.com/Modern-Treasury/modern-treasury-node/commit/272d79431c4901b9677b58b03b9ea04e828a15eb))
+* **internal:** add scripts/test, scripts/mock and add ci job ([#393](https://github.com/Modern-Treasury/modern-treasury-node/issues/393)) ([315be57](https://github.com/Modern-Treasury/modern-treasury-node/commit/315be57cb1f4206000e6986123a63789672ec8b4))
+* **internal:** add slightly better logging to scripts ([#404](https://github.com/Modern-Treasury/modern-treasury-node/issues/404)) ([27e0062](https://github.com/Modern-Treasury/modern-treasury-node/commit/27e0062215d71db39b8dd840e1e359487c19745d))
+* **internal:** forward arguments in scripts/test ([#394](https://github.com/Modern-Treasury/modern-treasury-node/issues/394)) ([f583eaf](https://github.com/Modern-Treasury/modern-treasury-node/commit/f583eafab9e417a1760ab077ee041c9b1d5bb237))
+* **internal:** move client class to separate file ([#396](https://github.com/Modern-Treasury/modern-treasury-node/issues/396)) ([8877013](https://github.com/Modern-Treasury/modern-treasury-node/commit/88770139e5265bfc08e7bf7bc142b54bfb9b21bd))
+* **internal:** refactor scripts ([#390](https://github.com/Modern-Treasury/modern-treasury-node/issues/390)) ([8f96c06](https://github.com/Modern-Treasury/modern-treasury-node/commit/8f96c069c19c50107d602b2051c48bf9b9f0a417))
+
+
+### Refactors
+
+* change import paths to be relative ([#403](https://github.com/Modern-Treasury/modern-treasury-node/issues/403)) ([00e1c3a](https://github.com/Modern-Treasury/modern-treasury-node/commit/00e1c3a68fac93d65ea7bfcf1293c79381f6ac46))
+
 ## 2.23.0 (2024-04-26)
 
 Full Changelog: [v2.22.0...v2.23.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.22.0...v2.23.0)
