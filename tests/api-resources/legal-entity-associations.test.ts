@@ -12,6 +12,7 @@ const modernTreasury = new ModernTreasury({
 describe('resource legalEntityAssociations', () => {
   test('create: only required params', async () => {
     const responsePromise = modernTreasury.legalEntityAssociations.create({
+      parent_legal_entity_id: 'string',
       relationship_types: ['beneficial_owner', 'control_person'],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,6 +26,7 @@ describe('resource legalEntityAssociations', () => {
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.legalEntityAssociations.create({
+      parent_legal_entity_id: 'string',
       relationship_types: ['beneficial_owner', 'control_person'],
       child_legal_entity: {
         legal_entity_type: 'business',
@@ -76,7 +78,6 @@ describe('resource legalEntityAssociations', () => {
       },
       child_legal_entity_id: 'string',
       ownership_percentage: 0,
-      parent_legal_entity_id: 'string',
       title: 'string',
     });
   });

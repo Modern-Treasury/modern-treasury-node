@@ -80,36 +80,36 @@ export class ConnectionLegalEntities extends APIResource {
 export class ConnectionLegalEntitiesPage extends Page<ConnectionLegalEntity> {}
 
 export interface ConnectionLegalEntity {
-  id?: string;
+  id: string;
 
   /**
    * The ID of the connection.
    */
-  connection_id?: string;
+  connection_id: string;
 
-  created_at?: string;
+  created_at: string;
 
-  discarded_at?: string | null;
+  discarded_at: string | null;
 
   /**
    * The ID of the legal entity.
    */
-  legal_entity_id?: string;
+  legal_entity_id: string;
 
   /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
-  live_mode?: boolean;
+  live_mode: boolean;
 
-  object?: string;
+  object: string;
 
   /**
    * The status of the connection legal entity.
    */
-  status?: 'completed' | 'denied' | 'failed' | 'processing';
+  status: 'completed' | 'denied' | 'failed' | 'processing';
 
-  updated_at?: string;
+  updated_at: string;
 }
 
 export interface ConnectionLegalEntityCreateParams {

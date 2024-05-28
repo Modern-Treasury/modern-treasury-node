@@ -323,7 +323,8 @@ export namespace VirtualAccountCreateParams {
       | 'nz_national_clearing_code'
       | 'pl_national_clearing_code'
       | 'se_bankgiro_clearing_code'
-      | 'swift';
+      | 'swift'
+      | 'za_national_clearing_code';
 
     /**
      * If the routing detail is to be used for a specific payment type this field will
