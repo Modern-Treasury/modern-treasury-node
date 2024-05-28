@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.24.1 (2024-05-28)
+
+Full Changelog: [v2.24.0...v2.24.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.0...v2.24.1)
+
+### Documentation
+
+* **readme:** add bundle size badge ([#408](https://github.com/Modern-Treasury/modern-treasury-node/issues/408)) ([e333590](https://github.com/Modern-Treasury/modern-treasury-node/commit/e33359077f8ce7d7931062ecf2b9d470c57d33b2))
+
 ## 2.24.0 (2024-05-28)
 
 Full Changelog: [v2.23.0...v2.24.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.23.0...v2.24.0)
