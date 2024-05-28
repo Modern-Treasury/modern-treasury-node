@@ -566,7 +566,8 @@ export namespace CounterpartyCreateParams {
         | 'nz_national_clearing_code'
         | 'pl_national_clearing_code'
         | 'se_bankgiro_clearing_code'
-        | 'swift';
+        | 'swift'
+        | 'za_national_clearing_code';
 
       payment_type?:
         | 'ach'
@@ -590,10 +591,10 @@ export namespace CounterpartyCreateParams {
         | 'provxchange'
         | 'ro_sent'
         | 'rtp'
-        | 'sg_giro'
         | 'se_bankgirot'
         | 'sen'
         | 'sepa'
+        | 'sg_giro'
         | 'sic'
         | 'signet'
         | 'sknbi'

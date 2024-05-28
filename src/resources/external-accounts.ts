@@ -475,7 +475,8 @@ export namespace ExternalAccountCreateParams {
       | 'nz_national_clearing_code'
       | 'pl_national_clearing_code'
       | 'se_bankgiro_clearing_code'
-      | 'swift';
+      | 'swift'
+      | 'za_national_clearing_code';
 
     payment_type?:
       | 'ach'
@@ -499,10 +500,10 @@ export namespace ExternalAccountCreateParams {
       | 'provxchange'
       | 'ro_sent'
       | 'rtp'
-      | 'sg_giro'
       | 'se_bankgirot'
       | 'sen'
       | 'sepa'
+      | 'sg_giro'
       | 'sic'
       | 'signet'
       | 'sknbi'
@@ -600,7 +601,7 @@ export interface ExternalAccountVerifyParams {
   originating_account_id: string;
 
   /**
-   * Both ach and eft are supported payment types.
+   * Can be `ach`, `eft`, or `rtp`.
    */
   payment_type:
     | 'ach'
@@ -638,6 +639,19 @@ export interface ExternalAccountVerifyParams {
    * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency | null;
+
+  /**
+   * A payment type to fallback to if the original type is not valid for the
+   * receiving account. Currently, this only supports falling back from RTP to ACH
+   * (payment_type=rtp and fallback_type=ach)
+   */
+  fallback_type?: 'ach';
+
+  /**
+   * Either `normal` or `high`. For ACH payments, `high` represents a same-day ACH
+   * transfer. This will apply to both `payment_type` and `fallback_type`.
+   */
+  priority?: 'high' | 'normal';
 }
 
 export namespace ExternalAccounts {

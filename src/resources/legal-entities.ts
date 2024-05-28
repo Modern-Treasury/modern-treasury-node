@@ -75,68 +75,68 @@ export class LegalEntities extends APIResource {
 export class LegalEntitiesPage extends Page<LegalEntity> {}
 
 export interface LegalEntity {
-  id?: string;
+  id: string;
 
   /**
    * A list of addresses for the entity.
    */
-  addresses?: Array<LegalEntity.Address>;
+  addresses: Array<LegalEntity.Address>;
 
   /**
    * The business's legal business name.
    */
-  business_name?: string | null;
+  business_name: string | null;
 
-  created_at?: string;
+  created_at: string;
 
   /**
    * A business's formation date (YYYY-MM-DD).
    */
-  date_formed?: string | null;
+  date_formed: string | null;
 
   /**
    * An individual's date of birth (YYYY-MM-DD).
    */
-  date_of_birth?: string | null;
+  date_of_birth: string | null;
 
-  discarded_at?: string | null;
+  discarded_at: string | null;
 
-  doing_business_as_names?: Array<string>;
+  doing_business_as_names: Array<string>;
 
   /**
    * The entity's primary email.
    */
-  email?: string | null;
+  email: string | null;
 
   /**
    * An individual's first name.
    */
-  first_name?: string | null;
+  first_name: string | null;
 
   /**
    * A list of identifications for the legal entity.
    */
-  identifications?: Array<LegalEntity.Identification>;
+  identifications: Array<LegalEntity.Identification>;
 
   /**
    * An individual's last name.
    */
-  last_name?: string | null;
+  last_name: string | null;
 
   /**
    * The legal entity associations and its child legal entities.
    */
-  legal_entity_associations?: Array<LegalEntityAssociationsAPI.LegalEntityAssociation> | null;
+  legal_entity_associations: Array<LegalEntityAssociationsAPI.LegalEntityAssociation> | null;
 
   /**
    * The type of legal entity.
    */
-  legal_entity_type?: 'business' | 'individual' | 'joint';
+  legal_entity_type: 'business' | 'individual' | 'joint';
 
   /**
    * The business's legal structure.
    */
-  legal_structure?:
+  legal_structure:
     | 'corporation'
     | 'llc'
     | 'non_profit'
@@ -149,24 +149,24 @@ export interface LegalEntity {
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
-  live_mode?: boolean;
+  live_mode: boolean;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata: Record<string, string>;
 
-  object?: string;
+  object: string;
 
-  phone_numbers?: Array<LegalEntity.PhoneNumber>;
+  phone_numbers: Array<LegalEntity.PhoneNumber>;
 
-  updated_at?: string;
+  updated_at: string;
 
   /**
    * The entity's primary website URL.
    */
-  website?: string | null;
+  website: string | null;
 }
 
 export namespace LegalEntity {
