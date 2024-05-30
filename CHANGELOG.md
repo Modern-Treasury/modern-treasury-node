@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.24.2 (2024-05-30)
+
+Full Changelog: [v2.24.1...v2.24.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.1...v2.24.2)
+
+### Chores
+
+* **internal:** add code reviewer ([#410](https://github.com/Modern-Treasury/modern-treasury-node/issues/410)) ([238edc0](https://github.com/Modern-Treasury/modern-treasury-node/commit/238edc0695960c4a27c26d3b869341d4ceb72d35))
+
 ## 2.24.1 (2024-05-28)
 
 Full Changelog: [v2.24.0...v2.24.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.0...v2.24.1)
