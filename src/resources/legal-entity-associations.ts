@@ -154,6 +154,11 @@ export namespace LegalEntityAssociation {
 
     phone_numbers: Array<ChildLegalEntity.PhoneNumber>;
 
+    /**
+     * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+     */
+    risk_rating: 'low' | 'medium' | 'high' | null;
+
     updated_at: string;
 
     /**
@@ -369,6 +374,11 @@ export namespace LegalEntityAssociationCreateParams {
     metadata?: Record<string, string>;
 
     phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
+
+    /**
+     * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+     */
+    risk_rating?: 'low' | 'medium' | 'high' | null;
 
     /**
      * The entity's primary website URL.
