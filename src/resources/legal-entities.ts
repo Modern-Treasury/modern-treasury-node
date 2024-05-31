@@ -161,6 +161,11 @@ export interface LegalEntity {
 
   phone_numbers: Array<LegalEntity.PhoneNumber>;
 
+  /**
+   * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+   */
+  risk_rating: 'low' | 'medium' | 'high' | null;
+
   updated_at: string;
 
   /**
@@ -348,6 +353,11 @@ export interface LegalEntityCreateParams {
   phone_numbers?: Array<LegalEntityCreateParams.PhoneNumber>;
 
   /**
+   * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+   */
+  risk_rating?: 'low' | 'medium' | 'high' | null;
+
+  /**
    * The entity's primary website URL.
    */
   website?: string | null;
@@ -520,6 +530,11 @@ export namespace LegalEntityCreateParams {
       phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
 
       /**
+       * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+       */
+      risk_rating?: 'low' | 'medium' | 'high' | null;
+
+      /**
        * The entity's primary website URL.
        */
       website?: string | null;
@@ -664,6 +679,11 @@ export interface LegalEntityUpdateParams {
   metadata?: Record<string, string>;
 
   phone_numbers?: Array<LegalEntityUpdateParams.PhoneNumber>;
+
+  /**
+   * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+   */
+  risk_rating?: 'low' | 'medium' | 'high' | null;
 
   /**
    * The entity's primary website URL.

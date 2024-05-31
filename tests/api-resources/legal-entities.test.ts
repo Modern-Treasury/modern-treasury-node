@@ -72,6 +72,7 @@ describe('resource legalEntities', () => {
           ownership_percentage: 0,
           child_legal_entity: {
             legal_entity_type: 'business',
+            risk_rating: 'low',
             first_name: 'string',
             last_name: 'string',
             date_of_birth: '2019-12-27',
@@ -130,6 +131,7 @@ describe('resource legalEntities', () => {
           ownership_percentage: 0,
           child_legal_entity: {
             legal_entity_type: 'business',
+            risk_rating: 'low',
             first_name: 'string',
             last_name: 'string',
             date_of_birth: '2019-12-27',
@@ -188,6 +190,7 @@ describe('resource legalEntities', () => {
           ownership_percentage: 0,
           child_legal_entity: {
             legal_entity_type: 'business',
+            risk_rating: 'low',
             first_name: 'string',
             last_name: 'string',
             date_of_birth: '2019-12-27',
@@ -244,6 +247,7 @@ describe('resource legalEntities', () => {
       legal_structure: 'corporation',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
+      risk_rating: 'low',
       website: 'string',
     });
   });
@@ -300,6 +304,7 @@ describe('resource legalEntities', () => {
           legal_structure: 'corporation',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
+          risk_rating: 'low',
           website: 'string',
         },
         { path: '/_stainless_unknown_path' },
