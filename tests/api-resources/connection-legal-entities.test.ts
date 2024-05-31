@@ -26,6 +26,7 @@ describe('resource connectionLegalEntities', () => {
       connection_id: 'string',
       legal_entity: {
         legal_entity_type: 'business',
+        risk_rating: 'low',
         first_name: 'string',
         last_name: 'string',
         date_of_birth: '2019-12-27',
@@ -78,6 +79,7 @@ describe('resource connectionLegalEntities', () => {
             ownership_percentage: 0,
             child_legal_entity: {
               legal_entity_type: 'business',
+              risk_rating: 'low',
               first_name: 'string',
               last_name: 'string',
               date_of_birth: '2019-12-27',
@@ -136,6 +138,7 @@ describe('resource connectionLegalEntities', () => {
             ownership_percentage: 0,
             child_legal_entity: {
               legal_entity_type: 'business',
+              risk_rating: 'low',
               first_name: 'string',
               last_name: 'string',
               date_of_birth: '2019-12-27',
@@ -194,6 +197,7 @@ describe('resource connectionLegalEntities', () => {
             ownership_percentage: 0,
             child_legal_entity: {
               legal_entity_type: 'business',
+              risk_rating: 'low',
               first_name: 'string',
               last_name: 'string',
               date_of_birth: '2019-12-27',

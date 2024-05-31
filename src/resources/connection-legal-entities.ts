@@ -207,6 +207,11 @@ export namespace ConnectionLegalEntityCreateParams {
     phone_numbers?: Array<LegalEntity.PhoneNumber>;
 
     /**
+     * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+     */
+    risk_rating?: 'low' | 'medium' | 'high' | null;
+
+    /**
      * The entity's primary website URL.
      */
     website?: string | null;
@@ -377,6 +382,11 @@ export namespace ConnectionLegalEntityCreateParams {
         metadata?: Record<string, string>;
 
         phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
+
+        /**
+         * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+         */
+        risk_rating?: 'low' | 'medium' | 'high' | null;
 
         /**
          * The entity's primary website URL.
