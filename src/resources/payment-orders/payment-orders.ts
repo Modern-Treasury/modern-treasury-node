@@ -153,7 +153,7 @@ export interface PaymentOrder {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency: Shared.Currency | null;
+  currency: Shared.Currency;
 
   /**
    * If the payment order's status is `returned`, this will include the return
@@ -423,7 +423,7 @@ export namespace PaymentOrder {
     /**
      * Currency to convert, often called the "sell" currency.
      */
-    base_currency: Shared.Currency | null;
+    base_currency: Shared.Currency;
 
     /**
      * The exponent component of the rate. The decimal is calculated as `value` / (10 ^
@@ -445,7 +445,7 @@ export namespace PaymentOrder {
     /**
      * Currency to convert the `base_currency` to, often called the "buy" currency.
      */
-    target_currency: Shared.Currency | null;
+    target_currency: Shared.Currency;
 
     /**
      * The whole number component of the rate. The decimal is calculated as `value` /
@@ -652,7 +652,7 @@ export interface PaymentOrderCreateParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * An optional description for internal use.
@@ -1297,7 +1297,7 @@ export interface PaymentOrderUpdateParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * An optional description for internal use.
@@ -1923,7 +1923,7 @@ export interface PaymentOrderCreateAsyncParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * An optional description for internal use.
