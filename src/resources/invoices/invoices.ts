@@ -122,7 +122,7 @@ export interface Invoice {
   /**
    * Currency that the invoice is denominated in. Defaults to `USD` if not provided.
    */
-  currency: Shared.Currency | null;
+  currency: Shared.Currency;
 
   /**
    * A free-form description of the invoice.
@@ -418,7 +418,7 @@ export interface InvoiceCreateParams {
   /**
    * Currency that the invoice is denominated in. Defaults to `USD` if not provided.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * A free-form description of the invoice.
@@ -700,7 +700,7 @@ export interface InvoiceUpdateParams {
   /**
    * Currency that the invoice is denominated in. Defaults to `USD` if not provided.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * A free-form description of the invoice.

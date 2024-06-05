@@ -200,7 +200,6 @@ export type Currency =
   | 'ZWD'
   | 'ZWL'
   | 'ZWN'
-  | 'ZWR'
-  | null;
+  | 'ZWR';
 
 export type TransactionDirection = 'credit' | 'debit';

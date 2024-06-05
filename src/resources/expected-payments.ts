@@ -109,7 +109,7 @@ export interface ExpectedPayment {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency: Shared.Currency | null;
+  currency: Shared.Currency;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -286,7 +286,7 @@ export interface ExpectedPaymentCreateParams {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -543,7 +543,7 @@ export interface ExpectedPaymentUpdateParams {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
