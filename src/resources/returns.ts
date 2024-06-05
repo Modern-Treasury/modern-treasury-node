@@ -127,7 +127,7 @@ export interface ReturnObject {
   /**
    * Currency that this transaction is denominated in.
    */
-  currency: Shared.Currency | null;
+  currency: Shared.Currency;
 
   /**
    * If the return's status is `returned`, this will include the return object's data

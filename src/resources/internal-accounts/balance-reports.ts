@@ -153,7 +153,7 @@ export namespace BalanceReport {
     /**
      * The currency of the balance.
      */
-    currency: Shared.Currency | null;
+    currency: Shared.Currency;
 
     /**
      * This field will be true if this object exists in the live environment or false
