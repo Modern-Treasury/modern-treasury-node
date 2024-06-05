@@ -197,7 +197,7 @@ export namespace BulkRequestCreateParams {
     /**
      * Defaults to the currency of the originating account.
      */
-    currency?: Shared.Currency | null;
+    currency?: Shared.Currency;
 
     /**
      * An optional description for internal use.
@@ -811,7 +811,7 @@ export namespace BulkRequestCreateParams {
     /**
      * Must conform to ISO 4217. Defaults to the currency of the internal account.
      */
-    currency?: Shared.Currency | null;
+    currency?: Shared.Currency;
 
     /**
      * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -1306,7 +1306,7 @@ export namespace BulkRequestCreateParams {
     /**
      * Defaults to the currency of the originating account.
      */
-    currency?: Shared.Currency | null;
+    currency?: Shared.Currency;
 
     /**
      * An optional description for internal use.
@@ -1804,7 +1804,7 @@ export namespace BulkRequestCreateParams {
     /**
      * Must conform to ISO 4217. Defaults to the currency of the internal account.
      */
-    currency?: Shared.Currency | null;
+    currency?: Shared.Currency;
 
     /**
      * The earliest date the payment may come in. Format: yyyy-mm-dd

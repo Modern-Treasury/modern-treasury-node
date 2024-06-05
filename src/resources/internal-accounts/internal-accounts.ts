@@ -120,7 +120,7 @@ export interface InternalAccount {
   /**
    * The currency of the account.
    */
-  currency: Shared.Currency | null;
+  currency: Shared.Currency;
 
   /**
    * If the internal account links to a ledger account in Modern Treasury, the id of
@@ -342,7 +342,7 @@ export interface InternalAccountListParams extends PageParams {
   /**
    * Only return internal accounts with this currency.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * Only return internal accounts associated with this legal entity.

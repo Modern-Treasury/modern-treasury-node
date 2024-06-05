@@ -112,7 +112,7 @@ export interface Transaction {
   /**
    * Currency that this transaction is denominated in.
    */
-  currency: Shared.Currency | null;
+  currency: Shared.Currency;
 
   /**
    * Either `credit` or `debit`.
@@ -274,7 +274,7 @@ export namespace Transaction {
     /**
      * Currency to convert, often called the "sell" currency.
      */
-    base_currency: Shared.Currency | null;
+    base_currency: Shared.Currency;
 
     /**
      * The exponent component of the rate. The decimal is calculated as `value` / (10 ^
@@ -296,7 +296,7 @@ export namespace Transaction {
     /**
      * Currency to convert the `base_currency` to, often called the "buy" currency.
      */
-    target_currency: Shared.Currency | null;
+    target_currency: Shared.Currency;
 
     /**
      * The whole number component of the rate. The decimal is calculated as `value` /

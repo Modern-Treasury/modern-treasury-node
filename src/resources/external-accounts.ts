@@ -638,7 +638,7 @@ export interface ExternalAccountVerifyParams {
   /**
    * Defaults to the currency of the originating account.
    */
-  currency?: Shared.Currency | null;
+  currency?: Shared.Currency;
 
   /**
    * A payment type to fallback to if the original type is not valid for the

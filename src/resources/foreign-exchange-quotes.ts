@@ -128,7 +128,7 @@ export namespace ForeignExchangeQuote {
     /**
      * Currency to convert, often called the "sell" currency.
      */
-    base_currency: Shared.Currency | null;
+    base_currency: Shared.Currency;
 
     /**
      * The exponent component of the rate. The decimal is calculated as `value` / (10 ^
@@ -150,7 +150,7 @@ export namespace ForeignExchangeQuote {
     /**
      * Currency to convert the `base_currency` to, often called the "buy" currency.
      */
-    target_currency: Shared.Currency | null;
+    target_currency: Shared.Currency;
 
     /**
      * The whole number component of the rate. The decimal is calculated as `value` /
@@ -169,7 +169,7 @@ export interface ForeignExchangeQuoteCreateParams {
   /**
    * Currency to convert the `base_currency` to, often called the "buy" currency.
    */
-  target_currency: Shared.Currency | null;
+  target_currency: Shared.Currency;
 
   /**
    * Amount in the lowest denomination of the `base_currency` to convert, often
@@ -180,7 +180,7 @@ export interface ForeignExchangeQuoteCreateParams {
   /**
    * Currency to convert, often called the "sell" currency.
    */
-  base_currency?: Shared.Currency | null;
+  base_currency?: Shared.Currency;
 
   /**
    * The timestamp until when the quoted rate is valid.
