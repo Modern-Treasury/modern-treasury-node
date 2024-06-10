@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.25.0 (2024-06-10)
+
+Full Changelog: [v2.24.2...v2.25.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.2...v2.25.0)
+
+### Features
+
+* **api:** add kr_brn kr_crn kr_rrn enum values ([#412](https://github.com/Modern-Treasury/modern-treasury-node/issues/412)) ([fad181b](https://github.com/Modern-Treasury/modern-treasury-node/commit/fad181b96872a547ea53db3aaa1155b75ee283c1))
+* **api:** add risk rating field ([#415](https://github.com/Modern-Treasury/modern-treasury-node/issues/415)) ([8a56375](https://github.com/Modern-Treasury/modern-treasury-node/commit/8a56375dec73db405db07c461c26cfaa4e157258))
+* support `application/octet-stream` request bodies ([#418](https://github.com/Modern-Treasury/modern-treasury-node/issues/418)) ([2ae86c4](https://github.com/Modern-Treasury/modern-treasury-node/commit/2ae86c4ec57df29efb5242d3d2fbc40416c8776a))
+
+
+### Bug Fixes
+
+* allow git imports for pnpm ([#414](https://github.com/Modern-Treasury/modern-treasury-node/issues/414)) ([497c3b3](https://github.com/Modern-Treasury/modern-treasury-node/commit/497c3b33db6179ee805601636b36e80a6a17e2e9))
+* fix enum type to be non nullable ([#417](https://github.com/Modern-Treasury/modern-treasury-node/issues/417)) ([82b95e2](https://github.com/Modern-Treasury/modern-treasury-node/commit/82b95e2a1ab001a521efcdb27ce25dc76215e01d))
+
+
+### Chores
+
+* **internal:** sync urls ([#416](https://github.com/Modern-Treasury/modern-treasury-node/issues/416)) ([98e2fe0](https://github.com/Modern-Treasury/modern-treasury-node/commit/98e2fe0ba2cc619c96bfc54fd9fed244ef3d3a6c))
+
 ## 2.24.2 (2024-05-30)
 
 Full Changelog: [v2.24.1...v2.24.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.1...v2.24.2)
