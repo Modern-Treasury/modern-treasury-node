@@ -1,6 +1,6 @@
 {
   "name": "modern-treasury",
-  "version": "2.24.2",
+  "version": "2.25.0",
   "description": "The official TypeScript library for the Modern Treasury API",
   "author": "Modern Treasury <sdk-feedback@moderntreasury.com>",
   "types": "dist/index.d.ts",
