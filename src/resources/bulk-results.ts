@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '../core';
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
+import * as Core from '../core';
 import * as BulkResultsAPI from './bulk-results';
 import * as ExpectedPaymentsAPI from './expected-payments';
 import * as LedgerTransactionsAPI from './ledger-transactions/ledger-transactions';

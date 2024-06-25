@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '../core';
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
+import * as Core from '../core';
 import * as DocumentsAPI from './documents';
-import { type Uploadable, multipartFormRequestOptions } from '../core';
 import { Page, type PageParams } from '../pagination';
 
 export class Documents extends APIResource {
@@ -21,7 +20,7 @@ export class Documents extends APIResource {
     }
     return this._client.post(
       '/api/documents',
-      multipartFormRequestOptions({
+      Core.multipartFormRequestOptions({
         body,
         ...options,
         headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -171,7 +170,7 @@ export interface DocumentCreateParams {
     | 'decisions'
     | 'connections';
 
-  file: Uploadable;
+  file: Core.Uploadable;
 
   /**
    * A category given to the document, can be `null`.
