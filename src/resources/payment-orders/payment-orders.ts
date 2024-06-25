@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '../../core';
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
 import * as PaymentOrdersAPI from './payment-orders';
 import * as ExternalAccountsAPI from '../external-accounts';
 import * as ReturnsAPI from '../returns';
@@ -10,7 +10,6 @@ import * as Shared from '../shared';
 import * as VirtualAccountsAPI from '../virtual-accounts';
 import * as InternalAccountsAPI from '../internal-accounts/internal-accounts';
 import * as ReversalsAPI from './reversals';
-import { type Uploadable, maybeMultipartFormRequestOptions } from '../../core';
 import { Page, type PageParams } from '../../pagination';
 
 export class PaymentOrders extends APIResource {
@@ -29,7 +28,7 @@ export class PaymentOrders extends APIResource {
     }
     return this._client.post(
       '/api/payment_orders',
-      maybeMultipartFormRequestOptions({
+      Core.maybeMultipartFormRequestOptions({
         body,
         ...options,
         headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
@@ -869,7 +868,7 @@ export namespace PaymentOrderCreateParams {
       | 'decisions'
       | 'connections';
 
-    file: Uploadable;
+    file: Core.Uploadable;
 
     /**
      * A category given to the document, can be `null`.
