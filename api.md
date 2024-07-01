@@ -75,6 +75,7 @@ Types:
 
 - <code><a href="./src/resources/external-accounts.ts">ExternalAccount</a></code>
 - <code><a href="./src/resources/external-accounts.ts">ExternalAccountType</a></code>
+- <code><a href="./src/resources/external-accounts.ts">ExternalAccountVerifyResponse</a></code>
 
 Methods:
 
@@ -84,7 +85,7 @@ Methods:
 - <code title="get /api/external_accounts">client.externalAccounts.<a href="./src/resources/external-accounts.ts">list</a>({ ...params }) -> ExternalAccountsPage</code>
 - <code title="delete /api/external_accounts/{id}">client.externalAccounts.<a href="./src/resources/external-accounts.ts">del</a>(id) -> void</code>
 - <code title="post /api/external_accounts/{id}/complete_verification">client.externalAccounts.<a href="./src/resources/external-accounts.ts">completeVerification</a>(id, { ...params }) -> ExternalAccount</code>
-- <code title="post /api/external_accounts/{id}/verify">client.externalAccounts.<a href="./src/resources/external-accounts.ts">verify</a>(id, { ...params }) -> ExternalAccount</code>
+- <code title="post /api/external_accounts/{id}/verify">client.externalAccounts.<a href="./src/resources/external-accounts.ts">verify</a>(id, { ...params }) -> ExternalAccountVerifyResponse</code>
 
 # IncomingPaymentDetails
 

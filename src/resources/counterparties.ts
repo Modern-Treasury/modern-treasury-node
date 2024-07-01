@@ -226,6 +226,8 @@ export namespace Counterparty {
 
     updated_at?: string;
 
+    verification_source?: 'ach_prenote' | 'microdeposits' | 'plaid' | null;
+
     verification_status?: 'pending_verification' | 'unverified' | 'verified';
   }
 
@@ -442,7 +444,17 @@ export namespace CounterpartyCreateParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'nz_number' | 'wallet_address' | 'pan' | 'other';
+      account_number_type?:
+        | 'au_number'
+        | 'clabe'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'sg_number'
+        | 'wallet_address';
     }
 
     export interface ContactDetail {
@@ -1066,13 +1078,13 @@ export interface CounterpartyCollectAccountParams {
     | 'brCodigo'
     | 'routingNumberType'
     | 'address'
-    | 'jp_zengin_code'
-    | 'se_bankgiro_clearing_code'
-    | 'nz_national_clearing_code'
-    | 'hk_interbank_clearing_code'
-    | 'hu_interbank_clearing_code'
-    | 'dk_interbank_clearing_code'
-    | 'id_sknbi_code'
+    | 'jpZenginCode'
+    | 'seBankgiroClearingCode'
+    | 'nzNationalClearingCode'
+    | 'hkInterbankClearingCode'
+    | 'huInterbankClearingCode'
+    | 'dkInterbankClearingCode'
+    | 'idSknbiCode'
   >;
 
   /**
