@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.26.0 (2024-07-01)
+
+Full Changelog: [v2.25.0...v2.26.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.25.0...v2.26.0)
+
+### Features
+
+* **api:** updates ([#423](https://github.com/Modern-Treasury/modern-treasury-node/issues/423)) ([48e1b12](https://github.com/Modern-Treasury/modern-treasury-node/commit/48e1b122300382ac41461e6db123e77afa25f459))
+
+
+### Chores
+
+* gitignore test server logs ([#422](https://github.com/Modern-Treasury/modern-treasury-node/issues/422)) ([440ad64](https://github.com/Modern-Treasury/modern-treasury-node/commit/440ad648ffc01b0064dd786951880d6e9f8dcc4f))
+* **internal:** minor reformatting ([#419](https://github.com/Modern-Treasury/modern-treasury-node/issues/419)) ([ea5bfbf](https://github.com/Modern-Treasury/modern-treasury-node/commit/ea5bfbf11b512f9edcd02534b88763587f412c5f))
+
 ## 2.25.0 (2024-06-10)
 
 Full Changelog: [v2.24.2...v2.25.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.2...v2.25.0)
