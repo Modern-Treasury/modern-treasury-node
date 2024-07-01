@@ -29,9 +29,9 @@ describe('resource virtualAccounts', () => {
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       name: 'string',
       account_details: [
-        { account_number: 'string', account_number_type: 'clabe' },
-        { account_number: 'string', account_number_type: 'clabe' },
-        { account_number: 'string', account_number_type: 'clabe' },
+        { account_number: 'string', account_number_type: 'au_number' },
+        { account_number: 'string', account_number_type: 'au_number' },
+        { account_number: 'string', account_number_type: 'au_number' },
       ],
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       credit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',

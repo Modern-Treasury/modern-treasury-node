@@ -148,7 +148,7 @@ describe('resource ledgerAccounts', () => {
           ledger_account_category_id: 'string',
           ledger_id: 'string',
           metadata: { foo: 'string' },
-          name: 'string',
+          name: ['string', 'string', 'string'],
           pending_balance_amount: { gt: 0, lt: 0, gte: 0, lte: 0, eq: 0, not_eq: 0 },
           per_page: 0,
           posted_balance_amount: { gt: 0, lt: 0, gte: 0, lte: 0, eq: 0, not_eq: 0 },

@@ -98,9 +98,9 @@ describe('resource bulkRequests', () => {
             },
             name: 'string',
             account_details: [
-              { account_number: 'string', account_number_type: 'iban' },
-              { account_number: 'string', account_number_type: 'iban' },
-              { account_number: 'string', account_number_type: 'iban' },
+              { account_number: 'string', account_number_type: 'au_number' },
+              { account_number: 'string', account_number_type: 'au_number' },
+              { account_number: 'string', account_number_type: 'au_number' },
             ],
             routing_details: [
               { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
@@ -248,9 +248,9 @@ describe('resource bulkRequests', () => {
             },
             name: 'string',
             account_details: [
-              { account_number: 'string', account_number_type: 'iban' },
-              { account_number: 'string', account_number_type: 'iban' },
-              { account_number: 'string', account_number_type: 'iban' },
+              { account_number: 'string', account_number_type: 'au_number' },
+              { account_number: 'string', account_number_type: 'au_number' },
+              { account_number: 'string', account_number_type: 'au_number' },
             ],
             routing_details: [
               { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
@@ -398,9 +398,9 @@ describe('resource bulkRequests', () => {
             },
             name: 'string',
             account_details: [
-              { account_number: 'string', account_number_type: 'iban' },
-              { account_number: 'string', account_number_type: 'iban' },
-              { account_number: 'string', account_number_type: 'iban' },
+              { account_number: 'string', account_number_type: 'au_number' },
+              { account_number: 'string', account_number_type: 'au_number' },
+              { account_number: 'string', account_number_type: 'au_number' },
             ],
             routing_details: [
               { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },

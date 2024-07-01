@@ -57,6 +57,7 @@ export {
 export {
   ExternalAccount,
   ExternalAccountType,
+  ExternalAccountVerifyResponse,
   ExternalAccountCreateParams,
   ExternalAccountUpdateParams,
   ExternalAccountListParams,
