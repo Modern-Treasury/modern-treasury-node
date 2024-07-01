@@ -27,9 +27,9 @@ describe('resource externalAccounts', () => {
     const response = await modernTreasury.externalAccounts.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       account_details: [
-        { account_number: 'string', account_number_type: 'iban' },
-        { account_number: 'string', account_number_type: 'iban' },
-        { account_number: 'string', account_number_type: 'iban' },
+        { account_number: 'string', account_number_type: 'au_number' },
+        { account_number: 'string', account_number_type: 'au_number' },
+        { account_number: 'string', account_number_type: 'au_number' },
       ],
       account_type: 'cash',
       contact_details: [

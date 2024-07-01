@@ -301,6 +301,7 @@ export namespace ModernTreasury {
   export import ExternalAccounts = API.ExternalAccounts;
   export import ExternalAccount = API.ExternalAccount;
   export import ExternalAccountType = API.ExternalAccountType;
+  export import ExternalAccountVerifyResponse = API.ExternalAccountVerifyResponse;
   export import ExternalAccountsPage = API.ExternalAccountsPage;
   export import ExternalAccountCreateParams = API.ExternalAccountCreateParams;
   export import ExternalAccountUpdateParams = API.ExternalAccountUpdateParams;

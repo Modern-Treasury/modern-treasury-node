@@ -561,6 +561,26 @@ export type PaymentOrderSubtype =
   | 'PPD'
   | 'TEL'
   | 'WEB'
+  | 'au_becs'
+  | 'bacs'
+  | 'chats'
+  | 'dk_nets'
+  | 'eft'
+  | 'hu_ics'
+  | 'interac'
+  | 'masav'
+  | 'mx_ccen'
+  | 'neft'
+  | 'nics'
+  | 'nz_becs'
+  | 'pl_elixir'
+  | 'ro_sent'
+  | 'se_bankgirot'
+  | 'sepa'
+  | 'sg_giro'
+  | 'sic'
+  | 'sknbi'
+  | 'zengin'
   | null;
 
 /**
@@ -1098,7 +1118,17 @@ export namespace PaymentOrderCreateParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'nz_number' | 'wallet_address' | 'pan' | 'other';
+      account_number_type?:
+        | 'au_number'
+        | 'clabe'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'sg_number'
+        | 'wallet_address';
     }
 
     export interface ContactDetail {
@@ -1602,7 +1632,17 @@ export namespace PaymentOrderUpdateParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'nz_number' | 'wallet_address' | 'pan' | 'other';
+      account_number_type?:
+        | 'au_number'
+        | 'clabe'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'sg_number'
+        | 'wallet_address';
     }
 
     export interface ContactDetail {
@@ -2335,7 +2375,17 @@ export namespace PaymentOrderCreateAsyncParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'nz_number' | 'wallet_address' | 'pan' | 'other';
+      account_number_type?:
+        | 'au_number'
+        | 'clabe'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'sg_number'
+        | 'wallet_address';
     }
 
     export interface ContactDetail {
