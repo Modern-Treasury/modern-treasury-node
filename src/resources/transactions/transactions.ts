@@ -224,6 +224,7 @@ export interface Transaction {
     | 'jpmc'
     | 'mx'
     | 'plaid'
+    | 'pnc'
     | 'rspec_vendor'
     | 'signet'
     | 'silvergate'

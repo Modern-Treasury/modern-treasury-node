@@ -425,7 +425,11 @@ export interface LedgerAccountListParams extends PageParams {
    */
   metadata?: Record<string, string>;
 
-  name?: string;
+  /**
+   * If you have specific names to retrieve in bulk, you can pass them as query
+   * parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
+   */
+  name?: Array<string>;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to

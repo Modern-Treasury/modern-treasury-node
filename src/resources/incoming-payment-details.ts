@@ -156,12 +156,15 @@ export interface IncomingPaymentDetail {
    * The type of the originating account number for the incoming payment detail.
    */
   originating_account_number_type:
+    | 'au_number'
     | 'clabe'
     | 'hk_number'
     | 'iban'
+    | 'id_number'
     | 'nz_number'
     | 'other'
     | 'pan'
+    | 'sg_number'
     | 'wallet_address'
     | null;
 

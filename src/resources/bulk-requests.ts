@@ -611,13 +611,16 @@ export namespace BulkRequestCreateParams {
         account_number: string;
 
         account_number_type?:
-          | 'iban'
-          | 'hk_number'
+          | 'au_number'
           | 'clabe'
+          | 'hk_number'
+          | 'iban'
+          | 'id_number'
           | 'nz_number'
-          | 'wallet_address'
+          | 'other'
           | 'pan'
-          | 'other';
+          | 'sg_number'
+          | 'wallet_address';
       }
 
       export interface ContactDetail {
@@ -1613,13 +1616,16 @@ export namespace BulkRequestCreateParams {
         account_number: string;
 
         account_number_type?:
-          | 'iban'
-          | 'hk_number'
+          | 'au_number'
           | 'clabe'
+          | 'hk_number'
+          | 'iban'
+          | 'id_number'
           | 'nz_number'
-          | 'wallet_address'
+          | 'other'
           | 'pan'
-          | 'other';
+          | 'sg_number'
+          | 'wallet_address';
       }
 
       export interface ContactDetail {

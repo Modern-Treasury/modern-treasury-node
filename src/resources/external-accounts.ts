@@ -124,7 +124,7 @@ export class ExternalAccounts extends APIResource {
     id: string,
     params: ExternalAccountVerifyParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ExternalAccount> {
+  ): Core.APIPromise<ExternalAccountVerifyResponse> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     if (idempotencyKey) {
@@ -204,6 +204,8 @@ export interface ExternalAccount {
   routing_details: Array<RoutingDetailsAPI.RoutingDetail>;
 
   updated_at: string;
+
+  verification_source: 'ach_prenote' | 'microdeposits' | 'plaid' | null;
 
   verification_status: 'pending_verification' | 'unverified' | 'verified';
 }
@@ -288,6 +290,85 @@ export type ExternalAccountType =
   | 'overdraft'
   | 'savings';
 
+export type ExternalAccountVerifyResponse =
+  | ExternalAccount
+  | ExternalAccountVerifyResponse.ExternalAccountVerificationAttempt;
+
+export namespace ExternalAccountVerifyResponse {
+  export interface ExternalAccountVerificationAttempt {
+    id: string;
+
+    created_at: string;
+
+    /**
+     * The ID of the external account.
+     */
+    external_account_id: string;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode: boolean;
+
+    object: string;
+
+    /**
+     * The ID of the internal account where the micro-deposits originate from.
+     */
+    originating_account_id: string;
+
+    /**
+     * The type of payment that can be made to this account. Can be `ach`, `eft`, or
+     * `rtp`.
+     */
+    payment_type:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'book'
+      | 'card'
+      | 'chats'
+      | 'check'
+      | 'cross_border'
+      | 'dk_nets'
+      | 'eft'
+      | 'hu_ics'
+      | 'interac'
+      | 'masav'
+      | 'mx_ccen'
+      | 'neft'
+      | 'nics'
+      | 'nz_becs'
+      | 'pl_elixir'
+      | 'provxchange'
+      | 'ro_sent'
+      | 'rtp'
+      | 'se_bankgirot'
+      | 'sen'
+      | 'sepa'
+      | 'sg_giro'
+      | 'sic'
+      | 'signet'
+      | 'sknbi'
+      | 'wire'
+      | 'zengin';
+
+    /**
+     * The priority of the payment. Can be `normal` or `high`.
+     */
+    priority: 'high' | 'normal' | null;
+
+    /**
+     * The status of the verification attempt. Can be `pending_verification`,
+     * `verified`, `failed`, or `cancelled`.
+     */
+    status: 'cancelled' | 'failed' | 'pending_verification' | 'verified';
+
+    updated_at: string;
+  }
+}
+
 export interface ExternalAccountCreateParams {
   counterparty_id: string | null;
 
@@ -351,7 +432,17 @@ export namespace ExternalAccountCreateParams {
   export interface AccountDetail {
     account_number: string;
 
-    account_number_type?: 'iban' | 'hk_number' | 'clabe' | 'nz_number' | 'wallet_address' | 'pan' | 'other';
+    account_number_type?:
+      | 'au_number'
+      | 'clabe'
+      | 'hk_number'
+      | 'iban'
+      | 'id_number'
+      | 'nz_number'
+      | 'other'
+      | 'pan'
+      | 'sg_number'
+      | 'wallet_address';
   }
 
   export interface ContactDetail {
@@ -657,6 +748,7 @@ export interface ExternalAccountVerifyParams {
 export namespace ExternalAccounts {
   export import ExternalAccount = ExternalAccountsAPI.ExternalAccount;
   export import ExternalAccountType = ExternalAccountsAPI.ExternalAccountType;
+  export import ExternalAccountVerifyResponse = ExternalAccountsAPI.ExternalAccountVerifyResponse;
   export import ExternalAccountsPage = ExternalAccountsAPI.ExternalAccountsPage;
   export import ExternalAccountCreateParams = ExternalAccountsAPI.ExternalAccountCreateParams;
   export import ExternalAccountUpdateParams = ExternalAccountsAPI.ExternalAccountUpdateParams;

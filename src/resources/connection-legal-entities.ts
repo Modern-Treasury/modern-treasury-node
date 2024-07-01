@@ -110,6 +110,11 @@ export interface ConnectionLegalEntity {
   status: 'completed' | 'denied' | 'failed' | 'processing';
 
   updated_at: string;
+
+  /**
+   * The ID of the legal entity at the vendor.
+   */
+  vendor_id: string;
 }
 
 export interface ConnectionLegalEntityCreateParams {
