@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerableEvents', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.ledgerableEvents.create({ name: 'string' });
+    const responsePromise = modernTreasury.ledgerableEvents.create({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,15 +23,15 @@ describe('resource ledgerableEvents', () => {
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.ledgerableEvents.create({
-      name: 'string',
+      name: 'name',
       custom_data: {},
-      description: 'string',
+      description: 'description',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.ledgerableEvents.retrieve('string');
+    const responsePromise = modernTreasury.ledgerableEvents.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -44,7 +44,7 @@ describe('resource ledgerableEvents', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerableEvents.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.ledgerableEvents.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

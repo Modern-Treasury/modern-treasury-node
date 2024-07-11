@@ -27,22 +27,22 @@ describe('resource externalAccounts', () => {
     const response = await modernTreasury.externalAccounts.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       account_details: [
-        { account_number: 'string', account_number_type: 'au_number' },
-        { account_number: 'string', account_number_type: 'au_number' },
-        { account_number: 'string', account_number_type: 'au_number' },
+        { account_number: 'account_number', account_number_type: 'au_number' },
+        { account_number: 'account_number', account_number_type: 'au_number' },
+        { account_number: 'account_number', account_number_type: 'au_number' },
       ],
       account_type: 'cash',
       contact_details: [
-        { contact_identifier: 'string', contact_identifier_type: 'email' },
-        { contact_identifier: 'string', contact_identifier_type: 'email' },
-        { contact_identifier: 'string', contact_identifier_type: 'email' },
+        { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
+        { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
+        { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
       ],
       ledger_account: {
-        name: 'string',
-        description: 'string',
+        name: 'name',
+        description: 'description',
         normal_balance: 'credit',
         ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        currency: 'string',
+        currency: 'currency',
         currency_exponent: 0,
         ledger_account_category_ids: [
           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -54,29 +54,29 @@ describe('resource externalAccounts', () => {
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       },
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      name: 'string',
+      name: 'name',
       party_address: {
-        line1: 'string',
-        line2: 'string',
-        locality: 'string',
-        region: 'string',
-        postal_code: 'string',
-        country: 'string',
+        line1: 'line1',
+        line2: 'line2',
+        locality: 'locality',
+        region: 'region',
+        postal_code: 'postal_code',
+        country: 'country',
       },
-      party_identifier: 'string',
-      party_name: 'string',
+      party_identifier: 'party_identifier',
+      party_name: 'party_name',
       party_type: 'business',
-      plaid_processor_token: 'string',
+      plaid_processor_token: 'plaid_processor_token',
       routing_details: [
-        { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-        { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-        { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
+        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
       ],
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.externalAccounts.retrieve('string');
+    const responsePromise = modernTreasury.externalAccounts.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -89,12 +89,12 @@ describe('resource externalAccounts', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.externalAccounts.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.externalAccounts.update('string');
+    const responsePromise = modernTreasury.externalAccounts.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -107,7 +107,7 @@ describe('resource externalAccounts', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.externalAccounts.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -115,21 +115,21 @@ describe('resource externalAccounts', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.externalAccounts.update(
-        'string',
+        'id',
         {
           account_type: 'cash',
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: { foo: 'string' },
-          name: 'string',
+          name: 'name',
           party_address: {
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
-          party_name: 'string',
+          party_name: 'party_name',
           party_type: 'business',
         },
         { path: '/_stainless_unknown_path' },
@@ -160,10 +160,10 @@ describe('resource externalAccounts', () => {
     await expect(
       modernTreasury.externalAccounts.list(
         {
-          after_cursor: 'string',
-          counterparty_id: 'string',
+          after_cursor: 'after_cursor',
+          counterparty_id: 'counterparty_id',
           metadata: { foo: 'string' },
-          party_name: 'string',
+          party_name: 'party_name',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },
@@ -172,7 +172,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.externalAccounts.del('string');
+    const responsePromise = modernTreasury.externalAccounts.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -185,12 +185,12 @@ describe('resource externalAccounts', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.del('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.externalAccounts.del('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('completeVerification', async () => {
-    const responsePromise = modernTreasury.externalAccounts.completeVerification('string');
+    const responsePromise = modernTreasury.externalAccounts.completeVerification('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -203,7 +203,7 @@ describe('resource externalAccounts', () => {
   test('completeVerification: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.completeVerification('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.externalAccounts.completeVerification('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -211,7 +211,7 @@ describe('resource externalAccounts', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.externalAccounts.completeVerification(
-        'string',
+        'id',
         { amounts: [2, 4] },
         { path: '/_stainless_unknown_path' },
       ),
@@ -219,7 +219,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('verify: only required params', async () => {
-    const responsePromise = modernTreasury.externalAccounts.verify('string', {
+    const responsePromise = modernTreasury.externalAccounts.verify('id', {
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_type: 'ach',
     });
@@ -233,7 +233,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('verify: required and optional params', async () => {
-    const response = await modernTreasury.externalAccounts.verify('string', {
+    const response = await modernTreasury.externalAccounts.verify('id', {
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_type: 'ach',
       currency: 'AED',

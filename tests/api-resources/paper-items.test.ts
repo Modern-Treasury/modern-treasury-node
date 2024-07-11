@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource paperItems', () => {
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.paperItems.retrieve('string');
+    const responsePromise = modernTreasury.paperItems.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,7 +24,7 @@ describe('resource paperItems', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.paperItems.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.paperItems.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -51,10 +51,10 @@ describe('resource paperItems', () => {
     await expect(
       modernTreasury.paperItems.list(
         {
-          after_cursor: 'string',
+          after_cursor: 'after_cursor',
           deposit_date_end: '2019-12-27',
           deposit_date_start: '2019-12-27',
-          lockbox_number: 'string',
+          lockbox_number: 'lockbox_number',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },

@@ -14,7 +14,7 @@ describe('resource paymentFlows', () => {
     const responsePromise = modernTreasury.paymentFlows.create({
       amount: 0,
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      currency: 'string',
+      currency: 'currency',
       direction: 'credit',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
@@ -31,7 +31,7 @@ describe('resource paymentFlows', () => {
     const response = await modernTreasury.paymentFlows.create({
       amount: 0,
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      currency: 'string',
+      currency: 'currency',
       direction: 'credit',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       due_date: '2019-12-27',
@@ -39,7 +39,7 @@ describe('resource paymentFlows', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.paymentFlows.retrieve('string');
+    const responsePromise = modernTreasury.paymentFlows.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -52,12 +52,12 @@ describe('resource paymentFlows', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.paymentFlows.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.paymentFlows.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: only required params', async () => {
-    const responsePromise = modernTreasury.paymentFlows.update('string', { status: 'cancelled' });
+    const responsePromise = modernTreasury.paymentFlows.update('id', { status: 'cancelled' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -68,7 +68,7 @@ describe('resource paymentFlows', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await modernTreasury.paymentFlows.update('string', { status: 'cancelled' });
+    const response = await modernTreasury.paymentFlows.update('id', { status: 'cancelled' });
   });
 
   test('list', async () => {
@@ -94,14 +94,14 @@ describe('resource paymentFlows', () => {
     await expect(
       modernTreasury.paymentFlows.list(
         {
-          after_cursor: 'string',
-          client_token: 'string',
-          counterparty_id: 'string',
-          originating_account_id: 'string',
-          payment_order_id: 'string',
+          after_cursor: 'after_cursor',
+          client_token: 'client_token',
+          counterparty_id: 'counterparty_id',
+          originating_account_id: 'originating_account_id',
+          payment_order_id: 'payment_order_id',
           per_page: 0,
-          receiving_account_id: 'string',
-          status: 'string',
+          receiving_account_id: 'receiving_account_id',
+          status: 'status',
         },
         { path: '/_stainless_unknown_path' },
       ),

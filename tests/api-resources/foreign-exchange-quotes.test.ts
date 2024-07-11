@@ -36,7 +36,7 @@ describe('resource foreignExchangeQuotes', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.foreignExchangeQuotes.retrieve('string');
+    const responsePromise = modernTreasury.foreignExchangeQuotes.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -49,7 +49,7 @@ describe('resource foreignExchangeQuotes', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.foreignExchangeQuotes.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.foreignExchangeQuotes.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -76,15 +76,15 @@ describe('resource foreignExchangeQuotes', () => {
     await expect(
       modernTreasury.foreignExchangeQuotes.list(
         {
-          after_cursor: 'string',
-          base_currency: 'string',
+          after_cursor: 'after_cursor',
+          base_currency: 'base_currency',
           effective_at_end: '2019-12-27',
           effective_at_start: '2019-12-27',
           expires_at: '2019-12-27T18:11:19.117Z',
-          internal_account_id: 'string',
+          internal_account_id: 'internal_account_id',
           metadata: { foo: 'string' },
           per_page: 0,
-          target_currency: 'string',
+          target_currency: 'target_currency',
         },
         { path: '/_stainless_unknown_path' },
       ),

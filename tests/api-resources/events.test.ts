@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource events', () => {
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.events.retrieve('string');
+    const responsePromise = modernTreasury.events.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,9 +23,9 @@ describe('resource events', () => {
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.events.retrieve('string', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(modernTreasury.events.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list', async () => {
@@ -51,13 +51,13 @@ describe('resource events', () => {
     await expect(
       modernTreasury.events.list(
         {
-          after_cursor: 'string',
-          entity_id: 'string',
-          event_name: 'string',
+          after_cursor: 'after_cursor',
+          entity_id: 'entity_id',
+          event_name: 'event_name',
           event_time_end: '2019-12-27T18:11:19.117Z',
           event_time_start: '2019-12-27T18:11:19.117Z',
           per_page: 0,
-          resource: 'string',
+          resource: 'resource',
         },
         { path: '/_stainless_unknown_path' },
       ),
