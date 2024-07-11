@@ -14,10 +14,10 @@ describe('resource transactions', () => {
     const responsePromise = modernTreasury.transactions.create({
       amount: 0,
       as_of_date: '2019-12-27',
-      direction: 'string',
+      direction: 'direction',
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      vendor_code: 'string',
-      vendor_code_type: 'string',
+      vendor_code: 'vendor_code',
+      vendor_code_type: 'vendor_code_type',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -32,19 +32,19 @@ describe('resource transactions', () => {
     const response = await modernTreasury.transactions.create({
       amount: 0,
       as_of_date: '2019-12-27',
-      direction: 'string',
+      direction: 'direction',
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      vendor_code: 'string',
-      vendor_code_type: 'string',
+      vendor_code: 'vendor_code',
+      vendor_code_type: 'vendor_code_type',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       posted: true,
       type: 'ach',
-      vendor_description: 'string',
+      vendor_description: 'vendor_description',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.transactions.retrieve('string');
+    const responsePromise = modernTreasury.transactions.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -57,12 +57,12 @@ describe('resource transactions', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.transactions.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.transactions.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.transactions.update('string');
+    const responsePromise = modernTreasury.transactions.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -75,7 +75,7 @@ describe('resource transactions', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.transactions.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.transactions.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -83,7 +83,7 @@ describe('resource transactions', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.transactions.update(
-        'string',
+        'id',
         { metadata: { foo: 'string' } },
         { path: '/_stainless_unknown_path' },
       ),
@@ -113,20 +113,20 @@ describe('resource transactions', () => {
     await expect(
       modernTreasury.transactions.list(
         {
-          after_cursor: 'string',
+          after_cursor: 'after_cursor',
           as_of_date_end: '2019-12-27',
           as_of_date_start: '2019-12-27',
-          counterparty_id: 'string',
-          description: 'string',
-          direction: 'string',
-          internal_account_id: 'string',
+          counterparty_id: 'counterparty_id',
+          description: 'description',
+          direction: 'direction',
+          internal_account_id: 'internal_account_id',
           metadata: { foo: 'string' },
-          payment_type: 'string',
+          payment_type: 'payment_type',
           per_page: 0,
           posted: true,
-          transactable_type: 'string',
-          vendor_id: 'string',
-          virtual_account_id: 'string',
+          transactable_type: 'transactable_type',
+          vendor_id: 'vendor_id',
+          virtual_account_id: 'virtual_account_id',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -134,7 +134,7 @@ describe('resource transactions', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.transactions.del('string');
+    const responsePromise = modernTreasury.transactions.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -146,8 +146,8 @@ describe('resource transactions', () => {
 
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.transactions.del('string', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(modernTreasury.transactions.del('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 });

@@ -12,7 +12,7 @@ const modernTreasury = new ModernTreasury({
 describe('resource validations', () => {
   test('validateRoutingNumber: only required params', async () => {
     const responsePromise = modernTreasury.validations.validateRoutingNumber({
-      routing_number: 'string',
+      routing_number: 'routing_number',
       routing_number_type: 'aba',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -26,7 +26,7 @@ describe('resource validations', () => {
 
   test('validateRoutingNumber: required and optional params', async () => {
     const response = await modernTreasury.validations.validateRoutingNumber({
-      routing_number: 'string',
+      routing_number: 'routing_number',
       routing_number_type: 'aba',
     });
   });

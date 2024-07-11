@@ -64,10 +64,10 @@ describe('resource ledgerTransactions', () => {
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         },
       ],
-      description: 'string',
+      description: 'description',
       effective_at: '2019-12-27T18:11:19.117Z',
       effective_date: '2019-12-27',
-      external_id: 'string',
+      external_id: 'external_id',
       ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       ledgerable_type: 'expected_payment',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
@@ -76,7 +76,7 @@ describe('resource ledgerTransactions', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.ledgerTransactions.retrieve('string');
+    const responsePromise = modernTreasury.ledgerTransactions.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -89,12 +89,12 @@ describe('resource ledgerTransactions', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.ledgerTransactions.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.ledgerTransactions.update('string');
+    const responsePromise = modernTreasury.ledgerTransactions.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -107,7 +107,7 @@ describe('resource ledgerTransactions', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.ledgerTransactions.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -115,9 +115,9 @@ describe('resource ledgerTransactions', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerTransactions.update(
-        'string',
+        'id',
         {
-          description: 'string',
+          description: 'description',
           effective_at: '2019-12-27T18:11:19.117Z',
           ledger_entries: [
             {
@@ -188,21 +188,21 @@ describe('resource ledgerTransactions', () => {
       modernTreasury.ledgerTransactions.list(
         {
           id: ['string', 'string', 'string'],
-          after_cursor: 'string',
+          after_cursor: 'after_cursor',
           effective_at: { foo: '2019-12-27T18:11:19.117Z' },
           effective_date: { foo: '2019-12-27T18:11:19.117Z' },
-          external_id: 'string',
-          ledger_account_category_id: 'string',
-          ledger_account_id: 'string',
-          ledger_account_settlement_id: 'string',
-          ledger_id: 'string',
-          ledgerable_id: 'string',
+          external_id: 'external_id',
+          ledger_account_category_id: 'ledger_account_category_id',
+          ledger_account_id: 'ledger_account_id',
+          ledger_account_settlement_id: 'ledger_account_settlement_id',
+          ledger_id: 'ledger_id',
+          ledgerable_id: 'ledgerable_id',
           ledgerable_type: 'expected_payment',
           metadata: { foo: 'string' },
           order_by: { created_at: 'asc', effective_at: 'asc' },
           per_page: 0,
           posted_at: { foo: '2019-12-27T18:11:19.117Z' },
-          reverses_ledger_transaction_id: 'string',
+          reverses_ledger_transaction_id: 'reverses_ledger_transaction_id',
           status: 'pending',
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
         },
@@ -212,7 +212,7 @@ describe('resource ledgerTransactions', () => {
   });
 
   test('createReversal', async () => {
-    const responsePromise = modernTreasury.ledgerTransactions.createReversal('string');
+    const responsePromise = modernTreasury.ledgerTransactions.createReversal('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -225,7 +225,7 @@ describe('resource ledgerTransactions', () => {
   test('createReversal: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.createReversal('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.ledgerTransactions.createReversal('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -233,11 +233,11 @@ describe('resource ledgerTransactions', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerTransactions.createReversal(
-        'string',
+        'id',
         {
-          description: 'string',
+          description: 'description',
           effective_at: '2019-12-27T18:11:19.117Z',
-          external_id: 'string',
+          external_id: 'external_id',
           ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           ledgerable_type: 'expected_payment',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },

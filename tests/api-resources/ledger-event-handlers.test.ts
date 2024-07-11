@@ -17,12 +17,12 @@ describe('resource ledgerEventHandlers', () => {
         effective_at: '{{ledgerable_event.custom_data.effective_at}}',
         status: 'posted',
         ledger_entries: [
-          { amount: 'string', direction: 'string', ledger_account_id: 'string' },
-          { amount: 'string', direction: 'string', ledger_account_id: 'string' },
-          { amount: 'string', direction: 'string', ledger_account_id: 'string' },
+          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
+          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
+          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
         ],
       },
-      name: 'string',
+      name: 'name',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -40,14 +40,14 @@ describe('resource ledgerEventHandlers', () => {
         effective_at: '{{ledgerable_event.custom_data.effective_at}}',
         status: 'posted',
         ledger_entries: [
-          { amount: 'string', direction: 'string', ledger_account_id: 'string' },
-          { amount: 'string', direction: 'string', ledger_account_id: 'string' },
-          { amount: 'string', direction: 'string', ledger_account_id: 'string' },
+          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
+          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
+          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
         ],
       },
-      name: 'string',
+      name: 'name',
       conditions: { field: 'ledgerable_event.name', operator: 'equals', value: 'credit_card_swipe' },
-      description: 'string',
+      description: 'description',
       ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       variables: {
@@ -60,7 +60,7 @@ describe('resource ledgerEventHandlers', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.ledgerEventHandlers.retrieve('string');
+    const responsePromise = modernTreasury.ledgerEventHandlers.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -73,7 +73,7 @@ describe('resource ledgerEventHandlers', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerEventHandlers.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.ledgerEventHandlers.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -100,10 +100,10 @@ describe('resource ledgerEventHandlers', () => {
     await expect(
       modernTreasury.ledgerEventHandlers.list(
         {
-          after_cursor: 'string',
+          after_cursor: 'after_cursor',
           created_at: { foo: '2019-12-27T18:11:19.117Z' },
           metadata: { foo: 'string' },
-          name: 'string',
+          name: 'name',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },
@@ -112,7 +112,7 @@ describe('resource ledgerEventHandlers', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.ledgerEventHandlers.del('string');
+    const responsePromise = modernTreasury.ledgerEventHandlers.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -125,7 +125,7 @@ describe('resource ledgerEventHandlers', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerEventHandlers.del('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.ledgerEventHandlers.del('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

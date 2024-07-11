@@ -11,14 +11,29 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource balanceReports', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.internalAccounts.balanceReports.create('string', {
+    const responsePromise = modernTreasury.internalAccounts.balanceReports.create('internal_account_id', {
       as_of_date: '2019-12-27',
-      as_of_time: 'string',
+      as_of_time: 'as_of_time',
       balance_report_type: 'intraday',
       balances: [
-        { amount: 0, balance_type: 'closing_available', vendor_code: 'string', vendor_code_type: 'string' },
-        { amount: 0, balance_type: 'closing_available', vendor_code: 'string', vendor_code_type: 'string' },
-        { amount: 0, balance_type: 'closing_available', vendor_code: 'string', vendor_code_type: 'string' },
+        {
+          amount: 0,
+          balance_type: 'closing_available',
+          vendor_code: 'vendor_code',
+          vendor_code_type: 'vendor_code_type',
+        },
+        {
+          amount: 0,
+          balance_type: 'closing_available',
+          vendor_code: 'vendor_code',
+          vendor_code_type: 'vendor_code_type',
+        },
+        {
+          amount: 0,
+          balance_type: 'closing_available',
+          vendor_code: 'vendor_code',
+          vendor_code_type: 'vendor_code_type',
+        },
       ],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -31,20 +46,38 @@ describe('resource balanceReports', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.internalAccounts.balanceReports.create('string', {
+    const response = await modernTreasury.internalAccounts.balanceReports.create('internal_account_id', {
       as_of_date: '2019-12-27',
-      as_of_time: 'string',
+      as_of_time: 'as_of_time',
       balance_report_type: 'intraday',
       balances: [
-        { amount: 0, balance_type: 'closing_available', vendor_code: 'string', vendor_code_type: 'string' },
-        { amount: 0, balance_type: 'closing_available', vendor_code: 'string', vendor_code_type: 'string' },
-        { amount: 0, balance_type: 'closing_available', vendor_code: 'string', vendor_code_type: 'string' },
+        {
+          amount: 0,
+          balance_type: 'closing_available',
+          vendor_code: 'vendor_code',
+          vendor_code_type: 'vendor_code_type',
+        },
+        {
+          amount: 0,
+          balance_type: 'closing_available',
+          vendor_code: 'vendor_code',
+          vendor_code_type: 'vendor_code_type',
+        },
+        {
+          amount: 0,
+          balance_type: 'closing_available',
+          vendor_code: 'vendor_code',
+          vendor_code_type: 'vendor_code_type',
+        },
       ],
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.internalAccounts.balanceReports.retrieve('string', 'string');
+    const responsePromise = modernTreasury.internalAccounts.balanceReports.retrieve(
+      'internal_account_id',
+      'id',
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -57,14 +90,14 @@ describe('resource balanceReports', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.internalAccounts.balanceReports.retrieve('string', 'string', {
+      modernTreasury.internalAccounts.balanceReports.retrieve('internal_account_id', 'id', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.internalAccounts.balanceReports.list('string');
+    const responsePromise = modernTreasury.internalAccounts.balanceReports.list('internal_account_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -77,7 +110,9 @@ describe('resource balanceReports', () => {
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.internalAccounts.balanceReports.list('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.internalAccounts.balanceReports.list('internal_account_id', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -85,15 +120,20 @@ describe('resource balanceReports', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.internalAccounts.balanceReports.list(
-        'string',
-        { after_cursor: 'string', as_of_date: '2019-12-27', balance_report_type: 'intraday', per_page: 0 },
+        'internal_account_id',
+        {
+          after_cursor: 'after_cursor',
+          as_of_date: '2019-12-27',
+          balance_report_type: 'intraday',
+          per_page: 0,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.internalAccounts.balanceReports.del('string', 'string');
+    const responsePromise = modernTreasury.internalAccounts.balanceReports.del('internal_account_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -106,7 +146,7 @@ describe('resource balanceReports', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.internalAccounts.balanceReports.del('string', 'string', {
+      modernTreasury.internalAccounts.balanceReports.del('internal_account_id', 'id', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
