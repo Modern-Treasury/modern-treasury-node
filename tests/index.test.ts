@@ -218,7 +218,7 @@ describe('idempotency', () => {
       apiKey: 'My API Key',
       organizationId: 'my-organization-ID',
     });
-    await client.counterparties.create({ name: 'string' }, { idempotencyKey: 'my-idempotency-key' });
+    await client.counterparties.create({ name: 'name' }, { idempotencyKey: 'my-idempotency-key' });
   });
 });
 

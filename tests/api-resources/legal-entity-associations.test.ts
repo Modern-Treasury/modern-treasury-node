@@ -12,7 +12,7 @@ const modernTreasury = new ModernTreasury({
 describe('resource legalEntityAssociations', () => {
   test('create: only required params', async () => {
     const responsePromise = modernTreasury.legalEntityAssociations.create({
-      parent_legal_entity_id: 'string',
+      parent_legal_entity_id: 'parent_legal_entity_id',
       relationship_types: ['beneficial_owner', 'control_person'],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -26,60 +26,64 @@ describe('resource legalEntityAssociations', () => {
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.legalEntityAssociations.create({
-      parent_legal_entity_id: 'string',
+      parent_legal_entity_id: 'parent_legal_entity_id',
       relationship_types: ['beneficial_owner', 'control_person'],
       child_legal_entity: {
         legal_entity_type: 'business',
         risk_rating: 'low',
-        first_name: 'string',
-        last_name: 'string',
+        first_name: 'first_name',
+        last_name: 'last_name',
         date_of_birth: '2019-12-27',
         date_formed: '2019-12-27',
-        business_name: 'string',
+        business_name: 'business_name',
         doing_business_as_names: ['string', 'string', 'string'],
         legal_structure: 'corporation',
-        phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
-        email: 'string',
-        website: 'string',
+        phone_numbers: [
+          { phone_number: 'phone_number' },
+          { phone_number: 'phone_number' },
+          { phone_number: 'phone_number' },
+        ],
+        email: 'email',
+        website: 'website',
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         addresses: [
           {
             address_types: ['business', 'mailing', 'other'],
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
           {
             address_types: ['business', 'mailing', 'other'],
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
           {
             address_types: ['business', 'mailing', 'other'],
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
         ],
         identifications: [
-          { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-          { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-          { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
+          { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+          { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+          { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
         ],
       },
-      child_legal_entity_id: 'string',
+      child_legal_entity_id: 'child_legal_entity_id',
       ownership_percentage: 0,
-      title: 'string',
+      title: 'title',
     });
   });
 });

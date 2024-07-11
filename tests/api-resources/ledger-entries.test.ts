@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerEntries', () => {
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.ledgerEntries.retrieve('string');
+    const responsePromise = modernTreasury.ledgerEntries.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,7 +24,7 @@ describe('resource ledgerEntries', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerEntries.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.ledgerEntries.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -32,7 +32,7 @@ describe('resource ledgerEntries', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerEntries.retrieve(
-        'string',
+        'id',
         { show_balances: true },
         { path: '/_stainless_unknown_path' },
       ),
@@ -40,7 +40,7 @@ describe('resource ledgerEntries', () => {
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.ledgerEntries.update('string');
+    const responsePromise = modernTreasury.ledgerEntries.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -53,7 +53,7 @@ describe('resource ledgerEntries', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerEntries.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.ledgerEntries.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -61,7 +61,7 @@ describe('resource ledgerEntries', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.ledgerEntries.update(
-        'string',
+        'id',
         { metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
         { path: '/_stainless_unknown_path' },
       ),
@@ -92,18 +92,18 @@ describe('resource ledgerEntries', () => {
       modernTreasury.ledgerEntries.list(
         {
           id: ['string', 'string', 'string'],
-          after_cursor: 'string',
+          after_cursor: 'after_cursor',
           as_of_lock_version: 0,
           direction: 'credit',
           effective_at: { foo: '2019-12-27T18:11:19.117Z' },
           effective_date: { foo: '2019-12-27' },
-          ledger_account_category_id: 'string',
-          ledger_account_id: 'string',
+          ledger_account_category_id: 'ledger_account_category_id',
+          ledger_account_id: 'ledger_account_id',
           ledger_account_lock_version: { foo: 0 },
-          ledger_account_payout_id: 'string',
-          ledger_account_settlement_id: 'string',
-          ledger_account_statement_id: 'string',
-          ledger_transaction_id: 'string',
+          ledger_account_payout_id: 'ledger_account_payout_id',
+          ledger_account_settlement_id: 'ledger_account_settlement_id',
+          ledger_account_statement_id: 'ledger_account_statement_id',
+          ledger_transaction_id: 'ledger_transaction_id',
           metadata: { foo: 'string' },
           order_by: { created_at: 'asc', effective_at: 'asc' },
           per_page: 0,
