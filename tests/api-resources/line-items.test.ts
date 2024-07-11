@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource lineItems', () => {
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.lineItems.retrieve('expected_payments', 'string', 'string');
+    const responsePromise = modernTreasury.lineItems.retrieve('expected_payments', 'itemizable_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,14 +24,14 @@ describe('resource lineItems', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.lineItems.retrieve('expected_payments', 'string', 'string', {
+      modernTreasury.lineItems.retrieve('expected_payments', 'itemizable_id', 'id', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.lineItems.update('expected_payments', 'string', 'string');
+    const responsePromise = modernTreasury.lineItems.update('expected_payments', 'itemizable_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -44,7 +44,7 @@ describe('resource lineItems', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.lineItems.update('expected_payments', 'string', 'string', {
+      modernTreasury.lineItems.update('expected_payments', 'itemizable_id', 'id', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
@@ -55,8 +55,8 @@ describe('resource lineItems', () => {
     await expect(
       modernTreasury.lineItems.update(
         'expected_payments',
-        'string',
-        'string',
+        'itemizable_id',
+        'id',
         { metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
         { path: '/_stainless_unknown_path' },
       ),
@@ -65,7 +65,7 @@ describe('resource lineItems', () => {
 
   // Prism is broken in this case
   test.skip('list', async () => {
-    const responsePromise = modernTreasury.lineItems.list('expected_payments', 'string');
+    const responsePromise = modernTreasury.lineItems.list('expected_payments', 'itemizable_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -79,7 +79,9 @@ describe('resource lineItems', () => {
   test.skip('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.lineItems.list('expected_payments', 'string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.lineItems.list('expected_payments', 'itemizable_id', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -89,8 +91,8 @@ describe('resource lineItems', () => {
     await expect(
       modernTreasury.lineItems.list(
         'expected_payments',
-        'string',
-        { after_cursor: 'string', per_page: 0 },
+        'itemizable_id',
+        { after_cursor: 'after_cursor', per_page: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

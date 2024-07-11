@@ -33,7 +33,7 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.accountCollectionFlows.retrieve('string');
+    const responsePromise = modernTreasury.accountCollectionFlows.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -46,12 +46,12 @@ describe('resource accountCollectionFlows', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.accountCollectionFlows.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.accountCollectionFlows.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: only required params', async () => {
-    const responsePromise = modernTreasury.accountCollectionFlows.update('string', { status: 'cancelled' });
+    const responsePromise = modernTreasury.accountCollectionFlows.update('id', { status: 'cancelled' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,7 +62,7 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.update('string', { status: 'cancelled' });
+    const response = await modernTreasury.accountCollectionFlows.update('id', { status: 'cancelled' });
   });
 
   test('list', async () => {
@@ -88,12 +88,12 @@ describe('resource accountCollectionFlows', () => {
     await expect(
       modernTreasury.accountCollectionFlows.list(
         {
-          after_cursor: 'string',
-          client_token: 'string',
-          counterparty_id: 'string',
-          external_account_id: 'string',
+          after_cursor: 'after_cursor',
+          client_token: 'client_token',
+          counterparty_id: 'counterparty_id',
+          external_account_id: 'external_account_id',
           per_page: 0,
-          status: 'string',
+          status: 'status',
         },
         { path: '/_stainless_unknown_path' },
       ),

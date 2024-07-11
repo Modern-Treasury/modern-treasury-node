@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource paymentReferences', () => {
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.paymentReferences.retrieve('string');
+    const responsePromise = modernTreasury.paymentReferences.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,7 +24,7 @@ describe('resource paymentReferences', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.paymentReferences.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.paymentReferences.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -51,10 +51,10 @@ describe('resource paymentReferences', () => {
     await expect(
       modernTreasury.paymentReferences.list(
         {
-          after_cursor: 'string',
+          after_cursor: 'after_cursor',
           per_page: 0,
-          reference_number: 'string',
-          referenceable_id: 'string',
+          reference_number: 'reference_number',
+          referenceable_id: 'referenceable_id',
           referenceable_type: 'payment_order',
         },
         { path: '/_stainless_unknown_path' },
@@ -63,7 +63,7 @@ describe('resource paymentReferences', () => {
   });
 
   test('retireve', async () => {
-    const responsePromise = modernTreasury.paymentReferences.retireve('string');
+    const responsePromise = modernTreasury.paymentReferences.retireve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -76,7 +76,7 @@ describe('resource paymentReferences', () => {
   test('retireve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.paymentReferences.retireve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.paymentReferences.retireve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

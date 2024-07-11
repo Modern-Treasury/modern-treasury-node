@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource counterparties', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.counterparties.create({ name: 'string' });
+    const responsePromise = modernTreasury.counterparties.create({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,40 +23,40 @@ describe('resource counterparties', () => {
 
   test('create: required and optional params', async () => {
     const response = await modernTreasury.counterparties.create({
-      name: 'string',
+      name: 'name',
       accounting: { type: 'customer' },
       accounts: [
         {
           account_type: 'cash',
           party_type: 'business',
           party_address: {
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
-          name: 'string',
+          name: 'name',
           account_details: [
-            { account_number: 'string', account_number_type: 'au_number' },
-            { account_number: 'string', account_number_type: 'au_number' },
-            { account_number: 'string', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
           ],
           routing_details: [
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
           ],
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          party_name: 'string',
-          party_identifier: 'string',
+          party_name: 'party_name',
+          party_identifier: 'party_identifier',
           ledger_account: {
-            name: 'string',
-            description: 'string',
+            name: 'name',
+            description: 'description',
             normal_balance: 'credit',
             ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            currency: 'string',
+            currency: 'currency',
             currency_exponent: 0,
             ledger_account_category_ids: [
               '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -67,44 +67,44 @@ describe('resource counterparties', () => {
             ledgerable_type: 'counterparty',
             metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           },
-          plaid_processor_token: 'string',
+          plaid_processor_token: 'plaid_processor_token',
           contact_details: [
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
           ],
         },
         {
           account_type: 'cash',
           party_type: 'business',
           party_address: {
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
-          name: 'string',
+          name: 'name',
           account_details: [
-            { account_number: 'string', account_number_type: 'au_number' },
-            { account_number: 'string', account_number_type: 'au_number' },
-            { account_number: 'string', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
           ],
           routing_details: [
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
           ],
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          party_name: 'string',
-          party_identifier: 'string',
+          party_name: 'party_name',
+          party_identifier: 'party_identifier',
           ledger_account: {
-            name: 'string',
-            description: 'string',
+            name: 'name',
+            description: 'description',
             normal_balance: 'credit',
             ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            currency: 'string',
+            currency: 'currency',
             currency_exponent: 0,
             ledger_account_category_ids: [
               '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -115,44 +115,44 @@ describe('resource counterparties', () => {
             ledgerable_type: 'counterparty',
             metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           },
-          plaid_processor_token: 'string',
+          plaid_processor_token: 'plaid_processor_token',
           contact_details: [
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
           ],
         },
         {
           account_type: 'cash',
           party_type: 'business',
           party_address: {
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
-          name: 'string',
+          name: 'name',
           account_details: [
-            { account_number: 'string', account_number_type: 'au_number' },
-            { account_number: 'string', account_number_type: 'au_number' },
-            { account_number: 'string', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
+            { account_number: 'account_number', account_number_type: 'au_number' },
           ],
           routing_details: [
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-            { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+            { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
           ],
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          party_name: 'string',
-          party_identifier: 'string',
+          party_name: 'party_name',
+          party_identifier: 'party_identifier',
           ledger_account: {
-            name: 'string',
-            description: 'string',
+            name: 'name',
+            description: 'description',
             normal_balance: 'credit',
             ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            currency: 'string',
+            currency: 'currency',
             currency_exponent: 0,
             ledger_account_category_ids: [
               '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -163,11 +163,11 @@ describe('resource counterparties', () => {
             ledgerable_type: 'counterparty',
             metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           },
-          plaid_processor_token: 'string',
+          plaid_processor_token: 'plaid_processor_token',
           contact_details: [
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
-            { contact_identifier: 'string', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
+            { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
           ],
         },
       ],
@@ -176,241 +176,245 @@ describe('resource counterparties', () => {
       legal_entity: {
         legal_entity_type: 'business',
         risk_rating: 'low',
-        first_name: 'string',
-        last_name: 'string',
+        first_name: 'first_name',
+        last_name: 'last_name',
         date_of_birth: '2019-12-27',
         date_formed: '2019-12-27',
-        business_name: 'string',
+        business_name: 'business_name',
         doing_business_as_names: ['string', 'string', 'string'],
         legal_structure: 'corporation',
-        phone_numbers: [{ phone_number: 'string' }, { phone_number: 'string' }, { phone_number: 'string' }],
-        email: 'string',
-        website: 'string',
+        phone_numbers: [
+          { phone_number: 'phone_number' },
+          { phone_number: 'phone_number' },
+          { phone_number: 'phone_number' },
+        ],
+        email: 'email',
+        website: 'website',
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         addresses: [
           {
             address_types: ['business', 'mailing', 'other'],
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
           {
             address_types: ['business', 'mailing', 'other'],
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
           {
             address_types: ['business', 'mailing', 'other'],
-            line1: 'string',
-            line2: 'string',
-            locality: 'string',
-            region: 'string',
-            postal_code: 'string',
-            country: 'string',
+            line1: 'line1',
+            line2: 'line2',
+            locality: 'locality',
+            region: 'region',
+            postal_code: 'postal_code',
+            country: 'country',
           },
         ],
         identifications: [
-          { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-          { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-          { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
+          { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+          { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+          { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
         ],
         legal_entity_associations: [
           {
             relationship_types: ['beneficial_owner', 'control_person'],
-            title: 'string',
+            title: 'title',
             ownership_percentage: 0,
             child_legal_entity: {
               legal_entity_type: 'business',
               risk_rating: 'low',
-              first_name: 'string',
-              last_name: 'string',
+              first_name: 'first_name',
+              last_name: 'last_name',
               date_of_birth: '2019-12-27',
               date_formed: '2019-12-27',
-              business_name: 'string',
+              business_name: 'business_name',
               doing_business_as_names: ['string', 'string', 'string'],
               legal_structure: 'corporation',
               phone_numbers: [
-                { phone_number: 'string' },
-                { phone_number: 'string' },
-                { phone_number: 'string' },
+                { phone_number: 'phone_number' },
+                { phone_number: 'phone_number' },
+                { phone_number: 'phone_number' },
               ],
-              email: 'string',
-              website: 'string',
+              email: 'email',
+              website: 'website',
               metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
               addresses: [
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
               ],
               identifications: [
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
               ],
             },
-            child_legal_entity_id: 'string',
+            child_legal_entity_id: 'child_legal_entity_id',
           },
           {
             relationship_types: ['beneficial_owner', 'control_person'],
-            title: 'string',
+            title: 'title',
             ownership_percentage: 0,
             child_legal_entity: {
               legal_entity_type: 'business',
               risk_rating: 'low',
-              first_name: 'string',
-              last_name: 'string',
+              first_name: 'first_name',
+              last_name: 'last_name',
               date_of_birth: '2019-12-27',
               date_formed: '2019-12-27',
-              business_name: 'string',
+              business_name: 'business_name',
               doing_business_as_names: ['string', 'string', 'string'],
               legal_structure: 'corporation',
               phone_numbers: [
-                { phone_number: 'string' },
-                { phone_number: 'string' },
-                { phone_number: 'string' },
+                { phone_number: 'phone_number' },
+                { phone_number: 'phone_number' },
+                { phone_number: 'phone_number' },
               ],
-              email: 'string',
-              website: 'string',
+              email: 'email',
+              website: 'website',
               metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
               addresses: [
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
               ],
               identifications: [
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
               ],
             },
-            child_legal_entity_id: 'string',
+            child_legal_entity_id: 'child_legal_entity_id',
           },
           {
             relationship_types: ['beneficial_owner', 'control_person'],
-            title: 'string',
+            title: 'title',
             ownership_percentage: 0,
             child_legal_entity: {
               legal_entity_type: 'business',
               risk_rating: 'low',
-              first_name: 'string',
-              last_name: 'string',
+              first_name: 'first_name',
+              last_name: 'last_name',
               date_of_birth: '2019-12-27',
               date_formed: '2019-12-27',
-              business_name: 'string',
+              business_name: 'business_name',
               doing_business_as_names: ['string', 'string', 'string'],
               legal_structure: 'corporation',
               phone_numbers: [
-                { phone_number: 'string' },
-                { phone_number: 'string' },
-                { phone_number: 'string' },
+                { phone_number: 'phone_number' },
+                { phone_number: 'phone_number' },
+                { phone_number: 'phone_number' },
               ],
-              email: 'string',
-              website: 'string',
+              email: 'email',
+              website: 'website',
               metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
               addresses: [
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
                 {
                   address_types: ['business', 'mailing', 'other'],
-                  line1: 'string',
-                  line2: 'string',
-                  locality: 'string',
-                  region: 'string',
-                  postal_code: 'string',
-                  country: 'string',
+                  line1: 'line1',
+                  line2: 'line2',
+                  locality: 'locality',
+                  region: 'region',
+                  postal_code: 'postal_code',
+                  country: 'country',
                 },
               ],
               identifications: [
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
-                { id_number: 'string', id_type: 'ar_cuil', issuing_country: 'string' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
               ],
             },
-            child_legal_entity_id: 'string',
+            child_legal_entity_id: 'child_legal_entity_id',
           },
         ],
       },
       legal_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       send_remittance_advice: true,
-      taxpayer_identifier: 'string',
+      taxpayer_identifier: 'taxpayer_identifier',
       verification_status: 'denied',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.counterparties.retrieve('string');
+    const responsePromise = modernTreasury.counterparties.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -423,12 +427,12 @@ describe('resource counterparties', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.counterparties.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.counterparties.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.counterparties.update('string');
+    const responsePromise = modernTreasury.counterparties.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -441,7 +445,7 @@ describe('resource counterparties', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.counterparties.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.counterparties.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -449,14 +453,14 @@ describe('resource counterparties', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.counterparties.update(
-        'string',
+        'id',
         {
           email: 'dev@stainlessapi.com',
           legal_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: { foo: 'string' },
-          name: 'string',
+          name: 'name',
           send_remittance_advice: true,
-          taxpayer_identifier: 'string',
+          taxpayer_identifier: 'taxpayer_identifier',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -486,13 +490,13 @@ describe('resource counterparties', () => {
     await expect(
       modernTreasury.counterparties.list(
         {
-          after_cursor: 'string',
+          after_cursor: 'after_cursor',
           created_at_lower_bound: '2019-12-27T18:11:19.117Z',
           created_at_upper_bound: '2019-12-27T18:11:19.117Z',
           email: 'dev@stainlessapi.com',
-          legal_entity_id: 'string',
+          legal_entity_id: 'legal_entity_id',
           metadata: { foo: 'string' },
-          name: 'string',
+          name: 'name',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },
@@ -501,7 +505,7 @@ describe('resource counterparties', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.counterparties.del('string');
+    const responsePromise = modernTreasury.counterparties.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -514,12 +518,12 @@ describe('resource counterparties', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.counterparties.del('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.counterparties.del('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('collectAccount: only required params', async () => {
-    const responsePromise = modernTreasury.counterparties.collectAccount('string', { direction: 'credit' });
+    const responsePromise = modernTreasury.counterparties.collectAccount('id', { direction: 'credit' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -530,7 +534,7 @@ describe('resource counterparties', () => {
   });
 
   test('collectAccount: required and optional params', async () => {
-    const response = await modernTreasury.counterparties.collectAccount('string', {
+    const response = await modernTreasury.counterparties.collectAccount('id', {
       direction: 'credit',
       custom_redirect: 'https://example.com',
       fields: ['name', 'nameOnAccount', 'taxpayerIdentifier'],

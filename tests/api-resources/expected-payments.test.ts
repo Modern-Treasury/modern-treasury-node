@@ -36,9 +36,9 @@ describe('resource expectedPayments', () => {
       currency: 'AED',
       date_lower_bound: '2019-12-27',
       date_upper_bound: '2019-12-27',
-      description: 'string',
+      description: 'description',
       ledger_transaction: {
-        description: 'string',
+        description: 'description',
         status: 'archived',
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
         effective_at: '2019-12-27T18:11:19.117Z',
@@ -78,7 +78,7 @@ describe('resource expectedPayments', () => {
             metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           },
         ],
-        external_id: 'string',
+        external_id: 'external_id',
         ledgerable_type: 'expected_payment',
         ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       },
@@ -87,34 +87,34 @@ describe('resource expectedPayments', () => {
         {
           amount: 0,
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          description: 'string',
-          accounting_category_id: 'string',
+          description: 'description',
+          accounting_category_id: 'accounting_category_id',
         },
         {
           amount: 0,
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          description: 'string',
-          accounting_category_id: 'string',
+          description: 'description',
+          accounting_category_id: 'accounting_category_id',
         },
         {
           amount: 0,
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          description: 'string',
-          accounting_category_id: 'string',
+          description: 'description',
+          accounting_category_id: 'accounting_category_id',
         },
       ],
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       reconciliation_filters: {},
       reconciliation_groups: {},
       reconciliation_rule_variables: [{ foo: 'string' }, { foo: 'string' }, { foo: 'string' }],
-      remittance_information: 'string',
-      statement_descriptor: 'string',
+      remittance_information: 'remittance_information',
+      statement_descriptor: 'statement_descriptor',
       type: 'ach',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.expectedPayments.retrieve('string');
+    const responsePromise = modernTreasury.expectedPayments.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -127,12 +127,12 @@ describe('resource expectedPayments', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.expectedPayments.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.expectedPayments.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.expectedPayments.update('string');
+    const responsePromise = modernTreasury.expectedPayments.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -145,7 +145,7 @@ describe('resource expectedPayments', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.expectedPayments.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.expectedPayments.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -153,7 +153,7 @@ describe('resource expectedPayments', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.expectedPayments.update(
-        'string',
+        'id',
         {
           amount_lower_bound: 0,
           amount_upper_bound: 0,
@@ -161,15 +161,15 @@ describe('resource expectedPayments', () => {
           currency: 'AED',
           date_lower_bound: '2019-12-27',
           date_upper_bound: '2019-12-27',
-          description: 'string',
+          description: 'description',
           direction: 'credit',
           internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           reconciliation_filters: {},
           reconciliation_groups: {},
           reconciliation_rule_variables: [{ foo: 'string' }, { foo: 'string' }, { foo: 'string' }],
-          remittance_information: 'string',
-          statement_descriptor: 'string',
+          remittance_information: 'remittance_information',
+          statement_descriptor: 'statement_descriptor',
           status: 'reconciled',
           type: 'ach',
         },
@@ -201,12 +201,12 @@ describe('resource expectedPayments', () => {
     await expect(
       modernTreasury.expectedPayments.list(
         {
-          after_cursor: 'string',
-          counterparty_id: 'string',
+          after_cursor: 'after_cursor',
+          counterparty_id: 'counterparty_id',
           created_at_lower_bound: '2019-12-27T18:11:19.117Z',
           created_at_upper_bound: '2019-12-27T18:11:19.117Z',
           direction: 'credit',
-          internal_account_id: 'string',
+          internal_account_id: 'internal_account_id',
           metadata: { foo: 'string' },
           per_page: 0,
           status: 'archived',
@@ -218,7 +218,7 @@ describe('resource expectedPayments', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.expectedPayments.del('string');
+    const responsePromise = modernTreasury.expectedPayments.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -231,7 +231,7 @@ describe('resource expectedPayments', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.expectedPayments.del('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.expectedPayments.del('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

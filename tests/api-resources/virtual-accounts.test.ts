@@ -13,7 +13,7 @@ describe('resource virtualAccounts', () => {
   test('create: only required params', async () => {
     const responsePromise = modernTreasury.virtualAccounts.create({
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      name: 'string',
+      name: 'name',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,22 +27,22 @@ describe('resource virtualAccounts', () => {
   test('create: required and optional params', async () => {
     const response = await modernTreasury.virtualAccounts.create({
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      name: 'string',
+      name: 'name',
       account_details: [
-        { account_number: 'string', account_number_type: 'au_number' },
-        { account_number: 'string', account_number_type: 'au_number' },
-        { account_number: 'string', account_number_type: 'au_number' },
+        { account_number: 'account_number', account_number_type: 'au_number' },
+        { account_number: 'account_number', account_number_type: 'au_number' },
+        { account_number: 'account_number', account_number_type: 'au_number' },
       ],
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       credit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       debit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      description: 'string',
+      description: 'description',
       ledger_account: {
-        name: 'string',
-        description: 'string',
+        name: 'name',
+        description: 'description',
         normal_balance: 'credit',
         ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        currency: 'string',
+        currency: 'currency',
         currency_exponent: 0,
         ledger_account_category_ids: [
           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -55,15 +55,15 @@ describe('resource virtualAccounts', () => {
       },
       metadata: { foo: 'string' },
       routing_details: [
-        { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-        { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
-        { routing_number: 'string', routing_number_type: 'aba', payment_type: 'ach' },
+        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
       ],
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.virtualAccounts.retrieve('string');
+    const responsePromise = modernTreasury.virtualAccounts.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -76,12 +76,12 @@ describe('resource virtualAccounts', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.virtualAccounts.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.virtualAccounts.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.virtualAccounts.update('string');
+    const responsePromise = modernTreasury.virtualAccounts.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -94,7 +94,7 @@ describe('resource virtualAccounts', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.virtualAccounts.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.virtualAccounts.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -102,12 +102,12 @@ describe('resource virtualAccounts', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.virtualAccounts.update(
-        'string',
+        'id',
         {
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: { foo: 'string' },
-          name: 'string',
+          name: 'name',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -137,9 +137,9 @@ describe('resource virtualAccounts', () => {
     await expect(
       modernTreasury.virtualAccounts.list(
         {
-          after_cursor: 'string',
-          counterparty_id: 'string',
-          internal_account_id: 'string',
+          after_cursor: 'after_cursor',
+          counterparty_id: 'counterparty_id',
+          internal_account_id: 'internal_account_id',
           metadata: { foo: 'string' },
           per_page: 0,
         },
@@ -149,7 +149,7 @@ describe('resource virtualAccounts', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.virtualAccounts.del('string');
+    const responsePromise = modernTreasury.virtualAccounts.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -162,7 +162,7 @@ describe('resource virtualAccounts', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.virtualAccounts.del('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.virtualAccounts.del('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

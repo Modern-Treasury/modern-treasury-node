@@ -11,8 +11,8 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource lineItems', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.create('string', {
-      name: 'string',
+    const responsePromise = modernTreasury.invoices.lineItems.create('invoice_id', {
+      name: 'name',
       unit_amount: 0,
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,19 +25,19 @@ describe('resource lineItems', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.invoices.lineItems.create('string', {
-      name: 'string',
+    const response = await modernTreasury.invoices.lineItems.create('invoice_id', {
+      name: 'name',
       unit_amount: 0,
-      description: 'string',
-      direction: 'string',
+      description: 'description',
+      direction: 'direction',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       quantity: 0,
-      unit_amount_decimal: 'string',
+      unit_amount_decimal: 'unit_amount_decimal',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.retrieve('string', 'string');
+    const responsePromise = modernTreasury.invoices.lineItems.retrieve('invoice_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -50,12 +50,12 @@ describe('resource lineItems', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.retrieve('string', 'string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.invoices.lineItems.retrieve('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.update('string', 'string');
+    const responsePromise = modernTreasury.invoices.lineItems.update('invoice_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -68,7 +68,7 @@ describe('resource lineItems', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.update('string', 'string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.invoices.lineItems.update('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -76,16 +76,16 @@ describe('resource lineItems', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.invoices.lineItems.update(
-        'string',
-        'string',
+        'invoice_id',
+        'id',
         {
-          description: 'string',
-          direction: 'string',
+          description: 'description',
+          direction: 'direction',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          name: 'string',
+          name: 'name',
           quantity: 0,
           unit_amount: 0,
-          unit_amount_decimal: 'string',
+          unit_amount_decimal: 'unit_amount_decimal',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -93,7 +93,7 @@ describe('resource lineItems', () => {
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.list('string');
+    const responsePromise = modernTreasury.invoices.lineItems.list('invoice_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -106,7 +106,7 @@ describe('resource lineItems', () => {
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.list('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.invoices.lineItems.list('invoice_id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -114,15 +114,15 @@ describe('resource lineItems', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.invoices.lineItems.list(
-        'string',
-        { after_cursor: 'string', per_page: 0 },
+        'invoice_id',
+        { after_cursor: 'after_cursor', per_page: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.del('string', 'string');
+    const responsePromise = modernTreasury.invoices.lineItems.del('invoice_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -135,7 +135,7 @@ describe('resource lineItems', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.del('string', 'string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.invoices.lineItems.del('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

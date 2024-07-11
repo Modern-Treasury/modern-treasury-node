@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource incomingPaymentDetails', () => {
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.incomingPaymentDetails.retrieve('string');
+    const responsePromise = modernTreasury.incomingPaymentDetails.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,12 +24,12 @@ describe('resource incomingPaymentDetails', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.incomingPaymentDetails.retrieve('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.incomingPaymentDetails.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.incomingPaymentDetails.update('string');
+    const responsePromise = modernTreasury.incomingPaymentDetails.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,7 +42,7 @@ describe('resource incomingPaymentDetails', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.incomingPaymentDetails.update('string', { path: '/_stainless_unknown_path' }),
+      modernTreasury.incomingPaymentDetails.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
@@ -50,7 +50,7 @@ describe('resource incomingPaymentDetails', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       modernTreasury.incomingPaymentDetails.update(
-        'string',
+        'id',
         { metadata: { foo: 'string' } },
         { path: '/_stainless_unknown_path' },
       ),
@@ -80,7 +80,7 @@ describe('resource incomingPaymentDetails', () => {
     await expect(
       modernTreasury.incomingPaymentDetails.list(
         {
-          after_cursor: 'string',
+          after_cursor: 'after_cursor',
           as_of_date_end: '2019-12-27',
           as_of_date_start: '2019-12-27',
           direction: 'credit',
@@ -88,7 +88,7 @@ describe('resource incomingPaymentDetails', () => {
           per_page: 0,
           status: 'completed',
           type: 'ach',
-          virtual_account_id: 'string',
+          virtual_account_id: 'virtual_account_id',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -121,7 +121,7 @@ describe('resource incomingPaymentDetails', () => {
           amount: 0,
           as_of_date: '2019-12-27',
           currency: 'AED',
-          description: 'string',
+          description: 'description',
           direction: 'credit',
           internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           type: 'ach',
