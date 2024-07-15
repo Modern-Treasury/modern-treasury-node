@@ -66,9 +66,15 @@ export class LedgerEventHandlers extends APIResource {
 
 export class LedgerEventHandlersPage extends Page<LedgerEventHandler> {}
 
+/**
+ * @deprecated
+ */
 export interface LedgerEventHandler {
   id: string;
 
+  /**
+   * @deprecated
+   */
   conditions: LedgerEventHandler.Conditions | null;
 
   created_at: string;
@@ -85,6 +91,9 @@ export interface LedgerEventHandler {
    */
   ledger_id: string | null;
 
+  /**
+   * @deprecated
+   */
   ledger_transaction_template: LedgerEventHandler.LedgerTransactionTemplate;
 
   /**
@@ -108,10 +117,16 @@ export interface LedgerEventHandler {
 
   updated_at: string;
 
+  /**
+   * @deprecated
+   */
   variables: Record<string, LedgerEventHandlerVariable> | null;
 }
 
 export namespace LedgerEventHandler {
+  /**
+   * @deprecated
+   */
   export interface Conditions {
     /**
      * The LHS of the conditional.
@@ -129,6 +144,9 @@ export namespace LedgerEventHandler {
     value: string;
   }
 
+  /**
+   * @deprecated
+   */
   export interface LedgerTransactionTemplate {
     /**
      * An optional description for internal use.
@@ -153,6 +171,9 @@ export namespace LedgerEventHandler {
   }
 
   export namespace LedgerTransactionTemplate {
+    /**
+     * @deprecated
+     */
     export interface LedgerEntry {
       /**
        * The LHS of the conditional.
@@ -172,7 +193,13 @@ export namespace LedgerEventHandler {
   }
 }
 
+/**
+ * @deprecated
+ */
 export interface LedgerEventHandlerVariable {
+  /**
+   * @deprecated
+   */
   query: LedgerEventHandlerVariable.Query;
 
   /**
@@ -183,6 +210,9 @@ export interface LedgerEventHandlerVariable {
 }
 
 export namespace LedgerEventHandlerVariable {
+  /**
+   * @deprecated
+   */
   export interface Query {
     /**
      * The LHS of the conditional.
@@ -231,6 +261,9 @@ export interface LedgerEventHandlerCreateParams {
 }
 
 export namespace LedgerEventHandlerCreateParams {
+  /**
+   * @deprecated
+   */
   export interface LedgerTransactionTemplate {
     /**
      * An optional description for internal use.
@@ -255,6 +288,9 @@ export namespace LedgerEventHandlerCreateParams {
   }
 
   export namespace LedgerTransactionTemplate {
+    /**
+     * @deprecated
+     */
     export interface LedgerEntry {
       /**
        * The LHS of the conditional.
@@ -273,6 +309,9 @@ export namespace LedgerEventHandlerCreateParams {
     }
   }
 
+  /**
+   * @deprecated
+   */
   export interface Conditions {
     /**
      * The LHS of the conditional.
