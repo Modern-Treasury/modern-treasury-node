@@ -34,6 +34,9 @@ export class LedgerableEvents extends APIResource {
   }
 }
 
+/**
+ * @deprecated
+ */
 export interface LedgerableEvent {
   id: string;
 
