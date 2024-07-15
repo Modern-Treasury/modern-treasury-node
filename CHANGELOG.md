@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.27.0 (2024-07-15)
+
+Full Changelog: [v2.26.0...v2.27.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.26.0...v2.27.0)
+
+### Features
+
+* **api:** updates ([#427](https://github.com/Modern-Treasury/modern-treasury-node/issues/427)) ([186bc9b](https://github.com/Modern-Treasury/modern-treasury-node/commit/186bc9bef1401925cc22bcece39af85762feac79))
+
+
+### Chores
+
+* **ci:** also run workflows for PRs targeting `next` ([#424](https://github.com/Modern-Treasury/modern-treasury-node/issues/424)) ([69f7671](https://github.com/Modern-Treasury/modern-treasury-node/commit/69f7671f1d5c0a3043a09684087a60f2618c1e46))
+* **docs:** minor update to formatting of API link in README ([#428](https://github.com/Modern-Treasury/modern-treasury-node/issues/428)) ([136c85d](https://github.com/Modern-Treasury/modern-treasury-node/commit/136c85d38fc50c5a52373e261cae007da7070527))
+
+
+### Documentation
+
+* **examples:** update example values ([#426](https://github.com/Modern-Treasury/modern-treasury-node/issues/426)) ([9f09355](https://github.com/Modern-Treasury/modern-treasury-node/commit/9f09355bd6a5415a110845f9512765417a631ae5))
+
 ## 2.26.0 (2024-07-01)
 
 Full Changelog: [v2.25.0...v2.26.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.25.0...v2.26.0)
