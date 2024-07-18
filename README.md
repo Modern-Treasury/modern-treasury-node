@@ -20,7 +20,7 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import ModernTreasury from 'modern-treasury';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   organizationId: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted
   apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted
 });
@@ -42,7 +42,7 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import ModernTreasury from 'modern-treasury';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   organizationId: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted
   apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted
 });
@@ -71,7 +71,7 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 import ModernTreasury, { toFile } from 'modern-treasury';
 
-const modernTreasury = new ModernTreasury();
+const client = new ModernTreasury();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
 await modernTreasury.documents.create({
@@ -156,7 +156,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   maxRetries: 0, // default is 2
 });
 
@@ -173,7 +173,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -228,7 +228,7 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const modernTreasury = new ModernTreasury();
+const client = new ModernTreasury();
 
 const response = await modernTreasury.counterparties.create({ name: 'my first counterparty' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
@@ -337,7 +337,7 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
