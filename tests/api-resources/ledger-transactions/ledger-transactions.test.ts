@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerTransactions', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.ledgerTransactions.create({
+    const responsePromise = client.ledgerTransactions.create({
       ledger_entries: [
         { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
         { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
@@ -28,7 +28,7 @@ describe('resource ledgerTransactions', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.ledgerTransactions.create({
+    const response = await client.ledgerTransactions.create({
       ledger_entries: [
         {
           amount: 0,
@@ -76,7 +76,7 @@ describe('resource ledgerTransactions', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.ledgerTransactions.retrieve('id');
+    const responsePromise = client.ledgerTransactions.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -89,12 +89,12 @@ describe('resource ledgerTransactions', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.retrieve('id', { path: '/_stainless_unknown_path' }),
+      client.ledgerTransactions.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.ledgerTransactions.update('id');
+    const responsePromise = client.ledgerTransactions.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -107,14 +107,14 @@ describe('resource ledgerTransactions', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.update('id', { path: '/_stainless_unknown_path' }),
+      client.ledgerTransactions.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.update(
+      client.ledgerTransactions.update(
         'id',
         {
           description: 'description',
@@ -165,7 +165,7 @@ describe('resource ledgerTransactions', () => {
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.ledgerTransactions.list();
+    const responsePromise = client.ledgerTransactions.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -177,15 +177,15 @@ describe('resource ledgerTransactions', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.ledgerTransactions.list({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.ledgerTransactions.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.list(
+      client.ledgerTransactions.list(
         {
           id: ['string', 'string', 'string'],
           after_cursor: 'after_cursor',
@@ -212,7 +212,7 @@ describe('resource ledgerTransactions', () => {
   });
 
   test('createReversal', async () => {
-    const responsePromise = modernTreasury.ledgerTransactions.createReversal('id');
+    const responsePromise = client.ledgerTransactions.createReversal('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -225,14 +225,14 @@ describe('resource ledgerTransactions', () => {
   test('createReversal: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.createReversal('id', { path: '/_stainless_unknown_path' }),
+      client.ledgerTransactions.createReversal('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('createReversal: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerTransactions.createReversal(
+      client.ledgerTransactions.createReversal(
         'id',
         {
           description: 'description',

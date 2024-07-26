@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource externalAccounts', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.externalAccounts.create({
+    const responsePromise = client.externalAccounts.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -24,7 +24,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.externalAccounts.create({
+    const response = await client.externalAccounts.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       account_details: [
         { account_number: 'account_number', account_number_type: 'au_number' },
@@ -76,7 +76,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.externalAccounts.retrieve('id');
+    const responsePromise = client.externalAccounts.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -89,12 +89,12 @@ describe('resource externalAccounts', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.retrieve('id', { path: '/_stainless_unknown_path' }),
+      client.externalAccounts.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.externalAccounts.update('id');
+    const responsePromise = client.externalAccounts.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -106,15 +106,15 @@ describe('resource externalAccounts', () => {
 
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.externalAccounts.update('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.externalAccounts.update('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.update(
+      client.externalAccounts.update(
         'id',
         {
           account_type: 'cash',
@@ -138,7 +138,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.externalAccounts.list();
+    const responsePromise = client.externalAccounts.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -150,7 +150,7 @@ describe('resource externalAccounts', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.externalAccounts.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.externalAccounts.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
@@ -158,7 +158,7 @@ describe('resource externalAccounts', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.list(
+      client.externalAccounts.list(
         {
           after_cursor: 'after_cursor',
           counterparty_id: 'counterparty_id',
@@ -172,7 +172,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.externalAccounts.del('id');
+    const responsePromise = client.externalAccounts.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -184,13 +184,13 @@ describe('resource externalAccounts', () => {
 
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.externalAccounts.del('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.externalAccounts.del('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('completeVerification', async () => {
-    const responsePromise = modernTreasury.externalAccounts.completeVerification('id');
+    const responsePromise = client.externalAccounts.completeVerification('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -203,14 +203,14 @@ describe('resource externalAccounts', () => {
   test('completeVerification: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.completeVerification('id', { path: '/_stainless_unknown_path' }),
+      client.externalAccounts.completeVerification('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('completeVerification: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.externalAccounts.completeVerification(
+      client.externalAccounts.completeVerification(
         'id',
         { amounts: [2, 4] },
         { path: '/_stainless_unknown_path' },
@@ -219,7 +219,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('verify: only required params', async () => {
-    const responsePromise = modernTreasury.externalAccounts.verify('id', {
+    const responsePromise = client.externalAccounts.verify('id', {
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_type: 'ach',
     });
@@ -233,7 +233,7 @@ describe('resource externalAccounts', () => {
   });
 
   test('verify: required and optional params', async () => {
-    const response = await modernTreasury.externalAccounts.verify('id', {
+    const response = await client.externalAccounts.verify('id', {
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_type: 'ach',
       currency: 'AED',

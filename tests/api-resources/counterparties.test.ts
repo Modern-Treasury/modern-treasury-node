@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource counterparties', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.counterparties.create({ name: 'name' });
+    const responsePromise = client.counterparties.create({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +22,7 @@ describe('resource counterparties', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.counterparties.create({
+    const response = await client.counterparties.create({
       name: 'name',
       accounting: { type: 'customer' },
       accounts: [
@@ -414,7 +414,7 @@ describe('resource counterparties', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.counterparties.retrieve('id');
+    const responsePromise = client.counterparties.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -426,13 +426,13 @@ describe('resource counterparties', () => {
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.counterparties.retrieve('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.counterparties.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.counterparties.update('id');
+    const responsePromise = client.counterparties.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -444,15 +444,15 @@ describe('resource counterparties', () => {
 
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.counterparties.update('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.counterparties.update('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.counterparties.update(
+      client.counterparties.update(
         'id',
         {
           email: 'dev@stainlessapi.com',
@@ -468,7 +468,7 @@ describe('resource counterparties', () => {
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.counterparties.list();
+    const responsePromise = client.counterparties.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -480,7 +480,7 @@ describe('resource counterparties', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.counterparties.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.counterparties.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
@@ -488,7 +488,7 @@ describe('resource counterparties', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.counterparties.list(
+      client.counterparties.list(
         {
           after_cursor: 'after_cursor',
           created_at_lower_bound: '2019-12-27T18:11:19.117Z',
@@ -505,7 +505,7 @@ describe('resource counterparties', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.counterparties.del('id');
+    const responsePromise = client.counterparties.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -517,13 +517,13 @@ describe('resource counterparties', () => {
 
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.counterparties.del('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.counterparties.del('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('collectAccount: only required params', async () => {
-    const responsePromise = modernTreasury.counterparties.collectAccount('id', { direction: 'credit' });
+    const responsePromise = client.counterparties.collectAccount('id', { direction: 'credit' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -534,7 +534,7 @@ describe('resource counterparties', () => {
   });
 
   test('collectAccount: required and optional params', async () => {
-    const response = await modernTreasury.counterparties.collectAccount('id', {
+    const response = await client.counterparties.collectAccount('id', {
       direction: 'credit',
       custom_redirect: 'https://example.com',
       fields: ['name', 'nameOnAccount', 'taxpayerIdentifier'],

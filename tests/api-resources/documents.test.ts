@@ -3,7 +3,7 @@
 import ModernTreasury, { toFile } from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource documents', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.documents.create({
+    const responsePromise = client.documents.create({
       documentable_id: 'documentable_id',
       documentable_type: 'cases',
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
@@ -26,7 +26,7 @@ describe('resource documents', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.documents.create({
+    const response = await client.documents.create({
       documentable_id: 'documentable_id',
       documentable_type: 'cases',
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
@@ -35,7 +35,7 @@ describe('resource documents', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.documents.retrieve('id');
+    const responsePromise = client.documents.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -47,13 +47,13 @@ describe('resource documents', () => {
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.documents.retrieve('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.documents.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.documents.list();
+    const responsePromise = client.documents.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -65,7 +65,7 @@ describe('resource documents', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.documents.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.documents.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
@@ -73,7 +73,7 @@ describe('resource documents', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.documents.list(
+      client.documents.list(
         {
           after_cursor: 'after_cursor',
           documentable_id: 'documentable_id',
