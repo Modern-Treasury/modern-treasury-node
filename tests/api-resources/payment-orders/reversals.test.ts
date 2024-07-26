@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource reversals', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.paymentOrders.reversals.create('payment_order_id', {
+    const responsePromise = client.paymentOrders.reversals.create('payment_order_id', {
       reason: 'duplicate',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -24,7 +24,7 @@ describe('resource reversals', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.paymentOrders.reversals.create('payment_order_id', {
+    const response = await client.paymentOrders.reversals.create('payment_order_id', {
       reason: 'duplicate',
       ledger_transaction: {
         description: 'description',
@@ -76,10 +76,7 @@ describe('resource reversals', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.paymentOrders.reversals.retrieve(
-      'payment_order_id',
-      'reversal_id',
-    );
+    const responsePromise = client.paymentOrders.reversals.retrieve('payment_order_id', 'reversal_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -92,14 +89,14 @@ describe('resource reversals', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.paymentOrders.reversals.retrieve('payment_order_id', 'reversal_id', {
+      client.paymentOrders.reversals.retrieve('payment_order_id', 'reversal_id', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.paymentOrders.reversals.list('payment_order_id');
+    const responsePromise = client.paymentOrders.reversals.list('payment_order_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -112,14 +109,14 @@ describe('resource reversals', () => {
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.paymentOrders.reversals.list('payment_order_id', { path: '/_stainless_unknown_path' }),
+      client.paymentOrders.reversals.list('payment_order_id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.paymentOrders.reversals.list(
+      client.paymentOrders.reversals.list(
         'payment_order_id',
         { after_cursor: 'after_cursor', per_page: 0 },
         { path: '/_stainless_unknown_path' },

@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerableEvents', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.ledgerableEvents.create({ name: 'name' });
+    const responsePromise = client.ledgerableEvents.create({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +22,7 @@ describe('resource ledgerableEvents', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.ledgerableEvents.create({
+    const response = await client.ledgerableEvents.create({
       name: 'name',
       custom_data: {},
       description: 'description',
@@ -31,7 +31,7 @@ describe('resource ledgerableEvents', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.ledgerableEvents.retrieve('id');
+    const responsePromise = client.ledgerableEvents.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -44,7 +44,7 @@ describe('resource ledgerableEvents', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerableEvents.retrieve('id', { path: '/_stainless_unknown_path' }),
+      client.ledgerableEvents.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });
