@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource accountCollectionFlows', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.accountCollectionFlows.create({
+    const responsePromise = client.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_types: ['string', 'string', 'string'],
     });
@@ -25,7 +25,7 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.create({
+    const response = await client.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       payment_types: ['string', 'string', 'string'],
       receiving_countries: ['USA', 'AUS', 'BEL'],
@@ -33,7 +33,7 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.accountCollectionFlows.retrieve('id');
+    const responsePromise = client.accountCollectionFlows.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -46,12 +46,12 @@ describe('resource accountCollectionFlows', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.accountCollectionFlows.retrieve('id', { path: '/_stainless_unknown_path' }),
+      client.accountCollectionFlows.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: only required params', async () => {
-    const responsePromise = modernTreasury.accountCollectionFlows.update('id', { status: 'cancelled' });
+    const responsePromise = client.accountCollectionFlows.update('id', { status: 'cancelled' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,11 +62,11 @@ describe('resource accountCollectionFlows', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await modernTreasury.accountCollectionFlows.update('id', { status: 'cancelled' });
+    const response = await client.accountCollectionFlows.update('id', { status: 'cancelled' });
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.accountCollectionFlows.list();
+    const responsePromise = client.accountCollectionFlows.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -78,15 +78,15 @@ describe('resource accountCollectionFlows', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.accountCollectionFlows.list({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.accountCollectionFlows.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.accountCollectionFlows.list(
+      client.accountCollectionFlows.list(
         {
           after_cursor: 'after_cursor',
           client_token: 'client_token',

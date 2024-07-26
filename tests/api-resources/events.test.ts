@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource events', () => {
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.events.retrieve('id');
+    const responsePromise = client.events.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,13 +23,13 @@ describe('resource events', () => {
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.events.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.events.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.events.list();
+    const responsePromise = client.events.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -41,7 +41,7 @@ describe('resource events', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.events.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.events.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
@@ -49,7 +49,7 @@ describe('resource events', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.events.list(
+      client.events.list(
         {
           after_cursor: 'after_cursor',
           entity_id: 'entity_id',
