@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource lineItems', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.transactions.lineItems.create({
+    const responsePromise = client.transactions.lineItems.create({
       amount: 0,
       expected_payment_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -26,7 +26,7 @@ describe('resource lineItems', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.transactions.lineItems.create({
+    const response = await client.transactions.lineItems.create({
       amount: 0,
       expected_payment_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -34,7 +34,7 @@ describe('resource lineItems', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.transactions.lineItems.retrieve('id');
+    const responsePromise = client.transactions.lineItems.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -47,12 +47,12 @@ describe('resource lineItems', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.transactions.lineItems.retrieve('id', { path: '/_stainless_unknown_path' }),
+      client.transactions.lineItems.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.transactions.lineItems.list();
+    const responsePromise = client.transactions.lineItems.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -64,15 +64,15 @@ describe('resource lineItems', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.transactions.lineItems.list({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.transactions.lineItems.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.transactions.lineItems.list(
+      client.transactions.lineItems.list(
         {
           id: { foo: 'string' },
           after_cursor: 'after_cursor',
@@ -86,7 +86,7 @@ describe('resource lineItems', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.transactions.lineItems.del('id');
+    const responsePromise = client.transactions.lineItems.del('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -99,7 +99,7 @@ describe('resource lineItems', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.transactions.lineItems.del('id', { path: '/_stainless_unknown_path' }),
+      client.transactions.lineItems.del('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource connectionLegalEntities', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.connectionLegalEntities.create({ connection_id: 'connection_id' });
+    const responsePromise = client.connectionLegalEntities.create({ connection_id: 'connection_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +22,7 @@ describe('resource connectionLegalEntities', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.connectionLegalEntities.create({
+    const response = await client.connectionLegalEntities.create({
       connection_id: 'connection_id',
       legal_entity: {
         legal_entity_type: 'business',
@@ -261,7 +261,7 @@ describe('resource connectionLegalEntities', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.connectionLegalEntities.retrieve('id');
+    const responsePromise = client.connectionLegalEntities.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -274,12 +274,12 @@ describe('resource connectionLegalEntities', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.connectionLegalEntities.retrieve('id', { path: '/_stainless_unknown_path' }),
+      client.connectionLegalEntities.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.connectionLegalEntities.update('id');
+    const responsePromise = client.connectionLegalEntities.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -292,14 +292,14 @@ describe('resource connectionLegalEntities', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.connectionLegalEntities.update('id', { path: '/_stainless_unknown_path' }),
+      client.connectionLegalEntities.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.connectionLegalEntities.update(
+      client.connectionLegalEntities.update(
         'id',
         { status: 'processing' },
         { path: '/_stainless_unknown_path' },
@@ -308,7 +308,7 @@ describe('resource connectionLegalEntities', () => {
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.connectionLegalEntities.list();
+    const responsePromise = client.connectionLegalEntities.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -320,15 +320,15 @@ describe('resource connectionLegalEntities', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.connectionLegalEntities.list({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.connectionLegalEntities.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.connectionLegalEntities.list(
+      client.connectionLegalEntities.list(
         {
           after_cursor: 'after_cursor',
           connection_id: 'connection_id',

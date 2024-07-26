@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource ledgerAccountSettlements', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.ledgerAccountSettlements.create({
+    const responsePromise = client.ledgerAccountSettlements.create({
       contra_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       settled_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
@@ -25,7 +25,7 @@ describe('resource ledgerAccountSettlements', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.ledgerAccountSettlements.create({
+    const response = await client.ledgerAccountSettlements.create({
       contra_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       settled_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       allow_either_direction: true,
@@ -38,7 +38,7 @@ describe('resource ledgerAccountSettlements', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.ledgerAccountSettlements.retrieve('id');
+    const responsePromise = client.ledgerAccountSettlements.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -51,12 +51,12 @@ describe('resource ledgerAccountSettlements', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerAccountSettlements.retrieve('id', { path: '/_stainless_unknown_path' }),
+      client.ledgerAccountSettlements.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.ledgerAccountSettlements.update('id');
+    const responsePromise = client.ledgerAccountSettlements.update('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -69,14 +69,14 @@ describe('resource ledgerAccountSettlements', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerAccountSettlements.update('id', { path: '/_stainless_unknown_path' }),
+      client.ledgerAccountSettlements.update('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerAccountSettlements.update(
+      client.ledgerAccountSettlements.update(
         'id',
         {
           description: 'description',
@@ -89,7 +89,7 @@ describe('resource ledgerAccountSettlements', () => {
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.ledgerAccountSettlements.list();
+    const responsePromise = client.ledgerAccountSettlements.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -101,15 +101,15 @@ describe('resource ledgerAccountSettlements', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.ledgerAccountSettlements.list({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.ledgerAccountSettlements.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.ledgerAccountSettlements.list(
+      client.ledgerAccountSettlements.list(
         {
           id: ['string', 'string', 'string'],
           after_cursor: 'after_cursor',
