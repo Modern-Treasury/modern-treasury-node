@@ -334,6 +334,12 @@ export interface LedgerAccountCategoryCreateParams {
   description?: string | null;
 
   /**
+   * The array of ledger account category ids that this ledger account category
+   * should be a child of.
+   */
+  ledger_account_category_ids?: Array<string>;
+
+  /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
