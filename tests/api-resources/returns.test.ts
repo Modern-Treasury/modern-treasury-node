@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource returns', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.returns.create({
+    const responsePromise = client.returns.create({
       returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       returnable_type: 'incoming_payment_detail',
     });
@@ -25,7 +25,7 @@ describe('resource returns', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.returns.create({
+    const response = await client.returns.create({
       returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       returnable_type: 'incoming_payment_detail',
       additional_information: 'additional_information',
@@ -36,7 +36,7 @@ describe('resource returns', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.returns.retrieve('id');
+    const responsePromise = client.returns.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -48,13 +48,13 @@ describe('resource returns', () => {
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.returns.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.returns.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.returns.list();
+    const responsePromise = client.returns.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -66,7 +66,7 @@ describe('resource returns', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.returns.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.returns.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
@@ -74,7 +74,7 @@ describe('resource returns', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.returns.list(
+      client.returns.list(
         {
           after_cursor: 'after_cursor',
           counterparty_id: 'counterparty_id',

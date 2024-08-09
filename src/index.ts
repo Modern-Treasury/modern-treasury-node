@@ -225,6 +225,7 @@ export class ModernTreasury extends Core.APIClient {
   }
 
   static ModernTreasury = this;
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
   static ModernTreasuryError = Errors.ModernTreasuryError;
   static APIError = Errors.APIError;

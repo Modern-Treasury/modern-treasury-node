@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -12,7 +12,7 @@ const modernTreasury = new ModernTreasury({
 describe('resource bulkRequests', () => {
   // Multipart documents aren't constructed properly yet
   test.skip('create: only required params', async () => {
-    const responsePromise = modernTreasury.bulkRequests.create({
+    const responsePromise = client.bulkRequests.create({
       action_type: 'create',
       resource_type: 'payment_order',
       resources: [
@@ -47,7 +47,7 @@ describe('resource bulkRequests', () => {
 
   // Multipart documents aren't constructed properly yet
   test.skip('create: required and optional params', async () => {
-    const response = await modernTreasury.bulkRequests.create({
+    const response = await client.bulkRequests.create({
       action_type: 'create',
       resource_type: 'payment_order',
       resources: [
@@ -507,7 +507,7 @@ describe('resource bulkRequests', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.bulkRequests.retrieve('id');
+    const responsePromise = client.bulkRequests.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -519,13 +519,13 @@ describe('resource bulkRequests', () => {
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.bulkRequests.retrieve('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.bulkRequests.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.bulkRequests.list();
+    const responsePromise = client.bulkRequests.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -537,7 +537,7 @@ describe('resource bulkRequests', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(modernTreasury.bulkRequests.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.bulkRequests.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       ModernTreasury.NotFoundError,
     );
   });
@@ -545,7 +545,7 @@ describe('resource bulkRequests', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.bulkRequests.list(
+      client.bulkRequests.list(
         {
           action_type: 'create',
           after_cursor: 'after_cursor',

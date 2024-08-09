@@ -1085,6 +1085,7 @@ export interface CounterpartyCollectAccountParams {
     | 'huInterbankClearingCode'
     | 'dkInterbankClearingCode'
     | 'idSknbiCode'
+    | 'za_national_clearing_code'
   >;
 
   /**

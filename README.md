@@ -20,13 +20,13 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import ModernTreasury from 'modern-treasury';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   organizationId: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted
   apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
-  const counterparty = await modernTreasury.counterparties.create({ name: 'my first counterparty' });
+  const counterparty = await client.counterparties.create({ name: 'my first counterparty' });
 
   console.log(counterparty.id);
 }
@@ -42,14 +42,14 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import ModernTreasury from 'modern-treasury';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   organizationId: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted
   apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
   const params: ModernTreasury.CounterpartyCreateParams = { name: 'my first counterparty' };
-  const counterparty: ModernTreasury.Counterparty = await modernTreasury.counterparties.create(params);
+  const counterparty: ModernTreasury.Counterparty = await client.counterparties.create(params);
 }
 
 main();
@@ -71,36 +71,36 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 import ModernTreasury, { toFile } from 'modern-treasury';
 
-const modernTreasury = new ModernTreasury();
+const client = new ModernTreasury();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
-await modernTreasury.documents.create({
+await client.documents.create({
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
   file: fs.createReadStream('my/file.txt'),
 });
 
 // Or if you have the web `File` API you can pass a `File` instance:
-await modernTreasury.documents.create({
+await client.documents.create({
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
   file: new File(['my bytes'], 'file.txt'),
 });
 
 // You can also pass a `fetch` `Response`:
-await modernTreasury.documents.create({
+await client.documents.create({
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
   file: await fetch('https://somesite/file.txt'),
 });
 
 // Finally, if none of the above are convenient, you can use our `toFile` helper:
-await modernTreasury.documents.create({
+await client.documents.create({
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
   file: await toFile(Buffer.from('my bytes'), 'file.txt'),
 });
-await modernTreasury.documents.create({
+await client.documents.create({
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
   file: await toFile(new Uint8Array([0, 1, 2]), 'file.txt'),
@@ -116,7 +116,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const externalAccount = await modernTreasury.externalAccounts
+  const externalAccount = await client.externalAccounts
     .create({ counterparty_id: 'missing' })
     .catch(async (err) => {
       if (err instanceof ModernTreasury.APIError) {
@@ -156,12 +156,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await modernTreasury.counterparties.create({ name: 'my first counterparty' }, {
+await client.counterparties.create({ name: 'my first counterparty' }, {
   maxRetries: 5,
 });
 ```
@@ -173,12 +173,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await modernTreasury.counterparties.create({ name: 'my first counterparty' }, {
+await client.counterparties.create({ name: 'my first counterparty' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -196,7 +196,7 @@ You can use `for await … of` syntax to iterate through items across all pages:
 async function fetchAllCounterparties(params) {
   const allCounterparties = [];
   // Automatically fetches more pages as needed.
-  for await (const counterparty of modernTreasury.counterparties.list()) {
+  for await (const counterparty of client.counterparties.list()) {
     allCounterparties.push(counterparty);
   }
   return allCounterparties;
@@ -206,7 +206,7 @@ async function fetchAllCounterparties(params) {
 Alternatively, you can make request a single page at a time:
 
 ```ts
-let page = await modernTreasury.counterparties.list();
+let page = await client.counterparties.list();
 for (const counterparty of page.items) {
   console.log(counterparty);
 }
@@ -228,13 +228,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const modernTreasury = new ModernTreasury();
+const client = new ModernTreasury();
 
-const response = await modernTreasury.counterparties.create({ name: 'my first counterparty' }).asResponse();
+const response = await client.counterparties.create({ name: 'my first counterparty' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: counterparty, response: raw } = await modernTreasury.counterparties
+const { data: counterparty, response: raw } = await client.counterparties
   .create({ name: 'my first counterparty' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
@@ -337,12 +337,12 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
 // Override per-request:
-await modernTreasury.counterparties.create(
+await client.counterparties.create(
   { name: 'my first counterparty' },
   {
     httpAgent: new http.Agent({ keepAlive: false }),
@@ -368,6 +368,7 @@ TypeScript >= 4.5 is supported.
 
 The following runtimes are supported:
 
+- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)
 - Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
 - Deno v1.28.0 or higher, using `import ModernTreasury from "npm:modern-treasury"`.
 - Bun 1.0 or later.

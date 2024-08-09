@@ -115,6 +115,12 @@ export interface Transaction {
   currency: Shared.Currency;
 
   /**
+   * An object containing key-value pairs, each with a custom identifier as the key
+   * and a string value.
+   */
+  custom_identifiers: Record<string, string>;
+
+  /**
    * Either `credit` or `debit`.
    */
   direction: string;

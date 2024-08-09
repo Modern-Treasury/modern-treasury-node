@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource foreignExchangeQuotes', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.foreignExchangeQuotes.create({
+    const responsePromise = client.foreignExchangeQuotes.create({
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       target_currency: 'AED',
     });
@@ -25,7 +25,7 @@ describe('resource foreignExchangeQuotes', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.foreignExchangeQuotes.create({
+    const response = await client.foreignExchangeQuotes.create({
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       target_currency: 'AED',
       base_amount: 0,
@@ -36,7 +36,7 @@ describe('resource foreignExchangeQuotes', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.foreignExchangeQuotes.retrieve('id');
+    const responsePromise = client.foreignExchangeQuotes.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -49,12 +49,12 @@ describe('resource foreignExchangeQuotes', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.foreignExchangeQuotes.retrieve('id', { path: '/_stainless_unknown_path' }),
+      client.foreignExchangeQuotes.retrieve('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.foreignExchangeQuotes.list();
+    const responsePromise = client.foreignExchangeQuotes.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -66,15 +66,15 @@ describe('resource foreignExchangeQuotes', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      modernTreasury.foreignExchangeQuotes.list({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.foreignExchangeQuotes.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.foreignExchangeQuotes.list(
+      client.foreignExchangeQuotes.list(
         {
           after_cursor: 'after_cursor',
           base_currency: 'base_currency',

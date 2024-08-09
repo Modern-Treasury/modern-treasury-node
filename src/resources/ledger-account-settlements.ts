@@ -240,6 +240,13 @@ export interface LedgerAccountSettlementListParams extends PageParams {
    */
   id?: Array<string>;
 
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+   * created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+   * created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+   */
+  created_at?: Record<string, string>;
+
   ledger_id?: string;
 
   ledger_transaction_id?: string;
@@ -254,6 +261,13 @@ export interface LedgerAccountSettlementListParams extends PageParams {
   settled_ledger_account_id?: string;
 
   settlement_entry_direction?: string;
+
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+   * updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+   * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
+   */
+  updated_at?: Record<string, string>;
 }
 
 export namespace LedgerAccountSettlements {

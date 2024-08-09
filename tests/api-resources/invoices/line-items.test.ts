@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Response } from 'node-fetch';
 
-const modernTreasury = new ModernTreasury({
+const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationId: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,10 +11,7 @@ const modernTreasury = new ModernTreasury({
 
 describe('resource lineItems', () => {
   test('create: only required params', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.create('invoice_id', {
-      name: 'name',
-      unit_amount: 0,
-    });
+    const responsePromise = client.invoices.lineItems.create('invoice_id', { name: 'name', unit_amount: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -25,7 +22,7 @@ describe('resource lineItems', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await modernTreasury.invoices.lineItems.create('invoice_id', {
+    const response = await client.invoices.lineItems.create('invoice_id', {
       name: 'name',
       unit_amount: 0,
       description: 'description',
@@ -37,7 +34,7 @@ describe('resource lineItems', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.retrieve('invoice_id', 'id');
+    const responsePromise = client.invoices.lineItems.retrieve('invoice_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -50,12 +47,12 @@ describe('resource lineItems', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.retrieve('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
+      client.invoices.lineItems.retrieve('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.update('invoice_id', 'id');
+    const responsePromise = client.invoices.lineItems.update('invoice_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -68,14 +65,14 @@ describe('resource lineItems', () => {
   test('update: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.update('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
+      client.invoices.lineItems.update('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.update(
+      client.invoices.lineItems.update(
         'invoice_id',
         'id',
         {
@@ -93,7 +90,7 @@ describe('resource lineItems', () => {
   });
 
   test('list', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.list('invoice_id');
+    const responsePromise = client.invoices.lineItems.list('invoice_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -106,14 +103,14 @@ describe('resource lineItems', () => {
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.list('invoice_id', { path: '/_stainless_unknown_path' }),
+      client.invoices.lineItems.list('invoice_id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.list(
+      client.invoices.lineItems.list(
         'invoice_id',
         { after_cursor: 'after_cursor', per_page: 0 },
         { path: '/_stainless_unknown_path' },
@@ -122,7 +119,7 @@ describe('resource lineItems', () => {
   });
 
   test('del', async () => {
-    const responsePromise = modernTreasury.invoices.lineItems.del('invoice_id', 'id');
+    const responsePromise = client.invoices.lineItems.del('invoice_id', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -135,7 +132,7 @@ describe('resource lineItems', () => {
   test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      modernTreasury.invoices.lineItems.del('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
+      client.invoices.lineItems.del('invoice_id', 'id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });
