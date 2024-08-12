@@ -15,12 +15,12 @@ describe('resource ledgerEventHandlers', () => {
       ledger_transaction_template: {
         description: 'My Ledger Transaction Template Description',
         effective_at: '{{ledgerable_event.custom_data.effective_at}}',
-        status: 'posted',
         ledger_entries: [
           { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
           { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
           { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
         ],
+        status: 'posted',
       },
       name: 'name',
     });
@@ -38,12 +38,12 @@ describe('resource ledgerEventHandlers', () => {
       ledger_transaction_template: {
         description: 'My Ledger Transaction Template Description',
         effective_at: '{{ledgerable_event.custom_data.effective_at}}',
-        status: 'posted',
         ledger_entries: [
           { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
           { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
           { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
         ],
+        status: 'posted',
       },
       name: 'name',
       conditions: { field: 'ledgerable_event.name', operator: 'equals', value: 'credit_card_swipe' },
@@ -52,8 +52,8 @@ describe('resource ledgerEventHandlers', () => {
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       variables: {
         credit_account: {
-          type: 'ledger_account',
           query: { field: 'name', operator: 'equals', value: 'my_credit_account' },
+          type: 'ledger_account',
         },
       },
     });
