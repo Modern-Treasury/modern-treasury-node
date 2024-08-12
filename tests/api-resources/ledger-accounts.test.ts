@@ -71,10 +71,10 @@ describe('resource ledgerAccounts', () => {
         {
           balances: {
             as_of_date: '2019-12-27',
+            as_of_lock_version: 0,
             effective_at: '2019-12-27T18:11:19.117Z',
             effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
             effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
-            as_of_lock_version: 0,
           },
         },
         { path: '/_stainless_unknown_path' },
@@ -140,7 +140,7 @@ describe('resource ledgerAccounts', () => {
         {
           id: ['string', 'string', 'string'],
           after_cursor: 'after_cursor',
-          available_balance_amount: { gt: 0, lt: 0, gte: 0, lte: 0, eq: 0, not_eq: 0 },
+          available_balance_amount: { eq: 0, gt: 0, gte: 0, lt: 0, lte: 0, not_eq: 0 },
           balances: {
             as_of_date: '2019-12-27',
             effective_at: '2019-12-27T18:11:19.117Z',
@@ -153,9 +153,9 @@ describe('resource ledgerAccounts', () => {
           ledger_id: 'ledger_id',
           metadata: { foo: 'string' },
           name: ['string', 'string', 'string'],
-          pending_balance_amount: { gt: 0, lt: 0, gte: 0, lte: 0, eq: 0, not_eq: 0 },
+          pending_balance_amount: { eq: 0, gt: 0, gte: 0, lt: 0, lte: 0, not_eq: 0 },
           per_page: 0,
-          posted_balance_amount: { gt: 0, lt: 0, gte: 0, lte: 0, eq: 0, not_eq: 0 },
+          posted_balance_amount: { eq: 0, gt: 0, gte: 0, lt: 0, lte: 0, not_eq: 0 },
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
         },
         { path: '/_stainless_unknown_path' },

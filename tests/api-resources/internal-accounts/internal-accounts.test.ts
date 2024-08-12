@@ -36,12 +36,12 @@ describe('resource internalAccounts', () => {
       legal_entity_id: 'legal_entity_id',
       parent_account_id: 'parent_account_id',
       party_address: {
-        line1: 'line1',
-        line2: 'line2',
-        locality: 'locality',
-        region: 'region',
-        postal_code: 'postal_code',
         country: 'country',
+        line1: 'line1',
+        locality: 'locality',
+        postal_code: 'postal_code',
+        region: 'region',
+        line2: 'line2',
       },
       vendor_attributes: { key: 'value', foo: 'bar', modern: 'treasury' },
     });
