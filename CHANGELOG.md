@@ -1,5 +1,34 @@
 # Changelog
 
+## 2.28.0 (2024-08-13)
+
+Full Changelog: [v2.27.0...v2.28.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.27.0...v2.28.0)
+
+### Features
+
+* **api:** add pagination params 'created at' and 'updated at' ([#438](https://github.com/Modern-Treasury/modern-treasury-node/issues/438)) ([25416f1](https://github.com/Modern-Treasury/modern-treasury-node/commit/25416f1ce6304a3ac019ef7601241c7b5aac9e99))
+* **api:** updates ([#443](https://github.com/Modern-Treasury/modern-treasury-node/issues/443)) ([50c7364](https://github.com/Modern-Treasury/modern-treasury-node/commit/50c7364db8afca01346d8fee66a02aae53dd7dd2))
+
+
+### Bug Fixes
+
+* **compat:** remove ReadableStream polyfill redundant since node v16 ([#434](https://github.com/Modern-Treasury/modern-treasury-node/issues/434)) ([5e8d7ae](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e8d7ae90ce17948c730ffa5af8fa220385b38d8))
+
+
+### Chores
+
+* **ci:** bump prism mock server version ([#441](https://github.com/Modern-Treasury/modern-treasury-node/issues/441)) ([2abf02a](https://github.com/Modern-Treasury/modern-treasury-node/commit/2abf02a391aa278d5242378fecaf9c7a046de233))
+* **ci:** correctly tag pre-release npm packages ([#437](https://github.com/Modern-Treasury/modern-treasury-node/issues/437)) ([e690557](https://github.com/Modern-Treasury/modern-treasury-node/commit/e69055710d43581aaf9e9f616976b39095e6a3d6))
+* **ci:** limit release doctor target branches ([#432](https://github.com/Modern-Treasury/modern-treasury-node/issues/432)) ([7316376](https://github.com/Modern-Treasury/modern-treasury-node/commit/73163761073d04997511544662f4c42b18f7e669))
+* **ci:** minor changes ([#440](https://github.com/Modern-Treasury/modern-treasury-node/issues/440)) ([4967a99](https://github.com/Modern-Treasury/modern-treasury-node/commit/4967a990f347758de2307766658a2a603f24e579))
+* **docs:** fix incorrect client var names ([#435](https://github.com/Modern-Treasury/modern-treasury-node/issues/435)) ([d4b6ee0](https://github.com/Modern-Treasury/modern-treasury-node/commit/d4b6ee0ef86611fa2d2e9b5ac3c5a1d71201cfb5))
+* **docs:** mention support of web browser runtimes ([#429](https://github.com/Modern-Treasury/modern-treasury-node/issues/429)) ([04b4c14](https://github.com/Modern-Treasury/modern-treasury-node/commit/04b4c1402b2f688817e64327eab9e4d8e07f3bdf))
+* **docs:** use client instead of package name in Node examples ([#431](https://github.com/Modern-Treasury/modern-treasury-node/issues/431)) ([0d6674b](https://github.com/Modern-Treasury/modern-treasury-node/commit/0d6674be9e012c9678cf9ae629b6445894e15422))
+* **examples:** minor formatting changes ([#442](https://github.com/Modern-Treasury/modern-treasury-node/issues/442)) ([f45df87](https://github.com/Modern-Treasury/modern-treasury-node/commit/f45df877556f9a84b99c63d4c7a55606596514fb))
+* **internal:** add constant for default timeout ([#436](https://github.com/Modern-Treasury/modern-treasury-node/issues/436)) ([134028c](https://github.com/Modern-Treasury/modern-treasury-node/commit/134028c9697c9975b0b503d6ebf6e11b31aede36))
+* **internal:** updates ([#439](https://github.com/Modern-Treasury/modern-treasury-node/issues/439)) ([961b11d](https://github.com/Modern-Treasury/modern-treasury-node/commit/961b11d56e991486d6a85ac948a94f34fe258ac4))
+* **tests:** update prism version ([#433](https://github.com/Modern-Treasury/modern-treasury-node/issues/433)) ([da43047](https://github.com/Modern-Treasury/modern-treasury-node/commit/da4304704976329485945907a3f45907fba79334))
+
 ## 2.27.0 (2024-07-15)
 
 Full Changelog: [v2.26.0...v2.27.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.26.0...v2.27.0)
