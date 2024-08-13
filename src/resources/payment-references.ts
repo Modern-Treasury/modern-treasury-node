@@ -99,6 +99,7 @@ export interface PaymentReference {
     | 'jpmc_customer_reference_id'
     | 'jpmc_end_to_end_id'
     | 'jpmc_firm_root_id'
+    | 'jpmc_fx_trn_id'
     | 'jpmc_p3_id'
     | 'jpmc_payment_batch_id'
     | 'jpmc_payment_information_id'
