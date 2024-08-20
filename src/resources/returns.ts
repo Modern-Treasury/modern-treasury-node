@@ -320,8 +320,10 @@ export namespace ReturnObject {
       | 'swift_uetr'
       | 'umb_product_partner_account_number'
       | 'usbank_payment_id'
+      | 'wells_fargo_end_to_end_id'
       | 'wells_fargo_payment_id'
-      | 'wells_fargo_trace_number';
+      | 'wells_fargo_trace_number'
+      | 'wells_fargo_uetr';
 
     updated_at: string;
   }
