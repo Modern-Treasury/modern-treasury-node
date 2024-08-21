@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.29.0 (2024-08-21)
+
+Full Changelog: [v2.28.0...v2.29.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.28.0...v2.29.0)
+
+### Features
+
+* **api:** add wells fargo reference number types ([#447](https://github.com/Modern-Treasury/modern-treasury-node/issues/447)) ([9a582b6](https://github.com/Modern-Treasury/modern-treasury-node/commit/9a582b6ba1bc3c77fcc13d946bb6c75424a096ed))
+
+
+### Chores
+
+* minor dependency version bump ([#449](https://github.com/Modern-Treasury/modern-treasury-node/issues/449)) ([3c795bc](https://github.com/Modern-Treasury/modern-treasury-node/commit/3c795bc828f0fa6ffe27b06e9da34c1031b7edb4))
+
 ## 2.28.0 (2024-08-13)
 
 Full Changelog: [v2.27.0...v2.28.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.27.0...v2.28.0)
