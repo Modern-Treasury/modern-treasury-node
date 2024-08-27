@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.29.1 (2024-08-27)
+
+Full Changelog: [v2.29.0...v2.29.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.29.0...v2.29.1)
+
+### Chores
+
+* **ci:** check for build errors ([#452](https://github.com/Modern-Treasury/modern-treasury-node/issues/452)) ([e1f6469](https://github.com/Modern-Treasury/modern-treasury-node/commit/e1f6469bd77a2310422402deee5a15bf942253ce))
+
 ## 2.29.0 (2024-08-21)
 
 Full Changelog: [v2.28.0...v2.29.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.28.0...v2.29.0)
