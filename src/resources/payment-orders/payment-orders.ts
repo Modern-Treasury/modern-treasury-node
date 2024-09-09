@@ -341,9 +341,9 @@ export interface PaymentOrder {
   transaction_monitoring_enabled: boolean;
 
   /**
-   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-   * `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -588,9 +588,9 @@ export type PaymentOrderSubtype =
   | null;
 
 /**
- * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
- * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
- * `sic`, `signet`, `provexchange`, `zengin`.
+ * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+ * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+ * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
  */
 export type PaymentOrderType =
   | 'ach'
@@ -645,9 +645,9 @@ export interface PaymentOrderCreateParams {
   originating_account_id: string;
 
   /**
-   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-   * `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -1494,9 +1494,9 @@ export interface PaymentOrderUpdateParams {
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-   * `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
    */
   type?: PaymentOrderType;
 
@@ -1936,9 +1936,9 @@ export interface PaymentOrderCreateAsyncParams {
   originating_account_id: string;
 
   /**
-   * One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-   * `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-   * `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
    */
   type: PaymentOrderType;
 
