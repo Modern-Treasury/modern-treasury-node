@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.30.0 (2024-09-09)
+
+Full Changelog: [v2.29.1...v2.30.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.29.1...v2.30.0)
+
+### Features
+
+* **api:** add us_bank RTP ID's as reference_number_type ([#460](https://github.com/Modern-Treasury/modern-treasury-node/issues/460)) ([cdcd92e](https://github.com/Modern-Treasury/modern-treasury-node/commit/cdcd92e5e17e2f7c0181c08a06d238a4a6675c8b))
+
+
+### Bug Fixes
+
+* **client:** correct File construction from node-fetch Responses ([#457](https://github.com/Modern-Treasury/modern-treasury-node/issues/457)) ([9466d1e](https://github.com/Modern-Treasury/modern-treasury-node/commit/9466d1e7c4686f79e35b95959c89e5794782dc91))
+* **errors:** pass message through to APIConnectionError ([#462](https://github.com/Modern-Treasury/modern-treasury-node/issues/462)) ([b536511](https://github.com/Modern-Treasury/modern-treasury-node/commit/b536511acf8a51c84eef08bdd36a89feeb5d3433))
+* **uploads:** avoid making redundant memory copies ([#461](https://github.com/Modern-Treasury/modern-treasury-node/issues/461)) ([0caef1b](https://github.com/Modern-Treasury/modern-treasury-node/commit/0caef1b1780ba3d95594baf6c0fb7610319937a8))
+
+
+### Chores
+
+* **ci:** update install step ([#456](https://github.com/Modern-Treasury/modern-treasury-node/issues/456)) ([c8d0c7e](https://github.com/Modern-Treasury/modern-treasury-node/commit/c8d0c7e80c00457e9d984fddb1566a62492b2b45))
+* **docs:** update description of `bankgirot` to `se_bankgirot` ([#463](https://github.com/Modern-Treasury/modern-treasury-node/issues/463)) ([9403940](https://github.com/Modern-Treasury/modern-treasury-node/commit/940394036e24daaecda2596491a51cc38e0880fa))
+* **internal:** dependency updates ([#458](https://github.com/Modern-Treasury/modern-treasury-node/issues/458)) ([996fa7f](https://github.com/Modern-Treasury/modern-treasury-node/commit/996fa7f45cf3ead2fdaf4e8fb171ed7b94c5e7f7))
+* **internal:** minor bump qs version ([#459](https://github.com/Modern-Treasury/modern-treasury-node/issues/459)) ([2dde661](https://github.com/Modern-Treasury/modern-treasury-node/commit/2dde661aea3e6a839adce9e44e4a2d5fa0475803))
+* run tsc as part of lint script ([#454](https://github.com/Modern-Treasury/modern-treasury-node/issues/454)) ([fe7e531](https://github.com/Modern-Treasury/modern-treasury-node/commit/fe7e5310d5cad7254ffccaf147a8087337cdb655))
+
 ## 2.29.1 (2024-08-27)
 
 Full Changelog: [v2.29.0...v2.29.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.29.0...v2.29.1)
