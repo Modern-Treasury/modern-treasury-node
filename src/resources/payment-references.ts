@@ -124,6 +124,7 @@ export interface PaymentReference {
     | 'swift_mir'
     | 'swift_uetr'
     | 'umb_product_partner_account_number'
+    | 'usbank_payment_application_reference_id'
     | 'usbank_payment_id'
     | 'usbank_pending_rtp_payment_id'
     | 'usbank_posted_rtp_payment_id'
