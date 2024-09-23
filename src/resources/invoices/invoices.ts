@@ -170,7 +170,7 @@ export interface Invoice {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: Record<string, string> | null;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
@@ -401,6 +401,13 @@ export interface InvoiceCreateParams {
   originating_account_id: string;
 
   /**
+   * When true, the invoice will progress to unpaid automatically and cannot be
+   * edited after entering that state. If the invoice fails to progress to unpaid,
+   * the errors will be returned and the invoice will not be created.
+   */
+  auto_advance?: boolean | null;
+
+  /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
   contact_details?: Array<InvoiceCreateParams.ContactDetail>;
@@ -454,6 +461,12 @@ export interface InvoiceCreateParams {
    * The ID of the virtual account the invoice should be paid to.
    */
   ledger_account_settlement_id?: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string> | null;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
@@ -741,6 +754,12 @@ export interface InvoiceUpdateParams {
    * The ID of the virtual account the invoice should be paid to.
    */
   ledger_account_settlement_id?: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string> | null;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
