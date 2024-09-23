@@ -63,7 +63,7 @@ export interface BulkRequest {
   /**
    * One of create, or update.
    */
-  action_type: 'create' | 'update';
+  action_type: 'create' | 'update' | 'delete';
 
   created_at: string;
 
@@ -115,7 +115,7 @@ export interface BulkRequestCreateParams {
   /**
    * One of create, or update.
    */
-  action_type: 'create' | 'update';
+  action_type: 'create' | 'update' | 'delete';
 
   /**
    * One of payment_order, expected_payment, or ledger_transaction.
@@ -2017,7 +2017,7 @@ export interface BulkRequestListParams extends PageParams {
   /**
    * One of create, or update.
    */
-  action_type?: 'create' | 'update';
+  action_type?: 'create' | 'update' | 'delete';
 
   /**
    * For example, if you want to query for records with metadata key `Type` and value

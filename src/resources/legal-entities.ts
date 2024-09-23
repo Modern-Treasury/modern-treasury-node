@@ -162,7 +162,7 @@ export interface LegalEntity {
   phone_numbers: Array<LegalEntity.PhoneNumber>;
 
   /**
-   * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+   * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating: 'low' | 'medium' | 'high' | null;
 
@@ -237,6 +237,7 @@ export namespace LegalEntity {
       | 'ar_cuit'
       | 'br_cnpj'
       | 'br_cpf'
+      | 'cl_run'
       | 'cl_rut'
       | 'co_cedulas'
       | 'co_nit'
@@ -353,7 +354,7 @@ export interface LegalEntityCreateParams {
   phone_numbers?: Array<LegalEntityCreateParams.PhoneNumber>;
 
   /**
-   * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+   * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating?: 'low' | 'medium' | 'high' | null;
 
@@ -409,6 +410,7 @@ export namespace LegalEntityCreateParams {
       | 'ar_cuit'
       | 'br_cnpj'
       | 'br_cpf'
+      | 'cl_run'
       | 'cl_rut'
       | 'co_cedulas'
       | 'co_nit'
@@ -530,7 +532,7 @@ export namespace LegalEntityCreateParams {
       phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
 
       /**
-       * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+       * The risk rating of the legal entity. One of low, medium, high.
        */
       risk_rating?: 'low' | 'medium' | 'high' | null;
 
@@ -586,6 +588,7 @@ export namespace LegalEntityCreateParams {
           | 'ar_cuit'
           | 'br_cnpj'
           | 'br_cpf'
+          | 'cl_run'
           | 'cl_rut'
           | 'co_cedulas'
           | 'co_nit'
@@ -681,7 +684,7 @@ export interface LegalEntityUpdateParams {
   phone_numbers?: Array<LegalEntityUpdateParams.PhoneNumber>;
 
   /**
-   * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+   * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating?: 'low' | 'medium' | 'high' | null;
 

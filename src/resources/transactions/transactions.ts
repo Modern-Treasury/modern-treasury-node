@@ -107,6 +107,12 @@ export interface Transaction {
    */
   as_of_time: string | null;
 
+  /**
+   * The timezone in which the `as_of_time` is represented. Can be `null` if the bank
+   * does not provide timezone info.
+   */
+  as_of_timezone: string | null;
+
   created_at: string;
 
   /**

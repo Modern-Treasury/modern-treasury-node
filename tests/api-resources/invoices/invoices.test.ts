@@ -30,6 +30,7 @@ describe('resource invoices', () => {
       counterparty_id: 'counterparty_id',
       due_date: '2019-12-27T18:11:19.117Z',
       originating_account_id: 'originating_account_id',
+      auto_advance: true,
       contact_details: [
         {
           id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -120,6 +121,7 @@ describe('resource invoices', () => {
         line2: 'line2',
       },
       ledger_account_settlement_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       notification_email_addresses: ['string', 'string', 'string'],
       notifications_enabled: true,
       payment_effective_date: '2019-12-27',
@@ -267,6 +269,7 @@ describe('resource invoices', () => {
             line2: 'line2',
           },
           ledger_account_settlement_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           notification_email_addresses: ['string', 'string', 'string'],
           notifications_enabled: true,
           originating_account_id: 'originating_account_id',
