@@ -155,7 +155,7 @@ export namespace LegalEntityAssociation {
     phone_numbers: Array<ChildLegalEntity.PhoneNumber>;
 
     /**
-     * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+     * The risk rating of the legal entity. One of low, medium, high.
      */
     risk_rating: 'low' | 'medium' | 'high' | null;
 
@@ -230,6 +230,7 @@ export namespace LegalEntityAssociation {
         | 'ar_cuit'
         | 'br_cnpj'
         | 'br_cpf'
+        | 'cl_run'
         | 'cl_rut'
         | 'co_cedulas'
         | 'co_nit'
@@ -376,7 +377,7 @@ export namespace LegalEntityAssociationCreateParams {
     phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
 
     /**
-     * Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+     * The risk rating of the legal entity. One of low, medium, high.
      */
     risk_rating?: 'low' | 'medium' | 'high' | null;
 
@@ -432,6 +433,7 @@ export namespace LegalEntityAssociationCreateParams {
         | 'ar_cuit'
         | 'br_cnpj'
         | 'br_cpf'
+        | 'cl_run'
         | 'cl_rut'
         | 'co_cedulas'
         | 'co_nit'
