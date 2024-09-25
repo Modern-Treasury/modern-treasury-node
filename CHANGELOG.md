@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.31.0 (2024-09-25)
+
+Full Changelog: [v2.30.0...v2.31.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.30.0...v2.31.0)
+
+### Features
+
+* **api:** add `usbank_payment_application_reference_id` to `reference_number_type` ([#464](https://github.com/Modern-Treasury/modern-treasury-node/issues/464)) ([7d8dfe7](https://github.com/Modern-Treasury/modern-treasury-node/commit/7d8dfe7f4b92e24da33e2dc9627dbff5c6cb7c30))
+* **client:** allow overriding retry count header ([#473](https://github.com/Modern-Treasury/modern-treasury-node/issues/473)) ([5199b52](https://github.com/Modern-Treasury/modern-treasury-node/commit/5199b5231d2d44bb660e5bee9ff6111a1cb27356))
+* **client:** send retry count header ([#471](https://github.com/Modern-Treasury/modern-treasury-node/issues/471)) ([a0f410f](https://github.com/Modern-Treasury/modern-treasury-node/commit/a0f410fe97ec34f1d6f994e13f6aca56bbee5235))
+
+
+### Bug Fixes
+
+* **types:** remove leftover polyfill usage ([#470](https://github.com/Modern-Treasury/modern-treasury-node/issues/470)) ([6f4195e](https://github.com/Modern-Treasury/modern-treasury-node/commit/6f4195ec4581d61789b33f0f7b38caffbdee87e1))
+
+
+### Chores
+
+* **api:** fields and parameters added to bulk actions, transactions and invoice creation ([#472](https://github.com/Modern-Treasury/modern-treasury-node/issues/472)) ([8aa42fb](https://github.com/Modern-Treasury/modern-treasury-node/commit/8aa42fb8437ff2dd92457a34f3719c28ed4d3b65))
+* **internal:** add query string encoder ([#468](https://github.com/Modern-Treasury/modern-treasury-node/issues/468)) ([318d3ff](https://github.com/Modern-Treasury/modern-treasury-node/commit/318d3ff14a52f5fbbf1c53fc7a1cd3da055775c8))
+* **internal:** fix some types ([#469](https://github.com/Modern-Treasury/modern-treasury-node/issues/469)) ([25501d5](https://github.com/Modern-Treasury/modern-treasury-node/commit/25501d545cd08a0b54b6f35f106fddd53c51bc43))
+
+
+### Documentation
+
+* update CONTRIBUTING.md ([#466](https://github.com/Modern-Treasury/modern-treasury-node/issues/466)) ([a7cc275](https://github.com/Modern-Treasury/modern-treasury-node/commit/a7cc27561c4482a177fa395342a7532544b4821f))
+
 ## 2.30.0 (2024-09-09)
 
 Full Changelog: [v2.29.1...v2.30.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.29.1...v2.30.0)
