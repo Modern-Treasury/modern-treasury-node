@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.31.1 (2024-10-08)
+
+Full Changelog: [v2.31.0...v2.31.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.31.0...v2.31.1)
+
+### Chores
+
+* **internal:** pass props through internal parser ([#476](https://github.com/Modern-Treasury/modern-treasury-node/issues/476)) ([6ad17b3](https://github.com/Modern-Treasury/modern-treasury-node/commit/6ad17b35a011da8544469fa2977faf462f414a78))
+
+
+### Documentation
+
+* improve and reference contributing documentation ([#474](https://github.com/Modern-Treasury/modern-treasury-node/issues/474)) ([0522f00](https://github.com/Modern-Treasury/modern-treasury-node/commit/0522f00a8a0539f08dccdd3614e115cc77c1c4d7))
+
 ## 2.31.0 (2024-09-25)
 
 Full Changelog: [v2.30.0...v2.31.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.30.0...v2.31.0)
