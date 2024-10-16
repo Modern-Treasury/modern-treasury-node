@@ -48,6 +48,7 @@ export { Event, EventListParams, EventsPage, Events } from './events';
 export {
   ExpectedPayment,
   ExpectedPaymentType,
+  ReconciliationRule,
   ExpectedPaymentCreateParams,
   ExpectedPaymentUpdateParams,
   ExpectedPaymentListParams,

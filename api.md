@@ -60,6 +60,7 @@ Types:
 
 - <code><a href="./src/resources/expected-payments.ts">ExpectedPayment</a></code>
 - <code><a href="./src/resources/expected-payments.ts">ExpectedPaymentType</a></code>
+- <code><a href="./src/resources/expected-payments.ts">ReconciliationRule</a></code>
 
 Methods:
 

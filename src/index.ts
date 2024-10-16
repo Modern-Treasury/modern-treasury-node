@@ -295,6 +295,7 @@ export namespace ModernTreasury {
   export import ExpectedPayments = API.ExpectedPayments;
   export import ExpectedPayment = API.ExpectedPayment;
   export import ExpectedPaymentType = API.ExpectedPaymentType;
+  export import ReconciliationRule = API.ReconciliationRule;
   export import ExpectedPaymentsPage = API.ExpectedPaymentsPage;
   export import ExpectedPaymentCreateParams = API.ExpectedPaymentCreateParams;
   export import ExpectedPaymentUpdateParams = API.ExpectedPaymentUpdateParams;
