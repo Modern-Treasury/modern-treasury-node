@@ -12,9 +12,17 @@ export class ExpectedPayments extends APIResource {
    * create expected payment
    */
   create(
-    params: ExpectedPaymentCreateParams,
+    params?: ExpectedPaymentCreateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExpectedPayment>;
+  create(options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment>;
+  create(
+    params: ExpectedPaymentCreateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<ExpectedPayment> {
+    if (isRequestOptions(params)) {
+      return this.create({}, params);
+    }
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
     if (idempotencyKey) {
@@ -91,13 +99,13 @@ export interface ExpectedPayment {
    * The lowest amount this expected payment may be equal to. Value in specified
    * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
-  amount_lower_bound: number;
+  amount_lower_bound: number | null;
 
   /**
    * The highest amount this expected payment may be equal to. Value in specified
    * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
-  amount_upper_bound: number;
+  amount_upper_bound: number | null;
 
   /**
    * The ID of the counterparty you expect for this payment.
@@ -109,7 +117,7 @@ export interface ExpectedPayment {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency: Shared.Currency;
+  currency: Shared.Currency | null;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -130,12 +138,12 @@ export interface ExpectedPayment {
    * One of credit or debit. When you are receiving money, use credit. When you are
    * being charged, use debit.
    */
-  direction: Shared.TransactionDirection;
+  direction: 'credit' | 'debit' | null;
 
   /**
    * The ID of the Internal Account for the expected payment.
    */
-  internal_account_id: string;
+  internal_account_id: string | null;
 
   /**
    * The ID of the ledger transaction linked to the expected payment.
@@ -176,7 +184,7 @@ export interface ExpectedPayment {
   /**
    * An array of reconciliation rule variables for this payment.
    */
-  reconciliation_rule_variables: Array<Record<string, string>> | null;
+  reconciliation_rule_variables: Array<ReconciliationRule> | null;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -254,7 +262,7 @@ export type ExpectedPaymentType =
   | 'zengin'
   | null;
 
-export interface ExpectedPaymentCreateParams {
+export interface ReconciliationRule {
   /**
    * The lowest amount this expected payment may be equal to. Value in specified
    * currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -271,12 +279,88 @@ export interface ExpectedPaymentCreateParams {
    * One of credit or debit. When you are receiving money, use credit. When you are
    * being charged, use debit.
    */
-  direction: Shared.TransactionDirection;
+  direction: 'credit' | 'debit';
 
   /**
-   * The ID of the Internal Account for the expected payment.
+   * The ID of the Internal Account for the expected payment
    */
   internal_account_id: string;
+
+  /**
+   * The ID of the counterparty you expect for this payment
+   */
+  counterparty_id?: string | null;
+
+  /**
+   * Must conform to ISO 4217. Defaults to the currency of the internal account
+   */
+  currency?: Shared.Currency;
+
+  /**
+   * A hash of custom identifiers for this payment
+   */
+  custom_identifiers?: Record<string, string> | null;
+
+  /**
+   * The earliest date the payment may come in. Format is yyyy-mm-dd
+   */
+  date_lower_bound?: string | null;
+
+  /**
+   * The latest date the payment may come in. Format is yyyy-mm-dd
+   */
+  date_upper_bound?: string | null;
+
+  /**
+   * One of ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+   * sepa, signet wire
+   */
+  type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'wire'
+    | 'zengin'
+    | null;
+}
+
+export interface ExpectedPaymentCreateParams {
+  /**
+   * The lowest amount this expected payment may be equal to. Value in specified
+   * currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_lower_bound?: number | null;
+
+  /**
+   * The highest amount this expected payment may be equal to. Value in specified
+   * currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_upper_bound?: number | null;
 
   /**
    * The ID of the counterparty you expect for this payment.
@@ -286,7 +370,7 @@ export interface ExpectedPaymentCreateParams {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -302,6 +386,17 @@ export interface ExpectedPaymentCreateParams {
    * An optional description for internal use.
    */
   description?: string | null;
+
+  /**
+   * One of credit or debit. When you are receiving money, use credit. When you are
+   * being charged, use debit.
+   */
+  direction?: 'credit' | 'debit' | null;
+
+  /**
+   * The ID of the Internal Account for the expected payment.
+   */
+  internal_account_id?: string | null;
 
   /**
    * Specifies a ledger transaction object that will be created with the expected
@@ -340,7 +435,7 @@ export interface ExpectedPaymentCreateParams {
   /**
    * An array of reconciliation rule variables for this payment.
    */
-  reconciliation_rule_variables?: Array<Record<string, string>> | null;
+  reconciliation_rule_variables?: Array<ReconciliationRule> | null;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -527,13 +622,13 @@ export interface ExpectedPaymentUpdateParams {
    * The lowest amount this expected payment may be equal to. Value in specified
    * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
-  amount_lower_bound?: number;
+  amount_lower_bound?: number | null;
 
   /**
    * The highest amount this expected payment may be equal to. Value in specified
    * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
-  amount_upper_bound?: number;
+  amount_upper_bound?: number | null;
 
   /**
    * The ID of the counterparty you expect for this payment.
@@ -543,7 +638,7 @@ export interface ExpectedPaymentUpdateParams {
   /**
    * Must conform to ISO 4217. Defaults to the currency of the internal account.
    */
-  currency?: Shared.Currency;
+  currency?: Shared.Currency | null;
 
   /**
    * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -564,12 +659,12 @@ export interface ExpectedPaymentUpdateParams {
    * One of credit or debit. When you are receiving money, use credit. When you are
    * being charged, use debit.
    */
-  direction?: Shared.TransactionDirection;
+  direction?: 'credit' | 'debit' | null;
 
   /**
    * The ID of the Internal Account for the expected payment.
    */
-  internal_account_id?: string;
+  internal_account_id?: string | null;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -590,7 +685,7 @@ export interface ExpectedPaymentUpdateParams {
   /**
    * An array of reconciliation rule variables for this payment.
    */
-  reconciliation_rule_variables?: Array<Record<string, string>> | null;
+  reconciliation_rule_variables?: Array<ReconciliationRule> | null;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -698,6 +793,7 @@ export interface ExpectedPaymentListParams extends PageParams {
 export namespace ExpectedPayments {
   export import ExpectedPayment = ExpectedPaymentsAPI.ExpectedPayment;
   export import ExpectedPaymentType = ExpectedPaymentsAPI.ExpectedPaymentType;
+  export import ReconciliationRule = ExpectedPaymentsAPI.ReconciliationRule;
   export import ExpectedPaymentsPage = ExpectedPaymentsAPI.ExpectedPaymentsPage;
   export import ExpectedPaymentCreateParams = ExpectedPaymentsAPI.ExpectedPaymentCreateParams;
   export import ExpectedPaymentUpdateParams = ExpectedPaymentsAPI.ExpectedPaymentUpdateParams;

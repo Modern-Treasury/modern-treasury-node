@@ -787,24 +787,13 @@ export namespace BulkRequestCreateParams {
      * The lowest amount this expected payment may be equal to. Value in specified
      * currency's smallest unit. e.g. $10 would be represented as 1000.
      */
-    amount_lower_bound: number;
+    amount_lower_bound?: number | null;
 
     /**
      * The highest amount this expected payment may be equal to. Value in specified
      * currency's smallest unit. e.g. $10 would be represented as 1000.
      */
-    amount_upper_bound: number;
-
-    /**
-     * One of credit or debit. When you are receiving money, use credit. When you are
-     * being charged, use debit.
-     */
-    direction: Shared.TransactionDirection;
-
-    /**
-     * The ID of the Internal Account for the expected payment.
-     */
-    internal_account_id: string;
+    amount_upper_bound?: number | null;
 
     /**
      * The ID of the counterparty you expect for this payment.
@@ -814,7 +803,7 @@ export namespace BulkRequestCreateParams {
     /**
      * Must conform to ISO 4217. Defaults to the currency of the internal account.
      */
-    currency?: Shared.Currency;
+    currency?: Shared.Currency | null;
 
     /**
      * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -830,6 +819,17 @@ export namespace BulkRequestCreateParams {
      * An optional description for internal use.
      */
     description?: string | null;
+
+    /**
+     * One of credit or debit. When you are receiving money, use credit. When you are
+     * being charged, use debit.
+     */
+    direction?: 'credit' | 'debit' | null;
+
+    /**
+     * The ID of the Internal Account for the expected payment.
+     */
+    internal_account_id?: string | null;
 
     /**
      * Specifies a ledger transaction object that will be created with the expected
@@ -868,7 +868,7 @@ export namespace BulkRequestCreateParams {
     /**
      * An array of reconciliation rule variables for this payment.
      */
-    reconciliation_rule_variables?: Array<Record<string, string>> | null;
+    reconciliation_rule_variables?: Array<ExpectedPaymentsAPI.ReconciliationRule> | null;
 
     /**
      * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1794,13 +1794,13 @@ export namespace BulkRequestCreateParams {
      * The lowest amount this expected payment may be equal to. Value in specified
      * currency's smallest unit. e.g. $10 would be represented as 1000.
      */
-    amount_lower_bound?: number;
+    amount_lower_bound?: number | null;
 
     /**
      * The highest amount this expected payment may be equal to. Value in specified
      * currency's smallest unit. e.g. $10 would be represented as 1000.
      */
-    amount_upper_bound?: number;
+    amount_upper_bound?: number | null;
 
     /**
      * The ID of the counterparty you expect for this payment.
@@ -1810,7 +1810,7 @@ export namespace BulkRequestCreateParams {
     /**
      * Must conform to ISO 4217. Defaults to the currency of the internal account.
      */
-    currency?: Shared.Currency;
+    currency?: Shared.Currency | null;
 
     /**
      * The earliest date the payment may come in. Format: yyyy-mm-dd
@@ -1831,12 +1831,12 @@ export namespace BulkRequestCreateParams {
      * One of credit or debit. When you are receiving money, use credit. When you are
      * being charged, use debit.
      */
-    direction?: Shared.TransactionDirection;
+    direction?: 'credit' | 'debit' | null;
 
     /**
      * The ID of the Internal Account for the expected payment.
      */
-    internal_account_id?: string;
+    internal_account_id?: string | null;
 
     /**
      * Additional data represented as key-value pairs. Both the key and value must be
@@ -1857,7 +1857,7 @@ export namespace BulkRequestCreateParams {
     /**
      * An array of reconciliation rule variables for this payment.
      */
-    reconciliation_rule_variables?: Array<Record<string, string>> | null;
+    reconciliation_rule_variables?: Array<ExpectedPaymentsAPI.ReconciliationRule> | null;
 
     /**
      * For `ach`, this field will be passed through on an addenda record. For `wire`
