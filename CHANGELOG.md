@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.32.0 (2024-10-16)
+
+Full Changelog: [v2.31.1...v2.32.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.31.1...v2.32.0)
+
+### Features
+
+* **api:** updates to required fields for ExpectedPayments ([#477](https://github.com/Modern-Treasury/modern-treasury-node/issues/477)) ([3ccc158](https://github.com/Modern-Treasury/modern-treasury-node/commit/3ccc15888ddaef7bc4c219ce0e6a883158f3bbba))
+
 ## 2.31.1 (2024-10-08)
 
 Full Changelog: [v2.31.0...v2.31.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.31.0...v2.31.1)
