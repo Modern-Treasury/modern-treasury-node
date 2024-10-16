@@ -10,13 +10,8 @@ const client = new ModernTreasury({
 });
 
 describe('resource expectedPayments', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.expectedPayments.create({
-      amount_lower_bound: 0,
-      amount_upper_bound: 0,
-      direction: 'credit',
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+  test('create', async () => {
+    const responsePromise = client.expectedPayments.create();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -26,91 +21,141 @@ describe('resource expectedPayments', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.expectedPayments.create({
-      amount_lower_bound: 0,
-      amount_upper_bound: 0,
-      direction: 'credit',
-      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      currency: 'AED',
-      date_lower_bound: '2019-12-27',
-      date_upper_bound: '2019-12-27',
-      description: 'description',
-      ledger_transaction: {
-        ledger_entries: [
-          {
-            amount: 0,
-            direction: 'credit',
-            ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            available_balance_amount: { foo: 0 },
-            lock_version: 0,
-            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-            pending_balance_amount: { foo: 0 },
-            posted_balance_amount: { foo: 0 },
-            show_resulting_ledger_account_balances: true,
-          },
-          {
-            amount: 0,
-            direction: 'credit',
-            ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            available_balance_amount: { foo: 0 },
-            lock_version: 0,
-            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-            pending_balance_amount: { foo: 0 },
-            posted_balance_amount: { foo: 0 },
-            show_resulting_ledger_account_balances: true,
-          },
-          {
-            amount: 0,
-            direction: 'credit',
-            ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            available_balance_amount: { foo: 0 },
-            lock_version: 0,
-            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-            pending_balance_amount: { foo: 0 },
-            posted_balance_amount: { foo: 0 },
-            show_resulting_ledger_account_balances: true,
-          },
-        ],
-        description: 'description',
-        effective_at: '2019-12-27T18:11:19.117Z',
-        effective_date: '2019-12-27',
-        external_id: 'external_id',
-        ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        ledgerable_type: 'expected_payment',
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-        status: 'archived',
-      },
-      ledger_transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      line_items: [
+  test('create: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.expectedPayments.create({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      ModernTreasury.NotFoundError,
+    );
+  });
+
+  test('create: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.expectedPayments.create(
         {
-          amount: 0,
-          accounting_category_id: 'accounting_category_id',
+          amount_lower_bound: 0,
+          amount_upper_bound: 0,
+          counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          currency: 'AED',
+          date_lower_bound: '2019-12-27',
+          date_upper_bound: '2019-12-27',
           description: 'description',
+          direction: 'credit',
+          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          ledger_transaction: {
+            ledger_entries: [
+              {
+                amount: 0,
+                direction: 'credit',
+                ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+                available_balance_amount: { foo: 0 },
+                lock_version: 0,
+                metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+                pending_balance_amount: { foo: 0 },
+                posted_balance_amount: { foo: 0 },
+                show_resulting_ledger_account_balances: true,
+              },
+              {
+                amount: 0,
+                direction: 'credit',
+                ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+                available_balance_amount: { foo: 0 },
+                lock_version: 0,
+                metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+                pending_balance_amount: { foo: 0 },
+                posted_balance_amount: { foo: 0 },
+                show_resulting_ledger_account_balances: true,
+              },
+              {
+                amount: 0,
+                direction: 'credit',
+                ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+                available_balance_amount: { foo: 0 },
+                lock_version: 0,
+                metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+                pending_balance_amount: { foo: 0 },
+                posted_balance_amount: { foo: 0 },
+                show_resulting_ledger_account_balances: true,
+              },
+            ],
+            description: 'description',
+            effective_at: '2019-12-27T18:11:19.117Z',
+            effective_date: '2019-12-27',
+            external_id: 'external_id',
+            ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            ledgerable_type: 'expected_payment',
+            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+            status: 'archived',
+          },
+          ledger_transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          line_items: [
+            {
+              amount: 0,
+              accounting_category_id: 'accounting_category_id',
+              description: 'description',
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+            },
+            {
+              amount: 0,
+              accounting_category_id: 'accounting_category_id',
+              description: 'description',
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+            },
+            {
+              amount: 0,
+              accounting_category_id: 'accounting_category_id',
+              description: 'description',
+              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+            },
+          ],
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          reconciliation_filters: {},
+          reconciliation_groups: {},
+          reconciliation_rule_variables: [
+            {
+              amount_lower_bound: 0,
+              amount_upper_bound: 0,
+              direction: 'credit',
+              internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              currency: 'AED',
+              custom_identifiers: { foo: 'string' },
+              date_lower_bound: '2019-12-27',
+              date_upper_bound: '2019-12-27',
+              type: 'ach',
+            },
+            {
+              amount_lower_bound: 0,
+              amount_upper_bound: 0,
+              direction: 'credit',
+              internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              currency: 'AED',
+              custom_identifiers: { foo: 'string' },
+              date_lower_bound: '2019-12-27',
+              date_upper_bound: '2019-12-27',
+              type: 'ach',
+            },
+            {
+              amount_lower_bound: 0,
+              amount_upper_bound: 0,
+              direction: 'credit',
+              internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              currency: 'AED',
+              custom_identifiers: { foo: 'string' },
+              date_lower_bound: '2019-12-27',
+              date_upper_bound: '2019-12-27',
+              type: 'ach',
+            },
+          ],
+          remittance_information: 'remittance_information',
+          statement_descriptor: 'statement_descriptor',
+          type: 'ach',
         },
-        {
-          amount: 0,
-          accounting_category_id: 'accounting_category_id',
-          description: 'description',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-        },
-        {
-          amount: 0,
-          accounting_category_id: 'accounting_category_id',
-          description: 'description',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-        },
-      ],
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-      reconciliation_filters: {},
-      reconciliation_groups: {},
-      reconciliation_rule_variables: [{ foo: 'string' }, { foo: 'string' }, { foo: 'string' }],
-      remittance_information: 'remittance_information',
-      statement_descriptor: 'statement_descriptor',
-      type: 'ach',
-    });
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('retrieve', async () => {
@@ -167,7 +212,44 @@ describe('resource expectedPayments', () => {
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           reconciliation_filters: {},
           reconciliation_groups: {},
-          reconciliation_rule_variables: [{ foo: 'string' }, { foo: 'string' }, { foo: 'string' }],
+          reconciliation_rule_variables: [
+            {
+              amount_lower_bound: 0,
+              amount_upper_bound: 0,
+              direction: 'credit',
+              internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              currency: 'AED',
+              custom_identifiers: { foo: 'string' },
+              date_lower_bound: '2019-12-27',
+              date_upper_bound: '2019-12-27',
+              type: 'ach',
+            },
+            {
+              amount_lower_bound: 0,
+              amount_upper_bound: 0,
+              direction: 'credit',
+              internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              currency: 'AED',
+              custom_identifiers: { foo: 'string' },
+              date_lower_bound: '2019-12-27',
+              date_upper_bound: '2019-12-27',
+              type: 'ach',
+            },
+            {
+              amount_lower_bound: 0,
+              amount_upper_bound: 0,
+              direction: 'credit',
+              internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              currency: 'AED',
+              custom_identifiers: { foo: 'string' },
+              date_lower_bound: '2019-12-27',
+              date_upper_bound: '2019-12-27',
+              type: 'ach',
+            },
+          ],
           remittance_information: 'remittance_information',
           statement_descriptor: 'statement_descriptor',
           status: 'reconciled',

@@ -306,6 +306,7 @@ export namespace ReturnObject {
       | 'pnc_instruction_id'
       | 'pnc_multipayment_id'
       | 'pnc_payment_trace_id'
+      | 'pnc_transaction_reference_number'
       | 'rspec_vendor_payment_id'
       | 'rtp_instruction_id'
       | 'signet_api_reference_id'
