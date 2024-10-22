@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.32.1 (2024-10-22)
+
+Full Changelog: [v2.32.0...v2.32.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.0...v2.32.1)
+
+### Bug Fixes
+
+* **client:** respect x-stainless-retry-count default headers ([#479](https://github.com/Modern-Treasury/modern-treasury-node/issues/479)) ([583a4f9](https://github.com/Modern-Treasury/modern-treasury-node/commit/583a4f9996339255506574f2bd918c621b94b22d))
+
+
+### Chores
+
+* **internal:** bumps eslint and related dependencies ([#481](https://github.com/Modern-Treasury/modern-treasury-node/issues/481)) ([dd28cff](https://github.com/Modern-Treasury/modern-treasury-node/commit/dd28cff5ad1e240e057c8d623661a05945309c57))
+
 ## 2.32.0 (2024-10-16)
 
 Full Changelog: [v2.31.1...v2.32.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.31.1...v2.32.0)
