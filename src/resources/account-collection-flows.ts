@@ -192,9 +192,9 @@ export interface AccountCollectionFlowListParams extends PageParams {
 }
 
 export namespace AccountCollectionFlows {
-  export import AccountCollectionFlow = AccountCollectionFlowsAPI.AccountCollectionFlow;
+  export type AccountCollectionFlow = AccountCollectionFlowsAPI.AccountCollectionFlow;
   export import AccountCollectionFlowsPage = AccountCollectionFlowsAPI.AccountCollectionFlowsPage;
-  export import AccountCollectionFlowCreateParams = AccountCollectionFlowsAPI.AccountCollectionFlowCreateParams;
-  export import AccountCollectionFlowUpdateParams = AccountCollectionFlowsAPI.AccountCollectionFlowUpdateParams;
-  export import AccountCollectionFlowListParams = AccountCollectionFlowsAPI.AccountCollectionFlowListParams;
+  export type AccountCollectionFlowCreateParams = AccountCollectionFlowsAPI.AccountCollectionFlowCreateParams;
+  export type AccountCollectionFlowUpdateParams = AccountCollectionFlowsAPI.AccountCollectionFlowUpdateParams;
+  export type AccountCollectionFlowListParams = AccountCollectionFlowsAPI.AccountCollectionFlowListParams;
 }

@@ -161,8 +161,8 @@ export interface LineItemListParams extends PageParams {
 }
 
 export namespace LineItems {
-  export import TransactionLineItem = LineItemsAPI.TransactionLineItem;
+  export type TransactionLineItem = LineItemsAPI.TransactionLineItem;
   export import TransactionLineItemsPage = LineItemsAPI.TransactionLineItemsPage;
-  export import LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
-  export import LineItemListParams = LineItemsAPI.LineItemListParams;
+  export type LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
+  export type LineItemListParams = LineItemsAPI.LineItemListParams;
 }

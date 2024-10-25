@@ -746,13 +746,14 @@ export interface ExternalAccountVerifyParams {
 }
 
 export namespace ExternalAccounts {
-  export import ExternalAccount = ExternalAccountsAPI.ExternalAccount;
-  export import ExternalAccountType = ExternalAccountsAPI.ExternalAccountType;
-  export import ExternalAccountVerifyResponse = ExternalAccountsAPI.ExternalAccountVerifyResponse;
+  export type ExternalAccount = ExternalAccountsAPI.ExternalAccount;
+  export type ExternalAccountType = ExternalAccountsAPI.ExternalAccountType;
+  export type ExternalAccountVerifyResponse = ExternalAccountsAPI.ExternalAccountVerifyResponse;
   export import ExternalAccountsPage = ExternalAccountsAPI.ExternalAccountsPage;
-  export import ExternalAccountCreateParams = ExternalAccountsAPI.ExternalAccountCreateParams;
-  export import ExternalAccountUpdateParams = ExternalAccountsAPI.ExternalAccountUpdateParams;
-  export import ExternalAccountListParams = ExternalAccountsAPI.ExternalAccountListParams;
-  export import ExternalAccountCompleteVerificationParams = ExternalAccountsAPI.ExternalAccountCompleteVerificationParams;
-  export import ExternalAccountVerifyParams = ExternalAccountsAPI.ExternalAccountVerifyParams;
+  export type ExternalAccountCreateParams = ExternalAccountsAPI.ExternalAccountCreateParams;
+  export type ExternalAccountUpdateParams = ExternalAccountsAPI.ExternalAccountUpdateParams;
+  export type ExternalAccountListParams = ExternalAccountsAPI.ExternalAccountListParams;
+  export type ExternalAccountCompleteVerificationParams =
+    ExternalAccountsAPI.ExternalAccountCompleteVerificationParams;
+  export type ExternalAccountVerifyParams = ExternalAccountsAPI.ExternalAccountVerifyParams;
 }

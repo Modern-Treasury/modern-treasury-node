@@ -137,7 +137,7 @@ export interface PaperItemListParams extends PageParams {
 }
 
 export namespace PaperItems {
-  export import PaperItem = PaperItemsAPI.PaperItem;
+  export type PaperItem = PaperItemsAPI.PaperItem;
   export import PaperItemsPage = PaperItemsAPI.PaperItemsPage;
-  export import PaperItemListParams = PaperItemsAPI.PaperItemListParams;
+  export type PaperItemListParams = PaperItemsAPI.PaperItemListParams;
 }

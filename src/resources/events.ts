@@ -92,7 +92,7 @@ export interface EventListParams extends PageParams {
 }
 
 export namespace Events {
-  export import Event = EventsAPI.Event;
+  export type Event = EventsAPI.Event;
   export import EventsPage = EventsAPI.EventsPage;
-  export import EventListParams = EventsAPI.EventListParams;
+  export type EventListParams = EventsAPI.EventListParams;
 }

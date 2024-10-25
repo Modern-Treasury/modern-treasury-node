@@ -249,9 +249,9 @@ export interface LineItemUpdateParams {
 export interface LineItemListParams extends PageParams {}
 
 export namespace LineItems {
-  export import InvoiceLineItem = LineItemsAPI.InvoiceLineItem;
+  export type InvoiceLineItem = LineItemsAPI.InvoiceLineItem;
   export import InvoiceLineItemsPage = LineItemsAPI.InvoiceLineItemsPage;
-  export import LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
-  export import LineItemUpdateParams = LineItemsAPI.LineItemUpdateParams;
-  export import LineItemListParams = LineItemsAPI.LineItemListParams;
+  export type LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
+  export type LineItemUpdateParams = LineItemsAPI.LineItemUpdateParams;
+  export type LineItemListParams = LineItemsAPI.LineItemListParams;
 }

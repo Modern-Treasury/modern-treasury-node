@@ -255,8 +255,8 @@ export interface BalanceReportListParams extends PageParams {
 }
 
 export namespace BalanceReports {
-  export import BalanceReport = BalanceReportsAPI.BalanceReport;
+  export type BalanceReport = BalanceReportsAPI.BalanceReport;
   export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
-  export import BalanceReportCreateParams = BalanceReportsAPI.BalanceReportCreateParams;
-  export import BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
+  export type BalanceReportCreateParams = BalanceReportsAPI.BalanceReportCreateParams;
+  export type BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
 }

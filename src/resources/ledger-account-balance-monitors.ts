@@ -353,9 +353,12 @@ export interface LedgerAccountBalanceMonitorListParams extends PageParams {
 }
 
 export namespace LedgerAccountBalanceMonitors {
-  export import LedgerAccountBalanceMonitor = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitor;
+  export type LedgerAccountBalanceMonitor = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitor;
   export import LedgerAccountBalanceMonitorsPage = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorsPage;
-  export import LedgerAccountBalanceMonitorCreateParams = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorCreateParams;
-  export import LedgerAccountBalanceMonitorUpdateParams = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorUpdateParams;
-  export import LedgerAccountBalanceMonitorListParams = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorListParams;
+  export type LedgerAccountBalanceMonitorCreateParams =
+    LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorCreateParams;
+  export type LedgerAccountBalanceMonitorUpdateParams =
+    LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorUpdateParams;
+  export type LedgerAccountBalanceMonitorListParams =
+    LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorListParams;
 }

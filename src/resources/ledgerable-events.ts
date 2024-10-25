@@ -103,6 +103,6 @@ export interface LedgerableEventCreateParams {
 }
 
 export namespace LedgerableEvents {
-  export import LedgerableEvent = LedgerableEventsAPI.LedgerableEvent;
-  export import LedgerableEventCreateParams = LedgerableEventsAPI.LedgerableEventCreateParams;
+  export type LedgerableEvent = LedgerableEventsAPI.LedgerableEvent;
+  export type LedgerableEventCreateParams = LedgerableEventsAPI.LedgerableEventCreateParams;
 }
