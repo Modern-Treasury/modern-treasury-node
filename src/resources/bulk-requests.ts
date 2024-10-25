@@ -2038,8 +2038,8 @@ export interface BulkRequestListParams extends PageParams {
 }
 
 export namespace BulkRequests {
-  export type BulkRequest = BulkRequestsAPI.BulkRequest;
+  export import BulkRequest = BulkRequestsAPI.BulkRequest;
   export import BulkRequestsPage = BulkRequestsAPI.BulkRequestsPage;
-  export type BulkRequestCreateParams = BulkRequestsAPI.BulkRequestCreateParams;
-  export type BulkRequestListParams = BulkRequestsAPI.BulkRequestListParams;
+  export import BulkRequestCreateParams = BulkRequestsAPI.BulkRequestCreateParams;
+  export import BulkRequestListParams = BulkRequestsAPI.BulkRequestListParams;
 }

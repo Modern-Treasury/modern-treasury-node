@@ -505,11 +505,9 @@ export interface ConnectionLegalEntityListParams extends PageParams {
 }
 
 export namespace ConnectionLegalEntities {
-  export type ConnectionLegalEntity = ConnectionLegalEntitiesAPI.ConnectionLegalEntity;
+  export import ConnectionLegalEntity = ConnectionLegalEntitiesAPI.ConnectionLegalEntity;
   export import ConnectionLegalEntitiesPage = ConnectionLegalEntitiesAPI.ConnectionLegalEntitiesPage;
-  export type ConnectionLegalEntityCreateParams =
-    ConnectionLegalEntitiesAPI.ConnectionLegalEntityCreateParams;
-  export type ConnectionLegalEntityUpdateParams =
-    ConnectionLegalEntitiesAPI.ConnectionLegalEntityUpdateParams;
-  export type ConnectionLegalEntityListParams = ConnectionLegalEntitiesAPI.ConnectionLegalEntityListParams;
+  export import ConnectionLegalEntityCreateParams = ConnectionLegalEntitiesAPI.ConnectionLegalEntityCreateParams;
+  export import ConnectionLegalEntityUpdateParams = ConnectionLegalEntitiesAPI.ConnectionLegalEntityUpdateParams;
+  export import ConnectionLegalEntityListParams = ConnectionLegalEntitiesAPI.ConnectionLegalEntityListParams;
 }

@@ -449,8 +449,8 @@ export interface ReturnListParams extends PageParams {
 }
 
 export namespace Returns {
-  export type ReturnObject = ReturnsAPI.ReturnObject;
+  export import ReturnObject = ReturnsAPI.ReturnObject;
   export import ReturnObjectsPage = ReturnsAPI.ReturnObjectsPage;
-  export type ReturnCreateParams = ReturnsAPI.ReturnCreateParams;
-  export type ReturnListParams = ReturnsAPI.ReturnListParams;
+  export import ReturnCreateParams = ReturnsAPI.ReturnCreateParams;
+  export import ReturnListParams = ReturnsAPI.ReturnListParams;
 }

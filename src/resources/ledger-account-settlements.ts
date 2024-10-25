@@ -271,12 +271,9 @@ export interface LedgerAccountSettlementListParams extends PageParams {
 }
 
 export namespace LedgerAccountSettlements {
-  export type LedgerAccountSettlement = LedgerAccountSettlementsAPI.LedgerAccountSettlement;
+  export import LedgerAccountSettlement = LedgerAccountSettlementsAPI.LedgerAccountSettlement;
   export import LedgerAccountSettlementsPage = LedgerAccountSettlementsAPI.LedgerAccountSettlementsPage;
-  export type LedgerAccountSettlementCreateParams =
-    LedgerAccountSettlementsAPI.LedgerAccountSettlementCreateParams;
-  export type LedgerAccountSettlementUpdateParams =
-    LedgerAccountSettlementsAPI.LedgerAccountSettlementUpdateParams;
-  export type LedgerAccountSettlementListParams =
-    LedgerAccountSettlementsAPI.LedgerAccountSettlementListParams;
+  export import LedgerAccountSettlementCreateParams = LedgerAccountSettlementsAPI.LedgerAccountSettlementCreateParams;
+  export import LedgerAccountSettlementUpdateParams = LedgerAccountSettlementsAPI.LedgerAccountSettlementUpdateParams;
+  export import LedgerAccountSettlementListParams = LedgerAccountSettlementsAPI.LedgerAccountSettlementListParams;
 }

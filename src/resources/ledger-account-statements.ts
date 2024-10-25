@@ -610,10 +610,7 @@ export interface LedgerAccountStatementCreateParams {
 }
 
 export namespace LedgerAccountStatements {
-  export type LedgerAccountStatementCreateResponse =
-    LedgerAccountStatementsAPI.LedgerAccountStatementCreateResponse;
-  export type LedgerAccountStatementRetrieveResponse =
-    LedgerAccountStatementsAPI.LedgerAccountStatementRetrieveResponse;
-  export type LedgerAccountStatementCreateParams =
-    LedgerAccountStatementsAPI.LedgerAccountStatementCreateParams;
+  export import LedgerAccountStatementCreateResponse = LedgerAccountStatementsAPI.LedgerAccountStatementCreateResponse;
+  export import LedgerAccountStatementRetrieveResponse = LedgerAccountStatementsAPI.LedgerAccountStatementRetrieveResponse;
+  export import LedgerAccountStatementCreateParams = LedgerAccountStatementsAPI.LedgerAccountStatementCreateParams;
 }

@@ -234,8 +234,8 @@ export interface ForeignExchangeQuoteListParams extends PageParams {
 }
 
 export namespace ForeignExchangeQuotes {
-  export type ForeignExchangeQuote = ForeignExchangeQuotesAPI.ForeignExchangeQuote;
+  export import ForeignExchangeQuote = ForeignExchangeQuotesAPI.ForeignExchangeQuote;
   export import ForeignExchangeQuotesPage = ForeignExchangeQuotesAPI.ForeignExchangeQuotesPage;
-  export type ForeignExchangeQuoteCreateParams = ForeignExchangeQuotesAPI.ForeignExchangeQuoteCreateParams;
-  export type ForeignExchangeQuoteListParams = ForeignExchangeQuotesAPI.ForeignExchangeQuoteListParams;
+  export import ForeignExchangeQuoteCreateParams = ForeignExchangeQuotesAPI.ForeignExchangeQuoteCreateParams;
+  export import ForeignExchangeQuoteListParams = ForeignExchangeQuotesAPI.ForeignExchangeQuoteListParams;
 }
