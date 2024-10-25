@@ -717,9 +717,9 @@ export interface LegalEntityListParams extends PageParams {
 }
 
 export namespace LegalEntities {
-  export type LegalEntity = LegalEntitiesAPI.LegalEntity;
+  export import LegalEntity = LegalEntitiesAPI.LegalEntity;
   export import LegalEntitiesPage = LegalEntitiesAPI.LegalEntitiesPage;
-  export type LegalEntityCreateParams = LegalEntitiesAPI.LegalEntityCreateParams;
-  export type LegalEntityUpdateParams = LegalEntitiesAPI.LegalEntityUpdateParams;
-  export type LegalEntityListParams = LegalEntitiesAPI.LegalEntityListParams;
+  export import LegalEntityCreateParams = LegalEntitiesAPI.LegalEntityCreateParams;
+  export import LegalEntityUpdateParams = LegalEntitiesAPI.LegalEntityUpdateParams;
+  export import LegalEntityListParams = LegalEntitiesAPI.LegalEntityListParams;
 }

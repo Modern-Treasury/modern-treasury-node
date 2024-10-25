@@ -2,265 +2,243 @@
 
 export * from './shared';
 export {
+  AccountCollectionFlow,
+  AccountCollectionFlowCreateParams,
+  AccountCollectionFlowUpdateParams,
+  AccountCollectionFlowListParams,
   AccountCollectionFlowsPage,
   AccountCollectionFlows,
-  type AccountCollectionFlow,
-  type AccountCollectionFlowCreateParams,
-  type AccountCollectionFlowUpdateParams,
-  type AccountCollectionFlowListParams,
 } from './account-collection-flows';
 export {
+  AccountDetail,
+  AccountDetailCreateParams,
+  AccountDetailListParams,
   AccountDetailsPage,
   AccountDetails,
-  type AccountDetail,
-  type AccountDetailCreateParams,
-  type AccountDetailListParams,
 } from './account-details';
 export {
+  BulkRequest,
+  BulkRequestCreateParams,
+  BulkRequestListParams,
   BulkRequestsPage,
   BulkRequests,
-  type BulkRequest,
-  type BulkRequestCreateParams,
-  type BulkRequestListParams,
 } from './bulk-requests';
-export { BulkResultsPage, BulkResults, type BulkResult, type BulkResultListParams } from './bulk-results';
+export { BulkResult, BulkResultListParams, BulkResultsPage, BulkResults } from './bulk-results';
+export { Connection, ConnectionListParams, ConnectionsPage, Connections } from './connections';
 export {
+  ConnectionLegalEntity,
+  ConnectionLegalEntityCreateParams,
+  ConnectionLegalEntityUpdateParams,
+  ConnectionLegalEntityListParams,
   ConnectionLegalEntitiesPage,
   ConnectionLegalEntities,
-  type ConnectionLegalEntity,
-  type ConnectionLegalEntityCreateParams,
-  type ConnectionLegalEntityUpdateParams,
-  type ConnectionLegalEntityListParams,
 } from './connection-legal-entities';
-export { ConnectionsPage, Connections, type Connection, type ConnectionListParams } from './connections';
 export {
+  Counterparty,
+  CounterpartyCollectAccountResponse,
+  CounterpartyCreateParams,
+  CounterpartyUpdateParams,
+  CounterpartyListParams,
+  CounterpartyCollectAccountParams,
   CounterpartiesPage,
   Counterparties,
-  type Counterparty,
-  type CounterpartyCollectAccountResponse,
-  type CounterpartyCreateParams,
-  type CounterpartyUpdateParams,
-  type CounterpartyListParams,
-  type CounterpartyCollectAccountParams,
 } from './counterparties';
+export { Document, DocumentCreateParams, DocumentListParams, DocumentsPage, Documents } from './documents';
+export { Event, EventListParams, EventsPage, Events } from './events';
 export {
-  DocumentsPage,
-  Documents,
-  type Document,
-  type DocumentCreateParams,
-  type DocumentListParams,
-} from './documents';
-export { EventsPage, Events, type Event, type EventListParams } from './events';
-export {
+  ExpectedPayment,
+  ExpectedPaymentType,
+  ReconciliationRule,
+  ExpectedPaymentCreateParams,
+  ExpectedPaymentUpdateParams,
+  ExpectedPaymentListParams,
   ExpectedPaymentsPage,
   ExpectedPayments,
-  type ExpectedPayment,
-  type ExpectedPaymentType,
-  type ReconciliationRule,
-  type ExpectedPaymentCreateParams,
-  type ExpectedPaymentUpdateParams,
-  type ExpectedPaymentListParams,
 } from './expected-payments';
 export {
+  ExternalAccount,
+  ExternalAccountType,
+  ExternalAccountVerifyResponse,
+  ExternalAccountCreateParams,
+  ExternalAccountUpdateParams,
+  ExternalAccountListParams,
+  ExternalAccountCompleteVerificationParams,
+  ExternalAccountVerifyParams,
   ExternalAccountsPage,
   ExternalAccounts,
-  type ExternalAccount,
-  type ExternalAccountType,
-  type ExternalAccountVerifyResponse,
-  type ExternalAccountCreateParams,
-  type ExternalAccountUpdateParams,
-  type ExternalAccountListParams,
-  type ExternalAccountCompleteVerificationParams,
-  type ExternalAccountVerifyParams,
 } from './external-accounts';
 export {
+  ForeignExchangeQuote,
+  ForeignExchangeQuoteCreateParams,
+  ForeignExchangeQuoteListParams,
   ForeignExchangeQuotesPage,
   ForeignExchangeQuotes,
-  type ForeignExchangeQuote,
-  type ForeignExchangeQuoteCreateParams,
-  type ForeignExchangeQuoteListParams,
 } from './foreign-exchange-quotes';
 export {
+  IncomingPaymentDetail,
+  IncomingPaymentDetailUpdateParams,
+  IncomingPaymentDetailListParams,
+  IncomingPaymentDetailCreateAsyncParams,
   IncomingPaymentDetailsPage,
   IncomingPaymentDetails,
-  type IncomingPaymentDetail,
-  type IncomingPaymentDetailUpdateParams,
-  type IncomingPaymentDetailListParams,
-  type IncomingPaymentDetailCreateAsyncParams,
 } from './incoming-payment-details';
 export {
+  InternalAccount,
+  InternalAccountCreateParams,
+  InternalAccountUpdateParams,
+  InternalAccountListParams,
   InternalAccountsPage,
   InternalAccounts,
-  type InternalAccount,
-  type InternalAccountCreateParams,
-  type InternalAccountUpdateParams,
-  type InternalAccountListParams,
 } from './internal-accounts/internal-accounts';
 export {
+  Invoice,
+  InvoiceCreateParams,
+  InvoiceUpdateParams,
+  InvoiceListParams,
   InvoicesPage,
   Invoices,
-  type Invoice,
-  type InvoiceCreateParams,
-  type InvoiceUpdateParams,
-  type InvoiceListParams,
 } from './invoices/invoices';
 export {
-  LedgerAccountBalanceMonitorsPage,
-  LedgerAccountBalanceMonitors,
-  type LedgerAccountBalanceMonitor,
-  type LedgerAccountBalanceMonitorCreateParams,
-  type LedgerAccountBalanceMonitorUpdateParams,
-  type LedgerAccountBalanceMonitorListParams,
-} from './ledger-account-balance-monitors';
-export {
-  LedgerAccountCategoriesPage,
-  LedgerAccountCategories,
-  type LedgerAccountCategory,
-  type LedgerAccountCategoryCreateParams,
-  type LedgerAccountCategoryRetrieveParams,
-  type LedgerAccountCategoryUpdateParams,
-  type LedgerAccountCategoryListParams,
-} from './ledger-account-categories';
-export {
-  LedgerAccountSettlementsPage,
-  LedgerAccountSettlements,
-  type LedgerAccountSettlement,
-  type LedgerAccountSettlementCreateParams,
-  type LedgerAccountSettlementUpdateParams,
-  type LedgerAccountSettlementListParams,
-} from './ledger-account-settlements';
-export {
-  LedgerAccountStatements,
-  type LedgerAccountStatementCreateResponse,
-  type LedgerAccountStatementRetrieveResponse,
-  type LedgerAccountStatementCreateParams,
-} from './ledger-account-statements';
-export {
-  LedgerAccountsPage,
-  LedgerAccounts,
-  type LedgerAccount,
-  type LedgerAccountCreateParams,
-  type LedgerAccountRetrieveParams,
-  type LedgerAccountUpdateParams,
-  type LedgerAccountListParams,
-} from './ledger-accounts';
-export {
-  LedgerEntriesPage,
-  LedgerEntries,
-  type LedgerEntry,
-  type LedgerEntryRetrieveParams,
-  type LedgerEntryUpdateParams,
-  type LedgerEntryListParams,
-} from './ledger-entries';
-export {
-  LedgerEventHandlersPage,
-  LedgerEventHandlers,
-  type LedgerEventHandler,
-  type LedgerEventHandlerVariable,
-  type LedgerEventHandlerCreateParams,
-  type LedgerEventHandlerListParams,
-} from './ledger-event-handlers';
-export {
-  LedgerTransactionsPage,
-  LedgerTransactions,
-  type LedgerTransaction,
-  type LedgerTransactionCreateParams,
-  type LedgerTransactionUpdateParams,
-  type LedgerTransactionListParams,
-  type LedgerTransactionCreateReversalParams,
-} from './ledger-transactions/ledger-transactions';
-export {
-  LedgerableEvents,
-  type LedgerableEvent,
-  type LedgerableEventCreateParams,
-} from './ledgerable-events';
-export {
+  Ledger,
+  LedgerCreateParams,
+  LedgerUpdateParams,
+  LedgerListParams,
   LedgersPage,
   Ledgers,
-  type Ledger,
-  type LedgerCreateParams,
-  type LedgerUpdateParams,
-  type LedgerListParams,
 } from './ledgers';
 export {
+  LedgerAccount,
+  LedgerAccountCreateParams,
+  LedgerAccountRetrieveParams,
+  LedgerAccountUpdateParams,
+  LedgerAccountListParams,
+  LedgerAccountsPage,
+  LedgerAccounts,
+} from './ledger-accounts';
+export {
+  LedgerAccountBalanceMonitor,
+  LedgerAccountBalanceMonitorCreateParams,
+  LedgerAccountBalanceMonitorUpdateParams,
+  LedgerAccountBalanceMonitorListParams,
+  LedgerAccountBalanceMonitorsPage,
+  LedgerAccountBalanceMonitors,
+} from './ledger-account-balance-monitors';
+export {
+  LedgerAccountCategory,
+  LedgerAccountCategoryCreateParams,
+  LedgerAccountCategoryRetrieveParams,
+  LedgerAccountCategoryUpdateParams,
+  LedgerAccountCategoryListParams,
+  LedgerAccountCategoriesPage,
+  LedgerAccountCategories,
+} from './ledger-account-categories';
+export {
+  LedgerAccountSettlement,
+  LedgerAccountSettlementCreateParams,
+  LedgerAccountSettlementUpdateParams,
+  LedgerAccountSettlementListParams,
+  LedgerAccountSettlementsPage,
+  LedgerAccountSettlements,
+} from './ledger-account-settlements';
+export {
+  LedgerAccountStatementCreateResponse,
+  LedgerAccountStatementRetrieveResponse,
+  LedgerAccountStatementCreateParams,
+  LedgerAccountStatements,
+} from './ledger-account-statements';
+export {
+  LedgerEntry,
+  LedgerEntryRetrieveParams,
+  LedgerEntryUpdateParams,
+  LedgerEntryListParams,
+  LedgerEntriesPage,
+  LedgerEntries,
+} from './ledger-entries';
+export {
+  LedgerEventHandler,
+  LedgerEventHandlerVariable,
+  LedgerEventHandlerCreateParams,
+  LedgerEventHandlerListParams,
+  LedgerEventHandlersPage,
+  LedgerEventHandlers,
+} from './ledger-event-handlers';
+export {
+  LedgerTransaction,
+  LedgerTransactionCreateParams,
+  LedgerTransactionUpdateParams,
+  LedgerTransactionListParams,
+  LedgerTransactionCreateReversalParams,
+  LedgerTransactionsPage,
+  LedgerTransactions,
+} from './ledger-transactions/ledger-transactions';
+export { LedgerableEvent, LedgerableEventCreateParams, LedgerableEvents } from './ledgerable-events';
+export {
+  LegalEntity,
+  LegalEntityCreateParams,
+  LegalEntityUpdateParams,
+  LegalEntityListParams,
   LegalEntitiesPage,
   LegalEntities,
-  type LegalEntity,
-  type LegalEntityCreateParams,
-  type LegalEntityUpdateParams,
-  type LegalEntityListParams,
 } from './legal-entities';
 export {
+  LegalEntityAssociation,
+  LegalEntityAssociationCreateParams,
   LegalEntityAssociations,
-  type LegalEntityAssociation,
-  type LegalEntityAssociationCreateParams,
 } from './legal-entity-associations';
+export { LineItem, LineItemUpdateParams, LineItemListParams, LineItemsPage, LineItems } from './line-items';
+export { PaperItem, PaperItemListParams, PaperItemsPage, PaperItems } from './paper-items';
 export {
-  LineItemsPage,
-  LineItems,
-  type LineItem,
-  type LineItemUpdateParams,
-  type LineItemListParams,
-} from './line-items';
-export { PaperItemsPage, PaperItems, type PaperItem, type PaperItemListParams } from './paper-items';
-export {
+  PaymentFlow,
+  PaymentFlowCreateParams,
+  PaymentFlowUpdateParams,
+  PaymentFlowListParams,
   PaymentFlowsPage,
   PaymentFlows,
-  type PaymentFlow,
-  type PaymentFlowCreateParams,
-  type PaymentFlowUpdateParams,
-  type PaymentFlowListParams,
 } from './payment-flows';
 export {
+  PaymentOrder,
+  PaymentOrderSubtype,
+  PaymentOrderType,
+  PaymentOrderCreateParams,
+  PaymentOrderUpdateParams,
+  PaymentOrderListParams,
+  PaymentOrderCreateAsyncParams,
   PaymentOrdersPage,
   PaymentOrders,
-  type PaymentOrder,
-  type PaymentOrderSubtype,
-  type PaymentOrderType,
-  type PaymentOrderCreateParams,
-  type PaymentOrderUpdateParams,
-  type PaymentOrderListParams,
-  type PaymentOrderCreateAsyncParams,
 } from './payment-orders/payment-orders';
 export {
+  PaymentReference,
+  PaymentReferenceListParams,
   PaymentReferencesPage,
   PaymentReferences,
-  type PaymentReference,
-  type PaymentReferenceListParams,
 } from './payment-references';
+export { PingResponse } from './top-level';
+export { ReturnObject, ReturnCreateParams, ReturnListParams, ReturnObjectsPage, Returns } from './returns';
 export {
-  ReturnObjectsPage,
-  Returns,
-  type ReturnObject,
-  type ReturnCreateParams,
-  type ReturnListParams,
-} from './returns';
-export {
+  RoutingDetail,
+  RoutingDetailCreateParams,
+  RoutingDetailListParams,
   RoutingDetailsPage,
   RoutingDetails,
-  type RoutingDetail,
-  type RoutingDetailCreateParams,
-  type RoutingDetailListParams,
 } from './routing-details';
 export {
-  TransactionsPage,
-  Transactions,
-  type Transaction,
-  type TransactionCreateParams,
-  type TransactionUpdateParams,
-  type TransactionListParams,
-} from './transactions/transactions';
-export {
+  RoutingNumberLookupRequest,
+  ValidationValidateRoutingNumberParams,
   Validations,
-  type RoutingNumberLookupRequest,
-  type ValidationValidateRoutingNumberParams,
 } from './validations';
 export {
+  Transaction,
+  TransactionCreateParams,
+  TransactionUpdateParams,
+  TransactionListParams,
+  TransactionsPage,
+  Transactions,
+} from './transactions/transactions';
+export {
+  VirtualAccount,
+  VirtualAccountCreateParams,
+  VirtualAccountUpdateParams,
+  VirtualAccountListParams,
   VirtualAccountsPage,
   VirtualAccounts,
-  type VirtualAccount,
-  type VirtualAccountCreateParams,
-  type VirtualAccountUpdateParams,
-  type VirtualAccountListParams,
 } from './virtual-accounts';
-export { type PingResponse } from './top-level';
