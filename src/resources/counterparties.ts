@@ -1100,11 +1100,11 @@ export interface CounterpartyCollectAccountParams {
 }
 
 export namespace Counterparties {
-  export import Counterparty = CounterpartiesAPI.Counterparty;
-  export import CounterpartyCollectAccountResponse = CounterpartiesAPI.CounterpartyCollectAccountResponse;
+  export type Counterparty = CounterpartiesAPI.Counterparty;
+  export type CounterpartyCollectAccountResponse = CounterpartiesAPI.CounterpartyCollectAccountResponse;
   export import CounterpartiesPage = CounterpartiesAPI.CounterpartiesPage;
-  export import CounterpartyCreateParams = CounterpartiesAPI.CounterpartyCreateParams;
-  export import CounterpartyUpdateParams = CounterpartiesAPI.CounterpartyUpdateParams;
-  export import CounterpartyListParams = CounterpartiesAPI.CounterpartyListParams;
-  export import CounterpartyCollectAccountParams = CounterpartiesAPI.CounterpartyCollectAccountParams;
+  export type CounterpartyCreateParams = CounterpartiesAPI.CounterpartyCreateParams;
+  export type CounterpartyUpdateParams = CounterpartiesAPI.CounterpartyUpdateParams;
+  export type CounterpartyListParams = CounterpartiesAPI.CounterpartyListParams;
+  export type CounterpartyCollectAccountParams = CounterpartiesAPI.CounterpartyCollectAccountParams;
 }

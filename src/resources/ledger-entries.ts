@@ -381,9 +381,9 @@ export namespace LedgerEntryListParams {
 }
 
 export namespace LedgerEntries {
-  export import LedgerEntry = LedgerEntriesAPI.LedgerEntry;
+  export type LedgerEntry = LedgerEntriesAPI.LedgerEntry;
   export import LedgerEntriesPage = LedgerEntriesAPI.LedgerEntriesPage;
-  export import LedgerEntryRetrieveParams = LedgerEntriesAPI.LedgerEntryRetrieveParams;
-  export import LedgerEntryUpdateParams = LedgerEntriesAPI.LedgerEntryUpdateParams;
-  export import LedgerEntryListParams = LedgerEntriesAPI.LedgerEntryListParams;
+  export type LedgerEntryRetrieveParams = LedgerEntriesAPI.LedgerEntryRetrieveParams;
+  export type LedgerEntryUpdateParams = LedgerEntriesAPI.LedgerEntryUpdateParams;
+  export type LedgerEntryListParams = LedgerEntriesAPI.LedgerEntryListParams;
 }

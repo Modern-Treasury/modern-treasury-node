@@ -167,9 +167,9 @@ export interface LedgerListParams extends PageParams {
 }
 
 export namespace Ledgers {
-  export import Ledger = LedgersAPI.Ledger;
+  export type Ledger = LedgersAPI.Ledger;
   export import LedgersPage = LedgersAPI.LedgersPage;
-  export import LedgerCreateParams = LedgersAPI.LedgerCreateParams;
-  export import LedgerUpdateParams = LedgersAPI.LedgerUpdateParams;
-  export import LedgerListParams = LedgersAPI.LedgerListParams;
+  export type LedgerCreateParams = LedgersAPI.LedgerCreateParams;
+  export type LedgerUpdateParams = LedgersAPI.LedgerUpdateParams;
+  export type LedgerListParams = LedgersAPI.LedgerListParams;
 }

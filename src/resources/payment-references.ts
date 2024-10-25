@@ -169,7 +169,7 @@ export interface PaymentReferenceListParams extends PageParams {
 }
 
 export namespace PaymentReferences {
-  export import PaymentReference = PaymentReferencesAPI.PaymentReference;
+  export type PaymentReference = PaymentReferencesAPI.PaymentReference;
   export import PaymentReferencesPage = PaymentReferencesAPI.PaymentReferencesPage;
-  export import PaymentReferenceListParams = PaymentReferencesAPI.PaymentReferenceListParams;
+  export type PaymentReferenceListParams = PaymentReferencesAPI.PaymentReferenceListParams;
 }

@@ -74,7 +74,7 @@ export interface ConnectionListParams extends PageParams {
 }
 
 export namespace Connections {
-  export import Connection = ConnectionsAPI.Connection;
+  export type Connection = ConnectionsAPI.Connection;
   export import ConnectionsPage = ConnectionsAPI.ConnectionsPage;
-  export import ConnectionListParams = ConnectionsAPI.ConnectionListParams;
+  export type ConnectionListParams = ConnectionsAPI.ConnectionListParams;
 }

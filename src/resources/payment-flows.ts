@@ -234,9 +234,9 @@ export interface PaymentFlowListParams extends PageParams {
 }
 
 export namespace PaymentFlows {
-  export import PaymentFlow = PaymentFlowsAPI.PaymentFlow;
+  export type PaymentFlow = PaymentFlowsAPI.PaymentFlow;
   export import PaymentFlowsPage = PaymentFlowsAPI.PaymentFlowsPage;
-  export import PaymentFlowCreateParams = PaymentFlowsAPI.PaymentFlowCreateParams;
-  export import PaymentFlowUpdateParams = PaymentFlowsAPI.PaymentFlowUpdateParams;
-  export import PaymentFlowListParams = PaymentFlowsAPI.PaymentFlowListParams;
+  export type PaymentFlowCreateParams = PaymentFlowsAPI.PaymentFlowCreateParams;
+  export type PaymentFlowUpdateParams = PaymentFlowsAPI.PaymentFlowUpdateParams;
+  export type PaymentFlowListParams = PaymentFlowsAPI.PaymentFlowListParams;
 }

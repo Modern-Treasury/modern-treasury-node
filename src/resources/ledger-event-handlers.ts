@@ -349,9 +349,9 @@ export interface LedgerEventHandlerListParams extends PageParams {
 }
 
 export namespace LedgerEventHandlers {
-  export import LedgerEventHandler = LedgerEventHandlersAPI.LedgerEventHandler;
-  export import LedgerEventHandlerVariable = LedgerEventHandlersAPI.LedgerEventHandlerVariable;
+  export type LedgerEventHandler = LedgerEventHandlersAPI.LedgerEventHandler;
+  export type LedgerEventHandlerVariable = LedgerEventHandlersAPI.LedgerEventHandlerVariable;
   export import LedgerEventHandlersPage = LedgerEventHandlersAPI.LedgerEventHandlersPage;
-  export import LedgerEventHandlerCreateParams = LedgerEventHandlersAPI.LedgerEventHandlerCreateParams;
-  export import LedgerEventHandlerListParams = LedgerEventHandlersAPI.LedgerEventHandlerListParams;
+  export type LedgerEventHandlerCreateParams = LedgerEventHandlersAPI.LedgerEventHandlerCreateParams;
+  export type LedgerEventHandlerListParams = LedgerEventHandlersAPI.LedgerEventHandlerListParams;
 }

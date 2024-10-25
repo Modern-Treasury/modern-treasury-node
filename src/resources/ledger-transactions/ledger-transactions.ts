@@ -574,14 +574,15 @@ export interface LedgerTransactionCreateReversalParams {
 }
 
 export namespace LedgerTransactions {
-  export import LedgerTransaction = LedgerTransactionsAPI.LedgerTransaction;
+  export type LedgerTransaction = LedgerTransactionsAPI.LedgerTransaction;
   export import LedgerTransactionsPage = LedgerTransactionsAPI.LedgerTransactionsPage;
-  export import LedgerTransactionCreateParams = LedgerTransactionsAPI.LedgerTransactionCreateParams;
-  export import LedgerTransactionUpdateParams = LedgerTransactionsAPI.LedgerTransactionUpdateParams;
-  export import LedgerTransactionListParams = LedgerTransactionsAPI.LedgerTransactionListParams;
-  export import LedgerTransactionCreateReversalParams = LedgerTransactionsAPI.LedgerTransactionCreateReversalParams;
+  export type LedgerTransactionCreateParams = LedgerTransactionsAPI.LedgerTransactionCreateParams;
+  export type LedgerTransactionUpdateParams = LedgerTransactionsAPI.LedgerTransactionUpdateParams;
+  export type LedgerTransactionListParams = LedgerTransactionsAPI.LedgerTransactionListParams;
+  export type LedgerTransactionCreateReversalParams =
+    LedgerTransactionsAPI.LedgerTransactionCreateReversalParams;
   export import Versions = VersionsAPI.Versions;
-  export import LedgerTransactionVersion = VersionsAPI.LedgerTransactionVersion;
+  export type LedgerTransactionVersion = VersionsAPI.LedgerTransactionVersion;
   export import LedgerTransactionVersionsPage = VersionsAPI.LedgerTransactionVersionsPage;
-  export import VersionListParams = VersionsAPI.VersionListParams;
+  export type VersionListParams = VersionsAPI.VersionListParams;
 }

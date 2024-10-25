@@ -276,8 +276,8 @@ export namespace ReversalCreateParams {
 export interface ReversalListParams extends PageParams {}
 
 export namespace Reversals {
-  export import Reversal = ReversalsAPI.Reversal;
+  export type Reversal = ReversalsAPI.Reversal;
   export import ReversalsPage = ReversalsAPI.ReversalsPage;
-  export import ReversalCreateParams = ReversalsAPI.ReversalCreateParams;
-  export import ReversalListParams = ReversalsAPI.ReversalListParams;
+  export type ReversalCreateParams = ReversalsAPI.ReversalCreateParams;
+  export type ReversalListParams = ReversalsAPI.ReversalListParams;
 }

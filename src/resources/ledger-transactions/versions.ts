@@ -347,7 +347,7 @@ export interface VersionListParams extends PageParams {
 }
 
 export namespace Versions {
-  export import LedgerTransactionVersion = VersionsAPI.LedgerTransactionVersion;
+  export type LedgerTransactionVersion = VersionsAPI.LedgerTransactionVersion;
   export import LedgerTransactionVersionsPage = VersionsAPI.LedgerTransactionVersionsPage;
-  export import VersionListParams = VersionsAPI.VersionListParams;
+  export type VersionListParams = VersionsAPI.VersionListParams;
 }

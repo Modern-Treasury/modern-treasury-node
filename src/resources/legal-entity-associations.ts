@@ -468,6 +468,7 @@ export namespace LegalEntityAssociationCreateParams {
 }
 
 export namespace LegalEntityAssociations {
-  export import LegalEntityAssociation = LegalEntityAssociationsAPI.LegalEntityAssociation;
-  export import LegalEntityAssociationCreateParams = LegalEntityAssociationsAPI.LegalEntityAssociationCreateParams;
+  export type LegalEntityAssociation = LegalEntityAssociationsAPI.LegalEntityAssociation;
+  export type LegalEntityAssociationCreateParams =
+    LegalEntityAssociationsAPI.LegalEntityAssociationCreateParams;
 }

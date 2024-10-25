@@ -164,7 +164,7 @@ export interface BulkResultListParams extends PageParams {
 }
 
 export namespace BulkResults {
-  export import BulkResult = BulkResultsAPI.BulkResult;
+  export type BulkResult = BulkResultsAPI.BulkResult;
   export import BulkResultsPage = BulkResultsAPI.BulkResultsPage;
-  export import BulkResultListParams = BulkResultsAPI.BulkResultListParams;
+  export type BulkResultListParams = BulkResultsAPI.BulkResultListParams;
 }

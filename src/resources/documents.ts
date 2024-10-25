@@ -205,8 +205,8 @@ export interface DocumentListParams extends PageParams {
 }
 
 export namespace Documents {
-  export import Document = DocumentsAPI.Document;
+  export type Document = DocumentsAPI.Document;
   export import DocumentsPage = DocumentsAPI.DocumentsPage;
-  export import DocumentCreateParams = DocumentsAPI.DocumentCreateParams;
-  export import DocumentListParams = DocumentsAPI.DocumentListParams;
+  export type DocumentCreateParams = DocumentsAPI.DocumentCreateParams;
+  export type DocumentListParams = DocumentsAPI.DocumentListParams;
 }
