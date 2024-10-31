@@ -3,13 +3,13 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as PaymentOrdersAPI from './payment-orders';
 import * as ExternalAccountsAPI from '../external-accounts';
 import * as ReturnsAPI from '../returns';
 import * as Shared from '../shared';
 import * as VirtualAccountsAPI from '../virtual-accounts';
 import * as InternalAccountsAPI from '../internal-accounts/internal-accounts';
 import * as ReversalsAPI from './reversals';
+import { Reversal, ReversalCreateParams, ReversalListParams, Reversals, ReversalsPage } from './reversals';
 import { Page, type PageParams } from '../../pagination';
 
 export class PaymentOrders extends APIResource {
@@ -2553,18 +2553,27 @@ export namespace PaymentOrderCreateAsyncParams {
   }
 }
 
-export namespace PaymentOrders {
-  export import PaymentOrder = PaymentOrdersAPI.PaymentOrder;
-  export import PaymentOrderSubtype = PaymentOrdersAPI.PaymentOrderSubtype;
-  export import PaymentOrderType = PaymentOrdersAPI.PaymentOrderType;
-  export import PaymentOrdersPage = PaymentOrdersAPI.PaymentOrdersPage;
-  export import PaymentOrderCreateParams = PaymentOrdersAPI.PaymentOrderCreateParams;
-  export import PaymentOrderUpdateParams = PaymentOrdersAPI.PaymentOrderUpdateParams;
-  export import PaymentOrderListParams = PaymentOrdersAPI.PaymentOrderListParams;
-  export import PaymentOrderCreateAsyncParams = PaymentOrdersAPI.PaymentOrderCreateAsyncParams;
-  export import Reversals = ReversalsAPI.Reversals;
-  export import Reversal = ReversalsAPI.Reversal;
-  export import ReversalsPage = ReversalsAPI.ReversalsPage;
-  export import ReversalCreateParams = ReversalsAPI.ReversalCreateParams;
-  export import ReversalListParams = ReversalsAPI.ReversalListParams;
+PaymentOrders.PaymentOrdersPage = PaymentOrdersPage;
+PaymentOrders.Reversals = Reversals;
+PaymentOrders.ReversalsPage = ReversalsPage;
+
+export declare namespace PaymentOrders {
+  export {
+    type PaymentOrder as PaymentOrder,
+    type PaymentOrderSubtype as PaymentOrderSubtype,
+    type PaymentOrderType as PaymentOrderType,
+    PaymentOrdersPage as PaymentOrdersPage,
+    type PaymentOrderCreateParams as PaymentOrderCreateParams,
+    type PaymentOrderUpdateParams as PaymentOrderUpdateParams,
+    type PaymentOrderListParams as PaymentOrderListParams,
+    type PaymentOrderCreateAsyncParams as PaymentOrderCreateAsyncParams,
+  };
+
+  export {
+    Reversals as Reversals,
+    type Reversal as Reversal,
+    ReversalsPage as ReversalsPage,
+    type ReversalCreateParams as ReversalCreateParams,
+    type ReversalListParams as ReversalListParams,
+  };
 }

@@ -3,12 +3,18 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as InternalAccountsAPI from './internal-accounts';
 import * as AccountDetailsAPI from '../account-details';
 import * as ConnectionsAPI from '../connections';
 import * as RoutingDetailsAPI from '../routing-details';
 import * as Shared from '../shared';
 import * as BalanceReportsAPI from './balance-reports';
+import {
+  BalanceReport,
+  BalanceReportCreateParams,
+  BalanceReportListParams,
+  BalanceReports,
+  BalanceReportsPage,
+} from './balance-reports';
 import { Page, type PageParams } from '../../pagination';
 
 export class InternalAccounts extends APIResource {
@@ -397,15 +403,24 @@ export interface InternalAccountListParams extends PageParams {
     | 'zengin';
 }
 
-export namespace InternalAccounts {
-  export import InternalAccount = InternalAccountsAPI.InternalAccount;
-  export import InternalAccountsPage = InternalAccountsAPI.InternalAccountsPage;
-  export import InternalAccountCreateParams = InternalAccountsAPI.InternalAccountCreateParams;
-  export import InternalAccountUpdateParams = InternalAccountsAPI.InternalAccountUpdateParams;
-  export import InternalAccountListParams = InternalAccountsAPI.InternalAccountListParams;
-  export import BalanceReports = BalanceReportsAPI.BalanceReports;
-  export import BalanceReport = BalanceReportsAPI.BalanceReport;
-  export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
-  export import BalanceReportCreateParams = BalanceReportsAPI.BalanceReportCreateParams;
-  export import BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
+InternalAccounts.InternalAccountsPage = InternalAccountsPage;
+InternalAccounts.BalanceReports = BalanceReports;
+InternalAccounts.BalanceReportsPage = BalanceReportsPage;
+
+export declare namespace InternalAccounts {
+  export {
+    type InternalAccount as InternalAccount,
+    InternalAccountsPage as InternalAccountsPage,
+    type InternalAccountCreateParams as InternalAccountCreateParams,
+    type InternalAccountUpdateParams as InternalAccountUpdateParams,
+    type InternalAccountListParams as InternalAccountListParams,
+  };
+
+  export {
+    BalanceReports as BalanceReports,
+    type BalanceReport as BalanceReport,
+    BalanceReportsPage as BalanceReportsPage,
+    type BalanceReportCreateParams as BalanceReportCreateParams,
+    type BalanceReportListParams as BalanceReportListParams,
+  };
 }

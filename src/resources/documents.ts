@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as DocumentsAPI from './documents';
 import { Page, type PageParams } from '../pagination';
 
 export class Documents extends APIResource {
@@ -204,9 +203,13 @@ export interface DocumentListParams extends PageParams {
     | 'connections';
 }
 
-export namespace Documents {
-  export import Document = DocumentsAPI.Document;
-  export import DocumentsPage = DocumentsAPI.DocumentsPage;
-  export import DocumentCreateParams = DocumentsAPI.DocumentCreateParams;
-  export import DocumentListParams = DocumentsAPI.DocumentListParams;
+Documents.DocumentsPage = DocumentsPage;
+
+export declare namespace Documents {
+  export {
+    type Document as Document,
+    DocumentsPage as DocumentsPage,
+    type DocumentCreateParams as DocumentCreateParams,
+    type DocumentListParams as DocumentListParams,
+  };
 }

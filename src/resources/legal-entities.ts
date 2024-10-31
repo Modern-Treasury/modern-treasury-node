@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LegalEntitiesAPI from './legal-entities';
 import * as LegalEntityAssociationsAPI from './legal-entity-associations';
 import { Page, type PageParams } from '../pagination';
 
@@ -716,10 +715,14 @@ export interface LegalEntityListParams extends PageParams {
   show_deleted?: string;
 }
 
-export namespace LegalEntities {
-  export import LegalEntity = LegalEntitiesAPI.LegalEntity;
-  export import LegalEntitiesPage = LegalEntitiesAPI.LegalEntitiesPage;
-  export import LegalEntityCreateParams = LegalEntitiesAPI.LegalEntityCreateParams;
-  export import LegalEntityUpdateParams = LegalEntitiesAPI.LegalEntityUpdateParams;
-  export import LegalEntityListParams = LegalEntitiesAPI.LegalEntityListParams;
+LegalEntities.LegalEntitiesPage = LegalEntitiesPage;
+
+export declare namespace LegalEntities {
+  export {
+    type LegalEntity as LegalEntity,
+    LegalEntitiesPage as LegalEntitiesPage,
+    type LegalEntityCreateParams as LegalEntityCreateParams,
+    type LegalEntityUpdateParams as LegalEntityUpdateParams,
+    type LegalEntityListParams as LegalEntityListParams,
+  };
 }

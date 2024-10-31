@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as ValidationsAPI from './validations';
 
 export class Validations extends APIResource {
   /**
@@ -161,7 +160,9 @@ export interface ValidationValidateRoutingNumberParams {
     | 'za_national_clearing_code';
 }
 
-export namespace Validations {
-  export import RoutingNumberLookupRequest = ValidationsAPI.RoutingNumberLookupRequest;
-  export import ValidationValidateRoutingNumberParams = ValidationsAPI.ValidationValidateRoutingNumberParams;
+export declare namespace Validations {
+  export {
+    type RoutingNumberLookupRequest as RoutingNumberLookupRequest,
+    type ValidationValidateRoutingNumberParams as ValidationValidateRoutingNumberParams,
+  };
 }

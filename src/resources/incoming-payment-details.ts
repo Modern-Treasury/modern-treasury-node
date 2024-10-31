@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as IncomingPaymentDetailsAPI from './incoming-payment-details';
 import * as Shared from './shared';
 import * as VirtualAccountsAPI from './virtual-accounts';
 import { Page, type PageParams } from '../pagination';
@@ -342,10 +341,14 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   virtual_account_id?: string | null;
 }
 
-export namespace IncomingPaymentDetails {
-  export import IncomingPaymentDetail = IncomingPaymentDetailsAPI.IncomingPaymentDetail;
-  export import IncomingPaymentDetailsPage = IncomingPaymentDetailsAPI.IncomingPaymentDetailsPage;
-  export import IncomingPaymentDetailUpdateParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailUpdateParams;
-  export import IncomingPaymentDetailListParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailListParams;
-  export import IncomingPaymentDetailCreateAsyncParams = IncomingPaymentDetailsAPI.IncomingPaymentDetailCreateAsyncParams;
+IncomingPaymentDetails.IncomingPaymentDetailsPage = IncomingPaymentDetailsPage;
+
+export declare namespace IncomingPaymentDetails {
+  export {
+    type IncomingPaymentDetail as IncomingPaymentDetail,
+    IncomingPaymentDetailsPage as IncomingPaymentDetailsPage,
+    type IncomingPaymentDetailUpdateParams as IncomingPaymentDetailUpdateParams,
+    type IncomingPaymentDetailListParams as IncomingPaymentDetailListParams,
+    type IncomingPaymentDetailCreateAsyncParams as IncomingPaymentDetailCreateAsyncParams,
+  };
 }

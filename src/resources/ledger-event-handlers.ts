@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LedgerEventHandlersAPI from './ledger-event-handlers';
 import { Page, type PageParams } from '../pagination';
 
 export class LedgerEventHandlers extends APIResource {
@@ -348,10 +347,14 @@ export interface LedgerEventHandlerListParams extends PageParams {
   name?: string;
 }
 
-export namespace LedgerEventHandlers {
-  export import LedgerEventHandler = LedgerEventHandlersAPI.LedgerEventHandler;
-  export import LedgerEventHandlerVariable = LedgerEventHandlersAPI.LedgerEventHandlerVariable;
-  export import LedgerEventHandlersPage = LedgerEventHandlersAPI.LedgerEventHandlersPage;
-  export import LedgerEventHandlerCreateParams = LedgerEventHandlersAPI.LedgerEventHandlerCreateParams;
-  export import LedgerEventHandlerListParams = LedgerEventHandlersAPI.LedgerEventHandlerListParams;
+LedgerEventHandlers.LedgerEventHandlersPage = LedgerEventHandlersPage;
+
+export declare namespace LedgerEventHandlers {
+  export {
+    type LedgerEventHandler as LedgerEventHandler,
+    type LedgerEventHandlerVariable as LedgerEventHandlerVariable,
+    LedgerEventHandlersPage as LedgerEventHandlersPage,
+    type LedgerEventHandlerCreateParams as LedgerEventHandlerCreateParams,
+    type LedgerEventHandlerListParams as LedgerEventHandlerListParams,
+  };
 }

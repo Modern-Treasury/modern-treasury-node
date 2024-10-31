@@ -3,10 +3,17 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as InvoicesAPI from './invoices';
 import * as ExpectedPaymentsAPI from '../expected-payments';
 import * as Shared from '../shared';
 import * as LineItemsAPI from './line-items';
+import {
+  InvoiceLineItem as LineItemsAPIInvoiceLineItem,
+  InvoiceLineItemsPage,
+  LineItemCreateParams,
+  LineItemListParams,
+  LineItemUpdateParams,
+  LineItems,
+} from './line-items';
 import * as PaymentOrdersAPI from '../payment-orders/payment-orders';
 import { Page, type PageParams } from '../../pagination';
 
@@ -1028,16 +1035,25 @@ export interface InvoiceListParams extends PageParams {
   status?: 'draft' | 'paid' | 'partially_paid' | 'payment_pending' | 'unpaid' | 'voided';
 }
 
-export namespace Invoices {
-  export import Invoice = InvoicesAPI.Invoice;
-  export import InvoicesPage = InvoicesAPI.InvoicesPage;
-  export import InvoiceCreateParams = InvoicesAPI.InvoiceCreateParams;
-  export import InvoiceUpdateParams = InvoicesAPI.InvoiceUpdateParams;
-  export import InvoiceListParams = InvoicesAPI.InvoiceListParams;
-  export import LineItems = LineItemsAPI.LineItems;
-  export import InvoiceLineItem = LineItemsAPI.InvoiceLineItem;
-  export import InvoiceLineItemsPage = LineItemsAPI.InvoiceLineItemsPage;
-  export import LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
-  export import LineItemUpdateParams = LineItemsAPI.LineItemUpdateParams;
-  export import LineItemListParams = LineItemsAPI.LineItemListParams;
+Invoices.InvoicesPage = InvoicesPage;
+Invoices.LineItems = LineItems;
+Invoices.InvoiceLineItemsPage = InvoiceLineItemsPage;
+
+export declare namespace Invoices {
+  export {
+    type Invoice as Invoice,
+    InvoicesPage as InvoicesPage,
+    type InvoiceCreateParams as InvoiceCreateParams,
+    type InvoiceUpdateParams as InvoiceUpdateParams,
+    type InvoiceListParams as InvoiceListParams,
+  };
+
+  export {
+    LineItems as LineItems,
+    type LineItemsAPIInvoiceLineItem as InvoiceLineItem,
+    InvoiceLineItemsPage as InvoiceLineItemsPage,
+    type LineItemCreateParams as LineItemCreateParams,
+    type LineItemUpdateParams as LineItemUpdateParams,
+    type LineItemListParams as LineItemListParams,
+  };
 }

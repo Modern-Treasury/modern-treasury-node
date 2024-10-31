@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LineItemsAPI from './line-items';
 import { Page, type PageParams } from '../pagination';
 
 export class LineItems extends APIResource {
@@ -168,9 +167,13 @@ export interface LineItemUpdateParams {
 
 export interface LineItemListParams extends PageParams {}
 
-export namespace LineItems {
-  export import LineItem = LineItemsAPI.LineItem;
-  export import LineItemsPage = LineItemsAPI.LineItemsPage;
-  export import LineItemUpdateParams = LineItemsAPI.LineItemUpdateParams;
-  export import LineItemListParams = LineItemsAPI.LineItemListParams;
+LineItems.LineItemsPage = LineItemsPage;
+
+export declare namespace LineItems {
+  export {
+    type LineItem as LineItem,
+    LineItemsPage as LineItemsPage,
+    type LineItemUpdateParams as LineItemUpdateParams,
+    type LineItemListParams as LineItemListParams,
+  };
 }

@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as ExpectedPaymentsAPI from './expected-payments';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -790,12 +789,16 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'zengin';
 }
 
-export namespace ExpectedPayments {
-  export import ExpectedPayment = ExpectedPaymentsAPI.ExpectedPayment;
-  export import ExpectedPaymentType = ExpectedPaymentsAPI.ExpectedPaymentType;
-  export import ReconciliationRule = ExpectedPaymentsAPI.ReconciliationRule;
-  export import ExpectedPaymentsPage = ExpectedPaymentsAPI.ExpectedPaymentsPage;
-  export import ExpectedPaymentCreateParams = ExpectedPaymentsAPI.ExpectedPaymentCreateParams;
-  export import ExpectedPaymentUpdateParams = ExpectedPaymentsAPI.ExpectedPaymentUpdateParams;
-  export import ExpectedPaymentListParams = ExpectedPaymentsAPI.ExpectedPaymentListParams;
+ExpectedPayments.ExpectedPaymentsPage = ExpectedPaymentsPage;
+
+export declare namespace ExpectedPayments {
+  export {
+    type ExpectedPayment as ExpectedPayment,
+    type ExpectedPaymentType as ExpectedPaymentType,
+    type ReconciliationRule as ReconciliationRule,
+    ExpectedPaymentsPage as ExpectedPaymentsPage,
+    type ExpectedPaymentCreateParams as ExpectedPaymentCreateParams,
+    type ExpectedPaymentUpdateParams as ExpectedPaymentUpdateParams,
+    type ExpectedPaymentListParams as ExpectedPaymentListParams,
+  };
 }

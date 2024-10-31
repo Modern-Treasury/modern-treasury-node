@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -299,9 +298,13 @@ export interface RoutingDetailCreateParams {
 
 export interface RoutingDetailListParams extends PageParams {}
 
-export namespace RoutingDetails {
-  export import RoutingDetail = RoutingDetailsAPI.RoutingDetail;
-  export import RoutingDetailsPage = RoutingDetailsAPI.RoutingDetailsPage;
-  export import RoutingDetailCreateParams = RoutingDetailsAPI.RoutingDetailCreateParams;
-  export import RoutingDetailListParams = RoutingDetailsAPI.RoutingDetailListParams;
+RoutingDetails.RoutingDetailsPage = RoutingDetailsPage;
+
+export declare namespace RoutingDetails {
+  export {
+    type RoutingDetail as RoutingDetail,
+    RoutingDetailsPage as RoutingDetailsPage,
+    type RoutingDetailCreateParams as RoutingDetailCreateParams,
+    type RoutingDetailListParams as RoutingDetailListParams,
+  };
 }

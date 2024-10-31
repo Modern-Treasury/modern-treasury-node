@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LedgerAccountCategoriesAPI from './ledger-account-categories';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -436,11 +435,15 @@ export namespace LedgerAccountCategoryListParams {
   }
 }
 
-export namespace LedgerAccountCategories {
-  export import LedgerAccountCategory = LedgerAccountCategoriesAPI.LedgerAccountCategory;
-  export import LedgerAccountCategoriesPage = LedgerAccountCategoriesAPI.LedgerAccountCategoriesPage;
-  export import LedgerAccountCategoryCreateParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryCreateParams;
-  export import LedgerAccountCategoryRetrieveParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryRetrieveParams;
-  export import LedgerAccountCategoryUpdateParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryUpdateParams;
-  export import LedgerAccountCategoryListParams = LedgerAccountCategoriesAPI.LedgerAccountCategoryListParams;
+LedgerAccountCategories.LedgerAccountCategoriesPage = LedgerAccountCategoriesPage;
+
+export declare namespace LedgerAccountCategories {
+  export {
+    type LedgerAccountCategory as LedgerAccountCategory,
+    LedgerAccountCategoriesPage as LedgerAccountCategoriesPage,
+    type LedgerAccountCategoryCreateParams as LedgerAccountCategoryCreateParams,
+    type LedgerAccountCategoryRetrieveParams as LedgerAccountCategoryRetrieveParams,
+    type LedgerAccountCategoryUpdateParams as LedgerAccountCategoryUpdateParams,
+    type LedgerAccountCategoryListParams as LedgerAccountCategoryListParams,
+  };
 }
