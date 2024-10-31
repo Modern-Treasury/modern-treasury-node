@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as VersionsAPI from './versions';
 import * as Shared from '../shared';
 import { Page, type PageParams } from '../../pagination';
 
@@ -346,8 +345,12 @@ export interface VersionListParams extends PageParams {
   version?: Record<string, number>;
 }
 
-export namespace Versions {
-  export import LedgerTransactionVersion = VersionsAPI.LedgerTransactionVersion;
-  export import LedgerTransactionVersionsPage = VersionsAPI.LedgerTransactionVersionsPage;
-  export import VersionListParams = VersionsAPI.VersionListParams;
+Versions.LedgerTransactionVersionsPage = LedgerTransactionVersionsPage;
+
+export declare namespace Versions {
+  export {
+    type LedgerTransactionVersion as LedgerTransactionVersion,
+    LedgerTransactionVersionsPage as LedgerTransactionVersionsPage,
+    type VersionListParams as VersionListParams,
+  };
 }

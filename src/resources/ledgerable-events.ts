@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as LedgerableEventsAPI from './ledgerable-events';
 
 export class LedgerableEvents extends APIResource {
   /**
@@ -102,7 +101,9 @@ export interface LedgerableEventCreateParams {
   metadata?: Record<string, string>;
 }
 
-export namespace LedgerableEvents {
-  export import LedgerableEvent = LedgerableEventsAPI.LedgerableEvent;
-  export import LedgerableEventCreateParams = LedgerableEventsAPI.LedgerableEventCreateParams;
+export declare namespace LedgerableEvents {
+  export {
+    type LedgerableEvent as LedgerableEvent,
+    type LedgerableEventCreateParams as LedgerableEventCreateParams,
+  };
 }

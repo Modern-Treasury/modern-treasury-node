@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as PaperItemsAPI from './paper-items';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -136,8 +135,12 @@ export interface PaperItemListParams extends PageParams {
   lockbox_number?: string;
 }
 
-export namespace PaperItems {
-  export import PaperItem = PaperItemsAPI.PaperItem;
-  export import PaperItemsPage = PaperItemsAPI.PaperItemsPage;
-  export import PaperItemListParams = PaperItemsAPI.PaperItemListParams;
+PaperItems.PaperItemsPage = PaperItemsPage;
+
+export declare namespace PaperItems {
+  export {
+    type PaperItem as PaperItem,
+    PaperItemsPage as PaperItemsPage,
+    type PaperItemListParams as PaperItemListParams,
+  };
 }

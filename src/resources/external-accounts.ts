@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as ExternalAccountsAPI from './external-accounts';
 import * as AccountDetailsAPI from './account-details';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
@@ -745,14 +744,18 @@ export interface ExternalAccountVerifyParams {
   priority?: 'high' | 'normal';
 }
 
-export namespace ExternalAccounts {
-  export import ExternalAccount = ExternalAccountsAPI.ExternalAccount;
-  export import ExternalAccountType = ExternalAccountsAPI.ExternalAccountType;
-  export import ExternalAccountVerifyResponse = ExternalAccountsAPI.ExternalAccountVerifyResponse;
-  export import ExternalAccountsPage = ExternalAccountsAPI.ExternalAccountsPage;
-  export import ExternalAccountCreateParams = ExternalAccountsAPI.ExternalAccountCreateParams;
-  export import ExternalAccountUpdateParams = ExternalAccountsAPI.ExternalAccountUpdateParams;
-  export import ExternalAccountListParams = ExternalAccountsAPI.ExternalAccountListParams;
-  export import ExternalAccountCompleteVerificationParams = ExternalAccountsAPI.ExternalAccountCompleteVerificationParams;
-  export import ExternalAccountVerifyParams = ExternalAccountsAPI.ExternalAccountVerifyParams;
+ExternalAccounts.ExternalAccountsPage = ExternalAccountsPage;
+
+export declare namespace ExternalAccounts {
+  export {
+    type ExternalAccount as ExternalAccount,
+    type ExternalAccountType as ExternalAccountType,
+    type ExternalAccountVerifyResponse as ExternalAccountVerifyResponse,
+    ExternalAccountsPage as ExternalAccountsPage,
+    type ExternalAccountCreateParams as ExternalAccountCreateParams,
+    type ExternalAccountUpdateParams as ExternalAccountUpdateParams,
+    type ExternalAccountListParams as ExternalAccountListParams,
+    type ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
+    type ExternalAccountVerifyParams as ExternalAccountVerifyParams,
+  };
 }

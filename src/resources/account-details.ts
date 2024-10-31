@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as AccountDetailsAPI from './account-details';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -159,9 +158,13 @@ export interface AccountDetailCreateParams {
 
 export interface AccountDetailListParams extends PageParams {}
 
-export namespace AccountDetails {
-  export import AccountDetail = AccountDetailsAPI.AccountDetail;
-  export import AccountDetailsPage = AccountDetailsAPI.AccountDetailsPage;
-  export import AccountDetailCreateParams = AccountDetailsAPI.AccountDetailCreateParams;
-  export import AccountDetailListParams = AccountDetailsAPI.AccountDetailListParams;
+AccountDetails.AccountDetailsPage = AccountDetailsPage;
+
+export declare namespace AccountDetails {
+  export {
+    type AccountDetail as AccountDetail,
+    AccountDetailsPage as AccountDetailsPage,
+    type AccountDetailCreateParams as AccountDetailCreateParams,
+    type AccountDetailListParams as AccountDetailListParams,
+  };
 }

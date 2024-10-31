@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as AccountCollectionFlowsAPI from './account-collection-flows';
 import { Page, type PageParams } from '../pagination';
 
 export class AccountCollectionFlows extends APIResource {
@@ -191,10 +190,14 @@ export interface AccountCollectionFlowListParams extends PageParams {
   status?: string;
 }
 
-export namespace AccountCollectionFlows {
-  export import AccountCollectionFlow = AccountCollectionFlowsAPI.AccountCollectionFlow;
-  export import AccountCollectionFlowsPage = AccountCollectionFlowsAPI.AccountCollectionFlowsPage;
-  export import AccountCollectionFlowCreateParams = AccountCollectionFlowsAPI.AccountCollectionFlowCreateParams;
-  export import AccountCollectionFlowUpdateParams = AccountCollectionFlowsAPI.AccountCollectionFlowUpdateParams;
-  export import AccountCollectionFlowListParams = AccountCollectionFlowsAPI.AccountCollectionFlowListParams;
+AccountCollectionFlows.AccountCollectionFlowsPage = AccountCollectionFlowsPage;
+
+export declare namespace AccountCollectionFlows {
+  export {
+    type AccountCollectionFlow as AccountCollectionFlow,
+    AccountCollectionFlowsPage as AccountCollectionFlowsPage,
+    type AccountCollectionFlowCreateParams as AccountCollectionFlowCreateParams,
+    type AccountCollectionFlowUpdateParams as AccountCollectionFlowUpdateParams,
+    type AccountCollectionFlowListParams as AccountCollectionFlowListParams,
+  };
 }

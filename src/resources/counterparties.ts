@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as CounterpartiesAPI from './counterparties';
 import * as AccountDetailsAPI from './account-details';
 import * as ExternalAccountsAPI from './external-accounts';
 import * as RoutingDetailsAPI from './routing-details';
@@ -1099,12 +1098,16 @@ export interface CounterpartyCollectAccountParams {
   send_email?: boolean;
 }
 
-export namespace Counterparties {
-  export import Counterparty = CounterpartiesAPI.Counterparty;
-  export import CounterpartyCollectAccountResponse = CounterpartiesAPI.CounterpartyCollectAccountResponse;
-  export import CounterpartiesPage = CounterpartiesAPI.CounterpartiesPage;
-  export import CounterpartyCreateParams = CounterpartiesAPI.CounterpartyCreateParams;
-  export import CounterpartyUpdateParams = CounterpartiesAPI.CounterpartyUpdateParams;
-  export import CounterpartyListParams = CounterpartiesAPI.CounterpartyListParams;
-  export import CounterpartyCollectAccountParams = CounterpartiesAPI.CounterpartyCollectAccountParams;
+Counterparties.CounterpartiesPage = CounterpartiesPage;
+
+export declare namespace Counterparties {
+  export {
+    type Counterparty as Counterparty,
+    type CounterpartyCollectAccountResponse as CounterpartyCollectAccountResponse,
+    CounterpartiesPage as CounterpartiesPage,
+    type CounterpartyCreateParams as CounterpartyCreateParams,
+    type CounterpartyUpdateParams as CounterpartyUpdateParams,
+    type CounterpartyListParams as CounterpartyListParams,
+    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams,
+  };
 }
