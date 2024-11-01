@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as ConnectionLegalEntitiesAPI from './connection-legal-entities';
 import { Page, type PageParams } from '../pagination';
 
 export class ConnectionLegalEntities extends APIResource {
@@ -504,10 +503,14 @@ export interface ConnectionLegalEntityListParams extends PageParams {
   status?: 'completed' | 'denied' | 'failed' | 'processing';
 }
 
-export namespace ConnectionLegalEntities {
-  export import ConnectionLegalEntity = ConnectionLegalEntitiesAPI.ConnectionLegalEntity;
-  export import ConnectionLegalEntitiesPage = ConnectionLegalEntitiesAPI.ConnectionLegalEntitiesPage;
-  export import ConnectionLegalEntityCreateParams = ConnectionLegalEntitiesAPI.ConnectionLegalEntityCreateParams;
-  export import ConnectionLegalEntityUpdateParams = ConnectionLegalEntitiesAPI.ConnectionLegalEntityUpdateParams;
-  export import ConnectionLegalEntityListParams = ConnectionLegalEntitiesAPI.ConnectionLegalEntityListParams;
+ConnectionLegalEntities.ConnectionLegalEntitiesPage = ConnectionLegalEntitiesPage;
+
+export declare namespace ConnectionLegalEntities {
+  export {
+    type ConnectionLegalEntity as ConnectionLegalEntity,
+    ConnectionLegalEntitiesPage as ConnectionLegalEntitiesPage,
+    type ConnectionLegalEntityCreateParams as ConnectionLegalEntityCreateParams,
+    type ConnectionLegalEntityUpdateParams as ConnectionLegalEntityUpdateParams,
+    type ConnectionLegalEntityListParams as ConnectionLegalEntityListParams,
+  };
 }

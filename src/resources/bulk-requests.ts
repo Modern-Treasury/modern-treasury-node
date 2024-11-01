@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as BulkRequestsAPI from './bulk-requests';
 import * as ExpectedPaymentsAPI from './expected-payments';
 import * as ExternalAccountsAPI from './external-accounts';
 import * as Shared from './shared';
@@ -2037,9 +2036,13 @@ export interface BulkRequestListParams extends PageParams {
   status?: 'pending' | 'processing' | 'completed';
 }
 
-export namespace BulkRequests {
-  export import BulkRequest = BulkRequestsAPI.BulkRequest;
-  export import BulkRequestsPage = BulkRequestsAPI.BulkRequestsPage;
-  export import BulkRequestCreateParams = BulkRequestsAPI.BulkRequestCreateParams;
-  export import BulkRequestListParams = BulkRequestsAPI.BulkRequestListParams;
+BulkRequests.BulkRequestsPage = BulkRequestsPage;
+
+export declare namespace BulkRequests {
+  export {
+    type BulkRequest as BulkRequest,
+    BulkRequestsPage as BulkRequestsPage,
+    type BulkRequestCreateParams as BulkRequestCreateParams,
+    type BulkRequestListParams as BulkRequestListParams,
+  };
 }

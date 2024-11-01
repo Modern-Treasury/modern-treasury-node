@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LedgerEntriesAPI from './ledger-entries';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -380,10 +379,14 @@ export namespace LedgerEntryListParams {
   }
 }
 
-export namespace LedgerEntries {
-  export import LedgerEntry = LedgerEntriesAPI.LedgerEntry;
-  export import LedgerEntriesPage = LedgerEntriesAPI.LedgerEntriesPage;
-  export import LedgerEntryRetrieveParams = LedgerEntriesAPI.LedgerEntryRetrieveParams;
-  export import LedgerEntryUpdateParams = LedgerEntriesAPI.LedgerEntryUpdateParams;
-  export import LedgerEntryListParams = LedgerEntriesAPI.LedgerEntryListParams;
+LedgerEntries.LedgerEntriesPage = LedgerEntriesPage;
+
+export declare namespace LedgerEntries {
+  export {
+    type LedgerEntry as LedgerEntry,
+    LedgerEntriesPage as LedgerEntriesPage,
+    type LedgerEntryRetrieveParams as LedgerEntryRetrieveParams,
+    type LedgerEntryUpdateParams as LedgerEntryUpdateParams,
+    type LedgerEntryListParams as LedgerEntryListParams,
+  };
 }

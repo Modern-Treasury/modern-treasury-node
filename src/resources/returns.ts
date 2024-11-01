@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as ReturnsAPI from './returns';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -448,9 +447,13 @@ export interface ReturnListParams extends PageParams {
   returnable_type?: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'return' | 'reversal';
 }
 
-export namespace Returns {
-  export import ReturnObject = ReturnsAPI.ReturnObject;
-  export import ReturnObjectsPage = ReturnsAPI.ReturnObjectsPage;
-  export import ReturnCreateParams = ReturnsAPI.ReturnCreateParams;
-  export import ReturnListParams = ReturnsAPI.ReturnListParams;
+Returns.ReturnObjectsPage = ReturnObjectsPage;
+
+export declare namespace Returns {
+  export {
+    type ReturnObject as ReturnObject,
+    ReturnObjectsPage as ReturnObjectsPage,
+    type ReturnCreateParams as ReturnCreateParams,
+    type ReturnListParams as ReturnListParams,
+  };
 }

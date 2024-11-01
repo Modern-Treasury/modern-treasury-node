@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as ForeignExchangeQuotesAPI from './foreign-exchange-quotes';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -233,9 +232,13 @@ export interface ForeignExchangeQuoteListParams extends PageParams {
   target_currency?: string;
 }
 
-export namespace ForeignExchangeQuotes {
-  export import ForeignExchangeQuote = ForeignExchangeQuotesAPI.ForeignExchangeQuote;
-  export import ForeignExchangeQuotesPage = ForeignExchangeQuotesAPI.ForeignExchangeQuotesPage;
-  export import ForeignExchangeQuoteCreateParams = ForeignExchangeQuotesAPI.ForeignExchangeQuoteCreateParams;
-  export import ForeignExchangeQuoteListParams = ForeignExchangeQuotesAPI.ForeignExchangeQuoteListParams;
+ForeignExchangeQuotes.ForeignExchangeQuotesPage = ForeignExchangeQuotesPage;
+
+export declare namespace ForeignExchangeQuotes {
+  export {
+    type ForeignExchangeQuote as ForeignExchangeQuote,
+    ForeignExchangeQuotesPage as ForeignExchangeQuotesPage,
+    type ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams,
+    type ForeignExchangeQuoteListParams as ForeignExchangeQuoteListParams,
+  };
 }

@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as BalanceReportsAPI from './balance-reports';
 import * as Shared from '../shared';
 import { Page, type PageParams } from '../../pagination';
 
@@ -254,9 +253,13 @@ export interface BalanceReportListParams extends PageParams {
   balance_report_type?: 'intraday' | 'other' | 'previous_day' | 'real_time';
 }
 
-export namespace BalanceReports {
-  export import BalanceReport = BalanceReportsAPI.BalanceReport;
-  export import BalanceReportsPage = BalanceReportsAPI.BalanceReportsPage;
-  export import BalanceReportCreateParams = BalanceReportsAPI.BalanceReportCreateParams;
-  export import BalanceReportListParams = BalanceReportsAPI.BalanceReportListParams;
+BalanceReports.BalanceReportsPage = BalanceReportsPage;
+
+export declare namespace BalanceReports {
+  export {
+    type BalanceReport as BalanceReport,
+    BalanceReportsPage as BalanceReportsPage,
+    type BalanceReportCreateParams as BalanceReportCreateParams,
+    type BalanceReportListParams as BalanceReportListParams,
+  };
 }
