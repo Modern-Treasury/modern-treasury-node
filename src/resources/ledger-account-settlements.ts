@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LedgerAccountSettlementsAPI from './ledger-account-settlements';
 import { Page, type PageParams } from '../pagination';
 
 export class LedgerAccountSettlements extends APIResource {
@@ -270,10 +269,14 @@ export interface LedgerAccountSettlementListParams extends PageParams {
   updated_at?: Record<string, string>;
 }
 
-export namespace LedgerAccountSettlements {
-  export import LedgerAccountSettlement = LedgerAccountSettlementsAPI.LedgerAccountSettlement;
-  export import LedgerAccountSettlementsPage = LedgerAccountSettlementsAPI.LedgerAccountSettlementsPage;
-  export import LedgerAccountSettlementCreateParams = LedgerAccountSettlementsAPI.LedgerAccountSettlementCreateParams;
-  export import LedgerAccountSettlementUpdateParams = LedgerAccountSettlementsAPI.LedgerAccountSettlementUpdateParams;
-  export import LedgerAccountSettlementListParams = LedgerAccountSettlementsAPI.LedgerAccountSettlementListParams;
+LedgerAccountSettlements.LedgerAccountSettlementsPage = LedgerAccountSettlementsPage;
+
+export declare namespace LedgerAccountSettlements {
+  export {
+    type LedgerAccountSettlement as LedgerAccountSettlement,
+    LedgerAccountSettlementsPage as LedgerAccountSettlementsPage,
+    type LedgerAccountSettlementCreateParams as LedgerAccountSettlementCreateParams,
+    type LedgerAccountSettlementUpdateParams as LedgerAccountSettlementUpdateParams,
+    type LedgerAccountSettlementListParams as LedgerAccountSettlementListParams,
+  };
 }

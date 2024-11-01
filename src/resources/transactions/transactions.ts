@@ -3,9 +3,15 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as TransactionsAPI from './transactions';
 import * as Shared from '../shared';
 import * as LineItemsAPI from './line-items';
+import {
+  LineItemCreateParams,
+  LineItemListParams,
+  LineItems,
+  TransactionLineItem,
+  TransactionLineItemsPage,
+} from './line-items';
 import { Page, type PageParams } from '../../pagination';
 
 export class Transactions extends APIResource {
@@ -472,15 +478,24 @@ export interface TransactionListParams extends PageParams {
   virtual_account_id?: string;
 }
 
-export namespace Transactions {
-  export import Transaction = TransactionsAPI.Transaction;
-  export import TransactionsPage = TransactionsAPI.TransactionsPage;
-  export import TransactionCreateParams = TransactionsAPI.TransactionCreateParams;
-  export import TransactionUpdateParams = TransactionsAPI.TransactionUpdateParams;
-  export import TransactionListParams = TransactionsAPI.TransactionListParams;
-  export import LineItems = LineItemsAPI.LineItems;
-  export import TransactionLineItem = LineItemsAPI.TransactionLineItem;
-  export import TransactionLineItemsPage = LineItemsAPI.TransactionLineItemsPage;
-  export import LineItemCreateParams = LineItemsAPI.LineItemCreateParams;
-  export import LineItemListParams = LineItemsAPI.LineItemListParams;
+Transactions.TransactionsPage = TransactionsPage;
+Transactions.LineItems = LineItems;
+Transactions.TransactionLineItemsPage = TransactionLineItemsPage;
+
+export declare namespace Transactions {
+  export {
+    type Transaction as Transaction,
+    TransactionsPage as TransactionsPage,
+    type TransactionCreateParams as TransactionCreateParams,
+    type TransactionUpdateParams as TransactionUpdateParams,
+    type TransactionListParams as TransactionListParams,
+  };
+
+  export {
+    LineItems as LineItems,
+    type TransactionLineItem as TransactionLineItem,
+    TransactionLineItemsPage as TransactionLineItemsPage,
+    type LineItemCreateParams as LineItemCreateParams,
+    type LineItemListParams as LineItemListParams,
+  };
 }

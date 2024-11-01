@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as VirtualAccountsAPI from './virtual-accounts';
 import * as AccountDetailsAPI from './account-details';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
@@ -401,10 +400,14 @@ export interface VirtualAccountListParams extends PageParams {
   metadata?: Record<string, string>;
 }
 
-export namespace VirtualAccounts {
-  export import VirtualAccount = VirtualAccountsAPI.VirtualAccount;
-  export import VirtualAccountsPage = VirtualAccountsAPI.VirtualAccountsPage;
-  export import VirtualAccountCreateParams = VirtualAccountsAPI.VirtualAccountCreateParams;
-  export import VirtualAccountUpdateParams = VirtualAccountsAPI.VirtualAccountUpdateParams;
-  export import VirtualAccountListParams = VirtualAccountsAPI.VirtualAccountListParams;
+VirtualAccounts.VirtualAccountsPage = VirtualAccountsPage;
+
+export declare namespace VirtualAccounts {
+  export {
+    type VirtualAccount as VirtualAccount,
+    VirtualAccountsPage as VirtualAccountsPage,
+    type VirtualAccountCreateParams as VirtualAccountCreateParams,
+    type VirtualAccountUpdateParams as VirtualAccountUpdateParams,
+    type VirtualAccountListParams as VirtualAccountListParams,
+  };
 }

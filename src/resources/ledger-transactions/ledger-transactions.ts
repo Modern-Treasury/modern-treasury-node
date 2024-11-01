@@ -3,10 +3,15 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as LedgerTransactionsAPI from './ledger-transactions';
 import * as LedgerEntriesAPI from '../ledger-entries';
 import * as Shared from '../shared';
 import * as VersionsAPI from './versions';
+import {
+  LedgerTransactionVersion,
+  LedgerTransactionVersionsPage,
+  VersionListParams,
+  Versions,
+} from './versions';
 import { Page, type PageParams } from '../../pagination';
 
 export class LedgerTransactions extends APIResource {
@@ -573,15 +578,24 @@ export interface LedgerTransactionCreateReversalParams {
   status?: 'archived' | 'pending' | 'posted';
 }
 
-export namespace LedgerTransactions {
-  export import LedgerTransaction = LedgerTransactionsAPI.LedgerTransaction;
-  export import LedgerTransactionsPage = LedgerTransactionsAPI.LedgerTransactionsPage;
-  export import LedgerTransactionCreateParams = LedgerTransactionsAPI.LedgerTransactionCreateParams;
-  export import LedgerTransactionUpdateParams = LedgerTransactionsAPI.LedgerTransactionUpdateParams;
-  export import LedgerTransactionListParams = LedgerTransactionsAPI.LedgerTransactionListParams;
-  export import LedgerTransactionCreateReversalParams = LedgerTransactionsAPI.LedgerTransactionCreateReversalParams;
-  export import Versions = VersionsAPI.Versions;
-  export import LedgerTransactionVersion = VersionsAPI.LedgerTransactionVersion;
-  export import LedgerTransactionVersionsPage = VersionsAPI.LedgerTransactionVersionsPage;
-  export import VersionListParams = VersionsAPI.VersionListParams;
+LedgerTransactions.LedgerTransactionsPage = LedgerTransactionsPage;
+LedgerTransactions.Versions = Versions;
+LedgerTransactions.LedgerTransactionVersionsPage = LedgerTransactionVersionsPage;
+
+export declare namespace LedgerTransactions {
+  export {
+    type LedgerTransaction as LedgerTransaction,
+    LedgerTransactionsPage as LedgerTransactionsPage,
+    type LedgerTransactionCreateParams as LedgerTransactionCreateParams,
+    type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,
+    type LedgerTransactionListParams as LedgerTransactionListParams,
+    type LedgerTransactionCreateReversalParams as LedgerTransactionCreateReversalParams,
+  };
+
+  export {
+    Versions as Versions,
+    type LedgerTransactionVersion as LedgerTransactionVersion,
+    LedgerTransactionVersionsPage as LedgerTransactionVersionsPage,
+    type VersionListParams as VersionListParams,
+  };
 }

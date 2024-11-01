@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as ReversalsAPI from './reversals';
 import * as Shared from '../shared';
 import { Page, type PageParams } from '../../pagination';
 
@@ -275,9 +274,13 @@ export namespace ReversalCreateParams {
 
 export interface ReversalListParams extends PageParams {}
 
-export namespace Reversals {
-  export import Reversal = ReversalsAPI.Reversal;
-  export import ReversalsPage = ReversalsAPI.ReversalsPage;
-  export import ReversalCreateParams = ReversalsAPI.ReversalCreateParams;
-  export import ReversalListParams = ReversalsAPI.ReversalListParams;
+Reversals.ReversalsPage = ReversalsPage;
+
+export declare namespace Reversals {
+  export {
+    type Reversal as Reversal,
+    ReversalsPage as ReversalsPage,
+    type ReversalCreateParams as ReversalCreateParams,
+    type ReversalListParams as ReversalListParams,
+  };
 }

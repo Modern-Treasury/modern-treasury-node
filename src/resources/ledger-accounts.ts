@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LedgerAccountsAPI from './ledger-accounts';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -524,11 +523,15 @@ export namespace LedgerAccountListParams {
   }
 }
 
-export namespace LedgerAccounts {
-  export import LedgerAccount = LedgerAccountsAPI.LedgerAccount;
-  export import LedgerAccountsPage = LedgerAccountsAPI.LedgerAccountsPage;
-  export import LedgerAccountCreateParams = LedgerAccountsAPI.LedgerAccountCreateParams;
-  export import LedgerAccountRetrieveParams = LedgerAccountsAPI.LedgerAccountRetrieveParams;
-  export import LedgerAccountUpdateParams = LedgerAccountsAPI.LedgerAccountUpdateParams;
-  export import LedgerAccountListParams = LedgerAccountsAPI.LedgerAccountListParams;
+LedgerAccounts.LedgerAccountsPage = LedgerAccountsPage;
+
+export declare namespace LedgerAccounts {
+  export {
+    type LedgerAccount as LedgerAccount,
+    LedgerAccountsPage as LedgerAccountsPage,
+    type LedgerAccountCreateParams as LedgerAccountCreateParams,
+    type LedgerAccountRetrieveParams as LedgerAccountRetrieveParams,
+    type LedgerAccountUpdateParams as LedgerAccountUpdateParams,
+    type LedgerAccountListParams as LedgerAccountListParams,
+  };
 }

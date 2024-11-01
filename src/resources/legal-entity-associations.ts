@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as LegalEntityAssociationsAPI from './legal-entity-associations';
 
 export class LegalEntityAssociations extends APIResource {
   /**
@@ -467,7 +466,9 @@ export namespace LegalEntityAssociationCreateParams {
   }
 }
 
-export namespace LegalEntityAssociations {
-  export import LegalEntityAssociation = LegalEntityAssociationsAPI.LegalEntityAssociation;
-  export import LegalEntityAssociationCreateParams = LegalEntityAssociationsAPI.LegalEntityAssociationCreateParams;
+export declare namespace LegalEntityAssociations {
+  export {
+    type LegalEntityAssociation as LegalEntityAssociation,
+    type LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
+  };
 }

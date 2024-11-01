@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LedgersAPI from './ledgers';
 import { Page, type PageParams } from '../pagination';
 
 export class Ledgers extends APIResource {
@@ -166,10 +165,14 @@ export interface LedgerListParams extends PageParams {
   updated_at?: Record<string, string>;
 }
 
-export namespace Ledgers {
-  export import Ledger = LedgersAPI.Ledger;
-  export import LedgersPage = LedgersAPI.LedgersPage;
-  export import LedgerCreateParams = LedgersAPI.LedgerCreateParams;
-  export import LedgerUpdateParams = LedgersAPI.LedgerUpdateParams;
-  export import LedgerListParams = LedgersAPI.LedgerListParams;
+Ledgers.LedgersPage = LedgersPage;
+
+export declare namespace Ledgers {
+  export {
+    type Ledger as Ledger,
+    LedgersPage as LedgersPage,
+    type LedgerCreateParams as LedgerCreateParams,
+    type LedgerUpdateParams as LedgerUpdateParams,
+    type LedgerListParams as LedgerListParams,
+  };
 }

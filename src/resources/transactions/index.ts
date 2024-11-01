@@ -1,17 +1,17 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
-  Transaction,
-  TransactionCreateParams,
-  TransactionUpdateParams,
-  TransactionListParams,
-  TransactionsPage,
-  Transactions,
-} from './transactions';
-export {
-  TransactionLineItem,
-  LineItemCreateParams,
-  LineItemListParams,
   TransactionLineItemsPage,
   LineItems,
+  type TransactionLineItem,
+  type LineItemCreateParams,
+  type LineItemListParams,
 } from './line-items';
+export {
+  TransactionsPage,
+  Transactions,
+  type Transaction,
+  type TransactionCreateParams,
+  type TransactionUpdateParams,
+  type TransactionListParams,
+} from './transactions';

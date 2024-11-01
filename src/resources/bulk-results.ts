@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as BulkResultsAPI from './bulk-results';
 import * as ExpectedPaymentsAPI from './expected-payments';
 import * as LedgerTransactionsAPI from './ledger-transactions/ledger-transactions';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
@@ -163,8 +162,12 @@ export interface BulkResultListParams extends PageParams {
   status?: 'pending' | 'successful' | 'failed';
 }
 
-export namespace BulkResults {
-  export import BulkResult = BulkResultsAPI.BulkResult;
-  export import BulkResultsPage = BulkResultsAPI.BulkResultsPage;
-  export import BulkResultListParams = BulkResultsAPI.BulkResultListParams;
+BulkResults.BulkResultsPage = BulkResultsPage;
+
+export declare namespace BulkResults {
+  export {
+    type BulkResult as BulkResult,
+    BulkResultsPage as BulkResultsPage,
+    type BulkResultListParams as BulkResultListParams,
+  };
 }

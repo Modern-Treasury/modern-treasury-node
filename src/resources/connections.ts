@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as ConnectionsAPI from './connections';
 import { Page, type PageParams } from '../pagination';
 
 export class Connections extends APIResource {
@@ -73,8 +72,12 @@ export interface ConnectionListParams extends PageParams {
   vendor_customer_id?: string;
 }
 
-export namespace Connections {
-  export import Connection = ConnectionsAPI.Connection;
-  export import ConnectionsPage = ConnectionsAPI.ConnectionsPage;
-  export import ConnectionListParams = ConnectionsAPI.ConnectionListParams;
+Connections.ConnectionsPage = ConnectionsPage;
+
+export declare namespace Connections {
+  export {
+    type Connection as Connection,
+    ConnectionsPage as ConnectionsPage,
+    type ConnectionListParams as ConnectionListParams,
+  };
 }

@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as LedgerAccountBalanceMonitorsAPI from './ledger-account-balance-monitors';
 import { Page, type PageParams } from '../pagination';
 
 export class LedgerAccountBalanceMonitors extends APIResource {
@@ -352,10 +351,14 @@ export interface LedgerAccountBalanceMonitorListParams extends PageParams {
   metadata?: Record<string, string>;
 }
 
-export namespace LedgerAccountBalanceMonitors {
-  export import LedgerAccountBalanceMonitor = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitor;
-  export import LedgerAccountBalanceMonitorsPage = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorsPage;
-  export import LedgerAccountBalanceMonitorCreateParams = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorCreateParams;
-  export import LedgerAccountBalanceMonitorUpdateParams = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorUpdateParams;
-  export import LedgerAccountBalanceMonitorListParams = LedgerAccountBalanceMonitorsAPI.LedgerAccountBalanceMonitorListParams;
+LedgerAccountBalanceMonitors.LedgerAccountBalanceMonitorsPage = LedgerAccountBalanceMonitorsPage;
+
+export declare namespace LedgerAccountBalanceMonitors {
+  export {
+    type LedgerAccountBalanceMonitor as LedgerAccountBalanceMonitor,
+    LedgerAccountBalanceMonitorsPage as LedgerAccountBalanceMonitorsPage,
+    type LedgerAccountBalanceMonitorCreateParams as LedgerAccountBalanceMonitorCreateParams,
+    type LedgerAccountBalanceMonitorUpdateParams as LedgerAccountBalanceMonitorUpdateParams,
+    type LedgerAccountBalanceMonitorListParams as LedgerAccountBalanceMonitorListParams,
+  };
 }

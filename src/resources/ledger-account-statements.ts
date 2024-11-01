@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as LedgerAccountStatementsAPI from './ledger-account-statements';
 import * as Shared from './shared';
 
 export class LedgerAccountStatements extends APIResource {
@@ -609,8 +608,10 @@ export interface LedgerAccountStatementCreateParams {
   metadata?: Record<string, string>;
 }
 
-export namespace LedgerAccountStatements {
-  export import LedgerAccountStatementCreateResponse = LedgerAccountStatementsAPI.LedgerAccountStatementCreateResponse;
-  export import LedgerAccountStatementRetrieveResponse = LedgerAccountStatementsAPI.LedgerAccountStatementRetrieveResponse;
-  export import LedgerAccountStatementCreateParams = LedgerAccountStatementsAPI.LedgerAccountStatementCreateParams;
+export declare namespace LedgerAccountStatements {
+  export {
+    type LedgerAccountStatementCreateResponse as LedgerAccountStatementCreateResponse,
+    type LedgerAccountStatementRetrieveResponse as LedgerAccountStatementRetrieveResponse,
+    type LedgerAccountStatementCreateParams as LedgerAccountStatementCreateParams,
+  };
 }
