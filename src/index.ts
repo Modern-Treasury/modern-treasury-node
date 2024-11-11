@@ -508,25 +508,6 @@ export class ModernTreasury extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export {
-  ModernTreasuryError,
-  APIError,
-  APIConnectionError,
-  APIConnectionTimeoutError,
-  APIUserAbortError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  BadRequestError,
-  AuthenticationError,
-  InternalServerError,
-  PermissionDeniedError,
-  UnprocessableEntityError,
-} from './error';
-
-export import toFile = Uploads.toFile;
-export import fileFromPath = Uploads.fileFromPath;
-
 ModernTreasury.Connections = Connections;
 ModernTreasury.ConnectionsPage = ConnectionsPage;
 ModernTreasury.Counterparties = Counterparties;
@@ -597,7 +578,6 @@ ModernTreasury.ConnectionLegalEntitiesPage = ConnectionLegalEntitiesPage;
 ModernTreasury.LegalEntities = LegalEntities;
 ModernTreasury.LegalEntitiesPage = LegalEntitiesPage;
 ModernTreasury.LegalEntityAssociations = LegalEntityAssociations;
-
 export declare namespace ModernTreasury {
   export type RequestOptions = Core.RequestOptions;
 
@@ -930,5 +910,22 @@ export declare namespace ModernTreasury {
   export type Currency = API.Currency;
   export type TransactionDirection = API.TransactionDirection;
 }
+
+export { toFile, fileFromPath } from 'modern-treasury/uploads';
+export {
+  ModernTreasuryError,
+  APIError,
+  APIConnectionError,
+  APIConnectionTimeoutError,
+  APIUserAbortError,
+  NotFoundError,
+  ConflictError,
+  RateLimitError,
+  BadRequestError,
+  AuthenticationError,
+  InternalServerError,
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} from 'modern-treasury/error';
 
 export default ModernTreasury;
