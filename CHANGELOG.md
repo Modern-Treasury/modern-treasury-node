@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.32.2 (2024-11-14)
+
+Full Changelog: [v2.32.1...v2.32.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.1...v2.32.2)
+
+### Bug Fixes
+
+* **docs:** add missing await to pagination example ([#494](https://github.com/Modern-Treasury/modern-treasury-node/issues/494)) ([e0f52fd](https://github.com/Modern-Treasury/modern-treasury-node/commit/e0f52fde3c0de0773d700f3218ef607229b9956a))
+* don't require deno to run build-deno ([#492](https://github.com/Modern-Treasury/modern-treasury-node/issues/492)) ([778e412](https://github.com/Modern-Treasury/modern-treasury-node/commit/778e412b955572c1065f8da5cccc85ae3dc29f47))
+* **internal:** support pnpm git installs ([#488](https://github.com/Modern-Treasury/modern-treasury-node/issues/488)) ([d7953f8](https://github.com/Modern-Treasury/modern-treasury-node/commit/d7953f8f12373907a18ae7938dca9be1e75bcddf))
+
+
+### Chores
+
+* **client:** drop unused devDependency ([#495](https://github.com/Modern-Treasury/modern-treasury-node/issues/495)) ([c9f0fe4](https://github.com/Modern-Treasury/modern-treasury-node/commit/c9f0fe4e6968637b1cec4974c3d4b0e4b748e7ad))
+* **internal:** use reexports not destructuring ([#493](https://github.com/Modern-Treasury/modern-treasury-node/issues/493)) ([75a32c9](https://github.com/Modern-Treasury/modern-treasury-node/commit/75a32c9971489b878635ec1e3603a81f7e450095))
+* remove unused build-deno condition ([#491](https://github.com/Modern-Treasury/modern-treasury-node/issues/491)) ([62b66c5](https://github.com/Modern-Treasury/modern-treasury-node/commit/62b66c563a858d42f5442d2d463b91789823fd6d))
+
+
+### Documentation
+
+* **readme:** minor typo fixes ([#486](https://github.com/Modern-Treasury/modern-treasury-node/issues/486)) ([9a95e8e](https://github.com/Modern-Treasury/modern-treasury-node/commit/9a95e8e20f99b56ce9736d02735a3e0d9e21c4b1))
+
+
+### Refactors
+
+* use type imports for type-only imports ([#489](https://github.com/Modern-Treasury/modern-treasury-node/issues/489)) ([a0281cc](https://github.com/Modern-Treasury/modern-treasury-node/commit/a0281ccded326fe776e1457f6c38e4f60bad734f))
+
 ## 2.32.1 (2024-10-22)
 
 Full Changelog: [v2.32.0...v2.32.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.0...v2.32.1)
