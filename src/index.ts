@@ -911,7 +911,7 @@ export declare namespace ModernTreasury {
   export type TransactionDirection = API.TransactionDirection;
 }
 
-export { toFile, fileFromPath } from 'modern-treasury/uploads';
+export { toFile, fileFromPath } from './uploads';
 export {
   ModernTreasuryError,
   APIError,
@@ -926,6 +926,6 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} from 'modern-treasury/error';
+} from './error';
 
 export default ModernTreasury;
