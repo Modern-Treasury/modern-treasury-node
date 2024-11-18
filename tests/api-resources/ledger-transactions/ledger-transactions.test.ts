@@ -14,8 +14,6 @@ describe('resource ledgerTransactions', () => {
     const responsePromise = client.ledgerTransactions.create({
       ledger_entries: [
         { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
-        { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
-        { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
       ],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -30,28 +28,6 @@ describe('resource ledgerTransactions', () => {
   test('create: required and optional params', async () => {
     const response = await client.ledgerTransactions.create({
       ledger_entries: [
-        {
-          amount: 0,
-          direction: 'credit',
-          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          available_balance_amount: { foo: 0 },
-          lock_version: 0,
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          pending_balance_amount: { foo: 0 },
-          posted_balance_amount: { foo: 0 },
-          show_resulting_ledger_account_balances: true,
-        },
-        {
-          amount: 0,
-          direction: 'credit',
-          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          available_balance_amount: { foo: 0 },
-          lock_version: 0,
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-          pending_balance_amount: { foo: 0 },
-          posted_balance_amount: { foo: 0 },
-          show_resulting_ledger_account_balances: true,
-        },
         {
           amount: 0,
           direction: 'credit',
@@ -131,28 +107,6 @@ describe('resource ledgerTransactions', () => {
               posted_balance_amount: { foo: 0 },
               show_resulting_ledger_account_balances: true,
             },
-            {
-              amount: 0,
-              direction: 'credit',
-              ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-              available_balance_amount: { foo: 0 },
-              lock_version: 0,
-              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-              pending_balance_amount: { foo: 0 },
-              posted_balance_amount: { foo: 0 },
-              show_resulting_ledger_account_balances: true,
-            },
-            {
-              amount: 0,
-              direction: 'credit',
-              ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-              available_balance_amount: { foo: 0 },
-              lock_version: 0,
-              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
-              pending_balance_amount: { foo: 0 },
-              posted_balance_amount: { foo: 0 },
-              show_resulting_ledger_account_balances: true,
-            },
           ],
           ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           ledgerable_type: 'expected_payment',
@@ -187,7 +141,7 @@ describe('resource ledgerTransactions', () => {
     await expect(
       client.ledgerTransactions.list(
         {
-          id: ['string', 'string', 'string'],
+          id: ['string'],
           after_cursor: 'after_cursor',
           effective_at: { foo: '2019-12-27T18:11:19.117Z' },
           effective_date: { foo: '2019-12-27T18:11:19.117Z' },

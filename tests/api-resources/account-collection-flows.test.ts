@@ -13,7 +13,7 @@ describe('resource accountCollectionFlows', () => {
   test('create: only required params', async () => {
     const responsePromise = client.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      payment_types: ['string', 'string', 'string'],
+      payment_types: ['string'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,8 +27,8 @@ describe('resource accountCollectionFlows', () => {
   test('create: required and optional params', async () => {
     const response = await client.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      payment_types: ['string', 'string', 'string'],
-      receiving_countries: ['USA', 'AUS', 'BEL'],
+      payment_types: ['string'],
+      receiving_countries: ['USA'],
     });
   });
 

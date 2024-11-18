@@ -111,7 +111,7 @@ describe('resource ledgerAccountSettlements', () => {
     await expect(
       client.ledgerAccountSettlements.list(
         {
-          id: ['string', 'string', 'string'],
+          id: ['string'],
           after_cursor: 'after_cursor',
           created_at: { foo: '2019-12-27T18:11:19.117Z' },
           ledger_id: 'ledger_id',

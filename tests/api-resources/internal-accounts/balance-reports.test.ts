@@ -22,18 +22,6 @@ describe('resource balanceReports', () => {
           vendor_code: 'vendor_code',
           vendor_code_type: 'vendor_code_type',
         },
-        {
-          amount: 0,
-          balance_type: 'closing_available',
-          vendor_code: 'vendor_code',
-          vendor_code_type: 'vendor_code_type',
-        },
-        {
-          amount: 0,
-          balance_type: 'closing_available',
-          vendor_code: 'vendor_code',
-          vendor_code_type: 'vendor_code_type',
-        },
       ],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -51,18 +39,6 @@ describe('resource balanceReports', () => {
       as_of_time: 'as_of_time',
       balance_report_type: 'intraday',
       balances: [
-        {
-          amount: 0,
-          balance_type: 'closing_available',
-          vendor_code: 'vendor_code',
-          vendor_code_type: 'vendor_code_type',
-        },
-        {
-          amount: 0,
-          balance_type: 'closing_available',
-          vendor_code: 'vendor_code',
-          vendor_code_type: 'vendor_code_type',
-        },
         {
           amount: 0,
           balance_type: 'closing_available',

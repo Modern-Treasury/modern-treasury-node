@@ -87,7 +87,7 @@ describe('resource ledgerEntries', () => {
     await expect(
       client.ledgerEntries.list(
         {
-          id: ['string', 'string', 'string'],
+          id: ['string'],
           after_cursor: 'after_cursor',
           as_of_lock_version: 0,
           direction: 'credit',
