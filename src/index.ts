@@ -168,12 +168,14 @@ import {
   LedgersPage,
 } from './resources/ledgers';
 import {
+  BankSettings,
   LegalEntities,
   LegalEntitiesPage,
   LegalEntity,
   LegalEntityCreateParams,
   LegalEntityListParams,
   LegalEntityUpdateParams,
+  WealthAndEmploymentDetails,
 } from './resources/legal-entities';
 import {
   LegalEntityAssociation,
@@ -896,7 +898,9 @@ export declare namespace ModernTreasury {
 
   export {
     LegalEntities as LegalEntities,
+    type BankSettings as BankSettings,
     type LegalEntity as LegalEntity,
+    type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
     LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,

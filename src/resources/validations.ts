@@ -46,8 +46,7 @@ export interface RoutingNumberLookupRequest {
     | 'in_ifsc'
     | 'nz_national_clearing_code'
     | 'se_bankgiro_clearing_code'
-    | 'swift'
-    | 'za_national_clearing_code';
+    | 'swift';
 
   /**
    * An object containing key-value pairs, each with a sanctions list as the key and
