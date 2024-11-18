@@ -103,7 +103,7 @@ describe('resource ledgers', () => {
     await expect(
       client.ledgers.list(
         {
-          id: ['string', 'string', 'string'],
+          id: ['string'],
           after_cursor: 'after_cursor',
           metadata: { foo: 'string' },
           per_page: 0,
