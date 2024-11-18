@@ -103,7 +103,7 @@ describe('resource ledgerAccountBalanceMonitors', () => {
     await expect(
       client.ledgerAccountBalanceMonitors.list(
         {
-          id: ['string', 'string', 'string'],
+          id: ['string'],
           after_cursor: 'after_cursor',
           ledger_account_id: 'ledger_account_id',
           metadata: { foo: 'string' },
