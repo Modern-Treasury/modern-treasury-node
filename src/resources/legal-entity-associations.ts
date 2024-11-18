@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as LegalEntitiesAPI from './legal-entities';
 
 export class LegalEntityAssociations extends APIResource {
   /**
@@ -79,10 +80,17 @@ export namespace LegalEntityAssociation {
      */
     addresses: Array<ChildLegalEntity.Address>;
 
+    bank_settings: LegalEntitiesAPI.BankSettings | null;
+
     /**
      * The business's legal business name.
      */
     business_name: string | null;
+
+    /**
+     * The country of citizenship for an individual.
+     */
+    citizenship_country: string | null;
 
     created_at: string;
 
@@ -149,16 +157,43 @@ export namespace LegalEntityAssociation {
      */
     metadata: Record<string, string>;
 
+    /**
+     * An individual's middle name.
+     */
+    middle_name: string | null;
+
     object: string;
 
     phone_numbers: Array<ChildLegalEntity.PhoneNumber>;
+
+    /**
+     * Whether the individual is a politically exposed person.
+     */
+    politically_exposed_person: boolean | null;
+
+    /**
+     * An individual's preferred name.
+     */
+    preferred_name: string | null;
+
+    /**
+     * An individual's prefix.
+     */
+    prefix: string | null;
 
     /**
      * The risk rating of the legal entity. One of low, medium, high.
      */
     risk_rating: 'low' | 'medium' | 'high' | null;
 
+    /**
+     * An individual's suffix.
+     */
+    suffix: string | null;
+
     updated_at: string;
+
+    wealth_and_employment_details: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
 
     /**
      * The entity's primary website URL.
@@ -313,10 +348,17 @@ export namespace LegalEntityAssociationCreateParams {
      */
     addresses?: Array<ChildLegalEntity.Address>;
 
+    bank_settings?: LegalEntitiesAPI.BankSettings | null;
+
     /**
      * The business's legal business name.
      */
     business_name?: string | null;
+
+    /**
+     * The country of citizenship for an individual.
+     */
+    citizenship_country?: string | null;
 
     /**
      * A business's formation date (YYYY-MM-DD).
@@ -373,12 +415,39 @@ export namespace LegalEntityAssociationCreateParams {
      */
     metadata?: Record<string, string>;
 
+    /**
+     * An individual's middle name.
+     */
+    middle_name?: string | null;
+
     phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
+
+    /**
+     * Whether the individual is a politically exposed person.
+     */
+    politically_exposed_person?: boolean | null;
+
+    /**
+     * An individual's preferred name.
+     */
+    preferred_name?: string | null;
+
+    /**
+     * An individual's prefix.
+     */
+    prefix?: string | null;
 
     /**
      * The risk rating of the legal entity. One of low, medium, high.
      */
     risk_rating?: 'low' | 'medium' | 'high' | null;
+
+    /**
+     * An individual's suffix.
+     */
+    suffix?: string | null;
+
+    wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
 
     /**
      * The entity's primary website URL.
