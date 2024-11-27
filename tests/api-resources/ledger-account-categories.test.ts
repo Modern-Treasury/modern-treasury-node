@@ -34,11 +34,7 @@ describe('resource ledgerAccountCategories', () => {
       normal_balance: 'credit',
       currency_exponent: 0,
       description: 'description',
-      ledger_account_category_ids: [
-        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      ],
+      ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
     });
   });
@@ -128,7 +124,7 @@ describe('resource ledgerAccountCategories', () => {
     await expect(
       client.ledgerAccountCategories.list(
         {
-          id: ['string', 'string', 'string'],
+          id: ['string'],
           after_cursor: 'after_cursor',
           balances: { effective_at: '2019-12-27T18:11:19.117Z' },
           currency: 'currency',
