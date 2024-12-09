@@ -132,6 +132,16 @@ export namespace BalanceReport {
     amount: number;
 
     /**
+     * The date on which the balance became true for the account.
+     */
+    as_of_date: string | null;
+
+    /**
+     * The time on which the balance became true for the account.
+     */
+    as_of_time: string | null;
+
+    /**
      * The specific type of balance reported. One of `opening_ledger`,
      * `closing_ledger`, `current_ledger`, `opening_available`,
      * `opening_available_next_business_day`, `closing_available`, `current_available`,
@@ -163,6 +173,11 @@ export namespace BalanceReport {
     object: string;
 
     updated_at: string;
+
+    /**
+     * The date on which the balance becomes available.
+     */
+    value_date: string | null;
 
     /**
      * The code used by the bank when reporting this specific balance.
