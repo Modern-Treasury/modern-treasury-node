@@ -17,8 +17,6 @@ describe('resource ledgerEventHandlers', () => {
         effective_at: '{{ledgerable_event.custom_data.effective_at}}',
         ledger_entries: [
           { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
-          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
-          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
         ],
         status: 'posted',
       },
@@ -39,8 +37,6 @@ describe('resource ledgerEventHandlers', () => {
         description: 'My Ledger Transaction Template Description',
         effective_at: '{{ledgerable_event.custom_data.effective_at}}',
         ledger_entries: [
-          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
-          { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
           { amount: 'amount', direction: 'direction', ledger_account_id: 'ledger_account_id' },
         ],
         status: 'posted',

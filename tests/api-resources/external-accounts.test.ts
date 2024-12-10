@@ -26,17 +26,9 @@ describe('resource externalAccounts', () => {
   test('create: required and optional params', async () => {
     const response = await client.externalAccounts.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      account_details: [
-        { account_number: 'account_number', account_number_type: 'au_number' },
-        { account_number: 'account_number', account_number_type: 'au_number' },
-        { account_number: 'account_number', account_number_type: 'au_number' },
-      ],
+      account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
       account_type: 'cash',
-      contact_details: [
-        { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
-        { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
-        { contact_identifier: 'contact_identifier', contact_identifier_type: 'email' },
-      ],
+      contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
       ledger_account: {
         currency: 'currency',
         ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -44,11 +36,7 @@ describe('resource externalAccounts', () => {
         normal_balance: 'credit',
         currency_exponent: 0,
         description: 'description',
-        ledger_account_category_ids: [
-          '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        ],
+        ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
         ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         ledgerable_type: 'counterparty',
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
@@ -68,8 +56,6 @@ describe('resource externalAccounts', () => {
       party_type: 'business',
       plaid_processor_token: 'plaid_processor_token',
       routing_details: [
-        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
-        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
         { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
       ],
     });

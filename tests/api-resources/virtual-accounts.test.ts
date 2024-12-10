@@ -28,11 +28,7 @@ describe('resource virtualAccounts', () => {
     const response = await client.virtualAccounts.create({
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       name: 'name',
-      account_details: [
-        { account_number: 'account_number', account_number_type: 'au_number' },
-        { account_number: 'account_number', account_number_type: 'au_number' },
-        { account_number: 'account_number', account_number_type: 'au_number' },
-      ],
+      account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       credit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       debit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -44,19 +40,13 @@ describe('resource virtualAccounts', () => {
         normal_balance: 'credit',
         currency_exponent: 0,
         description: 'description',
-        ledger_account_category_ids: [
-          '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        ],
+        ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
         ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         ledgerable_type: 'counterparty',
         metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       },
       metadata: { foo: 'string' },
       routing_details: [
-        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
-        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
         { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
       ],
     });

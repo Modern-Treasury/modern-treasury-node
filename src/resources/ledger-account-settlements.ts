@@ -157,7 +157,7 @@ export interface LedgerAccountSettlement {
    * The status of the ledger account settlement. One of `processing`, `pending`,
    * `posted`, `archiving` or `archived`.
    */
-  status: 'archived' | 'archiving' | 'pending' | 'posted' | 'processing';
+  status: 'archived' | 'archiving' | 'drafting' | 'pending' | 'posted' | 'processing';
 
   updated_at: string;
 }

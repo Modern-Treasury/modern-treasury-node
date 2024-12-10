@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as LegalEntitiesAPI from './legal-entities';
 import * as LegalEntityAssociationsAPI from './legal-entity-associations';
 import { Page, type PageParams } from '../pagination';
 
@@ -73,6 +74,48 @@ export class LegalEntities extends APIResource {
 
 export class LegalEntitiesPage extends Page<LegalEntity> {}
 
+export interface BankSettings {
+  id: string;
+
+  /**
+   * The percentage of backup withholding to apply to the legal entity.
+   */
+  backup_withholding_percentage: number | null;
+
+  created_at: string;
+
+  discarded_at: string | null;
+
+  /**
+   * Whether backup withholding is enabled. See more here -
+   * https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
+   */
+  enable_backup_withholding: boolean | null;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  /**
+   * Cross River Bank specific setting to opt out of privacy policy.
+   */
+  privacy_opt_out: boolean | null;
+
+  /**
+   * It covers, among other types of insider loans, extensions of credit by a member
+   * bank to an executive officer, director, or principal shareholder of the member
+   * bank; a bank holding company of which the member bank is a subsidiary; and any
+   * other subsidiary of that bank holding company.
+   */
+  regulation_o: boolean | null;
+
+  updated_at: string;
+}
+
 export interface LegalEntity {
   id: string;
 
@@ -81,10 +124,17 @@ export interface LegalEntity {
    */
   addresses: Array<LegalEntity.Address>;
 
+  bank_settings: BankSettings | null;
+
   /**
    * The business's legal business name.
    */
   business_name: string | null;
+
+  /**
+   * The country of citizenship for an individual.
+   */
+  citizenship_country: string | null;
 
   created_at: string;
 
@@ -156,16 +206,43 @@ export interface LegalEntity {
    */
   metadata: Record<string, string>;
 
+  /**
+   * An individual's middle name.
+   */
+  middle_name: string | null;
+
   object: string;
 
   phone_numbers: Array<LegalEntity.PhoneNumber>;
+
+  /**
+   * Whether the individual is a politically exposed person.
+   */
+  politically_exposed_person: boolean | null;
+
+  /**
+   * An individual's preferred name.
+   */
+  preferred_name: string | null;
+
+  /**
+   * An individual's prefix.
+   */
+  prefix: string | null;
 
   /**
    * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating: 'low' | 'medium' | 'high' | null;
 
+  /**
+   * An individual's suffix.
+   */
+  suffix: string | null;
+
   updated_at: string;
+
+  wealth_and_employment_details: WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -279,6 +356,169 @@ export namespace LegalEntity {
   }
 }
 
+export interface WealthAndEmploymentDetails {
+  id: string;
+
+  /**
+   * The annual income of the individual.
+   */
+  annual_income: number | null;
+
+  created_at: string;
+
+  discarded_at: string | null;
+
+  /**
+   * The country in which the employer is located.
+   */
+  employer_country: string | null;
+
+  /**
+   * The name of the employer.
+   */
+  employer_name: string | null;
+
+  /**
+   * The state in which the employer is located.
+   */
+  employer_state: string | null;
+
+  /**
+   * The employment status of the individual.
+   */
+  employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed' | null;
+
+  /**
+   * The country in which the individual's income is earned.
+   */
+  income_country: string | null;
+
+  /**
+   * The source of the individual's income.
+   */
+  income_source:
+    | 'family_support'
+    | 'government_benefits'
+    | 'inheritance'
+    | 'investments'
+    | 'rental_income'
+    | 'retirement'
+    | 'salary'
+    | 'self_employed'
+    | null;
+
+  /**
+   * The state in which the individual's income is earned.
+   */
+  income_state: string | null;
+
+  /**
+   * The industry of the individual.
+   */
+  industry:
+    | 'accounting'
+    | 'agriculture'
+    | 'automotive'
+    | 'chemical_manufacturing'
+    | 'construction'
+    | 'educational_medical'
+    | 'food_service'
+    | 'finance'
+    | 'gasoline'
+    | 'health_stores'
+    | 'laundry'
+    | 'maintenance'
+    | 'manufacturing'
+    | 'merchant_wholesale'
+    | 'mining'
+    | 'performing_arts'
+    | 'professional_non_legal'
+    | 'public_administration'
+    | 'publishing'
+    | 'real_estate'
+    | 'recreation_gambling'
+    | 'religious_charity'
+    | 'rental_services'
+    | 'retail_clothing'
+    | 'retail_electronics'
+    | 'retail_food'
+    | 'retail_furnishing'
+    | 'retail_home'
+    | 'retail_non_store'
+    | 'retail_sporting'
+    | 'transportation'
+    | 'travel'
+    | 'utilities'
+    | null;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  /**
+   * The occupation of the individual.
+   */
+  occupation:
+    | 'consulting'
+    | 'executive'
+    | 'finance_accounting'
+    | 'food_services'
+    | 'government'
+    | 'healthcare'
+    | 'legal_services'
+    | 'manufacturing'
+    | 'other'
+    | 'sales'
+    | 'science_engineering'
+    | 'technology'
+    | null;
+
+  /**
+   * The source of the individual's funds.
+   */
+  source_of_funds:
+    | 'alimony'
+    | 'annuity'
+    | 'business_owner'
+    | 'general_employee'
+    | 'government_benefits'
+    | 'homemaker'
+    | 'inheritance_gift'
+    | 'investment'
+    | 'legal_settlement'
+    | 'lottery'
+    | 'real_estate'
+    | 'retired'
+    | 'retirement'
+    | 'salary'
+    | 'self_employed'
+    | 'senior_executive'
+    | 'trust_income'
+    | null;
+
+  updated_at: string;
+
+  /**
+   * The source of the individual's wealth.
+   */
+  wealth_source:
+    | 'business_sale'
+    | 'family_support'
+    | 'government_benefits'
+    | 'inheritance'
+    | 'investments'
+    | 'other'
+    | 'rental_income'
+    | 'retirement'
+    | 'salary'
+    | 'self_employed'
+    | null;
+}
+
 export interface LegalEntityCreateParams {
   /**
    * The type of legal entity.
@@ -290,10 +530,17 @@ export interface LegalEntityCreateParams {
    */
   addresses?: Array<LegalEntityCreateParams.Address>;
 
+  bank_settings?: BankSettings | null;
+
   /**
    * The business's legal business name.
    */
   business_name?: string | null;
+
+  /**
+   * The country of citizenship for an individual.
+   */
+  citizenship_country?: string | null;
 
   /**
    * A business's formation date (YYYY-MM-DD).
@@ -350,12 +597,39 @@ export interface LegalEntityCreateParams {
    */
   metadata?: Record<string, string>;
 
+  /**
+   * An individual's middle name.
+   */
+  middle_name?: string | null;
+
   phone_numbers?: Array<LegalEntityCreateParams.PhoneNumber>;
+
+  /**
+   * Whether the individual is a politically exposed person.
+   */
+  politically_exposed_person?: boolean | null;
+
+  /**
+   * An individual's preferred name.
+   */
+  preferred_name?: string | null;
+
+  /**
+   * An individual's prefix.
+   */
+  prefix?: string | null;
 
   /**
    * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating?: 'low' | 'medium' | 'high' | null;
+
+  /**
+   * An individual's suffix.
+   */
+  suffix?: string | null;
+
+  wealth_and_employment_details?: WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -468,10 +742,17 @@ export namespace LegalEntityCreateParams {
        */
       addresses?: Array<ChildLegalEntity.Address>;
 
+      bank_settings?: LegalEntitiesAPI.BankSettings | null;
+
       /**
        * The business's legal business name.
        */
       business_name?: string | null;
+
+      /**
+       * The country of citizenship for an individual.
+       */
+      citizenship_country?: string | null;
 
       /**
        * A business's formation date (YYYY-MM-DD).
@@ -528,12 +809,39 @@ export namespace LegalEntityCreateParams {
        */
       metadata?: Record<string, string>;
 
+      /**
+       * An individual's middle name.
+       */
+      middle_name?: string | null;
+
       phone_numbers?: Array<ChildLegalEntity.PhoneNumber>;
+
+      /**
+       * Whether the individual is a politically exposed person.
+       */
+      politically_exposed_person?: boolean | null;
+
+      /**
+       * An individual's preferred name.
+       */
+      preferred_name?: string | null;
+
+      /**
+       * An individual's prefix.
+       */
+      prefix?: string | null;
 
       /**
        * The risk rating of the legal entity. One of low, medium, high.
        */
       risk_rating?: 'low' | 'medium' | 'high' | null;
+
+      /**
+       * An individual's suffix.
+       */
+      suffix?: string | null;
+
+      wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
 
       /**
        * The entity's primary website URL.
@@ -631,9 +939,21 @@ export namespace LegalEntityCreateParams {
 
 export interface LegalEntityUpdateParams {
   /**
+   * A list of addresses for the entity.
+   */
+  addresses?: Array<LegalEntityUpdateParams.Address>;
+
+  bank_settings?: BankSettings | null;
+
+  /**
    * The business's legal business name.
    */
   business_name?: string | null;
+
+  /**
+   * The country of citizenship for an individual.
+   */
+  citizenship_country?: string | null;
 
   /**
    * A business's formation date (YYYY-MM-DD).
@@ -658,6 +978,11 @@ export interface LegalEntityUpdateParams {
   first_name?: string | null;
 
   /**
+   * A list of identifications for the legal entity.
+   */
+  identifications?: Array<LegalEntityUpdateParams.Identification>;
+
+  /**
    * An individual's last name.
    */
   last_name?: string | null;
@@ -680,12 +1005,39 @@ export interface LegalEntityUpdateParams {
    */
   metadata?: Record<string, string>;
 
+  /**
+   * An individual's middle name.
+   */
+  middle_name?: string | null;
+
   phone_numbers?: Array<LegalEntityUpdateParams.PhoneNumber>;
+
+  /**
+   * Whether the individual is a politically exposed person.
+   */
+  politically_exposed_person?: boolean | null;
+
+  /**
+   * An individual's preferred name.
+   */
+  preferred_name?: string | null;
+
+  /**
+   * An individual's prefix.
+   */
+  prefix?: string | null;
 
   /**
    * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating?: 'low' | 'medium' | 'high' | null;
+
+  /**
+   * An individual's suffix.
+   */
+  suffix?: string | null;
+
+  wealth_and_employment_details?: WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -694,6 +1046,76 @@ export interface LegalEntityUpdateParams {
 }
 
 export namespace LegalEntityUpdateParams {
+  export interface Address {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country: string | null;
+
+    line1: string | null;
+
+    /**
+     * Locality or City.
+     */
+    locality: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code: string | null;
+
+    /**
+     * Region or State.
+     */
+    region: string | null;
+
+    /**
+     * The types of this address.
+     */
+    address_types?: Array<'business' | 'mailing' | 'other' | 'po_box' | 'residential'>;
+
+    line2?: string | null;
+  }
+
+  export interface Identification {
+    /**
+     * The ID number of identification document.
+     */
+    id_number: string;
+
+    /**
+     * The type of ID number.
+     */
+    id_type:
+      | 'ar_cuil'
+      | 'ar_cuit'
+      | 'br_cnpj'
+      | 'br_cpf'
+      | 'cl_run'
+      | 'cl_rut'
+      | 'co_cedulas'
+      | 'co_nit'
+      | 'hn_id'
+      | 'hn_rtn'
+      | 'in_lei'
+      | 'kr_brn'
+      | 'kr_crn'
+      | 'kr_rrn'
+      | 'passport'
+      | 'sa_tin'
+      | 'sa_vat'
+      | 'us_ein'
+      | 'us_itin'
+      | 'us_ssn'
+      | 'vn_tin';
+
+    /**
+     * The ISO 3166-1 alpha-2 country code of the country that issued the
+     * identification
+     */
+    issuing_country?: string | null;
+  }
+
   /**
    * A list of phone numbers in E.164 format.
    */
@@ -719,7 +1141,9 @@ LegalEntities.LegalEntitiesPage = LegalEntitiesPage;
 
 export declare namespace LegalEntities {
   export {
+    type BankSettings as BankSettings,
     type LegalEntity as LegalEntity,
+    type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
     LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
