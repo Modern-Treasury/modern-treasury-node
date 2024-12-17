@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.33.0 (2024-12-17)
+
+Full Changelog: [v2.32.2...v2.33.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.2...v2.33.0)
+
+### Features
+
+* **internal:** make git install file structure match npm ([#502](https://github.com/Modern-Treasury/modern-treasury-node/issues/502)) ([df8d552](https://github.com/Modern-Treasury/modern-treasury-node/commit/df8d55239b90b12e7aef94136ba1d1344bba5057))
+
+
+### Chores
+
+* **api:** additional fields for requests to get BalanceReports and create LegalEntities ([#498](https://github.com/Modern-Treasury/modern-treasury-node/issues/498)) ([5e2a769](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e2a769e6e2b553d87a148da28d7092f3fafcccf))
+* **internal:** bump cross-spawn to v7.0.6 ([#504](https://github.com/Modern-Treasury/modern-treasury-node/issues/504)) ([5e7b6b1](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e7b6b15374cbe1c2a27be82e79a59c5e2426774))
+* **internal:** fix some typos ([#507](https://github.com/Modern-Treasury/modern-treasury-node/issues/507)) ([f04847f](https://github.com/Modern-Treasury/modern-treasury-node/commit/f04847f2d6e6194b85bb75c04d8ffc025f1989fc))
+* **internal:** remove unnecessary getRequestClient function ([#503](https://github.com/Modern-Treasury/modern-treasury-node/issues/503)) ([94705eb](https://github.com/Modern-Treasury/modern-treasury-node/commit/94705ebd053bb97524b83121ee113127f3ef7018))
+* **internal:** update isAbsoluteURL ([#506](https://github.com/Modern-Treasury/modern-treasury-node/issues/506)) ([b1d583b](https://github.com/Modern-Treasury/modern-treasury-node/commit/b1d583bdb745840d885bce83038fadf1f89eb473))
+* remove redundant word in comment ([#500](https://github.com/Modern-Treasury/modern-treasury-node/issues/500)) ([b554302](https://github.com/Modern-Treasury/modern-treasury-node/commit/b5543028c73cff4c8a472b0cbb3c617f84f46347))
+* sync openapi spec ([#501](https://github.com/Modern-Treasury/modern-treasury-node/issues/501)) ([017ca2d](https://github.com/Modern-Treasury/modern-treasury-node/commit/017ca2db1cbbe3619d31fbddd54ff028f8e5d4a0))
+* **tests:** limit array example length ([#496](https://github.com/Modern-Treasury/modern-treasury-node/issues/496)) ([041f2be](https://github.com/Modern-Treasury/modern-treasury-node/commit/041f2be495c41cab13053850c167da73c0a5899f))
+* **types:** nicer error class types + jsdocs ([#505](https://github.com/Modern-Treasury/modern-treasury-node/issues/505)) ([7373590](https://github.com/Modern-Treasury/modern-treasury-node/commit/7373590667946d0b80907099eb6fa70eb2de8cd0))
+
+
+### Documentation
+
+* remove suggestion to use `npm` call out ([#499](https://github.com/Modern-Treasury/modern-treasury-node/issues/499)) ([5a54d76](https://github.com/Modern-Treasury/modern-treasury-node/commit/5a54d766c5e1e24fc6c1c55ee0bea3b6dd45a160))
+
 ## 2.32.2 (2024-11-14)
 
 Full Changelog: [v2.32.1...v2.32.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.1...v2.32.2)
