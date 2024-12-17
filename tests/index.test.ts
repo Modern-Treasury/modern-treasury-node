@@ -201,7 +201,7 @@ describe('instantiate client', () => {
     expect(client.organizationId).toBe('my-organization-ID');
   });
 
-  test('with overriden environment variable arguments', () => {
+  test('with overridden environment variable arguments', () => {
     // set options via env var
     process.env['MODERN_TREASURY_API_KEY'] = 'another My API Key';
     process.env['MODERN_TREASURY_ORGANIZATION_ID'] = 'another my-organization-ID';
