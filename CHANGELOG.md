@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.33.1 (2024-12-19)
+
+Full Changelog: [v2.33.0...v2.33.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.0...v2.33.1)
+
+### Bug Fixes
+
+* **client:** normalize method ([#508](https://github.com/Modern-Treasury/modern-treasury-node/issues/508)) ([581ec3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/581ec3cea79ed4f60dbfc8e0088c576f027ceee7))
+
 ## 2.33.0 (2024-12-17)
 
 Full Changelog: [v2.32.2...v2.33.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.2...v2.33.0)
