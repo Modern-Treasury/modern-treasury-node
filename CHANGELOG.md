@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.33.1 (2025-01-08)
+
+Full Changelog: [v2.33.0...v2.33.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.0...v2.33.1)
+
+### Bug Fixes
+
+* **client:** normalize method ([#508](https://github.com/Modern-Treasury/modern-treasury-node/issues/508)) ([581ec3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/581ec3cea79ed4f60dbfc8e0088c576f027ceee7))
+
+
+### Chores
+
+* bump license year ([#511](https://github.com/Modern-Treasury/modern-treasury-node/issues/511)) ([f1eb70d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f1eb70d73831561f1fdea7d602ac70e1e32a166e))
+
+
+### Documentation
+
+* minor formatting changes ([#510](https://github.com/Modern-Treasury/modern-treasury-node/issues/510)) ([ae2187e](https://github.com/Modern-Treasury/modern-treasury-node/commit/ae2187ec952e5c24feaf8a0fd2bd5f78ab09c8b3))
+* **readme:** fix misplaced period ([#512](https://github.com/Modern-Treasury/modern-treasury-node/issues/512)) ([338b1e0](https://github.com/Modern-Treasury/modern-treasury-node/commit/338b1e0c01ef3c67a661d23d5b9cc5f8717fb314))
+
 ## 2.33.0 (2024-12-17)
 
 Full Changelog: [v2.32.2...v2.33.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.2...v2.33.0)
