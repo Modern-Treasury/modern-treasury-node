@@ -84,6 +84,17 @@ export class LedgerTransactions extends APIResource {
   }
 
   /**
+   * Create a ledger transaction that partially posts another ledger transaction.
+   */
+  createPartialPost(
+    id: string,
+    body: LedgerTransactionCreatePartialPostParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LedgerTransaction> {
+    return this._client.post(`/api/ledger_transactions/${id}/partial_post`, { body, ...options });
+  }
+
+  /**
    * Create a ledger transaction reversal.
    */
   createReversal(
@@ -178,6 +189,11 @@ export interface LedgerTransaction {
   metadata: Record<string, string>;
 
   object: string;
+
+  /**
+   * The ID of the ledger transaction that this ledger transaction partially posts.
+   */
+  partially_posts_ledger_transaction_id: string | null;
 
   /**
    * The time on which the ledger transaction posted. This is null if the ledger
@@ -496,6 +512,8 @@ export interface LedgerTransactionListParams extends PageParams {
    */
   order_by?: LedgerTransactionListParams.OrderBy;
 
+  partially_posts_ledger_transaction_id?: string;
+
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
@@ -525,6 +543,62 @@ export namespace LedgerTransactionListParams {
     created_at?: 'asc' | 'desc';
 
     effective_at?: 'asc' | 'desc';
+  }
+}
+
+export interface LedgerTransactionCreatePartialPostParams {
+  /**
+   * An array of ledger entry objects to be set on the posted ledger transaction.
+   * There must be one entry for each of the existing entries with a lesser amount
+   * than the existing entry.
+   */
+  posted_ledger_entries: Array<LedgerTransactionCreatePartialPostParams.PostedLedgerEntry>;
+
+  /**
+   * An optional free-form description for the posted ledger transaction. Maximum of
+   * 1000 characters allowed.
+   */
+  description?: string;
+
+  /**
+   * The timestamp (IS08601 format) at which the posted ledger transaction happened
+   * for reporting purposes.
+   */
+  effective_at?: string;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: Record<string, string>;
+}
+
+export namespace LedgerTransactionCreatePartialPostParams {
+  export interface PostedLedgerEntry {
+    /**
+     * Value in specified currency's smallest unit. e.g. $10 would be represented
+     * as 1000. Can be any integer up to 36 digits.
+     */
+    amount: number;
+
+    /**
+     * One of `credit`, `debit`. Describes the direction money is flowing in the
+     * transaction. A `credit` moves money from your account to someone else's. A
+     * `debit` pulls money from someone else's account to your own. Note that wire,
+     * rtp, and check payments will always be `credit`.
+     */
+    direction: 'credit' | 'debit';
+
+    /**
+     * The ledger account that this ledger entry is associated with.
+     */
+    ledger_account_id: string;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: Record<string, string>;
   }
 }
 
@@ -589,6 +663,7 @@ export declare namespace LedgerTransactions {
     type LedgerTransactionCreateParams as LedgerTransactionCreateParams,
     type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,
     type LedgerTransactionListParams as LedgerTransactionListParams,
+    type LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
     type LedgerTransactionCreateReversalParams as LedgerTransactionCreateReversalParams,
   };
 

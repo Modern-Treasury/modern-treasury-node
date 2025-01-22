@@ -154,6 +154,7 @@ describe('resource ledgerTransactions', () => {
           ledgerable_type: 'expected_payment',
           metadata: { foo: 'string' },
           order_by: { created_at: 'asc', effective_at: 'asc' },
+          partially_posts_ledger_transaction_id: 'partially_posts_ledger_transaction_id',
           per_page: 0,
           posted_at: { foo: '2019-12-27T18:11:19.117Z' },
           reverses_ledger_transaction_id: 'reverses_ledger_transaction_id',
@@ -163,6 +164,37 @@ describe('resource ledgerTransactions', () => {
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('createPartialPost: only required params', async () => {
+    const responsePromise = client.ledgerTransactions.createPartialPost('id', {
+      posted_ledger_entries: [
+        { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+      ],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('createPartialPost: required and optional params', async () => {
+    const response = await client.ledgerTransactions.createPartialPost('id', {
+      posted_ledger_entries: [
+        {
+          amount: 0,
+          direction: 'credit',
+          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+        },
+      ],
+      description: 'description',
+      effective_at: '2019-12-27T18:11:19.117Z',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+    });
   });
 
   test('createReversal', async () => {

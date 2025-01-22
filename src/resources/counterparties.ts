@@ -578,6 +578,7 @@ export namespace CounterpartyCreateParams {
         | 'nz_national_clearing_code'
         | 'pl_national_clearing_code'
         | 'se_bankgiro_clearing_code'
+        | 'sg_interbank_clearing_code'
         | 'swift'
         | 'za_national_clearing_code';
 
