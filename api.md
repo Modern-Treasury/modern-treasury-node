@@ -327,6 +327,7 @@ Methods:
 - <code title="get /api/ledger_transactions/{id}">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">retrieve</a>(id) -> LedgerTransaction</code>
 - <code title="patch /api/ledger_transactions/{id}">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">update</a>(id, { ...params }) -> LedgerTransaction</code>
 - <code title="get /api/ledger_transactions">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">list</a>({ ...params }) -> LedgerTransactionsPage</code>
+- <code title="post /api/ledger_transactions/{id}/partial_post">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">createPartialPost</a>(id, { ...params }) -> LedgerTransaction</code>
 - <code title="post /api/ledger_transactions/{id}/reversal">client.ledgerTransactions.<a href="./src/resources/ledger-transactions/ledger-transactions.ts">createReversal</a>(id, { ...params }) -> LedgerTransaction</code>
 
 ## Versions
@@ -511,14 +512,21 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/ledger-account-settlements.ts">LedgerAccountSettlement</a></code>
+- <code><a href="./src/resources/ledger-account-settlements/ledger-account-settlements.ts">LedgerAccountSettlement</a></code>
 
 Methods:
 
-- <code title="post /api/ledger_account_settlements">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">create</a>({ ...params }) -> LedgerAccountSettlement</code>
-- <code title="get /api/ledger_account_settlements/{id}">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">retrieve</a>(id) -> LedgerAccountSettlement</code>
-- <code title="patch /api/ledger_account_settlements/{id}">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">update</a>(id, { ...params }) -> LedgerAccountSettlement</code>
-- <code title="get /api/ledger_account_settlements">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements.ts">list</a>({ ...params }) -> LedgerAccountSettlementsPage</code>
+- <code title="post /api/ledger_account_settlements">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements/ledger-account-settlements.ts">create</a>({ ...params }) -> LedgerAccountSettlement</code>
+- <code title="get /api/ledger_account_settlements/{id}">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements/ledger-account-settlements.ts">retrieve</a>(id) -> LedgerAccountSettlement</code>
+- <code title="patch /api/ledger_account_settlements/{id}">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements/ledger-account-settlements.ts">update</a>(id, { ...params }) -> LedgerAccountSettlement</code>
+- <code title="get /api/ledger_account_settlements">client.ledgerAccountSettlements.<a href="./src/resources/ledger-account-settlements/ledger-account-settlements.ts">list</a>({ ...params }) -> LedgerAccountSettlementsPage</code>
+
+## AccountEntries
+
+Methods:
+
+- <code title="patch /api/ledger_account_settlements/{id}/ledger_entries">client.ledgerAccountSettlements.accountEntries.<a href="./src/resources/ledger-account-settlements/account-entries.ts">update</a>(id, { ...params }) -> void</code>
+- <code title="delete /api/ledger_account_settlements/{id}/ledger_entries">client.ledgerAccountSettlements.accountEntries.<a href="./src/resources/ledger-account-settlements/account-entries.ts">del</a>(id, { ...params }) -> void</code>
 
 # ForeignExchangeQuotes
 

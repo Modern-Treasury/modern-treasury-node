@@ -1,11 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import * as AccountEntriesAPI from './account-entries';
+import { AccountEntries, AccountEntryDeleteParams, AccountEntryUpdateParams } from './account-entries';
+import { Page, type PageParams } from '../../pagination';
 
 export class LedgerAccountSettlements extends APIResource {
+  accountEntries: AccountEntriesAPI.AccountEntries = new AccountEntriesAPI.AccountEntries(this._client);
+
   /**
    * Create a ledger account settlement.
    */
@@ -270,6 +274,7 @@ export interface LedgerAccountSettlementListParams extends PageParams {
 }
 
 LedgerAccountSettlements.LedgerAccountSettlementsPage = LedgerAccountSettlementsPage;
+LedgerAccountSettlements.AccountEntries = AccountEntries;
 
 export declare namespace LedgerAccountSettlements {
   export {
@@ -278,5 +283,11 @@ export declare namespace LedgerAccountSettlements {
     type LedgerAccountSettlementCreateParams as LedgerAccountSettlementCreateParams,
     type LedgerAccountSettlementUpdateParams as LedgerAccountSettlementUpdateParams,
     type LedgerAccountSettlementListParams as LedgerAccountSettlementListParams,
+  };
+
+  export {
+    AccountEntries as AccountEntries,
+    type AccountEntryUpdateParams as AccountEntryUpdateParams,
+    type AccountEntryDeleteParams as AccountEntryDeleteParams,
   };
 }

@@ -110,6 +110,8 @@ export interface Reversal {
    */
   status: 'completed' | 'failed' | 'pending' | 'processing' | 'returned' | 'sent';
 
+  transaction_ids: Array<unknown>;
+
   updated_at: string;
 }
 

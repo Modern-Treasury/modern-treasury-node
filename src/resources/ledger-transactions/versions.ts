@@ -111,6 +111,11 @@ export interface LedgerTransactionVersion {
   object: string;
 
   /**
+   * The ID of the ledger transaction that this ledger transaction partially posts.
+   */
+  partially_posts_ledger_transaction_id: string | null;
+
+  /**
    * The time on which the ledger transaction posted. This is null if the ledger
    * transaction is pending.
    */

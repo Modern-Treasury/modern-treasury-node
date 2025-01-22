@@ -13,5 +13,6 @@ export {
   type LedgerTransactionCreateParams,
   type LedgerTransactionUpdateParams,
   type LedgerTransactionListParams,
+  type LedgerTransactionCreatePartialPostParams,
   type LedgerTransactionCreateReversalParams,
 } from './ledger-transactions';
