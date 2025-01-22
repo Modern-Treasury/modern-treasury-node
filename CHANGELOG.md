@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.33.2 (2025-01-22)
+
+Full Changelog: [v2.33.1...v2.33.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.1...v2.33.2)
+
+### Chores
+
+* **api:** adds new APIs for LedgerAccountSettlement LedgerEntries ([#518](https://github.com/Modern-Treasury/modern-treasury-node/issues/518)) ([a519519](https://github.com/Modern-Treasury/modern-treasury-node/commit/a51951958e4d05391aec25ecfc11bd22a0d86abf))
+* **internal:** add test ([#515](https://github.com/Modern-Treasury/modern-treasury-node/issues/515)) ([c8b598a](https://github.com/Modern-Treasury/modern-treasury-node/commit/c8b598a3dd5f37f157f437b51331a06cce42d525))
+* **types:** add `| undefined` to client options properties ([#513](https://github.com/Modern-Treasury/modern-treasury-node/issues/513)) ([17d306a](https://github.com/Modern-Treasury/modern-treasury-node/commit/17d306aa0c75b787ea899a84f1a70eb7654615c7))
+
+
+### Documentation
+
+* update deprecation messages ([#517](https://github.com/Modern-Treasury/modern-treasury-node/issues/517)) ([52f370e](https://github.com/Modern-Treasury/modern-treasury-node/commit/52f370e8e1b758a6372f5297f3be4fd25d49be1c))
+
 ## 2.33.1 (2025-01-08)
 
 Full Changelog: [v2.33.0...v2.33.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.0...v2.33.1)
