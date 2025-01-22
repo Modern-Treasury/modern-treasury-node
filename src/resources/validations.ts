@@ -57,7 +57,7 @@ export interface RoutingNumberLookupRequest {
 
   /**
    * An array of payment types that are supported for this routing number. This can
-   * include `ach`, `wire`, `rtp`, `sepa`, `bacs`, `au_becs` currently.
+   * include `ach`, `wire`, `rtp`, `sepa`, `bacs`, `au_becs`, and 'fednow' currently.
    */
   supported_payment_types?: Array<
     | 'ach'
@@ -155,6 +155,7 @@ export interface ValidationValidateRoutingNumberParams {
     | 'nz_national_clearing_code'
     | 'pl_national_clearing_code'
     | 'se_bankgiro_clearing_code'
+    | 'sg_interbank_clearing_code'
     | 'swift'
     | 'za_national_clearing_code';
 }
