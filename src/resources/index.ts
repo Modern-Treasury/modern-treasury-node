@@ -128,7 +128,7 @@ export {
   type LedgerAccountSettlementCreateParams,
   type LedgerAccountSettlementUpdateParams,
   type LedgerAccountSettlementListParams,
-} from './ledger-account-settlements';
+} from './ledger-account-settlements/ledger-account-settlements';
 export {
   LedgerAccountStatements,
   type LedgerAccountStatementCreateResponse,
@@ -167,6 +167,7 @@ export {
   type LedgerTransactionCreateParams,
   type LedgerTransactionUpdateParams,
   type LedgerTransactionListParams,
+  type LedgerTransactionCreatePartialPostParams,
   type LedgerTransactionCreateReversalParams,
 } from './ledger-transactions/ledger-transactions';
 export {

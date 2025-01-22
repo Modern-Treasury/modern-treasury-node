@@ -145,7 +145,7 @@ export namespace BalanceReport {
      * The specific type of balance reported. One of `opening_ledger`,
      * `closing_ledger`, `current_ledger`, `opening_available`,
      * `opening_available_next_business_day`, `closing_available`, `current_available`,
-     * or `other`.
+     * 'previously_closed_book', or `other`.
      */
     balance_type:
       | 'closing_available'
@@ -155,7 +155,8 @@ export namespace BalanceReport {
       | 'opening_available'
       | 'opening_available_next_business_day'
       | 'opening_ledger'
-      | 'other';
+      | 'other'
+      | 'previously_closed_book';
 
     created_at: string;
 
@@ -228,7 +229,7 @@ export namespace BalanceReportCreateParams {
      * The specific type of balance reported. One of `opening_ledger`,
      * `closing_ledger`, `current_ledger`, `opening_available`,
      * `opening_available_next_business_day`, `closing_available`, `current_available`,
-     * or `other`.
+     * 'previously_closed_book', or `other`.
      */
     balance_type:
       | 'closing_available'
@@ -238,7 +239,8 @@ export namespace BalanceReportCreateParams {
       | 'opening_available'
       | 'opening_available_next_business_day'
       | 'opening_ledger'
-      | 'other';
+      | 'other'
+      | 'previously_closed_book';
 
     /**
      * The code used by the bank when reporting this specific balance.

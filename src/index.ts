@@ -115,14 +115,6 @@ import {
   LedgerAccountCategoryUpdateParams,
 } from './resources/ledger-account-categories';
 import {
-  LedgerAccountSettlement,
-  LedgerAccountSettlementCreateParams,
-  LedgerAccountSettlementListParams,
-  LedgerAccountSettlementUpdateParams,
-  LedgerAccountSettlements,
-  LedgerAccountSettlementsPage,
-} from './resources/ledger-account-settlements';
-import {
   LedgerAccountStatementCreateParams,
   LedgerAccountStatementCreateResponse,
   LedgerAccountStatementRetrieveResponse,
@@ -247,8 +239,17 @@ import {
   InvoicesPage,
 } from './resources/invoices/invoices';
 import {
+  LedgerAccountSettlement,
+  LedgerAccountSettlementCreateParams,
+  LedgerAccountSettlementListParams,
+  LedgerAccountSettlementUpdateParams,
+  LedgerAccountSettlements,
+  LedgerAccountSettlementsPage,
+} from './resources/ledger-account-settlements/ledger-account-settlements';
+import {
   LedgerTransaction,
   LedgerTransactionCreateParams,
+  LedgerTransactionCreatePartialPostParams,
   LedgerTransactionCreateReversalParams,
   LedgerTransactionListParams,
   LedgerTransactionUpdateParams,
@@ -773,6 +774,7 @@ export declare namespace ModernTreasury {
     type LedgerTransactionCreateParams as LedgerTransactionCreateParams,
     type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,
     type LedgerTransactionListParams as LedgerTransactionListParams,
+    type LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
     type LedgerTransactionCreateReversalParams as LedgerTransactionCreateReversalParams,
   };
 

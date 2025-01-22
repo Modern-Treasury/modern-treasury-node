@@ -228,6 +228,7 @@ export interface Transaction {
    */
   vendor_code_type:
     | 'bai2'
+    | 'banking_circle'
     | 'bankprov'
     | 'bnk_dev'
     | 'cleartouch'
