@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.34.0 (2025-02-13)
+
+Full Changelog: [v2.33.2...v2.34.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.2...v2.34.0)
+
+### Features
+
+* **client:** send `X-Stainless-Timeout` header ([#519](https://github.com/Modern-Treasury/modern-treasury-node/issues/519)) ([d102e21](https://github.com/Modern-Treasury/modern-treasury-node/commit/d102e21ee21d03707f8abe58281234cca61a66a1))
+
+
+### Bug Fixes
+
+* **client:** fix export map for index exports ([#521](https://github.com/Modern-Treasury/modern-treasury-node/issues/521)) ([f8b0caf](https://github.com/Modern-Treasury/modern-treasury-node/commit/f8b0caf94bc7a2f1af98e1943626acbf2d59cfad))
+
 ## 2.33.2 (2025-01-22)
 
 Full Changelog: [v2.33.1...v2.33.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.1...v2.33.2)
