@@ -61,7 +61,7 @@ describe('resource counterparties', () => {
           ],
         },
       ],
-      email: 'dev@stainlessapi.com',
+      email: 'dev@stainless.com',
       ledger_type: 'customer',
       legal_entity: {
         legal_entity_type: 'business',
@@ -253,7 +253,7 @@ describe('resource counterparties', () => {
       client.counterparties.update(
         'id',
         {
-          email: 'dev@stainlessapi.com',
+          email: 'dev@stainless.com',
           legal_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: { foo: 'string' },
           name: 'name',
@@ -291,7 +291,7 @@ describe('resource counterparties', () => {
           after_cursor: 'after_cursor',
           created_at_lower_bound: '2019-12-27T18:11:19.117Z',
           created_at_upper_bound: '2019-12-27T18:11:19.117Z',
-          email: 'dev@stainlessapi.com',
+          email: 'dev@stainless.com',
           legal_entity_id: 'legal_entity_id',
           metadata: { foo: 'string' },
           name: 'name',
