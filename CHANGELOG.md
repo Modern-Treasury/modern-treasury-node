@@ -1,5 +1,34 @@
 # Changelog
 
+## 2.35.0 (2025-03-26)
+
+Full Changelog: [v2.34.0...v2.35.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.34.0...v2.35.0)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#525](https://github.com/Modern-Treasury/modern-treasury-node/issues/525)) ([5b22c1f](https://github.com/Modern-Treasury/modern-treasury-node/commit/5b22c1f0caf05d34c24137fe50d6c4b2b42d912b))
+* **client:** accept RFC6838 JSON content types ([#526](https://github.com/Modern-Treasury/modern-treasury-node/issues/526)) ([74a3c2a](https://github.com/Modern-Treasury/modern-treasury-node/commit/74a3c2a85c6b14881eeec03a101127d9ceb0d8f9))
+
+
+### Bug Fixes
+
+* avoid type error in certain environments ([#531](https://github.com/Modern-Treasury/modern-treasury-node/issues/531)) ([16eb71a](https://github.com/Modern-Treasury/modern-treasury-node/commit/16eb71a48d9f6df0759875316d70560a2596fe44))
+* **exports:** ensure resource imports don't require /index ([#528](https://github.com/Modern-Treasury/modern-treasury-node/issues/528)) ([0dcff87](https://github.com/Modern-Treasury/modern-treasury-node/commit/0dcff876cb9a01e2141ce9266028245b8f0a3df3))
+
+
+### Chores
+
+* add hash of OpenAPI spec/config inputs to .stats.yml ([#532](https://github.com/Modern-Treasury/modern-treasury-node/issues/532)) ([a2bac4e](https://github.com/Modern-Treasury/modern-treasury-node/commit/a2bac4e1c944963b500e0000a333e5f65ef6d555))
+* **exports:** cleaner resource index imports ([#529](https://github.com/Modern-Treasury/modern-treasury-node/issues/529)) ([812b9f4](https://github.com/Modern-Treasury/modern-treasury-node/commit/812b9f43dc3dbd7add7e2fedd0ad2060c73d9ad3))
+* **exports:** stop using path fallbacks ([#530](https://github.com/Modern-Treasury/modern-treasury-node/issues/530)) ([97ea752](https://github.com/Modern-Treasury/modern-treasury-node/commit/97ea7521130a495a63d16971792c6952d71bb427))
+* **internal:** fix devcontainers setup ([#522](https://github.com/Modern-Treasury/modern-treasury-node/issues/522)) ([06fbe95](https://github.com/Modern-Treasury/modern-treasury-node/commit/06fbe95eceb9bb6e84ad493fa4cedb29de53f590))
+* **internal:** remove extra empty newlines ([#527](https://github.com/Modern-Treasury/modern-treasury-node/issues/527)) ([bbfd36c](https://github.com/Modern-Treasury/modern-treasury-node/commit/bbfd36ca67b992df33a0a83ab8969f7dbc55f2da))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#524](https://github.com/Modern-Treasury/modern-treasury-node/issues/524)) ([2324f57](https://github.com/Modern-Treasury/modern-treasury-node/commit/2324f570ab8a620027019c5a76a0d06112923eac))
+
 ## 2.34.0 (2025-02-13)
 
 Full Changelog: [v2.33.2...v2.34.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.2...v2.34.0)
