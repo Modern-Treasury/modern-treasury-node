@@ -202,4 +202,95 @@ export type Currency =
   | 'ZWN'
   | 'ZWR';
 
+export interface LegalEntityComplianceDetail {
+  id: string;
+
+  created_at: string;
+
+  discarded_at: string | null;
+
+  /**
+   * The issuer of the compliance token.
+   */
+  issuer: string;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  /**
+   * The timestamp when the compliance token expires.
+   */
+  token_expires_at: string | null;
+
+  /**
+   * The timestamp when the compliance token was issued.
+   */
+  token_issued_at: string | null;
+
+  /**
+   * The URL to the compliance token. (ex. provider portal URL)
+   */
+  token_url: string | null;
+
+  updated_at: string;
+
+  /**
+   * Whether entity corresponding to the compliance token has been validated.
+   */
+  validated: boolean;
+
+  /**
+   * The timestamp when the entity was validated.
+   */
+  validated_at: string | null;
+}
+
+export interface LegalEntityIndustryClassification {
+  id: string;
+
+  /**
+   * The industry classification codes for the legal entity.
+   */
+  classification_codes: Array<string>;
+
+  /**
+   * The classification system of the classification codes.
+   */
+  classification_type:
+    | 'anzsic'
+    | 'bics'
+    | 'gics'
+    | 'hsics'
+    | 'icb'
+    | 'isic'
+    | 'mgecs'
+    | 'nace'
+    | 'naics'
+    | 'rbics'
+    | 'sic'
+    | 'sni'
+    | 'trbc'
+    | 'uksic'
+    | 'unspsc';
+
+  created_at: string;
+
+  discarded_at: string | null;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  updated_at: string;
+}
+
 export type TransactionDirection = 'credit' | 'debit';

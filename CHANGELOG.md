@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.35.1 (2025-03-27)
+
+Full Changelog: [v2.35.0...v2.35.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.35.0...v2.35.1)
+
+### Bug Fixes
+
+* **internal:** work around https://github.com/vercel/next.js/issues/76881 ([#535](https://github.com/Modern-Treasury/modern-treasury-node/issues/535)) ([7caa591](https://github.com/Modern-Treasury/modern-treasury-node/commit/7caa59144719ebe907a7b6748817e588d6ab7e66))
+
+
+### Chores
+
+* **api:** updates to bulk creation request, legal entity schemas and more ([#533](https://github.com/Modern-Treasury/modern-treasury-node/issues/533)) ([b34bb7b](https://github.com/Modern-Treasury/modern-treasury-node/commit/b34bb7ba96de6bbefec5548061ad2d2b08e4f245))
+* **internal:** remove CI condition ([#537](https://github.com/Modern-Treasury/modern-treasury-node/issues/537)) ([ae65ae8](https://github.com/Modern-Treasury/modern-treasury-node/commit/ae65ae8859e1d18ac0530a6432c1dc0be9ac72d7))
+
 ## 2.35.0 (2025-03-26)
 
 Full Changelog: [v2.34.0...v2.35.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.34.0...v2.35.0)

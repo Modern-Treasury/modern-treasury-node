@@ -40,7 +40,7 @@ export interface AccountEntryDeleteParams {
    * The ids of the ledger entries that are to be added or removed from the ledger
    * account settlement.
    */
-  ledger_entry_ids: Array<unknown> | null;
+  ledger_entry_ids: Array<string> | null;
 }
 
 export declare namespace AccountEntries {

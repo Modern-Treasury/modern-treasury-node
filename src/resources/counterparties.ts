@@ -639,6 +639,8 @@ export namespace CounterpartyCreateParams {
      */
     citizenship_country?: string | null;
 
+    compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
     /**
      * A business's formation date (YYYY-MM-DD).
      */
@@ -665,6 +667,11 @@ export namespace CounterpartyCreateParams {
      * A list of identifications for the legal entity.
      */
     identifications?: Array<LegalEntity.Identification>;
+
+    /**
+     * A list of industry classifications for the legal entity.
+     */
+    industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
 
     /**
      * An individual's last name.
@@ -851,6 +858,8 @@ export namespace CounterpartyCreateParams {
          */
         citizenship_country?: string | null;
 
+        compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
         /**
          * A business's formation date (YYYY-MM-DD).
          */
@@ -877,6 +886,11 @@ export namespace CounterpartyCreateParams {
          * A list of identifications for the legal entity.
          */
         identifications?: Array<ChildLegalEntity.Identification>;
+
+        /**
+         * A list of industry classifications for the legal entity.
+         */
+        industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
 
         /**
          * An individual's last name.
@@ -1156,7 +1170,7 @@ export interface CounterpartyCollectAccountParams {
     | 'huInterbankClearingCode'
     | 'dkInterbankClearingCode'
     | 'idSknbiCode'
-    | 'za_national_clearing_code'
+    | 'zaNationalClearingCode'
   >;
 
   /**

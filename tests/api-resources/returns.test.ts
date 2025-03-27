@@ -30,6 +30,7 @@ describe('resource returns', () => {
       returnable_type: 'incoming_payment_detail',
       additional_information: 'additional_information',
       code: '901',
+      data: {},
       date_of_death: '2019-12-27',
       reason: 'reason',
     });

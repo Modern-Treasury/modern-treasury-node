@@ -88,7 +88,13 @@ export interface BulkRequest {
   /**
    * One of payment_order, expected_payment, or ledger_transaction.
    */
-  resource_type: 'payment_order' | 'ledger_transaction' | 'transaction' | 'expected_payment';
+  resource_type:
+    | 'payment_order'
+    | 'ledger_account'
+    | 'ledger_transaction'
+    | 'expected_payment'
+    | 'transaction'
+    | 'entity_link';
 
   /**
    * One of pending, processing, or completed.
@@ -119,7 +125,13 @@ export interface BulkRequestCreateParams {
   /**
    * One of payment_order, expected_payment, or ledger_transaction.
    */
-  resource_type: 'payment_order' | 'ledger_transaction' | 'transaction' | 'expected_payment';
+  resource_type:
+    | 'payment_order'
+    | 'ledger_account'
+    | 'ledger_transaction'
+    | 'expected_payment'
+    | 'transaction'
+    | 'entity_link';
 
   /**
    * An array of objects where each object contains the input params for a single
@@ -2030,7 +2042,13 @@ export interface BulkRequestListParams extends PageParams {
   /**
    * One of payment_order, expected_payment, or ledger_transaction.
    */
-  resource_type?: 'payment_order' | 'ledger_transaction' | 'transaction' | 'expected_payment';
+  resource_type?:
+    | 'payment_order'
+    | 'ledger_account'
+    | 'ledger_transaction'
+    | 'expected_payment'
+    | 'transaction'
+    | 'entity_link';
 
   /**
    * One of pending, processing, or completed.
