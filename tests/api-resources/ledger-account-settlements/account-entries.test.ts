@@ -31,7 +31,7 @@ describe('resource accountEntries', () => {
 
   test('del: only required params', async () => {
     const responsePromise = client.ledgerAccountSettlements.accountEntries.del('id', {
-      ledger_entry_ids: [{}],
+      ledger_entry_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -44,7 +44,7 @@ describe('resource accountEntries', () => {
 
   test('del: required and optional params', async () => {
     const response = await client.ledgerAccountSettlements.accountEntries.del('id', {
-      ledger_entry_ids: [{}],
+      ledger_entry_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
     });
   });
 });

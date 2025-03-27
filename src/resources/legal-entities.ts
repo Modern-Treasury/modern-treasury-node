@@ -5,6 +5,7 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as LegalEntitiesAPI from './legal-entities';
 import * as LegalEntityAssociationsAPI from './legal-entity-associations';
+import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
 export class LegalEntities extends APIResource {
@@ -136,6 +137,8 @@ export interface LegalEntity {
    */
   citizenship_country: string | null;
 
+  compliance_details: Shared.LegalEntityComplianceDetail | null;
+
   created_at: string;
 
   /**
@@ -166,6 +169,11 @@ export interface LegalEntity {
    * A list of identifications for the legal entity.
    */
   identifications: Array<LegalEntity.Identification>;
+
+  /**
+   * A list of industry classifications for the legal entity.
+   */
+  industry_classifications: Array<Shared.LegalEntityIndustryClassification>;
 
   /**
    * An individual's last name.
@@ -542,6 +550,8 @@ export interface LegalEntityCreateParams {
    */
   citizenship_country?: string | null;
 
+  compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
   /**
    * A business's formation date (YYYY-MM-DD).
    */
@@ -568,6 +578,11 @@ export interface LegalEntityCreateParams {
    * A list of identifications for the legal entity.
    */
   identifications?: Array<LegalEntityCreateParams.Identification>;
+
+  /**
+   * A list of industry classifications for the legal entity.
+   */
+  industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
 
   /**
    * An individual's last name.
@@ -754,6 +769,8 @@ export namespace LegalEntityCreateParams {
        */
       citizenship_country?: string | null;
 
+      compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
       /**
        * A business's formation date (YYYY-MM-DD).
        */
@@ -780,6 +797,11 @@ export namespace LegalEntityCreateParams {
        * A list of identifications for the legal entity.
        */
       identifications?: Array<ChildLegalEntity.Identification>;
+
+      /**
+       * A list of industry classifications for the legal entity.
+       */
+      industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
 
       /**
        * An individual's last name.
@@ -955,6 +977,8 @@ export interface LegalEntityUpdateParams {
    */
   citizenship_country?: string | null;
 
+  compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
   /**
    * A business's formation date (YYYY-MM-DD).
    */
@@ -981,6 +1005,11 @@ export interface LegalEntityUpdateParams {
    * A list of identifications for the legal entity.
    */
   identifications?: Array<LegalEntityUpdateParams.Identification>;
+
+  /**
+   * A list of industry classifications for the legal entity.
+   */
+  industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
 
   /**
    * An individual's last name.
