@@ -918,6 +918,8 @@ export declare namespace ModernTreasury {
   export type AccountsType = API.AccountsType;
   export type AsyncResponse = API.AsyncResponse;
   export type Currency = API.Currency;
+  export type LegalEntityComplianceDetail = API.LegalEntityComplianceDetail;
+  export type LegalEntityIndustryClassification = API.LegalEntityIndustryClassification;
   export type TransactionDirection = API.TransactionDirection;
 }
 
