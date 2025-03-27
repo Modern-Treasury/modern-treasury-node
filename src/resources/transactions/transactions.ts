@@ -242,6 +242,7 @@ export interface Transaction {
     | 'iso20022'
     | 'jpmc'
     | 'mx'
+    | 'paypal'
     | 'plaid'
     | 'pnc'
     | 'rspec_vendor'

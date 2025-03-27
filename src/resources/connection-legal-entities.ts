@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as LegalEntitiesAPI from './legal-entities';
+import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
 export class ConnectionLegalEntities extends APIResource {
@@ -156,6 +157,8 @@ export namespace ConnectionLegalEntityCreateParams {
      */
     citizenship_country?: string | null;
 
+    compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
     /**
      * A business's formation date (YYYY-MM-DD).
      */
@@ -182,6 +185,11 @@ export namespace ConnectionLegalEntityCreateParams {
      * A list of identifications for the legal entity.
      */
     identifications?: Array<LegalEntity.Identification>;
+
+    /**
+     * A list of industry classifications for the legal entity.
+     */
+    industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
 
     /**
      * An individual's last name.
@@ -373,6 +381,8 @@ export namespace ConnectionLegalEntityCreateParams {
          */
         citizenship_country?: string | null;
 
+        compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
         /**
          * A business's formation date (YYYY-MM-DD).
          */
@@ -399,6 +409,11 @@ export namespace ConnectionLegalEntityCreateParams {
          * A list of identifications for the legal entity.
          */
         identifications?: Array<ChildLegalEntity.Identification>;
+
+        /**
+         * A list of industry classifications for the legal entity.
+         */
+        industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
 
         /**
          * An individual's last name.
