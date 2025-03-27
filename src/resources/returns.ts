@@ -231,6 +231,11 @@ export interface ReturnObject {
    * this string will be present.
    */
   additional_information?: string | null;
+
+  /**
+   * The raw data from the return file that we get from the bank.
+   */
+  data?: unknown | null;
 }
 
 export namespace ReturnObject {
@@ -298,6 +303,7 @@ export namespace ReturnObject {
       | 'jpmc_payment_batch_id'
       | 'jpmc_payment_information_id'
       | 'jpmc_payment_returned_datetime'
+      | 'jpmc_transaction_reference_number'
       | 'lob_check_id'
       | 'other'
       | 'partial_swift_mir'
@@ -305,7 +311,9 @@ export namespace ReturnObject {
       | 'pnc_instruction_id'
       | 'pnc_multipayment_id'
       | 'pnc_payment_trace_id'
+      | 'pnc_request_for_payment_id'
       | 'pnc_transaction_reference_number'
+      | 'rbc_wire_reference_id'
       | 'rspec_vendor_payment_id'
       | 'rtp_instruction_id'
       | 'signet_api_reference_id'
@@ -408,6 +416,11 @@ export interface ReturnCreateParams {
     | 'R53'
     | 'currencycloud'
     | null;
+
+  /**
+   * The raw data from the return file that we get from the bank.
+   */
+  data?: unknown | null;
 
   /**
    * If the return code is `R14` or `R15` this is the date the deceased counterparty

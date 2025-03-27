@@ -219,7 +219,20 @@ export interface IncomingPaymentDetail {
    * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
    * `wire`.
    */
-  type: 'ach' | 'book' | 'check' | 'eft' | 'interac' | 'rtp' | 'sepa' | 'signet' | 'wire';
+  type:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'check'
+    | 'eft'
+    | 'interac'
+    | 'neft'
+    | 'nz_becs'
+    | 'rtp'
+    | 'sepa'
+    | 'signet'
+    | 'wire';
 
   updated_at: string;
 
@@ -289,7 +302,20 @@ export interface IncomingPaymentDetailListParams extends PageParams {
    * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
    * `wire`.
    */
-  type?: 'ach' | 'book' | 'check' | 'eft' | 'interac' | 'rtp' | 'sepa' | 'signet' | 'wire';
+  type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'check'
+    | 'eft'
+    | 'interac'
+    | 'neft'
+    | 'nz_becs'
+    | 'rtp'
+    | 'sepa'
+    | 'signet'
+    | 'wire';
 
   /**
    * If the incoming payment detail is in a virtual account, the ID of the Virtual
@@ -316,6 +342,12 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   currency?: Shared.Currency | null;
 
   /**
+   * An object passed through to the simulated IPD that could reflect what a vendor
+   * would pass.
+   */
+  data?: unknown | null;
+
+  /**
    * Defaults to a random description.
    */
   description?: string | null;
@@ -333,7 +365,20 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   /**
    * One of `ach`, `wire`, `check`.
    */
-  type?: 'ach' | 'book' | 'check' | 'eft' | 'interac' | 'rtp' | 'sepa' | 'signet' | 'wire';
+  type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'check'
+    | 'eft'
+    | 'interac'
+    | 'neft'
+    | 'nz_becs'
+    | 'rtp'
+    | 'sepa'
+    | 'signet'
+    | 'wire';
 
   /**
    * An optional parameter to associate the incoming payment detail to a virtual
