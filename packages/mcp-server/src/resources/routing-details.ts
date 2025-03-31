@@ -1,0 +1,169 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { registerApiMethod } from '../tools';
+import ModernTreasury from 'modern-treasury';
+
+registerApiMethod({
+  name: 'create_routing_details',
+  description: 'Create a routing detail for a single external account.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      accounts_type: {
+        type: 'string',
+        enum: ['external_accounts'],
+      },
+      account_id: {
+        type: 'string',
+      },
+      routing_number: {
+        type: 'string',
+        description: 'The routing number of the bank.',
+      },
+      routing_number_type: {
+        type: 'string',
+        description:
+          'The type of routing number. See https://docs.moderntreasury.com/platform/reference/routing-detail-object for more details.',
+        enum: [
+          'aba',
+          'au_bsb',
+          'br_codigo',
+          'ca_cpa',
+          'chips',
+          'cnaps',
+          'dk_interbank_clearing_code',
+          'gb_sort_code',
+          'hk_interbank_clearing_code',
+          'hu_interbank_clearing_code',
+          'id_sknbi_code',
+          'in_ifsc',
+          'jp_zengin_code',
+          'mx_bank_identifier',
+          'my_branch_code',
+          'nz_national_clearing_code',
+          'pl_national_clearing_code',
+          'se_bankgiro_clearing_code',
+          'sg_interbank_clearing_code',
+          'swift',
+          'za_national_clearing_code',
+        ],
+      },
+      payment_type: {
+        type: 'string',
+        description:
+          'If the routing detail is to be used for a specific payment type this field will be populated, otherwise null.',
+        enum: [
+          'ach',
+          'au_becs',
+          'bacs',
+          'book',
+          'card',
+          'chats',
+          'check',
+          'cross_border',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'interac',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'provxchange',
+          'ro_sent',
+          'rtp',
+          'se_bankgirot',
+          'sen',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'signet',
+          'sknbi',
+          'wire',
+          'zengin',
+        ],
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { accounts_type, account_id, ...body } = args;
+    return client.routingDetails.create(accounts_type, account_id, body);
+  },
+});
+
+registerApiMethod({
+  name: 'retrieve_routing_details',
+  description: 'Get a single routing detail for a single internal or external account.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      accounts_type: {
+        type: 'string',
+        enum: ['external_accounts', 'internal_accounts'],
+      },
+      account_id: {
+        type: 'string',
+      },
+      id: {
+        type: 'string',
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { accounts_type, account_id, id } = args;
+    return client.routingDetails.retrieve(accounts_type, account_id, id);
+  },
+});
+
+registerApiMethod({
+  name: 'list_routing_details',
+  description: 'Get a list of routing details for a single internal or external account.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      accounts_type: {
+        type: 'string',
+        enum: ['external_accounts', 'internal_accounts'],
+      },
+      account_id: {
+        type: 'string',
+      },
+      after_cursor: {
+        type: 'string',
+      },
+      per_page: {
+        type: 'integer',
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { accounts_type, account_id, ...body } = args;
+    return client.routingDetails.list(accounts_type, account_id, body);
+  },
+});
+
+registerApiMethod({
+  name: 'delete_routing_details',
+  description: 'Delete a routing detail for a single external account.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      accounts_type: {
+        type: 'string',
+        enum: ['external_accounts'],
+      },
+      account_id: {
+        type: 'string',
+      },
+      id: {
+        type: 'string',
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { accounts_type, account_id, id } = args;
+    return client.routingDetails.del(accounts_type, account_id, id);
+  },
+});
