@@ -1,0 +1,54 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import ModernTreasury from 'modern-treasury';
+
+export const tool: Tool = {
+  name: 'list_counterparties',
+  description: 'Get a paginated list of all counterparties.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      after_cursor: {
+        type: 'string',
+      },
+      created_at_lower_bound: {
+        type: 'string',
+        description: 'Used to return counterparties created after some datetime.',
+        format: 'date-time',
+      },
+      created_at_upper_bound: {
+        type: 'string',
+        description: 'Used to return counterparties created before some datetime.',
+        format: 'date-time',
+      },
+      email: {
+        type: 'string',
+        description: 'Performs a partial string match of the email field. This is also case insensitive.',
+      },
+      legal_entity_id: {
+        type: 'string',
+        description: 'Filters for counterparties with the given legal entity ID.',
+      },
+      metadata: {
+        type: 'object',
+        description:
+          'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
+      },
+      name: {
+        type: 'string',
+        description: 'Performs a partial string match of the name field. This is also case insensitive.',
+      },
+      per_page: {
+        type: 'integer',
+      },
+    },
+  },
+};
+
+export const handler = (client: ModernTreasury, args: any) => {
+  const { ...body } = args;
+  return client.counterparties.list(body);
+};
+
+export default { tool, handler };

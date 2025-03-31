@@ -1,0 +1,34 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import ModernTreasury from 'modern-treasury';
+
+export const tool: Tool = {
+  name: 'list_line_items',
+  description: 'Get a list of line items',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      itemizable_type: {
+        type: 'string',
+        enum: ['expected_payments', 'payment_orders'],
+      },
+      itemizable_id: {
+        type: 'string',
+      },
+      after_cursor: {
+        type: 'string',
+      },
+      per_page: {
+        type: 'integer',
+      },
+    },
+  },
+};
+
+export const handler = (client: ModernTreasury, args: any) => {
+  const { itemizable_type, itemizable_id, ...body } = args;
+  return client.lineItems.list(itemizable_type, itemizable_id, body);
+};
+
+export default { tool, handler };

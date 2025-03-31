@@ -1,0 +1,77 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import ModernTreasury from 'modern-treasury';
+
+export const tool: Tool = {
+  name: 'list_incoming_payment_details',
+  description: 'Get a list of Incoming Payment Details.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      after_cursor: {
+        type: 'string',
+      },
+      as_of_date_end: {
+        type: 'string',
+        description:
+          'Filters incoming payment details with an as_of_date starting on or before the specified date (YYYY-MM-DD).',
+        format: 'date',
+      },
+      as_of_date_start: {
+        type: 'string',
+        description:
+          'Filters incoming payment details with an as_of_date starting on or after the specified date (YYYY-MM-DD).',
+        format: 'date',
+      },
+      direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
+      },
+      metadata: {
+        type: 'object',
+        description:
+          'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
+      },
+      per_page: {
+        type: 'integer',
+      },
+      status: {
+        type: 'string',
+        description:
+          'The current status of the incoming payment order. One of `pending`, `completed`, or `returned`.',
+        enum: ['completed', 'pending', 'returned'],
+      },
+      type: {
+        type: 'string',
+        description: 'One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or `wire`.',
+        enum: [
+          'ach',
+          'au_becs',
+          'bacs',
+          'book',
+          'check',
+          'eft',
+          'interac',
+          'neft',
+          'nz_becs',
+          'rtp',
+          'sepa',
+          'signet',
+          'wire',
+        ],
+      },
+      virtual_account_id: {
+        type: 'string',
+        description: 'If the incoming payment detail is in a virtual account, the ID of the Virtual Account.',
+      },
+    },
+  },
+};
+
+export const handler = (client: ModernTreasury, args: any) => {
+  const { ...body } = args;
+  return client.incomingPaymentDetails.list(body);
+};
+
+export default { tool, handler };
