@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.36.0 (2025-03-31)
+
+Full Changelog: [v2.35.0...v2.36.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.35.0...v2.36.0)
+
+### Features
+
+* add MCP server ([#538](https://github.com/Modern-Treasury/modern-treasury-node/issues/538)) ([e4076fc](https://github.com/Modern-Treasury/modern-treasury-node/commit/e4076fc55e73268f42ef78432ca128a4c7082ed7))
+* **mcp:** handle recursive schemas ([#539](https://github.com/Modern-Treasury/modern-treasury-node/issues/539)) ([35d524b](https://github.com/Modern-Treasury/modern-treasury-node/commit/35d524bed4174f22e61bd9b5d5c8800201e6be54))
+
+
+### Bug Fixes
+
+* **internal:** work around https://github.com/vercel/next.js/issues/76881 ([#535](https://github.com/Modern-Treasury/modern-treasury-node/issues/535)) ([7caa591](https://github.com/Modern-Treasury/modern-treasury-node/commit/7caa59144719ebe907a7b6748817e588d6ab7e66))
+
+
+### Chores
+
+* **api:** updates to bulk creation request, legal entity schemas and more ([#533](https://github.com/Modern-Treasury/modern-treasury-node/issues/533)) ([b34bb7b](https://github.com/Modern-Treasury/modern-treasury-node/commit/b34bb7ba96de6bbefec5548061ad2d2b08e4f245))
+* configure new SDK language ([0616ea3](https://github.com/Modern-Treasury/modern-treasury-node/commit/0616ea3c3c2ccb1e2676d7e9341de9b2f0b5d06f))
+* configure new SDK language ([aed71d6](https://github.com/Modern-Treasury/modern-treasury-node/commit/aed71d6ec8a5971dd52befd00c695585d590a40f))
+* internal codegen changes ([4d70adf](https://github.com/Modern-Treasury/modern-treasury-node/commit/4d70adf25f3abdbc926c2a5c82a92894232efe21))
+* **internal:** remove CI condition ([#537](https://github.com/Modern-Treasury/modern-treasury-node/issues/537)) ([ae65ae8](https://github.com/Modern-Treasury/modern-treasury-node/commit/ae65ae8859e1d18ac0530a6432c1dc0be9ac72d7))
+
 ## 2.35.0 (2025-03-26)
 
 Full Changelog: [v2.34.0...v2.35.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.34.0...v2.35.0)
