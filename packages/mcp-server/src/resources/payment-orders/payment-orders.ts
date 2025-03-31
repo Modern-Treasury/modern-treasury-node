@@ -1,0 +1,2583 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { registerApiMethod } from '../../tools';
+import ModernTreasury from 'modern-treasury';
+
+registerApiMethod({
+  name: 'create_payment_orders',
+  description: 'Create a new Payment Order',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      amount: {
+        type: 'integer',
+        description:
+          "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.",
+      },
+      direction: {
+        type: 'string',
+        description:
+          "One of `credit`, `debit`. Describes the direction money is flowing in the transaction. A `credit` moves money from your account to someone else's. A `debit` pulls money from someone else's account to your own. Note that wire, rtp, and check payments will always be `credit`.",
+        enum: ['credit', 'debit'],
+      },
+      originating_account_id: {
+        type: 'string',
+        description: "The ID of one of your organization's internal accounts.",
+      },
+      type: {
+        type: 'string',
+        description:
+          'One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.',
+        enum: [
+          'ach',
+          'au_becs',
+          'bacs',
+          'book',
+          'card',
+          'chats',
+          'check',
+          'cross_border',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'interac',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'provxchange',
+          'ro_sent',
+          'rtp',
+          'se_bankgirot',
+          'sen',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'signet',
+          'sknbi',
+          'wire',
+          'zengin',
+        ],
+      },
+      accounting: {
+        type: 'object',
+        properties: {
+          account_id: {
+            type: 'string',
+            description:
+              'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+          },
+          class_id: {
+            type: 'string',
+            description:
+              'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
+          },
+        },
+        required: [],
+      },
+      accounting_category_id: {
+        type: 'string',
+        description:
+          'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+      },
+      accounting_ledger_class_id: {
+        type: 'string',
+        description:
+          'The ID of one of your accounting ledger classes. Note that these will only be accessible if your accounting system has been connected.',
+      },
+      charge_bearer: {
+        type: 'string',
+        description:
+          'The party that will pay the fees for the payment order. Only applies to wire payment orders. Can be one of shared, sender, or receiver, which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.',
+        enum: ['shared', 'sender', 'receiver'],
+      },
+      currency: {
+        type: 'string',
+        description: 'Three-letter ISO currency code.',
+        enum: [
+          'AED',
+          'AFN',
+          'ALL',
+          'AMD',
+          'ANG',
+          'AOA',
+          'ARS',
+          'AUD',
+          'AWG',
+          'AZN',
+          'BAM',
+          'BBD',
+          'BCH',
+          'BDT',
+          'BGN',
+          'BHD',
+          'BIF',
+          'BMD',
+          'BND',
+          'BOB',
+          'BRL',
+          'BSD',
+          'BTC',
+          'BTN',
+          'BWP',
+          'BYN',
+          'BYR',
+          'BZD',
+          'CAD',
+          'CDF',
+          'CHF',
+          'CLF',
+          'CLP',
+          'CNH',
+          'CNY',
+          'COP',
+          'CRC',
+          'CUC',
+          'CUP',
+          'CVE',
+          'CZK',
+          'DJF',
+          'DKK',
+          'DOP',
+          'DZD',
+          'EEK',
+          'EGP',
+          'ERN',
+          'ETB',
+          'EUR',
+          'FJD',
+          'FKP',
+          'GBP',
+          'GBX',
+          'GEL',
+          'GGP',
+          'GHS',
+          'GIP',
+          'GMD',
+          'GNF',
+          'GTQ',
+          'GYD',
+          'HKD',
+          'HNL',
+          'HRK',
+          'HTG',
+          'HUF',
+          'IDR',
+          'ILS',
+          'IMP',
+          'INR',
+          'IQD',
+          'IRR',
+          'ISK',
+          'JEP',
+          'JMD',
+          'JOD',
+          'JPY',
+          'KES',
+          'KGS',
+          'KHR',
+          'KMF',
+          'KPW',
+          'KRW',
+          'KWD',
+          'KYD',
+          'KZT',
+          'LAK',
+          'LBP',
+          'LKR',
+          'LRD',
+          'LSL',
+          'LTL',
+          'LVL',
+          'LYD',
+          'MAD',
+          'MDL',
+          'MGA',
+          'MKD',
+          'MMK',
+          'MNT',
+          'MOP',
+          'MRO',
+          'MRU',
+          'MTL',
+          'MUR',
+          'MVR',
+          'MWK',
+          'MXN',
+          'MYR',
+          'MZN',
+          'NAD',
+          'NGN',
+          'NIO',
+          'NOK',
+          'NPR',
+          'NZD',
+          'OMR',
+          'PAB',
+          'PEN',
+          'PGK',
+          'PHP',
+          'PKR',
+          'PLN',
+          'PYG',
+          'QAR',
+          'RON',
+          'RSD',
+          'RUB',
+          'RWF',
+          'SAR',
+          'SBD',
+          'SCR',
+          'SDG',
+          'SEK',
+          'SGD',
+          'SHP',
+          'SKK',
+          'SLL',
+          'SOS',
+          'SRD',
+          'SSP',
+          'STD',
+          'SVC',
+          'SYP',
+          'SZL',
+          'THB',
+          'TJS',
+          'TMM',
+          'TMT',
+          'TND',
+          'TOP',
+          'TRY',
+          'TTD',
+          'TWD',
+          'TZS',
+          'UAH',
+          'UGX',
+          'USD',
+          'UYU',
+          'UZS',
+          'VEF',
+          'VES',
+          'VND',
+          'VUV',
+          'WST',
+          'XAF',
+          'XAG',
+          'XAU',
+          'XBA',
+          'XBB',
+          'XBC',
+          'XBD',
+          'XCD',
+          'XDR',
+          'XFU',
+          'XOF',
+          'XPD',
+          'XPF',
+          'XPT',
+          'XTS',
+          'YER',
+          'ZAR',
+          'ZMK',
+          'ZMW',
+          'ZWD',
+          'ZWL',
+          'ZWN',
+          'ZWR',
+        ],
+      },
+      description: {
+        type: 'string',
+        description: 'An optional description for internal use.',
+      },
+      documents: {
+        type: 'array',
+        description:
+          "An array of documents to be attached to the payment order. Note that if you attach documents, the request's content type must be `multipart/form-data`.",
+        items: {
+          type: 'object',
+          properties: {
+            documentable_id: {
+              type: 'string',
+              description: 'The unique identifier for the associated object.',
+            },
+            documentable_type: {
+              type: 'string',
+              enum: [
+                'cases',
+                'counterparties',
+                'expected_payments',
+                'external_accounts',
+                'incoming_payment_details',
+                'internal_accounts',
+                'organizations',
+                'paper_items',
+                'payment_orders',
+                'transactions',
+                'decisions',
+                'connections',
+              ],
+            },
+            file: {
+              type: 'string',
+            },
+            document_type: {
+              type: 'string',
+              description: 'A category given to the document, can be `null`.',
+            },
+          },
+          required: ['documentable_id', 'documentable_type', 'file'],
+        },
+      },
+      effective_date: {
+        type: 'string',
+        description:
+          "Date transactions are to be posted to the participants' account. Defaults to the current business day or the next business day if the current day is a bank holiday or weekend. Format: yyyy-mm-dd.",
+        format: 'date',
+      },
+      expires_at: {
+        type: 'string',
+        description: 'RFP payments require an expires_at. This value must be past the effective_date.',
+        format: 'date-time',
+      },
+      fallback_type: {
+        type: 'string',
+        description:
+          'A payment type to fallback to if the original type is not valid for the receiving account. Currently, this only supports falling back from RTP to ACH (type=rtp and fallback_type=ach)',
+        enum: ['ach'],
+      },
+      foreign_exchange_contract: {
+        type: 'string',
+        description:
+          'If present, indicates a specific foreign exchange contract number that has been generated by your financial institution.',
+      },
+      foreign_exchange_indicator: {
+        type: 'string',
+        description:
+          'Indicates the type of FX transfer to initiate, can be either `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order currency matches the originating account currency.',
+        enum: ['fixed_to_variable', 'variable_to_fixed'],
+      },
+      ledger_transaction: {
+        type: 'object',
+        description:
+          'Specifies a ledger transaction object that will be created with the payment order. If the ledger transaction cannot be created, then the payment order creation will fail. The resulting ledger transaction will mirror the status of the payment order.',
+        properties: {
+          ledger_entries: {
+            type: 'array',
+            description: 'An array of ledger entry objects.',
+            items: {
+              type: 'object',
+              properties: {
+                amount: {
+                  type: 'integer',
+                  description:
+                    "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.",
+                },
+                direction: {
+                  type: 'string',
+                  enum: ['credit', 'debit'],
+                },
+                ledger_account_id: {
+                  type: 'string',
+                  description: 'The ledger account that this ledger entry is associated with.',
+                },
+                available_balance_amount: {
+                  type: 'object',
+                  description:
+                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s available balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+                },
+                lock_version: {
+                  type: 'integer',
+                  description:
+                    'Lock version of the ledger account. This can be passed when creating a ledger transaction to only succeed if no ledger transactions have posted since the given version. See our post about Designing the Ledgers API with Optimistic Locking for more details.',
+                },
+                metadata: {
+                  type: 'object',
+                  description:
+                    'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                },
+                pending_balance_amount: {
+                  type: 'object',
+                  description:
+                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s pending balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+                },
+                posted_balance_amount: {
+                  type: 'object',
+                  description:
+                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s posted balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+                },
+                show_resulting_ledger_account_balances: {
+                  type: 'boolean',
+                  description:
+                    'If true, response will include the balance of the associated ledger account for the entry.',
+                },
+              },
+              required: ['amount', 'direction', 'ledger_account_id'],
+            },
+          },
+          description: {
+            type: 'string',
+            description: 'An optional description for internal use.',
+          },
+          effective_at: {
+            type: 'string',
+            description:
+              'The timestamp (ISO8601 format) at which the ledger transaction happened for reporting purposes.',
+            format: 'date-time',
+          },
+          effective_date: {
+            type: 'string',
+            description:
+              'The date (YYYY-MM-DD) on which the ledger transaction happened for reporting purposes.',
+            format: 'date',
+          },
+          external_id: {
+            type: 'string',
+            description:
+              'A unique string to represent the ledger transaction. Only one pending or posted ledger transaction may have this ID in the ledger.',
+          },
+          ledgerable_id: {
+            type: 'string',
+            description:
+              'If the ledger transaction can be reconciled to another object in Modern Treasury, the id will be populated here, otherwise null.',
+          },
+          ledgerable_type: {
+            type: 'string',
+            description:
+              'If the ledger transaction can be reconciled to another object in Modern Treasury, the type will be populated here, otherwise null. This can be one of payment_order, incoming_payment_detail, expected_payment, return, paper_item, or reversal.',
+            enum: [
+              'expected_payment',
+              'incoming_payment_detail',
+              'paper_item',
+              'payment_order',
+              'return',
+              'reversal',
+            ],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+          status: {
+            type: 'string',
+            description: 'To post a ledger transaction at creation, use `posted`.',
+            enum: ['archived', 'pending', 'posted'],
+          },
+        },
+        required: ['ledger_entries'],
+      },
+      ledger_transaction_id: {
+        type: 'string',
+        description:
+          'Either ledger_transaction or ledger_transaction_id can be provided. Only a pending ledger transaction can be attached upon payment order creation. Once the payment order is created, the status of the ledger transaction tracks the payment order automatically.',
+      },
+      line_items: {
+        type: 'array',
+        description: 'An array of line items that must sum up to the amount of the payment order.',
+        items: {
+          type: 'object',
+          properties: {
+            amount: {
+              type: 'integer',
+              description:
+                "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+            },
+            accounting_category_id: {
+              type: 'string',
+              description:
+                'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+            },
+            description: {
+              type: 'string',
+              description: 'A free-form description of the line item.',
+            },
+            metadata: {
+              type: 'object',
+              description:
+                'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            },
+          },
+          required: ['amount'],
+        },
+      },
+      metadata: {
+        type: 'object',
+        description:
+          'Additional data represented as key-value pairs. Both the key and value must be strings.',
+      },
+      nsf_protected: {
+        type: 'boolean',
+        description:
+          'A boolean to determine if NSF Protection is enabled for this payment order. Note that this setting must also be turned on in your organization settings page.',
+      },
+      originating_party_name: {
+        type: 'string',
+        description:
+          "If present, this will replace your default company name on receiver's bank statement. This field can only be used for ACH payments currently. For ACH, only the first 16 characters of this string will be used. Any additional characters will be truncated.",
+      },
+      priority: {
+        type: 'string',
+        description:
+          'Either `normal` or `high`. For ACH and EFT payments, `high` represents a same-day ACH or EFT transfer, respectively. For check payments, `high` can mean an overnight check rather than standard mail.',
+        enum: ['high', 'normal'],
+      },
+      process_after: {
+        type: 'string',
+        description:
+          'If present, Modern Treasury will not process the payment until after this time. If `process_after` is past the cutoff for `effective_date`, `process_after` will take precedence and `effective_date` will automatically update to reflect the earliest possible sending date after `process_after`. Format is ISO8601 timestamp.',
+        format: 'date-time',
+      },
+      purpose: {
+        type: 'string',
+        description:
+          'For `wire`, this is usually the purpose which is transmitted via the "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3 digit CPA Code that will be attached to the payment.',
+      },
+      receiving_account: {
+        type: 'object',
+        description:
+          'Either `receiving_account` or `receiving_account_id` must be present. When using `receiving_account_id`, you may pass the id of an external account or an internal account.',
+        properties: {
+          account_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                account_number: {
+                  type: 'string',
+                },
+                account_number_type: {
+                  type: 'string',
+                  enum: [
+                    'au_number',
+                    'clabe',
+                    'hk_number',
+                    'iban',
+                    'id_number',
+                    'nz_number',
+                    'other',
+                    'pan',
+                    'sg_number',
+                    'wallet_address',
+                  ],
+                },
+              },
+              required: ['account_number'],
+            },
+          },
+          account_type: {
+            type: 'string',
+            description: 'Can be `checking`, `savings` or `other`.',
+            enum: [
+              'cash',
+              'checking',
+              'general_ledger',
+              'loan',
+              'non_resident',
+              'other',
+              'overdraft',
+              'savings',
+            ],
+          },
+          contact_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                contact_identifier: {
+                  type: 'string',
+                },
+                contact_identifier_type: {
+                  type: 'string',
+                  enum: ['email', 'phone_number', 'website'],
+                },
+              },
+              required: [],
+            },
+          },
+          ledger_account: {
+            type: 'object',
+            description:
+              'Specifies a ledger account object that will be created with the external account. The resulting ledger account is linked to the external account for auto-ledgering Payment objects. See https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects for more details.',
+            properties: {
+              currency: {
+                type: 'string',
+                description: 'The currency of the ledger account.',
+              },
+              ledger_id: {
+                type: 'string',
+                description: 'The id of the ledger that this account belongs to.',
+              },
+              name: {
+                type: 'string',
+                description: 'The name of the ledger account.',
+              },
+              normal_balance: {
+                type: 'string',
+                enum: ['credit', 'debit'],
+              },
+              currency_exponent: {
+                type: 'integer',
+                description: 'The currency exponent of the ledger account.',
+              },
+              description: {
+                type: 'string',
+                description: 'The description of the ledger account.',
+              },
+              ledger_account_category_ids: {
+                type: 'array',
+                description:
+                  'The array of ledger account category ids that this ledger account should be a child of.',
+                items: {
+                  type: 'string',
+                },
+              },
+              ledgerable_id: {
+                type: 'string',
+                description:
+                  'If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null.',
+              },
+              ledgerable_type: {
+                type: 'string',
+                description:
+                  'If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account.',
+                enum: ['counterparty', 'external_account', 'internal_account', 'virtual_account'],
+              },
+              metadata: {
+                type: 'object',
+                description:
+                  'Additional data represented as key-value pairs. Both the key and value must be strings.',
+              },
+            },
+            required: ['currency', 'ledger_id', 'name', 'normal_balance'],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+          name: {
+            type: 'string',
+            description:
+              "A nickname for the external account. This is only for internal usage and won't affect any payments",
+          },
+          party_address: {
+            type: 'object',
+            description: 'Required if receiving wire payments.',
+            properties: {
+              country: {
+                type: 'string',
+                description: 'Country code conforms to [ISO 3166-1 alpha-2]',
+              },
+              line1: {
+                type: 'string',
+              },
+              line2: {
+                type: 'string',
+              },
+              locality: {
+                type: 'string',
+                description: 'Locality or City.',
+              },
+              postal_code: {
+                type: 'string',
+                description: 'The postal code of the address.',
+              },
+              region: {
+                type: 'string',
+                description: 'Region or State.',
+              },
+            },
+            required: [],
+          },
+          party_identifier: {
+            type: 'string',
+          },
+          party_name: {
+            type: 'string',
+            description: "If this value isn't provided, it will be inherited from the counterparty's name.",
+          },
+          party_type: {
+            type: 'string',
+            description: 'Either `individual` or `business`.',
+            enum: ['business', 'individual'],
+          },
+          plaid_processor_token: {
+            type: 'string',
+            description:
+              "If you've enabled the Modern Treasury + Plaid integration in your Plaid account, you can pass the processor token in this field.",
+          },
+          routing_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                routing_number: {
+                  type: 'string',
+                },
+                routing_number_type: {
+                  type: 'string',
+                  enum: [
+                    'aba',
+                    'au_bsb',
+                    'br_codigo',
+                    'ca_cpa',
+                    'chips',
+                    'cnaps',
+                    'dk_interbank_clearing_code',
+                    'gb_sort_code',
+                    'hk_interbank_clearing_code',
+                    'hu_interbank_clearing_code',
+                    'id_sknbi_code',
+                    'in_ifsc',
+                    'jp_zengin_code',
+                    'my_branch_code',
+                    'mx_bank_identifier',
+                    'nz_national_clearing_code',
+                    'pl_national_clearing_code',
+                    'se_bankgiro_clearing_code',
+                    'sg_interbank_clearing_code',
+                    'swift',
+                    'za_national_clearing_code',
+                  ],
+                },
+                payment_type: {
+                  type: 'string',
+                  enum: [
+                    'ach',
+                    'au_becs',
+                    'bacs',
+                    'book',
+                    'card',
+                    'chats',
+                    'check',
+                    'cross_border',
+                    'dk_nets',
+                    'eft',
+                    'hu_ics',
+                    'interac',
+                    'masav',
+                    'mx_ccen',
+                    'neft',
+                    'nics',
+                    'nz_becs',
+                    'pl_elixir',
+                    'provxchange',
+                    'ro_sent',
+                    'rtp',
+                    'se_bankgirot',
+                    'sen',
+                    'sepa',
+                    'sg_giro',
+                    'sic',
+                    'signet',
+                    'sknbi',
+                    'wire',
+                    'zengin',
+                  ],
+                },
+              },
+              required: ['routing_number', 'routing_number_type'],
+            },
+          },
+        },
+        required: [],
+      },
+      receiving_account_id: {
+        type: 'string',
+        description:
+          'Either `receiving_account` or `receiving_account_id` must be present. When using `receiving_account_id`, you may pass the id of an external account or an internal account.',
+      },
+      remittance_information: {
+        type: 'string',
+        description:
+          'For `ach`, this field will be passed through on an addenda record. For `wire` payments the field will be passed through as the "Originator to Beneficiary Information", also known as OBI or Fedwire tag 6000.',
+      },
+      send_remittance_advice: {
+        type: 'boolean',
+        description:
+          'Send an email to the counterparty when the payment order is sent to the bank. If `null`, `send_remittance_advice` on the Counterparty is used.',
+      },
+      statement_descriptor: {
+        type: 'string',
+        description:
+          "An optional descriptor which will appear in the receiver's statement. For `check` payments this field will be used as the memo line. For `ach` the maximum length is 10 characters. Note that for ACH payments, the name on your bank account will be included automatically by the bank, so you can use the characters for other useful information. For `eft` the maximum length is 15 characters.",
+      },
+      subtype: {
+        type: 'string',
+        description:
+          'An additional layer of classification for the type of payment order you are doing. This field is only used for `ach` payment orders currently. For `ach`  payment orders, the `subtype`  represents the SEC code. We currently support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.',
+        enum: [
+          '0C',
+          '0N',
+          '0S',
+          'CCD',
+          'CIE',
+          'CTX',
+          'IAT',
+          'PPD',
+          'TEL',
+          'WEB',
+          'au_becs',
+          'bacs',
+          'chats',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'ro_sent',
+          'se_bankgirot',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'sknbi',
+          'zengin',
+        ],
+      },
+      transaction_monitoring_enabled: {
+        type: 'boolean',
+        description:
+          'A flag that determines whether a payment order should go through transaction monitoring.',
+      },
+      ultimate_originating_party_identifier: {
+        type: 'string',
+        description: 'Identifier of the ultimate originator of the payment order.',
+      },
+      ultimate_originating_party_name: {
+        type: 'string',
+        description: 'Name of the ultimate originator of the payment order.',
+      },
+      ultimate_receiving_party_identifier: {
+        type: 'string',
+        description: 'Identifier of the ultimate funds recipient.',
+      },
+      ultimate_receiving_party_name: {
+        type: 'string',
+        description: 'Name of the ultimate funds recipient.',
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { ...body } = args;
+    return client.paymentOrders.create(body);
+  },
+});
+
+registerApiMethod({
+  name: 'retrieve_payment_orders',
+  description: 'Get details on a single payment order',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { id } = args;
+    return client.paymentOrders.retrieve(id);
+  },
+});
+
+registerApiMethod({
+  name: 'update_payment_orders',
+  description: 'Update a payment order',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+      },
+      accounting: {
+        type: 'object',
+        properties: {
+          account_id: {
+            type: 'string',
+            description:
+              'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+          },
+          class_id: {
+            type: 'string',
+            description:
+              'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
+          },
+        },
+        required: [],
+      },
+      accounting_category_id: {
+        type: 'string',
+        description:
+          'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+      },
+      accounting_ledger_class_id: {
+        type: 'string',
+        description:
+          'The ID of one of your accounting ledger classes. Note that these will only be accessible if your accounting system has been connected.',
+      },
+      amount: {
+        type: 'integer',
+        description:
+          "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.",
+      },
+      charge_bearer: {
+        type: 'string',
+        description:
+          'The party that will pay the fees for the payment order. Only applies to wire payment orders. Can be one of shared, sender, or receiver, which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.',
+        enum: ['shared', 'sender', 'receiver'],
+      },
+      counterparty_id: {
+        type: 'string',
+        description: 'Required when receiving_account_id is passed the ID of an external account.',
+      },
+      currency: {
+        type: 'string',
+        description: 'Three-letter ISO currency code.',
+        enum: [
+          'AED',
+          'AFN',
+          'ALL',
+          'AMD',
+          'ANG',
+          'AOA',
+          'ARS',
+          'AUD',
+          'AWG',
+          'AZN',
+          'BAM',
+          'BBD',
+          'BCH',
+          'BDT',
+          'BGN',
+          'BHD',
+          'BIF',
+          'BMD',
+          'BND',
+          'BOB',
+          'BRL',
+          'BSD',
+          'BTC',
+          'BTN',
+          'BWP',
+          'BYN',
+          'BYR',
+          'BZD',
+          'CAD',
+          'CDF',
+          'CHF',
+          'CLF',
+          'CLP',
+          'CNH',
+          'CNY',
+          'COP',
+          'CRC',
+          'CUC',
+          'CUP',
+          'CVE',
+          'CZK',
+          'DJF',
+          'DKK',
+          'DOP',
+          'DZD',
+          'EEK',
+          'EGP',
+          'ERN',
+          'ETB',
+          'EUR',
+          'FJD',
+          'FKP',
+          'GBP',
+          'GBX',
+          'GEL',
+          'GGP',
+          'GHS',
+          'GIP',
+          'GMD',
+          'GNF',
+          'GTQ',
+          'GYD',
+          'HKD',
+          'HNL',
+          'HRK',
+          'HTG',
+          'HUF',
+          'IDR',
+          'ILS',
+          'IMP',
+          'INR',
+          'IQD',
+          'IRR',
+          'ISK',
+          'JEP',
+          'JMD',
+          'JOD',
+          'JPY',
+          'KES',
+          'KGS',
+          'KHR',
+          'KMF',
+          'KPW',
+          'KRW',
+          'KWD',
+          'KYD',
+          'KZT',
+          'LAK',
+          'LBP',
+          'LKR',
+          'LRD',
+          'LSL',
+          'LTL',
+          'LVL',
+          'LYD',
+          'MAD',
+          'MDL',
+          'MGA',
+          'MKD',
+          'MMK',
+          'MNT',
+          'MOP',
+          'MRO',
+          'MRU',
+          'MTL',
+          'MUR',
+          'MVR',
+          'MWK',
+          'MXN',
+          'MYR',
+          'MZN',
+          'NAD',
+          'NGN',
+          'NIO',
+          'NOK',
+          'NPR',
+          'NZD',
+          'OMR',
+          'PAB',
+          'PEN',
+          'PGK',
+          'PHP',
+          'PKR',
+          'PLN',
+          'PYG',
+          'QAR',
+          'RON',
+          'RSD',
+          'RUB',
+          'RWF',
+          'SAR',
+          'SBD',
+          'SCR',
+          'SDG',
+          'SEK',
+          'SGD',
+          'SHP',
+          'SKK',
+          'SLL',
+          'SOS',
+          'SRD',
+          'SSP',
+          'STD',
+          'SVC',
+          'SYP',
+          'SZL',
+          'THB',
+          'TJS',
+          'TMM',
+          'TMT',
+          'TND',
+          'TOP',
+          'TRY',
+          'TTD',
+          'TWD',
+          'TZS',
+          'UAH',
+          'UGX',
+          'USD',
+          'UYU',
+          'UZS',
+          'VEF',
+          'VES',
+          'VND',
+          'VUV',
+          'WST',
+          'XAF',
+          'XAG',
+          'XAU',
+          'XBA',
+          'XBB',
+          'XBC',
+          'XBD',
+          'XCD',
+          'XDR',
+          'XFU',
+          'XOF',
+          'XPD',
+          'XPF',
+          'XPT',
+          'XTS',
+          'YER',
+          'ZAR',
+          'ZMK',
+          'ZMW',
+          'ZWD',
+          'ZWL',
+          'ZWN',
+          'ZWR',
+        ],
+      },
+      description: {
+        type: 'string',
+        description: 'An optional description for internal use.',
+      },
+      direction: {
+        type: 'string',
+        description:
+          "One of `credit`, `debit`. Describes the direction money is flowing in the transaction. A `credit` moves money from your account to someone else's. A `debit` pulls money from someone else's account to your own. Note that wire, rtp, and check payments will always be `credit`.",
+        enum: ['credit', 'debit'],
+      },
+      effective_date: {
+        type: 'string',
+        description:
+          "Date transactions are to be posted to the participants' account. Defaults to the current business day or the next business day if the current day is a bank holiday or weekend. Format: yyyy-mm-dd.",
+        format: 'date',
+      },
+      expires_at: {
+        type: 'string',
+        description: 'RFP payments require an expires_at. This value must be past the effective_date.',
+        format: 'date-time',
+      },
+      fallback_type: {
+        type: 'string',
+        description:
+          'A payment type to fallback to if the original type is not valid for the receiving account. Currently, this only supports falling back from RTP to ACH (type=rtp and fallback_type=ach)',
+        enum: ['ach'],
+      },
+      foreign_exchange_contract: {
+        type: 'string',
+        description:
+          'If present, indicates a specific foreign exchange contract number that has been generated by your financial institution.',
+      },
+      foreign_exchange_indicator: {
+        type: 'string',
+        description:
+          'Indicates the type of FX transfer to initiate, can be either `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order currency matches the originating account currency.',
+        enum: ['fixed_to_variable', 'variable_to_fixed'],
+      },
+      line_items: {
+        type: 'array',
+        description: 'An array of line items that must sum up to the amount of the payment order.',
+        items: {
+          type: 'object',
+          properties: {
+            amount: {
+              type: 'integer',
+              description:
+                "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+            },
+            accounting_category_id: {
+              type: 'string',
+              description:
+                'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+            },
+            description: {
+              type: 'string',
+              description: 'A free-form description of the line item.',
+            },
+            metadata: {
+              type: 'object',
+              description:
+                'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            },
+          },
+          required: ['amount'],
+        },
+      },
+      metadata: {
+        type: 'object',
+        description:
+          'Additional data represented as key-value pairs. Both the key and value must be strings.',
+      },
+      nsf_protected: {
+        type: 'boolean',
+        description:
+          'A boolean to determine if NSF Protection is enabled for this payment order. Note that this setting must also be turned on in your organization settings page.',
+      },
+      originating_account_id: {
+        type: 'string',
+        description: "The ID of one of your organization's internal accounts.",
+      },
+      originating_party_name: {
+        type: 'string',
+        description:
+          "If present, this will replace your default company name on receiver's bank statement. This field can only be used for ACH payments currently. For ACH, only the first 16 characters of this string will be used. Any additional characters will be truncated.",
+      },
+      priority: {
+        type: 'string',
+        description:
+          'Either `normal` or `high`. For ACH and EFT payments, `high` represents a same-day ACH or EFT transfer, respectively. For check payments, `high` can mean an overnight check rather than standard mail.',
+        enum: ['high', 'normal'],
+      },
+      process_after: {
+        type: 'string',
+        description:
+          'If present, Modern Treasury will not process the payment until after this time. If `process_after` is past the cutoff for `effective_date`, `process_after` will take precedence and `effective_date` will automatically update to reflect the earliest possible sending date after `process_after`. Format is ISO8601 timestamp.',
+        format: 'date-time',
+      },
+      purpose: {
+        type: 'string',
+        description:
+          'For `wire`, this is usually the purpose which is transmitted via the "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3 digit CPA Code that will be attached to the payment.',
+      },
+      receiving_account: {
+        type: 'object',
+        description:
+          'Either `receiving_account` or `receiving_account_id` must be present. When using `receiving_account_id`, you may pass the id of an external account or an internal account.',
+        properties: {
+          account_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                account_number: {
+                  type: 'string',
+                },
+                account_number_type: {
+                  type: 'string',
+                  enum: [
+                    'au_number',
+                    'clabe',
+                    'hk_number',
+                    'iban',
+                    'id_number',
+                    'nz_number',
+                    'other',
+                    'pan',
+                    'sg_number',
+                    'wallet_address',
+                  ],
+                },
+              },
+              required: ['account_number'],
+            },
+          },
+          account_type: {
+            type: 'string',
+            description: 'Can be `checking`, `savings` or `other`.',
+            enum: [
+              'cash',
+              'checking',
+              'general_ledger',
+              'loan',
+              'non_resident',
+              'other',
+              'overdraft',
+              'savings',
+            ],
+          },
+          contact_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                contact_identifier: {
+                  type: 'string',
+                },
+                contact_identifier_type: {
+                  type: 'string',
+                  enum: ['email', 'phone_number', 'website'],
+                },
+              },
+              required: [],
+            },
+          },
+          ledger_account: {
+            type: 'object',
+            description:
+              'Specifies a ledger account object that will be created with the external account. The resulting ledger account is linked to the external account for auto-ledgering Payment objects. See https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects for more details.',
+            properties: {
+              currency: {
+                type: 'string',
+                description: 'The currency of the ledger account.',
+              },
+              ledger_id: {
+                type: 'string',
+                description: 'The id of the ledger that this account belongs to.',
+              },
+              name: {
+                type: 'string',
+                description: 'The name of the ledger account.',
+              },
+              normal_balance: {
+                type: 'string',
+                enum: ['credit', 'debit'],
+              },
+              currency_exponent: {
+                type: 'integer',
+                description: 'The currency exponent of the ledger account.',
+              },
+              description: {
+                type: 'string',
+                description: 'The description of the ledger account.',
+              },
+              ledger_account_category_ids: {
+                type: 'array',
+                description:
+                  'The array of ledger account category ids that this ledger account should be a child of.',
+                items: {
+                  type: 'string',
+                },
+              },
+              ledgerable_id: {
+                type: 'string',
+                description:
+                  'If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null.',
+              },
+              ledgerable_type: {
+                type: 'string',
+                description:
+                  'If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account.',
+                enum: ['counterparty', 'external_account', 'internal_account', 'virtual_account'],
+              },
+              metadata: {
+                type: 'object',
+                description:
+                  'Additional data represented as key-value pairs. Both the key and value must be strings.',
+              },
+            },
+            required: ['currency', 'ledger_id', 'name', 'normal_balance'],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+          name: {
+            type: 'string',
+            description:
+              "A nickname for the external account. This is only for internal usage and won't affect any payments",
+          },
+          party_address: {
+            type: 'object',
+            description: 'Required if receiving wire payments.',
+            properties: {
+              country: {
+                type: 'string',
+                description: 'Country code conforms to [ISO 3166-1 alpha-2]',
+              },
+              line1: {
+                type: 'string',
+              },
+              line2: {
+                type: 'string',
+              },
+              locality: {
+                type: 'string',
+                description: 'Locality or City.',
+              },
+              postal_code: {
+                type: 'string',
+                description: 'The postal code of the address.',
+              },
+              region: {
+                type: 'string',
+                description: 'Region or State.',
+              },
+            },
+            required: [],
+          },
+          party_identifier: {
+            type: 'string',
+          },
+          party_name: {
+            type: 'string',
+            description: "If this value isn't provided, it will be inherited from the counterparty's name.",
+          },
+          party_type: {
+            type: 'string',
+            description: 'Either `individual` or `business`.',
+            enum: ['business', 'individual'],
+          },
+          plaid_processor_token: {
+            type: 'string',
+            description:
+              "If you've enabled the Modern Treasury + Plaid integration in your Plaid account, you can pass the processor token in this field.",
+          },
+          routing_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                routing_number: {
+                  type: 'string',
+                },
+                routing_number_type: {
+                  type: 'string',
+                  enum: [
+                    'aba',
+                    'au_bsb',
+                    'br_codigo',
+                    'ca_cpa',
+                    'chips',
+                    'cnaps',
+                    'dk_interbank_clearing_code',
+                    'gb_sort_code',
+                    'hk_interbank_clearing_code',
+                    'hu_interbank_clearing_code',
+                    'id_sknbi_code',
+                    'in_ifsc',
+                    'jp_zengin_code',
+                    'my_branch_code',
+                    'mx_bank_identifier',
+                    'nz_national_clearing_code',
+                    'pl_national_clearing_code',
+                    'se_bankgiro_clearing_code',
+                    'sg_interbank_clearing_code',
+                    'swift',
+                    'za_national_clearing_code',
+                  ],
+                },
+                payment_type: {
+                  type: 'string',
+                  enum: [
+                    'ach',
+                    'au_becs',
+                    'bacs',
+                    'book',
+                    'card',
+                    'chats',
+                    'check',
+                    'cross_border',
+                    'dk_nets',
+                    'eft',
+                    'hu_ics',
+                    'interac',
+                    'masav',
+                    'mx_ccen',
+                    'neft',
+                    'nics',
+                    'nz_becs',
+                    'pl_elixir',
+                    'provxchange',
+                    'ro_sent',
+                    'rtp',
+                    'se_bankgirot',
+                    'sen',
+                    'sepa',
+                    'sg_giro',
+                    'sic',
+                    'signet',
+                    'sknbi',
+                    'wire',
+                    'zengin',
+                  ],
+                },
+              },
+              required: ['routing_number', 'routing_number_type'],
+            },
+          },
+        },
+        required: [],
+      },
+      receiving_account_id: {
+        type: 'string',
+        description:
+          'Either `receiving_account` or `receiving_account_id` must be present. When using `receiving_account_id`, you may pass the id of an external account or an internal account.',
+      },
+      remittance_information: {
+        type: 'string',
+        description:
+          'For `ach`, this field will be passed through on an addenda record. For `wire` payments the field will be passed through as the "Originator to Beneficiary Information", also known as OBI or Fedwire tag 6000.',
+      },
+      send_remittance_advice: {
+        type: 'boolean',
+        description:
+          'Send an email to the counterparty when the payment order is sent to the bank. If `null`, `send_remittance_advice` on the Counterparty is used.',
+      },
+      statement_descriptor: {
+        type: 'string',
+        description:
+          "An optional descriptor which will appear in the receiver's statement. For `check` payments this field will be used as the memo line. For `ach` the maximum length is 10 characters. Note that for ACH payments, the name on your bank account will be included automatically by the bank, so you can use the characters for other useful information. For `eft` the maximum length is 15 characters.",
+      },
+      status: {
+        type: 'string',
+        description:
+          'To cancel a payment order, use `cancelled`. To redraft a returned payment order, use `approved`. To undo approval on a denied or approved payment order, use `needs_approval`.',
+        enum: [
+          'approved',
+          'cancelled',
+          'completed',
+          'denied',
+          'failed',
+          'needs_approval',
+          'pending',
+          'processing',
+          'returned',
+          'reversed',
+          'sent',
+        ],
+      },
+      subtype: {
+        type: 'string',
+        description:
+          'An additional layer of classification for the type of payment order you are doing. This field is only used for `ach` payment orders currently. For `ach`  payment orders, the `subtype`  represents the SEC code. We currently support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.',
+        enum: [
+          '0C',
+          '0N',
+          '0S',
+          'CCD',
+          'CIE',
+          'CTX',
+          'IAT',
+          'PPD',
+          'TEL',
+          'WEB',
+          'au_becs',
+          'bacs',
+          'chats',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'ro_sent',
+          'se_bankgirot',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'sknbi',
+          'zengin',
+        ],
+      },
+      type: {
+        type: 'string',
+        description:
+          'One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.',
+        enum: [
+          'ach',
+          'au_becs',
+          'bacs',
+          'book',
+          'card',
+          'chats',
+          'check',
+          'cross_border',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'interac',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'provxchange',
+          'ro_sent',
+          'rtp',
+          'se_bankgirot',
+          'sen',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'signet',
+          'sknbi',
+          'wire',
+          'zengin',
+        ],
+      },
+      ultimate_originating_party_identifier: {
+        type: 'string',
+        description:
+          'This represents the identifier by which the person is known to the receiver when using the CIE subtype for ACH payments. Only the first 22 characters of this string will be used. Any additional characters will be truncated.',
+      },
+      ultimate_originating_party_name: {
+        type: 'string',
+        description:
+          'This represents the name of the person that the payment is on behalf of when using the CIE subtype for ACH payments. Only the first 15 characters of this string will be used. Any additional characters will be truncated.',
+      },
+      ultimate_receiving_party_identifier: {
+        type: 'string',
+        description:
+          'This represents the name of the merchant that the payment is being sent to when using the CIE subtype for ACH payments. Only the first 22 characters of this string will be used. Any additional characters will be truncated.',
+      },
+      ultimate_receiving_party_name: {
+        type: 'string',
+        description:
+          'This represents the identifier by which the merchant is known to the person initiating an ACH payment with CIE subtype. Only the first 15 characters of this string will be used. Any additional characters will be truncated.',
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { id, ...body } = args;
+    return client.paymentOrders.update(id, body);
+  },
+});
+
+registerApiMethod({
+  name: 'list_payment_orders',
+  description: 'Get a list of all payment orders',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      after_cursor: {
+        type: 'string',
+      },
+      counterparty_id: {
+        type: 'string',
+      },
+      created_at_end: {
+        type: 'string',
+        description: 'An inclusive upper bound for searching created_at',
+        format: 'date',
+      },
+      created_at_start: {
+        type: 'string',
+        description: 'An inclusive lower bound for searching created_at',
+        format: 'date',
+      },
+      direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
+      },
+      effective_date_end: {
+        type: 'string',
+        description: 'An inclusive upper bound for searching effective_date',
+        format: 'date',
+      },
+      effective_date_start: {
+        type: 'string',
+        description: 'An inclusive lower bound for searching effective_date',
+        format: 'date',
+      },
+      metadata: {
+        type: 'object',
+        description:
+          'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
+      },
+      originating_account_id: {
+        type: 'string',
+      },
+      per_page: {
+        type: 'integer',
+      },
+      priority: {
+        type: 'string',
+        description:
+          'Either `normal` or `high`. For ACH and EFT payments, `high` represents a same-day ACH or EFT transfer, respectively. For check payments, `high` can mean an overnight check rather than standard mail.',
+        enum: ['high', 'normal'],
+      },
+      process_after_end: {
+        type: 'string',
+        description: 'An inclusive upper bound for searching process_after',
+        format: 'date-time',
+      },
+      process_after_start: {
+        type: 'string',
+        description: 'An inclusive lower bound for searching process_after',
+        format: 'date-time',
+      },
+      reference_number: {
+        type: 'string',
+        description: 'Query for records with the provided reference number',
+      },
+      status: {
+        type: 'string',
+        enum: [
+          'approved',
+          'cancelled',
+          'completed',
+          'denied',
+          'failed',
+          'needs_approval',
+          'pending',
+          'processing',
+          'returned',
+          'reversed',
+          'sent',
+        ],
+      },
+      transaction_id: {
+        type: 'string',
+        description: 'The ID of a transaction that the payment order has been reconciled to.',
+      },
+      type: {
+        type: 'string',
+        enum: [
+          'ach',
+          'au_becs',
+          'bacs',
+          'book',
+          'card',
+          'chats',
+          'check',
+          'cross_border',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'interac',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'provxchange',
+          'ro_sent',
+          'rtp',
+          'se_bankgirot',
+          'sen',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'signet',
+          'sknbi',
+          'wire',
+          'zengin',
+        ],
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { ...body } = args;
+    return client.paymentOrders.list(body);
+  },
+});
+
+registerApiMethod({
+  name: 'create_async_payment_orders',
+  description: 'Create a new payment order asynchronously',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      amount: {
+        type: 'integer',
+        description:
+          "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.",
+      },
+      direction: {
+        type: 'string',
+        description:
+          "One of `credit`, `debit`. Describes the direction money is flowing in the transaction. A `credit` moves money from your account to someone else's. A `debit` pulls money from someone else's account to your own. Note that wire, rtp, and check payments will always be `credit`.",
+        enum: ['credit', 'debit'],
+      },
+      originating_account_id: {
+        type: 'string',
+        description: "The ID of one of your organization's internal accounts.",
+      },
+      type: {
+        type: 'string',
+        description:
+          'One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.',
+        enum: [
+          'ach',
+          'au_becs',
+          'bacs',
+          'book',
+          'card',
+          'chats',
+          'check',
+          'cross_border',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'interac',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'provxchange',
+          'ro_sent',
+          'rtp',
+          'se_bankgirot',
+          'sen',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'signet',
+          'sknbi',
+          'wire',
+          'zengin',
+        ],
+      },
+      accounting: {
+        type: 'object',
+        properties: {
+          account_id: {
+            type: 'string',
+            description:
+              'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+          },
+          class_id: {
+            type: 'string',
+            description:
+              'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
+          },
+        },
+        required: [],
+      },
+      accounting_category_id: {
+        type: 'string',
+        description:
+          'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+      },
+      accounting_ledger_class_id: {
+        type: 'string',
+        description:
+          'The ID of one of your accounting ledger classes. Note that these will only be accessible if your accounting system has been connected.',
+      },
+      charge_bearer: {
+        type: 'string',
+        description:
+          'The party that will pay the fees for the payment order. Only applies to wire payment orders. Can be one of shared, sender, or receiver, which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.',
+        enum: ['shared', 'sender', 'receiver'],
+      },
+      currency: {
+        type: 'string',
+        description: 'Three-letter ISO currency code.',
+        enum: [
+          'AED',
+          'AFN',
+          'ALL',
+          'AMD',
+          'ANG',
+          'AOA',
+          'ARS',
+          'AUD',
+          'AWG',
+          'AZN',
+          'BAM',
+          'BBD',
+          'BCH',
+          'BDT',
+          'BGN',
+          'BHD',
+          'BIF',
+          'BMD',
+          'BND',
+          'BOB',
+          'BRL',
+          'BSD',
+          'BTC',
+          'BTN',
+          'BWP',
+          'BYN',
+          'BYR',
+          'BZD',
+          'CAD',
+          'CDF',
+          'CHF',
+          'CLF',
+          'CLP',
+          'CNH',
+          'CNY',
+          'COP',
+          'CRC',
+          'CUC',
+          'CUP',
+          'CVE',
+          'CZK',
+          'DJF',
+          'DKK',
+          'DOP',
+          'DZD',
+          'EEK',
+          'EGP',
+          'ERN',
+          'ETB',
+          'EUR',
+          'FJD',
+          'FKP',
+          'GBP',
+          'GBX',
+          'GEL',
+          'GGP',
+          'GHS',
+          'GIP',
+          'GMD',
+          'GNF',
+          'GTQ',
+          'GYD',
+          'HKD',
+          'HNL',
+          'HRK',
+          'HTG',
+          'HUF',
+          'IDR',
+          'ILS',
+          'IMP',
+          'INR',
+          'IQD',
+          'IRR',
+          'ISK',
+          'JEP',
+          'JMD',
+          'JOD',
+          'JPY',
+          'KES',
+          'KGS',
+          'KHR',
+          'KMF',
+          'KPW',
+          'KRW',
+          'KWD',
+          'KYD',
+          'KZT',
+          'LAK',
+          'LBP',
+          'LKR',
+          'LRD',
+          'LSL',
+          'LTL',
+          'LVL',
+          'LYD',
+          'MAD',
+          'MDL',
+          'MGA',
+          'MKD',
+          'MMK',
+          'MNT',
+          'MOP',
+          'MRO',
+          'MRU',
+          'MTL',
+          'MUR',
+          'MVR',
+          'MWK',
+          'MXN',
+          'MYR',
+          'MZN',
+          'NAD',
+          'NGN',
+          'NIO',
+          'NOK',
+          'NPR',
+          'NZD',
+          'OMR',
+          'PAB',
+          'PEN',
+          'PGK',
+          'PHP',
+          'PKR',
+          'PLN',
+          'PYG',
+          'QAR',
+          'RON',
+          'RSD',
+          'RUB',
+          'RWF',
+          'SAR',
+          'SBD',
+          'SCR',
+          'SDG',
+          'SEK',
+          'SGD',
+          'SHP',
+          'SKK',
+          'SLL',
+          'SOS',
+          'SRD',
+          'SSP',
+          'STD',
+          'SVC',
+          'SYP',
+          'SZL',
+          'THB',
+          'TJS',
+          'TMM',
+          'TMT',
+          'TND',
+          'TOP',
+          'TRY',
+          'TTD',
+          'TWD',
+          'TZS',
+          'UAH',
+          'UGX',
+          'USD',
+          'UYU',
+          'UZS',
+          'VEF',
+          'VES',
+          'VND',
+          'VUV',
+          'WST',
+          'XAF',
+          'XAG',
+          'XAU',
+          'XBA',
+          'XBB',
+          'XBC',
+          'XBD',
+          'XCD',
+          'XDR',
+          'XFU',
+          'XOF',
+          'XPD',
+          'XPF',
+          'XPT',
+          'XTS',
+          'YER',
+          'ZAR',
+          'ZMK',
+          'ZMW',
+          'ZWD',
+          'ZWL',
+          'ZWN',
+          'ZWR',
+        ],
+      },
+      description: {
+        type: 'string',
+        description: 'An optional description for internal use.',
+      },
+      effective_date: {
+        type: 'string',
+        description:
+          "Date transactions are to be posted to the participants' account. Defaults to the current business day or the next business day if the current day is a bank holiday or weekend. Format: yyyy-mm-dd.",
+        format: 'date',
+      },
+      expires_at: {
+        type: 'string',
+        description: 'RFP payments require an expires_at. This value must be past the effective_date.',
+        format: 'date-time',
+      },
+      fallback_type: {
+        type: 'string',
+        description:
+          'A payment type to fallback to if the original type is not valid for the receiving account. Currently, this only supports falling back from RTP to ACH (type=rtp and fallback_type=ach)',
+        enum: ['ach'],
+      },
+      foreign_exchange_contract: {
+        type: 'string',
+        description:
+          'If present, indicates a specific foreign exchange contract number that has been generated by your financial institution.',
+      },
+      foreign_exchange_indicator: {
+        type: 'string',
+        description:
+          'Indicates the type of FX transfer to initiate, can be either `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order currency matches the originating account currency.',
+        enum: ['fixed_to_variable', 'variable_to_fixed'],
+      },
+      ledger_transaction: {
+        type: 'object',
+        description:
+          'Specifies a ledger transaction object that will be created with the payment order. If the ledger transaction cannot be created, then the payment order creation will fail. The resulting ledger transaction will mirror the status of the payment order.',
+        properties: {
+          ledger_entries: {
+            type: 'array',
+            description: 'An array of ledger entry objects.',
+            items: {
+              type: 'object',
+              properties: {
+                amount: {
+                  type: 'integer',
+                  description:
+                    "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.",
+                },
+                direction: {
+                  type: 'string',
+                  enum: ['credit', 'debit'],
+                },
+                ledger_account_id: {
+                  type: 'string',
+                  description: 'The ledger account that this ledger entry is associated with.',
+                },
+                available_balance_amount: {
+                  type: 'object',
+                  description:
+                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s available balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+                },
+                lock_version: {
+                  type: 'integer',
+                  description:
+                    'Lock version of the ledger account. This can be passed when creating a ledger transaction to only succeed if no ledger transactions have posted since the given version. See our post about Designing the Ledgers API with Optimistic Locking for more details.',
+                },
+                metadata: {
+                  type: 'object',
+                  description:
+                    'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                },
+                pending_balance_amount: {
+                  type: 'object',
+                  description:
+                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s pending balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+                },
+                posted_balance_amount: {
+                  type: 'object',
+                  description:
+                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s posted balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+                },
+                show_resulting_ledger_account_balances: {
+                  type: 'boolean',
+                  description:
+                    'If true, response will include the balance of the associated ledger account for the entry.',
+                },
+              },
+              required: ['amount', 'direction', 'ledger_account_id'],
+            },
+          },
+          description: {
+            type: 'string',
+            description: 'An optional description for internal use.',
+          },
+          effective_at: {
+            type: 'string',
+            description:
+              'The timestamp (ISO8601 format) at which the ledger transaction happened for reporting purposes.',
+            format: 'date-time',
+          },
+          effective_date: {
+            type: 'string',
+            description:
+              'The date (YYYY-MM-DD) on which the ledger transaction happened for reporting purposes.',
+            format: 'date',
+          },
+          external_id: {
+            type: 'string',
+            description:
+              'A unique string to represent the ledger transaction. Only one pending or posted ledger transaction may have this ID in the ledger.',
+          },
+          ledgerable_id: {
+            type: 'string',
+            description:
+              'If the ledger transaction can be reconciled to another object in Modern Treasury, the id will be populated here, otherwise null.',
+          },
+          ledgerable_type: {
+            type: 'string',
+            description:
+              'If the ledger transaction can be reconciled to another object in Modern Treasury, the type will be populated here, otherwise null. This can be one of payment_order, incoming_payment_detail, expected_payment, return, paper_item, or reversal.',
+            enum: [
+              'expected_payment',
+              'incoming_payment_detail',
+              'paper_item',
+              'payment_order',
+              'return',
+              'reversal',
+            ],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+          status: {
+            type: 'string',
+            description: 'To post a ledger transaction at creation, use `posted`.',
+            enum: ['archived', 'pending', 'posted'],
+          },
+        },
+        required: ['ledger_entries'],
+      },
+      ledger_transaction_id: {
+        type: 'string',
+        description:
+          'Either ledger_transaction or ledger_transaction_id can be provided. Only a pending ledger transaction can be attached upon payment order creation. Once the payment order is created, the status of the ledger transaction tracks the payment order automatically.',
+      },
+      line_items: {
+        type: 'array',
+        description: 'An array of line items that must sum up to the amount of the payment order.',
+        items: {
+          type: 'object',
+          properties: {
+            amount: {
+              type: 'integer',
+              description:
+                "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+            },
+            accounting_category_id: {
+              type: 'string',
+              description:
+                'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+            },
+            description: {
+              type: 'string',
+              description: 'A free-form description of the line item.',
+            },
+            metadata: {
+              type: 'object',
+              description:
+                'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            },
+          },
+          required: ['amount'],
+        },
+      },
+      metadata: {
+        type: 'object',
+        description:
+          'Additional data represented as key-value pairs. Both the key and value must be strings.',
+      },
+      nsf_protected: {
+        type: 'boolean',
+        description:
+          'A boolean to determine if NSF Protection is enabled for this payment order. Note that this setting must also be turned on in your organization settings page.',
+      },
+      originating_party_name: {
+        type: 'string',
+        description:
+          "If present, this will replace your default company name on receiver's bank statement. This field can only be used for ACH payments currently. For ACH, only the first 16 characters of this string will be used. Any additional characters will be truncated.",
+      },
+      priority: {
+        type: 'string',
+        description:
+          'Either `normal` or `high`. For ACH and EFT payments, `high` represents a same-day ACH or EFT transfer, respectively. For check payments, `high` can mean an overnight check rather than standard mail.',
+        enum: ['high', 'normal'],
+      },
+      process_after: {
+        type: 'string',
+        description:
+          'If present, Modern Treasury will not process the payment until after this time. If `process_after` is past the cutoff for `effective_date`, `process_after` will take precedence and `effective_date` will automatically update to reflect the earliest possible sending date after `process_after`. Format is ISO8601 timestamp.',
+        format: 'date-time',
+      },
+      purpose: {
+        type: 'string',
+        description:
+          'For `wire`, this is usually the purpose which is transmitted via the "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3 digit CPA Code that will be attached to the payment.',
+      },
+      receiving_account: {
+        type: 'object',
+        description:
+          'Either `receiving_account` or `receiving_account_id` must be present. When using `receiving_account_id`, you may pass the id of an external account or an internal account.',
+        properties: {
+          account_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                account_number: {
+                  type: 'string',
+                },
+                account_number_type: {
+                  type: 'string',
+                  enum: [
+                    'au_number',
+                    'clabe',
+                    'hk_number',
+                    'iban',
+                    'id_number',
+                    'nz_number',
+                    'other',
+                    'pan',
+                    'sg_number',
+                    'wallet_address',
+                  ],
+                },
+              },
+              required: ['account_number'],
+            },
+          },
+          account_type: {
+            type: 'string',
+            description: 'Can be `checking`, `savings` or `other`.',
+            enum: [
+              'cash',
+              'checking',
+              'general_ledger',
+              'loan',
+              'non_resident',
+              'other',
+              'overdraft',
+              'savings',
+            ],
+          },
+          contact_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                contact_identifier: {
+                  type: 'string',
+                },
+                contact_identifier_type: {
+                  type: 'string',
+                  enum: ['email', 'phone_number', 'website'],
+                },
+              },
+              required: [],
+            },
+          },
+          ledger_account: {
+            type: 'object',
+            description:
+              'Specifies a ledger account object that will be created with the external account. The resulting ledger account is linked to the external account for auto-ledgering Payment objects. See https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects for more details.',
+            properties: {
+              currency: {
+                type: 'string',
+                description: 'The currency of the ledger account.',
+              },
+              ledger_id: {
+                type: 'string',
+                description: 'The id of the ledger that this account belongs to.',
+              },
+              name: {
+                type: 'string',
+                description: 'The name of the ledger account.',
+              },
+              normal_balance: {
+                type: 'string',
+                enum: ['credit', 'debit'],
+              },
+              currency_exponent: {
+                type: 'integer',
+                description: 'The currency exponent of the ledger account.',
+              },
+              description: {
+                type: 'string',
+                description: 'The description of the ledger account.',
+              },
+              ledger_account_category_ids: {
+                type: 'array',
+                description:
+                  'The array of ledger account category ids that this ledger account should be a child of.',
+                items: {
+                  type: 'string',
+                },
+              },
+              ledgerable_id: {
+                type: 'string',
+                description:
+                  'If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null.',
+              },
+              ledgerable_type: {
+                type: 'string',
+                description:
+                  'If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account.',
+                enum: ['counterparty', 'external_account', 'internal_account', 'virtual_account'],
+              },
+              metadata: {
+                type: 'object',
+                description:
+                  'Additional data represented as key-value pairs. Both the key and value must be strings.',
+              },
+            },
+            required: ['currency', 'ledger_id', 'name', 'normal_balance'],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+          name: {
+            type: 'string',
+            description:
+              "A nickname for the external account. This is only for internal usage and won't affect any payments",
+          },
+          party_address: {
+            type: 'object',
+            description: 'Required if receiving wire payments.',
+            properties: {
+              country: {
+                type: 'string',
+                description: 'Country code conforms to [ISO 3166-1 alpha-2]',
+              },
+              line1: {
+                type: 'string',
+              },
+              line2: {
+                type: 'string',
+              },
+              locality: {
+                type: 'string',
+                description: 'Locality or City.',
+              },
+              postal_code: {
+                type: 'string',
+                description: 'The postal code of the address.',
+              },
+              region: {
+                type: 'string',
+                description: 'Region or State.',
+              },
+            },
+            required: [],
+          },
+          party_identifier: {
+            type: 'string',
+          },
+          party_name: {
+            type: 'string',
+            description: "If this value isn't provided, it will be inherited from the counterparty's name.",
+          },
+          party_type: {
+            type: 'string',
+            description: 'Either `individual` or `business`.',
+            enum: ['business', 'individual'],
+          },
+          plaid_processor_token: {
+            type: 'string',
+            description:
+              "If you've enabled the Modern Treasury + Plaid integration in your Plaid account, you can pass the processor token in this field.",
+          },
+          routing_details: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                routing_number: {
+                  type: 'string',
+                },
+                routing_number_type: {
+                  type: 'string',
+                  enum: [
+                    'aba',
+                    'au_bsb',
+                    'br_codigo',
+                    'ca_cpa',
+                    'chips',
+                    'cnaps',
+                    'dk_interbank_clearing_code',
+                    'gb_sort_code',
+                    'hk_interbank_clearing_code',
+                    'hu_interbank_clearing_code',
+                    'id_sknbi_code',
+                    'in_ifsc',
+                    'jp_zengin_code',
+                    'my_branch_code',
+                    'mx_bank_identifier',
+                    'nz_national_clearing_code',
+                    'pl_national_clearing_code',
+                    'se_bankgiro_clearing_code',
+                    'sg_interbank_clearing_code',
+                    'swift',
+                    'za_national_clearing_code',
+                  ],
+                },
+                payment_type: {
+                  type: 'string',
+                  enum: [
+                    'ach',
+                    'au_becs',
+                    'bacs',
+                    'book',
+                    'card',
+                    'chats',
+                    'check',
+                    'cross_border',
+                    'dk_nets',
+                    'eft',
+                    'hu_ics',
+                    'interac',
+                    'masav',
+                    'mx_ccen',
+                    'neft',
+                    'nics',
+                    'nz_becs',
+                    'pl_elixir',
+                    'provxchange',
+                    'ro_sent',
+                    'rtp',
+                    'se_bankgirot',
+                    'sen',
+                    'sepa',
+                    'sg_giro',
+                    'sic',
+                    'signet',
+                    'sknbi',
+                    'wire',
+                    'zengin',
+                  ],
+                },
+              },
+              required: ['routing_number', 'routing_number_type'],
+            },
+          },
+        },
+        required: [],
+      },
+      receiving_account_id: {
+        type: 'string',
+        description:
+          'Either `receiving_account` or `receiving_account_id` must be present. When using `receiving_account_id`, you may pass the id of an external account or an internal account.',
+      },
+      remittance_information: {
+        type: 'string',
+        description:
+          'For `ach`, this field will be passed through on an addenda record. For `wire` payments the field will be passed through as the "Originator to Beneficiary Information", also known as OBI or Fedwire tag 6000.',
+      },
+      send_remittance_advice: {
+        type: 'boolean',
+        description:
+          'Send an email to the counterparty when the payment order is sent to the bank. If `null`, `send_remittance_advice` on the Counterparty is used.',
+      },
+      statement_descriptor: {
+        type: 'string',
+        description:
+          "An optional descriptor which will appear in the receiver's statement. For `check` payments this field will be used as the memo line. For `ach` the maximum length is 10 characters. Note that for ACH payments, the name on your bank account will be included automatically by the bank, so you can use the characters for other useful information. For `eft` the maximum length is 15 characters.",
+      },
+      subtype: {
+        type: 'string',
+        description:
+          'An additional layer of classification for the type of payment order you are doing. This field is only used for `ach` payment orders currently. For `ach`  payment orders, the `subtype`  represents the SEC code. We currently support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.',
+        enum: [
+          '0C',
+          '0N',
+          '0S',
+          'CCD',
+          'CIE',
+          'CTX',
+          'IAT',
+          'PPD',
+          'TEL',
+          'WEB',
+          'au_becs',
+          'bacs',
+          'chats',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'ro_sent',
+          'se_bankgirot',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'sknbi',
+          'zengin',
+        ],
+      },
+      transaction_monitoring_enabled: {
+        type: 'boolean',
+        description:
+          'A flag that determines whether a payment order should go through transaction monitoring.',
+      },
+      ultimate_originating_party_identifier: {
+        type: 'string',
+        description: 'Identifier of the ultimate originator of the payment order.',
+      },
+      ultimate_originating_party_name: {
+        type: 'string',
+        description: 'Name of the ultimate originator of the payment order.',
+      },
+      ultimate_receiving_party_identifier: {
+        type: 'string',
+        description: 'Identifier of the ultimate funds recipient.',
+      },
+      ultimate_receiving_party_name: {
+        type: 'string',
+        description: 'Name of the ultimate funds recipient.',
+      },
+    },
+  },
+  handler: (client: ModernTreasury, args: any) => {
+    const { ...body } = args;
+    return client.paymentOrders.createAsync(body);
+  },
+});
