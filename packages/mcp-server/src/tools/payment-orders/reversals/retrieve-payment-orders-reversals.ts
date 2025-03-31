@@ -1,0 +1,27 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import ModernTreasury from 'modern-treasury';
+
+export const tool: Tool = {
+  name: 'retrieve_payment_orders_reversals',
+  description: 'Get details on a single reversal of a payment order.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      payment_order_id: {
+        type: 'string',
+      },
+      reversal_id: {
+        type: 'string',
+      },
+    },
+  },
+};
+
+export const handler = (client: ModernTreasury, args: any) => {
+  const { payment_order_id, reversal_id } = args;
+  return client.paymentOrders.reversals.retrieve(payment_order_id, reversal_id);
+};
+
+export default { tool, handler };

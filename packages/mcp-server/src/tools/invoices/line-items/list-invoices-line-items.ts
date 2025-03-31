@@ -1,0 +1,30 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import ModernTreasury from 'modern-treasury';
+
+export const tool: Tool = {
+  name: 'list_invoices_line_items',
+  description: 'list invoice_line_items',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      invoice_id: {
+        type: 'string',
+      },
+      after_cursor: {
+        type: 'string',
+      },
+      per_page: {
+        type: 'integer',
+      },
+    },
+  },
+};
+
+export const handler = (client: ModernTreasury, args: any) => {
+  const { invoice_id, ...body } = args;
+  return client.invoices.lineItems.list(invoice_id, body);
+};
+
+export default { tool, handler };
