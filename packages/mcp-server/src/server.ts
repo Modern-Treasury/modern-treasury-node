@@ -2,10 +2,10 @@
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { tools, handlers, HandlerFunction } from './tools';
+import { endpoints, HandlerFunction } from './tools';
 import { CallToolRequestSchema, ListToolsRequestSchema, Tool } from '@modelcontextprotocol/sdk/types.js';
 import ModernTreasury from 'modern-treasury';
-export { tools, handlers } from './tools';
+export { endpoints } from './tools';
 
 // Create server instance
 export const server = new McpServer(
@@ -27,24 +27,27 @@ export const server = new McpServer(
 export function init(params: {
   server: Server | McpServer;
   client?: ModernTreasury;
-  tools?: Tool[];
-  handlers?: Record<string, HandlerFunction>;
+  endpoints?: { tool: Tool; handler: HandlerFunction }[];
 }) {
   const server = params.server instanceof McpServer ? params.server.server : params.server;
-  const providedTools = params.tools || tools;
-  const providedHandlers = params.handlers || handlers;
+  const providedEndpoints = params.endpoints || endpoints;
+  const tools = providedEndpoints.map((endpoint) => endpoint.tool);
+  const handlers = Object.fromEntries(
+    providedEndpoints.map((endpoint) => [endpoint.tool.name, endpoint.handler]),
+  );
+
   const client = params.client || new ModernTreasury({});
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
-      tools: providedTools,
+      tools,
     };
   });
 
   server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { name, arguments: args } = request.params;
 
-    const handler = providedHandlers[name];
+    const handler = handlers[name];
     if (!handler) {
       throw new Error(`Unknown tool: ${name}`);
     }

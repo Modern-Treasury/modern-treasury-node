@@ -1,7 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
 import ModernTreasury from 'modern-treasury';
+
+export const metadata: Metadata = {
+  resource: 'internal_accounts.balance_reports',
+  operation: 'read',
+  tags: [],
+};
 
 export const tool: Tool = {
   name: 'list_internal_accounts_balance_reports',
@@ -38,4 +45,4 @@ export const handler = (client: ModernTreasury, args: any) => {
   return client.internalAccounts.balanceReports.list(internal_account_id, body);
 };
 
-export default { tool, handler };
+export default { metadata, tool, handler };
