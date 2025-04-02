@@ -1,7 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../';
 import ModernTreasury from 'modern-treasury';
+
+export const metadata: Metadata = {
+  resource: 'ledger_event_handlers',
+  operation: 'write',
+  tags: [],
+};
 
 export const tool: Tool = {
   name: 'create_ledger_event_handlers',
@@ -97,4 +104,4 @@ export const handler = (client: ModernTreasury, args: any) => {
   return client.ledgerEventHandlers.create(body);
 };
 
-export default { tool, handler };
+export default { metadata, tool, handler };

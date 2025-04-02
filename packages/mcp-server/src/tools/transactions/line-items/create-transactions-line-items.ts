@@ -1,7 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
 import ModernTreasury from 'modern-treasury';
+
+export const metadata: Metadata = {
+  resource: 'transactions.line_items',
+  operation: 'write',
+  tags: [],
+};
 
 export const tool: Tool = {
   name: 'create_transactions_line_items',
@@ -31,4 +38,4 @@ export const handler = (client: ModernTreasury, args: any) => {
   return client.transactions.lineItems.create(body);
 };
 
-export default { tool, handler };
+export default { metadata, tool, handler };
