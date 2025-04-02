@@ -1,7 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../';
 import ModernTreasury from 'modern-treasury';
+
+export const metadata: Metadata = {
+  resource: 'paper_items',
+  operation: 'read',
+  tags: [],
+};
 
 export const tool: Tool = {
   name: 'retrieve_paper_items',
@@ -21,4 +28,4 @@ export const handler = (client: ModernTreasury, args: any) => {
   return client.paperItems.retrieve(id);
 };
 
-export default { tool, handler };
+export default { metadata, tool, handler };
