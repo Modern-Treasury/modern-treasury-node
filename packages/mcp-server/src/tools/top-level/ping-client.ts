@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export const tool: Tool = {
-  name: 'ping_$client',
+  name: 'ping_client',
   description: 'A test endpoint often used to confirm credentials and headers are being passed in correctly.',
   inputSchema: {
     type: 'object',
