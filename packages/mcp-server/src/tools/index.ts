@@ -3,7 +3,7 @@
 import ModernTreasury from 'modern-treasury';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 
-import ping_$client from './top-level/ping-client';
+import ping_client from './top-level/ping-client';
 import list_connections from './connections/list-connections';
 import create_counterparties from './counterparties/create-counterparties';
 import retrieve_counterparties from './counterparties/retrieve-counterparties';
@@ -186,7 +186,7 @@ function addEndpoint(endpoint: Endpoint) {
   endpoints.push(endpoint);
 }
 
-addEndpoint(ping_$client);
+addEndpoint(ping_client);
 addEndpoint(list_connections);
 addEndpoint(create_counterparties);
 addEndpoint(retrieve_counterparties);
