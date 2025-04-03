@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "modern-treasury-mcp/*": ["src/*"],
-      "modern-treasury-mcp": ["src/index.ts"]
+      "modern-treasury-mcp/*": ["dist/src/*"],
+      "modern-treasury-mcp": ["dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
