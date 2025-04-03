@@ -95,7 +95,7 @@ The following tools are available in this MCP server.
 
 ### Resource `$client`:
 
-- `ping_$client` (`read`): A test endpoint often used to confirm credentials and headers are being passed in correctly.
+- `ping_client` (`read`): A test endpoint often used to confirm credentials and headers are being passed in correctly.
 
 ### Resource `connections`:
 
