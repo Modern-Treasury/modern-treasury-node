@@ -2,16 +2,23 @@
 
 ## Installation
 
-### Via Claude Desktop
+### Direct invocation
 
-See [the user guide](https://modelcontextprotocol.io/quickstart/user) for setup.
+You can run the MCP Server directly via `npx`:
 
-Once it's set up, find your `claude_desktop_config.json` file:
+```sh
+export MODERN_TREASURY_API_KEY = "My API Key"
+export MODERN_TREASURY_ORGANIZATION_ID = "my-organization-ID"
+export MODERN_TREASURY_WEBHOOK_KEY = "My Webhook Key"
+npx -y modern-treasury-mcp
+```
 
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+### Via MCP Client
 
-Add the following value to your `mcpServers` section. Make sure to provide any necessary environment variables (like API keys) as well.
+There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
+have a client, consult their documentation to install the MCP server.
+
+For clients with a configuration JSON, it might look something like this:
 
 ```json
 {
@@ -41,15 +48,46 @@ You can filter by multiple aspects:
 - `--resource` includes all tools under a specific resource, and can have wildcards, e.g. `my.resource*`
 - `--operation` includes just read (get/list) or just write operations
 
-See more information with `--help`:
-
-```sh
-$ npx -y modern-treasury-mcp --help
-```
+See more information with `--help`.
 
 All of these command-line options can be repeated, combined together, and have corresponding exclusion versions (e.g. `--no-tool`).
 
 Use `--list` to see the list of available tools, or see below.
+
+## Importing the tools and server individually
+
+```js
+// Import the server, generated endpoints, or the init function
+import { server, endpoints, init } from "modern-treasury-mcp/server";
+
+// import a specific tool
+import pingClient from "modern-treasury-mcp/tools/top-level/ping-client";
+
+// initialize the server and all endpoints
+init({ server, endpoints });
+
+// manually start server
+const transport = new StdioServerTransport();
+await server.connect(transport);
+
+// or initialize your own server with specific tools
+const myServer = new McpServer(...);
+
+// define your own endpoint
+const myCustomEndpoint = {
+  tool: {
+    name: 'my_custom_tool',
+    description: 'My custom tool',
+    inputSchema: zodToJsonSchema(z.object({ a_property: z.string() })),
+  },
+  handler: async (client: client, args: any) => {
+    return { myResponse: 'Hello world!' };
+  })
+};
+
+// initialize the server with your custom endpoints
+init({ server: myServer, endpoints: [pingClient, myCustomEndpoint] });
+```
 
 ## Available Tools
 
