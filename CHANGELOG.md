@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.36.1 (2025-04-03)
+
+Full Changelog: [v2.36.0...v2.36.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.0...v2.36.1)
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#545](https://github.com/Modern-Treasury/modern-treasury-node/issues/545)) ([492c9ea](https://github.com/Modern-Treasury/modern-treasury-node/commit/492c9ea1617d06169192050fbec1cc891c61e956))
+* **client:** send `X-Stainless-Timeout` in seconds ([#542](https://github.com/Modern-Treasury/modern-treasury-node/issues/542)) ([f0e650d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f0e650d88b48d64023f2ade436bb02ad52702cf4))
+* **mcp:** normalize tool names ([#547](https://github.com/Modern-Treasury/modern-treasury-node/issues/547)) ([6419c37](https://github.com/Modern-Treasury/modern-treasury-node/commit/6419c377c5d160519643589ceb13fdcc85195e0b))
+
+
+### Chores
+
+* **internal:** add aliases for Record and Array ([#544](https://github.com/Modern-Treasury/modern-treasury-node/issues/544)) ([9bdb239](https://github.com/Modern-Treasury/modern-treasury-node/commit/9bdb2394b1587159a26cb37654f0731cb0ecc226))
+* **internal:** codegen related update ([#543](https://github.com/Modern-Treasury/modern-treasury-node/issues/543)) ([c382d66](https://github.com/Modern-Treasury/modern-treasury-node/commit/c382d66192c3306ca4e4b68776e13ceb6ebdc6c6))
+* **internal:** version bump ([#540](https://github.com/Modern-Treasury/modern-treasury-node/issues/540)) ([0562755](https://github.com/Modern-Treasury/modern-treasury-node/commit/05627559e5f9dd82bffda4ead76853f8c0cac3e7))
+* Remove deprecated/unused remote spec feature ([4719638](https://github.com/Modern-Treasury/modern-treasury-node/commit/4719638d89350d6d9539e66b7b8e68d4a89b98e0))
+
+
+### Documentation
+
+* **mcp:** improve MCP readme docs ([#546](https://github.com/Modern-Treasury/modern-treasury-node/issues/546)) ([d8f284a](https://github.com/Modern-Treasury/modern-treasury-node/commit/d8f284a09739ce03bdca2749c7b11eed9889c8b7))
+
 ## 2.36.0 (2025-03-31)
 
 Full Changelog: [v2.35.0...v2.36.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.35.0...v2.36.0)
