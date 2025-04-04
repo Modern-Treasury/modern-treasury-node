@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.36.2 (2025-04-04)
+
+Full Changelog: [v2.36.1...v2.36.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.1...v2.36.2)
+
+### Bug Fixes
+
+* **mcp:** remove debug logging ([#551](https://github.com/Modern-Treasury/modern-treasury-node/issues/551)) ([0cf7e5b](https://github.com/Modern-Treasury/modern-treasury-node/commit/0cf7e5b9bcc0e3de7ba519635f1467a59d2a0b32))
+
+
+### Chores
+
+* **internal:** codegen related update ([#548](https://github.com/Modern-Treasury/modern-treasury-node/issues/548)) ([b7a81e8](https://github.com/Modern-Treasury/modern-treasury-node/commit/b7a81e896b789759b53345f56e3d7dbd3ced7c46))
+* **internal:** improve index signature formatting ([#550](https://github.com/Modern-Treasury/modern-treasury-node/issues/550)) ([6047cd8](https://github.com/Modern-Treasury/modern-treasury-node/commit/6047cd8e2f5581f477cf41772f65a7485f032c86))
+
+
+### Documentation
+
+* **mcp:** update env vars in README ([#552](https://github.com/Modern-Treasury/modern-treasury-node/issues/552)) ([066cb40](https://github.com/Modern-Treasury/modern-treasury-node/commit/066cb4082375508543acc18ef05de532e25bf6d2))
+
 ## 2.36.1 (2025-04-03)
 
 Full Changelog: [v2.36.0...v2.36.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.0...v2.36.1)

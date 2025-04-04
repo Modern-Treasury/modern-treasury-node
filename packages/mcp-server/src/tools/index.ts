@@ -379,7 +379,6 @@ function match({ type, value }: Filter, endpoint: Endpoint): boolean {
     case 'resource': {
       const regexStr = '^' + normalizeResource(value).replace(/\*/g, '.*') + '$';
       const regex = new RegExp(regexStr);
-      console.error('regex is', regexStr);
       return regex.test(normalizeResource(endpoint.metadata.resource));
     }
     case 'operation':
