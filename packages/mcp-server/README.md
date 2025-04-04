@@ -7,9 +7,9 @@
 You can run the MCP Server directly via `npx`:
 
 ```sh
-export MODERN_TREASURY_API_KEY = "My API Key"
-export MODERN_TREASURY_ORGANIZATION_ID = "my-organization-ID"
-export MODERN_TREASURY_WEBHOOK_KEY = "My Webhook Key"
+export MODERN_TREASURY_API_KEY="My API Key"
+export MODERN_TREASURY_ORGANIZATION_ID="my-organization-ID"
+export MODERN_TREASURY_WEBHOOK_KEY="My Webhook Key"
 npx -y modern-treasury-mcp
 ```
 
