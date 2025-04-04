@@ -104,6 +104,7 @@ export interface Ledger {
   object: string;
 
   updated_at: string;
+
   [k: string]: unknown;
 }
 
