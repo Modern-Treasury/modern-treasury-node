@@ -11,7 +11,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'modern_treasury_api',
-    version: '2.36.2',
+    version: '2.36.3',
   },
   {
     capabilities: {
@@ -75,13 +75,17 @@ export async function executeHandler(
   };
 }
 
-export const readEnv = (env: string): string => {
-  let envValue = undefined;
+export const readEnv = (env: string): string | undefined => {
   if (typeof (globalThis as any).process !== 'undefined') {
-    envValue = (globalThis as any).process.env?.[env]?.trim();
+    return (globalThis as any).process.env?.[env]?.trim();
   } else if (typeof (globalThis as any).Deno !== 'undefined') {
-    envValue = (globalThis as any).Deno.env?.get?.(env)?.trim();
+    return (globalThis as any).Deno.env?.get?.(env)?.trim();
   }
+  return;
+};
+
+export const readEnvOrError = (env: string): string => {
+  let envValue = readEnv(env);
   if (envValue === undefined) {
     throw new Error(`Environment variable ${env} is not set`);
   }
