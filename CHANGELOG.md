@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.36.3 (2025-04-14)
+
+Full Changelog: [v2.36.2...v2.36.3](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.2...v2.36.3)
+
+### Bug Fixes
+
+* **client:** correctly reuse idempotency key ([273267b](https://github.com/Modern-Treasury/modern-treasury-node/commit/273267b07736b93a75a904af98cd181b6601173e))
+* **mcp:** fix readEnv type error ([#557](https://github.com/Modern-Treasury/modern-treasury-node/issues/557)) ([bce1d7d](https://github.com/Modern-Treasury/modern-treasury-node/commit/bce1d7d84dcb5b4f2d9d142be6c2e99a5ae8bbdc))
+* **mcp:** include all necessary env vars in client instantiation ([#556](https://github.com/Modern-Treasury/modern-treasury-node/issues/556)) ([286a64f](https://github.com/Modern-Treasury/modern-treasury-node/commit/286a64f8c48155f9c5fa3681e3dbcad29fa8ddc8))
+* **mcp:** point homepage and repo for mcp package to the `packages/mcp-server` directory ([#554](https://github.com/Modern-Treasury/modern-treasury-node/issues/554)) ([d492092](https://github.com/Modern-Treasury/modern-treasury-node/commit/d492092fdf0df7a0a32525c2024104c7e126d89d))
+
+
+### Chores
+
+* **internal:** reduce CI branch coverage ([0dbe5c9](https://github.com/Modern-Treasury/modern-treasury-node/commit/0dbe5c9a4a0772cd35b69839c7d75c3b214bfe25))
+* **internal:** upload builds and expand CI branch coverage ([#558](https://github.com/Modern-Treasury/modern-treasury-node/issues/558)) ([7840cc3](https://github.com/Modern-Treasury/modern-treasury-node/commit/7840cc37fd6bfc9155656dc164b13690dc716250))
+
 ## 2.36.2 (2025-04-04)
 
 Full Changelog: [v2.36.1...v2.36.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.1...v2.36.2)

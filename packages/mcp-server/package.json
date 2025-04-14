@@ -1,6 +1,6 @@
 {
   "name": "modern-treasury-mcp",
-  "version": "2.36.2",
+  "version": "2.36.3",
   "description": "The official MCP Server for the Modern Treasury API",
   "author": "Modern Treasury <sdk-feedback@moderntreasury.com>",
   "types": "dist/index.d.ts",
