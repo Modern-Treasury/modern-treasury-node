@@ -1,12 +1,17 @@
 {
   "name": "modern-treasury-mcp",
-  "version": "2.36.2",
+  "version": "2.36.3",
   "description": "The official MCP Server for the Modern Treasury API",
   "author": "Modern Treasury <sdk-feedback@moderntreasury.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:Modern-Treasury/modern-treasury-node",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Modern-Treasury/modern-treasury-node.git",
+    "directory": "packages/mcp-server"
+  },
+  "homepage": "https://github.com/Modern-Treasury/modern-treasury-node/tree/main/packages/mcp-server#readme",
   "license": "MIT",
   "packageManager": "yarn@1.22.22",
   "private": false,
