@@ -33,8 +33,7 @@ export const tool: Tool = {
           'Shows all ledger entries that were present on a ledger account at a particular `lock_version`. You must also specify `ledger_account_id`.',
       },
       direction: {
-        type: 'string',
-        enum: ['credit', 'debit'],
+        $ref: '#/$defs/transaction_direction',
       },
       effective_at: {
         type: 'object',
@@ -117,11 +116,17 @@ export const tool: Tool = {
           'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use updated_at%5Bgt%5D=2000-01-01T12:00:00Z.',
       },
     },
+    $defs: {
+      transaction_direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.ledgerEntries.list(body);
 };
 

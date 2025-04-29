@@ -26,8 +26,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, payment_order_id } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, payment_order_id, ...body } = args as any;
   return client.invoices.addPaymentOrder(id, payment_order_id);
 };
 
