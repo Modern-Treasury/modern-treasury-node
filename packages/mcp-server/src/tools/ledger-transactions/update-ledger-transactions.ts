@@ -41,8 +41,7 @@ export const tool: Tool = {
                 "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.",
             },
             direction: {
-              type: 'string',
-              enum: ['credit', 'debit'],
+              $ref: '#/$defs/transaction_direction',
             },
             ledger_account_id: {
               type: 'string',
@@ -111,11 +110,17 @@ export const tool: Tool = {
         enum: ['archived', 'pending', 'posted'],
       },
     },
+    $defs: {
+      transaction_direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.ledgerTransactions.update(id, body);
 };
 

@@ -56,8 +56,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { invoice_id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { invoice_id, ...body } = args as any;
   return client.invoices.lineItems.create(invoice_id, body);
 };
 

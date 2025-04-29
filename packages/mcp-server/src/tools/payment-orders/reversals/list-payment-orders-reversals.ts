@@ -29,8 +29,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { payment_order_id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { payment_order_id, ...body } = args as any;
   return client.paymentOrders.reversals.list(payment_order_id, body);
 };
 

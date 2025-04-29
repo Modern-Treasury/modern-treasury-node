@@ -24,6 +24,62 @@ export const tool: Tool = {
         description: 'Only return internal accounts associated with this counterparty.',
       },
       currency: {
+        $ref: '#/$defs/currency',
+      },
+      legal_entity_id: {
+        type: 'string',
+        description: 'Only return internal accounts associated with this legal entity.',
+      },
+      metadata: {
+        type: 'object',
+        description:
+          'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
+      },
+      payment_direction: {
+        $ref: '#/$defs/transaction_direction',
+      },
+      payment_type: {
+        type: 'string',
+        description: 'Only return internal accounts that can make this type of payment.',
+        enum: [
+          'ach',
+          'au_becs',
+          'bacs',
+          'book',
+          'card',
+          'chats',
+          'check',
+          'cross_border',
+          'dk_nets',
+          'eft',
+          'hu_ics',
+          'interac',
+          'masav',
+          'mx_ccen',
+          'neft',
+          'nics',
+          'nz_becs',
+          'pl_elixir',
+          'provxchange',
+          'ro_sent',
+          'rtp',
+          'se_bankgirot',
+          'sen',
+          'sepa',
+          'sg_giro',
+          'sic',
+          'signet',
+          'sknbi',
+          'wire',
+          'zengin',
+        ],
+      },
+      per_page: {
+        type: 'integer',
+      },
+    },
+    $defs: {
+      currency: {
         type: 'string',
         description: 'Three-letter ISO currency code.',
         enum: [
@@ -218,64 +274,16 @@ export const tool: Tool = {
           'ZWR',
         ],
       },
-      legal_entity_id: {
-        type: 'string',
-        description: 'Only return internal accounts associated with this legal entity.',
-      },
-      metadata: {
-        type: 'object',
-        description:
-          'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
-      },
-      payment_direction: {
+      transaction_direction: {
         type: 'string',
         enum: ['credit', 'debit'],
-      },
-      payment_type: {
-        type: 'string',
-        description: 'Only return internal accounts that can make this type of payment.',
-        enum: [
-          'ach',
-          'au_becs',
-          'bacs',
-          'book',
-          'card',
-          'chats',
-          'check',
-          'cross_border',
-          'dk_nets',
-          'eft',
-          'hu_ics',
-          'interac',
-          'masav',
-          'mx_ccen',
-          'neft',
-          'nics',
-          'nz_becs',
-          'pl_elixir',
-          'provxchange',
-          'ro_sent',
-          'rtp',
-          'se_bankgirot',
-          'sen',
-          'sepa',
-          'sg_giro',
-          'sic',
-          'signet',
-          'sknbi',
-          'wire',
-          'zengin',
-        ],
-      },
-      per_page: {
-        type: 'integer',
       },
     },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.internalAccounts.list(body);
 };
 
