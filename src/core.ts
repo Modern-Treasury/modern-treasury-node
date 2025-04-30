@@ -326,7 +326,7 @@ export abstract class APIClient {
       (httpAgent as any).options.timeout = minAgentTimeout;
     }
 
-    if (this.idempotencyHeader && method !== 'get') {
+    if (this.idempotencyHeader && (method === 'post' || method === 'put')) {
       if (!inputOptions.idempotencyKey) inputOptions.idempotencyKey = this.defaultIdempotencyKey();
       headers[this.idempotencyHeader] = inputOptions.idempotencyKey;
     }
