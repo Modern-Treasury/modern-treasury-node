@@ -231,6 +231,9 @@ export namespace LedgerEventHandlerVariable {
 }
 
 export interface LedgerEventHandlerCreateParams {
+  /**
+   * @deprecated
+   */
   ledger_transaction_template: LedgerEventHandlerCreateParams.LedgerTransactionTemplate;
 
   /**
@@ -238,6 +241,9 @@ export interface LedgerEventHandlerCreateParams {
    */
   name: string;
 
+  /**
+   * @deprecated
+   */
   conditions?: LedgerEventHandlerCreateParams.Conditions | null;
 
   /**
@@ -256,6 +262,9 @@ export interface LedgerEventHandlerCreateParams {
    */
   metadata?: Record<string, string> | null;
 
+  /**
+   * @deprecated
+   */
   variables?: Record<string, LedgerEventHandlerVariable> | null;
 }
 
