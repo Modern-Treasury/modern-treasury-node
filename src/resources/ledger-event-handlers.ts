@@ -8,6 +8,28 @@ import { Page, type PageParams } from '../pagination';
 export class LedgerEventHandlers extends APIResource {
   /**
    * create ledger_event_handler
+   *
+   * @example
+   * ```ts
+   * const ledgerEventHandler =
+   *   await client.ledgerEventHandlers.create({
+   *     ledger_transaction_template: {
+   *       description:
+   *         'My Ledger Transaction Template Description',
+   *       effective_at:
+   *         '{{ledgerable_event.custom_data.effective_at}}',
+   *       ledger_entries: [
+   *         {
+   *           amount: 'amount',
+   *           direction: 'direction',
+   *           ledger_account_id: 'ledger_account_id',
+   *         },
+   *       ],
+   *       status: 'posted',
+   *     },
+   *     name: 'name',
+   *   });
+   * ```
    */
   create(
     params: LedgerEventHandlerCreateParams,
@@ -29,6 +51,12 @@ export class LedgerEventHandlers extends APIResource {
 
   /**
    * Get details on a single ledger event handler.
+   *
+   * @example
+   * ```ts
+   * const ledgerEventHandler =
+   *   await client.ledgerEventHandlers.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandler> {
     return this._client.get(`/api/ledger_event_handlers/${id}`, options);
@@ -36,6 +64,14 @@ export class LedgerEventHandlers extends APIResource {
 
   /**
    * Get a list of ledger event handlers.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerEventHandler of client.ledgerEventHandlers.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LedgerEventHandlerListParams,
@@ -57,6 +93,12 @@ export class LedgerEventHandlers extends APIResource {
 
   /**
    * Archive a ledger event handler.
+   *
+   * @example
+   * ```ts
+   * const ledgerEventHandler =
+   *   await client.ledgerEventHandlers.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEventHandler> {
     return this._client.delete(`/api/ledger_event_handlers/${id}`, options);

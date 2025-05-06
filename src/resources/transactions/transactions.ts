@@ -19,6 +19,19 @@ export class Transactions extends APIResource {
 
   /**
    * create transaction
+   *
+   * @example
+   * ```ts
+   * const transaction = await client.transactions.create({
+   *   amount: 0,
+   *   as_of_date: '2019-12-27',
+   *   direction: 'direction',
+   *   internal_account_id:
+   *     '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   vendor_code: 'vendor_code',
+   *   vendor_code_type: 'vendor_code_type',
+   * });
+   * ```
    */
   create(params: TransactionCreateParams, options?: Core.RequestOptions): Core.APIPromise<Transaction> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
@@ -37,6 +50,13 @@ export class Transactions extends APIResource {
 
   /**
    * Get details on a single transaction.
+   *
+   * @example
+   * ```ts
+   * const transaction = await client.transactions.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Transaction> {
     return this._client.get(`/api/transactions/${id}`, options);
@@ -44,6 +64,11 @@ export class Transactions extends APIResource {
 
   /**
    * Update a single transaction.
+   *
+   * @example
+   * ```ts
+   * const transaction = await client.transactions.update('id');
+   * ```
    */
   update(
     id: string,
@@ -64,6 +89,14 @@ export class Transactions extends APIResource {
 
   /**
    * Get a list of all transactions.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const transaction of client.transactions.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: TransactionListParams,
@@ -82,6 +115,11 @@ export class Transactions extends APIResource {
 
   /**
    * delete transaction
+   *
+   * @example
+   * ```ts
+   * await client.transactions.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/transactions/${id}`, {

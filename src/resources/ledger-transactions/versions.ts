@@ -9,6 +9,14 @@ import { Page, type PageParams } from '../../pagination';
 export class Versions extends APIResource {
   /**
    * Get a list of ledger transaction versions.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerTransactionVersion of client.ledgerTransactions.versions.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: VersionListParams,

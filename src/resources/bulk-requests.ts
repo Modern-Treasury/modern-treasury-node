@@ -12,6 +12,23 @@ import { Page, type PageParams } from '../pagination';
 export class BulkRequests extends APIResource {
   /**
    * create bulk_request
+   *
+   * @example
+   * ```ts
+   * const bulkRequest = await client.bulkRequests.create({
+   *   action_type: 'create',
+   *   resource_type: 'payment_order',
+   *   resources: [
+   *     {
+   *       amount: 0,
+   *       direction: 'credit',
+   *       originating_account_id:
+   *         '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *       type: 'ach',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   create(params: BulkRequestCreateParams, options?: Core.RequestOptions): Core.APIPromise<BulkRequest> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
@@ -30,6 +47,13 @@ export class BulkRequests extends APIResource {
 
   /**
    * get bulk_request
+   *
+   * @example
+   * ```ts
+   * const bulkRequest = await client.bulkRequests.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BulkRequest> {
     return this._client.get(`/api/bulk_requests/${id}`, options);
@@ -37,6 +61,14 @@ export class BulkRequests extends APIResource {
 
   /**
    * list bulk_requests
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const bulkRequest of client.bulkRequests.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: BulkRequestListParams,

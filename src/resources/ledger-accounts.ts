@@ -9,6 +9,16 @@ import { Page, type PageParams } from '../pagination';
 export class LedgerAccounts extends APIResource {
   /**
    * Create a ledger account.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccount = await client.ledgerAccounts.create({
+   *   currency: 'currency',
+   *   ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   name: 'name',
+   *   normal_balance: 'credit',
+   * });
+   * ```
    */
   create(params: LedgerAccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
@@ -27,6 +37,13 @@ export class LedgerAccounts extends APIResource {
 
   /**
    * Get details on a single ledger account.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccount = await client.ledgerAccounts.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -47,6 +64,13 @@ export class LedgerAccounts extends APIResource {
 
   /**
    * Update the details of a ledger account.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccount = await client.ledgerAccounts.update(
+   *   'id',
+   * );
+   * ```
    */
   update(
     id: string,
@@ -67,6 +91,14 @@ export class LedgerAccounts extends APIResource {
 
   /**
    * Get a list of ledger accounts.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerAccount of client.ledgerAccounts.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LedgerAccountListParams,
@@ -85,6 +117,11 @@ export class LedgerAccounts extends APIResource {
 
   /**
    * Delete a ledger account.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccount = await client.ledgerAccounts.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount> {
     return this._client.delete(`/api/ledger_accounts/${id}`, options);
