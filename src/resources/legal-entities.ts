@@ -11,6 +11,13 @@ import { Page, type PageParams } from '../pagination';
 export class LegalEntities extends APIResource {
   /**
    * create legal_entity
+   *
+   * @example
+   * ```ts
+   * const legalEntity = await client.legalEntities.create({
+   *   legal_entity_type: 'business',
+   * });
+   * ```
    */
   create(params: LegalEntityCreateParams, options?: Core.RequestOptions): Core.APIPromise<LegalEntity> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
@@ -29,6 +36,13 @@ export class LegalEntities extends APIResource {
 
   /**
    * Get details on a single legal entity.
+   *
+   * @example
+   * ```ts
+   * const legalEntity = await client.legalEntities.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LegalEntity> {
     return this._client.get(`/api/legal_entities/${id}`, options);
@@ -36,6 +50,11 @@ export class LegalEntities extends APIResource {
 
   /**
    * Update a legal entity.
+   *
+   * @example
+   * ```ts
+   * const legalEntity = await client.legalEntities.update('id');
+   * ```
    */
   update(
     id: string,
@@ -56,6 +75,14 @@ export class LegalEntities extends APIResource {
 
   /**
    * Get a list of all legal entities.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const legalEntity of client.legalEntities.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LegalEntityListParams,

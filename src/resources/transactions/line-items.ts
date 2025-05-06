@@ -8,6 +8,17 @@ import { Page, type PageParams } from '../../pagination';
 export class LineItems extends APIResource {
   /**
    * create transaction line items
+   *
+   * @example
+   * ```ts
+   * const transactionLineItem =
+   *   await client.transactions.lineItems.create({
+   *     amount: 0,
+   *     expected_payment_id:
+   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *     transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   });
+   * ```
    */
   create(body: LineItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<TransactionLineItem> {
     return this._client.post('/api/transaction_line_items', { body, ...options });
@@ -15,6 +26,12 @@ export class LineItems extends APIResource {
 
   /**
    * get transaction line item
+   *
+   * @example
+   * ```ts
+   * const transactionLineItem =
+   *   await client.transactions.lineItems.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<TransactionLineItem> {
     return this._client.get(`/api/transaction_line_items/${id}`, options);
@@ -22,6 +39,14 @@ export class LineItems extends APIResource {
 
   /**
    * list transaction_line_items
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const transactionLineItem of client.transactions.lineItems.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LineItemListParams,
@@ -43,6 +68,11 @@ export class LineItems extends APIResource {
 
   /**
    * delete transaction line item
+   *
+   * @example
+   * ```ts
+   * await client.transactions.lineItems.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/transaction_line_items/${id}`, {

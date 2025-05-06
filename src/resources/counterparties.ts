@@ -13,6 +13,13 @@ import { Page, type PageParams } from '../pagination';
 export class Counterparties extends APIResource {
   /**
    * Create a new counterparty.
+   *
+   * @example
+   * ```ts
+   * const counterparty = await client.counterparties.create({
+   *   name: 'name',
+   * });
+   * ```
    */
   create(params: CounterpartyCreateParams, options?: Core.RequestOptions): Core.APIPromise<Counterparty> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
@@ -31,6 +38,13 @@ export class Counterparties extends APIResource {
 
   /**
    * Get details on a single counterparty.
+   *
+   * @example
+   * ```ts
+   * const counterparty = await client.counterparties.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Counterparty> {
     return this._client.get(`/api/counterparties/${id}`, options);
@@ -38,6 +52,13 @@ export class Counterparties extends APIResource {
 
   /**
    * Updates a given counterparty with new information.
+   *
+   * @example
+   * ```ts
+   * const counterparty = await client.counterparties.update(
+   *   'id',
+   * );
+   * ```
    */
   update(
     id: string,
@@ -58,6 +79,14 @@ export class Counterparties extends APIResource {
 
   /**
    * Get a paginated list of all counterparties.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const counterparty of client.counterparties.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: CounterpartyListParams,
@@ -76,6 +105,11 @@ export class Counterparties extends APIResource {
 
   /**
    * Deletes a given counterparty.
+   *
+   * @example
+   * ```ts
+   * await client.counterparties.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/counterparties/${id}`, {
@@ -86,6 +120,14 @@ export class Counterparties extends APIResource {
 
   /**
    * Send an email requesting account details.
+   *
+   * @example
+   * ```ts
+   * const counterpartyCollectAccountResponse =
+   *   await client.counterparties.collectAccount('id', {
+   *     direction: 'credit',
+   *   });
+   * ```
    */
   collectAccount(
     id: string,
