@@ -9,6 +9,27 @@ import { Page, type PageParams } from '../../pagination';
 export class BalanceReports extends APIResource {
   /**
    * create balance reports
+   *
+   * @example
+   * ```ts
+   * const balanceReport =
+   *   await client.internalAccounts.balanceReports.create(
+   *     'internal_account_id',
+   *     {
+   *       as_of_date: '2019-12-27',
+   *       as_of_time: 'as_of_time',
+   *       balance_report_type: 'intraday',
+   *       balances: [
+   *         {
+   *           amount: 0,
+   *           balance_type: 'closing_available',
+   *           vendor_code: 'vendor_code',
+   *           vendor_code_type: 'vendor_code_type',
+   *         },
+   *       ],
+   *     },
+   *   );
+   * ```
    */
   create(
     internalAccountId: string,
@@ -31,6 +52,15 @@ export class BalanceReports extends APIResource {
 
   /**
    * Get a single balance report for a given internal account.
+   *
+   * @example
+   * ```ts
+   * const balanceReport =
+   *   await client.internalAccounts.balanceReports.retrieve(
+   *     'internal_account_id',
+   *     'id',
+   *   );
+   * ```
    */
   retrieve(
     internalAccountId: string,
@@ -42,6 +72,16 @@ export class BalanceReports extends APIResource {
 
   /**
    * Get all balance reports for a given internal account.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const balanceReport of client.internalAccounts.balanceReports.list(
+   *   'internal_account_id',
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     internalAccountId: string,
@@ -69,6 +109,14 @@ export class BalanceReports extends APIResource {
 
   /**
    * Deletes a given balance report.
+   *
+   * @example
+   * ```ts
+   * await client.internalAccounts.balanceReports.del(
+   *   'internal_account_id',
+   *   'id',
+   * );
+   * ```
    */
   del(internalAccountId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, {

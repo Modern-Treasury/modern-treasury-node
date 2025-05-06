@@ -7,6 +7,17 @@ import * as Shared from './shared';
 export class LedgerAccountStatements extends APIResource {
   /**
    * Create a ledger account statement.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountStatement =
+   *   await client.ledgerAccountStatements.create({
+   *     effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
+   *     effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
+   *     ledger_account_id:
+   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   });
+   * ```
    */
   create(
     params: LedgerAccountStatementCreateParams,
@@ -28,6 +39,12 @@ export class LedgerAccountStatements extends APIResource {
 
   /**
    * Get details on a single ledger account statement.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountStatement =
+   *   await client.ledgerAccountStatements.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,

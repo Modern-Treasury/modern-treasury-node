@@ -8,6 +8,15 @@ import { Page, type PageParams } from '../pagination';
 export class LineItems extends APIResource {
   /**
    * Get a single line item
+   *
+   * @example
+   * ```ts
+   * const lineItem = await client.lineItems.retrieve(
+   *   'expected_payments',
+   *   'itemizable_id',
+   *   'id',
+   * );
+   * ```
    */
   retrieve(
     itemizableType: 'expected_payments' | 'payment_orders',
@@ -20,6 +29,15 @@ export class LineItems extends APIResource {
 
   /**
    * update line item
+   *
+   * @example
+   * ```ts
+   * const lineItem = await client.lineItems.update(
+   *   'expected_payments',
+   *   'itemizable_id',
+   *   'id',
+   * );
+   * ```
    */
   update(
     itemizableType: 'expected_payments' | 'payment_orders',
@@ -52,6 +70,17 @@ export class LineItems extends APIResource {
 
   /**
    * Get a list of line items
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const lineItem of client.lineItems.list(
+   *   'expected_payments',
+   *   'itemizable_id',
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     itemizableType: 'expected_payments' | 'payment_orders',

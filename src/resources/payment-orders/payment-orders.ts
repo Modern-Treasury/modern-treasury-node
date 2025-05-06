@@ -17,6 +17,17 @@ export class PaymentOrders extends APIResource {
 
   /**
    * Create a new Payment Order
+   *
+   * @example
+   * ```ts
+   * const paymentOrder = await client.paymentOrders.create({
+   *   amount: 0,
+   *   direction: 'credit',
+   *   originating_account_id:
+   *     '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   type: 'ach',
+   * });
+   * ```
    */
   create(params: PaymentOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
@@ -38,6 +49,13 @@ export class PaymentOrders extends APIResource {
 
   /**
    * Get details on a single payment order
+   *
+   * @example
+   * ```ts
+   * const paymentOrder = await client.paymentOrders.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder> {
     return this._client.get(`/api/payment_orders/${id}`, options);
@@ -45,6 +63,13 @@ export class PaymentOrders extends APIResource {
 
   /**
    * Update a payment order
+   *
+   * @example
+   * ```ts
+   * const paymentOrder = await client.paymentOrders.update(
+   *   'id',
+   * );
+   * ```
    */
   update(
     id: string,
@@ -65,6 +90,14 @@ export class PaymentOrders extends APIResource {
 
   /**
    * Get a list of all payment orders
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const paymentOrder of client.paymentOrders.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: PaymentOrderListParams,
@@ -83,6 +116,18 @@ export class PaymentOrders extends APIResource {
 
   /**
    * Create a new payment order asynchronously
+   *
+   * @example
+   * ```ts
+   * const asyncResponse =
+   *   await client.paymentOrders.createAsync({
+   *     amount: 0,
+   *     direction: 'credit',
+   *     originating_account_id:
+   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *     type: 'ach',
+   *   });
+   * ```
    */
   createAsync(
     params: PaymentOrderCreateAsyncParams,
