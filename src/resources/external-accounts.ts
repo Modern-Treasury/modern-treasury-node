@@ -11,6 +11,14 @@ import { Page, type PageParams } from '../pagination';
 export class ExternalAccounts extends APIResource {
   /**
    * create external account
+   *
+   * @example
+   * ```ts
+   * const externalAccount =
+   *   await client.externalAccounts.create({
+   *     counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   });
+   * ```
    */
   create(
     params: ExternalAccountCreateParams,
@@ -32,6 +40,12 @@ export class ExternalAccounts extends APIResource {
 
   /**
    * show external account
+   *
+   * @example
+   * ```ts
+   * const externalAccount =
+   *   await client.externalAccounts.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ExternalAccount> {
     return this._client.get(`/api/external_accounts/${id}`, options);
@@ -39,6 +53,12 @@ export class ExternalAccounts extends APIResource {
 
   /**
    * update external account
+   *
+   * @example
+   * ```ts
+   * const externalAccount =
+   *   await client.externalAccounts.update('id');
+   * ```
    */
   update(
     id: string,
@@ -59,6 +79,14 @@ export class ExternalAccounts extends APIResource {
 
   /**
    * list external accounts
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const externalAccount of client.externalAccounts.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: ExternalAccountListParams,
@@ -77,6 +105,11 @@ export class ExternalAccounts extends APIResource {
 
   /**
    * delete external account
+   *
+   * @example
+   * ```ts
+   * await client.externalAccounts.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/api/external_accounts/${id}`, {
@@ -87,6 +120,12 @@ export class ExternalAccounts extends APIResource {
 
   /**
    * complete verification of external account
+   *
+   * @example
+   * ```ts
+   * const externalAccount =
+   *   await client.externalAccounts.completeVerification('id');
+   * ```
    */
   completeVerification(
     id: string,
@@ -118,6 +157,18 @@ export class ExternalAccounts extends APIResource {
 
   /**
    * verify external account
+   *
+   * @example
+   * ```ts
+   * const response = await client.externalAccounts.verify(
+   *   'id',
+   *   {
+   *     originating_account_id:
+   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *     payment_type: 'ach',
+   *   },
+   * );
+   * ```
    */
   verify(
     id: string,

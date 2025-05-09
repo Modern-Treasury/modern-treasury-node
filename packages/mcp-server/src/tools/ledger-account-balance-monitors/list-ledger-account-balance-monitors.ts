@@ -43,8 +43,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.ledgerAccountBalanceMonitors.list(body);
 };
 

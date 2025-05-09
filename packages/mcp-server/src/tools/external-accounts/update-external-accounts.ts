@@ -20,9 +20,7 @@ export const tool: Tool = {
         type: 'string',
       },
       account_type: {
-        type: 'string',
-        description: 'Can be `checking`, `savings` or `other`.',
-        enum: ['cash', 'checking', 'general_ledger', 'loan', 'non_resident', 'other', 'overdraft', 'savings'],
+        $ref: '#/$defs/external_account_type',
       },
       counterparty_id: {
         type: 'string',
@@ -75,11 +73,18 @@ export const tool: Tool = {
         enum: ['business', 'individual'],
       },
     },
+    $defs: {
+      external_account_type: {
+        type: 'string',
+        description: 'Can be `checking`, `savings` or `other`.',
+        enum: ['cash', 'checking', 'general_ledger', 'loan', 'non_resident', 'other', 'overdraft', 'savings'],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.externalAccounts.update(id, body);
 };
 

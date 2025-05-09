@@ -91,8 +91,7 @@ export const tool: Tool = {
             description: 'The name of the ledger account.',
           },
           normal_balance: {
-            type: 'string',
-            enum: ['credit', 'debit'],
+            $ref: '#/$defs/transaction_direction',
           },
           currency_exponent: {
             type: 'integer',
@@ -214,11 +213,17 @@ export const tool: Tool = {
         },
       },
     },
+    $defs: {
+      transaction_direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.virtualAccounts.create(body);
 };
 

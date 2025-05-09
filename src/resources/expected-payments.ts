@@ -9,6 +9,12 @@ import { Page, type PageParams } from '../pagination';
 export class ExpectedPayments extends APIResource {
   /**
    * create expected payment
+   *
+   * @example
+   * ```ts
+   * const expectedPayment =
+   *   await client.expectedPayments.create();
+   * ```
    */
   create(
     params?: ExpectedPaymentCreateParams,
@@ -38,6 +44,12 @@ export class ExpectedPayments extends APIResource {
 
   /**
    * get expected payment
+   *
+   * @example
+   * ```ts
+   * const expectedPayment =
+   *   await client.expectedPayments.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment> {
     return this._client.get(`/api/expected_payments/${id}`, options);
@@ -45,6 +57,12 @@ export class ExpectedPayments extends APIResource {
 
   /**
    * update expected payment
+   *
+   * @example
+   * ```ts
+   * const expectedPayment =
+   *   await client.expectedPayments.update('id');
+   * ```
    */
   update(
     id: string,
@@ -65,6 +83,14 @@ export class ExpectedPayments extends APIResource {
 
   /**
    * list expected_payments
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const expectedPayment of client.expectedPayments.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: ExpectedPaymentListParams,
@@ -83,6 +109,13 @@ export class ExpectedPayments extends APIResource {
 
   /**
    * delete expected payment
+   *
+   * @example
+   * ```ts
+   * const expectedPayment = await client.expectedPayments.del(
+   *   'id',
+   * );
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment> {
     return this._client.delete(`/api/expected_payments/${id}`, options);

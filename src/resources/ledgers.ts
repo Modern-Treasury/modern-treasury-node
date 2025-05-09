@@ -8,6 +8,13 @@ import { Page, type PageParams } from '../pagination';
 export class Ledgers extends APIResource {
   /**
    * Create a ledger.
+   *
+   * @example
+   * ```ts
+   * const ledger = await client.ledgers.create({
+   *   name: 'name',
+   * });
+   * ```
    */
   create(params: LedgerCreateParams, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
@@ -26,6 +33,11 @@ export class Ledgers extends APIResource {
 
   /**
    * Get details on a single ledger.
+   *
+   * @example
+   * ```ts
+   * const ledger = await client.ledgers.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
     return this._client.get(`/api/ledgers/${id}`, options);
@@ -33,6 +45,11 @@ export class Ledgers extends APIResource {
 
   /**
    * Update the details of a ledger.
+   *
+   * @example
+   * ```ts
+   * const ledger = await client.ledgers.update('id');
+   * ```
    */
   update(id: string, body?: LedgerUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Ledger>;
   update(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger>;
@@ -49,6 +66,14 @@ export class Ledgers extends APIResource {
 
   /**
    * Get a list of ledgers.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledger of client.ledgers.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(query?: LedgerListParams, options?: Core.RequestOptions): Core.PagePromise<LedgersPage, Ledger>;
   list(options?: Core.RequestOptions): Core.PagePromise<LedgersPage, Ledger>;
@@ -64,6 +89,11 @@ export class Ledgers extends APIResource {
 
   /**
    * Delete a ledger.
+   *
+   * @example
+   * ```ts
+   * const ledger = await client.ledgers.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
     return this._client.delete(`/api/ledgers/${id}`, options);

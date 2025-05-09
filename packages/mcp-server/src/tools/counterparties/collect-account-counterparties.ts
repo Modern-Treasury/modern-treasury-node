@@ -20,8 +20,7 @@ export const tool: Tool = {
         type: 'string',
       },
       direction: {
-        type: 'string',
-        enum: ['credit', 'debit'],
+        $ref: '#/$defs/transaction_direction',
       },
       custom_redirect: {
         type: 'string',
@@ -73,11 +72,17 @@ export const tool: Tool = {
           'By default, Modern Treasury will send an email to your counterparty that includes a link to the form they must fill out. However, if you would like to send the counterparty the link, you can set this parameter to `false`. The JSON body will include the link to the secure Modern Treasury form.',
       },
     },
+    $defs: {
+      transaction_direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.counterparties.collectAccount(id, body);
 };
 

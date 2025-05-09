@@ -22,6 +22,15 @@ export class Invoices extends APIResource {
 
   /**
    * create invoice
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.invoices.create({
+   *   counterparty_id: 'counterparty_id',
+   *   due_date: '2019-12-27T18:11:19.117Z',
+   *   originating_account_id: 'originating_account_id',
+   * });
+   * ```
    */
   create(params: InvoiceCreateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
     // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
@@ -40,6 +49,11 @@ export class Invoices extends APIResource {
 
   /**
    * get invoice
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.invoices.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
     return this._client.get(`/api/invoices/${id}`, options);
@@ -47,6 +61,11 @@ export class Invoices extends APIResource {
 
   /**
    * update invoice
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.invoices.update('id');
+   * ```
    */
   update(id: string, body?: InvoiceUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice>;
   update(id: string, options?: Core.RequestOptions): Core.APIPromise<Invoice>;
@@ -63,6 +82,14 @@ export class Invoices extends APIResource {
 
   /**
    * list invoices
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const invoice of client.invoices.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(query?: InvoiceListParams, options?: Core.RequestOptions): Core.PagePromise<InvoicesPage, Invoice>;
   list(options?: Core.RequestOptions): Core.PagePromise<InvoicesPage, Invoice>;
@@ -78,6 +105,14 @@ export class Invoices extends APIResource {
 
   /**
    * Add a payment order to an invoice.
+   *
+   * @example
+   * ```ts
+   * await client.invoices.addPaymentOrder(
+   *   'id',
+   *   'payment_order_id',
+   * );
+   * ```
    */
   addPaymentOrder(id: string, paymentOrderId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(`/api/invoices/${id}/payment_orders/${paymentOrderId}`, {

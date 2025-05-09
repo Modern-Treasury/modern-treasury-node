@@ -30,8 +30,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { itemizable_type, itemizable_id, id } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { itemizable_type, itemizable_id, id, ...body } = args as any;
   return client.lineItems.retrieve(itemizable_type, itemizable_id, id);
 };
 

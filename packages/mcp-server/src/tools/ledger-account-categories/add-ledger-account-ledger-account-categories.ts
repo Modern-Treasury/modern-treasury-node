@@ -26,8 +26,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, ledger_account_id } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, ledger_account_id, ...body } = args as any;
   return client.ledgerAccountCategories.addLedgerAccount(id, ledger_account_id);
 };
 

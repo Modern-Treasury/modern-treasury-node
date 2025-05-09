@@ -30,8 +30,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { accounts_type, account_id, id } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { accounts_type, account_id, id, ...body } = args as any;
   return client.routingDetails.del(accounts_type, account_id, id);
 };
 

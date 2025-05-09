@@ -21,6 +21,29 @@ export const tool: Tool = {
         description: 'The ID for the `InternalAccount` this quote is associated with.',
       },
       target_currency: {
+        $ref: '#/$defs/currency',
+      },
+      base_amount: {
+        type: 'integer',
+        description:
+          'Amount in the lowest denomination of the `base_currency` to convert, often called the "sell" amount.',
+      },
+      base_currency: {
+        $ref: '#/$defs/currency',
+      },
+      effective_at: {
+        type: 'string',
+        description: 'The timestamp until when the quoted rate is valid.',
+        format: 'date-time',
+      },
+      target_amount: {
+        type: 'integer',
+        description:
+          'Amount in the lowest denomination of the `target_currency`, often called the "buy" amount.',
+      },
+    },
+    $defs: {
+      currency: {
         type: 'string',
         description: 'Three-letter ISO currency code.',
         enum: [
@@ -215,30 +238,12 @@ export const tool: Tool = {
           'ZWR',
         ],
       },
-      base_amount: {
-        type: 'integer',
-        description:
-          'Amount in the lowest denomination of the `base_currency` to convert, often called the "sell" amount.',
-      },
-      base_currency: {
-        $ref: '#/properties/target_currency',
-      },
-      effective_at: {
-        type: 'string',
-        description: 'The timestamp until when the quoted rate is valid.',
-        format: 'date-time',
-      },
-      target_amount: {
-        type: 'integer',
-        description:
-          'Amount in the lowest denomination of the `target_currency`, often called the "buy" amount.',
-      },
     },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.foreignExchangeQuotes.create(body);
 };
 

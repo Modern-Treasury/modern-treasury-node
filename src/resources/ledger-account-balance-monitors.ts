@@ -8,6 +8,19 @@ import { Page, type PageParams } from '../pagination';
 export class LedgerAccountBalanceMonitors extends APIResource {
   /**
    * Create a ledger account balance monitor.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountBalanceMonitor =
+   *   await client.ledgerAccountBalanceMonitors.create({
+   *     alert_condition: {
+   *       field: 'field',
+   *       operator: 'operator',
+   *       value: 0,
+   *     },
+   *     ledger_account_id: 'ledger_account_id',
+   *   });
+   * ```
    */
   create(
     params: LedgerAccountBalanceMonitorCreateParams,
@@ -29,6 +42,12 @@ export class LedgerAccountBalanceMonitors extends APIResource {
 
   /**
    * Get details on a single ledger account balance monitor.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountBalanceMonitor =
+   *   await client.ledgerAccountBalanceMonitors.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountBalanceMonitor> {
     return this._client.get(`/api/ledger_account_balance_monitors/${id}`, options);
@@ -36,6 +55,12 @@ export class LedgerAccountBalanceMonitors extends APIResource {
 
   /**
    * Update a ledger account balance monitor.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountBalanceMonitor =
+   *   await client.ledgerAccountBalanceMonitors.update('id');
+   * ```
    */
   update(
     id: string,
@@ -56,6 +81,14 @@ export class LedgerAccountBalanceMonitors extends APIResource {
 
   /**
    * Get a list of ledger account balance monitors.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerAccountBalanceMonitor of client.ledgerAccountBalanceMonitors.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LedgerAccountBalanceMonitorListParams,
@@ -79,6 +112,12 @@ export class LedgerAccountBalanceMonitors extends APIResource {
 
   /**
    * Delete a ledger account balance monitor.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountBalanceMonitor =
+   *   await client.ledgerAccountBalanceMonitors.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountBalanceMonitor> {
     return this._client.delete(`/api/ledger_account_balance_monitors/${id}`, options);

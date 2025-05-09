@@ -19,8 +19,7 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const {} = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   return client.ping();
 };
 

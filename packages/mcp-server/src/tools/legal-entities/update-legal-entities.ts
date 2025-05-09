@@ -60,62 +60,7 @@ export const tool: Tool = {
         },
       },
       bank_settings: {
-        type: 'object',
-        properties: {
-          id: {
-            type: 'string',
-          },
-          backup_withholding_percentage: {
-            type: 'integer',
-            description: 'The percentage of backup withholding to apply to the legal entity.',
-          },
-          created_at: {
-            type: 'string',
-            format: 'date-time',
-          },
-          discarded_at: {
-            type: 'string',
-            format: 'date-time',
-          },
-          enable_backup_withholding: {
-            type: 'boolean',
-            description:
-              'Whether backup withholding is enabled. See more here - https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.',
-          },
-          live_mode: {
-            type: 'boolean',
-            description:
-              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
-          },
-          object: {
-            type: 'string',
-          },
-          privacy_opt_out: {
-            type: 'boolean',
-            description: 'Cross River Bank specific setting to opt out of privacy policy.',
-          },
-          regulation_o: {
-            type: 'boolean',
-            description:
-              'It covers, among other types of insider loans, extensions of credit by a member bank to an executive officer, director, or principal shareholder of the member bank; a bank holding company of which the member bank is a subsidiary; and any other subsidiary of that bank holding company.',
-          },
-          updated_at: {
-            type: 'string',
-            format: 'date-time',
-          },
-        },
-        required: [
-          'id',
-          'backup_withholding_percentage',
-          'created_at',
-          'discarded_at',
-          'enable_backup_withholding',
-          'live_mode',
-          'object',
-          'privacy_opt_out',
-          'regulation_o',
-          'updated_at',
-        ],
+        $ref: '#/$defs/bank_settings',
       },
       business_name: {
         type: 'string',
@@ -126,73 +71,7 @@ export const tool: Tool = {
         description: 'The country of citizenship for an individual.',
       },
       compliance_details: {
-        type: 'object',
-        properties: {
-          id: {
-            type: 'string',
-          },
-          created_at: {
-            type: 'string',
-            format: 'date-time',
-          },
-          discarded_at: {
-            type: 'string',
-            format: 'date-time',
-          },
-          issuer: {
-            type: 'string',
-            description: 'The issuer of the compliance token.',
-          },
-          live_mode: {
-            type: 'boolean',
-            description:
-              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
-          },
-          object: {
-            type: 'string',
-          },
-          token_expires_at: {
-            type: 'string',
-            description: 'The timestamp when the compliance token expires.',
-            format: 'date-time',
-          },
-          token_issued_at: {
-            type: 'string',
-            description: 'The timestamp when the compliance token was issued.',
-            format: 'date-time',
-          },
-          token_url: {
-            type: 'string',
-            description: 'The URL to the compliance token. (ex. provider portal URL)',
-          },
-          updated_at: {
-            type: 'string',
-            format: 'date-time',
-          },
-          validated: {
-            type: 'boolean',
-            description: 'Whether entity corresponding to the compliance token has been validated.',
-          },
-          validated_at: {
-            type: 'string',
-            description: 'The timestamp when the entity was validated.',
-            format: 'date-time',
-          },
-        },
-        required: [
-          'id',
-          'created_at',
-          'discarded_at',
-          'issuer',
-          'live_mode',
-          'object',
-          'token_expires_at',
-          'token_issued_at',
-          'token_url',
-          'updated_at',
-          'validated',
-          'validated_at',
-        ],
+        $ref: '#/$defs/legal_entity_compliance_detail',
       },
       date_formed: {
         type: 'string',
@@ -270,70 +149,7 @@ export const tool: Tool = {
         type: 'array',
         description: 'A list of industry classifications for the legal entity.',
         items: {
-          type: 'object',
-          properties: {
-            id: {
-              type: 'string',
-            },
-            classification_codes: {
-              type: 'array',
-              description: 'The industry classification codes for the legal entity.',
-              items: {
-                type: 'string',
-              },
-            },
-            classification_type: {
-              type: 'string',
-              description: 'The classification system of the classification codes.',
-              enum: [
-                'anzsic',
-                'bics',
-                'gics',
-                'hsics',
-                'icb',
-                'isic',
-                'mgecs',
-                'nace',
-                'naics',
-                'rbics',
-                'sic',
-                'sni',
-                'trbc',
-                'uksic',
-                'unspsc',
-              ],
-            },
-            created_at: {
-              type: 'string',
-              format: 'date-time',
-            },
-            discarded_at: {
-              type: 'string',
-              format: 'date-time',
-            },
-            live_mode: {
-              type: 'boolean',
-              description:
-                'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
-            },
-            object: {
-              type: 'string',
-            },
-            updated_at: {
-              type: 'string',
-              format: 'date-time',
-            },
-          },
-          required: [
-            'id',
-            'classification_codes',
-            'classification_type',
-            'created_at',
-            'discarded_at',
-            'live_mode',
-            'object',
-            'updated_at',
-          ],
+          $ref: '#/$defs/legal_entity_industry_classification',
         },
       },
       last_name: {
@@ -387,6 +203,208 @@ export const tool: Tool = {
       suffix: {
         type: 'string',
         description: "An individual's suffix.",
+      },
+      wealth_and_employment_details: {
+        $ref: '#/$defs/wealth_and_employment_details',
+      },
+      website: {
+        type: 'string',
+        description: "The entity's primary website URL.",
+      },
+    },
+    $defs: {
+      bank_settings: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          backup_withholding_percentage: {
+            type: 'integer',
+            description: 'The percentage of backup withholding to apply to the legal entity.',
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          enable_backup_withholding: {
+            type: 'boolean',
+            description:
+              'Whether backup withholding is enabled. See more here - https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.',
+          },
+          live_mode: {
+            type: 'boolean',
+            description:
+              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+          },
+          object: {
+            type: 'string',
+          },
+          privacy_opt_out: {
+            type: 'boolean',
+            description: 'Cross River Bank specific setting to opt out of privacy policy.',
+          },
+          regulation_o: {
+            type: 'boolean',
+            description:
+              'It covers, among other types of insider loans, extensions of credit by a member bank to an executive officer, director, or principal shareholder of the member bank; a bank holding company of which the member bank is a subsidiary; and any other subsidiary of that bank holding company.',
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+        },
+        required: [
+          'id',
+          'backup_withholding_percentage',
+          'created_at',
+          'discarded_at',
+          'enable_backup_withholding',
+          'live_mode',
+          'object',
+          'privacy_opt_out',
+          'regulation_o',
+          'updated_at',
+        ],
+      },
+      legal_entity_compliance_detail: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          issuer: {
+            type: 'string',
+            description: 'The issuer of the compliance token.',
+          },
+          live_mode: {
+            type: 'boolean',
+            description:
+              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+          },
+          object: {
+            type: 'string',
+          },
+          token_expires_at: {
+            type: 'string',
+            description: 'The timestamp when the compliance token expires.',
+            format: 'date-time',
+          },
+          token_issued_at: {
+            type: 'string',
+            description: 'The timestamp when the compliance token was issued.',
+            format: 'date-time',
+          },
+          token_url: {
+            type: 'string',
+            description: 'The URL to the compliance token. (ex. provider portal URL)',
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          validated: {
+            type: 'boolean',
+            description: 'Whether entity corresponding to the compliance token has been validated.',
+          },
+          validated_at: {
+            type: 'string',
+            description: 'The timestamp when the entity was validated.',
+            format: 'date-time',
+          },
+        },
+        required: [
+          'id',
+          'created_at',
+          'discarded_at',
+          'issuer',
+          'live_mode',
+          'object',
+          'token_expires_at',
+          'token_issued_at',
+          'token_url',
+          'updated_at',
+          'validated',
+          'validated_at',
+        ],
+      },
+      legal_entity_industry_classification: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          classification_codes: {
+            type: 'array',
+            description: 'The industry classification codes for the legal entity.',
+            items: {
+              type: 'string',
+            },
+          },
+          classification_type: {
+            type: 'string',
+            description: 'The classification system of the classification codes.',
+            enum: [
+              'anzsic',
+              'bics',
+              'gics',
+              'hsics',
+              'icb',
+              'isic',
+              'mgecs',
+              'nace',
+              'naics',
+              'rbics',
+              'sic',
+              'sni',
+              'trbc',
+              'uksic',
+              'unspsc',
+            ],
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          live_mode: {
+            type: 'boolean',
+            description:
+              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+          },
+          object: {
+            type: 'string',
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+        },
+        required: [
+          'id',
+          'classification_codes',
+          'classification_type',
+          'created_at',
+          'discarded_at',
+          'live_mode',
+          'object',
+          'updated_at',
+        ],
       },
       wealth_and_employment_details: {
         type: 'object',
@@ -575,16 +593,12 @@ export const tool: Tool = {
           'wealth_source',
         ],
       },
-      website: {
-        type: 'string',
-        description: "The entity's primary website URL.",
-      },
     },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.legalEntities.update(id, body);
 };
 

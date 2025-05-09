@@ -26,8 +26,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { internal_account_id, id } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { internal_account_id, id, ...body } = args as any;
   return client.internalAccounts.balanceReports.retrieve(internal_account_id, id);
 };
 

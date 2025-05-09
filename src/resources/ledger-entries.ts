@@ -9,6 +9,13 @@ import { Page, type PageParams } from '../pagination';
 export class LedgerEntries extends APIResource {
   /**
    * Get details on a single ledger entry.
+   *
+   * @example
+   * ```ts
+   * const ledgerEntry = await client.ledgerEntries.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -29,6 +36,11 @@ export class LedgerEntries extends APIResource {
 
   /**
    * Update the details of a ledger entry.
+   *
+   * @example
+   * ```ts
+   * const ledgerEntry = await client.ledgerEntries.update('id');
+   * ```
    */
   update(
     id: string,
@@ -49,6 +61,14 @@ export class LedgerEntries extends APIResource {
 
   /**
    * Get a list of all ledger entries.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerEntry of client.ledgerEntries.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LedgerEntryListParams,

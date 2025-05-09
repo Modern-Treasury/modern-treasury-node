@@ -34,6 +34,73 @@ export const tool: Tool = {
         description: 'The ID of the counterparty you expect for this payment.',
       },
       currency: {
+        $ref: '#/$defs/currency',
+      },
+      date_lower_bound: {
+        type: 'string',
+        description: 'The earliest date the payment may come in. Format: yyyy-mm-dd',
+        format: 'date',
+      },
+      date_upper_bound: {
+        type: 'string',
+        description: 'The latest date the payment may come in. Format: yyyy-mm-dd',
+        format: 'date',
+      },
+      description: {
+        type: 'string',
+        description: 'An optional description for internal use.',
+      },
+      direction: {
+        type: 'string',
+        description:
+          'One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit.',
+        enum: ['credit', 'debit'],
+      },
+      internal_account_id: {
+        type: 'string',
+        description: 'The ID of the Internal Account for the expected payment.',
+      },
+      metadata: {
+        type: 'object',
+        description:
+          'Additional data represented as key-value pairs. Both the key and value must be strings.',
+      },
+      reconciliation_filters: {
+        type: 'object',
+        description: 'The reconciliation filters you have for this payment.',
+      },
+      reconciliation_groups: {
+        type: 'object',
+        description: 'The reconciliation groups you have for this payment.',
+      },
+      reconciliation_rule_variables: {
+        type: 'array',
+        description: 'An array of reconciliation rule variables for this payment.',
+        items: {
+          $ref: '#/$defs/reconciliation_rule',
+        },
+      },
+      remittance_information: {
+        type: 'string',
+        description:
+          'For `ach`, this field will be passed through on an addenda record. For `wire` payments the field will be passed through as the "Originator to Beneficiary Information", also known as OBI or Fedwire tag 6000.',
+      },
+      statement_descriptor: {
+        type: 'string',
+        description:
+          'The statement description you expect to see on the transaction. For ACH payments, this will be the full line item passed from the bank. For wire payments, this will be the OBI field on the wire. For check payments, this will be the memo field.',
+      },
+      status: {
+        type: 'string',
+        description: "The Expected Payment's status can be updated from partially_reconciled to reconciled.",
+        enum: ['reconciled'],
+      },
+      type: {
+        $ref: '#/$defs/expected_payment_type',
+      },
+    },
+    $defs: {
+      currency: {
         type: 'string',
         description: 'Three-letter ISO currency code.',
         enum: [
@@ -228,147 +295,91 @@ export const tool: Tool = {
           'ZWR',
         ],
       },
-      date_lower_bound: {
-        type: 'string',
-        description: 'The earliest date the payment may come in. Format: yyyy-mm-dd',
-        format: 'date',
-      },
-      date_upper_bound: {
-        type: 'string',
-        description: 'The latest date the payment may come in. Format: yyyy-mm-dd',
-        format: 'date',
-      },
-      description: {
-        type: 'string',
-        description: 'An optional description for internal use.',
-      },
-      direction: {
-        type: 'string',
-        description:
-          'One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit.',
-        enum: ['credit', 'debit'],
-      },
-      internal_account_id: {
-        type: 'string',
-        description: 'The ID of the Internal Account for the expected payment.',
-      },
-      metadata: {
+      reconciliation_rule: {
         type: 'object',
-        description:
-          'Additional data represented as key-value pairs. Both the key and value must be strings.',
-      },
-      reconciliation_filters: {
-        type: 'object',
-        description: 'The reconciliation filters you have for this payment.',
-      },
-      reconciliation_groups: {
-        type: 'object',
-        description: 'The reconciliation groups you have for this payment.',
-      },
-      reconciliation_rule_variables: {
-        type: 'array',
-        description: 'An array of reconciliation rule variables for this payment.',
-        items: {
-          type: 'object',
-          properties: {
-            amount_lower_bound: {
-              type: 'integer',
-              description:
-                "The lowest amount this expected payment may be equal to. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
-            },
-            amount_upper_bound: {
-              type: 'integer',
-              description:
-                "The highest amount this expected payment may be equal to. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
-            },
-            direction: {
-              type: 'string',
-              description:
-                'One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit.',
-              enum: ['credit', 'debit'],
-            },
-            internal_account_id: {
-              type: 'string',
-              description: 'The ID of the Internal Account for the expected payment',
-            },
-            counterparty_id: {
-              type: 'string',
-              description: 'The ID of the counterparty you expect for this payment',
-            },
-            currency: {
-              $ref: '#/properties/currency',
-            },
-            custom_identifiers: {
-              type: 'object',
-              description: 'A hash of custom identifiers for this payment',
-            },
-            date_lower_bound: {
-              type: 'string',
-              description: 'The earliest date the payment may come in. Format is yyyy-mm-dd',
-              format: 'date',
-            },
-            date_upper_bound: {
-              type: 'string',
-              description: 'The latest date the payment may come in. Format is yyyy-mm-dd',
-              format: 'date',
-            },
-            type: {
-              type: 'string',
-              description:
-                'One of ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen, sepa, signet wire',
-              enum: [
-                'ach',
-                'au_becs',
-                'bacs',
-                'book',
-                'card',
-                'chats',
-                'check',
-                'cross_border',
-                'dk_nets',
-                'eft',
-                'hu_ics',
-                'interac',
-                'masav',
-                'mx_ccen',
-                'neft',
-                'nics',
-                'nz_becs',
-                'pl_elixir',
-                'provxchange',
-                'ro_sent',
-                'rtp',
-                'se_bankgirot',
-                'sen',
-                'sepa',
-                'sg_giro',
-                'sic',
-                'signet',
-                'sknbi',
-                'wire',
-                'zengin',
-              ],
-            },
+        properties: {
+          amount_lower_bound: {
+            type: 'integer',
+            description:
+              "The lowest amount this expected payment may be equal to. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
           },
-          required: ['amount_lower_bound', 'amount_upper_bound', 'direction', 'internal_account_id'],
+          amount_upper_bound: {
+            type: 'integer',
+            description:
+              "The highest amount this expected payment may be equal to. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+          },
+          direction: {
+            type: 'string',
+            description:
+              'One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit.',
+            enum: ['credit', 'debit'],
+          },
+          internal_account_id: {
+            type: 'string',
+            description: 'The ID of the Internal Account for the expected payment',
+          },
+          counterparty_id: {
+            type: 'string',
+            description: 'The ID of the counterparty you expect for this payment',
+          },
+          currency: {
+            $ref: '#/$defs/currency',
+          },
+          custom_identifiers: {
+            type: 'object',
+            description: 'A hash of custom identifiers for this payment',
+          },
+          date_lower_bound: {
+            type: 'string',
+            description: 'The earliest date the payment may come in. Format is yyyy-mm-dd',
+            format: 'date',
+          },
+          date_upper_bound: {
+            type: 'string',
+            description: 'The latest date the payment may come in. Format is yyyy-mm-dd',
+            format: 'date',
+          },
+          type: {
+            type: 'string',
+            description:
+              'One of ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen, sepa, signet wire',
+            enum: [
+              'ach',
+              'au_becs',
+              'bacs',
+              'book',
+              'card',
+              'chats',
+              'check',
+              'cross_border',
+              'dk_nets',
+              'eft',
+              'hu_ics',
+              'interac',
+              'masav',
+              'mx_ccen',
+              'neft',
+              'nics',
+              'nz_becs',
+              'pl_elixir',
+              'provxchange',
+              'ro_sent',
+              'rtp',
+              'se_bankgirot',
+              'sen',
+              'sepa',
+              'sg_giro',
+              'sic',
+              'signet',
+              'sknbi',
+              'wire',
+              'zengin',
+            ],
+          },
         },
+        required: ['amount_lower_bound', 'amount_upper_bound', 'direction', 'internal_account_id'],
       },
-      remittance_information: {
-        type: 'string',
-        description:
-          'For `ach`, this field will be passed through on an addenda record. For `wire` payments the field will be passed through as the "Originator to Beneficiary Information", also known as OBI or Fedwire tag 6000.',
-      },
-      statement_descriptor: {
-        type: 'string',
-        description:
-          'The statement description you expect to see on the transaction. For ACH payments, this will be the full line item passed from the bank. For wire payments, this will be the OBI field on the wire. For check payments, this will be the memo field.',
-      },
-      status: {
-        type: 'string',
-        description: "The Expected Payment's status can be updated from partially_reconciled to reconciled.",
-        enum: ['reconciled'],
-      },
-      type: {
+      expected_payment_type: {
         type: 'string',
         description:
           'One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen, sepa, signet, wire.',
@@ -409,8 +420,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.expectedPayments.update(id, body);
 };
 

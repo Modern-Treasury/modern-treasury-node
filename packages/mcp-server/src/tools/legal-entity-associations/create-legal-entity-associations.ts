@@ -73,62 +73,7 @@ export const tool: Tool = {
             },
           },
           bank_settings: {
-            type: 'object',
-            properties: {
-              id: {
-                type: 'string',
-              },
-              backup_withholding_percentage: {
-                type: 'integer',
-                description: 'The percentage of backup withholding to apply to the legal entity.',
-              },
-              created_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-              discarded_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-              enable_backup_withholding: {
-                type: 'boolean',
-                description:
-                  'Whether backup withholding is enabled. See more here - https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.',
-              },
-              live_mode: {
-                type: 'boolean',
-                description:
-                  'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
-              },
-              object: {
-                type: 'string',
-              },
-              privacy_opt_out: {
-                type: 'boolean',
-                description: 'Cross River Bank specific setting to opt out of privacy policy.',
-              },
-              regulation_o: {
-                type: 'boolean',
-                description:
-                  'It covers, among other types of insider loans, extensions of credit by a member bank to an executive officer, director, or principal shareholder of the member bank; a bank holding company of which the member bank is a subsidiary; and any other subsidiary of that bank holding company.',
-              },
-              updated_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-            },
-            required: [
-              'id',
-              'backup_withholding_percentage',
-              'created_at',
-              'discarded_at',
-              'enable_backup_withholding',
-              'live_mode',
-              'object',
-              'privacy_opt_out',
-              'regulation_o',
-              'updated_at',
-            ],
+            $ref: '#/$defs/bank_settings',
           },
           business_name: {
             type: 'string',
@@ -139,73 +84,7 @@ export const tool: Tool = {
             description: 'The country of citizenship for an individual.',
           },
           compliance_details: {
-            type: 'object',
-            properties: {
-              id: {
-                type: 'string',
-              },
-              created_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-              discarded_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-              issuer: {
-                type: 'string',
-                description: 'The issuer of the compliance token.',
-              },
-              live_mode: {
-                type: 'boolean',
-                description:
-                  'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
-              },
-              object: {
-                type: 'string',
-              },
-              token_expires_at: {
-                type: 'string',
-                description: 'The timestamp when the compliance token expires.',
-                format: 'date-time',
-              },
-              token_issued_at: {
-                type: 'string',
-                description: 'The timestamp when the compliance token was issued.',
-                format: 'date-time',
-              },
-              token_url: {
-                type: 'string',
-                description: 'The URL to the compliance token. (ex. provider portal URL)',
-              },
-              updated_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-              validated: {
-                type: 'boolean',
-                description: 'Whether entity corresponding to the compliance token has been validated.',
-              },
-              validated_at: {
-                type: 'string',
-                description: 'The timestamp when the entity was validated.',
-                format: 'date-time',
-              },
-            },
-            required: [
-              'id',
-              'created_at',
-              'discarded_at',
-              'issuer',
-              'live_mode',
-              'object',
-              'token_expires_at',
-              'token_issued_at',
-              'token_url',
-              'updated_at',
-              'validated',
-              'validated_at',
-            ],
+            $ref: '#/$defs/legal_entity_compliance_detail',
           },
           date_formed: {
             type: 'string',
@@ -283,70 +162,7 @@ export const tool: Tool = {
             type: 'array',
             description: 'A list of industry classifications for the legal entity.',
             items: {
-              type: 'object',
-              properties: {
-                id: {
-                  type: 'string',
-                },
-                classification_codes: {
-                  type: 'array',
-                  description: 'The industry classification codes for the legal entity.',
-                  items: {
-                    type: 'string',
-                  },
-                },
-                classification_type: {
-                  type: 'string',
-                  description: 'The classification system of the classification codes.',
-                  enum: [
-                    'anzsic',
-                    'bics',
-                    'gics',
-                    'hsics',
-                    'icb',
-                    'isic',
-                    'mgecs',
-                    'nace',
-                    'naics',
-                    'rbics',
-                    'sic',
-                    'sni',
-                    'trbc',
-                    'uksic',
-                    'unspsc',
-                  ],
-                },
-                created_at: {
-                  type: 'string',
-                  format: 'date-time',
-                },
-                discarded_at: {
-                  type: 'string',
-                  format: 'date-time',
-                },
-                live_mode: {
-                  type: 'boolean',
-                  description:
-                    'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
-                },
-                object: {
-                  type: 'string',
-                },
-                updated_at: {
-                  type: 'string',
-                  format: 'date-time',
-                },
-              },
-              required: [
-                'id',
-                'classification_codes',
-                'classification_type',
-                'created_at',
-                'discarded_at',
-                'live_mode',
-                'object',
-                'updated_at',
-              ],
+              $ref: '#/$defs/legal_entity_industry_classification',
             },
           },
           last_name: {
@@ -407,191 +223,7 @@ export const tool: Tool = {
             description: "An individual's suffix.",
           },
           wealth_and_employment_details: {
-            type: 'object',
-            properties: {
-              id: {
-                type: 'string',
-              },
-              annual_income: {
-                type: 'integer',
-                description: 'The annual income of the individual.',
-              },
-              created_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-              discarded_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-              employer_country: {
-                type: 'string',
-                description: 'The country in which the employer is located.',
-              },
-              employer_name: {
-                type: 'string',
-                description: 'The name of the employer.',
-              },
-              employer_state: {
-                type: 'string',
-                description: 'The state in which the employer is located.',
-              },
-              employment_status: {
-                type: 'string',
-                description: 'The employment status of the individual.',
-                enum: ['employed', 'retired', 'self_employed', 'student', 'unemployed'],
-              },
-              income_country: {
-                type: 'string',
-                description: "The country in which the individual's income is earned.",
-              },
-              income_source: {
-                type: 'string',
-                description: "The source of the individual's income.",
-                enum: [
-                  'family_support',
-                  'government_benefits',
-                  'inheritance',
-                  'investments',
-                  'rental_income',
-                  'retirement',
-                  'salary',
-                  'self_employed',
-                ],
-              },
-              income_state: {
-                type: 'string',
-                description: "The state in which the individual's income is earned.",
-              },
-              industry: {
-                type: 'string',
-                description: 'The industry of the individual.',
-                enum: [
-                  'accounting',
-                  'agriculture',
-                  'automotive',
-                  'chemical_manufacturing',
-                  'construction',
-                  'educational_medical',
-                  'food_service',
-                  'finance',
-                  'gasoline',
-                  'health_stores',
-                  'laundry',
-                  'maintenance',
-                  'manufacturing',
-                  'merchant_wholesale',
-                  'mining',
-                  'performing_arts',
-                  'professional_non_legal',
-                  'public_administration',
-                  'publishing',
-                  'real_estate',
-                  'recreation_gambling',
-                  'religious_charity',
-                  'rental_services',
-                  'retail_clothing',
-                  'retail_electronics',
-                  'retail_food',
-                  'retail_furnishing',
-                  'retail_home',
-                  'retail_non_store',
-                  'retail_sporting',
-                  'transportation',
-                  'travel',
-                  'utilities',
-                ],
-              },
-              live_mode: {
-                type: 'boolean',
-                description:
-                  'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
-              },
-              object: {
-                type: 'string',
-              },
-              occupation: {
-                type: 'string',
-                description: 'The occupation of the individual.',
-                enum: [
-                  'consulting',
-                  'executive',
-                  'finance_accounting',
-                  'food_services',
-                  'government',
-                  'healthcare',
-                  'legal_services',
-                  'manufacturing',
-                  'other',
-                  'sales',
-                  'science_engineering',
-                  'technology',
-                ],
-              },
-              source_of_funds: {
-                type: 'string',
-                description: "The source of the individual's funds.",
-                enum: [
-                  'alimony',
-                  'annuity',
-                  'business_owner',
-                  'general_employee',
-                  'government_benefits',
-                  'homemaker',
-                  'inheritance_gift',
-                  'investment',
-                  'legal_settlement',
-                  'lottery',
-                  'real_estate',
-                  'retired',
-                  'retirement',
-                  'salary',
-                  'self_employed',
-                  'senior_executive',
-                  'trust_income',
-                ],
-              },
-              updated_at: {
-                type: 'string',
-                format: 'date-time',
-              },
-              wealth_source: {
-                type: 'string',
-                description: "The source of the individual's wealth.",
-                enum: [
-                  'business_sale',
-                  'family_support',
-                  'government_benefits',
-                  'inheritance',
-                  'investments',
-                  'other',
-                  'rental_income',
-                  'retirement',
-                  'salary',
-                  'self_employed',
-                ],
-              },
-            },
-            required: [
-              'id',
-              'annual_income',
-              'created_at',
-              'discarded_at',
-              'employer_country',
-              'employer_name',
-              'employer_state',
-              'employment_status',
-              'income_country',
-              'income_source',
-              'income_state',
-              'industry',
-              'live_mode',
-              'object',
-              'occupation',
-              'source_of_funds',
-              'updated_at',
-              'wealth_source',
-            ],
+            $ref: '#/$defs/wealth_and_employment_details',
           },
           website: {
             type: 'string',
@@ -613,11 +245,393 @@ export const tool: Tool = {
         description: 'The job title of the child entity at the parent entity.',
       },
     },
+    $defs: {
+      bank_settings: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          backup_withholding_percentage: {
+            type: 'integer',
+            description: 'The percentage of backup withholding to apply to the legal entity.',
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          enable_backup_withholding: {
+            type: 'boolean',
+            description:
+              'Whether backup withholding is enabled. See more here - https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.',
+          },
+          live_mode: {
+            type: 'boolean',
+            description:
+              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+          },
+          object: {
+            type: 'string',
+          },
+          privacy_opt_out: {
+            type: 'boolean',
+            description: 'Cross River Bank specific setting to opt out of privacy policy.',
+          },
+          regulation_o: {
+            type: 'boolean',
+            description:
+              'It covers, among other types of insider loans, extensions of credit by a member bank to an executive officer, director, or principal shareholder of the member bank; a bank holding company of which the member bank is a subsidiary; and any other subsidiary of that bank holding company.',
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+        },
+        required: [
+          'id',
+          'backup_withholding_percentage',
+          'created_at',
+          'discarded_at',
+          'enable_backup_withholding',
+          'live_mode',
+          'object',
+          'privacy_opt_out',
+          'regulation_o',
+          'updated_at',
+        ],
+      },
+      legal_entity_compliance_detail: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          issuer: {
+            type: 'string',
+            description: 'The issuer of the compliance token.',
+          },
+          live_mode: {
+            type: 'boolean',
+            description:
+              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+          },
+          object: {
+            type: 'string',
+          },
+          token_expires_at: {
+            type: 'string',
+            description: 'The timestamp when the compliance token expires.',
+            format: 'date-time',
+          },
+          token_issued_at: {
+            type: 'string',
+            description: 'The timestamp when the compliance token was issued.',
+            format: 'date-time',
+          },
+          token_url: {
+            type: 'string',
+            description: 'The URL to the compliance token. (ex. provider portal URL)',
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          validated: {
+            type: 'boolean',
+            description: 'Whether entity corresponding to the compliance token has been validated.',
+          },
+          validated_at: {
+            type: 'string',
+            description: 'The timestamp when the entity was validated.',
+            format: 'date-time',
+          },
+        },
+        required: [
+          'id',
+          'created_at',
+          'discarded_at',
+          'issuer',
+          'live_mode',
+          'object',
+          'token_expires_at',
+          'token_issued_at',
+          'token_url',
+          'updated_at',
+          'validated',
+          'validated_at',
+        ],
+      },
+      legal_entity_industry_classification: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          classification_codes: {
+            type: 'array',
+            description: 'The industry classification codes for the legal entity.',
+            items: {
+              type: 'string',
+            },
+          },
+          classification_type: {
+            type: 'string',
+            description: 'The classification system of the classification codes.',
+            enum: [
+              'anzsic',
+              'bics',
+              'gics',
+              'hsics',
+              'icb',
+              'isic',
+              'mgecs',
+              'nace',
+              'naics',
+              'rbics',
+              'sic',
+              'sni',
+              'trbc',
+              'uksic',
+              'unspsc',
+            ],
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          live_mode: {
+            type: 'boolean',
+            description:
+              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+          },
+          object: {
+            type: 'string',
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+        },
+        required: [
+          'id',
+          'classification_codes',
+          'classification_type',
+          'created_at',
+          'discarded_at',
+          'live_mode',
+          'object',
+          'updated_at',
+        ],
+      },
+      wealth_and_employment_details: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          annual_income: {
+            type: 'integer',
+            description: 'The annual income of the individual.',
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          employer_country: {
+            type: 'string',
+            description: 'The country in which the employer is located.',
+          },
+          employer_name: {
+            type: 'string',
+            description: 'The name of the employer.',
+          },
+          employer_state: {
+            type: 'string',
+            description: 'The state in which the employer is located.',
+          },
+          employment_status: {
+            type: 'string',
+            description: 'The employment status of the individual.',
+            enum: ['employed', 'retired', 'self_employed', 'student', 'unemployed'],
+          },
+          income_country: {
+            type: 'string',
+            description: "The country in which the individual's income is earned.",
+          },
+          income_source: {
+            type: 'string',
+            description: "The source of the individual's income.",
+            enum: [
+              'family_support',
+              'government_benefits',
+              'inheritance',
+              'investments',
+              'rental_income',
+              'retirement',
+              'salary',
+              'self_employed',
+            ],
+          },
+          income_state: {
+            type: 'string',
+            description: "The state in which the individual's income is earned.",
+          },
+          industry: {
+            type: 'string',
+            description: 'The industry of the individual.',
+            enum: [
+              'accounting',
+              'agriculture',
+              'automotive',
+              'chemical_manufacturing',
+              'construction',
+              'educational_medical',
+              'food_service',
+              'finance',
+              'gasoline',
+              'health_stores',
+              'laundry',
+              'maintenance',
+              'manufacturing',
+              'merchant_wholesale',
+              'mining',
+              'performing_arts',
+              'professional_non_legal',
+              'public_administration',
+              'publishing',
+              'real_estate',
+              'recreation_gambling',
+              'religious_charity',
+              'rental_services',
+              'retail_clothing',
+              'retail_electronics',
+              'retail_food',
+              'retail_furnishing',
+              'retail_home',
+              'retail_non_store',
+              'retail_sporting',
+              'transportation',
+              'travel',
+              'utilities',
+            ],
+          },
+          live_mode: {
+            type: 'boolean',
+            description:
+              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+          },
+          object: {
+            type: 'string',
+          },
+          occupation: {
+            type: 'string',
+            description: 'The occupation of the individual.',
+            enum: [
+              'consulting',
+              'executive',
+              'finance_accounting',
+              'food_services',
+              'government',
+              'healthcare',
+              'legal_services',
+              'manufacturing',
+              'other',
+              'sales',
+              'science_engineering',
+              'technology',
+            ],
+          },
+          source_of_funds: {
+            type: 'string',
+            description: "The source of the individual's funds.",
+            enum: [
+              'alimony',
+              'annuity',
+              'business_owner',
+              'general_employee',
+              'government_benefits',
+              'homemaker',
+              'inheritance_gift',
+              'investment',
+              'legal_settlement',
+              'lottery',
+              'real_estate',
+              'retired',
+              'retirement',
+              'salary',
+              'self_employed',
+              'senior_executive',
+              'trust_income',
+            ],
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          wealth_source: {
+            type: 'string',
+            description: "The source of the individual's wealth.",
+            enum: [
+              'business_sale',
+              'family_support',
+              'government_benefits',
+              'inheritance',
+              'investments',
+              'other',
+              'rental_income',
+              'retirement',
+              'salary',
+              'self_employed',
+            ],
+          },
+        },
+        required: [
+          'id',
+          'annual_income',
+          'created_at',
+          'discarded_at',
+          'employer_country',
+          'employer_name',
+          'employer_state',
+          'employment_status',
+          'income_country',
+          'income_source',
+          'income_state',
+          'industry',
+          'live_mode',
+          'object',
+          'occupation',
+          'source_of_funds',
+          'updated_at',
+          'wealth_source',
+        ],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.legalEntityAssociations.create(body);
 };
 

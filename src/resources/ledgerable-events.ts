@@ -6,6 +6,12 @@ import * as Core from '../core';
 export class LedgerableEvents extends APIResource {
   /**
    * Create a ledgerable event.
+   *
+   * @example
+   * ```ts
+   * const ledgerableEvent =
+   *   await client.ledgerableEvents.create({ name: 'name' });
+   * ```
    */
   create(
     params: LedgerableEventCreateParams,
@@ -27,6 +33,12 @@ export class LedgerableEvents extends APIResource {
 
   /**
    * Get details on a single ledgerable event.
+   *
+   * @example
+   * ```ts
+   * const ledgerableEvent =
+   *   await client.ledgerableEvents.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerableEvent> {
     return this._client.get(`/api/ledgerable_events/${id}`, options);

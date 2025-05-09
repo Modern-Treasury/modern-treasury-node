@@ -9,6 +9,15 @@ import { Page, type PageParams } from '../../pagination';
 export class Reversals extends APIResource {
   /**
    * Create a reversal for a payment order.
+   *
+   * @example
+   * ```ts
+   * const reversal =
+   *   await client.paymentOrders.reversals.create(
+   *     'payment_order_id',
+   *     { reason: 'duplicate' },
+   *   );
+   * ```
    */
   create(
     paymentOrderId: string,
@@ -31,6 +40,15 @@ export class Reversals extends APIResource {
 
   /**
    * Get details on a single reversal of a payment order.
+   *
+   * @example
+   * ```ts
+   * const reversal =
+   *   await client.paymentOrders.reversals.retrieve(
+   *     'payment_order_id',
+   *     'reversal_id',
+   *   );
+   * ```
    */
   retrieve(
     paymentOrderId: string,
@@ -42,6 +60,16 @@ export class Reversals extends APIResource {
 
   /**
    * Get a list of all reversals of a payment order.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const reversal of client.paymentOrders.reversals.list(
+   *   'payment_order_id',
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     paymentOrderId: string,

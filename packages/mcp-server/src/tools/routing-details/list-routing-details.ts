@@ -17,8 +17,7 @@ export const tool: Tool = {
     type: 'object',
     properties: {
       accounts_type: {
-        type: 'string',
-        enum: ['external_accounts', 'internal_accounts'],
+        $ref: '#/$defs/accounts_type',
       },
       account_id: {
         type: 'string',
@@ -30,11 +29,17 @@ export const tool: Tool = {
         type: 'integer',
       },
     },
+    $defs: {
+      accounts_type: {
+        type: 'string',
+        enum: ['external_accounts', 'internal_accounts'],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { accounts_type, account_id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { accounts_type, account_id, ...body } = args as any;
   return client.routingDetails.list(accounts_type, account_id, body);
 };
 

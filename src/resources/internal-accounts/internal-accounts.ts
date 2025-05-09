@@ -22,6 +22,17 @@ export class InternalAccounts extends APIResource {
 
   /**
    * create internal account
+   *
+   * @example
+   * ```ts
+   * const internalAccount =
+   *   await client.internalAccounts.create({
+   *     connection_id: 'connection_id',
+   *     currency: 'USD',
+   *     name: 'name',
+   *     party_name: 'party_name',
+   *   });
+   * ```
    */
   create(
     params: InternalAccountCreateParams,
@@ -43,6 +54,12 @@ export class InternalAccounts extends APIResource {
 
   /**
    * get internal account
+   *
+   * @example
+   * ```ts
+   * const internalAccount =
+   *   await client.internalAccounts.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<InternalAccount> {
     return this._client.get(`/api/internal_accounts/${id}`, options);
@@ -50,6 +67,12 @@ export class InternalAccounts extends APIResource {
 
   /**
    * update internal account
+   *
+   * @example
+   * ```ts
+   * const internalAccount =
+   *   await client.internalAccounts.update('id');
+   * ```
    */
   update(
     id: string,
@@ -70,6 +93,14 @@ export class InternalAccounts extends APIResource {
 
   /**
    * list internal accounts
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const internalAccount of client.internalAccounts.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: InternalAccountListParams,

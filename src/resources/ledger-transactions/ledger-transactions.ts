@@ -19,6 +19,21 @@ export class LedgerTransactions extends APIResource {
 
   /**
    * Create a ledger transaction.
+   *
+   * @example
+   * ```ts
+   * const ledgerTransaction =
+   *   await client.ledgerTransactions.create({
+   *     ledger_entries: [
+   *       {
+   *         amount: 0,
+   *         direction: 'credit',
+   *         ledger_account_id:
+   *           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *       },
+   *     ],
+   *   });
+   * ```
    */
   create(
     params: LedgerTransactionCreateParams,
@@ -40,6 +55,12 @@ export class LedgerTransactions extends APIResource {
 
   /**
    * Get details on a single ledger transaction.
+   *
+   * @example
+   * ```ts
+   * const ledgerTransaction =
+   *   await client.ledgerTransactions.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerTransaction> {
     return this._client.get(`/api/ledger_transactions/${id}`, options);
@@ -47,6 +68,12 @@ export class LedgerTransactions extends APIResource {
 
   /**
    * Update the details of a ledger transaction.
+   *
+   * @example
+   * ```ts
+   * const ledgerTransaction =
+   *   await client.ledgerTransactions.update('id');
+   * ```
    */
   update(
     id: string,
@@ -67,6 +94,14 @@ export class LedgerTransactions extends APIResource {
 
   /**
    * Get a list of ledger transactions.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerTransaction of client.ledgerTransactions.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LedgerTransactionListParams,
@@ -85,6 +120,21 @@ export class LedgerTransactions extends APIResource {
 
   /**
    * Create a ledger transaction that partially posts another ledger transaction.
+   *
+   * @example
+   * ```ts
+   * const ledgerTransaction =
+   *   await client.ledgerTransactions.createPartialPost('id', {
+   *     posted_ledger_entries: [
+   *       {
+   *         amount: 0,
+   *         direction: 'credit',
+   *         ledger_account_id:
+   *           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *       },
+   *     ],
+   *   });
+   * ```
    */
   createPartialPost(
     id: string,
@@ -96,6 +146,12 @@ export class LedgerTransactions extends APIResource {
 
   /**
    * Create a ledger transaction reversal.
+   *
+   * @example
+   * ```ts
+   * const ledgerTransaction =
+   *   await client.ledgerTransactions.createReversal('id');
+   * ```
    */
   createReversal(
     id: string,

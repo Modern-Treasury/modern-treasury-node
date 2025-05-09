@@ -33,8 +33,7 @@ export const tool: Tool = {
         format: 'date',
       },
       direction: {
-        type: 'string',
-        enum: ['credit', 'debit'],
+        $ref: '#/$defs/transaction_direction',
       },
       effective_date_end: {
         type: 'string',
@@ -133,11 +132,17 @@ export const tool: Tool = {
         ],
       },
     },
+    $defs: {
+      transaction_direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.paymentOrders.list(body);
 };
 

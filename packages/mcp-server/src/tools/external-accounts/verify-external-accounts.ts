@@ -61,6 +61,23 @@ export const tool: Tool = {
         ],
       },
       currency: {
+        $ref: '#/$defs/currency',
+      },
+      fallback_type: {
+        type: 'string',
+        description:
+          'A payment type to fallback to if the original type is not valid for the receiving account. Currently, this only supports falling back from RTP to ACH (payment_type=rtp and fallback_type=ach)',
+        enum: ['ach'],
+      },
+      priority: {
+        type: 'string',
+        description:
+          'Either `normal` or `high`. For ACH payments, `high` represents a same-day ACH transfer. This will apply to both `payment_type` and `fallback_type`.',
+        enum: ['high', 'normal'],
+      },
+    },
+    $defs: {
+      currency: {
         type: 'string',
         description: 'Three-letter ISO currency code.',
         enum: [
@@ -255,24 +272,12 @@ export const tool: Tool = {
           'ZWR',
         ],
       },
-      fallback_type: {
-        type: 'string',
-        description:
-          'A payment type to fallback to if the original type is not valid for the receiving account. Currently, this only supports falling back from RTP to ACH (payment_type=rtp and fallback_type=ach)',
-        enum: ['ach'],
-      },
-      priority: {
-        type: 'string',
-        description:
-          'Either `normal` or `high`. For ACH payments, `high` represents a same-day ACH transfer. This will apply to both `payment_type` and `fallback_type`.',
-        enum: ['high', 'normal'],
-      },
     },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.externalAccounts.verify(id, body);
 };
 

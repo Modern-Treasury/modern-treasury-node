@@ -47,9 +47,7 @@ export const tool: Tool = {
         },
       },
       account_type: {
-        type: 'string',
-        description: 'Can be `checking`, `savings` or `other`.',
-        enum: ['cash', 'checking', 'general_ledger', 'loan', 'non_resident', 'other', 'overdraft', 'savings'],
+        $ref: '#/$defs/external_account_type',
       },
       contact_details: {
         type: 'array',
@@ -85,8 +83,7 @@ export const tool: Tool = {
             description: 'The name of the ledger account.',
           },
           normal_balance: {
-            type: 'string',
-            enum: ['credit', 'debit'],
+            $ref: '#/$defs/transaction_direction',
           },
           currency_exponent: {
             type: 'integer',
@@ -253,11 +250,22 @@ export const tool: Tool = {
         },
       },
     },
+    $defs: {
+      external_account_type: {
+        type: 'string',
+        description: 'Can be `checking`, `savings` or `other`.',
+        enum: ['cash', 'checking', 'general_ledger', 'loan', 'non_resident', 'other', 'overdraft', 'savings'],
+      },
+      transaction_direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
+      },
+    },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.externalAccounts.create(body);
 };
 

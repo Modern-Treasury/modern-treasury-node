@@ -48,8 +48,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { accounts_type, account_id, ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { accounts_type, account_id, ...body } = args as any;
   return client.accountDetails.create(accounts_type, account_id, body);
 };
 

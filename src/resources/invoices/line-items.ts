@@ -8,6 +8,15 @@ import { Page, type PageParams } from '../../pagination';
 export class LineItems extends APIResource {
   /**
    * create invoice_line_item
+   *
+   * @example
+   * ```ts
+   * const invoiceLineItem =
+   *   await client.invoices.lineItems.create('invoice_id', {
+   *     name: 'name',
+   *     unit_amount: 0,
+   *   });
+   * ```
    */
   create(
     invoiceId: string,
@@ -30,6 +39,15 @@ export class LineItems extends APIResource {
 
   /**
    * get invoice_line_item
+   *
+   * @example
+   * ```ts
+   * const invoiceLineItem =
+   *   await client.invoices.lineItems.retrieve(
+   *     'invoice_id',
+   *     'id',
+   *   );
+   * ```
    */
   retrieve(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem> {
     return this._client.get(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
@@ -37,6 +55,15 @@ export class LineItems extends APIResource {
 
   /**
    * update invoice_line_item
+   *
+   * @example
+   * ```ts
+   * const invoiceLineItem =
+   *   await client.invoices.lineItems.update(
+   *     'invoice_id',
+   *     'id',
+   *   );
+   * ```
    */
   update(
     invoiceId: string,
@@ -59,6 +86,16 @@ export class LineItems extends APIResource {
 
   /**
    * list invoice_line_items
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const invoiceLineItem of client.invoices.lineItems.list(
+   *   'invoice_id',
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     invoiceId: string,
@@ -85,6 +122,14 @@ export class LineItems extends APIResource {
 
   /**
    * delete invoice_line_item
+   *
+   * @example
+   * ```ts
+   * const invoiceLineItem = await client.invoices.lineItems.del(
+   *   'invoice_id',
+   *   'id',
+   * );
+   * ```
    */
   del(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem> {
     return this._client.delete(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);

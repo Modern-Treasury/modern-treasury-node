@@ -26,8 +26,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { id, sub_category_id } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const { id, sub_category_id, ...body } = args as any;
   return client.ledgerAccountCategories.removeNestedCategory(id, sub_category_id);
 };
 

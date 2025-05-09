@@ -12,6 +12,17 @@ export class LedgerAccountSettlements extends APIResource {
 
   /**
    * Create a ledger account settlement.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountSettlement =
+   *   await client.ledgerAccountSettlements.create({
+   *     contra_ledger_account_id:
+   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *     settled_ledger_account_id:
+   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   });
+   * ```
    */
   create(
     params: LedgerAccountSettlementCreateParams,
@@ -33,6 +44,12 @@ export class LedgerAccountSettlements extends APIResource {
 
   /**
    * Get details on a single ledger account settlement.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountSettlement =
+   *   await client.ledgerAccountSettlements.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountSettlement> {
     return this._client.get(`/api/ledger_account_settlements/${id}`, options);
@@ -40,6 +57,12 @@ export class LedgerAccountSettlements extends APIResource {
 
   /**
    * Update the details of a ledger account settlement.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountSettlement =
+   *   await client.ledgerAccountSettlements.update('id');
+   * ```
    */
   update(
     id: string,
@@ -60,6 +83,14 @@ export class LedgerAccountSettlements extends APIResource {
 
   /**
    * Get a list of ledger account settlements.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerAccountSettlement of client.ledgerAccountSettlements.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LedgerAccountSettlementListParams,

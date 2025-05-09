@@ -26,6 +26,52 @@ export const tool: Tool = {
         format: 'date',
       },
       currency: {
+        $ref: '#/$defs/currency',
+      },
+      data: {
+        type: 'object',
+        description:
+          'An object passed through to the simulated IPD that could reflect what a vendor would pass.',
+      },
+      description: {
+        type: 'string',
+        description: 'Defaults to a random description.',
+      },
+      direction: {
+        type: 'string',
+        description: 'One of `credit`, `debit`.',
+        enum: ['credit', 'debit'],
+      },
+      internal_account_id: {
+        type: 'string',
+        description: 'The ID of one of your internal accounts.',
+      },
+      type: {
+        type: 'string',
+        description: 'One of `ach`, `wire`, `check`.',
+        enum: [
+          'ach',
+          'au_becs',
+          'bacs',
+          'book',
+          'check',
+          'eft',
+          'interac',
+          'neft',
+          'nz_becs',
+          'rtp',
+          'sepa',
+          'signet',
+          'wire',
+        ],
+      },
+      virtual_account_id: {
+        type: 'string',
+        description: 'An optional parameter to associate the incoming payment detail to a virtual account.',
+      },
+    },
+    $defs: {
+      currency: {
         type: 'string',
         description: 'Three-letter ISO currency code.',
         enum: [
@@ -220,53 +266,12 @@ export const tool: Tool = {
           'ZWR',
         ],
       },
-      data: {
-        type: 'object',
-        description:
-          'An object passed through to the simulated IPD that could reflect what a vendor would pass.',
-      },
-      description: {
-        type: 'string',
-        description: 'Defaults to a random description.',
-      },
-      direction: {
-        type: 'string',
-        description: 'One of `credit`, `debit`.',
-        enum: ['credit', 'debit'],
-      },
-      internal_account_id: {
-        type: 'string',
-        description: 'The ID of one of your internal accounts.',
-      },
-      type: {
-        type: 'string',
-        description: 'One of `ach`, `wire`, `check`.',
-        enum: [
-          'ach',
-          'au_becs',
-          'bacs',
-          'book',
-          'check',
-          'eft',
-          'interac',
-          'neft',
-          'nz_becs',
-          'rtp',
-          'sepa',
-          'signet',
-          'wire',
-        ],
-      },
-      virtual_account_id: {
-        type: 'string',
-        description: 'An optional parameter to associate the incoming payment detail to a virtual account.',
-      },
     },
   },
 };
 
-export const handler = (client: ModernTreasury, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.incomingPaymentDetails.createAsync(body);
 };
 

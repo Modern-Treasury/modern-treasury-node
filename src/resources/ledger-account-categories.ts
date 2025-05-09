@@ -9,6 +9,17 @@ import { Page, type PageParams } from '../pagination';
 export class LedgerAccountCategories extends APIResource {
   /**
    * Create a ledger account category.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountCategory =
+   *   await client.ledgerAccountCategories.create({
+   *     currency: 'currency',
+   *     ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *     name: 'name',
+   *     normal_balance: 'credit',
+   *   });
+   * ```
    */
   create(
     params: LedgerAccountCategoryCreateParams,
@@ -30,6 +41,12 @@ export class LedgerAccountCategories extends APIResource {
 
   /**
    * Get the details on a single ledger account category.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountCategory =
+   *   await client.ledgerAccountCategories.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -50,6 +67,12 @@ export class LedgerAccountCategories extends APIResource {
 
   /**
    * Update the details of a ledger account category.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountCategory =
+   *   await client.ledgerAccountCategories.update('id');
+   * ```
    */
   update(
     id: string,
@@ -70,6 +93,14 @@ export class LedgerAccountCategories extends APIResource {
 
   /**
    * Get a list of ledger account categories.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerAccountCategory of client.ledgerAccountCategories.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LedgerAccountCategoryListParams,
@@ -91,6 +122,12 @@ export class LedgerAccountCategories extends APIResource {
 
   /**
    * Delete a ledger account category.
+   *
+   * @example
+   * ```ts
+   * const ledgerAccountCategory =
+   *   await client.ledgerAccountCategories.del('id');
+   * ```
    */
   del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountCategory> {
     return this._client.delete(`/api/ledger_account_categories/${id}`, options);
@@ -98,6 +135,14 @@ export class LedgerAccountCategories extends APIResource {
 
   /**
    * Add a ledger account to a ledger account category.
+   *
+   * @example
+   * ```ts
+   * await client.ledgerAccountCategories.addLedgerAccount(
+   *   'id',
+   *   'ledger_account_id',
+   * );
+   * ```
    */
   addLedgerAccount(
     id: string,
@@ -112,6 +157,14 @@ export class LedgerAccountCategories extends APIResource {
 
   /**
    * Add a ledger account category to a ledger account category.
+   *
+   * @example
+   * ```ts
+   * await client.ledgerAccountCategories.addNestedCategory(
+   *   'id',
+   *   'sub_category_id',
+   * );
+   * ```
    */
   addNestedCategory(id: string, subCategoryId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(
@@ -122,6 +175,14 @@ export class LedgerAccountCategories extends APIResource {
 
   /**
    * Remove a ledger account from a ledger account category.
+   *
+   * @example
+   * ```ts
+   * await client.ledgerAccountCategories.removeLedgerAccount(
+   *   'id',
+   *   'ledger_account_id',
+   * );
+   * ```
    */
   removeLedgerAccount(
     id: string,
@@ -136,6 +197,14 @@ export class LedgerAccountCategories extends APIResource {
 
   /**
    * Delete a ledger account category from a ledger account category.
+   *
+   * @example
+   * ```ts
+   * await client.ledgerAccountCategories.removeNestedCategory(
+   *   'id',
+   *   'sub_category_id',
+   * );
+   * ```
    */
   removeNestedCategory(
     id: string,
