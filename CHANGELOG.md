@@ -1,5 +1,40 @@
 # Changelog
 
+## 2.37.0 (2025-05-12)
+
+Full Changelog: [v2.36.3...v2.37.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.3...v2.37.0)
+
+### Features
+
+* **api:** only send idempotency headers on PUT / POST requests ([1393e73](https://github.com/Modern-Treasury/modern-treasury-node/commit/1393e734d0f245bb475bfc0ad2676ebca4ef1629))
+* **mcp:** support dynamically discovering and invoking tools for APIs with many endpoints ([67e01ff](https://github.com/Modern-Treasury/modern-treasury-node/commit/67e01ff2765946cff06be8edf2fba6c051a9c6d1))
+* more gracefully handle $refs and work around schema limitations ([fa391ad](https://github.com/Modern-Treasury/modern-treasury-node/commit/fa391ad80865c627c9c753295df639bdc1db5537))
+
+
+### Bug Fixes
+
+* **mcp:** explicitly include zod and zod-to-json-schema in package.json ([afc2335](https://github.com/Modern-Treasury/modern-treasury-node/commit/afc233521f2fe0ce0f1876e43e7253458bc99d6d))
+* **mcp:** remove ajv dependency so MCP servers are more compatible with Cloudflare Workers ([b7b73b0](https://github.com/Modern-Treasury/modern-treasury-node/commit/b7b73b0c4cb90ea02d36a72b3969916cb801a925))
+
+
+### Chores
+
+* **build:** automatically build subpackages if present ([7f22ed9](https://github.com/Modern-Treasury/modern-treasury-node/commit/7f22ed9b94eb1914f222d84c7515c7747b74c555))
+* **ci:** add timeout thresholds for CI jobs ([2f4535e](https://github.com/Modern-Treasury/modern-treasury-node/commit/2f4535eb84a277220730f63fe74ba5395fa8c6ff))
+* **ci:** bump node version for release workflows ([92bdde8](https://github.com/Modern-Treasury/modern-treasury-node/commit/92bdde86a5b90f3f5f452fa17f36c66cf9301363))
+* **ci:** only use depot for staging repos ([8f4f810](https://github.com/Modern-Treasury/modern-treasury-node/commit/8f4f8104766aff1739a1d3a86e93a548e8e3cb0a))
+* **ci:** run on more branches and use depot runners ([e9cec01](https://github.com/Modern-Treasury/modern-treasury-node/commit/e9cec01dbe45cde7244a222af365714c9c0e2a44))
+* **docs:** add missing deprecation warnings ([1ca597c](https://github.com/Modern-Treasury/modern-treasury-node/commit/1ca597c5008c5932b0eb046965ba9a2e090f6342))
+* **internal:** codegen related update ([b269763](https://github.com/Modern-Treasury/modern-treasury-node/commit/b269763116e8c5865f176843cb80ec4c21afb689))
+* **internal:** update dependency ([e064fb5](https://github.com/Modern-Treasury/modern-treasury-node/commit/e064fb56a5f8d137886c6c81c474565d91acfca7))
+* **tests:** use node 22 for CI tests ([820e649](https://github.com/Modern-Treasury/modern-treasury-node/commit/820e649cd04cfae89d6f2cde2ed26df0f577df6a))
+
+
+### Documentation
+
+* add examples to tsdocs ([554c5ec](https://github.com/Modern-Treasury/modern-treasury-node/commit/554c5ecf86a5beed81bf814dfa51924bec3c0107))
+* **readme:** fix typo ([2084332](https://github.com/Modern-Treasury/modern-treasury-node/commit/2084332ce0ba9ef19dc8a3d9838af2864df602f5))
+
 ## 2.36.3 (2025-04-16)
 
 Full Changelog: [v2.36.2...v2.36.3](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.2...v2.36.3)
