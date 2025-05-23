@@ -207,6 +207,17 @@ export {
 } from './line-items';
 export { PaperItemsPage, PaperItems, type PaperItem, type PaperItemListParams } from './paper-items';
 export {
+  PaymentActionListResponsesPage,
+  PaymentActions,
+  type PaymentActionCreateResponse,
+  type PaymentActionRetrieveResponse,
+  type PaymentActionUpdateResponse,
+  type PaymentActionListResponse,
+  type PaymentActionCreateParams,
+  type PaymentActionUpdateParams,
+  type PaymentActionListParams,
+} from './payment-actions';
+export {
   PaymentFlowsPage,
   PaymentFlows,
   type PaymentFlow,

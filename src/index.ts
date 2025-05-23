@@ -182,6 +182,17 @@ import {
 } from './resources/line-items';
 import { PaperItem, PaperItemListParams, PaperItems, PaperItemsPage } from './resources/paper-items';
 import {
+  PaymentActionCreateParams,
+  PaymentActionCreateResponse,
+  PaymentActionListParams,
+  PaymentActionListResponse,
+  PaymentActionListResponsesPage,
+  PaymentActionRetrieveResponse,
+  PaymentActionUpdateParams,
+  PaymentActionUpdateResponse,
+  PaymentActions,
+} from './resources/payment-actions';
+import {
   PaymentFlow,
   PaymentFlowCreateParams,
   PaymentFlowListParams,
@@ -452,6 +463,7 @@ export class ModernTreasury extends Core.APIClient {
   connectionLegalEntities: API.ConnectionLegalEntities = new API.ConnectionLegalEntities(this);
   legalEntities: API.LegalEntities = new API.LegalEntities(this);
   legalEntityAssociations: API.LegalEntityAssociations = new API.LegalEntityAssociations(this);
+  paymentActions: API.PaymentActions = new API.PaymentActions(this);
 
   /**
    * A test endpoint often used to confirm credentials and headers are being passed
@@ -581,6 +593,8 @@ ModernTreasury.ConnectionLegalEntitiesPage = ConnectionLegalEntitiesPage;
 ModernTreasury.LegalEntities = LegalEntities;
 ModernTreasury.LegalEntitiesPage = LegalEntitiesPage;
 ModernTreasury.LegalEntityAssociations = LegalEntityAssociations;
+ModernTreasury.PaymentActions = PaymentActions;
+ModernTreasury.PaymentActionListResponsesPage = PaymentActionListResponsesPage;
 export declare namespace ModernTreasury {
   export type RequestOptions = Core.RequestOptions;
 
@@ -909,6 +923,18 @@ export declare namespace ModernTreasury {
     LegalEntityAssociations as LegalEntityAssociations,
     type LegalEntityAssociation as LegalEntityAssociation,
     type LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
+  };
+
+  export {
+    PaymentActions as PaymentActions,
+    type PaymentActionCreateResponse as PaymentActionCreateResponse,
+    type PaymentActionRetrieveResponse as PaymentActionRetrieveResponse,
+    type PaymentActionUpdateResponse as PaymentActionUpdateResponse,
+    type PaymentActionListResponse as PaymentActionListResponse,
+    PaymentActionListResponsesPage as PaymentActionListResponsesPage,
+    type PaymentActionCreateParams as PaymentActionCreateParams,
+    type PaymentActionUpdateParams as PaymentActionUpdateParams,
+    type PaymentActionListParams as PaymentActionListParams,
   };
 
   export type AccountsType = API.AccountsType;

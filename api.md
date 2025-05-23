@@ -572,3 +572,19 @@ Types:
 Methods:
 
 - <code title="post /api/legal_entity_associations">client.legalEntityAssociations.<a href="./src/resources/legal-entity-associations.ts">create</a>({ ...params }) -> LegalEntityAssociation</code>
+
+# PaymentActions
+
+Types:
+
+- <code><a href="./src/resources/payment-actions.ts">PaymentActionCreateResponse</a></code>
+- <code><a href="./src/resources/payment-actions.ts">PaymentActionRetrieveResponse</a></code>
+- <code><a href="./src/resources/payment-actions.ts">PaymentActionUpdateResponse</a></code>
+- <code><a href="./src/resources/payment-actions.ts">PaymentActionListResponse</a></code>
+
+Methods:
+
+- <code title="post /api/payment_actions">client.paymentActions.<a href="./src/resources/payment-actions.ts">create</a>({ ...params }) -> PaymentActionCreateResponse</code>
+- <code title="get /api/payment_actions/{id}">client.paymentActions.<a href="./src/resources/payment-actions.ts">retrieve</a>(id) -> PaymentActionRetrieveResponse</code>
+- <code title="patch /api/payment_actions/{id}">client.paymentActions.<a href="./src/resources/payment-actions.ts">update</a>(id, { ...params }) -> PaymentActionUpdateResponse</code>
+- <code title="get /api/payment_actions">client.paymentActions.<a href="./src/resources/payment-actions.ts">list</a>({ ...params }) -> PaymentActionListResponsesPage</code>
