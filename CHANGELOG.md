@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.38.1 (2025-05-23)
+
+Full Changelog: [v2.38.0...v2.38.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.38.0...v2.38.1)
+
+### Bug Fixes
+
+* **mcp:** fix cursor schema transformation issue with recursive references ([030ff10](https://github.com/Modern-Treasury/modern-treasury-node/commit/030ff10ba19d41e03245ef2ba30a7d6812c68fb9))
+
 ## 2.38.0 (2025-05-23)
 
 Full Changelog: [v2.37.0...v2.38.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.37.0...v2.38.0)
