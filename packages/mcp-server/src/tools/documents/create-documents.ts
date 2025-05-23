@@ -23,18 +23,18 @@ export const tool: Tool = {
       documentable_type: {
         type: 'string',
         enum: [
-          'cases',
           'counterparties',
           'expected_payments',
           'external_accounts',
+          'identifications',
           'incoming_payment_details',
           'internal_accounts',
           'organizations',
           'paper_items',
           'payment_orders',
           'transactions',
-          'decisions',
           'connections',
+          'conversations',
         ],
       },
       file: {

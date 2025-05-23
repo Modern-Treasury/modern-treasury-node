@@ -98,7 +98,7 @@ describe('resource bulkRequests', () => {
           purpose: 'purpose',
           receiving_account: {
             account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
-            account_type: 'cash',
+            account_type: 'base_wallet',
             contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
             ledger_account: {
               currency: 'currency',

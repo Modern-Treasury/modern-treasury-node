@@ -13,7 +13,7 @@ describe('resource documents', () => {
   test('create: only required params', async () => {
     const responsePromise = client.documents.create({
       documentable_id: 'documentable_id',
-      documentable_type: 'cases',
+      documentable_type: 'counterparties',
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
@@ -28,7 +28,7 @@ describe('resource documents', () => {
   test('create: required and optional params', async () => {
     const response = await client.documents.create({
       documentable_id: 'documentable_id',
-      documentable_type: 'cases',
+      documentable_type: 'counterparties',
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
       document_type: 'document_type',
     });
@@ -77,7 +77,7 @@ describe('resource documents', () => {
         {
           after_cursor: 'after_cursor',
           documentable_id: 'documentable_id',
-          documentable_type: 'cases',
+          documentable_type: 'counterparties',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },

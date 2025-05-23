@@ -34,6 +34,7 @@ export const tool: Tool = {
           'expected_payment',
           'transaction',
           'entity_link',
+          'transaction_line_item',
           'bulk_error',
         ],
       },

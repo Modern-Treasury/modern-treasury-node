@@ -314,6 +314,7 @@ export namespace ConnectionLegalEntityCreateParams {
         | 'cl_rut'
         | 'co_cedulas'
         | 'co_nit'
+        | 'drivers_license'
         | 'hn_id'
         | 'hn_rtn'
         | 'in_lei'
@@ -329,10 +330,21 @@ export namespace ConnectionLegalEntityCreateParams {
         | 'vn_tin';
 
       /**
+       * The date when the Identification is no longer considered valid by the issuing
+       * authority.
+       */
+      expiration_date?: string | null;
+
+      /**
        * The ISO 3166-1 alpha-2 country code of the country that issued the
        * identification
        */
       issuing_country?: string | null;
+
+      /**
+       * The region in which the identifcation was issued.
+       */
+      issuing_region?: string | null;
     }
 
     export interface LegalEntityAssociation {
@@ -533,6 +545,7 @@ export namespace ConnectionLegalEntityCreateParams {
             | 'cl_rut'
             | 'co_cedulas'
             | 'co_nit'
+            | 'drivers_license'
             | 'hn_id'
             | 'hn_rtn'
             | 'in_lei'
@@ -548,10 +561,21 @@ export namespace ConnectionLegalEntityCreateParams {
             | 'vn_tin';
 
           /**
+           * The date when the Identification is no longer considered valid by the issuing
+           * authority.
+           */
+          expiration_date?: string | null;
+
+          /**
            * The ISO 3166-1 alpha-2 country code of the country that issued the
            * identification
            */
           issuing_country?: string | null;
+
+          /**
+           * The region in which the identifcation was issued.
+           */
+          issuing_region?: string | null;
         }
 
         /**

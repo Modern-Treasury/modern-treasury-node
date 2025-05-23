@@ -341,6 +341,12 @@ export namespace LegalEntity {
     discarded_at: string | null;
 
     /**
+     * The date when the Identification is no longer considered valid by the issuing
+     * authority.
+     */
+    expiration_date: string | null;
+
+    /**
      * The type of ID number.
      */
     id_type:
@@ -352,6 +358,7 @@ export namespace LegalEntity {
       | 'cl_rut'
       | 'co_cedulas'
       | 'co_nit'
+      | 'drivers_license'
       | 'hn_id'
       | 'hn_rtn'
       | 'in_lei'
@@ -371,6 +378,11 @@ export namespace LegalEntity {
      * identification
      */
     issuing_country: string | null;
+
+    /**
+     * The region in which the identifcation was issued.
+     */
+    issuing_region: string | null;
 
     /**
      * This field will be true if this object exists in the live environment or false
@@ -729,6 +741,7 @@ export namespace LegalEntityCreateParams {
       | 'cl_rut'
       | 'co_cedulas'
       | 'co_nit'
+      | 'drivers_license'
       | 'hn_id'
       | 'hn_rtn'
       | 'in_lei'
@@ -744,10 +757,21 @@ export namespace LegalEntityCreateParams {
       | 'vn_tin';
 
     /**
+     * The date when the Identification is no longer considered valid by the issuing
+     * authority.
+     */
+    expiration_date?: string | null;
+
+    /**
      * The ISO 3166-1 alpha-2 country code of the country that issued the
      * identification
      */
     issuing_country?: string | null;
+
+    /**
+     * The region in which the identifcation was issued.
+     */
+    issuing_region?: string | null;
   }
 
   export interface LegalEntityAssociation {
@@ -948,6 +972,7 @@ export namespace LegalEntityCreateParams {
           | 'cl_rut'
           | 'co_cedulas'
           | 'co_nit'
+          | 'drivers_license'
           | 'hn_id'
           | 'hn_rtn'
           | 'in_lei'
@@ -963,10 +988,21 @@ export namespace LegalEntityCreateParams {
           | 'vn_tin';
 
         /**
+         * The date when the Identification is no longer considered valid by the issuing
+         * authority.
+         */
+        expiration_date?: string | null;
+
+        /**
          * The ISO 3166-1 alpha-2 country code of the country that issued the
          * identification
          */
         issuing_country?: string | null;
+
+        /**
+         * The region in which the identifcation was issued.
+         */
+        issuing_region?: string | null;
       }
 
       /**
@@ -1151,6 +1187,7 @@ export namespace LegalEntityUpdateParams {
       | 'cl_rut'
       | 'co_cedulas'
       | 'co_nit'
+      | 'drivers_license'
       | 'hn_id'
       | 'hn_rtn'
       | 'in_lei'
@@ -1166,10 +1203,21 @@ export namespace LegalEntityUpdateParams {
       | 'vn_tin';
 
     /**
+     * The date when the Identification is no longer considered valid by the issuing
+     * authority.
+     */
+    expiration_date?: string | null;
+
+    /**
      * The ISO 3166-1 alpha-2 country code of the country that issued the
      * identification
      */
     issuing_country?: string | null;
+
+    /**
+     * The region in which the identifcation was issued.
+     */
+    issuing_region?: string | null;
   }
 
   /**

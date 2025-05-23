@@ -126,6 +126,7 @@ export interface BulkRequest {
     | 'ledger_transaction'
     | 'expected_payment'
     | 'transaction'
+    | 'transaction_line_item'
     | 'entity_link';
 
   /**
@@ -163,6 +164,7 @@ export interface BulkRequestCreateParams {
     | 'ledger_transaction'
     | 'expected_payment'
     | 'transaction'
+    | 'transaction_line_item'
     | 'entity_link';
 
   /**
@@ -655,14 +657,18 @@ export namespace BulkRequestCreateParams {
 
         account_number_type?:
           | 'au_number'
+          | 'base_address'
           | 'clabe'
+          | 'ethereum_address'
           | 'hk_number'
           | 'iban'
           | 'id_number'
           | 'nz_number'
           | 'other'
           | 'pan'
+          | 'polygon_address'
           | 'sg_number'
+          | 'solana_address'
           | 'wallet_address';
       }
 
@@ -795,6 +801,7 @@ export namespace BulkRequestCreateParams {
           | 'ach'
           | 'au_becs'
           | 'bacs'
+          | 'base'
           | 'book'
           | 'card'
           | 'chats'
@@ -802,6 +809,7 @@ export namespace BulkRequestCreateParams {
           | 'cross_border'
           | 'dk_nets'
           | 'eft'
+          | 'ethereum'
           | 'hu_ics'
           | 'interac'
           | 'masav'
@@ -810,6 +818,7 @@ export namespace BulkRequestCreateParams {
           | 'nics'
           | 'nz_becs'
           | 'pl_elixir'
+          | 'polygon'
           | 'provxchange'
           | 'ro_sent'
           | 'rtp'
@@ -820,6 +829,7 @@ export namespace BulkRequestCreateParams {
           | 'sic'
           | 'signet'
           | 'sknbi'
+          | 'solana'
           | 'wire'
           | 'zengin';
       }
@@ -1274,6 +1284,7 @@ export namespace BulkRequestCreateParams {
       | 'ach'
       | 'au_becs'
       | 'bacs'
+      | 'base'
       | 'book'
       | 'card'
       | 'chats'
@@ -1281,6 +1292,7 @@ export namespace BulkRequestCreateParams {
       | 'cross_border'
       | 'dk_nets'
       | 'eft'
+      | 'ethereum'
       | 'hu_ics'
       | 'interac'
       | 'masav'
@@ -1289,6 +1301,7 @@ export namespace BulkRequestCreateParams {
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
+      | 'polygon'
       | 'provxchange'
       | 'ro_sent'
       | 'rtp'
@@ -1299,6 +1312,7 @@ export namespace BulkRequestCreateParams {
       | 'sic'
       | 'signet'
       | 'sknbi'
+      | 'solana'
       | 'wire'
       | 'zengin'
       | 'other'
@@ -1661,14 +1675,18 @@ export namespace BulkRequestCreateParams {
 
         account_number_type?:
           | 'au_number'
+          | 'base_address'
           | 'clabe'
+          | 'ethereum_address'
           | 'hk_number'
           | 'iban'
           | 'id_number'
           | 'nz_number'
           | 'other'
           | 'pan'
+          | 'polygon_address'
           | 'sg_number'
+          | 'solana_address'
           | 'wallet_address';
       }
 
@@ -1801,6 +1819,7 @@ export namespace BulkRequestCreateParams {
           | 'ach'
           | 'au_becs'
           | 'bacs'
+          | 'base'
           | 'book'
           | 'card'
           | 'chats'
@@ -1808,6 +1827,7 @@ export namespace BulkRequestCreateParams {
           | 'cross_border'
           | 'dk_nets'
           | 'eft'
+          | 'ethereum'
           | 'hu_ics'
           | 'interac'
           | 'masav'
@@ -1816,6 +1836,7 @@ export namespace BulkRequestCreateParams {
           | 'nics'
           | 'nz_becs'
           | 'pl_elixir'
+          | 'polygon'
           | 'provxchange'
           | 'ro_sent'
           | 'rtp'
@@ -1826,6 +1847,7 @@ export namespace BulkRequestCreateParams {
           | 'sic'
           | 'signet'
           | 'sknbi'
+          | 'solana'
           | 'wire'
           | 'zengin';
       }
@@ -2080,6 +2102,7 @@ export interface BulkRequestListParams extends PageParams {
     | 'ledger_transaction'
     | 'expected_payment'
     | 'transaction'
+    | 'transaction_line_item'
     | 'entity_link';
 
   /**

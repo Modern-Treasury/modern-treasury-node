@@ -28,18 +28,18 @@ export const tool: Tool = {
         description:
           'The type of the associated object. Currently can be one of `payment_order`, `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`, `case`, `internal_account`, `decision`, or `external_account`.',
         enum: [
-          'cases',
           'counterparties',
           'expected_payments',
           'external_accounts',
+          'identifications',
           'incoming_payment_details',
           'internal_accounts',
           'organizations',
           'paper_items',
           'payment_orders',
           'transactions',
-          'decisions',
           'connections',
+          'conversations',
         ],
       },
       per_page: {
