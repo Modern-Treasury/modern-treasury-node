@@ -165,6 +165,10 @@ import retrieve_legal_entities from './legal-entities/retrieve-legal-entities';
 import update_legal_entities from './legal-entities/update-legal-entities';
 import list_legal_entities from './legal-entities/list-legal-entities';
 import create_legal_entity_associations from './legal-entity-associations/create-legal-entity-associations';
+import create_payment_actions from './payment-actions/create-payment-actions';
+import retrieve_payment_actions from './payment-actions/retrieve-payment-actions';
+import update_payment_actions from './payment-actions/update-payment-actions';
+import list_payment_actions from './payment-actions/list-payment-actions';
 
 export type HandlerFunction = (
   client: ModernTreasury,
@@ -351,6 +355,10 @@ addEndpoint(retrieve_legal_entities);
 addEndpoint(update_legal_entities);
 addEndpoint(list_legal_entities);
 addEndpoint(create_legal_entity_associations);
+addEndpoint(create_payment_actions);
+addEndpoint(retrieve_payment_actions);
+addEndpoint(update_payment_actions);
+addEndpoint(list_payment_actions);
 
 export type Filter = {
   type: 'resource' | 'operation' | 'tag' | 'tool';

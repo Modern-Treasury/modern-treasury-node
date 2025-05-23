@@ -460,3 +460,10 @@ The following tools are available in this MCP server.
 ### Resource `legal_entity_associations`:
 
 - `create_legal_entity_associations` (`write`): create legal_entity_association
+
+### Resource `payment_actions`:
+
+- `create_payment_actions` (`write`): Create a payment action.
+- `retrieve_payment_actions` (`read`): Get details on a single payment action.
+- `update_payment_actions` (`write`): Update a single payment action.
+- `list_payment_actions` (`read`): Get a list of all payment actions.
