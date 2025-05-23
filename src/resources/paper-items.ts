@@ -86,6 +86,12 @@ export interface PaperItem {
    */
   memo_field: string | null;
 
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata: unknown;
+
   object: string;
 
   /**

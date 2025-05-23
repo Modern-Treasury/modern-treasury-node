@@ -41,6 +41,7 @@ export const tool: Tool = {
           'ledger_transaction',
           'expected_payment',
           'transaction',
+          'transaction_line_item',
           'entity_link',
         ],
       },

@@ -229,14 +229,18 @@ export namespace VirtualAccountCreateParams {
      */
     account_number_type?:
       | 'au_number'
+      | 'base_address'
       | 'clabe'
+      | 'ethereum_address'
       | 'hk_number'
       | 'iban'
       | 'id_number'
       | 'nz_number'
       | 'other'
       | 'pan'
+      | 'polygon_address'
       | 'sg_number'
+      | 'solana_address'
       | 'wallet_address';
   }
 
@@ -344,6 +348,7 @@ export namespace VirtualAccountCreateParams {
       | 'ach'
       | 'au_becs'
       | 'bacs'
+      | 'base'
       | 'book'
       | 'card'
       | 'chats'
@@ -351,6 +356,7 @@ export namespace VirtualAccountCreateParams {
       | 'cross_border'
       | 'dk_nets'
       | 'eft'
+      | 'ethereum'
       | 'hu_ics'
       | 'interac'
       | 'masav'
@@ -359,6 +365,7 @@ export namespace VirtualAccountCreateParams {
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
+      | 'polygon'
       | 'provxchange'
       | 'ro_sent'
       | 'rtp'
@@ -369,6 +376,7 @@ export namespace VirtualAccountCreateParams {
       | 'sic'
       | 'signet'
       | 'sknbi'
+      | 'solana'
       | 'wire'
       | 'zengin'
       | null;

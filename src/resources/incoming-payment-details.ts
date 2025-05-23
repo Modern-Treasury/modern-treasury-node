@@ -156,14 +156,18 @@ export interface IncomingPaymentDetail {
    */
   originating_account_number_type:
     | 'au_number'
+    | 'base_address'
     | 'clabe'
+    | 'ethereum_address'
     | 'hk_number'
     | 'iban'
     | 'id_number'
     | 'nz_number'
     | 'other'
     | 'pan'
+    | 'polygon_address'
     | 'sg_number'
+    | 'solana_address'
     | 'wallet_address'
     | null;
 

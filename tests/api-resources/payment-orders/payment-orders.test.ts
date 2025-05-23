@@ -46,7 +46,7 @@ describe('resource paymentOrders', () => {
       documents: [
         {
           documentable_id: 'documentable_id',
-          documentable_type: 'cases',
+          documentable_type: 'counterparties',
           file: await toFile(Buffer.from('# my file contents'), 'README.md'),
           document_type: 'document_type',
         },
@@ -96,7 +96,7 @@ describe('resource paymentOrders', () => {
       purpose: 'purpose',
       receiving_account: {
         account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
-        account_type: 'cash',
+        account_type: 'base_wallet',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
         ledger_account: {
           currency: 'currency',
@@ -217,7 +217,7 @@ describe('resource paymentOrders', () => {
           purpose: 'purpose',
           receiving_account: {
             account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
-            account_type: 'cash',
+            account_type: 'base_wallet',
             contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
             ledger_account: {
               currency: 'currency',
@@ -388,7 +388,7 @@ describe('resource paymentOrders', () => {
       purpose: 'purpose',
       receiving_account: {
         account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
-        account_type: 'cash',
+        account_type: 'base_wallet',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
         ledger_account: {
           currency: 'currency',

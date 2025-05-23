@@ -32,6 +32,7 @@ describe('resource internalAccounts', () => {
       currency: 'USD',
       name: 'name',
       party_name: 'party_name',
+      account_type: 'checking',
       counterparty_id: 'counterparty_id',
       legal_entity_id: 'legal_entity_id',
       parent_account_id: 'parent_account_id',

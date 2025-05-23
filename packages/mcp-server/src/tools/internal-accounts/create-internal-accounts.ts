@@ -33,6 +33,26 @@ export const tool: Tool = {
         type: 'string',
         description: 'The legal name of the entity which owns the account.',
       },
+      account_type: {
+        type: 'string',
+        description:
+          'The account type, used to provision the appropriate account at the financial institution.',
+        enum: [
+          'base_wallet',
+          'cash',
+          'checking',
+          'crypto_wallet',
+          'ethereum_wallet',
+          'general_ledger',
+          'loan',
+          'non_resident',
+          'other',
+          'overdraft',
+          'polygon_wallet',
+          'savings',
+          'solana_wallet',
+        ],
+      },
       counterparty_id: {
         type: 'string',
         description: 'The Counterparty associated to this account.',

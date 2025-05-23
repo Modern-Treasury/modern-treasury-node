@@ -167,7 +167,7 @@ export interface Invoice {
   currency: Shared.Currency;
 
   /**
-   * A free-form description of the invoice.
+   * An optional free-form description of the invoice.
    */
   description: string;
 

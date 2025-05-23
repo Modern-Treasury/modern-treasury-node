@@ -331,14 +331,19 @@ export namespace ExternalAccount {
  * Can be `checking`, `savings` or `other`.
  */
 export type ExternalAccountType =
+  | 'base_wallet'
   | 'cash'
   | 'checking'
+  | 'crypto_wallet'
+  | 'ethereum_wallet'
   | 'general_ledger'
   | 'loan'
   | 'non_resident'
   | 'other'
   | 'overdraft'
-  | 'savings';
+  | 'polygon_wallet'
+  | 'savings'
+  | 'solana_wallet';
 
 export type ExternalAccountVerifyResponse =
   | ExternalAccount
@@ -376,6 +381,7 @@ export namespace ExternalAccountVerifyResponse {
       | 'ach'
       | 'au_becs'
       | 'bacs'
+      | 'base'
       | 'book'
       | 'card'
       | 'chats'
@@ -383,6 +389,7 @@ export namespace ExternalAccountVerifyResponse {
       | 'cross_border'
       | 'dk_nets'
       | 'eft'
+      | 'ethereum'
       | 'hu_ics'
       | 'interac'
       | 'masav'
@@ -391,6 +398,7 @@ export namespace ExternalAccountVerifyResponse {
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
+      | 'polygon'
       | 'provxchange'
       | 'ro_sent'
       | 'rtp'
@@ -401,6 +409,7 @@ export namespace ExternalAccountVerifyResponse {
       | 'sic'
       | 'signet'
       | 'sknbi'
+      | 'solana'
       | 'wire'
       | 'zengin';
 
@@ -484,14 +493,18 @@ export namespace ExternalAccountCreateParams {
 
     account_number_type?:
       | 'au_number'
+      | 'base_address'
       | 'clabe'
+      | 'ethereum_address'
       | 'hk_number'
       | 'iban'
       | 'id_number'
       | 'nz_number'
       | 'other'
       | 'pan'
+      | 'polygon_address'
       | 'sg_number'
+      | 'solana_address'
       | 'wallet_address';
   }
 
@@ -624,6 +637,7 @@ export namespace ExternalAccountCreateParams {
       | 'ach'
       | 'au_becs'
       | 'bacs'
+      | 'base'
       | 'book'
       | 'card'
       | 'chats'
@@ -631,6 +645,7 @@ export namespace ExternalAccountCreateParams {
       | 'cross_border'
       | 'dk_nets'
       | 'eft'
+      | 'ethereum'
       | 'hu_ics'
       | 'interac'
       | 'masav'
@@ -639,6 +654,7 @@ export namespace ExternalAccountCreateParams {
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
+      | 'polygon'
       | 'provxchange'
       | 'ro_sent'
       | 'rtp'
@@ -649,6 +665,7 @@ export namespace ExternalAccountCreateParams {
       | 'sic'
       | 'signet'
       | 'sknbi'
+      | 'solana'
       | 'wire'
       | 'zengin';
   }
@@ -749,6 +766,7 @@ export interface ExternalAccountVerifyParams {
     | 'ach'
     | 'au_becs'
     | 'bacs'
+    | 'base'
     | 'book'
     | 'card'
     | 'chats'
@@ -756,6 +774,7 @@ export interface ExternalAccountVerifyParams {
     | 'cross_border'
     | 'dk_nets'
     | 'eft'
+    | 'ethereum'
     | 'hu_ics'
     | 'interac'
     | 'masav'
@@ -764,6 +783,7 @@ export interface ExternalAccountVerifyParams {
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
+    | 'polygon'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -774,6 +794,7 @@ export interface ExternalAccountVerifyParams {
     | 'sic'
     | 'signet'
     | 'sknbi'
+    | 'solana'
     | 'wire'
     | 'zengin';
 

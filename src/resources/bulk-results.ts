@@ -72,6 +72,7 @@ export interface BulkResult {
     | 'expected_payment'
     | 'transaction'
     | 'entity_link'
+    | 'transaction_line_item'
     | 'bulk_error';
 
   /**
@@ -156,6 +157,7 @@ export interface BulkResultListParams extends PageParams {
     | 'expected_payment'
     | 'transaction'
     | 'entity_link'
+    | 'transaction_line_item'
     | 'bulk_error';
 
   /**

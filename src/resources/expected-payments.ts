@@ -265,6 +265,7 @@ export type ExpectedPaymentType =
   | 'ach'
   | 'au_becs'
   | 'bacs'
+  | 'base'
   | 'book'
   | 'card'
   | 'chats'
@@ -272,6 +273,7 @@ export type ExpectedPaymentType =
   | 'cross_border'
   | 'dk_nets'
   | 'eft'
+  | 'ethereum'
   | 'hu_ics'
   | 'interac'
   | 'masav'
@@ -280,6 +282,7 @@ export type ExpectedPaymentType =
   | 'nics'
   | 'nz_becs'
   | 'pl_elixir'
+  | 'polygon'
   | 'provxchange'
   | 'ro_sent'
   | 'rtp'
@@ -290,6 +293,7 @@ export type ExpectedPaymentType =
   | 'sic'
   | 'signet'
   | 'sknbi'
+  | 'solana'
   | 'wire'
   | 'zengin'
   | null;
@@ -351,6 +355,7 @@ export interface ReconciliationRule {
     | 'ach'
     | 'au_becs'
     | 'bacs'
+    | 'base'
     | 'book'
     | 'card'
     | 'chats'
@@ -358,6 +363,7 @@ export interface ReconciliationRule {
     | 'cross_border'
     | 'dk_nets'
     | 'eft'
+    | 'ethereum'
     | 'hu_ics'
     | 'interac'
     | 'masav'
@@ -366,6 +372,7 @@ export interface ReconciliationRule {
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
+    | 'polygon'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -376,6 +383,7 @@ export interface ReconciliationRule {
     | 'sic'
     | 'signet'
     | 'sknbi'
+    | 'solana'
     | 'wire'
     | 'zengin'
     | null;
@@ -793,6 +801,7 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'ach'
     | 'au_becs'
     | 'bacs'
+    | 'base'
     | 'book'
     | 'card'
     | 'chats'
@@ -800,6 +809,7 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'cross_border'
     | 'dk_nets'
     | 'eft'
+    | 'ethereum'
     | 'hu_ics'
     | 'interac'
     | 'masav'
@@ -808,6 +818,7 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
+    | 'polygon'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -818,8 +829,19 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'sic'
     | 'signet'
     | 'sknbi'
+    | 'solana'
     | 'wire'
     | 'zengin';
+
+  /**
+   * Used to return expected payments updated after some datetime
+   */
+  updated_at_lower_bound?: string;
+
+  /**
+   * Used to return expected payments updated before some datetime
+   */
+  updated_at_upper_bound?: string;
 }
 
 ExpectedPayments.ExpectedPaymentsPage = ExpectedPaymentsPage;

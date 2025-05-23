@@ -265,6 +265,12 @@ export namespace LegalEntityAssociation {
       discarded_at: string | null;
 
       /**
+       * The date when the Identification is no longer considered valid by the issuing
+       * authority.
+       */
+      expiration_date: string | null;
+
+      /**
        * The type of ID number.
        */
       id_type:
@@ -276,6 +282,7 @@ export namespace LegalEntityAssociation {
         | 'cl_rut'
         | 'co_cedulas'
         | 'co_nit'
+        | 'drivers_license'
         | 'hn_id'
         | 'hn_rtn'
         | 'in_lei'
@@ -295,6 +302,11 @@ export namespace LegalEntityAssociation {
        * identification
        */
       issuing_country: string | null;
+
+      /**
+       * The region in which the identifcation was issued.
+       */
+      issuing_region: string | null;
 
       /**
        * This field will be true if this object exists in the live environment or false
@@ -520,6 +532,7 @@ export namespace LegalEntityAssociationCreateParams {
         | 'cl_rut'
         | 'co_cedulas'
         | 'co_nit'
+        | 'drivers_license'
         | 'hn_id'
         | 'hn_rtn'
         | 'in_lei'
@@ -535,10 +548,21 @@ export namespace LegalEntityAssociationCreateParams {
         | 'vn_tin';
 
       /**
+       * The date when the Identification is no longer considered valid by the issuing
+       * authority.
+       */
+      expiration_date?: string | null;
+
+      /**
        * The ISO 3166-1 alpha-2 country code of the country that issued the
        * identification
        */
       issuing_country?: string | null;
+
+      /**
+       * The region in which the identifcation was issued.
+       */
+      issuing_region?: string | null;
     }
 
     /**

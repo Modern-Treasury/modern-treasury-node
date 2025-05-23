@@ -132,14 +132,19 @@ export interface InternalAccount {
    * Can be checking, savings or other.
    */
   account_type:
+    | 'base_wallet'
     | 'cash'
     | 'checking'
+    | 'crypto_wallet'
+    | 'ethereum_wallet'
     | 'general_ledger'
     | 'loan'
     | 'non_resident'
     | 'other'
     | 'overdraft'
+    | 'polygon_wallet'
     | 'savings'
+    | 'solana_wallet'
     | null;
 
   /**
@@ -285,6 +290,25 @@ export interface InternalAccountCreateParams {
   party_name: string;
 
   /**
+   * The account type, used to provision the appropriate account at the financial
+   * institution.
+   */
+  account_type?:
+    | 'base_wallet'
+    | 'cash'
+    | 'checking'
+    | 'crypto_wallet'
+    | 'ethereum_wallet'
+    | 'general_ledger'
+    | 'loan'
+    | 'non_resident'
+    | 'other'
+    | 'overdraft'
+    | 'polygon_wallet'
+    | 'savings'
+    | 'solana_wallet';
+
+  /**
    * The Counterparty associated to this account.
    */
   counterparty_id?: string;
@@ -405,6 +429,7 @@ export interface InternalAccountListParams extends PageParams {
     | 'ach'
     | 'au_becs'
     | 'bacs'
+    | 'base'
     | 'book'
     | 'card'
     | 'chats'
@@ -412,6 +437,7 @@ export interface InternalAccountListParams extends PageParams {
     | 'cross_border'
     | 'dk_nets'
     | 'eft'
+    | 'ethereum'
     | 'hu_ics'
     | 'interac'
     | 'masav'
@@ -420,6 +446,7 @@ export interface InternalAccountListParams extends PageParams {
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
+    | 'polygon'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -430,6 +457,7 @@ export interface InternalAccountListParams extends PageParams {
     | 'sic'
     | 'signet'
     | 'sknbi'
+    | 'solana'
     | 'wire'
     | 'zengin';
 }
