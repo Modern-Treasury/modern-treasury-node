@@ -162,6 +162,11 @@ export interface InvoiceLineItem {
   direction: string;
 
   /**
+   * The ID of the invoice for this line item.
+   */
+  invoice_id: string;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */

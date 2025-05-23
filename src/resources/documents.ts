@@ -77,18 +77,18 @@ export interface Document {
    * `case`, `internal_account`, `decision`, or `external_account`.
    */
   documentable_type:
-    | 'case'
     | 'counterparty'
     | 'expected_payment'
     | 'external_account'
+    | 'identification'
     | 'incoming_payment_detail'
     | 'internal_account'
     | 'organization'
     | 'paper_item'
     | 'payment_order'
     | 'transaction'
-    | 'decision'
-    | 'connection';
+    | 'connection'
+    | 'conversation';
 
   file: Document.File;
 
@@ -156,18 +156,18 @@ export interface DocumentCreateParams {
   documentable_id: string;
 
   documentable_type:
-    | 'cases'
     | 'counterparties'
     | 'expected_payments'
     | 'external_accounts'
+    | 'identifications'
     | 'incoming_payment_details'
     | 'internal_accounts'
     | 'organizations'
     | 'paper_items'
     | 'payment_orders'
     | 'transactions'
-    | 'decisions'
-    | 'connections';
+    | 'connections'
+    | 'conversations';
 
   file: Core.Uploadable;
 
@@ -189,18 +189,18 @@ export interface DocumentListParams extends PageParams {
    * `case`, `internal_account`, `decision`, or `external_account`.
    */
   documentable_type?:
-    | 'cases'
     | 'counterparties'
     | 'expected_payments'
     | 'external_accounts'
+    | 'identifications'
     | 'incoming_payment_details'
     | 'internal_accounts'
     | 'organizations'
     | 'paper_items'
     | 'payment_orders'
     | 'transactions'
-    | 'decisions'
-    | 'connections';
+    | 'connections'
+    | 'conversations';
 }
 
 Documents.DocumentsPage = DocumentsPage;

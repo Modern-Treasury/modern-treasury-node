@@ -134,6 +134,7 @@ export const tool: Tool = {
                     'cl_rut',
                     'co_cedulas',
                     'co_nit',
+                    'drivers_license',
                     'hn_id',
                     'hn_rtn',
                     'in_lei',
@@ -149,10 +150,20 @@ export const tool: Tool = {
                     'vn_tin',
                   ],
                 },
+                expiration_date: {
+                  type: 'string',
+                  description:
+                    'The date when the Identification is no longer considered valid by the issuing authority.',
+                  format: 'date',
+                },
                 issuing_country: {
                   type: 'string',
                   description:
                     'The ISO 3166-1 alpha-2 country code of the country that issued the identification',
+                },
+                issuing_region: {
+                  type: 'string',
+                  description: 'The region in which the identifcation was issued.',
                 },
               },
               required: ['id_number', 'id_type'],

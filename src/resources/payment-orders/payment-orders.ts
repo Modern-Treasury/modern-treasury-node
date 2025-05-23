@@ -181,12 +181,6 @@ export interface PaymentOrder {
   charge_bearer: 'shared' | 'sender' | 'receiver' | null;
 
   /**
-   * Custom key-value pair for usage in compliance rules. Please contact support
-   * before making changes to this field.
-   */
-  compliance_rule_metadata: Record<string, unknown> | null;
-
-  /**
    * If the payment order is tied to a specific Counterparty, their id will appear,
    * otherwise `null`.
    */
@@ -204,12 +198,6 @@ export interface PaymentOrder {
    * object's data.
    */
   current_return: ReturnsAPI.ReturnObject | null;
-
-  /**
-   * The ID of the compliance decision for the payment order, if transaction
-   * monitoring is enabled.
-   */
-  decision_id: string | null;
 
   /**
    * An optional description for internal use.
@@ -380,12 +368,6 @@ export interface PaymentOrder {
   transaction_ids: Array<string>;
 
   /**
-   * A flag that determines whether a payment order should go through transaction
-   * monitoring.
-   */
-  transaction_monitoring_enabled: boolean;
-
-  /**
    * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
    * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
    * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
@@ -528,6 +510,10 @@ export namespace PaymentOrder {
       | 'bnk_dev_transfer_id'
       | 'bofa_end_to_end_id'
       | 'bofa_transaction_id'
+      | 'brale_transfer_id'
+      | 'bridge_destination_transaction_hash'
+      | 'bridge_source_transaction_hash'
+      | 'bridge_transfer_id'
       | 'check_number'
       | 'citibank_reference_number'
       | 'citibank_worldlink_clearing_system_reference_number'
@@ -646,6 +632,7 @@ export type PaymentOrderType =
   | 'ach'
   | 'au_becs'
   | 'bacs'
+  | 'base'
   | 'book'
   | 'card'
   | 'chats'
@@ -653,6 +640,7 @@ export type PaymentOrderType =
   | 'cross_border'
   | 'dk_nets'
   | 'eft'
+  | 'ethereum'
   | 'hu_ics'
   | 'interac'
   | 'masav'
@@ -661,6 +649,7 @@ export type PaymentOrderType =
   | 'nics'
   | 'nz_becs'
   | 'pl_elixir'
+  | 'polygon'
   | 'provxchange'
   | 'ro_sent'
   | 'rtp'
@@ -671,6 +660,7 @@ export type PaymentOrderType =
   | 'sic'
   | 'signet'
   | 'sknbi'
+  | 'solana'
   | 'wire'
   | 'zengin';
 
@@ -929,18 +919,18 @@ export namespace PaymentOrderCreateParams {
     documentable_id: string;
 
     documentable_type:
-      | 'cases'
       | 'counterparties'
       | 'expected_payments'
       | 'external_accounts'
+      | 'identifications'
       | 'incoming_payment_details'
       | 'internal_accounts'
       | 'organizations'
       | 'paper_items'
       | 'payment_orders'
       | 'transactions'
-      | 'decisions'
-      | 'connections';
+      | 'connections'
+      | 'conversations';
 
     file: Core.Uploadable;
 
@@ -1174,14 +1164,18 @@ export namespace PaymentOrderCreateParams {
 
       account_number_type?:
         | 'au_number'
+        | 'base_address'
         | 'clabe'
+        | 'ethereum_address'
         | 'hk_number'
         | 'iban'
         | 'id_number'
         | 'nz_number'
         | 'other'
         | 'pan'
+        | 'polygon_address'
         | 'sg_number'
+        | 'solana_address'
         | 'wallet_address';
     }
 
@@ -1314,6 +1308,7 @@ export namespace PaymentOrderCreateParams {
         | 'ach'
         | 'au_becs'
         | 'bacs'
+        | 'base'
         | 'book'
         | 'card'
         | 'chats'
@@ -1321,6 +1316,7 @@ export namespace PaymentOrderCreateParams {
         | 'cross_border'
         | 'dk_nets'
         | 'eft'
+        | 'ethereum'
         | 'hu_ics'
         | 'interac'
         | 'masav'
@@ -1329,6 +1325,7 @@ export namespace PaymentOrderCreateParams {
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
+        | 'polygon'
         | 'provxchange'
         | 'ro_sent'
         | 'rtp'
@@ -1339,6 +1336,7 @@ export namespace PaymentOrderCreateParams {
         | 'sic'
         | 'signet'
         | 'sknbi'
+        | 'solana'
         | 'wire'
         | 'zengin';
     }
@@ -1689,14 +1687,18 @@ export namespace PaymentOrderUpdateParams {
 
       account_number_type?:
         | 'au_number'
+        | 'base_address'
         | 'clabe'
+        | 'ethereum_address'
         | 'hk_number'
         | 'iban'
         | 'id_number'
         | 'nz_number'
         | 'other'
         | 'pan'
+        | 'polygon_address'
         | 'sg_number'
+        | 'solana_address'
         | 'wallet_address';
     }
 
@@ -1829,6 +1831,7 @@ export namespace PaymentOrderUpdateParams {
         | 'ach'
         | 'au_becs'
         | 'bacs'
+        | 'base'
         | 'book'
         | 'card'
         | 'chats'
@@ -1836,6 +1839,7 @@ export namespace PaymentOrderUpdateParams {
         | 'cross_border'
         | 'dk_nets'
         | 'eft'
+        | 'ethereum'
         | 'hu_ics'
         | 'interac'
         | 'masav'
@@ -1844,6 +1848,7 @@ export namespace PaymentOrderUpdateParams {
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
+        | 'polygon'
         | 'provxchange'
         | 'ro_sent'
         | 'rtp'
@@ -1854,6 +1859,7 @@ export namespace PaymentOrderUpdateParams {
         | 'sic'
         | 'signet'
         | 'sknbi'
+        | 'solana'
         | 'wire'
         | 'zengin';
     }
@@ -1938,6 +1944,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'ach'
     | 'au_becs'
     | 'bacs'
+    | 'base'
     | 'book'
     | 'card'
     | 'chats'
@@ -1945,6 +1952,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'cross_border'
     | 'dk_nets'
     | 'eft'
+    | 'ethereum'
     | 'hu_ics'
     | 'interac'
     | 'masav'
@@ -1953,6 +1961,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
+    | 'polygon'
     | 'provxchange'
     | 'ro_sent'
     | 'rtp'
@@ -1963,6 +1972,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'sic'
     | 'signet'
     | 'sknbi'
+    | 'solana'
     | 'wire'
     | 'zengin';
 }
@@ -2433,14 +2443,18 @@ export namespace PaymentOrderCreateAsyncParams {
 
       account_number_type?:
         | 'au_number'
+        | 'base_address'
         | 'clabe'
+        | 'ethereum_address'
         | 'hk_number'
         | 'iban'
         | 'id_number'
         | 'nz_number'
         | 'other'
         | 'pan'
+        | 'polygon_address'
         | 'sg_number'
+        | 'solana_address'
         | 'wallet_address';
     }
 
@@ -2573,6 +2587,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'ach'
         | 'au_becs'
         | 'bacs'
+        | 'base'
         | 'book'
         | 'card'
         | 'chats'
@@ -2580,6 +2595,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'cross_border'
         | 'dk_nets'
         | 'eft'
+        | 'ethereum'
         | 'hu_ics'
         | 'interac'
         | 'masav'
@@ -2588,6 +2604,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
+        | 'polygon'
         | 'provxchange'
         | 'ro_sent'
         | 'rtp'
@@ -2598,6 +2615,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'sic'
         | 'signet'
         | 'sknbi'
+        | 'solana'
         | 'wire'
         | 'zengin';
     }

@@ -28,7 +28,7 @@ describe('resource counterparties', () => {
       accounts: [
         {
           account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
-          account_type: 'cash',
+          account_type: 'base_wallet',
           contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
           ledger_account: {
             currency: 'currency',
@@ -109,7 +109,15 @@ describe('resource counterparties', () => {
         doing_business_as_names: ['string'],
         email: 'email',
         first_name: 'first_name',
-        identifications: [{ id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' }],
+        identifications: [
+          {
+            id_number: 'id_number',
+            id_type: 'ar_cuil',
+            expiration_date: '2019-12-27',
+            issuing_country: 'issuing_country',
+            issuing_region: 'issuing_region',
+          },
+        ],
         industry_classifications: [
           {
             id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -172,7 +180,13 @@ describe('resource counterparties', () => {
               email: 'email',
               first_name: 'first_name',
               identifications: [
-                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+                {
+                  id_number: 'id_number',
+                  id_type: 'ar_cuil',
+                  expiration_date: '2019-12-27',
+                  issuing_country: 'issuing_country',
+                  issuing_region: 'issuing_region',
+                },
               ],
               industry_classifications: [
                 {

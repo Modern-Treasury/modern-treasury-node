@@ -488,14 +488,18 @@ export namespace CounterpartyCreateParams {
 
       account_number_type?:
         | 'au_number'
+        | 'base_address'
         | 'clabe'
+        | 'ethereum_address'
         | 'hk_number'
         | 'iban'
         | 'id_number'
         | 'nz_number'
         | 'other'
         | 'pan'
+        | 'polygon_address'
         | 'sg_number'
+        | 'solana_address'
         | 'wallet_address';
     }
 
@@ -628,6 +632,7 @@ export namespace CounterpartyCreateParams {
         | 'ach'
         | 'au_becs'
         | 'bacs'
+        | 'base'
         | 'book'
         | 'card'
         | 'chats'
@@ -635,6 +640,7 @@ export namespace CounterpartyCreateParams {
         | 'cross_border'
         | 'dk_nets'
         | 'eft'
+        | 'ethereum'
         | 'hu_ics'
         | 'interac'
         | 'masav'
@@ -643,6 +649,7 @@ export namespace CounterpartyCreateParams {
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
+        | 'polygon'
         | 'provxchange'
         | 'ro_sent'
         | 'rtp'
@@ -653,6 +660,7 @@ export namespace CounterpartyCreateParams {
         | 'sic'
         | 'signet'
         | 'sknbi'
+        | 'solana'
         | 'wire'
         | 'zengin';
     }
@@ -833,6 +841,7 @@ export namespace CounterpartyCreateParams {
         | 'cl_rut'
         | 'co_cedulas'
         | 'co_nit'
+        | 'drivers_license'
         | 'hn_id'
         | 'hn_rtn'
         | 'in_lei'
@@ -848,10 +857,21 @@ export namespace CounterpartyCreateParams {
         | 'vn_tin';
 
       /**
+       * The date when the Identification is no longer considered valid by the issuing
+       * authority.
+       */
+      expiration_date?: string | null;
+
+      /**
        * The ISO 3166-1 alpha-2 country code of the country that issued the
        * identification
        */
       issuing_country?: string | null;
+
+      /**
+       * The region in which the identifcation was issued.
+       */
+      issuing_region?: string | null;
     }
 
     export interface LegalEntityAssociation {
@@ -1052,6 +1072,7 @@ export namespace CounterpartyCreateParams {
             | 'cl_rut'
             | 'co_cedulas'
             | 'co_nit'
+            | 'drivers_license'
             | 'hn_id'
             | 'hn_rtn'
             | 'in_lei'
@@ -1067,10 +1088,21 @@ export namespace CounterpartyCreateParams {
             | 'vn_tin';
 
           /**
+           * The date when the Identification is no longer considered valid by the issuing
+           * authority.
+           */
+          expiration_date?: string | null;
+
+          /**
            * The ISO 3166-1 alpha-2 country code of the country that issued the
            * identification
            */
           issuing_country?: string | null;
+
+          /**
+           * The region in which the identifcation was issued.
+           */
+          issuing_region?: string | null;
         }
 
         /**

@@ -69,7 +69,15 @@ describe('resource connectionLegalEntities', () => {
         doing_business_as_names: ['string'],
         email: 'email',
         first_name: 'first_name',
-        identifications: [{ id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' }],
+        identifications: [
+          {
+            id_number: 'id_number',
+            id_type: 'ar_cuil',
+            expiration_date: '2019-12-27',
+            issuing_country: 'issuing_country',
+            issuing_region: 'issuing_region',
+          },
+        ],
         industry_classifications: [
           {
             id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -132,7 +140,13 @@ describe('resource connectionLegalEntities', () => {
               email: 'email',
               first_name: 'first_name',
               identifications: [
-                { id_number: 'id_number', id_type: 'ar_cuil', issuing_country: 'issuing_country' },
+                {
+                  id_number: 'id_number',
+                  id_type: 'ar_cuil',
+                  expiration_date: '2019-12-27',
+                  issuing_country: 'issuing_country',
+                  issuing_region: 'issuing_region',
+                },
               ],
               industry_classifications: [
                 {
