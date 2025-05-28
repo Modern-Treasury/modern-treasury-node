@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'invoices.line_items',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/api/invoices/{invoice_id}/invoice_line_items/{id}',
+  operationId: 'deleteInvoiceLineItem',
 };
 
 export const tool: Tool = {

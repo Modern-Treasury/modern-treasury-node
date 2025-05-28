@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'transactions.line_items',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/transaction_line_items/{id}',
+  operationId: 'listTransactionLineItem',
 };
 
 export const tool: Tool = {

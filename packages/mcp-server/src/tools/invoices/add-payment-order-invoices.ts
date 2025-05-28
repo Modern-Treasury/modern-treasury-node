@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'invoices',
   operation: 'write',
   tags: [],
+  httpMethod: 'put',
+  httpPath: '/api/invoices/{id}/payment_orders/{payment_order_id}',
+  operationId: 'addPaymentOrderToInvoice',
 };
 
 export const tool: Tool = {

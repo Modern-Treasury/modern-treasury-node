@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'legal_entities',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/legal_entities',
+  operationId: 'createLegalEntity',
 };
 
 export const tool: Tool = {

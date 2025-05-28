@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'bulk_requests',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/bulk_requests',
+  operationId: 'listBulkRequests',
 };
 
 export const tool: Tool = {

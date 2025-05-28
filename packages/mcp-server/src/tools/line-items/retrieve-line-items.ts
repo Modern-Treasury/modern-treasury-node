@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'line_items',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/{itemizable_type}/{itemizable_id}/line_items/{id}',
+  operationId: 'getLineItem',
 };
 
 export const tool: Tool = {

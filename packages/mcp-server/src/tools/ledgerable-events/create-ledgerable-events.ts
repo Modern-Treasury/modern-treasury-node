@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledgerable_events',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/ledgerable_events',
+  operationId: 'createLedgerableEvent',
 };
 
 export const tool: Tool = {

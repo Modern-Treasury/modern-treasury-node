@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledger_event_handlers',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/ledger_event_handlers',
+  operationId: 'createLedgerEventHandler',
 };
 
 export const tool: Tool = {

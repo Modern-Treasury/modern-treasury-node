@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'counterparties',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/counterparties/{id}/collect_account',
+  operationId: 'collectAccountDetails',
 };
 
 export const tool: Tool = {

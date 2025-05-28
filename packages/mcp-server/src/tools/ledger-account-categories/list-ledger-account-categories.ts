@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledger_account_categories',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/ledger_account_categories',
+  operationId: 'listLedgerAccountCategories',
 };
 
 export const tool: Tool = {

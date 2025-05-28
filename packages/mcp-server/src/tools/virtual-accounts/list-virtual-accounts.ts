@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'virtual_accounts',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/virtual_accounts',
+  operationId: 'listVirtualAccounts',
 };
 
 export const tool: Tool = {

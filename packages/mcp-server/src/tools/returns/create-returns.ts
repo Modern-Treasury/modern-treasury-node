@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'returns',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/returns',
+  operationId: 'createReturn',
 };
 
 export const tool: Tool = {

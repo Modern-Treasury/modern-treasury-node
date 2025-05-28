@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'internal_accounts',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/internal_accounts',
+  operationId: 'createInternalAccount',
 };
 
 export const tool: Tool = {

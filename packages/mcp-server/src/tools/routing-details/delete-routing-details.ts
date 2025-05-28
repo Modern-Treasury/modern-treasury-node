@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'routing_details',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/api/{accounts_type}/{account_id}/routing_details/{id}',
+  operationId: 'deleteRoutingDetail',
 };
 
 export const tool: Tool = {

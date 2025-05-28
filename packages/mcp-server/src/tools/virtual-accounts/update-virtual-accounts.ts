@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'virtual_accounts',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/api/virtual_accounts/{id}',
+  operationId: 'updateVirtualAccount',
 };
 
 export const tool: Tool = {

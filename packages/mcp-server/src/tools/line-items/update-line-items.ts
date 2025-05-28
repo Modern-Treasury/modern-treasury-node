@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'line_items',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/api/{itemizable_type}/{itemizable_id}/line_items/{id}',
+  operationId: 'updateLineItem',
 };
 
 export const tool: Tool = {

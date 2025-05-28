@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'paper_items',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/paper_items',
+  operationId: 'listPaperItems',
 };
 
 export const tool: Tool = {

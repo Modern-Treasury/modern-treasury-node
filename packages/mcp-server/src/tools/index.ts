@@ -179,6 +179,10 @@ export type Metadata = {
   resource: string;
   operation: 'read' | 'write';
   tags: string[];
+
+  httpMethod?: string;
+  httpPath?: string;
+  operationId?: string;
 };
 
 export type Endpoint = {

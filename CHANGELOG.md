@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.39.0 (2025-05-28)
+
+Full Changelog: [v2.38.0...v2.39.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.38.0...v2.39.0)
+
+### Features
+
+* **mcp:** include http information in tools ([9ccf1b0](https://github.com/Modern-Treasury/modern-treasury-node/commit/9ccf1b0c75d1c0dd05d98eb8176fef6af73dc85b))
+
+
+### Bug Fixes
+
+* **mcp:** fix cursor schema transformation issue with recursive references ([030ff10](https://github.com/Modern-Treasury/modern-treasury-node/commit/030ff10ba19d41e03245ef2ba30a7d6812c68fb9))
+* **mcp:** include description in dynamic tool search ([c51f428](https://github.com/Modern-Treasury/modern-treasury-node/commit/c51f428f121e35689b9698513fa51f8645da643a))
+
+
+### Chores
+
+* improve publish-npm script --latest tag logic ([f0bc5f8](https://github.com/Modern-Treasury/modern-treasury-node/commit/f0bc5f86dd19ddb997a40894ce6e7a29f4ad5cf3))
+* **mcp:** remove duplicate assignment ([dff869a](https://github.com/Modern-Treasury/modern-treasury-node/commit/dff869aaf053c9de0fabe30b96ea46f2c0e27f7f))
+
 ## 2.38.0 (2025-05-23)
 
 Full Changelog: [v2.37.0...v2.38.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.37.0...v2.38.0)

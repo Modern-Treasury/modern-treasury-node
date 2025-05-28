@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'bulk_requests',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/bulk_requests',
+  operationId: 'createBulkRequest',
 };
 
 export const tool: Tool = {

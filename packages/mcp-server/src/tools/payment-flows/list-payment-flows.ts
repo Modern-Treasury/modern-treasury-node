@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'payment_flows',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/payment_flows',
+  operationId: 'listPaymentFlows',
 };
 
 export const tool: Tool = {

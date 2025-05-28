@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'account_collection_flows',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/account_collection_flows',
+  operationId: 'createAccountCollectionFlow',
 };
 
 export const tool: Tool = {

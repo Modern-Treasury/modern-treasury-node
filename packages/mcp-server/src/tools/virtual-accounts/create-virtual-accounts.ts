@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'virtual_accounts',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/virtual_accounts',
+  operationId: 'createVirtualAccount',
 };
 
 export const tool: Tool = {

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledger_account_categories',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}',
+  operationId: 'removeLedgerAccountFromLedgerAccountCategory',
 };
 
 export const tool: Tool = {

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'incoming_payment_details',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/simulations/incoming_payment_details/create_async',
+  operationId: 'createAsyncIncomingPaymentDetail',
 };
 
 export const tool: Tool = {

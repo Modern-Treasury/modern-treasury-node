@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledger_account_settlements',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/ledger_account_settlements',
+  operationId: 'createLedgerAccountSettlement',
 };
 
 export const tool: Tool = {

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'internal_accounts',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/internal_accounts',
+  operationId: 'listInternalAccounts',
 };
 
 export const tool: Tool = {

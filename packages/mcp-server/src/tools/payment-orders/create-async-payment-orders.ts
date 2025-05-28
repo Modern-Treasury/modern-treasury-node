@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'payment_orders',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/payment_orders/create_async',
+  operationId: 'createAsyncPaymentOrder',
 };
 
 export const tool: Tool = {

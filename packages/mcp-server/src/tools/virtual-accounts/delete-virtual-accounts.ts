@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'virtual_accounts',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/api/virtual_accounts/{id}',
+  operationId: 'deleteVirtualAccount',
 };
 
 export const tool: Tool = {

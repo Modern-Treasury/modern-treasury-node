@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: '$client',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/ping',
+  operationId: 'pingAPI',
 };
 
 export const tool: Tool = {

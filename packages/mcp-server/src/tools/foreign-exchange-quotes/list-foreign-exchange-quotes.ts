@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'foreign_exchange_quotes',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/foreign_exchange_quotes',
+  operationId: 'listQuotes',
 };
 
 export const tool: Tool = {
