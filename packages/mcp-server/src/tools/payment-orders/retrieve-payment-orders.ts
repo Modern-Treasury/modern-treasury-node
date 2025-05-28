@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'payment_orders',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/payment_orders/{id}',
+  operationId: 'getPaymentOrder',
 };
 
 export const tool: Tool = {

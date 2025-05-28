@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'external_accounts',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/api/external_accounts/{id}',
+  operationId: 'updateExternalAccount',
 };
 
 export const tool: Tool = {

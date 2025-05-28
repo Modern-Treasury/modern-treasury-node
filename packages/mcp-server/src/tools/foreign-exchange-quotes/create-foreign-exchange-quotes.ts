@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'foreign_exchange_quotes',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/foreign_exchange_quotes',
+  operationId: 'createQuote',
 };
 
 export const tool: Tool = {

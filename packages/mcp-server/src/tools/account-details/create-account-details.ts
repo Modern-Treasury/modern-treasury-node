@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'account_details',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/{accounts_type}/{account_id}/account_details',
+  operationId: 'createAccountDetail',
 };
 
 export const tool: Tool = {

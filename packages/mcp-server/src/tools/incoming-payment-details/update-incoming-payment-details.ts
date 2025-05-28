@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'incoming_payment_details',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/api/incoming_payment_details/{id}',
+  operationId: 'updateIncomingPaymentDetail',
 };
 
 export const tool: Tool = {

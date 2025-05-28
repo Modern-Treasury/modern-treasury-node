@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'legal_entity_associations',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/legal_entity_associations',
+  operationId: 'createLegalEntityAssociation',
 };
 
 export const tool: Tool = {

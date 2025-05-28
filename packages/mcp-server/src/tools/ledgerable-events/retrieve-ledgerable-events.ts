@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledgerable_events',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/ledgerable_events/{id}',
+  operationId: 'getLedgerableEvent',
 };
 
 export const tool: Tool = {

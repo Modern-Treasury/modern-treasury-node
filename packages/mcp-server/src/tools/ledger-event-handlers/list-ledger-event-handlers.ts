@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledger_event_handlers',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/ledger_event_handlers',
+  operationId: 'listLedgerEventHandlers',
 };
 
 export const tool: Tool = {
