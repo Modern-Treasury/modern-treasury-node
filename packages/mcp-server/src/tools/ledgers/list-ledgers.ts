@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledgers',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/ledgers',
+  operationId: 'listLedgers',
 };
 
 export const tool: Tool = {

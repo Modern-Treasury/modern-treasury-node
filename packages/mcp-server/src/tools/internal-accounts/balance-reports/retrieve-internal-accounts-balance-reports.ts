@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'internal_accounts.balance_reports',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/internal_accounts/{internal_account_id}/balance_reports/{id}',
+  operationId: 'getBalanceReport',
 };
 
 export const tool: Tool = {

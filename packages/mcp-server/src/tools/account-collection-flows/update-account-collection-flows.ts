@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'account_collection_flows',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/api/account_collection_flows/{id}',
+  operationId: 'updateAccountCollectionFlow',
 };
 
 export const tool: Tool = {

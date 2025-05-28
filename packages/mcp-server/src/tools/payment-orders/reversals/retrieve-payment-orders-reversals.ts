@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'payment_orders.reversals',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/payment_orders/{payment_order_id}/reversals/{reversal_id}',
+  operationId: 'getReversal',
 };
 
 export const tool: Tool = {

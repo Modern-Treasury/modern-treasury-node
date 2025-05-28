@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'connection_legal_entities',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/connection_legal_entities/{id}',
+  operationId: 'getConnectionLegalEntity',
 };
 
 export const tool: Tool = {

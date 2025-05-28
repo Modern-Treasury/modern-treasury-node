@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'legal_entities',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/legal_entities',
+  operationId: 'listLegalEntities',
 };
 
 export const tool: Tool = {

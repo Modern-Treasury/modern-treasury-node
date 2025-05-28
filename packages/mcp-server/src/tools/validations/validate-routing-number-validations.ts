@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'validations',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/validations/routing_numbers',
+  operationId: 'validateRoutingNumber',
 };
 
 export const tool: Tool = {
