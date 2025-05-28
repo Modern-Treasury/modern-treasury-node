@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'invoices.line_items',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/invoices/{invoice_id}/invoice_line_items/{id}',
+  operationId: 'getInvoiceLineItem',
 };
 
 export const tool: Tool = {

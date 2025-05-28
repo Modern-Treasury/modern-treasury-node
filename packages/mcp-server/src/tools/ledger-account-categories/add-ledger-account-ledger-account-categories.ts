@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledger_account_categories',
   operation: 'write',
   tags: [],
+  httpMethod: 'put',
+  httpPath: '/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}',
+  operationId: 'addLedgerAccountToLedgerAccountCategory',
 };
 
 export const tool: Tool = {

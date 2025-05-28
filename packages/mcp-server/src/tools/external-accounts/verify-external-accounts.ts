@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'external_accounts',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/external_accounts/{id}/verify',
+  operationId: 'verifyExternalAccount',
 };
 
 export const tool: Tool = {

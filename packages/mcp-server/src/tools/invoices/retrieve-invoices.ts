@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'invoices',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/invoices/{id}',
+  operationId: 'getInvoice',
 };
 
 export const tool: Tool = {

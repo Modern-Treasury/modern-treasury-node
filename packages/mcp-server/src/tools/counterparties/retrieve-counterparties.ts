@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'counterparties',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/counterparties/{id}',
+  operationId: 'getCounterparty',
 };
 
 export const tool: Tool = {

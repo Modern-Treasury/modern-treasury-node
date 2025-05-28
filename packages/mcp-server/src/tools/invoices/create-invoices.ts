@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'invoices',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/invoices',
+  operationId: 'createInvoice',
 };
 
 export const tool: Tool = {

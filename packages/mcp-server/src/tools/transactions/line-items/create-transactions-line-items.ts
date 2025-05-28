@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'transactions.line_items',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/api/transaction_line_items',
+  operationId: 'createTransactionLineItem',
 };
 
 export const tool: Tool = {

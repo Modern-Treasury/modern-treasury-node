@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'expected_payments',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/api/expected_payments/{id}',
+  operationId: 'deleteExpectedPayment',
 };
 
 export const tool: Tool = {

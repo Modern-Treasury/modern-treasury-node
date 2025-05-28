@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'ledger_account_balance_monitors',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/api/ledger_account_balance_monitors',
+  operationId: 'listLedgerAccountBalanceMonitors',
 };
 
 export const tool: Tool = {
