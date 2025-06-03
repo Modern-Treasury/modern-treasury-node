@@ -25,13 +25,9 @@ const client = new ModernTreasury({
   apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const counterparty = await client.counterparties.create({ name: 'my first counterparty' });
+const counterparty = await client.counterparties.create({ name: 'my first counterparty' });
 
-  console.log(counterparty.id);
-}
-
-main();
+console.log(counterparty.id);
 ```
 
 ### Request & Response types
@@ -47,12 +43,8 @@ const client = new ModernTreasury({
   apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const params: ModernTreasury.CounterpartyCreateParams = { name: 'my first counterparty' };
-  const counterparty: ModernTreasury.Counterparty = await client.counterparties.create(params);
-}
-
-main();
+const params: ModernTreasury.CounterpartyCreateParams = { name: 'my first counterparty' };
+const counterparty: ModernTreasury.Counterparty = await client.counterparties.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -115,21 +107,17 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const externalAccount = await client.externalAccounts
-    .create({ counterparty_id: 'missing' })
-    .catch(async (err) => {
-      if (err instanceof ModernTreasury.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
-}
-
-main();
+const externalAccount = await client.externalAccounts
+  .create({ counterparty_id: 'missing' })
+  .catch(async (err) => {
+    if (err instanceof ModernTreasury.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
