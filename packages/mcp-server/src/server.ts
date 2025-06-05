@@ -19,7 +19,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'modern_treasury_api',
-    version: '2.38.0',
+    version: '2.39.0',
   },
   {
     capabilities: {
