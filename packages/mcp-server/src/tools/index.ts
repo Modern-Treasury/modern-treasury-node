@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ModernTreasury from 'modern-treasury';
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import { Metadata, Endpoint, HandlerFunction } from './types';
+
+export { Metadata, Endpoint, HandlerFunction };
 
 import ping_client from './top-level/ping-client';
 import list_connections from './connections/list-connections';
@@ -169,27 +170,6 @@ import create_payment_actions from './payment-actions/create-payment-actions';
 import retrieve_payment_actions from './payment-actions/retrieve-payment-actions';
 import update_payment_actions from './payment-actions/update-payment-actions';
 import list_payment_actions from './payment-actions/list-payment-actions';
-
-export type HandlerFunction = (
-  client: ModernTreasury,
-  args: Record<string, unknown> | undefined,
-) => Promise<any>;
-
-export type Metadata = {
-  resource: string;
-  operation: 'read' | 'write';
-  tags: string[];
-
-  httpMethod?: string;
-  httpPath?: string;
-  operationId?: string;
-};
-
-export type Endpoint = {
-  metadata: Metadata;
-  tool: Tool;
-  handler: HandlerFunction;
-};
 
 export const endpoints: Endpoint[] = [];
 
