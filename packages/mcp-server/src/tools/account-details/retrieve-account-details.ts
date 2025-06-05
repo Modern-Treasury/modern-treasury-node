@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from 'modern-treasury-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
 import ModernTreasury from 'modern-treasury';
@@ -38,9 +40,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   const { accounts_type, account_id, id, ...body } = args as any;
-  return client.accountDetails.retrieve(accounts_type, account_id, id);
+  return asTextContentResult(await client.accountDetails.retrieve(accounts_type, account_id, id));
 };
 
 export default { metadata, tool, handler };
