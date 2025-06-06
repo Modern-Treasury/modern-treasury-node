@@ -279,11 +279,6 @@ The following tools are available in this MCP server.
 - `list_ledgers` (`read`): Get a list of ledgers.
 - `delete_ledgers` (`write`): Delete a ledger.
 
-### Resource `ledgerable_events`:
-
-- `create_ledgerable_events` (`write`): Create a ledgerable event.
-- `retrieve_ledgerable_events` (`read`): Get details on a single ledgerable event.
-
 ### Resource `ledger_account_categories`:
 
 - `create_ledger_account_categories` (`write`): Create a ledger account category.
@@ -322,13 +317,6 @@ The following tools are available in this MCP server.
 - `retrieve_ledger_entries` (`read`): Get details on a single ledger entry.
 - `update_ledger_entries` (`write`): Update the details of a ledger entry.
 - `list_ledger_entries` (`read`): Get a list of all ledger entries.
-
-### Resource `ledger_event_handlers`:
-
-- `create_ledger_event_handlers` (`write`): create ledger_event_handler
-- `retrieve_ledger_event_handlers` (`read`): Get details on a single ledger event handler.
-- `list_ledger_event_handlers` (`read`): Get a list of ledger event handlers.
-- `delete_ledger_event_handlers` (`write`): Archive a ledger event handler.
 
 ### Resource `ledger_transactions`:
 

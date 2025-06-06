@@ -50,7 +50,7 @@ describe('resource balanceReports', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = client.internalAccounts.balanceReports.retrieve('internal_account_id', 'id');
+    const responsePromise = client.internalAccounts.balanceReports.retrieve('internal_account_id', 'string');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -63,7 +63,7 @@ describe('resource balanceReports', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.internalAccounts.balanceReports.retrieve('internal_account_id', 'id', {
+      client.internalAccounts.balanceReports.retrieve('internal_account_id', 'string', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

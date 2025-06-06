@@ -47,6 +47,9 @@ export const tool: Tool = {
       currency: {
         type: 'string',
       },
+      external_id: {
+        type: 'string',
+      },
       ledger_account_id: {
         type: 'string',
         description: 'Query categories which contain a ledger account directly or through child categories.',

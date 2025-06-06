@@ -152,6 +152,11 @@ export interface LedgerAccount {
   discarded_at: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id: string | null;
+
+  /**
    * The id of the ledger that this account belongs to.
    */
   ledger_id: string;
@@ -449,6 +454,8 @@ export interface LedgerAccountListParams extends PageParams {
   created_at?: Record<string, string>;
 
   currency?: string;
+
+  external_id?: string;
 
   ledger_account_category_id?: string;
 

@@ -145,6 +145,7 @@ describe('resource ledgerAccounts', () => {
           },
           created_at: { foo: '2019-12-27T18:11:19.117Z' },
           currency: 'currency',
+          external_id: 'external_id',
           ledger_account_category_id: 'ledger_account_category_id',
           ledger_id: 'ledger_id',
           metadata: { foo: 'string' },
