@@ -138,19 +138,8 @@ import {
   LedgerEntryRetrieveParams,
   LedgerEntryUpdateParams,
 } from './resources/ledger-entries';
-import {
-  LedgerEventHandler,
-  LedgerEventHandlerCreateParams,
-  LedgerEventHandlerListParams,
-  LedgerEventHandlerVariable,
-  LedgerEventHandlers,
-  LedgerEventHandlersPage,
-} from './resources/ledger-event-handlers';
-import {
-  LedgerableEvent,
-  LedgerableEventCreateParams,
-  LedgerableEvents,
-} from './resources/ledgerable-events';
+import { LedgerEventHandlers } from './resources/ledger-event-handlers';
+import { LedgerableEvents } from './resources/ledgerable-events';
 import {
   Ledger,
   LedgerCreateParams,
@@ -562,7 +551,6 @@ ModernTreasury.LedgerAccountStatements = LedgerAccountStatements;
 ModernTreasury.LedgerEntries = LedgerEntries;
 ModernTreasury.LedgerEntriesPage = LedgerEntriesPage;
 ModernTreasury.LedgerEventHandlers = LedgerEventHandlers;
-ModernTreasury.LedgerEventHandlersPage = LedgerEventHandlersPage;
 ModernTreasury.LedgerTransactions = LedgerTransactions;
 ModernTreasury.LedgerTransactionsPage = LedgerTransactionsPage;
 ModernTreasury.LineItems = LineItems;
@@ -723,11 +711,7 @@ export declare namespace ModernTreasury {
     type LedgerListParams as LedgerListParams,
   };
 
-  export {
-    LedgerableEvents as LedgerableEvents,
-    type LedgerableEvent as LedgerableEvent,
-    type LedgerableEventCreateParams as LedgerableEventCreateParams,
-  };
+  export { LedgerableEvents as LedgerableEvents };
 
   export {
     LedgerAccountCategories as LedgerAccountCategories,
@@ -774,14 +758,7 @@ export declare namespace ModernTreasury {
     type LedgerEntryListParams as LedgerEntryListParams,
   };
 
-  export {
-    LedgerEventHandlers as LedgerEventHandlers,
-    type LedgerEventHandler as LedgerEventHandler,
-    type LedgerEventHandlerVariable as LedgerEventHandlerVariable,
-    LedgerEventHandlersPage as LedgerEventHandlersPage,
-    type LedgerEventHandlerCreateParams as LedgerEventHandlerCreateParams,
-    type LedgerEventHandlerListParams as LedgerEventHandlerListParams,
-  };
+  export { LedgerEventHandlers as LedgerEventHandlers };
 
   export {
     LedgerTransactions as LedgerTransactions,

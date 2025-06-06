@@ -224,15 +224,6 @@ Methods:
 
 # LedgerableEvents
 
-Types:
-
-- <code><a href="./src/resources/ledgerable-events.ts">LedgerableEvent</a></code>
-
-Methods:
-
-- <code title="post /api/ledgerable_events">client.ledgerableEvents.<a href="./src/resources/ledgerable-events.ts">create</a>({ ...params }) -> LedgerableEvent</code>
-- <code title="get /api/ledgerable_events/{id}">client.ledgerableEvents.<a href="./src/resources/ledgerable-events.ts">retrieve</a>(id) -> LedgerableEvent</code>
-
 # LedgerAccountCategories
 
 Types:
@@ -304,18 +295,6 @@ Methods:
 - <code title="get /api/ledger_entries">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">list</a>({ ...params }) -> LedgerEntriesPage</code>
 
 # LedgerEventHandlers
-
-Types:
-
-- <code><a href="./src/resources/ledger-event-handlers.ts">LedgerEventHandler</a></code>
-- <code><a href="./src/resources/ledger-event-handlers.ts">LedgerEventHandlerVariable</a></code>
-
-Methods:
-
-- <code title="post /api/ledger_event_handlers">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">create</a>({ ...params }) -> LedgerEventHandler</code>
-- <code title="get /api/ledger_event_handlers/{id}">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">retrieve</a>(id) -> LedgerEventHandler</code>
-- <code title="get /api/ledger_event_handlers">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">list</a>({ ...params }) -> LedgerEventHandlersPage</code>
-- <code title="delete /api/ledger_event_handlers/{id}">client.ledgerEventHandlers.<a href="./src/resources/ledger-event-handlers.ts">del</a>(id) -> LedgerEventHandler</code>
 
 # LedgerTransactions
 
