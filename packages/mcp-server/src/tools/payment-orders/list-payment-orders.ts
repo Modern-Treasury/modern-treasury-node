@@ -95,6 +95,7 @@ export const tool: Tool = {
           'returned',
           'reversed',
           'sent',
+          'stopped',
         ],
       },
       transaction_id: {

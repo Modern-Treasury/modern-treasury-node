@@ -58,13 +58,13 @@ export class BalanceReports extends APIResource {
    * const balanceReport =
    *   await client.internalAccounts.balanceReports.retrieve(
    *     'internal_account_id',
-   *     'id',
+   *     'string',
    *   );
    * ```
    */
   retrieve(
     internalAccountId: string,
-    id: string,
+    id: (string & {}) | 'latest',
     options?: Core.RequestOptions,
   ): Core.APIPromise<BalanceReport> {
     return this._client.get(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, options);

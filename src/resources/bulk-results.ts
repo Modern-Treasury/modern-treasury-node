@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as ExpectedPaymentsAPI from './expected-payments';
+import * as LedgerAccountsAPI from './ledger-accounts';
 import * as LedgerTransactionsAPI from './ledger-transactions/ledger-transactions';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
 import * as TransactionsAPI from './transactions/transactions';
@@ -52,6 +53,7 @@ export interface BulkResult {
     | PaymentOrdersAPI.PaymentOrder
     | ExpectedPaymentsAPI.ExpectedPayment
     | LedgerTransactionsAPI.LedgerTransaction
+    | LedgerAccountsAPI.LedgerAccount
     | TransactionsAPI.Transaction
     | BulkResult.BulkError;
 
