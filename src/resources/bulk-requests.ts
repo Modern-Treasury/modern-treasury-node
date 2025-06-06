@@ -175,6 +175,7 @@ export interface BulkRequestCreateParams {
     | BulkRequestCreateParams.PaymentOrderAsyncCreateRequest
     | BulkRequestCreateParams.ExpectedPaymentCreateRequest
     | BulkRequestCreateParams.LedgerTransactionCreateRequest
+    | BulkRequestCreateParams.LedgerAccountCreateRequest
     | BulkRequestCreateParams.TransactionCreateRequest
     | BulkRequestCreateParams.ID
     | BulkRequestCreateParams.PaymentOrderUpdateRequestWithID
@@ -1229,6 +1230,63 @@ export namespace BulkRequestCreateParams {
     }
   }
 
+  export interface LedgerAccountCreateRequest {
+    /**
+     * The currency of the ledger account.
+     */
+    currency: string;
+
+    /**
+     * The id of the ledger that this account belongs to.
+     */
+    ledger_id: string;
+
+    /**
+     * The name of the ledger account.
+     */
+    name: string;
+
+    /**
+     * The normal balance of the ledger account.
+     */
+    normal_balance: Shared.TransactionDirection;
+
+    /**
+     * The currency exponent of the ledger account.
+     */
+    currency_exponent?: number | null;
+
+    /**
+     * The description of the ledger account.
+     */
+    description?: string | null;
+
+    /**
+     * The array of ledger account category ids that this ledger account should be a
+     * child of.
+     */
+    ledger_account_category_ids?: Array<string>;
+
+    /**
+     * If the ledger account links to another object in Modern Treasury, the id will be
+     * populated here, otherwise null.
+     */
+    ledgerable_id?: string;
+
+    /**
+     * If the ledger account links to another object in Modern Treasury, the type will
+     * be populated here, otherwise null. The value is one of internal_account or
+     * external_account.
+     */
+    ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: Record<string, string>;
+  }
+
   export interface TransactionCreateRequest {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -1520,7 +1578,8 @@ export namespace BulkRequestCreateParams {
       | 'processing'
       | 'returned'
       | 'reversed'
-      | 'sent';
+      | 'sent'
+      | 'stopped';
 
     /**
      * An additional layer of classification for the type of payment order you are

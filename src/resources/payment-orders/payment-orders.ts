@@ -349,7 +349,8 @@ export interface PaymentOrder {
     | 'processing'
     | 'returned'
     | 'reversed'
-    | 'sent';
+    | 'sent'
+    | 'stopped';
 
   /**
    * An additional layer of classification for the type of payment order you are
@@ -520,13 +521,13 @@ export namespace PaymentOrder {
       | 'column_fx_quote_id'
       | 'column_reversal_pair_transfer_id'
       | 'column_transfer_id'
+      | 'cross_river_fed_batch_id'
       | 'cross_river_payment_id'
       | 'cross_river_service_message'
       | 'cross_river_transaction_id'
       | 'currencycloud_conversion_id'
       | 'currencycloud_payment_id'
       | 'dc_bank_transaction_id'
-      | 'dwolla_transaction_id'
       | 'eft_trace_number'
       | 'evolve_transaction_id'
       | 'fedwire_imad'
@@ -1532,7 +1533,8 @@ export interface PaymentOrderUpdateParams {
     | 'processing'
     | 'returned'
     | 'reversed'
-    | 'sent';
+    | 'sent'
+    | 'stopped';
 
   /**
    * An additional layer of classification for the type of payment order you are
@@ -1933,7 +1935,8 @@ export interface PaymentOrderListParams extends PageParams {
     | 'processing'
     | 'returned'
     | 'reversed'
-    | 'sent';
+    | 'sent'
+    | 'stopped';
 
   /**
    * The ID of a transaction that the payment order has been reconciled to.

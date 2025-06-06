@@ -25,7 +25,15 @@ export const tool: Tool = {
         type: 'string',
       },
       id: {
-        type: 'string',
+        anyOf: [
+          {
+            type: 'string',
+          },
+          {
+            type: 'string',
+            enum: ['latest'],
+          },
+        ],
       },
     },
   },
