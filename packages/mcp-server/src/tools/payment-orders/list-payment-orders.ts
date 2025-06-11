@@ -50,6 +50,9 @@ export const tool: Tool = {
         description: 'An inclusive lower bound for searching effective_date',
         format: 'date',
       },
+      external_id: {
+        type: 'string',
+      },
       metadata: {
         type: 'object',
         description:
