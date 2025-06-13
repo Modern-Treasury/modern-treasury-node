@@ -131,6 +131,11 @@ export interface TransactionLineItem {
   reconcilable: boolean;
 
   /**
+   * The ID of the reconciliation group this line item belongs to, otherwise `null`.
+   */
+  reconciliation_group_id: string | null;
+
+  /**
    * If a matching object exists in Modern Treasury, the ID will be populated here,
    * otherwise `null`.
    */

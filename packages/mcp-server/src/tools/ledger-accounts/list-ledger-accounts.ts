@@ -90,6 +90,9 @@ export const tool: Tool = {
       currency: {
         type: 'string',
       },
+      external_id: {
+        type: 'string',
+      },
       ledger_account_category_id: {
         type: 'string',
       },

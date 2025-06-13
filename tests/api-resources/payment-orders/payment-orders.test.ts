@@ -296,6 +296,7 @@ describe('resource paymentOrders', () => {
           direction: 'credit',
           effective_date_end: '2019-12-27',
           effective_date_start: '2019-12-27',
+          external_id: 'external_id',
           metadata: { foo: 'string' },
           originating_account_id: 'originating_account_id',
           per_page: 0,

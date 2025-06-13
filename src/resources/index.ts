@@ -152,14 +152,7 @@ export {
   type LedgerEntryUpdateParams,
   type LedgerEntryListParams,
 } from './ledger-entries';
-export {
-  LedgerEventHandlersPage,
-  LedgerEventHandlers,
-  type LedgerEventHandler,
-  type LedgerEventHandlerVariable,
-  type LedgerEventHandlerCreateParams,
-  type LedgerEventHandlerListParams,
-} from './ledger-event-handlers';
+export { LedgerEventHandlers } from './ledger-event-handlers';
 export {
   LedgerTransactionsPage,
   LedgerTransactions,
@@ -170,11 +163,7 @@ export {
   type LedgerTransactionCreatePartialPostParams,
   type LedgerTransactionCreateReversalParams,
 } from './ledger-transactions/ledger-transactions';
-export {
-  LedgerableEvents,
-  type LedgerableEvent,
-  type LedgerableEventCreateParams,
-} from './ledgerable-events';
+export { LedgerableEvents } from './ledgerable-events';
 export {
   LedgersPage,
   Ledgers,

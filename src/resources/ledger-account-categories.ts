@@ -242,6 +242,11 @@ export interface LedgerAccountCategory {
   discarded_at: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id: string | null;
+
+  /**
    * The id of the ledger that this account category belongs to.
    */
   ledger_id: string;
@@ -469,6 +474,8 @@ export interface LedgerAccountCategoryListParams extends PageParams {
   balances?: LedgerAccountCategoryListParams.Balances;
 
   currency?: string;
+
+  external_id?: string;
 
   /**
    * Query categories which contain a ledger account directly or through child

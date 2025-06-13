@@ -935,6 +935,59 @@ export const tool: Tool = {
             {
               type: 'object',
               properties: {
+                currency: {
+                  type: 'string',
+                  description: 'The currency of the ledger account.',
+                },
+                ledger_id: {
+                  type: 'string',
+                  description: 'The id of the ledger that this account belongs to.',
+                },
+                name: {
+                  type: 'string',
+                  description: 'The name of the ledger account.',
+                },
+                normal_balance: {
+                  $ref: '#/$defs/transaction_direction',
+                },
+                currency_exponent: {
+                  type: 'integer',
+                  description: 'The currency exponent of the ledger account.',
+                },
+                description: {
+                  type: 'string',
+                  description: 'The description of the ledger account.',
+                },
+                ledger_account_category_ids: {
+                  type: 'array',
+                  description:
+                    'The array of ledger account category ids that this ledger account should be a child of.',
+                  items: {
+                    type: 'string',
+                  },
+                },
+                ledgerable_id: {
+                  type: 'string',
+                  description:
+                    'If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null.',
+                },
+                ledgerable_type: {
+                  type: 'string',
+                  description:
+                    'If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account.',
+                  enum: ['counterparty', 'external_account', 'internal_account', 'virtual_account'],
+                },
+                metadata: {
+                  type: 'object',
+                  description:
+                    'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                },
+              },
+              required: ['currency', 'ledger_id', 'name', 'normal_balance'],
+            },
+            {
+              type: 'object',
+              properties: {
                 amount: {
                   type: 'integer',
                   description:
@@ -1475,6 +1528,7 @@ export const tool: Tool = {
                     'returned',
                     'reversed',
                     'sent',
+                    'stopped',
                   ],
                 },
                 subtype: {
