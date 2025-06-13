@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.40.0 (2025-06-13)
+
+Full Changelog: [v2.39.0...v2.40.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.39.0...v2.40.0)
+
+### Features
+
+* **api:** api update ([15ef1a3](https://github.com/Modern-Treasury/modern-treasury-node/commit/15ef1a3b295b2eb8c19750f0ebdd2d405fe32b91))
+* **api:** api update ([6d19984](https://github.com/Modern-Treasury/modern-treasury-node/commit/6d1998449cf1fc0737488811df32e4a1ea12f1ca))
+* **mcp:** set X-Stainless-MCP header ([17c1804](https://github.com/Modern-Treasury/modern-treasury-node/commit/17c1804825ffbc8362ff81039fb7458fcf761d13))
+
+
+### Bug Fixes
+
+* publish script — handle NPM errors correctly ([be1f857](https://github.com/Modern-Treasury/modern-treasury-node/commit/be1f8578f895f0145adae211f64419e4d28eaf0e))
+
+
+### Chores
+
+* **internal:** make base APIResource abstract ([3e7036d](https://github.com/Modern-Treasury/modern-treasury-node/commit/3e7036d790d5eab1d02b6d7bc41bde3603bcd42a))
+* **mcp:** provides high-level initMcpServer function and exports known clients ([2cf7021](https://github.com/Modern-Treasury/modern-treasury-node/commit/2cf702160a90ccb2c2d40868cb182500f7363a61))
+
 ## 2.39.0 (2025-06-05)
 
 Full Changelog: [v2.38.0...v2.39.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.38.0...v2.39.0)
