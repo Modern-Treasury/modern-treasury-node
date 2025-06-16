@@ -402,6 +402,7 @@ export class ModernTreasury extends Core.APIClient {
 
     super({
       baseURL: options.baseURL!,
+      baseURLOverridden: baseURL ? baseURL !== 'https://app.moderntreasury.com' : false,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -455,6 +456,13 @@ export class ModernTreasury extends Core.APIClient {
   legalEntities: API.LegalEntities = new API.LegalEntities(this);
   legalEntityAssociations: API.LegalEntityAssociations = new API.LegalEntityAssociations(this);
   paymentActions: API.PaymentActions = new API.PaymentActions(this);
+
+  /**
+   * Check whether the base URL is set to its default.
+   */
+  #baseURLOverridden(): boolean {
+    return this.baseURL !== 'https://app.moderntreasury.com';
+  }
 
   /**
    * A test endpoint often used to confirm credentials and headers are being passed
