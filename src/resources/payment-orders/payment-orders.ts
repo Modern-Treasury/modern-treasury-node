@@ -262,7 +262,7 @@ export interface PaymentOrder {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   /**
    * A boolean to determine if NSF Protection is enabled for this payment order. Note
@@ -792,7 +792,7 @@ export interface PaymentOrderCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * A boolean to determine if NSF Protection is enabled for this payment order. Note
@@ -1006,7 +1006,7 @@ export namespace PaymentOrderCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * To post a ledger transaction at creation, use `posted`.
@@ -1040,7 +1040,7 @@ export namespace PaymentOrderCreateParams {
        * account’s available balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      available_balance_amount?: Record<string, number> | null;
+      available_balance_amount?: { [key: string]: number } | null;
 
       /**
        * Lock version of the ledger account. This can be passed when creating a ledger
@@ -1054,21 +1054,21 @@ export namespace PaymentOrderCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s pending balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      pending_balance_amount?: Record<string, number> | null;
+      pending_balance_amount?: { [key: string]: number } | null;
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s posted balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      posted_balance_amount?: Record<string, number> | null;
+      posted_balance_amount?: { [key: string]: number } | null;
 
       /**
        * If true, response will include the balance of the associated ledger account for
@@ -1100,7 +1100,7 @@ export namespace PaymentOrderCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
   }
 
   /**
@@ -1131,7 +1131,7 @@ export namespace PaymentOrderCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * A nickname for the external account. This is only for internal usage and won't
@@ -1253,7 +1253,7 @@ export namespace PaymentOrderCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     /**
@@ -1442,7 +1442,7 @@ export interface PaymentOrderUpdateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * A boolean to determine if NSF Protection is enabled for this payment order. Note
@@ -1624,7 +1624,7 @@ export namespace PaymentOrderUpdateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
   }
 
   /**
@@ -1655,7 +1655,7 @@ export namespace PaymentOrderUpdateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * A nickname for the external account. This is only for internal usage and won't
@@ -1777,7 +1777,7 @@ export namespace PaymentOrderUpdateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     /**
@@ -1906,7 +1906,7 @@ export interface PaymentOrderListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   originating_account_id?: string;
 
@@ -2103,7 +2103,7 @@ export interface PaymentOrderCreateAsyncParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * A boolean to determine if NSF Protection is enabled for this payment order. Note
@@ -2289,7 +2289,7 @@ export namespace PaymentOrderCreateAsyncParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * To post a ledger transaction at creation, use `posted`.
@@ -2323,7 +2323,7 @@ export namespace PaymentOrderCreateAsyncParams {
        * account’s available balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      available_balance_amount?: Record<string, number> | null;
+      available_balance_amount?: { [key: string]: number } | null;
 
       /**
        * Lock version of the ledger account. This can be passed when creating a ledger
@@ -2337,21 +2337,21 @@ export namespace PaymentOrderCreateAsyncParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s pending balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      pending_balance_amount?: Record<string, number> | null;
+      pending_balance_amount?: { [key: string]: number } | null;
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s posted balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      posted_balance_amount?: Record<string, number> | null;
+      posted_balance_amount?: { [key: string]: number } | null;
 
       /**
        * If true, response will include the balance of the associated ledger account for
@@ -2383,7 +2383,7 @@ export namespace PaymentOrderCreateAsyncParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
   }
 
   /**
@@ -2414,7 +2414,7 @@ export namespace PaymentOrderCreateAsyncParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * A nickname for the external account. This is only for internal usage and won't
@@ -2536,7 +2536,7 @@ export namespace PaymentOrderCreateAsyncParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     /**

@@ -185,7 +185,7 @@ export interface InternalAccount {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   /**
    * A nickname for the account.
@@ -332,7 +332,7 @@ export interface InternalAccountCreateParams {
    * A hash of vendor specific attributes that will be used when creating the account
    * at the vendor specified by the given connection.
    */
-  vendor_attributes?: Record<string, string>;
+  vendor_attributes?: { [key: string]: string };
 }
 
 export namespace InternalAccountCreateParams {
@@ -381,7 +381,7 @@ export interface InternalAccountUpdateParams {
    * Additional data in the form of key-value pairs. Pairs can be removed by passing
    * an empty string or `null` as the value.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * The nickname for the internal account.
@@ -415,7 +415,7 @@ export interface InternalAccountListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Only return internal accounts that can originate payments with this direction.

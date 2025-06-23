@@ -176,7 +176,7 @@ export interface InvoiceLineItem {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   /**
    * The name of the line item, typically a product or SKU name.
@@ -235,7 +235,7 @@ export interface LineItemCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * The number of units of a product or service that this line item is for. Must be
@@ -268,7 +268,7 @@ export interface LineItemUpdateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * The name of the line item, typically a product or SKU name.

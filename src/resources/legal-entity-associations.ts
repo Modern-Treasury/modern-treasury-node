@@ -163,7 +163,7 @@ export namespace LegalEntityAssociation {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata: Record<string, string>;
+    metadata: { [key: string]: string };
 
     /**
      * An individual's middle name.
@@ -440,7 +440,7 @@ export namespace LegalEntityAssociationCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * An individual's middle name.

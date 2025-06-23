@@ -114,7 +114,7 @@ export interface LedgerTransactionVersion {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -209,7 +209,7 @@ export namespace LedgerTransactionVersion {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata: Record<string, string>;
+    metadata: { [key: string]: string };
 
     object: string;
 
@@ -337,7 +337,7 @@ export interface VersionListParams extends PageParams {
    * created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
    * created_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
-  created_at?: Record<string, string>;
+  created_at?: { [key: string]: string };
 
   /**
    * Get all ledger transaction versions that are included in the ledger account
@@ -355,7 +355,7 @@ export interface VersionListParams extends PageParams {
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * version. For example, for all versions after 2, use version%5Bgt%5D=2.
    */
-  version?: Record<string, number>;
+  version?: { [key: string]: number };
 }
 
 Versions.LedgerTransactionVersionsPage = LedgerTransactionVersionsPage;

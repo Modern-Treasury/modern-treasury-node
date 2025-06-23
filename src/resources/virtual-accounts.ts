@@ -139,7 +139,7 @@ export interface VirtualAccount {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   /**
    * The name of the virtual account.
@@ -208,7 +208,7 @@ export interface VirtualAccountCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * An array of routing detail objects.
@@ -303,7 +303,7 @@ export namespace VirtualAccountCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
   }
 
   export interface RoutingDetail {
@@ -391,7 +391,7 @@ export interface VirtualAccountUpdateParams {
    */
   ledger_account_id?: string;
 
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   name?: string | null;
 }
@@ -406,7 +406,7 @@ export interface VirtualAccountListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 }
 
 VirtualAccounts.VirtualAccountsPage = VirtualAccountsPage;

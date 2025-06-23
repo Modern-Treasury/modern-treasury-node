@@ -212,7 +212,7 @@ export interface Invoice {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string> | null;
+  metadata: { [key: string]: string } | null;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
@@ -508,7 +508,7 @@ export interface InvoiceCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string> | null;
+  metadata?: { [key: string]: string } | null;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
@@ -685,7 +685,7 @@ export namespace InvoiceCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * The number of units of a product or service that this line item is for. Must be
@@ -801,7 +801,7 @@ export interface InvoiceUpdateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string> | null;
+  metadata?: { [key: string]: string } | null;
 
   /**
    * Emails in addition to the counterparty email to send invoice status
@@ -990,7 +990,7 @@ export namespace InvoiceUpdateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * The number of units of a product or service that this line item is for. Must be
@@ -1056,7 +1056,7 @@ export interface InvoiceListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * A unique record number assigned to each invoice that is issued.

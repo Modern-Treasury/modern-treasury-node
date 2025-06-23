@@ -187,7 +187,7 @@ export interface LineItemCreateParams {
 }
 
 export interface LineItemListParams extends PageParams {
-  id?: Record<string, string>;
+  id?: { [key: string]: string };
 
   transaction_id?: string;
 

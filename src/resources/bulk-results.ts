@@ -96,7 +96,7 @@ export interface BulkResult {
    * created this result. This is an item in the `resources` array for the
    * bulk_request
    */
-  request_params: Record<string, string> | null;
+  request_params: { [key: string]: string } | null;
 
   /**
    * The type of the request that created this result. bulk_request is the only

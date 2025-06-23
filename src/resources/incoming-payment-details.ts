@@ -112,7 +112,7 @@ export interface IncomingPaymentDetail {
   /**
    * The raw data from the payment pre-notification file that we get from the bank.
    */
-  data: Record<string, unknown>;
+  data: { [key: string]: unknown };
 
   /**
    * One of `credit` or `debit`.
@@ -141,7 +141,7 @@ export interface IncomingPaymentDetail {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -268,7 +268,7 @@ export interface IncomingPaymentDetailUpdateParams {
    * Additional data in the form of key-value pairs. Pairs can be removed by passing
    * an empty string or `null` as the value.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 }
 
 export interface IncomingPaymentDetailListParams extends PageParams {
@@ -294,7 +294,7 @@ export interface IncomingPaymentDetailListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * The current status of the incoming payment order. One of `pending`, `completed`,

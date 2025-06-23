@@ -239,7 +239,7 @@ export interface LegalEntity {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   /**
    * An individual's middle name.
@@ -649,7 +649,7 @@ export interface LegalEntityCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * An individual's middle name.
@@ -880,7 +880,7 @@ export namespace LegalEntityCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * An individual's middle name.
@@ -1095,7 +1095,7 @@ export interface LegalEntityUpdateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * An individual's middle name.
@@ -1236,7 +1236,7 @@ export interface LegalEntityListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   show_deleted?: string;
 }
