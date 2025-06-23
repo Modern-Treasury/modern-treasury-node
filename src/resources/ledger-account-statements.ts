@@ -116,7 +116,7 @@ export interface LedgerAccountStatementCreateResponse {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -386,7 +386,7 @@ export interface LedgerAccountStatementRetrieveResponse {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -622,7 +622,7 @@ export interface LedgerAccountStatementCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 }
 
 export declare namespace LedgerAccountStatements {

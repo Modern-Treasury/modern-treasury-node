@@ -101,7 +101,7 @@ export interface ForeignExchangeQuote {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -224,7 +224,7 @@ export interface ForeignExchangeQuoteListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Currency to convert the `base_currency` to, often called the "buy" currency.

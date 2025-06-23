@@ -183,7 +183,7 @@ export interface Counterparty {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   /**
    * A human friendly name for this counterparty.
@@ -239,7 +239,7 @@ export namespace Counterparty {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * A nickname for the external account. This is only for internal usage and won't
@@ -397,7 +397,7 @@ export interface CounterpartyCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Send an email to the counterparty whenever an associated payment order is sent
@@ -448,7 +448,7 @@ export namespace CounterpartyCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * A nickname for the external account. This is only for internal usage and won't
@@ -570,7 +570,7 @@ export namespace CounterpartyCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     /**
@@ -749,7 +749,7 @@ export namespace CounterpartyCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * An individual's middle name.
@@ -980,7 +980,7 @@ export namespace CounterpartyCreateParams {
          * Additional data represented as key-value pairs. Both the key and value must be
          * strings.
          */
-        metadata?: Record<string, string>;
+        metadata?: { [key: string]: string };
 
         /**
          * An individual's middle name.
@@ -1138,7 +1138,7 @@ export interface CounterpartyUpdateParams {
    * Additional data in the form of key-value pairs. Pairs can be removed by passing
    * an empty string or `null` as the value.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * A new name for the counterparty. Will only update if passed.
@@ -1184,7 +1184,7 @@ export interface CounterpartyListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Performs a partial string match of the name field. This is also case

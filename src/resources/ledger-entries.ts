@@ -147,7 +147,7 @@ export interface LedgerEntry {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -283,7 +283,7 @@ export interface LedgerEntryUpdateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 }
 
 export interface LedgerEntryListParams extends PageParams {
@@ -310,13 +310,13 @@ export interface LedgerEntryListParams extends PageParams {
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * transaction's effective time. Format ISO8601
    */
-  effective_at?: Record<string, string>;
+  effective_at?: { [key: string]: string };
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
    * transaction's effective date. Format YYYY-MM-DD
    */
-  effective_date?: Record<string, string>;
+  effective_date?: { [key: string]: string };
 
   /**
    * Get all ledger entries that match the direction specified. One of `credit`,
@@ -332,7 +332,7 @@ export interface LedgerEntryListParams extends PageParams {
    * before before lock_version 1000 of a ledger account, use
    * `ledger_account_lock_version%5Blte%5D=1000`.
    */
-  ledger_account_lock_version?: Record<string, number>;
+  ledger_account_lock_version?: { [key: string]: number };
 
   ledger_account_payout_id?: string;
 
@@ -350,7 +350,7 @@ export interface LedgerEntryListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
@@ -383,7 +383,7 @@ export interface LedgerEntryListParams extends PageParams {
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
-  updated_at?: Record<string, string>;
+  updated_at?: { [key: string]: string };
 }
 
 export namespace LedgerEntryListParams {

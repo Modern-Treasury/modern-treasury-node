@@ -226,7 +226,7 @@ export interface ExternalAccount {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   /**
    * A nickname for the external account. This is only for internal usage and won't
@@ -453,7 +453,7 @@ export interface ExternalAccountCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * A nickname for the external account. This is only for internal usage and won't
@@ -575,7 +575,7 @@ export namespace ExternalAccountCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
   }
 
   /**
@@ -683,7 +683,7 @@ export interface ExternalAccountUpdateParams {
    * Additional data in the form of key-value pairs. Pairs can be removed by passing
    * an empty string or `null` as the value.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * A nickname for the external account. This is only for internal usage and won't
@@ -740,7 +740,7 @@ export interface ExternalAccountListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Searches the ExternalAccount's party_name AND the Counterparty's party_name

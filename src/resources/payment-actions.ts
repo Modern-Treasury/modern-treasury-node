@@ -330,7 +330,7 @@ export interface PaymentActionListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Filter by payment actions of a specific status.

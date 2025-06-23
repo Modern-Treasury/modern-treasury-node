@@ -173,7 +173,7 @@ export interface LedgerAccountSettlement {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -233,7 +233,7 @@ export interface LedgerAccountSettlementCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * It is set to `false` by default. It should be set to `true` when migrating
@@ -258,7 +258,7 @@ export interface LedgerAccountSettlementUpdateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * To post a pending ledger account settlement, use `posted`. To archive a pending
@@ -279,7 +279,7 @@ export interface LedgerAccountSettlementListParams extends PageParams {
    * created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * created_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
-  created_at?: Record<string, string>;
+  created_at?: { [key: string]: string };
 
   ledger_id?: string;
 
@@ -290,7 +290,7 @@ export interface LedgerAccountSettlementListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   settled_ledger_account_id?: string;
 
@@ -301,7 +301,7 @@ export interface LedgerAccountSettlementListParams extends PageParams {
    * updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
-  updated_at?: Record<string, string>;
+  updated_at?: { [key: string]: string };
 }
 
 LedgerAccountSettlements.LedgerAccountSettlementsPage = LedgerAccountSettlementsPage;

@@ -168,7 +168,7 @@ export interface Transaction {
    * An object containing key-value pairs, each with a custom identifier as the key
    * and a string value.
    */
-  custom_identifiers: Record<string, string>;
+  custom_identifiers: { [key: string]: string };
 
   /**
    * Either `credit` or `debit`.
@@ -197,7 +197,7 @@ export interface Transaction {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -316,7 +316,7 @@ export interface Transaction {
    * partner. Currently, the following keys may be in the details object:
    * `originator_name`, `originator_to_beneficiary_information`.
    */
-  details?: Record<string, string>;
+  details?: { [key: string]: string };
 
   /**
    * The transaction detail text that often appears in on your bank statement and in
@@ -411,7 +411,7 @@ export interface TransactionCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * This field will be `true` if the transaction has posted to the account.
@@ -472,7 +472,7 @@ export interface TransactionUpdateParams {
    * Additional data in the form of key-value pairs. Pairs can be removed by passing
    * an empty string or `null` as the value.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 }
 
 export interface TransactionListParams extends PageParams {
@@ -508,7 +508,7 @@ export interface TransactionListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   payment_type?: string;
 
