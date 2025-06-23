@@ -242,7 +242,7 @@ export interface LedgerTransaction {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -328,7 +328,7 @@ export interface LedgerTransactionCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * To post a ledger transaction at creation, use `posted`.
@@ -362,7 +362,7 @@ export namespace LedgerTransactionCreateParams {
      * account’s available balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
-    available_balance_amount?: Record<string, number> | null;
+    available_balance_amount?: { [key: string]: number } | null;
 
     /**
      * Lock version of the ledger account. This can be passed when creating a ledger
@@ -376,21 +376,21 @@ export namespace LedgerTransactionCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s pending balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
-    pending_balance_amount?: Record<string, number> | null;
+    pending_balance_amount?: { [key: string]: number } | null;
 
     /**
      * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s posted balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
-    posted_balance_amount?: Record<string, number> | null;
+    posted_balance_amount?: { [key: string]: number } | null;
 
     /**
      * If true, response will include the balance of the associated ledger account for
@@ -441,7 +441,7 @@ export interface LedgerTransactionUpdateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * To post a ledger transaction at creation, use `posted`.
@@ -475,7 +475,7 @@ export namespace LedgerTransactionUpdateParams {
      * account’s available balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
-    available_balance_amount?: Record<string, number> | null;
+    available_balance_amount?: { [key: string]: number } | null;
 
     /**
      * Lock version of the ledger account. This can be passed when creating a ledger
@@ -489,21 +489,21 @@ export namespace LedgerTransactionUpdateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s pending balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
-    pending_balance_amount?: Record<string, number> | null;
+    pending_balance_amount?: { [key: string]: number } | null;
 
     /**
      * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
      * account’s posted balance. If any of these conditions would be false after the
      * transaction is created, the entire call will fail with error code 422.
      */
-    posted_balance_amount?: Record<string, number> | null;
+    posted_balance_amount?: { [key: string]: number } | null;
 
     /**
      * If true, response will include the balance of the associated ledger account for
@@ -525,14 +525,14 @@ export interface LedgerTransactionListParams extends PageParams {
    * effective at. For example, for all transactions after Jan 1 2000, use
    * effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
    */
-  effective_at?: Record<string, string>;
+  effective_at?: { [key: string]: string };
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
    * effective date. For example, for all dates after Jan 1 2000, use
    * effective_date%5Bgt%5D=2000-01-01.
    */
-  effective_date?: Record<string, string>;
+  effective_date?: { [key: string]: string };
 
   external_id?: string;
 
@@ -559,7 +559,7 @@ export interface LedgerTransactionListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
@@ -575,7 +575,7 @@ export interface LedgerTransactionListParams extends PageParams {
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
-  posted_at?: Record<string, string>;
+  posted_at?: { [key: string]: string };
 
   reverses_ledger_transaction_id?: string;
 
@@ -586,7 +586,7 @@ export interface LedgerTransactionListParams extends PageParams {
    * posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
    * updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
    */
-  updated_at?: Record<string, string>;
+  updated_at?: { [key: string]: string };
 }
 
 export namespace LedgerTransactionListParams {
@@ -626,7 +626,7 @@ export interface LedgerTransactionCreatePartialPostParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 }
 
 export namespace LedgerTransactionCreatePartialPostParams {
@@ -654,7 +654,7 @@ export namespace LedgerTransactionCreatePartialPostParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
   }
 }
 
@@ -699,7 +699,7 @@ export interface LedgerTransactionCreateReversalParams {
    * Additional data to be added to the reversal ledger transaction as key-value
    * pairs. Both the key and value must be strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * Status of the reversal ledger transaction. It defaults to `posted` if not

@@ -113,7 +113,7 @@ export interface BulkRequest {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata: Record<string, string>;
+  metadata: { [key: string]: string };
 
   object: string;
 
@@ -188,7 +188,7 @@ export interface BulkRequestCreateParams {
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 }
 
 export namespace BulkRequestCreateParams {
@@ -307,7 +307,7 @@ export namespace BulkRequestCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * A boolean to determine if NSF Protection is enabled for this payment order. Note
@@ -493,7 +493,7 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * To post a ledger transaction at creation, use `posted`.
@@ -527,7 +527,7 @@ export namespace BulkRequestCreateParams {
          * account’s available balance. If any of these conditions would be false after the
          * transaction is created, the entire call will fail with error code 422.
          */
-        available_balance_amount?: Record<string, number> | null;
+        available_balance_amount?: { [key: string]: number } | null;
 
         /**
          * Lock version of the ledger account. This can be passed when creating a ledger
@@ -541,21 +541,21 @@ export namespace BulkRequestCreateParams {
          * Additional data represented as key-value pairs. Both the key and value must be
          * strings.
          */
-        metadata?: Record<string, string>;
+        metadata?: { [key: string]: string };
 
         /**
          * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
          * account’s pending balance. If any of these conditions would be false after the
          * transaction is created, the entire call will fail with error code 422.
          */
-        pending_balance_amount?: Record<string, number> | null;
+        pending_balance_amount?: { [key: string]: number } | null;
 
         /**
          * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
          * account’s posted balance. If any of these conditions would be false after the
          * transaction is created, the entire call will fail with error code 422.
          */
-        posted_balance_amount?: Record<string, number> | null;
+        posted_balance_amount?: { [key: string]: number } | null;
 
         /**
          * If true, response will include the balance of the associated ledger account for
@@ -587,7 +587,7 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     /**
@@ -618,7 +618,7 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * A nickname for the external account. This is only for internal usage and won't
@@ -740,7 +740,7 @@ export namespace BulkRequestCreateParams {
          * Additional data represented as key-value pairs. Both the key and value must be
          * strings.
          */
-        metadata?: Record<string, string>;
+        metadata?: { [key: string]: string };
       }
 
       /**
@@ -908,7 +908,7 @@ export namespace BulkRequestCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * The reconciliation filters you have for this payment.
@@ -1007,7 +1007,7 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * To post a ledger transaction at creation, use `posted`.
@@ -1041,7 +1041,7 @@ export namespace BulkRequestCreateParams {
          * account’s available balance. If any of these conditions would be false after the
          * transaction is created, the entire call will fail with error code 422.
          */
-        available_balance_amount?: Record<string, number> | null;
+        available_balance_amount?: { [key: string]: number } | null;
 
         /**
          * Lock version of the ledger account. This can be passed when creating a ledger
@@ -1055,21 +1055,21 @@ export namespace BulkRequestCreateParams {
          * Additional data represented as key-value pairs. Both the key and value must be
          * strings.
          */
-        metadata?: Record<string, string>;
+        metadata?: { [key: string]: string };
 
         /**
          * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
          * account’s pending balance. If any of these conditions would be false after the
          * transaction is created, the entire call will fail with error code 422.
          */
-        pending_balance_amount?: Record<string, number> | null;
+        pending_balance_amount?: { [key: string]: number } | null;
 
         /**
          * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
          * account’s posted balance. If any of these conditions would be false after the
          * transaction is created, the entire call will fail with error code 422.
          */
-        posted_balance_amount?: Record<string, number> | null;
+        posted_balance_amount?: { [key: string]: number } | null;
 
         /**
          * If true, response will include the balance of the associated ledger account for
@@ -1101,7 +1101,7 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
   }
 
@@ -1158,7 +1158,7 @@ export namespace BulkRequestCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * To post a ledger transaction at creation, use `posted`.
@@ -1192,7 +1192,7 @@ export namespace BulkRequestCreateParams {
        * account’s available balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      available_balance_amount?: Record<string, number> | null;
+      available_balance_amount?: { [key: string]: number } | null;
 
       /**
        * Lock version of the ledger account. This can be passed when creating a ledger
@@ -1206,21 +1206,21 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s pending balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      pending_balance_amount?: Record<string, number> | null;
+      pending_balance_amount?: { [key: string]: number } | null;
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s posted balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      posted_balance_amount?: Record<string, number> | null;
+      posted_balance_amount?: { [key: string]: number } | null;
 
       /**
        * If true, response will include the balance of the associated ledger account for
@@ -1284,7 +1284,7 @@ export namespace BulkRequestCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
   }
 
   export interface TransactionCreateRequest {
@@ -1327,7 +1327,7 @@ export namespace BulkRequestCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * This field will be `true` if the transaction has posted to the account.
@@ -1481,7 +1481,7 @@ export namespace BulkRequestCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * A boolean to determine if NSF Protection is enabled for this payment order. Note
@@ -1663,7 +1663,7 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     /**
@@ -1694,7 +1694,7 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * A nickname for the external account. This is only for internal usage and won't
@@ -1816,7 +1816,7 @@ export namespace BulkRequestCreateParams {
          * Additional data represented as key-value pairs. Both the key and value must be
          * strings.
          */
-        metadata?: Record<string, string>;
+        metadata?: { [key: string]: string };
       }
 
       /**
@@ -1968,7 +1968,7 @@ export namespace BulkRequestCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * The reconciliation filters you have for this payment.
@@ -2020,7 +2020,7 @@ export namespace BulkRequestCreateParams {
      * Additional data in the form of key-value pairs. Pairs can be removed by passing
      * an empty string or `null` as the value.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
   }
 
   export interface LedgerTransactionUpdateRequestWithID {
@@ -2066,7 +2066,7 @@ export namespace BulkRequestCreateParams {
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
-    metadata?: Record<string, string>;
+    metadata?: { [key: string]: string };
 
     /**
      * To post a ledger transaction at creation, use `posted`.
@@ -2100,7 +2100,7 @@ export namespace BulkRequestCreateParams {
        * account’s available balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      available_balance_amount?: Record<string, number> | null;
+      available_balance_amount?: { [key: string]: number } | null;
 
       /**
        * Lock version of the ledger account. This can be passed when creating a ledger
@@ -2114,21 +2114,21 @@ export namespace BulkRequestCreateParams {
        * Additional data represented as key-value pairs. Both the key and value must be
        * strings.
        */
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s pending balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      pending_balance_amount?: Record<string, number> | null;
+      pending_balance_amount?: { [key: string]: number } | null;
 
       /**
        * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
        * account’s posted balance. If any of these conditions would be false after the
        * transaction is created, the entire call will fail with error code 422.
        */
-      posted_balance_amount?: Record<string, number> | null;
+      posted_balance_amount?: { [key: string]: number } | null;
 
       /**
        * If true, response will include the balance of the associated ledger account for
@@ -2150,7 +2150,7 @@ export interface BulkRequestListParams extends PageParams {
    * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
    * parameters.
    */
-  metadata?: Record<string, string>;
+  metadata?: { [key: string]: string };
 
   /**
    * One of payment_order, expected_payment, or ledger_transaction.
