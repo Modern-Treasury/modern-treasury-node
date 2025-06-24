@@ -461,6 +461,11 @@ export interface TransactionCreateParams {
     | null;
 
   /**
+   * An identifier given to this transaction by the bank, often `null`.
+   */
+  vendor_customer_id?: string | null;
+
+  /**
    * The transaction detail text that often appears in on your bank statement and in
    * your banking portal.
    */

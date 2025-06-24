@@ -38,6 +38,99 @@ export const tool: Tool = {
         type: 'string',
         description: 'The legal name of the entity which owns the account.',
       },
+      account_capabilities: {
+        type: 'array',
+        description:
+          'An array of AccountCapability objects that list the originating abilities of the internal account and any relevant information for them.',
+        items: {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'string',
+            },
+            created_at: {
+              type: 'string',
+              format: 'date-time',
+            },
+            direction: {
+              $ref: '#/$defs/transaction_direction',
+            },
+            discarded_at: {
+              type: 'string',
+              format: 'date-time',
+            },
+            identifier: {
+              type: 'string',
+              description:
+                'A unique reference assigned by your bank for tracking and recognizing payment files. It is important this is formatted exactly how the bank assigned it.',
+            },
+            live_mode: {
+              type: 'boolean',
+              description:
+                'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+            },
+            object: {
+              type: 'string',
+            },
+            payment_type: {
+              type: 'string',
+              description:
+                'Indicates the the type of payment this capability is responsible for originating.',
+              enum: [
+                'ach',
+                'au_becs',
+                'bacs',
+                'base',
+                'book',
+                'card',
+                'chats',
+                'check',
+                'cross_border',
+                'dk_nets',
+                'eft',
+                'ethereum',
+                'hu_ics',
+                'interac',
+                'masav',
+                'mx_ccen',
+                'neft',
+                'nics',
+                'nz_becs',
+                'pl_elixir',
+                'polygon',
+                'provxchange',
+                'ro_sent',
+                'rtp',
+                'se_bankgirot',
+                'sen',
+                'sepa',
+                'sg_giro',
+                'sic',
+                'signet',
+                'sknbi',
+                'solana',
+                'wire',
+                'zengin',
+              ],
+            },
+            updated_at: {
+              type: 'string',
+              format: 'date-time',
+            },
+          },
+          required: [
+            'id',
+            'created_at',
+            'direction',
+            'discarded_at',
+            'identifier',
+            'live_mode',
+            'object',
+            'payment_type',
+            'updated_at',
+          ],
+        },
+      },
       account_type: {
         type: 'string',
         description:
@@ -103,6 +196,12 @@ export const tool: Tool = {
         type: 'object',
         description:
           'A hash of vendor specific attributes that will be used when creating the account at the vendor specified by the given connection.',
+      },
+    },
+    $defs: {
+      transaction_direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
       },
     },
   },

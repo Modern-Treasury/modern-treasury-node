@@ -161,6 +161,13 @@ export interface ReturnObject {
     | 'currencycloud'
     | null;
 
+  /**
+   * Only relevant for ACH NOC returns. This is an object containing all of the new
+   * and corrected information provided by the bank that was previously incorrect on
+   * the original outgoing payment.
+   */
+  corrections: ReturnObject.Corrections | null;
+
   created_at: string;
 
   /**
@@ -281,6 +288,49 @@ export interface ReturnObject {
 }
 
 export namespace ReturnObject {
+  /**
+   * Only relevant for ACH NOC returns. This is an object containing all of the new
+   * and corrected information provided by the bank that was previously incorrect on
+   * the original outgoing payment.
+   */
+  export interface Corrections {
+    /**
+     * The updated account number that should replace the one originally used on the
+     * outgoing payment.
+     */
+    account_number?: string | null;
+
+    /**
+     * The updated company ID that should replace the one originally used on the
+     * outgoing payment.
+     */
+    company_id?: string | null;
+
+    /**
+     * The updated company name that should replace the one originally used on the
+     * outgoing payment.
+     */
+    company_name?: string | null;
+
+    /**
+     * The updated individual identification number that should replace the one
+     * originally used on the outgoing payment.
+     */
+    individual_identification_number?: string | null;
+
+    /**
+     * The updated routing number that should replace the one originally used on the
+     * outgoing payment.
+     */
+    routing_number?: string | null;
+
+    /**
+     * The updated account type code that should replace the one originally used on the
+     * outgoing payment.
+     */
+    transaction_code?: string | null;
+  }
+
   export interface ReferenceNumber {
     id: string;
 
@@ -505,6 +555,13 @@ export interface ReturnCreateParams {
     | null;
 
   /**
+   * Only relevant for ACH NOC returns. This is an object containing all of the new
+   * and corrected information provided by the bank that was previously incorrect on
+   * the original outgoing payment.
+   */
+  corrections?: ReturnCreateParams.Corrections | null;
+
+  /**
    * The raw data from the return file that we get from the bank.
    */
   data?: unknown | null;
@@ -520,6 +577,51 @@ export interface ReturnCreateParams {
    * and will not be transmitted to the bank.”
    */
   reason?: string | null;
+}
+
+export namespace ReturnCreateParams {
+  /**
+   * Only relevant for ACH NOC returns. This is an object containing all of the new
+   * and corrected information provided by the bank that was previously incorrect on
+   * the original outgoing payment.
+   */
+  export interface Corrections {
+    /**
+     * The updated account number that should replace the one originally used on the
+     * outgoing payment.
+     */
+    account_number?: string | null;
+
+    /**
+     * The updated company ID that should replace the one originally used on the
+     * outgoing payment.
+     */
+    company_id?: string | null;
+
+    /**
+     * The updated company name that should replace the one originally used on the
+     * outgoing payment.
+     */
+    company_name?: string | null;
+
+    /**
+     * The updated individual identification number that should replace the one
+     * originally used on the outgoing payment.
+     */
+    individual_identification_number?: string | null;
+
+    /**
+     * The updated routing number that should replace the one originally used on the
+     * outgoing payment.
+     */
+    routing_number?: string | null;
+
+    /**
+     * The updated account type code that should replace the one originally used on the
+     * outgoing payment.
+     */
+    transaction_code?: string | null;
+  }
 }
 
 export interface ReturnListParams extends PageParams {

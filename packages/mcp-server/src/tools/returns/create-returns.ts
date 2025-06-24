@@ -135,6 +135,44 @@ export const tool: Tool = {
           'currencycloud',
         ],
       },
+      corrections: {
+        type: 'object',
+        description:
+          'Only relevant for ACH NOC returns. This is an object containing all of the new and corrected information provided by the bank that was previously incorrect on the original outgoing payment.',
+        properties: {
+          account_number: {
+            type: 'string',
+            description:
+              'The updated account number that should replace the one originally used on the outgoing payment.',
+          },
+          company_id: {
+            type: 'string',
+            description:
+              'The updated company ID that should replace the one originally used on the outgoing payment.',
+          },
+          company_name: {
+            type: 'string',
+            description:
+              'The updated company name that should replace the one originally used on the outgoing payment.',
+          },
+          individual_identification_number: {
+            type: 'string',
+            description:
+              'The updated individual identification number that should replace the one originally used on the outgoing payment.',
+          },
+          routing_number: {
+            type: 'string',
+            description:
+              'The updated routing number that should replace the one originally used on the outgoing payment.',
+          },
+          transaction_code: {
+            type: 'string',
+            description:
+              'The updated account type code that should replace the one originally used on the outgoing payment.',
+          },
+        },
+        required: [],
+      },
       data: {
         type: 'object',
         description: 'The raw data from the return file that we get from the bank.',
