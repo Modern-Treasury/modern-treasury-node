@@ -99,6 +99,10 @@ export const tool: Tool = {
           'other',
         ],
       },
+      vendor_customer_id: {
+        type: 'string',
+        description: 'An identifier given to this transaction by the bank, often `null`.',
+      },
       vendor_description: {
         type: 'string',
         description:

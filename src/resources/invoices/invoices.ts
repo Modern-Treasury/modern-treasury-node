@@ -198,6 +198,12 @@ export interface Invoice {
   invoicer_address: Invoice.InvoicerAddress | null;
 
   /**
+   * The name of the issuer for the invoice. Defaults to the name of the
+   * Organization.
+   */
+  invoicer_name: string | null;
+
+  /**
    * The ledger account settlement object linked to the invoice.
    */
   ledger_account_settlement_id: string | null;

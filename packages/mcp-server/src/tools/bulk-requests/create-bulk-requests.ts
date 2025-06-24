@@ -95,7 +95,7 @@ export const tool: Tool = {
                 charge_bearer: {
                   type: 'string',
                   description:
-                    'The party that will pay the fees for the payment order. Only applies to wire payment orders. Can be one of shared, sender, or receiver, which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.',
+                    'The party that will pay the fees for the payment order. See https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the differences between the options.',
                   enum: ['shared', 'sender', 'receiver'],
                 },
                 currency: {
@@ -498,6 +498,7 @@ export const tool: Tool = {
                               'hk_interbank_clearing_code',
                               'hu_interbank_clearing_code',
                               'id_sknbi_code',
+                              'il_bank_code',
                               'in_ifsc',
                               'jp_zengin_code',
                               'my_branch_code',
@@ -1067,6 +1068,10 @@ export const tool: Tool = {
                     'other',
                   ],
                 },
+                vendor_customer_id: {
+                  type: 'string',
+                  description: 'An identifier given to this transaction by the bank, often `null`.',
+                },
                 vendor_description: {
                   type: 'string',
                   description:
@@ -1131,7 +1136,7 @@ export const tool: Tool = {
                 charge_bearer: {
                   type: 'string',
                   description:
-                    'The party that will pay the fees for the payment order. Only applies to wire payment orders. Can be one of shared, sender, or receiver, which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.',
+                    'The party that will pay the fees for the payment order. See https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the differences between the options.',
                   enum: ['shared', 'sender', 'receiver'],
                 },
                 counterparty_id: {
@@ -1434,6 +1439,7 @@ export const tool: Tool = {
                               'hk_interbank_clearing_code',
                               'hu_interbank_clearing_code',
                               'id_sknbi_code',
+                              'il_bank_code',
                               'in_ifsc',
                               'jp_zengin_code',
                               'my_branch_code',
