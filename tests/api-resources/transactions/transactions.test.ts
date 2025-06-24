@@ -39,6 +39,7 @@ describe('resource transactions', () => {
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       posted: true,
       type: 'ach',
+      vendor_customer_id: 'vendor_customer_id',
       vendor_description: 'vendor_description',
     });
   });

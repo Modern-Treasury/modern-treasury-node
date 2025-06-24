@@ -234,9 +234,9 @@ export namespace BulkRequestCreateParams {
     accounting_ledger_class_id?: string | null;
 
     /**
-     * The party that will pay the fees for the payment order. Only applies to wire
-     * payment orders. Can be one of shared, sender, or receiver, which correspond
-     * respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+     * The party that will pay the fees for the payment order. See
+     * https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+     * differences between the options.
      */
     charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
 
@@ -787,6 +787,7 @@ export namespace BulkRequestCreateParams {
           | 'hk_interbank_clearing_code'
           | 'hu_interbank_clearing_code'
           | 'id_sknbi_code'
+          | 'il_bank_code'
           | 'in_ifsc'
           | 'jp_zengin_code'
           | 'my_branch_code'
@@ -1377,6 +1378,11 @@ export namespace BulkRequestCreateParams {
       | null;
 
     /**
+     * An identifier given to this transaction by the bank, often `null`.
+     */
+    vendor_customer_id?: string | null;
+
+    /**
      * The transaction detail text that often appears in on your bank statement and in
      * your banking portal.
      */
@@ -1411,9 +1417,9 @@ export namespace BulkRequestCreateParams {
     amount?: number;
 
     /**
-     * The party that will pay the fees for the payment order. Only applies to wire
-     * payment orders. Can be one of shared, sender, or receiver, which correspond
-     * respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+     * The party that will pay the fees for the payment order. See
+     * https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+     * differences between the options.
      */
     charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
 
@@ -1863,6 +1869,7 @@ export namespace BulkRequestCreateParams {
           | 'hk_interbank_clearing_code'
           | 'hu_interbank_clearing_code'
           | 'id_sknbi_code'
+          | 'il_bank_code'
           | 'in_ifsc'
           | 'jp_zengin_code'
           | 'my_branch_code'
