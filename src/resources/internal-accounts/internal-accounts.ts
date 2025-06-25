@@ -177,7 +177,7 @@ export interface InternalAccount {
   ledger_account_id: string | null;
 
   /**
-   * The Legal Entity associated to this account
+   * The Legal Entity associated to this account.
    */
   legal_entity_id: string | null;
 
@@ -226,6 +226,11 @@ export interface InternalAccount {
   routing_details: Array<RoutingDetailsAPI.RoutingDetail>;
 
   updated_at: string;
+
+  /**
+   * The vendor ID associated with this account.
+   */
+  vendor_id: string | null;
 }
 
 export namespace InternalAccount {
