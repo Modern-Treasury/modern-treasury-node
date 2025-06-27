@@ -38,8 +38,8 @@ export const tool: Tool = {
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  await client.ledgerAccountSettlements.accountEntries.update(id, body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.ledgerAccountSettlements.accountEntries.update(id, body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };
