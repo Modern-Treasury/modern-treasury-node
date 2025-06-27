@@ -37,8 +37,8 @@ export const tool: Tool = {
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   const { accounts_type, account_id, id, ...body } = args as any;
-  await client.accountDetails.del(accounts_type, account_id, id);
-  return asTextContentResult('Successful tool call');
+  const response = await client.accountDetails.del(accounts_type, account_id, id).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };
