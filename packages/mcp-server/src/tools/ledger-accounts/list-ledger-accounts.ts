@@ -112,6 +112,9 @@ export const tool: Tool = {
           type: 'string',
         },
       },
+      normal_balance: {
+        $ref: '#/$defs/transaction_direction',
+      },
       pending_balance_amount: {
         type: 'object',
         description:
@@ -171,6 +174,12 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use updated_at%5Bgt%5D=2000-01-01T12:00:00Z.',
+      },
+    },
+    $defs: {
+      transaction_direction: {
+        type: 'string',
+        enum: ['credit', 'debit'],
       },
     },
   },
