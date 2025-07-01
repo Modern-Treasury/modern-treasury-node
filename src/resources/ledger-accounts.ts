@@ -474,6 +474,8 @@ export interface LedgerAccountListParams extends PageParams {
    */
   name?: Array<string>;
 
+  normal_balance?: Shared.TransactionDirection;
+
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
    * filter by balance amount.
