@@ -150,6 +150,7 @@ describe('resource ledgerAccounts', () => {
           ledger_id: 'ledger_id',
           metadata: { foo: 'string' },
           name: ['string'],
+          normal_balance: 'credit',
           pending_balance_amount: { eq: 0, gt: 0, gte: 0, lt: 0, lte: 0, not_eq: 0 },
           per_page: 0,
           posted_balance_amount: { eq: 0, gt: 0, gte: 0, lt: 0, lte: 0, not_eq: 0 },
