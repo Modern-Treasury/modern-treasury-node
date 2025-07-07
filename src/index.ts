@@ -259,6 +259,7 @@ import {
   LedgerTransactionsPage,
 } from './resources/ledger-transactions/ledger-transactions';
 import {
+  ContactDetailCreateRequest,
   PaymentOrder,
   PaymentOrderCreateAsyncParams,
   PaymentOrderCreateParams,
@@ -802,6 +803,7 @@ export declare namespace ModernTreasury {
 
   export {
     PaymentOrders as PaymentOrders,
+    type ContactDetailCreateRequest as ContactDetailCreateRequest,
     type PaymentOrder as PaymentOrder,
     type PaymentOrderSubtype as PaymentOrderSubtype,
     type PaymentOrderType as PaymentOrderType,
@@ -928,9 +930,22 @@ export declare namespace ModernTreasury {
     type PaymentActionListParams as PaymentActionListParams,
   };
 
+  export type Accounting = API.Accounting;
   export type AccountsType = API.AccountsType;
+  export type Address = API.Address;
+  export type AddressRequest = API.AddressRequest;
   export type AsyncResponse = API.AsyncResponse;
+  export type ChildLegalEntityCreate = API.ChildLegalEntityCreate;
+  export type ContactDetail = API.ContactDetail;
   export type Currency = API.Currency;
+  export type ForeignExchangeRate = API.ForeignExchangeRate;
+  export type IdentificationCreateRequest = API.IdentificationCreateRequest;
+  export type LedgerAccountCreateRequest = API.LedgerAccountCreateRequest;
+  export type LedgerBalance = API.LedgerBalance;
+  export type LedgerBalances = API.LedgerBalances;
+  export type LedgerEntryCreateRequest = API.LedgerEntryCreateRequest;
+  export type LedgerTransactionCreateRequest = API.LedgerTransactionCreateRequest;
+  export type LegalEntityAddressCreateRequest = API.LegalEntityAddressCreateRequest;
   export type LegalEntityComplianceDetail = API.LegalEntityComplianceDetail;
   export type LegalEntityIndustryClassification = API.LegalEntityIndustryClassification;
   export type TransactionDirection = API.TransactionDirection;

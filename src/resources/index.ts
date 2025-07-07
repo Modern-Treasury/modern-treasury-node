@@ -219,6 +219,7 @@ export {
 export {
   PaymentOrdersPage,
   PaymentOrders,
+  type ContactDetailCreateRequest,
   type PaymentOrder,
   type PaymentOrderSubtype,
   type PaymentOrderType,
