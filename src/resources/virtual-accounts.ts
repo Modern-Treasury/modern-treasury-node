@@ -202,7 +202,7 @@ export interface VirtualAccountCreateParams {
    * The resulting ledger account is linked to the virtual account for auto-ledgering
    * IPDs.
    */
-  ledger_account?: VirtualAccountCreateParams.LedgerAccount;
+  ledger_account?: Shared.LedgerAccountCreateRequest;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -242,68 +242,6 @@ export namespace VirtualAccountCreateParams {
       | 'sg_number'
       | 'solana_address'
       | 'wallet_address';
-  }
-
-  /**
-   * Specifies a ledger account object that will be created with the virtual account.
-   * The resulting ledger account is linked to the virtual account for auto-ledgering
-   * IPDs.
-   */
-  export interface LedgerAccount {
-    /**
-     * The currency of the ledger account.
-     */
-    currency: string;
-
-    /**
-     * The id of the ledger that this account belongs to.
-     */
-    ledger_id: string;
-
-    /**
-     * The name of the ledger account.
-     */
-    name: string;
-
-    /**
-     * The normal balance of the ledger account.
-     */
-    normal_balance: Shared.TransactionDirection;
-
-    /**
-     * The currency exponent of the ledger account.
-     */
-    currency_exponent?: number | null;
-
-    /**
-     * The description of the ledger account.
-     */
-    description?: string | null;
-
-    /**
-     * The array of ledger account category ids that this ledger account should be a
-     * child of.
-     */
-    ledger_account_category_ids?: Array<string>;
-
-    /**
-     * If the ledger account links to another object in Modern Treasury, the id will be
-     * populated here, otherwise null.
-     */
-    ledgerable_id?: string;
-
-    /**
-     * If the ledger account links to another object in Modern Treasury, the type will
-     * be populated here, otherwise null. The value is one of internal_account or
-     * external_account.
-     */
-    ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
   }
 
   export interface RoutingDetail {

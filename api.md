@@ -12,9 +12,22 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">Accounting</a></code>
 - <code><a href="./src/resources/shared.ts">AccountsType</a></code>
+- <code><a href="./src/resources/shared.ts">Address</a></code>
+- <code><a href="./src/resources/shared.ts">AddressRequest</a></code>
 - <code><a href="./src/resources/shared.ts">AsyncResponse</a></code>
+- <code><a href="./src/resources/shared.ts">ChildLegalEntityCreate</a></code>
+- <code><a href="./src/resources/shared.ts">ContactDetail</a></code>
 - <code><a href="./src/resources/shared.ts">Currency</a></code>
+- <code><a href="./src/resources/shared.ts">ForeignExchangeRate</a></code>
+- <code><a href="./src/resources/shared.ts">IdentificationCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerAccountCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerBalance</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerBalances</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerEntryCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerTransactionCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LegalEntityAddressCreateRequest</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityComplianceDetail</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityIndustryClassification</a></code>
 - <code><a href="./src/resources/shared.ts">TransactionDirection</a></code>
@@ -352,6 +365,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/payment-orders/payment-orders.ts">ContactDetailCreateRequest</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrder</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderSubtype</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderType</a></code>

@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as Shared from './shared';
 
 export class Validations extends APIResource {
   /**
@@ -20,7 +21,7 @@ export interface RoutingNumberLookupRequest {
   /**
    * The address of the bank.
    */
-  bank_address?: RoutingNumberLookupRequest.BankAddress;
+  bank_address?: Shared.AddressRequest;
 
   /**
    * The name of the bank.
@@ -96,37 +97,6 @@ export interface RoutingNumberLookupRequest {
     | 'wire'
     | 'zengin'
   >;
-}
-
-export namespace RoutingNumberLookupRequest {
-  /**
-   * The address of the bank.
-   */
-  export interface BankAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country?: string | null;
-
-    line1?: string | null;
-
-    line2?: string | null;
-
-    /**
-     * Locality or City.
-     */
-    locality?: string | null;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code?: string | null;
-
-    /**
-     * Region or State.
-     */
-    region?: string | null;
-  }
 }
 
 export interface ValidationValidateRoutingNumberParams {

@@ -25,20 +25,7 @@ export const tool: Tool = {
         type: 'string',
       },
       accounting: {
-        type: 'object',
-        properties: {
-          account_id: {
-            type: 'string',
-            description:
-              'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
-          },
-          class_id: {
-            type: 'string',
-            description:
-              'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
-          },
-        },
-        required: [],
+        $ref: '#/$defs/accounting',
       },
       accounting_category_id: {
         type: 'string',
@@ -213,73 +200,11 @@ export const tool: Tool = {
           contact_details: {
             type: 'array',
             items: {
-              type: 'object',
-              properties: {
-                contact_identifier: {
-                  type: 'string',
-                },
-                contact_identifier_type: {
-                  type: 'string',
-                  enum: ['email', 'phone_number', 'website'],
-                },
-              },
-              required: [],
+              $ref: '#/$defs/contact_detail_create_request',
             },
           },
           ledger_account: {
-            type: 'object',
-            description:
-              'Specifies a ledger account object that will be created with the external account. The resulting ledger account is linked to the external account for auto-ledgering Payment objects. See https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects for more details.',
-            properties: {
-              currency: {
-                type: 'string',
-                description: 'The currency of the ledger account.',
-              },
-              ledger_id: {
-                type: 'string',
-                description: 'The id of the ledger that this account belongs to.',
-              },
-              name: {
-                type: 'string',
-                description: 'The name of the ledger account.',
-              },
-              normal_balance: {
-                $ref: '#/$defs/transaction_direction',
-              },
-              currency_exponent: {
-                type: 'integer',
-                description: 'The currency exponent of the ledger account.',
-              },
-              description: {
-                type: 'string',
-                description: 'The description of the ledger account.',
-              },
-              ledger_account_category_ids: {
-                type: 'array',
-                description:
-                  'The array of ledger account category ids that this ledger account should be a child of.',
-                items: {
-                  type: 'string',
-                },
-              },
-              ledgerable_id: {
-                type: 'string',
-                description:
-                  'If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null.',
-              },
-              ledgerable_type: {
-                type: 'string',
-                description:
-                  'If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account.',
-                enum: ['counterparty', 'external_account', 'internal_account', 'virtual_account'],
-              },
-              metadata: {
-                type: 'object',
-                description:
-                  'Additional data represented as key-value pairs. Both the key and value must be strings.',
-              },
-            },
-            required: ['currency', 'ledger_id', 'name', 'normal_balance'],
+            $ref: '#/$defs/ledger_account_create_request',
           },
           metadata: {
             type: 'object',
@@ -292,33 +217,7 @@ export const tool: Tool = {
               "A nickname for the external account. This is only for internal usage and won't affect any payments",
           },
           party_address: {
-            type: 'object',
-            description: 'Required if receiving wire payments.',
-            properties: {
-              country: {
-                type: 'string',
-                description: 'Country code conforms to [ISO 3166-1 alpha-2]',
-              },
-              line1: {
-                type: 'string',
-              },
-              line2: {
-                type: 'string',
-              },
-              locality: {
-                type: 'string',
-                description: 'Locality or City.',
-              },
-              postal_code: {
-                type: 'string',
-                description: 'The postal code of the address.',
-              },
-              region: {
-                type: 'string',
-                description: 'Region or State.',
-              },
-            },
-            required: [],
+            $ref: '#/$defs/address_request',
           },
           party_identifier: {
             type: 'string',
@@ -485,6 +384,22 @@ export const tool: Tool = {
       },
     },
     $defs: {
+      accounting: {
+        type: 'object',
+        properties: {
+          account_id: {
+            type: 'string',
+            description:
+              'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+          },
+          class_id: {
+            type: 'string',
+            description:
+              'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
+          },
+        },
+        required: [],
+      },
       currency: {
         type: 'string',
         description: 'Three-letter ISO currency code.',
@@ -706,9 +621,103 @@ export const tool: Tool = {
           'solana_wallet',
         ],
       },
+      contact_detail_create_request: {
+        type: 'object',
+        properties: {
+          contact_identifier: {
+            type: 'string',
+          },
+          contact_identifier_type: {
+            type: 'string',
+            enum: ['email', 'phone_number', 'website'],
+          },
+        },
+        required: [],
+      },
+      ledger_account_create_request: {
+        type: 'object',
+        properties: {
+          currency: {
+            type: 'string',
+            description: 'The currency of the ledger account.',
+          },
+          ledger_id: {
+            type: 'string',
+            description: 'The id of the ledger that this account belongs to.',
+          },
+          name: {
+            type: 'string',
+            description: 'The name of the ledger account.',
+          },
+          normal_balance: {
+            $ref: '#/$defs/transaction_direction',
+          },
+          currency_exponent: {
+            type: 'integer',
+            description: 'The currency exponent of the ledger account.',
+          },
+          description: {
+            type: 'string',
+            description: 'The description of the ledger account.',
+          },
+          ledger_account_category_ids: {
+            type: 'array',
+            description:
+              'The array of ledger account category ids that this ledger account should be a child of.',
+            items: {
+              type: 'string',
+            },
+          },
+          ledgerable_id: {
+            type: 'string',
+            description:
+              'If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null.',
+          },
+          ledgerable_type: {
+            type: 'string',
+            description:
+              'If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account.',
+            enum: ['counterparty', 'external_account', 'internal_account', 'virtual_account'],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+        },
+        required: ['currency', 'ledger_id', 'name', 'normal_balance'],
+      },
       transaction_direction: {
         type: 'string',
         enum: ['credit', 'debit'],
+      },
+      address_request: {
+        type: 'object',
+        properties: {
+          country: {
+            type: 'string',
+            description: 'Country code conforms to [ISO 3166-1 alpha-2]',
+          },
+          line1: {
+            type: 'string',
+          },
+          line2: {
+            type: 'string',
+          },
+          locality: {
+            type: 'string',
+            description: 'Locality or City.',
+          },
+          postal_code: {
+            type: 'string',
+            description: 'The postal code of the address.',
+          },
+          region: {
+            type: 'string',
+            description: 'Region or State.',
+          },
+        },
+        required: [],
       },
       payment_order_subtype: {
         type: 'string',
