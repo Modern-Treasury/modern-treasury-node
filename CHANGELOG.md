@@ -1,5 +1,43 @@
 # Changelog
 
+## 2.40.0 (2025-07-07)
+
+Full Changelog: [v2.39.0...v2.40.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.39.0...v2.40.0)
+
+### Features
+
+* **api:** api update ([86919de](https://github.com/Modern-Treasury/modern-treasury-node/commit/86919de6b275deaec776317ef403fde97a0b9090))
+* **api:** api update ([cd5153d](https://github.com/Modern-Treasury/modern-treasury-node/commit/cd5153da1ebefd040e87860b7c279d83ef1126a6))
+* **api:** api update ([fd2bdeb](https://github.com/Modern-Treasury/modern-treasury-node/commit/fd2bdeb09c845ee216cf51777e2c4669c784849a))
+* **api:** api update ([84f3998](https://github.com/Modern-Treasury/modern-treasury-node/commit/84f3998a7d2051777c7849c0c82938137953b44d))
+* **api:** api update ([15ef1a3](https://github.com/Modern-Treasury/modern-treasury-node/commit/15ef1a3b295b2eb8c19750f0ebdd2d405fe32b91))
+* **api:** api update ([6d19984](https://github.com/Modern-Treasury/modern-treasury-node/commit/6d1998449cf1fc0737488811df32e4a1ea12f1ca))
+* **client:** add support for endpoint-specific base URLs ([c67e6b2](https://github.com/Modern-Treasury/modern-treasury-node/commit/c67e6b269b895d0620dd435135d0013e842cbfa0))
+* **mcp:** fallback for void-typed methods ([2c90387](https://github.com/Modern-Treasury/modern-treasury-node/commit/2c90387a39438cb49e4ced9268fe64cf185e0e53))
+* **mcp:** set X-Stainless-MCP header ([17c1804](https://github.com/Modern-Treasury/modern-treasury-node/commit/17c1804825ffbc8362ff81039fb7458fcf761d13))
+
+
+### Bug Fixes
+
+* **build:** bump node version in CI build to 20 to be compatible with MCP package ([d293ba2](https://github.com/Modern-Treasury/modern-treasury-node/commit/d293ba200764eb3e7a6ff8212c8b48799b6f1102))
+* **ci:** release-doctor — report correct token name ([56763be](https://github.com/Modern-Treasury/modern-treasury-node/commit/56763be2a8c96d78001f880ec35da3a8352dc4bc))
+* **client:** don't send `Content-Type` for bodyless methods ([b2b0396](https://github.com/Modern-Treasury/modern-treasury-node/commit/b2b0396bedefb22c14a113227bb7bc66f1e0ea15))
+* publish script — handle NPM errors correctly ([be1f857](https://github.com/Modern-Treasury/modern-treasury-node/commit/be1f8578f895f0145adae211f64419e4d28eaf0e))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([e46d01d](https://github.com/Modern-Treasury/modern-treasury-node/commit/e46d01d325d69ed036b221d26803eefa1ff2438d))
+* **ci:** only run for pushes and fork pull requests ([c6bdb8c](https://github.com/Modern-Treasury/modern-treasury-node/commit/c6bdb8c82780590b8577da02c02f520c7f874f15))
+* **internal:** make base APIResource abstract ([3e7036d](https://github.com/Modern-Treasury/modern-treasury-node/commit/3e7036d790d5eab1d02b6d7bc41bde3603bcd42a))
+* **mcp:** provides high-level initMcpServer function and exports known clients ([2cf7021](https://github.com/Modern-Treasury/modern-treasury-node/commit/2cf702160a90ccb2c2d40868cb182500f7363a61))
+* mention unit type in timeout docs ([b3f2be5](https://github.com/Modern-Treasury/modern-treasury-node/commit/b3f2be5570c98d85e13fb5ec365c8099ebb6f02d))
+
+
+### Refactors
+
+* **types:** replace Record with mapped types ([2dcadae](https://github.com/Modern-Treasury/modern-treasury-node/commit/2dcadae06cbd63ca78eda3de04209ce0542dc73e))
+
 ## 2.39.0 (2025-06-05)
 
 Full Changelog: [v2.38.0...v2.39.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.38.0...v2.39.0)
