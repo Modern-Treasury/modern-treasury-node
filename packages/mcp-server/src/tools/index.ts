@@ -59,6 +59,7 @@ import create_internal_accounts from './internal-accounts/create-internal-accoun
 import retrieve_internal_accounts from './internal-accounts/retrieve-internal-accounts';
 import update_internal_accounts from './internal-accounts/update-internal-accounts';
 import list_internal_accounts from './internal-accounts/list-internal-accounts';
+import update_account_capability_internal_accounts from './internal-accounts/update-account-capability-internal-accounts';
 import create_internal_accounts_balance_reports from './internal-accounts/balance-reports/create-internal-accounts-balance-reports';
 import retrieve_internal_accounts_balance_reports from './internal-accounts/balance-reports/retrieve-internal-accounts-balance-reports';
 import list_internal_accounts_balance_reports from './internal-accounts/balance-reports/list-internal-accounts-balance-reports';
@@ -226,6 +227,7 @@ addEndpoint(create_internal_accounts);
 addEndpoint(retrieve_internal_accounts);
 addEndpoint(update_internal_accounts);
 addEndpoint(list_internal_accounts);
+addEndpoint(update_account_capability_internal_accounts);
 addEndpoint(create_internal_accounts_balance_reports);
 addEndpoint(retrieve_internal_accounts_balance_reports);
 addEndpoint(list_internal_accounts_balance_reports);

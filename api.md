@@ -187,6 +187,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/internal-accounts/internal-accounts.ts">InternalAccount</a></code>
+- <code><a href="./src/resources/internal-accounts/internal-accounts.ts">InternalAccountUpdateAccountCapabilityResponse</a></code>
 
 Methods:
 
@@ -194,6 +195,7 @@ Methods:
 - <code title="get /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">retrieve</a>(id) -> InternalAccount</code>
 - <code title="patch /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">update</a>(id, { ...params }) -> InternalAccount</code>
 - <code title="get /api/internal_accounts">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">list</a>({ ...params }) -> InternalAccountsPage</code>
+- <code title="patch /api/internal_accounts/{internal_account_id}/account_capabilities/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">updateAccountCapability</a>(internalAccountId, id, { ...params }) -> InternalAccountUpdateAccountCapabilityResponse</code>
 
 ## BalanceReports
 

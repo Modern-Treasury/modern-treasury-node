@@ -227,6 +227,8 @@ import {
   InternalAccount,
   InternalAccountCreateParams,
   InternalAccountListParams,
+  InternalAccountUpdateAccountCapabilityParams,
+  InternalAccountUpdateAccountCapabilityResponse,
   InternalAccountUpdateParams,
   InternalAccounts,
   InternalAccountsPage,
@@ -706,10 +708,12 @@ export declare namespace ModernTreasury {
   export {
     InternalAccounts as InternalAccounts,
     type InternalAccount as InternalAccount,
+    type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
     InternalAccountsPage as InternalAccountsPage,
     type InternalAccountCreateParams as InternalAccountCreateParams,
     type InternalAccountUpdateParams as InternalAccountUpdateParams,
     type InternalAccountListParams as InternalAccountListParams,
+    type InternalAccountUpdateAccountCapabilityParams as InternalAccountUpdateAccountCapabilityParams,
   };
 
   export {
