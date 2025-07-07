@@ -263,6 +263,7 @@ The following tools are available in this MCP server.
 - `retrieve_internal_accounts` (`read`): get internal account
 - `update_internal_accounts` (`write`): update internal account
 - `list_internal_accounts` (`read`): list internal accounts
+- `update_account_capability_internal_accounts` (`write`): update account_capability
 
 ### Resource `internal_accounts.balance_reports`:
 
