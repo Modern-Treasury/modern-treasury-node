@@ -174,8 +174,8 @@ export interface BulkRequestCreateParams {
   resources: Array<
     | BulkRequestCreateParams.PaymentOrderAsyncCreateRequest
     | BulkRequestCreateParams.ExpectedPaymentCreateRequest
-    | BulkRequestCreateParams.LedgerTransactionCreateRequest
-    | BulkRequestCreateParams.LedgerAccountCreateRequest
+    | Shared.LedgerTransactionCreateRequest
+    | Shared.LedgerAccountCreateRequest
     | BulkRequestCreateParams.TransactionCreateRequest
     | BulkRequestCreateParams.ID
     | BulkRequestCreateParams.PaymentOrderUpdateRequestWithID
@@ -219,7 +219,7 @@ export namespace BulkRequestCreateParams {
      */
     type: PaymentOrdersAPI.PaymentOrderType;
 
-    accounting?: PaymentOrderAsyncCreateRequest.Accounting;
+    accounting?: Shared.Accounting;
 
     /**
      * @deprecated The ID of one of your accounting categories. Note that these will
@@ -288,7 +288,7 @@ export namespace BulkRequestCreateParams {
      * creation will fail. The resulting ledger transaction will mirror the status of
      * the payment order.
      */
-    ledger_transaction?: PaymentOrderAsyncCreateRequest.LedgerTransaction;
+    ledger_transaction?: Shared.LedgerTransactionCreateRequest;
 
     /**
      * Either ledger_transaction or ledger_transaction_id can be provided. Only a
@@ -419,152 +419,6 @@ export namespace BulkRequestCreateParams {
   }
 
   export namespace PaymentOrderAsyncCreateRequest {
-    export interface Accounting {
-      /**
-       * The ID of one of your accounting categories. Note that these will only be
-       * accessible if your accounting system has been connected.
-       */
-      account_id?: string | null;
-
-      /**
-       * The ID of one of the class objects in your accounting system. Class objects
-       * track segments of your business independent of client or project. Note that
-       * these will only be accessible if your accounting system has been connected.
-       */
-      class_id?: string | null;
-    }
-
-    /**
-     * Specifies a ledger transaction object that will be created with the payment
-     * order. If the ledger transaction cannot be created, then the payment order
-     * creation will fail. The resulting ledger transaction will mirror the status of
-     * the payment order.
-     */
-    export interface LedgerTransaction {
-      /**
-       * An array of ledger entry objects.
-       */
-      ledger_entries: Array<LedgerTransaction.LedgerEntry>;
-
-      /**
-       * An optional description for internal use.
-       */
-      description?: string | null;
-
-      /**
-       * The timestamp (ISO8601 format) at which the ledger transaction happened for
-       * reporting purposes.
-       */
-      effective_at?: string;
-
-      /**
-       * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-       * purposes.
-       */
-      effective_date?: string;
-
-      /**
-       * A unique string to represent the ledger transaction. Only one pending or posted
-       * ledger transaction may have this ID in the ledger.
-       */
-      external_id?: string;
-
-      /**
-       * If the ledger transaction can be reconciled to another object in Modern
-       * Treasury, the id will be populated here, otherwise null.
-       */
-      ledgerable_id?: string;
-
-      /**
-       * If the ledger transaction can be reconciled to another object in Modern
-       * Treasury, the type will be populated here, otherwise null. This can be one of
-       * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
-       * reversal.
-       */
-      ledgerable_type?:
-        | 'expected_payment'
-        | 'incoming_payment_detail'
-        | 'paper_item'
-        | 'payment_order'
-        | 'return'
-        | 'reversal';
-
-      /**
-       * Additional data represented as key-value pairs. Both the key and value must be
-       * strings.
-       */
-      metadata?: { [key: string]: string };
-
-      /**
-       * To post a ledger transaction at creation, use `posted`.
-       */
-      status?: 'archived' | 'pending' | 'posted';
-    }
-
-    export namespace LedgerTransaction {
-      export interface LedgerEntry {
-        /**
-         * Value in specified currency's smallest unit. e.g. $10 would be represented
-         * as 1000. Can be any integer up to 36 digits.
-         */
-        amount: number;
-
-        /**
-         * One of `credit`, `debit`. Describes the direction money is flowing in the
-         * transaction. A `credit` moves money from your account to someone else's. A
-         * `debit` pulls money from someone else's account to your own. Note that wire,
-         * rtp, and check payments will always be `credit`.
-         */
-        direction: Shared.TransactionDirection;
-
-        /**
-         * The ledger account that this ledger entry is associated with.
-         */
-        ledger_account_id: string;
-
-        /**
-         * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-         * account’s available balance. If any of these conditions would be false after the
-         * transaction is created, the entire call will fail with error code 422.
-         */
-        available_balance_amount?: { [key: string]: number } | null;
-
-        /**
-         * Lock version of the ledger account. This can be passed when creating a ledger
-         * transaction to only succeed if no ledger transactions have posted since the
-         * given version. See our post about Designing the Ledgers API with Optimistic
-         * Locking for more details.
-         */
-        lock_version?: number | null;
-
-        /**
-         * Additional data represented as key-value pairs. Both the key and value must be
-         * strings.
-         */
-        metadata?: { [key: string]: string };
-
-        /**
-         * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-         * account’s pending balance. If any of these conditions would be false after the
-         * transaction is created, the entire call will fail with error code 422.
-         */
-        pending_balance_amount?: { [key: string]: number } | null;
-
-        /**
-         * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-         * account’s posted balance. If any of these conditions would be false after the
-         * transaction is created, the entire call will fail with error code 422.
-         */
-        posted_balance_amount?: { [key: string]: number } | null;
-
-        /**
-         * If true, response will include the balance of the associated ledger account for
-         * the entry.
-         */
-        show_resulting_ledger_account_balances?: boolean | null;
-      }
-    }
-
     export interface LineItem {
       /**
        * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -603,7 +457,7 @@ export namespace BulkRequestCreateParams {
        */
       account_type?: ExternalAccountsAPI.ExternalAccountType;
 
-      contact_details?: Array<ReceivingAccount.ContactDetail>;
+      contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
 
       /**
        * Specifies a ledger account object that will be created with the external
@@ -612,7 +466,7 @@ export namespace BulkRequestCreateParams {
        * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
        * for more details.
        */
-      ledger_account?: ReceivingAccount.LedgerAccount;
+      ledger_account?: Shared.LedgerAccountCreateRequest;
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -629,7 +483,7 @@ export namespace BulkRequestCreateParams {
       /**
        * Required if receiving wire payments.
        */
-      party_address?: ReceivingAccount.PartyAddress;
+      party_address?: Shared.AddressRequest;
 
       party_identifier?: string;
 
@@ -671,105 +525,6 @@ export namespace BulkRequestCreateParams {
           | 'sg_number'
           | 'solana_address'
           | 'wallet_address';
-      }
-
-      export interface ContactDetail {
-        contact_identifier?: string;
-
-        contact_identifier_type?: 'email' | 'phone_number' | 'website';
-      }
-
-      /**
-       * Specifies a ledger account object that will be created with the external
-       * account. The resulting ledger account is linked to the external account for
-       * auto-ledgering Payment objects. See
-       * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-       * for more details.
-       */
-      export interface LedgerAccount {
-        /**
-         * The currency of the ledger account.
-         */
-        currency: string;
-
-        /**
-         * The id of the ledger that this account belongs to.
-         */
-        ledger_id: string;
-
-        /**
-         * The name of the ledger account.
-         */
-        name: string;
-
-        /**
-         * The normal balance of the ledger account.
-         */
-        normal_balance: Shared.TransactionDirection;
-
-        /**
-         * The currency exponent of the ledger account.
-         */
-        currency_exponent?: number | null;
-
-        /**
-         * The description of the ledger account.
-         */
-        description?: string | null;
-
-        /**
-         * The array of ledger account category ids that this ledger account should be a
-         * child of.
-         */
-        ledger_account_category_ids?: Array<string>;
-
-        /**
-         * If the ledger account links to another object in Modern Treasury, the id will be
-         * populated here, otherwise null.
-         */
-        ledgerable_id?: string;
-
-        /**
-         * If the ledger account links to another object in Modern Treasury, the type will
-         * be populated here, otherwise null. The value is one of internal_account or
-         * external_account.
-         */
-        ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
-
-        /**
-         * Additional data represented as key-value pairs. Both the key and value must be
-         * strings.
-         */
-        metadata?: { [key: string]: string };
-      }
-
-      /**
-       * Required if receiving wire payments.
-       */
-      export interface PartyAddress {
-        /**
-         * Country code conforms to [ISO 3166-1 alpha-2]
-         */
-        country?: string | null;
-
-        line1?: string | null;
-
-        line2?: string | null;
-
-        /**
-         * Locality or City.
-         */
-        locality?: string | null;
-
-        /**
-         * The postal code of the address.
-         */
-        postal_code?: string | null;
-
-        /**
-         * Region or State.
-         */
-        region?: string | null;
       }
 
       export interface RoutingDetail {
@@ -893,7 +648,7 @@ export namespace BulkRequestCreateParams {
      * creation will fail. The resulting ledger transaction will mirror the status of
      * the expected payment.
      */
-    ledger_transaction?: ExpectedPaymentCreateRequest.LedgerTransaction;
+    ledger_transaction?: Shared.LedgerTransactionCreateRequest;
 
     /**
      * Either ledger_transaction or ledger_transaction_id can be provided. Only a
@@ -949,137 +704,6 @@ export namespace BulkRequestCreateParams {
   }
 
   export namespace ExpectedPaymentCreateRequest {
-    /**
-     * Specifies a ledger transaction object that will be created with the expected
-     * payment. If the ledger transaction cannot be created, then the expected payment
-     * creation will fail. The resulting ledger transaction will mirror the status of
-     * the expected payment.
-     */
-    export interface LedgerTransaction {
-      /**
-       * An array of ledger entry objects.
-       */
-      ledger_entries: Array<LedgerTransaction.LedgerEntry>;
-
-      /**
-       * An optional description for internal use.
-       */
-      description?: string | null;
-
-      /**
-       * The timestamp (ISO8601 format) at which the ledger transaction happened for
-       * reporting purposes.
-       */
-      effective_at?: string;
-
-      /**
-       * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-       * purposes.
-       */
-      effective_date?: string;
-
-      /**
-       * A unique string to represent the ledger transaction. Only one pending or posted
-       * ledger transaction may have this ID in the ledger.
-       */
-      external_id?: string;
-
-      /**
-       * If the ledger transaction can be reconciled to another object in Modern
-       * Treasury, the id will be populated here, otherwise null.
-       */
-      ledgerable_id?: string;
-
-      /**
-       * If the ledger transaction can be reconciled to another object in Modern
-       * Treasury, the type will be populated here, otherwise null. This can be one of
-       * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
-       * reversal.
-       */
-      ledgerable_type?:
-        | 'expected_payment'
-        | 'incoming_payment_detail'
-        | 'paper_item'
-        | 'payment_order'
-        | 'return'
-        | 'reversal';
-
-      /**
-       * Additional data represented as key-value pairs. Both the key and value must be
-       * strings.
-       */
-      metadata?: { [key: string]: string };
-
-      /**
-       * To post a ledger transaction at creation, use `posted`.
-       */
-      status?: 'archived' | 'pending' | 'posted';
-    }
-
-    export namespace LedgerTransaction {
-      export interface LedgerEntry {
-        /**
-         * Value in specified currency's smallest unit. e.g. $10 would be represented
-         * as 1000. Can be any integer up to 36 digits.
-         */
-        amount: number;
-
-        /**
-         * One of `credit`, `debit`. Describes the direction money is flowing in the
-         * transaction. A `credit` moves money from your account to someone else's. A
-         * `debit` pulls money from someone else's account to your own. Note that wire,
-         * rtp, and check payments will always be `credit`.
-         */
-        direction: Shared.TransactionDirection;
-
-        /**
-         * The ledger account that this ledger entry is associated with.
-         */
-        ledger_account_id: string;
-
-        /**
-         * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-         * account’s available balance. If any of these conditions would be false after the
-         * transaction is created, the entire call will fail with error code 422.
-         */
-        available_balance_amount?: { [key: string]: number } | null;
-
-        /**
-         * Lock version of the ledger account. This can be passed when creating a ledger
-         * transaction to only succeed if no ledger transactions have posted since the
-         * given version. See our post about Designing the Ledgers API with Optimistic
-         * Locking for more details.
-         */
-        lock_version?: number | null;
-
-        /**
-         * Additional data represented as key-value pairs. Both the key and value must be
-         * strings.
-         */
-        metadata?: { [key: string]: string };
-
-        /**
-         * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-         * account’s pending balance. If any of these conditions would be false after the
-         * transaction is created, the entire call will fail with error code 422.
-         */
-        pending_balance_amount?: { [key: string]: number } | null;
-
-        /**
-         * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-         * account’s posted balance. If any of these conditions would be false after the
-         * transaction is created, the entire call will fail with error code 422.
-         */
-        posted_balance_amount?: { [key: string]: number } | null;
-
-        /**
-         * If true, response will include the balance of the associated ledger account for
-         * the entry.
-         */
-        show_resulting_ledger_account_balances?: boolean | null;
-      }
-    }
-
     export interface LineItem {
       /**
        * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -1104,188 +728,6 @@ export namespace BulkRequestCreateParams {
        */
       metadata?: { [key: string]: string };
     }
-  }
-
-  export interface LedgerTransactionCreateRequest {
-    /**
-     * An array of ledger entry objects.
-     */
-    ledger_entries: Array<LedgerTransactionCreateRequest.LedgerEntry>;
-
-    /**
-     * An optional description for internal use.
-     */
-    description?: string | null;
-
-    /**
-     * The timestamp (ISO8601 format) at which the ledger transaction happened for
-     * reporting purposes.
-     */
-    effective_at?: string;
-
-    /**
-     * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-     * purposes.
-     */
-    effective_date?: string;
-
-    /**
-     * A unique string to represent the ledger transaction. Only one pending or posted
-     * ledger transaction may have this ID in the ledger.
-     */
-    external_id?: string;
-
-    /**
-     * If the ledger transaction can be reconciled to another object in Modern
-     * Treasury, the id will be populated here, otherwise null.
-     */
-    ledgerable_id?: string;
-
-    /**
-     * If the ledger transaction can be reconciled to another object in Modern
-     * Treasury, the type will be populated here, otherwise null. This can be one of
-     * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
-     * reversal.
-     */
-    ledgerable_type?:
-      | 'expected_payment'
-      | 'incoming_payment_detail'
-      | 'paper_item'
-      | 'payment_order'
-      | 'return'
-      | 'reversal';
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
-
-    /**
-     * To post a ledger transaction at creation, use `posted`.
-     */
-    status?: 'archived' | 'pending' | 'posted';
-  }
-
-  export namespace LedgerTransactionCreateRequest {
-    export interface LedgerEntry {
-      /**
-       * Value in specified currency's smallest unit. e.g. $10 would be represented
-       * as 1000. Can be any integer up to 36 digits.
-       */
-      amount: number;
-
-      /**
-       * One of `credit`, `debit`. Describes the direction money is flowing in the
-       * transaction. A `credit` moves money from your account to someone else's. A
-       * `debit` pulls money from someone else's account to your own. Note that wire,
-       * rtp, and check payments will always be `credit`.
-       */
-      direction: Shared.TransactionDirection;
-
-      /**
-       * The ledger account that this ledger entry is associated with.
-       */
-      ledger_account_id: string;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s available balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      available_balance_amount?: { [key: string]: number } | null;
-
-      /**
-       * Lock version of the ledger account. This can be passed when creating a ledger
-       * transaction to only succeed if no ledger transactions have posted since the
-       * given version. See our post about Designing the Ledgers API with Optimistic
-       * Locking for more details.
-       */
-      lock_version?: number | null;
-
-      /**
-       * Additional data represented as key-value pairs. Both the key and value must be
-       * strings.
-       */
-      metadata?: { [key: string]: string };
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s pending balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      pending_balance_amount?: { [key: string]: number } | null;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s posted balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      posted_balance_amount?: { [key: string]: number } | null;
-
-      /**
-       * If true, response will include the balance of the associated ledger account for
-       * the entry.
-       */
-      show_resulting_ledger_account_balances?: boolean | null;
-    }
-  }
-
-  export interface LedgerAccountCreateRequest {
-    /**
-     * The currency of the ledger account.
-     */
-    currency: string;
-
-    /**
-     * The id of the ledger that this account belongs to.
-     */
-    ledger_id: string;
-
-    /**
-     * The name of the ledger account.
-     */
-    name: string;
-
-    /**
-     * The normal balance of the ledger account.
-     */
-    normal_balance: Shared.TransactionDirection;
-
-    /**
-     * The currency exponent of the ledger account.
-     */
-    currency_exponent?: number | null;
-
-    /**
-     * The description of the ledger account.
-     */
-    description?: string | null;
-
-    /**
-     * The array of ledger account category ids that this ledger account should be a
-     * child of.
-     */
-    ledger_account_category_ids?: Array<string>;
-
-    /**
-     * If the ledger account links to another object in Modern Treasury, the id will be
-     * populated here, otherwise null.
-     */
-    ledgerable_id?: string;
-
-    /**
-     * If the ledger account links to another object in Modern Treasury, the type will
-     * be populated here, otherwise null. The value is one of internal_account or
-     * external_account.
-     */
-    ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
   }
 
   export interface TransactionCreateRequest {
@@ -1396,7 +838,7 @@ export namespace BulkRequestCreateParams {
   export interface PaymentOrderUpdateRequestWithID {
     id?: string;
 
-    accounting?: PaymentOrderUpdateRequestWithID.Accounting;
+    accounting?: Shared.Accounting;
 
     /**
      * @deprecated The ID of one of your accounting categories. Note that these will
@@ -1632,21 +1074,6 @@ export namespace BulkRequestCreateParams {
   }
 
   export namespace PaymentOrderUpdateRequestWithID {
-    export interface Accounting {
-      /**
-       * The ID of one of your accounting categories. Note that these will only be
-       * accessible if your accounting system has been connected.
-       */
-      account_id?: string | null;
-
-      /**
-       * The ID of one of the class objects in your accounting system. Class objects
-       * track segments of your business independent of client or project. Note that
-       * these will only be accessible if your accounting system has been connected.
-       */
-      class_id?: string | null;
-    }
-
     export interface LineItem {
       /**
        * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -1685,7 +1112,7 @@ export namespace BulkRequestCreateParams {
        */
       account_type?: ExternalAccountsAPI.ExternalAccountType;
 
-      contact_details?: Array<ReceivingAccount.ContactDetail>;
+      contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
 
       /**
        * Specifies a ledger account object that will be created with the external
@@ -1694,7 +1121,7 @@ export namespace BulkRequestCreateParams {
        * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
        * for more details.
        */
-      ledger_account?: ReceivingAccount.LedgerAccount;
+      ledger_account?: Shared.LedgerAccountCreateRequest;
 
       /**
        * Additional data represented as key-value pairs. Both the key and value must be
@@ -1711,7 +1138,7 @@ export namespace BulkRequestCreateParams {
       /**
        * Required if receiving wire payments.
        */
-      party_address?: ReceivingAccount.PartyAddress;
+      party_address?: Shared.AddressRequest;
 
       party_identifier?: string;
 
@@ -1753,105 +1180,6 @@ export namespace BulkRequestCreateParams {
           | 'sg_number'
           | 'solana_address'
           | 'wallet_address';
-      }
-
-      export interface ContactDetail {
-        contact_identifier?: string;
-
-        contact_identifier_type?: 'email' | 'phone_number' | 'website';
-      }
-
-      /**
-       * Specifies a ledger account object that will be created with the external
-       * account. The resulting ledger account is linked to the external account for
-       * auto-ledgering Payment objects. See
-       * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-       * for more details.
-       */
-      export interface LedgerAccount {
-        /**
-         * The currency of the ledger account.
-         */
-        currency: string;
-
-        /**
-         * The id of the ledger that this account belongs to.
-         */
-        ledger_id: string;
-
-        /**
-         * The name of the ledger account.
-         */
-        name: string;
-
-        /**
-         * The normal balance of the ledger account.
-         */
-        normal_balance: Shared.TransactionDirection;
-
-        /**
-         * The currency exponent of the ledger account.
-         */
-        currency_exponent?: number | null;
-
-        /**
-         * The description of the ledger account.
-         */
-        description?: string | null;
-
-        /**
-         * The array of ledger account category ids that this ledger account should be a
-         * child of.
-         */
-        ledger_account_category_ids?: Array<string>;
-
-        /**
-         * If the ledger account links to another object in Modern Treasury, the id will be
-         * populated here, otherwise null.
-         */
-        ledgerable_id?: string;
-
-        /**
-         * If the ledger account links to another object in Modern Treasury, the type will
-         * be populated here, otherwise null. The value is one of internal_account or
-         * external_account.
-         */
-        ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
-
-        /**
-         * Additional data represented as key-value pairs. Both the key and value must be
-         * strings.
-         */
-        metadata?: { [key: string]: string };
-      }
-
-      /**
-       * Required if receiving wire payments.
-       */
-      export interface PartyAddress {
-        /**
-         * Country code conforms to [ISO 3166-1 alpha-2]
-         */
-        country?: string | null;
-
-        line1?: string | null;
-
-        line2?: string | null;
-
-        /**
-         * Locality or City.
-         */
-        locality?: string | null;
-
-        /**
-         * The postal code of the address.
-         */
-        postal_code?: string | null;
-
-        /**
-         * Region or State.
-         */
-        region?: string | null;
       }
 
       export interface RoutingDetail {
@@ -2047,7 +1375,7 @@ export namespace BulkRequestCreateParams {
     /**
      * An array of ledger entry objects.
      */
-    ledger_entries?: Array<LedgerTransactionUpdateRequestWithID.LedgerEntry>;
+    ledger_entries?: Array<Shared.LedgerEntryCreateRequest>;
 
     /**
      * If the ledger transaction can be reconciled to another object in Modern
@@ -2079,70 +1407,6 @@ export namespace BulkRequestCreateParams {
      * To post a ledger transaction at creation, use `posted`.
      */
     status?: 'archived' | 'pending' | 'posted';
-  }
-
-  export namespace LedgerTransactionUpdateRequestWithID {
-    export interface LedgerEntry {
-      /**
-       * Value in specified currency's smallest unit. e.g. $10 would be represented
-       * as 1000. Can be any integer up to 36 digits.
-       */
-      amount: number;
-
-      /**
-       * One of `credit`, `debit`. Describes the direction money is flowing in the
-       * transaction. A `credit` moves money from your account to someone else's. A
-       * `debit` pulls money from someone else's account to your own. Note that wire,
-       * rtp, and check payments will always be `credit`.
-       */
-      direction: Shared.TransactionDirection;
-
-      /**
-       * The ledger account that this ledger entry is associated with.
-       */
-      ledger_account_id: string;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s available balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      available_balance_amount?: { [key: string]: number } | null;
-
-      /**
-       * Lock version of the ledger account. This can be passed when creating a ledger
-       * transaction to only succeed if no ledger transactions have posted since the
-       * given version. See our post about Designing the Ledgers API with Optimistic
-       * Locking for more details.
-       */
-      lock_version?: number | null;
-
-      /**
-       * Additional data represented as key-value pairs. Both the key and value must be
-       * strings.
-       */
-      metadata?: { [key: string]: string };
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s pending balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      pending_balance_amount?: { [key: string]: number } | null;
-
-      /**
-       * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-       * account’s posted balance. If any of these conditions would be false after the
-       * transaction is created, the entire call will fail with error code 422.
-       */
-      posted_balance_amount?: { [key: string]: number } | null;
-
-      /**
-       * If true, response will include the balance of the associated ledger account for
-       * the entry.
-       */
-      show_resulting_ledger_account_balances?: boolean | null;
-    }
   }
 }
 

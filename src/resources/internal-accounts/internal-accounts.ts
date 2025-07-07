@@ -233,7 +233,7 @@ export interface InternalAccount {
   /**
    * The address associated with the owner or null.
    */
-  party_address: InternalAccount.PartyAddress | null;
+  party_address: Shared.Address | null;
 
   /**
    * The legal name of the entity which owns the account.
@@ -329,49 +329,6 @@ export namespace InternalAccount {
     updated_at: string;
 
     [k: string]: unknown;
-  }
-
-  /**
-   * The address associated with the owner or null.
-   */
-  export interface PartyAddress {
-    id: string;
-
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string | null;
-
-    created_at: string;
-
-    line1: string | null;
-
-    line2: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    /**
-     * Locality or City.
-     */
-    locality: string | null;
-
-    object: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string | null;
-
-    /**
-     * Region or State.
-     */
-    region: string | null;
-
-    updated_at: string;
   }
 }
 

@@ -92,7 +92,7 @@ export class RoutingDetailsPage extends Page<RoutingDetail> {}
 export interface RoutingDetail {
   id: string;
 
-  bank_address: RoutingDetail.BankAddress | null;
+  bank_address: Shared.Address | null;
 
   /**
    * The name of the bank.
@@ -187,48 +187,6 @@ export interface RoutingDetail {
     | 'za_national_clearing_code';
 
   updated_at: string;
-}
-
-export namespace RoutingDetail {
-  export interface BankAddress {
-    id: string;
-
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string | null;
-
-    created_at: string;
-
-    line1: string | null;
-
-    line2: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    /**
-     * Locality or City.
-     */
-    locality: string | null;
-
-    object: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string | null;
-
-    /**
-     * Region or State.
-     */
-    region: string | null;
-
-    updated_at: string;
-  }
 }
 
 export interface RoutingDetailCreateParams {

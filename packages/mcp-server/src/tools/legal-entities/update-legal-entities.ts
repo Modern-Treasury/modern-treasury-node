@@ -28,40 +28,7 @@ export const tool: Tool = {
         type: 'array',
         description: 'A list of addresses for the entity.',
         items: {
-          type: 'object',
-          properties: {
-            country: {
-              type: 'string',
-              description: 'Country code conforms to [ISO 3166-1 alpha-2]',
-            },
-            line1: {
-              type: 'string',
-            },
-            locality: {
-              type: 'string',
-              description: 'Locality or City.',
-            },
-            postal_code: {
-              type: 'string',
-              description: 'The postal code of the address.',
-            },
-            region: {
-              type: 'string',
-              description: 'Region or State.',
-            },
-            address_types: {
-              type: 'array',
-              description: 'The types of this address.',
-              items: {
-                type: 'string',
-                enum: ['business', 'mailing', 'other', 'po_box', 'residential'],
-              },
-            },
-            line2: {
-              type: 'string',
-            },
-          },
-          required: ['country', 'line1', 'locality', 'postal_code', 'region'],
+          $ref: '#/$defs/legal_entity_address_create_request',
         },
       },
       bank_settings: {
@@ -108,57 +75,7 @@ export const tool: Tool = {
         type: 'array',
         description: 'A list of identifications for the legal entity.',
         items: {
-          type: 'object',
-          properties: {
-            id_number: {
-              type: 'string',
-              description: 'The ID number of identification document.',
-            },
-            id_type: {
-              type: 'string',
-              description: 'The type of ID number.',
-              enum: [
-                'ar_cuil',
-                'ar_cuit',
-                'br_cnpj',
-                'br_cpf',
-                'cl_run',
-                'cl_rut',
-                'co_cedulas',
-                'co_nit',
-                'drivers_license',
-                'hn_id',
-                'hn_rtn',
-                'in_lei',
-                'kr_brn',
-                'kr_crn',
-                'kr_rrn',
-                'passport',
-                'sa_tin',
-                'sa_vat',
-                'us_ein',
-                'us_itin',
-                'us_ssn',
-                'vn_tin',
-              ],
-            },
-            expiration_date: {
-              type: 'string',
-              description:
-                'The date when the Identification is no longer considered valid by the issuing authority.',
-              format: 'date',
-            },
-            issuing_country: {
-              type: 'string',
-              description:
-                'The ISO 3166-1 alpha-2 country code of the country that issued the identification',
-            },
-            issuing_region: {
-              type: 'string',
-              description: 'The region in which the identifcation was issued.',
-            },
-          },
-          required: ['id_number', 'id_type'],
+          $ref: '#/$defs/identification_create_request',
         },
       },
       industry_classifications: {
@@ -229,6 +146,42 @@ export const tool: Tool = {
       },
     },
     $defs: {
+      legal_entity_address_create_request: {
+        type: 'object',
+        properties: {
+          country: {
+            type: 'string',
+            description: 'Country code conforms to [ISO 3166-1 alpha-2]',
+          },
+          line1: {
+            type: 'string',
+          },
+          locality: {
+            type: 'string',
+            description: 'Locality or City.',
+          },
+          postal_code: {
+            type: 'string',
+            description: 'The postal code of the address.',
+          },
+          region: {
+            type: 'string',
+            description: 'Region or State.',
+          },
+          address_types: {
+            type: 'array',
+            description: 'The types of this address.',
+            items: {
+              type: 'string',
+              enum: ['business', 'mailing', 'other', 'po_box', 'residential'],
+            },
+          },
+          line2: {
+            type: 'string',
+          },
+        },
+        required: ['country', 'line1', 'locality', 'postal_code', 'region'],
+      },
       bank_settings: {
         type: 'object',
         properties: {
@@ -355,6 +308,58 @@ export const tool: Tool = {
           'validated',
           'validated_at',
         ],
+      },
+      identification_create_request: {
+        type: 'object',
+        properties: {
+          id_number: {
+            type: 'string',
+            description: 'The ID number of identification document.',
+          },
+          id_type: {
+            type: 'string',
+            description: 'The type of ID number.',
+            enum: [
+              'ar_cuil',
+              'ar_cuit',
+              'br_cnpj',
+              'br_cpf',
+              'cl_run',
+              'cl_rut',
+              'co_cedulas',
+              'co_nit',
+              'drivers_license',
+              'hn_id',
+              'hn_rtn',
+              'in_lei',
+              'kr_brn',
+              'kr_crn',
+              'kr_rrn',
+              'passport',
+              'sa_tin',
+              'sa_vat',
+              'us_ein',
+              'us_itin',
+              'us_ssn',
+              'vn_tin',
+            ],
+          },
+          expiration_date: {
+            type: 'string',
+            description:
+              'The date when the Identification is no longer considered valid by the issuing authority.',
+            format: 'date',
+          },
+          issuing_country: {
+            type: 'string',
+            description: 'The ISO 3166-1 alpha-2 country code of the country that issued the identification',
+          },
+          issuing_region: {
+            type: 'string',
+            description: 'The region in which the identifcation was issued.',
+          },
+        },
+        required: ['id_number', 'id_type'],
       },
       legal_entity_industry_classification: {
         type: 'object',

@@ -230,7 +230,7 @@ export interface LedgerAccountCategory {
    * available balance is the posted incoming entries minus the sum of the pending
    * and posted outgoing amounts.
    */
-  balances: LedgerAccountCategory.Balances;
+  balances: Shared.LedgerBalances;
 
   created_at: string;
 
@@ -276,103 +276,6 @@ export interface LedgerAccountCategory {
   object: string;
 
   updated_at: string;
-}
-
-export namespace LedgerAccountCategory {
-  /**
-   * The pending, posted, and available balances for this ledger account category.
-   * The posted balance is the sum of all posted entries on the account. The pending
-   * balance is the sum of all pending and posted entries on the account. The
-   * available balance is the posted incoming entries minus the sum of the pending
-   * and posted outgoing amounts.
-   */
-  export interface Balances {
-    /**
-     * The available_balance is the sum of all posted inbound entries and pending
-     * outbound entries. For credit normal, available_amount = posted_credits -
-     * pending_debits; for debit normal, available_amount = posted_debits -
-     * pending_credits.
-     */
-    available_balance: Balances.AvailableBalance;
-
-    /**
-     * The pending_balance is the sum of all pending and posted entries.
-     */
-    pending_balance: Balances.PendingBalance;
-
-    /**
-     * The posted_balance is the sum of all posted entries.
-     */
-    posted_balance: Balances.PostedBalance;
-  }
-
-  export namespace Balances {
-    /**
-     * The available_balance is the sum of all posted inbound entries and pending
-     * outbound entries. For credit normal, available_amount = posted_credits -
-     * pending_debits; for debit normal, available_amount = posted_debits -
-     * pending_credits.
-     */
-    export interface AvailableBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
-
-    /**
-     * The pending_balance is the sum of all pending and posted entries.
-     */
-    export interface PendingBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
-
-    /**
-     * The posted_balance is the sum of all posted entries.
-     */
-    export interface PostedBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
-  }
 }
 
 export interface LedgerAccountCategoryCreateParams {

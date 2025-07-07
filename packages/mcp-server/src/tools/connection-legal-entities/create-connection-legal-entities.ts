@@ -33,40 +33,7 @@ export const tool: Tool = {
             type: 'array',
             description: 'A list of addresses for the entity.',
             items: {
-              type: 'object',
-              properties: {
-                country: {
-                  type: 'string',
-                  description: 'Country code conforms to [ISO 3166-1 alpha-2]',
-                },
-                line1: {
-                  type: 'string',
-                },
-                locality: {
-                  type: 'string',
-                  description: 'Locality or City.',
-                },
-                postal_code: {
-                  type: 'string',
-                  description: 'The postal code of the address.',
-                },
-                region: {
-                  type: 'string',
-                  description: 'Region or State.',
-                },
-                address_types: {
-                  type: 'array',
-                  description: 'The types of this address.',
-                  items: {
-                    type: 'string',
-                    enum: ['business', 'mailing', 'other', 'po_box', 'residential'],
-                  },
-                },
-                line2: {
-                  type: 'string',
-                },
-              },
-              required: ['country', 'line1', 'locality', 'postal_code', 'region'],
+              $ref: '#/$defs/legal_entity_address_create_request',
             },
           },
           bank_settings: {
@@ -113,57 +80,7 @@ export const tool: Tool = {
             type: 'array',
             description: 'A list of identifications for the legal entity.',
             items: {
-              type: 'object',
-              properties: {
-                id_number: {
-                  type: 'string',
-                  description: 'The ID number of identification document.',
-                },
-                id_type: {
-                  type: 'string',
-                  description: 'The type of ID number.',
-                  enum: [
-                    'ar_cuil',
-                    'ar_cuit',
-                    'br_cnpj',
-                    'br_cpf',
-                    'cl_run',
-                    'cl_rut',
-                    'co_cedulas',
-                    'co_nit',
-                    'drivers_license',
-                    'hn_id',
-                    'hn_rtn',
-                    'in_lei',
-                    'kr_brn',
-                    'kr_crn',
-                    'kr_rrn',
-                    'passport',
-                    'sa_tin',
-                    'sa_vat',
-                    'us_ein',
-                    'us_itin',
-                    'us_ssn',
-                    'vn_tin',
-                  ],
-                },
-                expiration_date: {
-                  type: 'string',
-                  description:
-                    'The date when the Identification is no longer considered valid by the issuing authority.',
-                  format: 'date',
-                },
-                issuing_country: {
-                  type: 'string',
-                  description:
-                    'The ISO 3166-1 alpha-2 country code of the country that issued the identification',
-                },
-                issuing_region: {
-                  type: 'string',
-                  description: 'The region in which the identifcation was issued.',
-                },
-              },
-              required: ['id_number', 'id_type'],
+              $ref: '#/$defs/identification_create_request',
             },
           },
           industry_classifications: {
@@ -193,226 +110,7 @@ export const tool: Tool = {
                   },
                 },
                 child_legal_entity: {
-                  type: 'object',
-                  description: 'The child legal entity.',
-                  properties: {
-                    addresses: {
-                      type: 'array',
-                      description: 'A list of addresses for the entity.',
-                      items: {
-                        type: 'object',
-                        properties: {
-                          country: {
-                            type: 'string',
-                            description: 'Country code conforms to [ISO 3166-1 alpha-2]',
-                          },
-                          line1: {
-                            type: 'string',
-                          },
-                          locality: {
-                            type: 'string',
-                            description: 'Locality or City.',
-                          },
-                          postal_code: {
-                            type: 'string',
-                            description: 'The postal code of the address.',
-                          },
-                          region: {
-                            type: 'string',
-                            description: 'Region or State.',
-                          },
-                          address_types: {
-                            type: 'array',
-                            description: 'The types of this address.',
-                            items: {
-                              type: 'string',
-                              enum: ['business', 'mailing', 'other', 'po_box', 'residential'],
-                            },
-                          },
-                          line2: {
-                            type: 'string',
-                          },
-                        },
-                        required: ['country', 'line1', 'locality', 'postal_code', 'region'],
-                      },
-                    },
-                    bank_settings: {
-                      $ref: '#/$defs/bank_settings',
-                    },
-                    business_name: {
-                      type: 'string',
-                      description: "The business's legal business name.",
-                    },
-                    citizenship_country: {
-                      type: 'string',
-                      description: 'The country of citizenship for an individual.',
-                    },
-                    compliance_details: {
-                      $ref: '#/$defs/legal_entity_compliance_detail',
-                    },
-                    date_formed: {
-                      type: 'string',
-                      description: "A business's formation date (YYYY-MM-DD).",
-                      format: 'date',
-                    },
-                    date_of_birth: {
-                      type: 'string',
-                      description: "An individual's date of birth (YYYY-MM-DD).",
-                      format: 'date',
-                    },
-                    doing_business_as_names: {
-                      type: 'array',
-                      items: {
-                        type: 'string',
-                        description:
-                          'A list of "Doing Business As" (DBA) / trade names for a business, different than their legal business name.',
-                      },
-                    },
-                    email: {
-                      type: 'string',
-                      description: "The entity's primary email.",
-                    },
-                    first_name: {
-                      type: 'string',
-                      description: "An individual's first name.",
-                    },
-                    identifications: {
-                      type: 'array',
-                      description: 'A list of identifications for the legal entity.',
-                      items: {
-                        type: 'object',
-                        properties: {
-                          id_number: {
-                            type: 'string',
-                            description: 'The ID number of identification document.',
-                          },
-                          id_type: {
-                            type: 'string',
-                            description: 'The type of ID number.',
-                            enum: [
-                              'ar_cuil',
-                              'ar_cuit',
-                              'br_cnpj',
-                              'br_cpf',
-                              'cl_run',
-                              'cl_rut',
-                              'co_cedulas',
-                              'co_nit',
-                              'drivers_license',
-                              'hn_id',
-                              'hn_rtn',
-                              'in_lei',
-                              'kr_brn',
-                              'kr_crn',
-                              'kr_rrn',
-                              'passport',
-                              'sa_tin',
-                              'sa_vat',
-                              'us_ein',
-                              'us_itin',
-                              'us_ssn',
-                              'vn_tin',
-                            ],
-                          },
-                          expiration_date: {
-                            type: 'string',
-                            description:
-                              'The date when the Identification is no longer considered valid by the issuing authority.',
-                            format: 'date',
-                          },
-                          issuing_country: {
-                            type: 'string',
-                            description:
-                              'The ISO 3166-1 alpha-2 country code of the country that issued the identification',
-                          },
-                          issuing_region: {
-                            type: 'string',
-                            description: 'The region in which the identifcation was issued.',
-                          },
-                        },
-                        required: ['id_number', 'id_type'],
-                      },
-                    },
-                    industry_classifications: {
-                      type: 'array',
-                      description: 'A list of industry classifications for the legal entity.',
-                      items: {
-                        $ref: '#/$defs/legal_entity_industry_classification',
-                      },
-                    },
-                    last_name: {
-                      type: 'string',
-                      description: "An individual's last name.",
-                    },
-                    legal_entity_type: {
-                      type: 'string',
-                      description: 'The type of legal entity.',
-                      enum: ['business', 'individual'],
-                    },
-                    legal_structure: {
-                      type: 'string',
-                      description: "The business's legal structure.",
-                      enum: [
-                        'corporation',
-                        'llc',
-                        'non_profit',
-                        'partnership',
-                        'sole_proprietorship',
-                        'trust',
-                      ],
-                    },
-                    metadata: {
-                      type: 'object',
-                      description:
-                        'Additional data represented as key-value pairs. Both the key and value must be strings.',
-                    },
-                    middle_name: {
-                      type: 'string',
-                      description: "An individual's middle name.",
-                    },
-                    phone_numbers: {
-                      type: 'array',
-                      items: {
-                        type: 'object',
-                        description: 'A list of phone numbers in E.164 format.',
-                        properties: {
-                          phone_number: {
-                            type: 'string',
-                          },
-                        },
-                        required: [],
-                      },
-                    },
-                    politically_exposed_person: {
-                      type: 'boolean',
-                      description: 'Whether the individual is a politically exposed person.',
-                    },
-                    preferred_name: {
-                      type: 'string',
-                      description: "An individual's preferred name.",
-                    },
-                    prefix: {
-                      type: 'string',
-                      description: "An individual's prefix.",
-                    },
-                    risk_rating: {
-                      type: 'string',
-                      description: 'The risk rating of the legal entity. One of low, medium, high.',
-                      enum: ['low', 'medium', 'high'],
-                    },
-                    suffix: {
-                      type: 'string',
-                      description: "An individual's suffix.",
-                    },
-                    wealth_and_employment_details: {
-                      $ref: '#/$defs/wealth_and_employment_details',
-                    },
-                    website: {
-                      type: 'string',
-                      description: "The entity's primary website URL.",
-                    },
-                  },
-                  required: [],
+                  $ref: '#/$defs/child_legal_entity_create',
                 },
                 child_legal_entity_id: {
                   type: 'string',
@@ -499,6 +197,42 @@ export const tool: Tool = {
       },
     },
     $defs: {
+      legal_entity_address_create_request: {
+        type: 'object',
+        properties: {
+          country: {
+            type: 'string',
+            description: 'Country code conforms to [ISO 3166-1 alpha-2]',
+          },
+          line1: {
+            type: 'string',
+          },
+          locality: {
+            type: 'string',
+            description: 'Locality or City.',
+          },
+          postal_code: {
+            type: 'string',
+            description: 'The postal code of the address.',
+          },
+          region: {
+            type: 'string',
+            description: 'Region or State.',
+          },
+          address_types: {
+            type: 'array',
+            description: 'The types of this address.',
+            items: {
+              type: 'string',
+              enum: ['business', 'mailing', 'other', 'po_box', 'residential'],
+            },
+          },
+          line2: {
+            type: 'string',
+          },
+        },
+        required: ['country', 'line1', 'locality', 'postal_code', 'region'],
+      },
       bank_settings: {
         type: 'object',
         properties: {
@@ -626,6 +360,58 @@ export const tool: Tool = {
           'validated_at',
         ],
       },
+      identification_create_request: {
+        type: 'object',
+        properties: {
+          id_number: {
+            type: 'string',
+            description: 'The ID number of identification document.',
+          },
+          id_type: {
+            type: 'string',
+            description: 'The type of ID number.',
+            enum: [
+              'ar_cuil',
+              'ar_cuit',
+              'br_cnpj',
+              'br_cpf',
+              'cl_run',
+              'cl_rut',
+              'co_cedulas',
+              'co_nit',
+              'drivers_license',
+              'hn_id',
+              'hn_rtn',
+              'in_lei',
+              'kr_brn',
+              'kr_crn',
+              'kr_rrn',
+              'passport',
+              'sa_tin',
+              'sa_vat',
+              'us_ein',
+              'us_itin',
+              'us_ssn',
+              'vn_tin',
+            ],
+          },
+          expiration_date: {
+            type: 'string',
+            description:
+              'The date when the Identification is no longer considered valid by the issuing authority.',
+            format: 'date',
+          },
+          issuing_country: {
+            type: 'string',
+            description: 'The ISO 3166-1 alpha-2 country code of the country that issued the identification',
+          },
+          issuing_region: {
+            type: 'string',
+            description: 'The region in which the identifcation was issued.',
+          },
+        },
+        required: ['id_number', 'id_type'],
+      },
       legal_entity_industry_classification: {
         type: 'object',
         properties: {
@@ -691,6 +477,137 @@ export const tool: Tool = {
           'object',
           'updated_at',
         ],
+      },
+      child_legal_entity_create: {
+        type: 'object',
+        properties: {
+          addresses: {
+            type: 'array',
+            description: 'A list of addresses for the entity.',
+            items: {
+              $ref: '#/$defs/legal_entity_address_create_request',
+            },
+          },
+          bank_settings: {
+            $ref: '#/$defs/bank_settings',
+          },
+          business_name: {
+            type: 'string',
+            description: "The business's legal business name.",
+          },
+          citizenship_country: {
+            type: 'string',
+            description: 'The country of citizenship for an individual.',
+          },
+          compliance_details: {
+            $ref: '#/$defs/legal_entity_compliance_detail',
+          },
+          date_formed: {
+            type: 'string',
+            description: "A business's formation date (YYYY-MM-DD).",
+            format: 'date',
+          },
+          date_of_birth: {
+            type: 'string',
+            description: "An individual's date of birth (YYYY-MM-DD).",
+            format: 'date',
+          },
+          doing_business_as_names: {
+            type: 'array',
+            items: {
+              type: 'string',
+              description:
+                'A list of "Doing Business As" (DBA) / trade names for a business, different than their legal business name.',
+            },
+          },
+          email: {
+            type: 'string',
+            description: "The entity's primary email.",
+          },
+          first_name: {
+            type: 'string',
+            description: "An individual's first name.",
+          },
+          identifications: {
+            type: 'array',
+            description: 'A list of identifications for the legal entity.',
+            items: {
+              $ref: '#/$defs/identification_create_request',
+            },
+          },
+          industry_classifications: {
+            type: 'array',
+            description: 'A list of industry classifications for the legal entity.',
+            items: {
+              $ref: '#/$defs/legal_entity_industry_classification',
+            },
+          },
+          last_name: {
+            type: 'string',
+            description: "An individual's last name.",
+          },
+          legal_entity_type: {
+            type: 'string',
+            description: 'The type of legal entity.',
+            enum: ['business', 'individual'],
+          },
+          legal_structure: {
+            type: 'string',
+            description: "The business's legal structure.",
+            enum: ['corporation', 'llc', 'non_profit', 'partnership', 'sole_proprietorship', 'trust'],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+          middle_name: {
+            type: 'string',
+            description: "An individual's middle name.",
+          },
+          phone_numbers: {
+            type: 'array',
+            items: {
+              type: 'object',
+              description: 'A list of phone numbers in E.164 format.',
+              properties: {
+                phone_number: {
+                  type: 'string',
+                },
+              },
+              required: [],
+            },
+          },
+          politically_exposed_person: {
+            type: 'boolean',
+            description: 'Whether the individual is a politically exposed person.',
+          },
+          preferred_name: {
+            type: 'string',
+            description: "An individual's preferred name.",
+          },
+          prefix: {
+            type: 'string',
+            description: "An individual's prefix.",
+          },
+          risk_rating: {
+            type: 'string',
+            description: 'The risk rating of the legal entity. One of low, medium, high.',
+            enum: ['low', 'medium', 'high'],
+          },
+          suffix: {
+            type: 'string',
+            description: "An individual's suffix.",
+          },
+          wealth_and_employment_details: {
+            $ref: '#/$defs/wealth_and_employment_details',
+          },
+          website: {
+            type: 'string',
+            description: "The entity's primary website URL.",
+          },
+        },
+        required: [],
       },
       wealth_and_employment_details: {
         type: 'object',

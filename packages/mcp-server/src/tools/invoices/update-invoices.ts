@@ -28,49 +28,7 @@ export const tool: Tool = {
         type: 'array',
         description: "The invoicer's contact details displayed at the top of the invoice.",
         items: {
-          type: 'object',
-          properties: {
-            id: {
-              type: 'string',
-            },
-            contact_identifier: {
-              type: 'string',
-            },
-            contact_identifier_type: {
-              type: 'string',
-              enum: ['email', 'phone_number', 'website'],
-            },
-            created_at: {
-              type: 'string',
-              format: 'date-time',
-            },
-            discarded_at: {
-              type: 'string',
-              format: 'date-time',
-            },
-            live_mode: {
-              type: 'boolean',
-              description:
-                'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
-            },
-            object: {
-              type: 'string',
-            },
-            updated_at: {
-              type: 'string',
-              format: 'date-time',
-            },
-          },
-          required: [
-            'id',
-            'contact_identifier',
-            'contact_identifier_type',
-            'created_at',
-            'discarded_at',
-            'live_mode',
-            'object',
-            'updated_at',
-          ],
+          $ref: '#/$defs/contact_detail',
         },
       },
       counterparty_billing_address: {
@@ -304,6 +262,51 @@ export const tool: Tool = {
       },
     },
     $defs: {
+      contact_detail: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          contact_identifier: {
+            type: 'string',
+          },
+          contact_identifier_type: {
+            type: 'string',
+            enum: ['email', 'phone_number', 'website'],
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+          live_mode: {
+            type: 'boolean',
+            description:
+              'This field will be true if this object exists in the live environment or false if it exists in the test environment.',
+          },
+          object: {
+            type: 'string',
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+        },
+        required: [
+          'id',
+          'contact_identifier',
+          'contact_identifier_type',
+          'created_at',
+          'discarded_at',
+          'live_mode',
+          'object',
+          'updated_at',
+        ],
+      },
       currency: {
         type: 'string',
         description: 'Three-letter ISO currency code.',

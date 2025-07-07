@@ -221,7 +221,7 @@ export namespace LedgerAccount {
      * pending_debits; for debit normal, available_amount = posted_debits -
      * pending_credits.
      */
-    available_balance: Balances.AvailableBalance;
+    available_balance: Shared.LedgerBalance;
 
     /**
      * The inclusive lower bound of the effective_at timestamp for the returned
@@ -238,80 +238,12 @@ export namespace LedgerAccount {
     /**
      * The pending_balance is the sum of all pending and posted entries.
      */
-    pending_balance: Balances.PendingBalance;
+    pending_balance: Shared.LedgerBalance;
 
     /**
      * The posted_balance is the sum of all posted entries.
      */
-    posted_balance: Balances.PostedBalance;
-  }
-
-  export namespace Balances {
-    /**
-     * The available_balance is the sum of all posted inbound entries and pending
-     * outbound entries. For credit normal, available_amount = posted_credits -
-     * pending_debits; for debit normal, available_amount = posted_debits -
-     * pending_credits.
-     */
-    export interface AvailableBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
-
-    /**
-     * The pending_balance is the sum of all pending and posted entries.
-     */
-    export interface PendingBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
-
-    /**
-     * The posted_balance is the sum of all posted entries.
-     */
-    export interface PostedBalance {
-      amount: number;
-
-      credits: number;
-
-      /**
-       * The currency of the ledger account.
-       */
-      currency: string;
-
-      /**
-       * The currency exponent of the ledger account.
-       */
-      currency_exponent: number;
-
-      debits: number;
-    }
+    posted_balance: Shared.LedgerBalance;
   }
 }
 

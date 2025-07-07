@@ -40,20 +40,7 @@ export const tool: Tool = {
         $ref: '#/$defs/payment_order_type',
       },
       accounting: {
-        type: 'object',
-        properties: {
-          account_id: {
-            type: 'string',
-            description:
-              'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
-          },
-          class_id: {
-            type: 'string',
-            description:
-              'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
-          },
-        },
-        required: [],
+        $ref: '#/$defs/accounting',
       },
       accounting_category_id: {
         type: 'string',
@@ -146,113 +133,7 @@ export const tool: Tool = {
         enum: ['fixed_to_variable', 'variable_to_fixed'],
       },
       ledger_transaction: {
-        type: 'object',
-        description:
-          'Specifies a ledger transaction object that will be created with the payment order. If the ledger transaction cannot be created, then the payment order creation will fail. The resulting ledger transaction will mirror the status of the payment order.',
-        properties: {
-          ledger_entries: {
-            type: 'array',
-            description: 'An array of ledger entry objects.',
-            items: {
-              type: 'object',
-              properties: {
-                amount: {
-                  type: 'integer',
-                  description:
-                    "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.",
-                },
-                direction: {
-                  $ref: '#/$defs/transaction_direction',
-                },
-                ledger_account_id: {
-                  type: 'string',
-                  description: 'The ledger account that this ledger entry is associated with.',
-                },
-                available_balance_amount: {
-                  type: 'object',
-                  description:
-                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s available balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
-                },
-                lock_version: {
-                  type: 'integer',
-                  description:
-                    'Lock version of the ledger account. This can be passed when creating a ledger transaction to only succeed if no ledger transactions have posted since the given version. See our post about Designing the Ledgers API with Optimistic Locking for more details.',
-                },
-                metadata: {
-                  type: 'object',
-                  description:
-                    'Additional data represented as key-value pairs. Both the key and value must be strings.',
-                },
-                pending_balance_amount: {
-                  type: 'object',
-                  description:
-                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s pending balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
-                },
-                posted_balance_amount: {
-                  type: 'object',
-                  description:
-                    'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s posted balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
-                },
-                show_resulting_ledger_account_balances: {
-                  type: 'boolean',
-                  description:
-                    'If true, response will include the balance of the associated ledger account for the entry.',
-                },
-              },
-              required: ['amount', 'direction', 'ledger_account_id'],
-            },
-          },
-          description: {
-            type: 'string',
-            description: 'An optional description for internal use.',
-          },
-          effective_at: {
-            type: 'string',
-            description:
-              'The timestamp (ISO8601 format) at which the ledger transaction happened for reporting purposes.',
-            format: 'date-time',
-          },
-          effective_date: {
-            type: 'string',
-            description:
-              'The date (YYYY-MM-DD) on which the ledger transaction happened for reporting purposes.',
-            format: 'date',
-          },
-          external_id: {
-            type: 'string',
-            description:
-              'A unique string to represent the ledger transaction. Only one pending or posted ledger transaction may have this ID in the ledger.',
-          },
-          ledgerable_id: {
-            type: 'string',
-            description:
-              'If the ledger transaction can be reconciled to another object in Modern Treasury, the id will be populated here, otherwise null.',
-          },
-          ledgerable_type: {
-            type: 'string',
-            description:
-              'If the ledger transaction can be reconciled to another object in Modern Treasury, the type will be populated here, otherwise null. This can be one of payment_order, incoming_payment_detail, expected_payment, return, paper_item, or reversal.',
-            enum: [
-              'expected_payment',
-              'incoming_payment_detail',
-              'paper_item',
-              'payment_order',
-              'return',
-              'reversal',
-            ],
-          },
-          metadata: {
-            type: 'object',
-            description:
-              'Additional data represented as key-value pairs. Both the key and value must be strings.',
-          },
-          status: {
-            type: 'string',
-            description: 'To post a ledger transaction at creation, use `posted`.',
-            enum: ['archived', 'pending', 'posted'],
-          },
-        },
-        required: ['ledger_entries'],
+        $ref: '#/$defs/ledger_transaction_create_request',
       },
       ledger_transaction_id: {
         type: 'string',
@@ -362,73 +243,11 @@ export const tool: Tool = {
           contact_details: {
             type: 'array',
             items: {
-              type: 'object',
-              properties: {
-                contact_identifier: {
-                  type: 'string',
-                },
-                contact_identifier_type: {
-                  type: 'string',
-                  enum: ['email', 'phone_number', 'website'],
-                },
-              },
-              required: [],
+              $ref: '#/$defs/contact_detail_create_request',
             },
           },
           ledger_account: {
-            type: 'object',
-            description:
-              'Specifies a ledger account object that will be created with the external account. The resulting ledger account is linked to the external account for auto-ledgering Payment objects. See https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects for more details.',
-            properties: {
-              currency: {
-                type: 'string',
-                description: 'The currency of the ledger account.',
-              },
-              ledger_id: {
-                type: 'string',
-                description: 'The id of the ledger that this account belongs to.',
-              },
-              name: {
-                type: 'string',
-                description: 'The name of the ledger account.',
-              },
-              normal_balance: {
-                $ref: '#/$defs/transaction_direction',
-              },
-              currency_exponent: {
-                type: 'integer',
-                description: 'The currency exponent of the ledger account.',
-              },
-              description: {
-                type: 'string',
-                description: 'The description of the ledger account.',
-              },
-              ledger_account_category_ids: {
-                type: 'array',
-                description:
-                  'The array of ledger account category ids that this ledger account should be a child of.',
-                items: {
-                  type: 'string',
-                },
-              },
-              ledgerable_id: {
-                type: 'string',
-                description:
-                  'If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null.',
-              },
-              ledgerable_type: {
-                type: 'string',
-                description:
-                  'If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account.',
-                enum: ['counterparty', 'external_account', 'internal_account', 'virtual_account'],
-              },
-              metadata: {
-                type: 'object',
-                description:
-                  'Additional data represented as key-value pairs. Both the key and value must be strings.',
-              },
-            },
-            required: ['currency', 'ledger_id', 'name', 'normal_balance'],
+            $ref: '#/$defs/ledger_account_create_request',
           },
           metadata: {
             type: 'object',
@@ -441,33 +260,7 @@ export const tool: Tool = {
               "A nickname for the external account. This is only for internal usage and won't affect any payments",
           },
           party_address: {
-            type: 'object',
-            description: 'Required if receiving wire payments.',
-            properties: {
-              country: {
-                type: 'string',
-                description: 'Country code conforms to [ISO 3166-1 alpha-2]',
-              },
-              line1: {
-                type: 'string',
-              },
-              line2: {
-                type: 'string',
-              },
-              locality: {
-                type: 'string',
-                description: 'Locality or City.',
-              },
-              postal_code: {
-                type: 'string',
-                description: 'The postal code of the address.',
-              },
-              region: {
-                type: 'string',
-                description: 'Region or State.',
-              },
-            },
-            required: [],
+            $ref: '#/$defs/address_request',
           },
           party_identifier: {
             type: 'string',
@@ -653,6 +446,22 @@ export const tool: Tool = {
           'wire',
           'zengin',
         ],
+      },
+      accounting: {
+        type: 'object',
+        properties: {
+          account_id: {
+            type: 'string',
+            description:
+              'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
+          },
+          class_id: {
+            type: 'string',
+            description:
+              'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
+          },
+        },
+        required: [],
       },
       currency: {
         type: 'string',
@@ -856,6 +665,116 @@ export const tool: Tool = {
           'ZWR',
         ],
       },
+      ledger_transaction_create_request: {
+        type: 'object',
+        properties: {
+          ledger_entries: {
+            type: 'array',
+            description: 'An array of ledger entry objects.',
+            items: {
+              $ref: '#/$defs/ledger_entry_create_request',
+            },
+          },
+          description: {
+            type: 'string',
+            description: 'An optional description for internal use.',
+          },
+          effective_at: {
+            type: 'string',
+            description:
+              'The timestamp (ISO8601 format) at which the ledger transaction happened for reporting purposes.',
+            format: 'date-time',
+          },
+          effective_date: {
+            type: 'string',
+            description:
+              'The date (YYYY-MM-DD) on which the ledger transaction happened for reporting purposes.',
+            format: 'date',
+          },
+          external_id: {
+            type: 'string',
+            description:
+              'A unique string to represent the ledger transaction. Only one pending or posted ledger transaction may have this ID in the ledger.',
+          },
+          ledgerable_id: {
+            type: 'string',
+            description:
+              'If the ledger transaction can be reconciled to another object in Modern Treasury, the id will be populated here, otherwise null.',
+          },
+          ledgerable_type: {
+            type: 'string',
+            description:
+              'If the ledger transaction can be reconciled to another object in Modern Treasury, the type will be populated here, otherwise null. This can be one of payment_order, incoming_payment_detail, expected_payment, return, paper_item, or reversal.',
+            enum: [
+              'expected_payment',
+              'incoming_payment_detail',
+              'paper_item',
+              'payment_order',
+              'return',
+              'reversal',
+            ],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+          status: {
+            type: 'string',
+            description: 'To post a ledger transaction at creation, use `posted`.',
+            enum: ['archived', 'pending', 'posted'],
+          },
+        },
+        required: ['ledger_entries'],
+      },
+      ledger_entry_create_request: {
+        type: 'object',
+        properties: {
+          amount: {
+            type: 'integer',
+            description:
+              "Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.",
+          },
+          direction: {
+            $ref: '#/$defs/transaction_direction',
+          },
+          ledger_account_id: {
+            type: 'string',
+            description: 'The ledger account that this ledger entry is associated with.',
+          },
+          available_balance_amount: {
+            type: 'object',
+            description:
+              'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s available balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+          },
+          lock_version: {
+            type: 'integer',
+            description:
+              'Lock version of the ledger account. This can be passed when creating a ledger transaction to only succeed if no ledger transactions have posted since the given version. See our post about Designing the Ledgers API with Optimistic Locking for more details.',
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+          pending_balance_amount: {
+            type: 'object',
+            description:
+              'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s pending balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+          },
+          posted_balance_amount: {
+            type: 'object',
+            description:
+              'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s posted balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+          },
+          show_resulting_ledger_account_balances: {
+            type: 'boolean',
+            description:
+              'If true, response will include the balance of the associated ledger account for the entry.',
+          },
+        },
+        required: ['amount', 'direction', 'ledger_account_id'],
+      },
       transaction_direction: {
         type: 'string',
         enum: ['credit', 'debit'],
@@ -878,6 +797,100 @@ export const tool: Tool = {
           'savings',
           'solana_wallet',
         ],
+      },
+      contact_detail_create_request: {
+        type: 'object',
+        properties: {
+          contact_identifier: {
+            type: 'string',
+          },
+          contact_identifier_type: {
+            type: 'string',
+            enum: ['email', 'phone_number', 'website'],
+          },
+        },
+        required: [],
+      },
+      ledger_account_create_request: {
+        type: 'object',
+        properties: {
+          currency: {
+            type: 'string',
+            description: 'The currency of the ledger account.',
+          },
+          ledger_id: {
+            type: 'string',
+            description: 'The id of the ledger that this account belongs to.',
+          },
+          name: {
+            type: 'string',
+            description: 'The name of the ledger account.',
+          },
+          normal_balance: {
+            $ref: '#/$defs/transaction_direction',
+          },
+          currency_exponent: {
+            type: 'integer',
+            description: 'The currency exponent of the ledger account.',
+          },
+          description: {
+            type: 'string',
+            description: 'The description of the ledger account.',
+          },
+          ledger_account_category_ids: {
+            type: 'array',
+            description:
+              'The array of ledger account category ids that this ledger account should be a child of.',
+            items: {
+              type: 'string',
+            },
+          },
+          ledgerable_id: {
+            type: 'string',
+            description:
+              'If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null.',
+          },
+          ledgerable_type: {
+            type: 'string',
+            description:
+              'If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account.',
+            enum: ['counterparty', 'external_account', 'internal_account', 'virtual_account'],
+          },
+          metadata: {
+            type: 'object',
+            description:
+              'Additional data represented as key-value pairs. Both the key and value must be strings.',
+          },
+        },
+        required: ['currency', 'ledger_id', 'name', 'normal_balance'],
+      },
+      address_request: {
+        type: 'object',
+        properties: {
+          country: {
+            type: 'string',
+            description: 'Country code conforms to [ISO 3166-1 alpha-2]',
+          },
+          line1: {
+            type: 'string',
+          },
+          line2: {
+            type: 'string',
+          },
+          locality: {
+            type: 'string',
+            description: 'Locality or City.',
+          },
+          postal_code: {
+            type: 'string',
+            description: 'The postal code of the address.',
+          },
+          region: {
+            type: 'string',
+            description: 'Region or State.',
+          },
+        },
+        required: [],
       },
       payment_order_subtype: {
         type: 'string',

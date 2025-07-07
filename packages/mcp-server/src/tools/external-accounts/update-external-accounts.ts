@@ -41,32 +41,7 @@ export const tool: Tool = {
           "A nickname for the external account. This is only for internal usage and won't affect any payments",
       },
       party_address: {
-        type: 'object',
-        properties: {
-          country: {
-            type: 'string',
-            description: 'Country code conforms to [ISO 3166-1 alpha-2]',
-          },
-          line1: {
-            type: 'string',
-          },
-          line2: {
-            type: 'string',
-          },
-          locality: {
-            type: 'string',
-            description: 'Locality or City.',
-          },
-          postal_code: {
-            type: 'string',
-            description: 'The postal code of the address.',
-          },
-          region: {
-            type: 'string',
-            description: 'Region or State.',
-          },
-        },
-        required: [],
+        $ref: '#/$defs/address_request',
       },
       party_name: {
         type: 'string',
@@ -97,6 +72,34 @@ export const tool: Tool = {
           'savings',
           'solana_wallet',
         ],
+      },
+      address_request: {
+        type: 'object',
+        properties: {
+          country: {
+            type: 'string',
+            description: 'Country code conforms to [ISO 3166-1 alpha-2]',
+          },
+          line1: {
+            type: 'string',
+          },
+          line2: {
+            type: 'string',
+          },
+          locality: {
+            type: 'string',
+            description: 'Locality or City.',
+          },
+          postal_code: {
+            type: 'string',
+            description: 'The postal code of the address.',
+          },
+          region: {
+            type: 'string',
+            description: 'Region or State.',
+          },
+        },
+        required: [],
       },
     },
   },
