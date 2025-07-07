@@ -154,7 +154,6 @@ export {
   type LedgerEntryUpdateParams,
   type LedgerEntryListParams,
 } from './ledger-entries';
-export { LedgerEventHandlers } from './ledger-event-handlers';
 export {
   LedgerTransactionsPage,
   LedgerTransactions,

@@ -137,7 +137,6 @@ import {
   LedgerEntryRetrieveParams,
   LedgerEntryUpdateParams,
 } from './resources/ledger-entries';
-import { LedgerEventHandlers } from './resources/ledger-event-handlers';
 import {
   Ledger,
   LedgerCreateParams,
@@ -438,7 +437,6 @@ export class ModernTreasury extends Core.APIClient {
   ledgerAccountBalanceMonitors: API.LedgerAccountBalanceMonitors = new API.LedgerAccountBalanceMonitors(this);
   ledgerAccountStatements: API.LedgerAccountStatements = new API.LedgerAccountStatements(this);
   ledgerEntries: API.LedgerEntries = new API.LedgerEntries(this);
-  ledgerEventHandlers: API.LedgerEventHandlers = new API.LedgerEventHandlers(this);
   ledgerTransactions: API.LedgerTransactions = new API.LedgerTransactions(this);
   lineItems: API.LineItems = new API.LineItems(this);
   paymentFlows: API.PaymentFlows = new API.PaymentFlows(this);
@@ -558,7 +556,6 @@ ModernTreasury.LedgerAccountBalanceMonitorsPage = LedgerAccountBalanceMonitorsPa
 ModernTreasury.LedgerAccountStatements = LedgerAccountStatements;
 ModernTreasury.LedgerEntries = LedgerEntries;
 ModernTreasury.LedgerEntriesPage = LedgerEntriesPage;
-ModernTreasury.LedgerEventHandlers = LedgerEventHandlers;
 ModernTreasury.LedgerTransactions = LedgerTransactions;
 ModernTreasury.LedgerTransactionsPage = LedgerTransactionsPage;
 ModernTreasury.LineItems = LineItems;
@@ -765,8 +762,6 @@ export declare namespace ModernTreasury {
     type LedgerEntryUpdateParams as LedgerEntryUpdateParams,
     type LedgerEntryListParams as LedgerEntryListParams,
   };
-
-  export { LedgerEventHandlers as LedgerEventHandlers };
 
   export {
     LedgerTransactions as LedgerTransactions,
