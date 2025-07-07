@@ -283,6 +283,7 @@ export interface Transaction {
     | 'dwolla'
     | 'evolve'
     | 'goldman_sachs'
+    | 'hifi'
     | 'iso20022'
     | 'jpmc'
     | 'mx'
