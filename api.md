@@ -237,8 +237,6 @@ Methods:
 - <code title="get /api/ledgers">client.ledgers.<a href="./src/resources/ledgers.ts">list</a>({ ...params }) -> LedgersPage</code>
 - <code title="delete /api/ledgers/{id}">client.ledgers.<a href="./src/resources/ledgers.ts">del</a>(id) -> Ledger</code>
 
-# LedgerableEvents
-
 # LedgerAccountCategories
 
 Types:
