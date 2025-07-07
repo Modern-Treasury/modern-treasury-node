@@ -150,4 +150,23 @@ describe('resource internalAccounts', () => {
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
+
+  test('updateAccountCapability: only required params', async () => {
+    const responsePromise = client.internalAccounts.updateAccountCapability('internal_account_id', 'id', {
+      identifier: 'identifier',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateAccountCapability: required and optional params', async () => {
+    const response = await client.internalAccounts.updateAccountCapability('internal_account_id', 'id', {
+      identifier: 'identifier',
+    });
+  });
 });
