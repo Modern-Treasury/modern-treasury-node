@@ -139,7 +139,6 @@ import {
   LedgerEntryUpdateParams,
 } from './resources/ledger-entries';
 import { LedgerEventHandlers } from './resources/ledger-event-handlers';
-import { LedgerableEvents } from './resources/ledgerable-events';
 import {
   Ledger,
   LedgerCreateParams,
@@ -435,7 +434,6 @@ export class ModernTreasury extends Core.APIClient {
   routingDetails: API.RoutingDetails = new API.RoutingDetails(this);
   internalAccounts: API.InternalAccounts = new API.InternalAccounts(this);
   ledgers: API.Ledgers = new API.Ledgers(this);
-  ledgerableEvents: API.LedgerableEvents = new API.LedgerableEvents(this);
   ledgerAccountCategories: API.LedgerAccountCategories = new API.LedgerAccountCategories(this);
   ledgerAccounts: API.LedgerAccounts = new API.LedgerAccounts(this);
   ledgerAccountBalanceMonitors: API.LedgerAccountBalanceMonitors = new API.LedgerAccountBalanceMonitors(this);
@@ -553,7 +551,6 @@ ModernTreasury.InternalAccounts = InternalAccounts;
 ModernTreasury.InternalAccountsPage = InternalAccountsPage;
 ModernTreasury.Ledgers = Ledgers;
 ModernTreasury.LedgersPage = LedgersPage;
-ModernTreasury.LedgerableEvents = LedgerableEvents;
 ModernTreasury.LedgerAccountCategories = LedgerAccountCategories;
 ModernTreasury.LedgerAccountCategoriesPage = LedgerAccountCategoriesPage;
 ModernTreasury.LedgerAccounts = LedgerAccounts;
@@ -725,8 +722,6 @@ export declare namespace ModernTreasury {
     type LedgerUpdateParams as LedgerUpdateParams,
     type LedgerListParams as LedgerListParams,
   };
-
-  export { LedgerableEvents as LedgerableEvents };
 
   export {
     LedgerAccountCategories as LedgerAccountCategories,

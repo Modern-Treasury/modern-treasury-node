@@ -165,7 +165,6 @@ export {
   type LedgerTransactionCreatePartialPostParams,
   type LedgerTransactionCreateReversalParams,
 } from './ledger-transactions/ledger-transactions';
-export { LedgerableEvents } from './ledgerable-events';
 export {
   LedgersPage,
   Ledgers,
