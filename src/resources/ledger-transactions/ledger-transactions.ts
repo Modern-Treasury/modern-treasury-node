@@ -451,7 +451,7 @@ export interface LedgerTransactionListParams extends PageParams {
 
   reverses_ledger_transaction_id?: string;
 
-  status?: 'pending' | 'posted' | 'archived';
+  status?: 'pending' | 'posted' | 'archived' | Array<'pending' | 'posted' | 'archived'>;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
