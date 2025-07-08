@@ -107,8 +107,19 @@ export const tool: Tool = {
         type: 'string',
       },
       status: {
-        type: 'string',
-        enum: ['pending', 'posted', 'archived'],
+        anyOf: [
+          {
+            type: 'string',
+            enum: ['pending', 'posted', 'archived'],
+          },
+          {
+            type: 'array',
+            items: {
+              type: 'string',
+              enum: ['pending', 'posted', 'archived'],
+            },
+          },
+        ],
       },
       updated_at: {
         type: 'object',

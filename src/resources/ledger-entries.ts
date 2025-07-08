@@ -275,9 +275,10 @@ export interface LedgerEntryListParams extends PageParams {
 
   /**
    * Get all ledger entries that match the status specified. One of `pending`,
-   * `posted`, or `archived`.
+   * `posted`, or `archived`. For multiple statuses, use
+   * `status[]=pending&status[]=posted`.
    */
-  status?: 'pending' | 'posted' | 'archived';
+  status?: 'pending' | 'posted' | 'archived' | Array<'pending' | 'posted' | 'archived'>;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
