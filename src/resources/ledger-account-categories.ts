@@ -326,7 +326,8 @@ export interface LedgerAccountCategoryRetrieveParams {
   /**
    * For example, if you want the balances as of a particular time (ISO8601), the
    * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-   * The balances as of a time are inclusive of entries with that exact time.
+   * The balances as of a time are inclusive of entries with that exact time, but
+   * with respect to the ledger accounts that are currently present in the category.
    */
   balances?: LedgerAccountCategoryRetrieveParams.Balances;
 }
@@ -335,7 +336,8 @@ export namespace LedgerAccountCategoryRetrieveParams {
   /**
    * For example, if you want the balances as of a particular time (ISO8601), the
    * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-   * The balances as of a time are inclusive of entries with that exact time.
+   * The balances as of a time are inclusive of entries with that exact time, but
+   * with respect to the ledger accounts that are currently present in the category.
    */
   export interface Balances {
     as_of_date?: string;
@@ -372,7 +374,8 @@ export interface LedgerAccountCategoryListParams extends PageParams {
   /**
    * For example, if you want the balances as of a particular time (ISO8601), the
    * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-   * The balances as of a time are inclusive of entries with that exact time.
+   * The balances as of a time are inclusive of entries with that exact time, but
+   * with respect to the ledger accounts that are currently present in the category.
    */
   balances?: LedgerAccountCategoryListParams.Balances;
 
@@ -407,7 +410,8 @@ export namespace LedgerAccountCategoryListParams {
   /**
    * For example, if you want the balances as of a particular time (ISO8601), the
    * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-   * The balances as of a time are inclusive of entries with that exact time.
+   * The balances as of a time are inclusive of entries with that exact time, but
+   * with respect to the ledger accounts that are currently present in the category.
    */
   export interface Balances {
     effective_at?: string;
