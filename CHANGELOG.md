@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.41.0 (2025-07-10)
+
+Full Changelog: [v2.40.0...v2.41.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.40.0...v2.41.0)
+
+### Features
+
+* **api:** api update ([ce4ae4e](https://github.com/Modern-Treasury/modern-treasury-node/commit/ce4ae4e171c91e5ac8248990c6036ac18445f5fd))
+* **api:** api update ([f245a3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/f245a3cf4bd5d4db96d760003140298831539a0f))
+* **api:** manual updates ([9c36528](https://github.com/Modern-Treasury/modern-treasury-node/commit/9c36528ef92f42f614830d549d4ec5e60b3ab18c))
+* **api:** manual updates ([629ce85](https://github.com/Modern-Treasury/modern-treasury-node/commit/629ce8535082327ec0eaf4fb8ddeceecc5807c56))
+* **api:** manual updates ([cbcee0f](https://github.com/Modern-Treasury/modern-treasury-node/commit/cbcee0f040125e21228dfac3044d7c09e952df2c))
+* **api:** manual updates ([96bb5d7](https://github.com/Modern-Treasury/modern-treasury-node/commit/96bb5d7f67a456bc8562a4959310eddc2a3fbcaa))
+* **mcp:** support filtering tool results by a jq expression ([e8ad943](https://github.com/Modern-Treasury/modern-treasury-node/commit/e8ad9433c731fc9b7c2c4d1d8b98dd10234d38f7))
+
+
+### Bug Fixes
+
+* **mcp:** relax input type for asTextContextResult ([1aa607c](https://github.com/Modern-Treasury/modern-treasury-node/commit/1aa607c5ed6db33ae2df7458fa1dad795f8b2e84))
+
+
+### Chores
+
+* make some internal functions async ([c02feb3](https://github.com/Modern-Treasury/modern-treasury-node/commit/c02feb30bf8b8ab80f752ac9e0f6ecdf532acf52))
+
 ## 2.40.0 (2025-07-07)
 
 Full Changelog: [v2.39.0...v2.40.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.39.0...v2.40.0)
