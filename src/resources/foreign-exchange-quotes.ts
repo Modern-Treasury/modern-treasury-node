@@ -84,7 +84,7 @@ export interface ForeignExchangeQuote {
   /**
    * The serialized rate information represented by this quote.
    */
-  foreign_exchange_rate: ForeignExchangeQuote.ForeignExchangeRate;
+  foreign_exchange_rate: Shared.ForeignExchangeRate;
 
   /**
    * The ID for the `InternalAccount` this quote is associated with.
@@ -111,52 +111,6 @@ export interface ForeignExchangeQuote {
    * This vendor assigned ID for this quote.
    */
   vendor_id?: string;
-}
-
-export namespace ForeignExchangeQuote {
-  /**
-   * The serialized rate information represented by this quote.
-   */
-  export interface ForeignExchangeRate {
-    /**
-     * Amount in the lowest denomination of the `base_currency` to convert, often
-     * called the "sell" amount.
-     */
-    base_amount: number;
-
-    /**
-     * Currency to convert, often called the "sell" currency.
-     */
-    base_currency: Shared.Currency;
-
-    /**
-     * The exponent component of the rate. The decimal is calculated as `value` / (10 ^
-     * `exponent`).
-     */
-    exponent: number;
-
-    /**
-     * A string representation of the rate.
-     */
-    rate_string: string;
-
-    /**
-     * Amount in the lowest denomination of the `target_currency`, often called the
-     * "buy" amount.
-     */
-    target_amount: number;
-
-    /**
-     * Currency to convert the `base_currency` to, often called the "buy" currency.
-     */
-    target_currency: Shared.Currency;
-
-    /**
-     * The whole number component of the rate. The decimal is calculated as `value` /
-     * (10 ^ `exponent`).
-     */
-    value: number;
-  }
 }
 
 export interface ForeignExchangeQuoteCreateParams {

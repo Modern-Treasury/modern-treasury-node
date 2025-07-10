@@ -116,6 +116,31 @@ export class InternalAccounts extends APIResource {
     }
     return this._client.getAPIList('/api/internal_accounts', InternalAccountsPage, { query, ...options });
   }
+
+  /**
+   * update account_capability
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.internalAccounts.updateAccountCapability(
+   *     'internal_account_id',
+   *     'id',
+   *     { identifier: 'identifier' },
+   *   );
+   * ```
+   */
+  updateAccountCapability(
+    internalAccountId: string,
+    id: string,
+    body: InternalAccountUpdateAccountCapabilityParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<InternalAccountUpdateAccountCapabilityResponse> {
+    return this._client.patch(`/api/internal_accounts/${internalAccountId}/account_capabilities/${id}`, {
+      body,
+      ...options,
+    });
+  }
 }
 
 export class InternalAccountsPage extends Page<InternalAccount> {}
@@ -208,7 +233,7 @@ export interface InternalAccount {
   /**
    * The address associated with the owner or null.
    */
-  party_address: InternalAccount.PartyAddress | null;
+  party_address: Shared.Address | null;
 
   /**
    * The legal name of the entity which owns the account.
@@ -305,49 +330,78 @@ export namespace InternalAccount {
 
     [k: string]: unknown;
   }
+}
+
+export interface InternalAccountUpdateAccountCapabilityResponse {
+  id: string;
+
+  created_at: string;
 
   /**
-   * The address associated with the owner or null.
+   * One of `debit` or `credit`. Indicates the direction of money movement this
+   * capability is responsible for.
    */
-  export interface PartyAddress {
-    id: string;
+  direction: Shared.TransactionDirection;
 
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string | null;
+  discarded_at: string | null;
 
-    created_at: string;
+  /**
+   * A unique reference assigned by your bank for tracking and recognizing payment
+   * files. It is important this is formatted exactly how the bank assigned it.
+   */
+  identifier: string | null;
 
-    line1: string | null;
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
 
-    line2: string | null;
+  object: string;
 
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
+  /**
+   * Indicates the the type of payment this capability is responsible for
+   * originating.
+   */
+  payment_type:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'base'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'ethereum'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'polygon'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'solana'
+    | 'wire'
+    | 'zengin';
 
-    /**
-     * Locality or City.
-     */
-    locality: string | null;
+  updated_at: string;
 
-    object: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string | null;
-
-    /**
-     * Region or State.
-     */
-    region: string | null;
-
-    updated_at: string;
-  }
+  [k: string]: unknown;
 }
 
 export interface InternalAccountCreateParams {
@@ -623,6 +677,14 @@ export interface InternalAccountListParams extends PageParams {
     | 'zengin';
 }
 
+export interface InternalAccountUpdateAccountCapabilityParams {
+  /**
+   * A unique reference assigned by your bank for tracking and recognizing payment
+   * files. It is important this is formatted exactly how the bank assigned it.
+   */
+  identifier: string;
+}
+
 InternalAccounts.InternalAccountsPage = InternalAccountsPage;
 InternalAccounts.BalanceReports = BalanceReports;
 InternalAccounts.BalanceReportsPage = BalanceReportsPage;
@@ -630,10 +692,12 @@ InternalAccounts.BalanceReportsPage = BalanceReportsPage;
 export declare namespace InternalAccounts {
   export {
     type InternalAccount as InternalAccount,
+    type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
     InternalAccountsPage as InternalAccountsPage,
     type InternalAccountCreateParams as InternalAccountCreateParams,
     type InternalAccountUpdateParams as InternalAccountUpdateParams,
     type InternalAccountListParams as InternalAccountListParams,
+    type InternalAccountUpdateAccountCapabilityParams as InternalAccountUpdateAccountCapabilityParams,
   };
 
   export {

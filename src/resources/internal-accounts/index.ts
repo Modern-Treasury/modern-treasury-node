@@ -11,7 +11,9 @@ export {
   InternalAccountsPage,
   InternalAccounts,
   type InternalAccount,
+  type InternalAccountUpdateAccountCapabilityResponse,
   type InternalAccountCreateParams,
   type InternalAccountUpdateParams,
   type InternalAccountListParams,
+  type InternalAccountUpdateAccountCapabilityParams,
 } from './internal-accounts';

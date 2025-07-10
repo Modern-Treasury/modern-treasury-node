@@ -12,9 +12,22 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">Accounting</a></code>
 - <code><a href="./src/resources/shared.ts">AccountsType</a></code>
+- <code><a href="./src/resources/shared.ts">Address</a></code>
+- <code><a href="./src/resources/shared.ts">AddressRequest</a></code>
 - <code><a href="./src/resources/shared.ts">AsyncResponse</a></code>
+- <code><a href="./src/resources/shared.ts">ChildLegalEntityCreate</a></code>
+- <code><a href="./src/resources/shared.ts">ContactDetail</a></code>
 - <code><a href="./src/resources/shared.ts">Currency</a></code>
+- <code><a href="./src/resources/shared.ts">ForeignExchangeRate</a></code>
+- <code><a href="./src/resources/shared.ts">IdentificationCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerAccountCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerBalance</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerBalances</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerEntryCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LedgerTransactionCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LegalEntityAddressCreateRequest</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityComplianceDetail</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityIndustryClassification</a></code>
 - <code><a href="./src/resources/shared.ts">TransactionDirection</a></code>
@@ -187,6 +200,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/internal-accounts/internal-accounts.ts">InternalAccount</a></code>
+- <code><a href="./src/resources/internal-accounts/internal-accounts.ts">InternalAccountUpdateAccountCapabilityResponse</a></code>
 
 Methods:
 
@@ -194,6 +208,7 @@ Methods:
 - <code title="get /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">retrieve</a>(id) -> InternalAccount</code>
 - <code title="patch /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">update</a>(id, { ...params }) -> InternalAccount</code>
 - <code title="get /api/internal_accounts">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">list</a>({ ...params }) -> InternalAccountsPage</code>
+- <code title="patch /api/internal_accounts/{internal_account_id}/account_capabilities/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">updateAccountCapability</a>(internalAccountId, id, { ...params }) -> InternalAccountUpdateAccountCapabilityResponse</code>
 
 ## BalanceReports
 
@@ -221,8 +236,6 @@ Methods:
 - <code title="patch /api/ledgers/{id}">client.ledgers.<a href="./src/resources/ledgers.ts">update</a>(id, { ...params }) -> Ledger</code>
 - <code title="get /api/ledgers">client.ledgers.<a href="./src/resources/ledgers.ts">list</a>({ ...params }) -> LedgersPage</code>
 - <code title="delete /api/ledgers/{id}">client.ledgers.<a href="./src/resources/ledgers.ts">del</a>(id) -> Ledger</code>
-
-# LedgerableEvents
 
 # LedgerAccountCategories
 
@@ -294,8 +307,6 @@ Methods:
 - <code title="patch /api/ledger_entries/{id}">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">update</a>(id, { ...params }) -> LedgerEntry</code>
 - <code title="get /api/ledger_entries">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">list</a>({ ...params }) -> LedgerEntriesPage</code>
 
-# LedgerEventHandlers
-
 # LedgerTransactions
 
 Types:
@@ -350,6 +361,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/payment-orders/payment-orders.ts">ContactDetailCreateRequest</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrder</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderSubtype</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderType</a></code>

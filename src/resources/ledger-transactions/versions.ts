@@ -222,112 +222,13 @@ export namespace LedgerTransactionVersion {
      * https://docs.moderntreasury.com/docs/transaction-status-and-balances for more
      * details.
      */
-    resulting_ledger_account_balances: LedgerEntry.ResultingLedgerAccountBalances | null;
+    resulting_ledger_account_balances: Shared.LedgerBalances | null;
 
     /**
      * Equal to the state of the ledger transaction when the ledger entry was created.
      * One of `pending`, `posted`, or `archived`.
      */
     status: 'archived' | 'pending' | 'posted';
-  }
-
-  export namespace LedgerEntry {
-    /**
-     * The pending, posted, and available balances for this ledger entry's ledger
-     * account. The posted balance is the sum of all posted entries on the account. The
-     * pending balance is the sum of all pending and posted entries on the account. The
-     * available balance is the posted incoming entries minus the sum of the pending
-     * and posted outgoing amounts. Please see
-     * https://docs.moderntreasury.com/docs/transaction-status-and-balances for more
-     * details.
-     */
-    export interface ResultingLedgerAccountBalances {
-      /**
-       * The available_balance is the sum of all posted inbound entries and pending
-       * outbound entries. For credit normal, available_amount = posted_credits -
-       * pending_debits; for debit normal, available_amount = posted_debits -
-       * pending_credits.
-       */
-      available_balance: ResultingLedgerAccountBalances.AvailableBalance;
-
-      /**
-       * The pending_balance is the sum of all pending and posted entries.
-       */
-      pending_balance: ResultingLedgerAccountBalances.PendingBalance;
-
-      /**
-       * The posted_balance is the sum of all posted entries.
-       */
-      posted_balance: ResultingLedgerAccountBalances.PostedBalance;
-    }
-
-    export namespace ResultingLedgerAccountBalances {
-      /**
-       * The available_balance is the sum of all posted inbound entries and pending
-       * outbound entries. For credit normal, available_amount = posted_credits -
-       * pending_debits; for debit normal, available_amount = posted_debits -
-       * pending_credits.
-       */
-      export interface AvailableBalance {
-        amount: number;
-
-        credits: number;
-
-        /**
-         * The currency of the ledger account.
-         */
-        currency: string;
-
-        /**
-         * The currency exponent of the ledger account.
-         */
-        currency_exponent: number;
-
-        debits: number;
-      }
-
-      /**
-       * The pending_balance is the sum of all pending and posted entries.
-       */
-      export interface PendingBalance {
-        amount: number;
-
-        credits: number;
-
-        /**
-         * The currency of the ledger account.
-         */
-        currency: string;
-
-        /**
-         * The currency exponent of the ledger account.
-         */
-        currency_exponent: number;
-
-        debits: number;
-      }
-
-      /**
-       * The posted_balance is the sum of all posted entries.
-       */
-      export interface PostedBalance {
-        amount: number;
-
-        credits: number;
-
-        /**
-         * The currency of the ledger account.
-         */
-        currency: string;
-
-        /**
-         * The currency exponent of the ledger account.
-         */
-        currency_exponent: number;
-
-        debits: number;
-      }
-    }
   }
 }
 

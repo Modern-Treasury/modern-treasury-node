@@ -17,7 +17,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'retrieve_incoming_payment_details',
-  description: 'Get an existing Incoming Payment Detail.',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet an existing Incoming Payment Detail.",
   inputSchema: {
     type: 'object',
     properties: {

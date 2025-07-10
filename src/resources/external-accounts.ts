@@ -6,6 +6,7 @@ import * as Core from '../core';
 import * as AccountDetailsAPI from './account-details';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
+import * as PaymentOrdersAPI from './payment-orders/payment-orders';
 import { Page, type PageParams } from '../pagination';
 
 export class ExternalAccounts extends APIResource {
@@ -202,7 +203,7 @@ export interface ExternalAccount {
    */
   account_type: ExternalAccountType;
 
-  contact_details: Array<ExternalAccount.ContactDetail>;
+  contact_details: Array<Shared.ContactDetail>;
 
   counterparty_id: string | null;
 
@@ -239,7 +240,7 @@ export interface ExternalAccount {
   /**
    * The address associated with the owner or `null`.
    */
-  party_address: ExternalAccount.PartyAddress | null;
+  party_address: Shared.Address | null;
 
   /**
    * The legal name of the entity which owns the account.
@@ -258,73 +259,6 @@ export interface ExternalAccount {
   verification_source: 'ach_prenote' | 'microdeposits' | 'plaid' | null;
 
   verification_status: 'pending_verification' | 'unverified' | 'verified';
-}
-
-export namespace ExternalAccount {
-  export interface ContactDetail {
-    id: string;
-
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
-  /**
-   * The address associated with the owner or `null`.
-   */
-  export interface PartyAddress {
-    id: string;
-
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country: string | null;
-
-    created_at: string;
-
-    line1: string | null;
-
-    line2: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    /**
-     * Locality or City.
-     */
-    locality: string | null;
-
-    object: string;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code: string | null;
-
-    /**
-     * Region or State.
-     */
-    region: string | null;
-
-    updated_at: string;
-  }
 }
 
 /**
@@ -438,7 +372,7 @@ export interface ExternalAccountCreateParams {
    */
   account_type?: ExternalAccountType;
 
-  contact_details?: Array<ExternalAccountCreateParams.ContactDetail>;
+  contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
 
   /**
    * Specifies a ledger account object that will be created with the external
@@ -447,7 +381,7 @@ export interface ExternalAccountCreateParams {
    * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
    * for more details.
    */
-  ledger_account?: ExternalAccountCreateParams.LedgerAccount;
+  ledger_account?: Shared.LedgerAccountCreateRequest;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -464,7 +398,7 @@ export interface ExternalAccountCreateParams {
   /**
    * Required if receiving wire payments.
    */
-  party_address?: ExternalAccountCreateParams.PartyAddress;
+  party_address?: Shared.AddressRequest;
 
   party_identifier?: string;
 
@@ -506,105 +440,6 @@ export namespace ExternalAccountCreateParams {
       | 'sg_number'
       | 'solana_address'
       | 'wallet_address';
-  }
-
-  export interface ContactDetail {
-    contact_identifier?: string;
-
-    contact_identifier_type?: 'email' | 'phone_number' | 'website';
-  }
-
-  /**
-   * Specifies a ledger account object that will be created with the external
-   * account. The resulting ledger account is linked to the external account for
-   * auto-ledgering Payment objects. See
-   * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-   * for more details.
-   */
-  export interface LedgerAccount {
-    /**
-     * The currency of the ledger account.
-     */
-    currency: string;
-
-    /**
-     * The id of the ledger that this account belongs to.
-     */
-    ledger_id: string;
-
-    /**
-     * The name of the ledger account.
-     */
-    name: string;
-
-    /**
-     * The normal balance of the ledger account.
-     */
-    normal_balance: Shared.TransactionDirection;
-
-    /**
-     * The currency exponent of the ledger account.
-     */
-    currency_exponent?: number | null;
-
-    /**
-     * The description of the ledger account.
-     */
-    description?: string | null;
-
-    /**
-     * The array of ledger account category ids that this ledger account should be a
-     * child of.
-     */
-    ledger_account_category_ids?: Array<string>;
-
-    /**
-     * If the ledger account links to another object in Modern Treasury, the id will be
-     * populated here, otherwise null.
-     */
-    ledgerable_id?: string;
-
-    /**
-     * If the ledger account links to another object in Modern Treasury, the type will
-     * be populated here, otherwise null. The value is one of internal_account or
-     * external_account.
-     */
-    ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
-  }
-
-  /**
-   * Required if receiving wire payments.
-   */
-  export interface PartyAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country?: string | null;
-
-    line1?: string | null;
-
-    line2?: string | null;
-
-    /**
-     * Locality or City.
-     */
-    locality?: string | null;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code?: string | null;
-
-    /**
-     * Region or State.
-     */
-    region?: string | null;
   }
 
   export interface RoutingDetail {
@@ -692,7 +527,7 @@ export interface ExternalAccountUpdateParams {
    */
   name?: string | null;
 
-  party_address?: ExternalAccountUpdateParams.PartyAddress;
+  party_address?: Shared.AddressRequest;
 
   /**
    * If this value isn't provided, it will be inherited from the counterparty's name.
@@ -703,34 +538,6 @@ export interface ExternalAccountUpdateParams {
    * Either `individual` or `business`.
    */
   party_type?: 'business' | 'individual' | null;
-}
-
-export namespace ExternalAccountUpdateParams {
-  export interface PartyAddress {
-    /**
-     * Country code conforms to [ISO 3166-1 alpha-2]
-     */
-    country?: string | null;
-
-    line1?: string | null;
-
-    line2?: string | null;
-
-    /**
-     * Locality or City.
-     */
-    locality?: string | null;
-
-    /**
-     * The postal code of the address.
-     */
-    postal_code?: string | null;
-
-    /**
-     * Region or State.
-     */
-    region?: string | null;
-  }
 }
 
 export interface ExternalAccountListParams extends PageParams {

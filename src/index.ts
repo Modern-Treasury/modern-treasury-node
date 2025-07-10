@@ -138,8 +138,6 @@ import {
   LedgerEntryRetrieveParams,
   LedgerEntryUpdateParams,
 } from './resources/ledger-entries';
-import { LedgerEventHandlers } from './resources/ledger-event-handlers';
-import { LedgerableEvents } from './resources/ledgerable-events';
 import {
   Ledger,
   LedgerCreateParams,
@@ -227,6 +225,8 @@ import {
   InternalAccount,
   InternalAccountCreateParams,
   InternalAccountListParams,
+  InternalAccountUpdateAccountCapabilityParams,
+  InternalAccountUpdateAccountCapabilityResponse,
   InternalAccountUpdateParams,
   InternalAccounts,
   InternalAccountsPage,
@@ -258,6 +258,7 @@ import {
   LedgerTransactionsPage,
 } from './resources/ledger-transactions/ledger-transactions';
 import {
+  ContactDetailCreateRequest,
   PaymentOrder,
   PaymentOrderCreateAsyncParams,
   PaymentOrderCreateParams,
@@ -432,13 +433,11 @@ export class ModernTreasury extends Core.APIClient {
   routingDetails: API.RoutingDetails = new API.RoutingDetails(this);
   internalAccounts: API.InternalAccounts = new API.InternalAccounts(this);
   ledgers: API.Ledgers = new API.Ledgers(this);
-  ledgerableEvents: API.LedgerableEvents = new API.LedgerableEvents(this);
   ledgerAccountCategories: API.LedgerAccountCategories = new API.LedgerAccountCategories(this);
   ledgerAccounts: API.LedgerAccounts = new API.LedgerAccounts(this);
   ledgerAccountBalanceMonitors: API.LedgerAccountBalanceMonitors = new API.LedgerAccountBalanceMonitors(this);
   ledgerAccountStatements: API.LedgerAccountStatements = new API.LedgerAccountStatements(this);
   ledgerEntries: API.LedgerEntries = new API.LedgerEntries(this);
-  ledgerEventHandlers: API.LedgerEventHandlers = new API.LedgerEventHandlers(this);
   ledgerTransactions: API.LedgerTransactions = new API.LedgerTransactions(this);
   lineItems: API.LineItems = new API.LineItems(this);
   paymentFlows: API.PaymentFlows = new API.PaymentFlows(this);
@@ -550,7 +549,6 @@ ModernTreasury.InternalAccounts = InternalAccounts;
 ModernTreasury.InternalAccountsPage = InternalAccountsPage;
 ModernTreasury.Ledgers = Ledgers;
 ModernTreasury.LedgersPage = LedgersPage;
-ModernTreasury.LedgerableEvents = LedgerableEvents;
 ModernTreasury.LedgerAccountCategories = LedgerAccountCategories;
 ModernTreasury.LedgerAccountCategoriesPage = LedgerAccountCategoriesPage;
 ModernTreasury.LedgerAccounts = LedgerAccounts;
@@ -560,7 +558,6 @@ ModernTreasury.LedgerAccountBalanceMonitorsPage = LedgerAccountBalanceMonitorsPa
 ModernTreasury.LedgerAccountStatements = LedgerAccountStatements;
 ModernTreasury.LedgerEntries = LedgerEntries;
 ModernTreasury.LedgerEntriesPage = LedgerEntriesPage;
-ModernTreasury.LedgerEventHandlers = LedgerEventHandlers;
 ModernTreasury.LedgerTransactions = LedgerTransactions;
 ModernTreasury.LedgerTransactionsPage = LedgerTransactionsPage;
 ModernTreasury.LineItems = LineItems;
@@ -706,10 +703,12 @@ export declare namespace ModernTreasury {
   export {
     InternalAccounts as InternalAccounts,
     type InternalAccount as InternalAccount,
+    type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
     InternalAccountsPage as InternalAccountsPage,
     type InternalAccountCreateParams as InternalAccountCreateParams,
     type InternalAccountUpdateParams as InternalAccountUpdateParams,
     type InternalAccountListParams as InternalAccountListParams,
+    type InternalAccountUpdateAccountCapabilityParams as InternalAccountUpdateAccountCapabilityParams,
   };
 
   export {
@@ -720,8 +719,6 @@ export declare namespace ModernTreasury {
     type LedgerUpdateParams as LedgerUpdateParams,
     type LedgerListParams as LedgerListParams,
   };
-
-  export { LedgerableEvents as LedgerableEvents };
 
   export {
     LedgerAccountCategories as LedgerAccountCategories,
@@ -768,8 +765,6 @@ export declare namespace ModernTreasury {
     type LedgerEntryListParams as LedgerEntryListParams,
   };
 
-  export { LedgerEventHandlers as LedgerEventHandlers };
-
   export {
     LedgerTransactions as LedgerTransactions,
     type LedgerTransaction as LedgerTransaction,
@@ -800,6 +795,7 @@ export declare namespace ModernTreasury {
 
   export {
     PaymentOrders as PaymentOrders,
+    type ContactDetailCreateRequest as ContactDetailCreateRequest,
     type PaymentOrder as PaymentOrder,
     type PaymentOrderSubtype as PaymentOrderSubtype,
     type PaymentOrderType as PaymentOrderType,
@@ -928,9 +924,22 @@ export declare namespace ModernTreasury {
     type PaymentActionListParams as PaymentActionListParams,
   };
 
+  export type Accounting = API.Accounting;
   export type AccountsType = API.AccountsType;
+  export type Address = API.Address;
+  export type AddressRequest = API.AddressRequest;
   export type AsyncResponse = API.AsyncResponse;
+  export type ChildLegalEntityCreate = API.ChildLegalEntityCreate;
+  export type ContactDetail = API.ContactDetail;
   export type Currency = API.Currency;
+  export type ForeignExchangeRate = API.ForeignExchangeRate;
+  export type IdentificationCreateRequest = API.IdentificationCreateRequest;
+  export type LedgerAccountCreateRequest = API.LedgerAccountCreateRequest;
+  export type LedgerBalance = API.LedgerBalance;
+  export type LedgerBalances = API.LedgerBalances;
+  export type LedgerEntryCreateRequest = API.LedgerEntryCreateRequest;
+  export type LedgerTransactionCreateRequest = API.LedgerTransactionCreateRequest;
+  export type LegalEntityAddressCreateRequest = API.LegalEntityAddressCreateRequest;
   export type LegalEntityComplianceDetail = API.LegalEntityComplianceDetail;
   export type LegalEntityIndustryClassification = API.LegalEntityIndustryClassification;
   export type TransactionDirection = API.TransactionDirection;

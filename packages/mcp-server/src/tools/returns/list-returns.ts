@@ -17,7 +17,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'list_returns',
-  description: 'Get a list of returns.',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet a list of returns.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -52,7 +53,8 @@ export const tool: Tool = {
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await client.returns.list(body));
+  const response = await client.returns.list(body).asResponse();
+  return asTextContentResult(await response.json());
 };
 
 export default { metadata, tool, handler };

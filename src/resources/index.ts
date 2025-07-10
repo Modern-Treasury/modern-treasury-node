@@ -92,9 +92,11 @@ export {
   InternalAccountsPage,
   InternalAccounts,
   type InternalAccount,
+  type InternalAccountUpdateAccountCapabilityResponse,
   type InternalAccountCreateParams,
   type InternalAccountUpdateParams,
   type InternalAccountListParams,
+  type InternalAccountUpdateAccountCapabilityParams,
 } from './internal-accounts/internal-accounts';
 export {
   InvoicesPage,
@@ -152,7 +154,6 @@ export {
   type LedgerEntryUpdateParams,
   type LedgerEntryListParams,
 } from './ledger-entries';
-export { LedgerEventHandlers } from './ledger-event-handlers';
 export {
   LedgerTransactionsPage,
   LedgerTransactions,
@@ -163,7 +164,6 @@ export {
   type LedgerTransactionCreatePartialPostParams,
   type LedgerTransactionCreateReversalParams,
 } from './ledger-transactions/ledger-transactions';
-export { LedgerableEvents } from './ledgerable-events';
 export {
   LedgersPage,
   Ledgers,
@@ -217,6 +217,7 @@ export {
 export {
   PaymentOrdersPage,
   PaymentOrders,
+  type ContactDetailCreateRequest,
   type PaymentOrder,
   type PaymentOrderSubtype,
   type PaymentOrderType,

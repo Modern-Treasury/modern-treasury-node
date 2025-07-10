@@ -142,7 +142,7 @@ export interface Invoice {
   /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
-  contact_details: Array<Invoice.ContactDetail>;
+  contact_details: Array<Shared.ContactDetail>;
 
   /**
    * The counterparty's billing address.
@@ -322,28 +322,6 @@ export interface Invoice {
 }
 
 export namespace Invoice {
-  export interface ContactDetail {
-    id: string;
-
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
   /**
    * The counterparty's billing address.
    */
@@ -458,7 +436,7 @@ export interface InvoiceCreateParams {
   /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
-  contact_details?: Array<InvoiceCreateParams.ContactDetail>;
+  contact_details?: Array<Shared.ContactDetail>;
 
   /**
    * The counterparty's billing address.
@@ -583,28 +561,6 @@ export interface InvoiceCreateParams {
 }
 
 export namespace InvoiceCreateParams {
-  export interface ContactDetail {
-    id: string;
-
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
   /**
    * The counterparty's billing address.
    */
@@ -741,7 +697,7 @@ export interface InvoiceUpdateParams {
   /**
    * The invoicer's contact details displayed at the top of the invoice.
    */
-  contact_details?: Array<InvoiceUpdateParams.ContactDetail>;
+  contact_details?: Array<Shared.ContactDetail>;
 
   /**
    * The counterparty's billing address.
@@ -888,28 +844,6 @@ export interface InvoiceUpdateParams {
 }
 
 export namespace InvoiceUpdateParams {
-  export interface ContactDetail {
-    id: string;
-
-    contact_identifier: string;
-
-    contact_identifier_type: 'email' | 'phone_number' | 'website';
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
   /**
    * The counterparty's billing address.
    */
