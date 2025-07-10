@@ -17,7 +17,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_payment_orders',
-  description: 'Create a new Payment Order',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreate a new Payment Order",
   inputSchema: {
     type: 'object',
     properties: {
