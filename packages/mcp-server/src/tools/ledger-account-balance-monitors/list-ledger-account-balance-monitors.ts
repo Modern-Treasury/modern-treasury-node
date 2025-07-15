@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { maybeFilter } from 'modern-treasury-mcp/filtering';
-import { asTextContentResult } from 'modern-treasury-mcp/tools/types';
+import { Metadata, asTextContentResult } from 'modern-treasury-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../';
 import ModernTreasury from 'modern-treasury';
 
 export const metadata: Metadata = {
