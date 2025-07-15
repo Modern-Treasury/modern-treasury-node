@@ -282,6 +282,7 @@ export interface Transaction {
     | 'dc_bank'
     | 'dwolla'
     | 'evolve'
+    | 'fake_vendor'
     | 'goldman_sachs'
     | 'hifi'
     | 'iso20022'
@@ -290,12 +291,12 @@ export interface Transaction {
     | 'paypal'
     | 'plaid'
     | 'pnc'
-    | 'rspec_vendor'
     | 'signet'
     | 'silvergate'
     | 'swift'
     | 'us_bank'
     | 'user'
+    | 'western_alliance'
     | null;
 
   /**
