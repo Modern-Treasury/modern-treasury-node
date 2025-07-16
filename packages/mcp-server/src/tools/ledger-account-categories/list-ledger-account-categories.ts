@@ -64,7 +64,12 @@ export const tool: Tool = {
           'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
       },
       name: {
-        type: 'string',
+        type: 'array',
+        description:
+          'If you have specific names to retrieve in bulk, you can pass them as query parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.',
+        items: {
+          type: 'string',
+        },
       },
       parent_ledger_account_category_id: {
         type: 'string',
