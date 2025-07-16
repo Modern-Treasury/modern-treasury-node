@@ -398,7 +398,11 @@ export interface LedgerAccountCategoryListParams extends PageParams {
    */
   metadata?: { [key: string]: string };
 
-  name?: string;
+  /**
+   * If you have specific names to retrieve in bulk, you can pass them as query
+   * parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
+   */
+  name?: Array<string>;
 
   /**
    * Query categories that are nested underneath a parent category
