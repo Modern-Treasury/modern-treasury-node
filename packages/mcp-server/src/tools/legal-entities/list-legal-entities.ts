@@ -40,6 +40,7 @@ export const tool: Tool = {
         type: 'string',
       },
     },
+    required: [],
   },
 };
 

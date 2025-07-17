@@ -35,7 +35,6 @@ export const tool: Tool = {
             enum: ['customer', 'vendor'],
           },
         },
-        required: [],
       },
       accounts: {
         type: 'array',
@@ -195,7 +194,6 @@ export const tool: Tool = {
               },
             },
           },
-          required: [],
         },
       },
       email: {
@@ -339,7 +337,6 @@ export const tool: Tool = {
                   type: 'string',
                 },
               },
-              required: [],
             },
           },
           politically_exposed_person: {
@@ -397,6 +394,7 @@ export const tool: Tool = {
         enum: ['denied', 'needs_approval', 'unverified', 'verified'],
       },
     },
+    required: ['name'],
     $defs: {
       external_account_type: {
         type: 'string',
@@ -428,7 +426,6 @@ export const tool: Tool = {
             enum: ['email', 'phone_number', 'website'],
           },
         },
-        required: [],
       },
       ledger_account_create_request: {
         type: 'object',
@@ -513,7 +510,6 @@ export const tool: Tool = {
             description: 'Region or State.',
           },
         },
-        required: [],
       },
       legal_entity_address_create_request: {
         type: 'object',
@@ -893,7 +889,6 @@ export const tool: Tool = {
                   type: 'string',
                 },
               },
-              required: [],
             },
           },
           politically_exposed_person: {
@@ -925,7 +920,6 @@ export const tool: Tool = {
             description: "The entity's primary website URL.",
           },
         },
-        required: [],
       },
       wealth_and_employment_details: {
         type: 'object',
