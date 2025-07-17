@@ -291,7 +291,7 @@ export const tool: Tool = {
                     type: 'string',
                     description:
                       'A list of relationship types for how the child entity relates to parent entity.',
-                    enum: ['beneficial_owner', 'control_person'],
+                    enum: ['authorized_signer', 'beneficial_owner', 'control_person'],
                   },
                 },
                 child_legal_entity: {
