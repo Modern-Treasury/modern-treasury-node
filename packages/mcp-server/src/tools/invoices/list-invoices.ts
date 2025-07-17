@@ -63,6 +63,7 @@ export const tool: Tool = {
         enum: ['draft', 'paid', 'partially_paid', 'payment_pending', 'unpaid', 'voided'],
       },
     },
+    required: [],
   },
 };
 

@@ -49,6 +49,7 @@ export const tool: Tool = {
         description: 'The job title of the child entity at the parent entity.',
       },
     },
+    required: ['parent_legal_entity_id', 'relationship_types'],
     $defs: {
       child_legal_entity_create: {
         type: 'object',
@@ -147,7 +148,6 @@ export const tool: Tool = {
                   type: 'string',
                 },
               },
-              required: [],
             },
           },
           politically_exposed_person: {
@@ -179,7 +179,6 @@ export const tool: Tool = {
             description: "The entity's primary website URL.",
           },
         },
-        required: [],
       },
       legal_entity_address_create_request: {
         type: 'object',

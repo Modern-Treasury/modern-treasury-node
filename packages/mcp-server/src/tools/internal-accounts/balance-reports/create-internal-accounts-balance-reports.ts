@@ -79,6 +79,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['internal_account_id', 'as_of_date', 'as_of_time', 'balance_report_type', 'balances'],
   },
 };
 
