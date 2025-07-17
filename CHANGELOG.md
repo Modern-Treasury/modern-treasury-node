@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.42.0 (2025-07-17)
+
+Full Changelog: [v2.41.0...v2.42.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.41.0...v2.42.0)
+
+### Features
+
+* **api:** api update ([d3d5fc2](https://github.com/Modern-Treasury/modern-treasury-node/commit/d3d5fc22727fefdca2c0e45fe3fe50cf326fdfdb))
+* **api:** api update ([1b729f7](https://github.com/Modern-Treasury/modern-treasury-node/commit/1b729f72f139cb96a2d6090824c4571ebc6f8a8d))
+
+
+### Bug Fixes
+
+* **mcp:** include required section for top-level properties and support naming transformations ([0cc518f](https://github.com/Modern-Treasury/modern-treasury-node/commit/0cc518fae5c4be8559ede3dda2523781f60dca1d))
+
+
+### Chores
+
+* **mcp:** formatting ([d36e73d](https://github.com/Modern-Treasury/modern-treasury-node/commit/d36e73d10749938f990a47cf08f9203b3a4719a5))
+
 ## 2.41.0 (2025-07-15)
 
 Full Changelog: [v2.40.0...v2.41.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.40.0...v2.41.0)
