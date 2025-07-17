@@ -132,6 +132,7 @@ export const tool: Tool = {
         $ref: '#/$defs/expected_payment_type',
       },
     },
+    required: [],
     $defs: {
       currency: {
         type: 'string',

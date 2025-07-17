@@ -266,7 +266,7 @@ export namespace ConnectionLegalEntityCreateParams {
 
   export namespace LegalEntity {
     export interface LegalEntityAssociation {
-      relationship_types: Array<'beneficial_owner' | 'control_person'>;
+      relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
 
       /**
        * The child legal entity.

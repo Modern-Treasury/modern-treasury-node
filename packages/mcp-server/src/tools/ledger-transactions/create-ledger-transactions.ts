@@ -77,6 +77,7 @@ export const tool: Tool = {
         enum: ['archived', 'pending', 'posted'],
       },
     },
+    required: ['ledger_entries'],
     $defs: {
       ledger_entry_create_request: {
         type: 'object',

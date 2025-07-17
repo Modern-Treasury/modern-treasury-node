@@ -13,7 +13,7 @@ describe('resource legalEntityAssociations', () => {
   test('create: only required params', async () => {
     const responsePromise = client.legalEntityAssociations.create({
       parent_legal_entity_id: 'parent_legal_entity_id',
-      relationship_types: ['beneficial_owner'],
+      relationship_types: ['authorized_signer'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource legalEntityAssociations', () => {
   test('create: required and optional params', async () => {
     const response = await client.legalEntityAssociations.create({
       parent_legal_entity_id: 'parent_legal_entity_id',
-      relationship_types: ['beneficial_owner'],
+      relationship_types: ['authorized_signer'],
       child_legal_entity: {
         addresses: [
           {

@@ -315,7 +315,6 @@ export const tool: Tool = {
             },
           },
         },
-        required: [],
       },
       receiving_account_id: {
         type: 'string',
@@ -383,6 +382,7 @@ export const tool: Tool = {
           'This represents the identifier by which the merchant is known to the person initiating an ACH payment with CIE subtype. Only the first 15 characters of this string will be used. Any additional characters will be truncated.',
       },
     },
+    required: ['id'],
     $defs: {
       accounting: {
         type: 'object',
@@ -398,7 +398,6 @@ export const tool: Tool = {
               'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
           },
         },
-        required: [],
       },
       currency: {
         type: 'string',
@@ -632,7 +631,6 @@ export const tool: Tool = {
             enum: ['email', 'phone_number', 'website'],
           },
         },
-        required: [],
       },
       ledger_account_create_request: {
         type: 'object',
@@ -717,7 +715,6 @@ export const tool: Tool = {
             description: 'Region or State.',
           },
         },
-        required: [],
       },
       payment_order_subtype: {
         type: 'string',

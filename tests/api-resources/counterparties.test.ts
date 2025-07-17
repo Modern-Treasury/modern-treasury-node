@@ -133,7 +133,7 @@ describe('resource counterparties', () => {
         last_name: 'last_name',
         legal_entity_associations: [
           {
-            relationship_types: ['beneficial_owner'],
+            relationship_types: ['authorized_signer'],
             child_legal_entity: {
               addresses: [
                 {

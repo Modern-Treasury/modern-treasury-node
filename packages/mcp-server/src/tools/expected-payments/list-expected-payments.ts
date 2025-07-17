@@ -110,6 +110,7 @@ export const tool: Tool = {
         format: 'date-time',
       },
     },
+    required: [],
     $defs: {
       transaction_direction: {
         type: 'string',

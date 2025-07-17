@@ -87,6 +87,7 @@ export const tool: Tool = {
         type: 'integer',
       },
     },
+    required: [],
     $defs: {
       currency: {
         type: 'string',

@@ -77,6 +77,7 @@ export const tool: Tool = {
         description: 'If the incoming payment detail is in a virtual account, the ID of the Virtual Account.',
       },
     },
+    required: [],
     $defs: {
       transaction_direction: {
         type: 'string',

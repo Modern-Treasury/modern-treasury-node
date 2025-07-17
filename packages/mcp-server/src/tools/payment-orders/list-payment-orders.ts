@@ -145,6 +145,7 @@ export const tool: Tool = {
         ],
       },
     },
+    required: [],
     $defs: {
       transaction_direction: {
         type: 'string',

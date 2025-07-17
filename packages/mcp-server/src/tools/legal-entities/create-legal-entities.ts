@@ -103,7 +103,7 @@ export const tool: Tool = {
                 type: 'string',
                 description:
                   'A list of relationship types for how the child entity relates to parent entity.',
-                enum: ['beneficial_owner', 'control_person'],
+                enum: ['authorized_signer', 'beneficial_owner', 'control_person'],
               },
             },
             child_legal_entity: {
@@ -149,7 +149,6 @@ export const tool: Tool = {
               type: 'string',
             },
           },
-          required: [],
         },
       },
       politically_exposed_person: {
@@ -181,6 +180,7 @@ export const tool: Tool = {
         description: "The entity's primary website URL.",
       },
     },
+    required: ['legal_entity_type'],
     $defs: {
       legal_entity_address_create_request: {
         type: 'object',
@@ -560,7 +560,6 @@ export const tool: Tool = {
                   type: 'string',
                 },
               },
-              required: [],
             },
           },
           politically_exposed_person: {
@@ -592,7 +591,6 @@ export const tool: Tool = {
             description: "The entity's primary website URL.",
           },
         },
-        required: [],
       },
       wealth_and_employment_details: {
         type: 'object',

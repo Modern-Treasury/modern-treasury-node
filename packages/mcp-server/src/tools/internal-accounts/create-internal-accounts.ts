@@ -198,6 +198,7 @@ export const tool: Tool = {
           'A hash of vendor specific attributes that will be used when creating the account at the vendor specified by the given connection.',
       },
     },
+    required: ['connection_id', 'currency', 'name', 'party_name'],
     $defs: {
       transaction_direction: {
         type: 'string',

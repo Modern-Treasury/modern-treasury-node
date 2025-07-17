@@ -258,6 +258,7 @@ export const tool: Tool = {
         description: 'The ID of the virtual account the invoice should be paid to.',
       },
     },
+    required: ['counterparty_id', 'due_date', 'originating_account_id'],
     $defs: {
       contact_detail: {
         type: 'object',

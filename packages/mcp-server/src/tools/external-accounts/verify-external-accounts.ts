@@ -85,6 +85,7 @@ export const tool: Tool = {
         enum: ['high', 'normal'],
       },
     },
+    required: ['id', 'originating_account_id', 'payment_type'],
     $defs: {
       currency: {
         type: 'string',

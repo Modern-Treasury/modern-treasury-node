@@ -104,6 +104,7 @@ export const tool: Tool = {
         $ref: '#/$defs/expected_payment_type',
       },
     },
+    required: ['id'],
     $defs: {
       currency: {
         type: 'string',

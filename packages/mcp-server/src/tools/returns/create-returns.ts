@@ -171,7 +171,6 @@ export const tool: Tool = {
               'The updated account type code that should replace the one originally used on the outgoing payment.',
           },
         },
-        required: [],
       },
       data: {
         type: 'object',
@@ -189,6 +188,7 @@ export const tool: Tool = {
           'An optional description of the reason for the return. This is for internal usage and will not be transmitted to the bank.”',
       },
     },
+    required: ['returnable_id', 'returnable_type'],
   },
 };
 

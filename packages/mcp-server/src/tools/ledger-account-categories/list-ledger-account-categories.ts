@@ -43,7 +43,6 @@ export const tool: Tool = {
             format: 'date-time',
           },
         },
-        required: [],
       },
       currency: {
         type: 'string',
@@ -64,7 +63,12 @@ export const tool: Tool = {
           'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
       },
       name: {
-        type: 'string',
+        type: 'array',
+        description:
+          'If you have specific names to retrieve in bulk, you can pass them as query parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.',
+        items: {
+          type: 'string',
+        },
       },
       parent_ledger_account_category_id: {
         type: 'string',
@@ -80,6 +84,7 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
+    required: [],
   },
 };
 
