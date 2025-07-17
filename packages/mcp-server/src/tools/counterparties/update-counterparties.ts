@@ -51,6 +51,7 @@ export const tool: Tool = {
         description: 'Either a valid SSN or EIN.',
       },
     },
+    required: ['id'],
   },
 };
 

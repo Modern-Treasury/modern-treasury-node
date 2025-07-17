@@ -157,7 +157,6 @@ export const tool: Tool = {
                   type: 'string',
                 },
               },
-              required: [],
             },
           },
           politically_exposed_person: {
@@ -189,13 +188,13 @@ export const tool: Tool = {
             description: "The entity's primary website URL.",
           },
         },
-        required: [],
       },
       legal_entity_id: {
         type: 'string',
         description: 'The ID of the legal entity.',
       },
     },
+    required: ['connection_id'],
     $defs: {
       legal_entity_address_create_request: {
         type: 'object',
@@ -575,7 +574,6 @@ export const tool: Tool = {
                   type: 'string',
                 },
               },
-              required: [],
             },
           },
           politically_exposed_person: {
@@ -607,7 +605,6 @@ export const tool: Tool = {
             description: "The entity's primary website URL.",
           },
         },
-        required: [],
       },
       wealth_and_employment_details: {
         type: 'object',

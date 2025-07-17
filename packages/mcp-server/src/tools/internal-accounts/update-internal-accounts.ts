@@ -46,6 +46,7 @@ export const tool: Tool = {
         description: 'The parent internal account for this account.',
       },
     },
+    required: ['id'],
   },
 };
 

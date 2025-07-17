@@ -176,6 +176,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['counterparty_id'],
     $defs: {
       external_account_type: {
         type: 'string',
@@ -207,7 +208,6 @@ export const tool: Tool = {
             enum: ['email', 'phone_number', 'website'],
           },
         },
-        required: [],
       },
       ledger_account_create_request: {
         type: 'object',
@@ -292,7 +292,6 @@ export const tool: Tool = {
             description: 'Region or State.',
           },
         },
-        required: [],
       },
     },
   },

@@ -175,6 +175,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['internal_account_id', 'name'],
     $defs: {
       ledger_account_create_request: {
         type: 'object',
