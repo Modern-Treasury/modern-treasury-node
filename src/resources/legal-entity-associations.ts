@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as LegalEntitiesAPI from './legal-entities';
 import * as Shared from './shared';
 
 export class LegalEntityAssociations extends APIResource {
@@ -80,7 +81,7 @@ export namespace LegalEntityAssociation {
      */
     addresses: Array<ChildLegalEntity.Address>;
 
-    bank_settings: Shared.BankSettings | null;
+    bank_settings: LegalEntitiesAPI.BankSettings | null;
 
     /**
      * The business's legal business name.
@@ -200,7 +201,7 @@ export namespace LegalEntityAssociation {
 
     updated_at: string;
 
-    wealth_and_employment_details: Shared.WealthAndEmploymentDetails | null;
+    wealth_and_employment_details: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
 
     /**
      * The entity's primary website URL.

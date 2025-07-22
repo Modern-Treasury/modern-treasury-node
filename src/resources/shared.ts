@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import * as LegalEntitiesAPI from './legal-entities';
+
 export interface Accounting {
   /**
    * The ID of one of your accounting categories. Note that these will only be
@@ -137,7 +139,7 @@ export interface ChildLegalEntityCreate {
    */
   addresses?: Array<LegalEntityAddressCreateRequest>;
 
-  bank_settings?: BankSettings | null;
+  bank_settings?: LegalEntitiesAPI.BankSettings | null;
 
   /**
    * The business's legal business name.
@@ -243,7 +245,7 @@ export interface ChildLegalEntityCreate {
    */
   suffix?: string | null;
 
-  wealth_and_employment_details?: WealthAndEmploymentDetails | null;
+  wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.

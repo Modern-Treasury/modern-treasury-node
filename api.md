@@ -552,7 +552,9 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/legal-entities.ts">BankSettings</a></code>
 - <code><a href="./src/resources/legal-entities.ts">LegalEntity</a></code>
+- <code><a href="./src/resources/legal-entities.ts">WealthAndEmploymentDetails</a></code>
 
 Methods:
 
