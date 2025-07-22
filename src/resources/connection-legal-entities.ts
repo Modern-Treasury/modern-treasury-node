@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as LegalEntitiesAPI from './legal-entities';
 import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
@@ -144,7 +145,7 @@ export namespace ConnectionLegalEntityCreateParams {
      */
     addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-    bank_settings?: Shared.BankSettings | null;
+    bank_settings?: LegalEntitiesAPI.BankSettings | null;
 
     /**
      * The business's legal business name.
@@ -255,7 +256,7 @@ export namespace ConnectionLegalEntityCreateParams {
      */
     suffix?: string | null;
 
-    wealth_and_employment_details?: Shared.WealthAndEmploymentDetails | null;
+    wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
 
     /**
      * The entity's primary website URL.
