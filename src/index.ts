@@ -147,14 +147,12 @@ import {
   LedgersPage,
 } from './resources/ledgers';
 import {
-  BankSettings,
   LegalEntities,
   LegalEntitiesPage,
   LegalEntity,
   LegalEntityCreateParams,
   LegalEntityListParams,
   LegalEntityUpdateParams,
-  WealthAndEmploymentDetails,
 } from './resources/legal-entities';
 import {
   LegalEntityAssociation,
@@ -897,9 +895,7 @@ export declare namespace ModernTreasury {
 
   export {
     LegalEntities as LegalEntities,
-    type BankSettings as BankSettings,
     type LegalEntity as LegalEntity,
-    type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
     LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
@@ -929,6 +925,7 @@ export declare namespace ModernTreasury {
   export type Address = API.Address;
   export type AddressRequest = API.AddressRequest;
   export type AsyncResponse = API.AsyncResponse;
+  export type BankSettings = API.BankSettings;
   export type ChildLegalEntityCreate = API.ChildLegalEntityCreate;
   export type ContactDetail = API.ContactDetail;
   export type Currency = API.Currency;
@@ -943,6 +940,7 @@ export declare namespace ModernTreasury {
   export type LegalEntityComplianceDetail = API.LegalEntityComplianceDetail;
   export type LegalEntityIndustryClassification = API.LegalEntityIndustryClassification;
   export type TransactionDirection = API.TransactionDirection;
+  export type WealthAndEmploymentDetails = API.WealthAndEmploymentDetails;
 }
 
 export { toFile, fileFromPath } from './uploads';

@@ -17,6 +17,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">Address</a></code>
 - <code><a href="./src/resources/shared.ts">AddressRequest</a></code>
 - <code><a href="./src/resources/shared.ts">AsyncResponse</a></code>
+- <code><a href="./src/resources/shared.ts">BankSettings</a></code>
 - <code><a href="./src/resources/shared.ts">ChildLegalEntityCreate</a></code>
 - <code><a href="./src/resources/shared.ts">ContactDetail</a></code>
 - <code><a href="./src/resources/shared.ts">Currency</a></code>
@@ -31,6 +32,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">LegalEntityComplianceDetail</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityIndustryClassification</a></code>
 - <code><a href="./src/resources/shared.ts">TransactionDirection</a></code>
+- <code><a href="./src/resources/shared.ts">WealthAndEmploymentDetails</a></code>
 
 # Connections
 
@@ -550,9 +552,7 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/legal-entities.ts">BankSettings</a></code>
 - <code><a href="./src/resources/legal-entities.ts">LegalEntity</a></code>
-- <code><a href="./src/resources/legal-entities.ts">WealthAndEmploymentDetails</a></code>
 
 Methods:
 
