@@ -173,6 +173,11 @@ export interface ExpectedPayment {
   direction: 'credit' | 'debit' | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id: string | null;
+
+  /**
    * The ID of the Internal Account for the expected payment.
    */
   internal_account_id: string | null;
@@ -434,6 +439,11 @@ export interface ExpectedPaymentCreateParams {
   direction?: 'credit' | 'debit' | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * The ID of the Internal Account for the expected payment.
    */
   internal_account_id?: string | null;
@@ -571,6 +581,11 @@ export interface ExpectedPaymentUpdateParams {
   direction?: 'credit' | 'debit' | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * The ID of the Internal Account for the expected payment.
    */
   internal_account_id?: string | null;
@@ -644,6 +659,8 @@ export interface ExpectedPaymentListParams extends PageParams {
    * One of credit, debit
    */
   direction?: Shared.TransactionDirection;
+
+  external_id?: string;
 
   /**
    * Specify internal_account_id to see expected_payments for a specific account.
