@@ -46,6 +46,7 @@ export const tool: Tool = {
     },
     required: ['itemizable_type', 'itemizable_id', 'id'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

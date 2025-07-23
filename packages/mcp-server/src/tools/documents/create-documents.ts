@@ -59,6 +59,7 @@ export const tool: Tool = {
     },
     required: ['documentable_id', 'documentable_type', 'file'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

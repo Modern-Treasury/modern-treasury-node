@@ -40,6 +40,7 @@ export const tool: Tool = {
     },
     required: ['id', 'status'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
