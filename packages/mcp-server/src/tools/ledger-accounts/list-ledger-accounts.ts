@@ -187,6 +187,9 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

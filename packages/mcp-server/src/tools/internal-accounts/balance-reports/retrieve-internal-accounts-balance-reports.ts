@@ -45,6 +45,9 @@ export const tool: Tool = {
     },
     required: ['internal_account_id', 'id'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

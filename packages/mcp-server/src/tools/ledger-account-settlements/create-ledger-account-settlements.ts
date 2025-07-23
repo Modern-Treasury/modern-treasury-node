@@ -72,6 +72,7 @@ export const tool: Tool = {
     },
     required: ['contra_ledger_account_id', 'settled_ledger_account_id'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
