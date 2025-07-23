@@ -190,6 +190,7 @@ export const tool: Tool = {
     },
     required: ['returnable_id', 'returnable_type'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

@@ -57,6 +57,7 @@ export const tool: Tool = {
     },
     required: ['effective_at_lower_bound', 'effective_at_upper_bound', 'ledger_account_id'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

@@ -111,6 +111,7 @@ export const tool: Tool = {
     },
     required: ['amount', 'as_of_date', 'direction', 'internal_account_id', 'vendor_code', 'vendor_code_type'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
