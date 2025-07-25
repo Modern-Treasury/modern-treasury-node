@@ -27,6 +27,10 @@ export const tool: Tool = {
       counterparty_id: {
         type: 'string',
       },
+      external_id: {
+        type: 'string',
+        description: 'An optional user-defined 180 character unique identifier.',
+      },
       metadata: {
         type: 'object',
         description:

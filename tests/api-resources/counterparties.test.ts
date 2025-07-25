@@ -24,12 +24,14 @@ describe('resource counterparties', () => {
   test('create: required and optional params', async () => {
     const response = await client.counterparties.create({
       name: 'name',
+      query_external_id: 'external_id',
       accounting: { type: 'customer' },
       accounts: [
         {
           account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
           account_type: 'base_wallet',
           contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
+          external_id: 'external_id',
           ledger_account: {
             currency: 'currency',
             ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -62,6 +64,7 @@ describe('resource counterparties', () => {
         },
       ],
       email: 'dev@stainless.com',
+      body_external_id: 'external_id',
       ledger_type: 'customer',
       legal_entity: {
         legal_entity_type: 'business',
@@ -358,6 +361,7 @@ describe('resource counterparties', () => {
           created_at_lower_bound: '2019-12-27T18:11:19.117Z',
           created_at_upper_bound: '2019-12-27T18:11:19.117Z',
           email: 'dev@stainless.com',
+          external_id: 'external_id',
           legal_entity_id: 'legal_entity_id',
           metadata: { foo: 'string' },
           name: 'name',
