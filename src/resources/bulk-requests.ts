@@ -460,6 +460,11 @@ export namespace BulkRequestCreateParams {
       contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
 
       /**
+       * An optional user-defined 180 character unique identifier.
+       */
+      external_id?: string | null;
+
+      /**
        * Specifies a ledger account object that will be created with the external
        * account. The resulting ledger account is linked to the external account for
        * auto-ledgering Payment objects. See
@@ -1118,6 +1123,11 @@ export namespace BulkRequestCreateParams {
       account_type?: ExternalAccountsAPI.ExternalAccountType;
 
       contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
+
+      /**
+       * An optional user-defined 180 character unique identifier.
+       */
+      external_id?: string | null;
 
       /**
        * Specifies a ledger account object that will be created with the external

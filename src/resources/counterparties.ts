@@ -169,6 +169,11 @@ export interface Counterparty {
   email: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id: string | null;
+
+  /**
    * The id of the legal entity.
    */
   legal_entity_id: string | null;
@@ -222,6 +227,11 @@ export namespace Counterparty {
     created_at?: string;
 
     discarded_at?: string | null;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
 
     /**
      * If the external account links to a ledger account in Modern Treasury, the id of
@@ -297,54 +307,70 @@ export interface CounterpartyCollectAccountResponse {
 
 export interface CounterpartyCreateParams {
   /**
-   * A human friendly name for this counterparty.
+   * Body param: A human friendly name for this counterparty.
    */
   name: string | null;
 
+  /**
+   * Query param: An optional user-defined 180 character unique identifier.
+   */
+  query_external_id?: string;
+
+  /**
+   * Body param:
+   */
   accounting?: CounterpartyCreateParams.Accounting;
 
   /**
-   * The accounts for this counterparty.
+   * Body param: The accounts for this counterparty.
    */
   accounts?: Array<CounterpartyCreateParams.Account>;
 
   /**
-   * The counterparty's email.
+   * Body param: The counterparty's email.
    */
   email?: string | null;
 
   /**
-   * @deprecated An optional type to auto-sync the counterparty to your ledger.
-   * Either `customer` or `vendor`.
+   * Body param: An optional user-defined 180 character unique identifier.
+   */
+  body_external_id?: string | null;
+
+  /**
+   * @deprecated Body param: An optional type to auto-sync the counterparty to your
+   * ledger. Either `customer` or `vendor`.
    */
   ledger_type?: 'customer' | 'vendor';
 
+  /**
+   * Body param:
+   */
   legal_entity?: CounterpartyCreateParams.LegalEntity;
 
   /**
-   * The id of the legal entity.
+   * Body param: The id of the legal entity.
    */
   legal_entity_id?: string | null;
 
   /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
+   * Body param: Additional data represented as key-value pairs. Both the key and
+   * value must be strings.
    */
   metadata?: { [key: string]: string };
 
   /**
-   * Send an email to the counterparty whenever an associated payment order is sent
-   * to the bank.
+   * Body param: Send an email to the counterparty whenever an associated payment
+   * order is sent to the bank.
    */
   send_remittance_advice?: boolean;
 
   /**
-   * Either a valid SSN or EIN.
+   * Body param: Either a valid SSN or EIN.
    */
   taxpayer_identifier?: string;
 
   /**
-   * The verification status of the counterparty.
+   * Body param: The verification status of the counterparty.
    */
   verification_status?: 'denied' | 'needs_approval' | 'unverified' | 'verified';
 }
@@ -367,6 +393,11 @@ export namespace CounterpartyCreateParams {
     account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
 
     /**
      * Specifies a ledger account object that will be created with the external
@@ -915,6 +946,11 @@ export interface CounterpartyListParams extends PageParams {
    * insensitive.
    */
   email?: string;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
 
   /**
    * Filters for counterparties with the given legal entity ID.

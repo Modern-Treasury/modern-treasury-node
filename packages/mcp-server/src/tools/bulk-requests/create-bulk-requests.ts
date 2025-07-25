@@ -235,6 +235,10 @@ export const tool: Tool = {
                         $ref: '#/$defs/contact_detail_create_request',
                       },
                     },
+                    external_id: {
+                      type: 'string',
+                      description: 'An optional user-defined 180 character unique identifier.',
+                    },
                     ledger_account: {
                       $ref: '#/$defs/ledger_account_create_request',
                     },
@@ -815,6 +819,10 @@ export const tool: Tool = {
                       items: {
                         $ref: '#/$defs/contact_detail_create_request',
                       },
+                    },
+                    external_id: {
+                      type: 'string',
+                      description: 'An optional user-defined 180 character unique identifier.',
                     },
                     ledger_account: {
                       $ref: '#/$defs/ledger_account_create_request',

@@ -176,6 +176,13 @@ export class LedgerTransactionsPage extends Page<LedgerTransaction> {}
 export interface LedgerTransaction {
   id: string;
 
+  /**
+   * Reason for why a ledger transaction was automatically archived, typically due to
+   * a balance lock failure. This is a system-generated field and is only populated
+   * when applicable.
+   */
+  archived_reason: string | null;
+
   created_at: string;
 
   /**
