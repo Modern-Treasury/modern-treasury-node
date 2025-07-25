@@ -47,6 +47,7 @@ export const tool: Tool = {
           'Amount in the lowest denomination of the `target_currency`, often called the "buy" amount.',
       },
     },
+    required: ['internal_account_id', 'target_currency'],
     $defs: {
       currency: {
         type: 'string',
@@ -252,6 +253,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

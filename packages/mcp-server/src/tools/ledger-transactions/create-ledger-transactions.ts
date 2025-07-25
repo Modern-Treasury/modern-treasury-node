@@ -77,6 +77,7 @@ export const tool: Tool = {
         enum: ['archived', 'pending', 'posted'],
       },
     },
+    required: ['ledger_entries'],
     $defs: {
       ledger_entry_create_request: {
         type: 'object',
@@ -132,6 +133,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

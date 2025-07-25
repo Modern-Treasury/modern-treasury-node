@@ -58,6 +58,10 @@ export const tool: Tool = {
           'One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit.',
         enum: ['credit', 'debit'],
       },
+      external_id: {
+        type: 'string',
+        description: 'An optional user-defined 180 character unique identifier.',
+      },
       internal_account_id: {
         type: 'string',
         description: 'The ID of the Internal Account for the expected payment.',
@@ -132,6 +136,7 @@ export const tool: Tool = {
         $ref: '#/$defs/expected_payment_type',
       },
     },
+    required: [],
     $defs: {
       currency: {
         type: 'string',
@@ -580,6 +585,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

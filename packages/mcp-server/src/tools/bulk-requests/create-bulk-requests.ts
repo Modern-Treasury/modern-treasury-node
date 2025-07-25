@@ -235,6 +235,10 @@ export const tool: Tool = {
                         $ref: '#/$defs/contact_detail_create_request',
                       },
                     },
+                    external_id: {
+                      type: 'string',
+                      description: 'An optional user-defined 180 character unique identifier.',
+                    },
                     ledger_account: {
                       $ref: '#/$defs/ledger_account_create_request',
                     },
@@ -348,7 +352,6 @@ export const tool: Tool = {
                       },
                     },
                   },
-                  required: [],
                 },
                 receiving_account_id: {
                   type: 'string',
@@ -437,6 +440,10 @@ export const tool: Tool = {
                     'One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit.',
                   enum: ['credit', 'debit'],
                 },
+                external_id: {
+                  type: 'string',
+                  description: 'An optional user-defined 180 character unique identifier.',
+                },
                 internal_account_id: {
                   type: 'string',
                   description: 'The ID of the Internal Account for the expected payment.',
@@ -511,7 +518,6 @@ export const tool: Tool = {
                   $ref: '#/$defs/expected_payment_type',
                 },
               },
-              required: [],
             },
             {
               $ref: '#/$defs/ledger_transaction_create_request',
@@ -627,7 +633,6 @@ export const tool: Tool = {
                   type: 'string',
                 },
               },
-              required: [],
             },
             {
               type: 'object',
@@ -815,6 +820,10 @@ export const tool: Tool = {
                         $ref: '#/$defs/contact_detail_create_request',
                       },
                     },
+                    external_id: {
+                      type: 'string',
+                      description: 'An optional user-defined 180 character unique identifier.',
+                    },
                     ledger_account: {
                       $ref: '#/$defs/ledger_account_create_request',
                     },
@@ -928,7 +937,6 @@ export const tool: Tool = {
                       },
                     },
                   },
-                  required: [],
                 },
                 receiving_account_id: {
                   type: 'string',
@@ -996,7 +1004,6 @@ export const tool: Tool = {
                     'This represents the identifier by which the merchant is known to the person initiating an ACH payment with CIE subtype. Only the first 15 characters of this string will be used. Any additional characters will be truncated.',
                 },
               },
-              required: [],
             },
             {
               type: 'object',
@@ -1040,6 +1047,10 @@ export const tool: Tool = {
                   description:
                     'One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit.',
                   enum: ['credit', 'debit'],
+                },
+                external_id: {
+                  type: 'string',
+                  description: 'An optional user-defined 180 character unique identifier.',
                 },
                 internal_account_id: {
                   type: 'string',
@@ -1085,7 +1096,6 @@ export const tool: Tool = {
                   $ref: '#/$defs/expected_payment_type',
                 },
               },
-              required: [],
             },
             {
               type: 'object',
@@ -1099,7 +1109,6 @@ export const tool: Tool = {
                     'Additional data in the form of key-value pairs. Pairs can be removed by passing an empty string or `null` as the value.',
                 },
               },
-              required: [],
             },
             {
               type: 'object',
@@ -1153,7 +1162,6 @@ export const tool: Tool = {
                   enum: ['archived', 'pending', 'posted'],
                 },
               },
-              required: [],
             },
           ],
         },
@@ -1164,6 +1172,7 @@ export const tool: Tool = {
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
       },
     },
+    required: ['action_type', 'resource_type', 'resources'],
     $defs: {
       payment_order_type: {
         type: 'string',
@@ -1220,7 +1229,6 @@ export const tool: Tool = {
               'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
           },
         },
-        required: [],
       },
       currency: {
         type: 'string',
@@ -1568,7 +1576,6 @@ export const tool: Tool = {
             enum: ['email', 'phone_number', 'website'],
           },
         },
-        required: [],
       },
       ledger_account_create_request: {
         type: 'object',
@@ -1649,7 +1656,6 @@ export const tool: Tool = {
             description: 'Region or State.',
           },
         },
-        required: [],
       },
       payment_order_subtype: {
         type: 'string',
@@ -1818,6 +1824,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

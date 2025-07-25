@@ -24,6 +24,10 @@ export const tool: Tool = {
       counterparty_id: {
         type: 'string',
       },
+      query_external_id: {
+        type: 'string',
+        description: 'An optional user-defined 180 character unique identifier.',
+      },
       account_details: {
         type: 'array',
         items: {
@@ -63,6 +67,10 @@ export const tool: Tool = {
         items: {
           $ref: '#/$defs/contact_detail_create_request',
         },
+      },
+      body_external_id: {
+        type: 'string',
+        description: 'An optional user-defined 180 character unique identifier.',
       },
       ledger_account: {
         $ref: '#/$defs/ledger_account_create_request',
@@ -176,6 +184,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['counterparty_id'],
     $defs: {
       external_account_type: {
         type: 'string',
@@ -207,7 +216,6 @@ export const tool: Tool = {
             enum: ['email', 'phone_number', 'website'],
           },
         },
-        required: [],
       },
       ledger_account_create_request: {
         type: 'object',
@@ -292,10 +300,10 @@ export const tool: Tool = {
             description: 'Region or State.',
           },
         },
-        required: [],
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

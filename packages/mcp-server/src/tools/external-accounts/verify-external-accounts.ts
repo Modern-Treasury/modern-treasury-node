@@ -85,6 +85,7 @@ export const tool: Tool = {
         enum: ['high', 'normal'],
       },
     },
+    required: ['id', 'originating_account_id', 'payment_type'],
     $defs: {
       currency: {
         type: 'string',
@@ -290,6 +291,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

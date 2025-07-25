@@ -460,6 +460,11 @@ export namespace BulkRequestCreateParams {
       contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
 
       /**
+       * An optional user-defined 180 character unique identifier.
+       */
+      external_id?: string | null;
+
+      /**
        * Specifies a ledger account object that will be created with the external
        * account. The resulting ledger account is linked to the external account for
        * auto-ledgering Payment objects. See
@@ -636,6 +641,11 @@ export namespace BulkRequestCreateParams {
      * being charged, use debit.
      */
     direction?: 'credit' | 'debit' | null;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
 
     /**
      * The ID of the Internal Account for the expected payment.
@@ -1115,6 +1125,11 @@ export namespace BulkRequestCreateParams {
       contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
 
       /**
+       * An optional user-defined 180 character unique identifier.
+       */
+      external_id?: string | null;
+
+      /**
        * Specifies a ledger account object that will be created with the external
        * account. The resulting ledger account is linked to the external account for
        * auto-ledgering Payment objects. See
@@ -1293,6 +1308,11 @@ export namespace BulkRequestCreateParams {
      * being charged, use debit.
      */
     direction?: 'credit' | 'debit' | null;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
 
     /**
      * The ID of the Internal Account for the expected payment.

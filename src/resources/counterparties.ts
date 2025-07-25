@@ -5,7 +5,6 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as AccountDetailsAPI from './account-details';
 import * as ExternalAccountsAPI from './external-accounts';
-import * as LegalEntitiesAPI from './legal-entities';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
@@ -170,6 +169,11 @@ export interface Counterparty {
   email: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id: string | null;
+
+  /**
    * The id of the legal entity.
    */
   legal_entity_id: string | null;
@@ -223,6 +227,11 @@ export namespace Counterparty {
     created_at?: string;
 
     discarded_at?: string | null;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
 
     /**
      * If the external account links to a ledger account in Modern Treasury, the id of
@@ -298,54 +307,70 @@ export interface CounterpartyCollectAccountResponse {
 
 export interface CounterpartyCreateParams {
   /**
-   * A human friendly name for this counterparty.
+   * Body param: A human friendly name for this counterparty.
    */
   name: string | null;
 
+  /**
+   * Query param: An optional user-defined 180 character unique identifier.
+   */
+  query_external_id?: string;
+
+  /**
+   * Body param:
+   */
   accounting?: CounterpartyCreateParams.Accounting;
 
   /**
-   * The accounts for this counterparty.
+   * Body param: The accounts for this counterparty.
    */
   accounts?: Array<CounterpartyCreateParams.Account>;
 
   /**
-   * The counterparty's email.
+   * Body param: The counterparty's email.
    */
   email?: string | null;
 
   /**
-   * @deprecated An optional type to auto-sync the counterparty to your ledger.
-   * Either `customer` or `vendor`.
+   * Body param: An optional user-defined 180 character unique identifier.
+   */
+  body_external_id?: string | null;
+
+  /**
+   * @deprecated Body param: An optional type to auto-sync the counterparty to your
+   * ledger. Either `customer` or `vendor`.
    */
   ledger_type?: 'customer' | 'vendor';
 
+  /**
+   * Body param:
+   */
   legal_entity?: CounterpartyCreateParams.LegalEntity;
 
   /**
-   * The id of the legal entity.
+   * Body param: The id of the legal entity.
    */
   legal_entity_id?: string | null;
 
   /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
+   * Body param: Additional data represented as key-value pairs. Both the key and
+   * value must be strings.
    */
   metadata?: { [key: string]: string };
 
   /**
-   * Send an email to the counterparty whenever an associated payment order is sent
-   * to the bank.
+   * Body param: Send an email to the counterparty whenever an associated payment
+   * order is sent to the bank.
    */
   send_remittance_advice?: boolean;
 
   /**
-   * Either a valid SSN or EIN.
+   * Body param: Either a valid SSN or EIN.
    */
   taxpayer_identifier?: string;
 
   /**
-   * The verification status of the counterparty.
+   * Body param: The verification status of the counterparty.
    */
   verification_status?: 'denied' | 'needs_approval' | 'unverified' | 'verified';
 }
@@ -368,6 +393,11 @@ export namespace CounterpartyCreateParams {
     account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
 
     /**
      * Specifies a ledger account object that will be created with the external
@@ -513,7 +543,7 @@ export namespace CounterpartyCreateParams {
      */
     addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-    bank_settings?: LegalEntitiesAPI.BankSettings | null;
+    bank_settings?: LegalEntity.legal_entity_bank_setting | null;
 
     /**
      * The business's legal business name.
@@ -619,7 +649,7 @@ export namespace CounterpartyCreateParams {
      */
     suffix?: string | null;
 
-    wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
+    wealth_and_employment_details?: LegalEntity.legal_entity_wealth_employment_detail | null;
 
     /**
      * The entity's primary website URL.
@@ -628,8 +658,50 @@ export namespace CounterpartyCreateParams {
   }
 
   export namespace LegalEntity {
+    export interface legal_entity_bank_setting {
+      id: string;
+
+      /**
+       * The percentage of backup withholding to apply to the legal entity.
+       */
+      backup_withholding_percentage: number | null;
+
+      created_at: string;
+
+      discarded_at: string | null;
+
+      /**
+       * Whether backup withholding is enabled. See more here -
+       * https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
+       */
+      enable_backup_withholding: boolean | null;
+
+      /**
+       * This field will be true if this object exists in the live environment or false
+       * if it exists in the test environment.
+       */
+      live_mode: boolean;
+
+      object: string;
+
+      /**
+       * Cross River Bank specific setting to opt out of privacy policy.
+       */
+      privacy_opt_out: boolean | null;
+
+      /**
+       * It covers, among other types of insider loans, extensions of credit by a member
+       * bank to an executive officer, director, or principal shareholder of the member
+       * bank; a bank holding company of which the member bank is a subsidiary; and any
+       * other subsidiary of that bank holding company.
+       */
+      regulation_o: boolean | null;
+
+      updated_at: string;
+    }
+
     export interface LegalEntityAssociation {
-      relationship_types: Array<'beneficial_owner' | 'control_person'>;
+      relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
 
       /**
        * The child legal entity.
@@ -657,6 +729,169 @@ export namespace CounterpartyCreateParams {
      */
     export interface PhoneNumber {
       phone_number?: string;
+    }
+
+    export interface legal_entity_wealth_employment_detail {
+      id: string;
+
+      /**
+       * The annual income of the individual.
+       */
+      annual_income: number | null;
+
+      created_at: string;
+
+      discarded_at: string | null;
+
+      /**
+       * The country in which the employer is located.
+       */
+      employer_country: string | null;
+
+      /**
+       * The name of the employer.
+       */
+      employer_name: string | null;
+
+      /**
+       * The state in which the employer is located.
+       */
+      employer_state: string | null;
+
+      /**
+       * The employment status of the individual.
+       */
+      employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed' | null;
+
+      /**
+       * The country in which the individual's income is earned.
+       */
+      income_country: string | null;
+
+      /**
+       * The source of the individual's income.
+       */
+      income_source:
+        | 'family_support'
+        | 'government_benefits'
+        | 'inheritance'
+        | 'investments'
+        | 'rental_income'
+        | 'retirement'
+        | 'salary'
+        | 'self_employed'
+        | null;
+
+      /**
+       * The state in which the individual's income is earned.
+       */
+      income_state: string | null;
+
+      /**
+       * The industry of the individual.
+       */
+      industry:
+        | 'accounting'
+        | 'agriculture'
+        | 'automotive'
+        | 'chemical_manufacturing'
+        | 'construction'
+        | 'educational_medical'
+        | 'food_service'
+        | 'finance'
+        | 'gasoline'
+        | 'health_stores'
+        | 'laundry'
+        | 'maintenance'
+        | 'manufacturing'
+        | 'merchant_wholesale'
+        | 'mining'
+        | 'performing_arts'
+        | 'professional_non_legal'
+        | 'public_administration'
+        | 'publishing'
+        | 'real_estate'
+        | 'recreation_gambling'
+        | 'religious_charity'
+        | 'rental_services'
+        | 'retail_clothing'
+        | 'retail_electronics'
+        | 'retail_food'
+        | 'retail_furnishing'
+        | 'retail_home'
+        | 'retail_non_store'
+        | 'retail_sporting'
+        | 'transportation'
+        | 'travel'
+        | 'utilities'
+        | null;
+
+      /**
+       * This field will be true if this object exists in the live environment or false
+       * if it exists in the test environment.
+       */
+      live_mode: boolean;
+
+      object: string;
+
+      /**
+       * The occupation of the individual.
+       */
+      occupation:
+        | 'consulting'
+        | 'executive'
+        | 'finance_accounting'
+        | 'food_services'
+        | 'government'
+        | 'healthcare'
+        | 'legal_services'
+        | 'manufacturing'
+        | 'other'
+        | 'sales'
+        | 'science_engineering'
+        | 'technology'
+        | null;
+
+      /**
+       * The source of the individual's funds.
+       */
+      source_of_funds:
+        | 'alimony'
+        | 'annuity'
+        | 'business_owner'
+        | 'general_employee'
+        | 'government_benefits'
+        | 'homemaker'
+        | 'inheritance_gift'
+        | 'investment'
+        | 'legal_settlement'
+        | 'lottery'
+        | 'real_estate'
+        | 'retired'
+        | 'retirement'
+        | 'salary'
+        | 'self_employed'
+        | 'senior_executive'
+        | 'trust_income'
+        | null;
+
+      updated_at: string;
+
+      /**
+       * The source of the individual's wealth.
+       */
+      wealth_source:
+        | 'business_sale'
+        | 'family_support'
+        | 'government_benefits'
+        | 'inheritance'
+        | 'investments'
+        | 'other'
+        | 'rental_income'
+        | 'retirement'
+        | 'salary'
+        | 'self_employed'
+        | null;
     }
   }
 }
@@ -711,6 +946,11 @@ export interface CounterpartyListParams extends PageParams {
    * insensitive.
    */
   email?: string;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
 
   /**
    * Filters for counterparties with the given legal entity ID.

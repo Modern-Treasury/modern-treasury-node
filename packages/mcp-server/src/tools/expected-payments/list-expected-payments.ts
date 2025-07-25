@@ -41,6 +41,9 @@ export const tool: Tool = {
       direction: {
         $ref: '#/$defs/transaction_direction',
       },
+      external_id: {
+        type: 'string',
+      },
       internal_account_id: {
         type: 'string',
         description: 'Specify internal_account_id to see expected_payments for a specific account.',
@@ -110,12 +113,16 @@ export const tool: Tool = {
         format: 'date-time',
       },
     },
+    required: [],
     $defs: {
       transaction_direction: {
         type: 'string',
         enum: ['credit', 'debit'],
       },
     },
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 

@@ -145,12 +145,16 @@ export const tool: Tool = {
         ],
       },
     },
+    required: [],
     $defs: {
       transaction_direction: {
         type: 'string',
         enum: ['credit', 'debit'],
       },
     },
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 

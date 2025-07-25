@@ -132,7 +132,7 @@ describe('resource ledgerAccountCategories', () => {
           ledger_account_id: 'ledger_account_id',
           ledger_id: 'ledger_id',
           metadata: { foo: 'string' },
-          name: 'name',
+          name: ['string'],
           parent_ledger_account_category_id: 'parent_ledger_account_category_id',
           per_page: 0,
         },

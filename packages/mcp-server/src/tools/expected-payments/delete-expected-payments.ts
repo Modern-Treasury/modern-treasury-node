@@ -25,6 +25,10 @@ export const tool: Tool = {
         type: 'string',
       },
     },
+    required: ['id'],
+  },
+  annotations: {
+    idempotentHint: true,
   },
 };
 

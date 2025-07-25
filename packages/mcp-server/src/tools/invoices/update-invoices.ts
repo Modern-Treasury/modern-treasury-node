@@ -261,6 +261,7 @@ export const tool: Tool = {
         description: 'The ID of the virtual account the invoice should be paid to.',
       },
     },
+    required: ['id'],
     $defs: {
       contact_detail: {
         type: 'object',
@@ -552,6 +553,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

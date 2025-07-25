@@ -72,7 +72,9 @@ export const tool: Tool = {
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
       },
     },
+    required: ['id', 'posted_ledger_entries'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

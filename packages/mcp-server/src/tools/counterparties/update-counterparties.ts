@@ -51,7 +51,9 @@ export const tool: Tool = {
         description: 'Either a valid SSN or EIN.',
       },
     },
+    required: ['id'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

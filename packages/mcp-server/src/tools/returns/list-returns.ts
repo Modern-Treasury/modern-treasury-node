@@ -47,6 +47,10 @@ export const tool: Tool = {
         enum: ['incoming_payment_detail', 'paper_item', 'payment_order', 'return', 'reversal'],
       },
     },
+    required: [],
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 

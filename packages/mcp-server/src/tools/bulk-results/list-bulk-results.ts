@@ -63,6 +63,10 @@ export const tool: Tool = {
         enum: ['pending', 'successful', 'failed'],
       },
     },
+    required: [],
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 

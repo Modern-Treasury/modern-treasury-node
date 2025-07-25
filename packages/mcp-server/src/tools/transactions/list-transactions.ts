@@ -78,6 +78,10 @@ export const tool: Tool = {
         type: 'string',
       },
     },
+    required: [],
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 

@@ -207,6 +207,10 @@ export const tool: Tool = {
               $ref: '#/$defs/contact_detail_create_request',
             },
           },
+          external_id: {
+            type: 'string',
+            description: 'An optional user-defined 180 character unique identifier.',
+          },
           ledger_account: {
             $ref: '#/$defs/ledger_account_create_request',
           },
@@ -319,7 +323,6 @@ export const tool: Tool = {
             },
           },
         },
-        required: [],
       },
       receiving_account_id: {
         type: 'string',
@@ -366,6 +369,7 @@ export const tool: Tool = {
         description: 'Name of the ultimate funds recipient.',
       },
     },
+    required: ['amount', 'direction', 'originating_account_id', 'type'],
     $defs: {
       payment_order_type: {
         type: 'string',
@@ -422,7 +426,6 @@ export const tool: Tool = {
               'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
           },
         },
-        required: [],
       },
       currency: {
         type: 'string',
@@ -770,7 +773,6 @@ export const tool: Tool = {
             enum: ['email', 'phone_number', 'website'],
           },
         },
-        required: [],
       },
       ledger_account_create_request: {
         type: 'object',
@@ -851,7 +853,6 @@ export const tool: Tool = {
             description: 'Region or State.',
           },
         },
-        required: [],
       },
       payment_order_subtype: {
         type: 'string',
@@ -891,6 +892,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

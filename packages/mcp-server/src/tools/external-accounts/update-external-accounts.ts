@@ -53,6 +53,7 @@ export const tool: Tool = {
         enum: ['business', 'individual'],
       },
     },
+    required: ['id'],
     $defs: {
       external_account_type: {
         type: 'string',
@@ -99,10 +100,10 @@ export const tool: Tool = {
             description: 'Region or State.',
           },
         },
-        required: [],
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

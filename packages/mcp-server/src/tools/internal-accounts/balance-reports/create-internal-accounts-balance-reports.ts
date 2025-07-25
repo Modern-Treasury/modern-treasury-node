@@ -79,7 +79,9 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['internal_account_id', 'as_of_date', 'as_of_time', 'balance_report_type', 'balances'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

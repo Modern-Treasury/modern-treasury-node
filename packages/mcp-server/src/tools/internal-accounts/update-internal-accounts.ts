@@ -46,7 +46,9 @@ export const tool: Tool = {
         description: 'The parent internal account for this account.',
       },
     },
+    required: ['id'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

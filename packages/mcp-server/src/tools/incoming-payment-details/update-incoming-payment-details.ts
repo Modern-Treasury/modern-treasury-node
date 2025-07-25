@@ -30,7 +30,9 @@ export const tool: Tool = {
           'Additional data in the form of key-value pairs. Pairs can be removed by passing an empty string or `null` as the value.',
       },
     },
+    required: ['id'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {

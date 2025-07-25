@@ -87,6 +87,7 @@ export const tool: Tool = {
         type: 'integer',
       },
     },
+    required: [],
     $defs: {
       currency: {
         type: 'string',
@@ -295,6 +296,9 @@ export const tool: Tool = {
         enum: ['credit', 'debit'],
       },
     },
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 
