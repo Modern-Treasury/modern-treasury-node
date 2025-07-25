@@ -38,6 +38,10 @@ export const tool: Tool = {
         type: 'string',
         description: 'Performs a partial string match of the email field. This is also case insensitive.',
       },
+      external_id: {
+        type: 'string',
+        description: 'An optional user-defined 180 character unique identifier.',
+      },
       legal_entity_id: {
         type: 'string',
         description: 'Filters for counterparties with the given legal entity ID.',

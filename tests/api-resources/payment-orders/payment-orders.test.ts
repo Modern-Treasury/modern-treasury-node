@@ -98,6 +98,7 @@ describe('resource paymentOrders', () => {
         account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
         account_type: 'base_wallet',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
+        external_id: 'external_id',
         ledger_account: {
           currency: 'currency',
           ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -219,6 +220,7 @@ describe('resource paymentOrders', () => {
             account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
             account_type: 'base_wallet',
             contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
+            external_id: 'external_id',
             ledger_account: {
               currency: 'currency',
               ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -391,6 +393,7 @@ describe('resource paymentOrders', () => {
         account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
         account_type: 'base_wallet',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
+        external_id: 'external_id',
         ledger_account: {
           currency: 'currency',
           ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
