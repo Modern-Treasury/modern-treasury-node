@@ -90,7 +90,6 @@ export const tool: Tool = {
                 'payment_orders',
                 'transactions',
                 'connections',
-                'conversations',
               ],
             },
             file: {

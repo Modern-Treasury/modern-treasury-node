@@ -87,8 +87,7 @@ export interface Document {
     | 'paper_item'
     | 'payment_order'
     | 'transaction'
-    | 'connection'
-    | 'conversation';
+    | 'connection';
 
   file: Document.File;
 
@@ -166,8 +165,7 @@ export interface DocumentCreateParams {
     | 'paper_items'
     | 'payment_orders'
     | 'transactions'
-    | 'connections'
-    | 'conversations';
+    | 'connections';
 
   file: Core.Uploadable;
 
@@ -199,8 +197,7 @@ export interface DocumentListParams extends PageParams {
     | 'paper_items'
     | 'payment_orders'
     | 'transactions'
-    | 'connections'
-    | 'conversations';
+    | 'connections';
 }
 
 Documents.DocumentsPage = DocumentsPage;
