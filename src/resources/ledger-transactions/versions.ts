@@ -44,6 +44,14 @@ export class LedgerTransactionVersionsPage extends Page<LedgerTransactionVersion
 export interface LedgerTransactionVersion {
   id: string;
 
+  /**
+   * System-set reason why the ledger transaction was archived; currently only
+   * 'balance_lock_failure' for transactions that violated balance constraints. Only
+   * populated when archive_on_balance_lock_failure is true and a balance lock
+   * violation occurs, otherwise null.
+   */
+  archived_reason: string | null;
+
   created_at: string;
 
   /**

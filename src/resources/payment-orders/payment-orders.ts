@@ -877,8 +877,7 @@ export namespace PaymentOrderCreateParams {
       | 'paper_items'
       | 'payment_orders'
       | 'transactions'
-      | 'connections'
-      | 'conversations';
+      | 'connections';
 
     file: Core.Uploadable;
 
