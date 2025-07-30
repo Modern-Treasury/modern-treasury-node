@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'list_expected_payments',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nlist expected_payments",
+  description: 'list expected_payments',
   inputSchema: {
     type: 'object',
     properties: {

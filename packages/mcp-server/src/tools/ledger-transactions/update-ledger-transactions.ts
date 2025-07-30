@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_ledger_transactions',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nUpdate the details of a ledger transaction.",
+  description: 'Update the details of a ledger transaction.',
   inputSchema: {
     type: 'object',
     properties: {
