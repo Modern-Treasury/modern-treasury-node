@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'retrieve_legal_entities',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet details on a single legal entity.",
+  description: 'Get details on a single legal entity.',
   inputSchema: {
     type: 'object',
     properties: {
