@@ -936,13 +936,7 @@ export interface LedgerTransactionCreateRequest {
    * payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
    * reversal.
    */
-  ledgerable_type?:
-    | 'expected_payment'
-    | 'incoming_payment_detail'
-    | 'paper_item'
-    | 'payment_order'
-    | 'return'
-    | 'reversal';
+  ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be

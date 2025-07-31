@@ -47,14 +47,7 @@ export const tool: Tool = {
         type: 'string',
         description:
           "Specify this if you'd like to link the reversal ledger transaction to a Payment object like Return or Reversal.",
-        enum: [
-          'expected_payment',
-          'incoming_payment_detail',
-          'paper_item',
-          'payment_order',
-          'return',
-          'reversal',
-        ],
+        enum: ['expected_payment', 'incoming_payment_detail', 'payment_order', 'return', 'reversal'],
       },
       metadata: {
         type: 'object',

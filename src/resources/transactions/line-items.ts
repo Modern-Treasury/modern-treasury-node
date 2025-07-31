@@ -147,7 +147,6 @@ export interface TransactionLineItem {
    */
   transactable_type:
     | 'incoming_payment_detail'
-    | 'paper_item'
     | 'payment_order'
     | 'payment_order_attempt'
     | 'return'

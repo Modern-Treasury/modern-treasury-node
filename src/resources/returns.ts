@@ -232,7 +232,7 @@ export interface ReturnObject {
   /**
    * The type of object being returned or `null`.
    */
-  returnable_type: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'return' | 'reversal' | null;
+  returnable_type: 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal' | null;
 
   /**
    * The role of the return, can be `originating` or `receiving`.
@@ -269,7 +269,6 @@ export interface ReturnObject {
     | 'eft'
     | 'interac'
     | 'manual'
-    | 'paper_item'
     | 'sepa'
     | 'wire';
 
@@ -654,7 +653,7 @@ export interface ReturnListParams extends PageParams {
    * One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
    * Must be accompanied by `returnable_id`.
    */
-  returnable_type?: 'incoming_payment_detail' | 'paper_item' | 'payment_order' | 'return' | 'reversal';
+  returnable_type?: 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
 }
 
 Returns.ReturnObjectsPage = ReturnObjectsPage;

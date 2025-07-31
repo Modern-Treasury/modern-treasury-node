@@ -1412,7 +1412,6 @@ export namespace BulkRequestCreateParams {
     ledgerable_type?:
       | 'expected_payment'
       | 'incoming_payment_detail'
-      | 'paper_item'
       | 'payment_order'
       | 'return'
       | 'reversal';
