@@ -57,9 +57,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { internal_account_id, ...body } = args as any;
+  const { internal_account_id, jq_filter, ...body } = args as any;
   const response = await client.internalAccounts.balanceReports.list(internal_account_id, body).asResponse();
-  return asTextContentResult(await maybeFilter(args, await response.json()));
+  return asTextContentResult(await maybeFilter(jq_filter, await response.json()));
 };
 
 export default { metadata, tool, handler };

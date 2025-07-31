@@ -175,9 +175,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { payment_order_id, ...body } = args as any;
+  const { payment_order_id, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.paymentOrders.reversals.create(payment_order_id, body)),
+    await maybeFilter(jq_filter, await client.paymentOrders.reversals.create(payment_order_id, body)),
   );
 };
 

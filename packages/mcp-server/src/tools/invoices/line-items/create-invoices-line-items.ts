@@ -71,9 +71,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { invoice_id, ...body } = args as any;
+  const { invoice_id, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.invoices.lineItems.create(invoice_id, body)),
+    await maybeFilter(jq_filter, await client.invoices.lineItems.create(invoice_id, body)),
   );
 };
 
