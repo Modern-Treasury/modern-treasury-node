@@ -165,7 +165,7 @@ import {
   LineItems,
   LineItemsPage,
 } from './resources/line-items';
-import { PaperItem, PaperItemListParams, PaperItems, PaperItemsPage } from './resources/paper-items';
+import { PaperItems } from './resources/paper-items';
 import {
   PaymentActionCreateParams,
   PaymentActionCreateResponse,
@@ -570,7 +570,6 @@ ModernTreasury.Transactions = Transactions;
 ModernTreasury.TransactionsPage = TransactionsPage;
 ModernTreasury.Validations = Validations;
 ModernTreasury.PaperItems = PaperItems;
-ModernTreasury.PaperItemsPage = PaperItemsPage;
 ModernTreasury.VirtualAccounts = VirtualAccounts;
 ModernTreasury.VirtualAccountsPage = VirtualAccountsPage;
 ModernTreasury.BulkRequests = BulkRequests;
@@ -832,12 +831,7 @@ export declare namespace ModernTreasury {
     type ValidationValidateRoutingNumberParams as ValidationValidateRoutingNumberParams,
   };
 
-  export {
-    PaperItems as PaperItems,
-    type PaperItem as PaperItem,
-    PaperItemsPage as PaperItemsPage,
-    type PaperItemListParams as PaperItemListParams,
-  };
+  export { PaperItems as PaperItems };
 
   export {
     VirtualAccounts as VirtualAccounts,

@@ -448,15 +448,6 @@ Methods:
 
 # PaperItems
 
-Types:
-
-- <code><a href="./src/resources/paper-items.ts">PaperItem</a></code>
-
-Methods:
-
-- <code title="get /api/paper_items/{id}">client.paperItems.<a href="./src/resources/paper-items.ts">retrieve</a>(id) -> PaperItem</code>
-- <code title="get /api/paper_items">client.paperItems.<a href="./src/resources/paper-items.ts">list</a>({ ...params }) -> PaperItemsPage</code>
-
 # VirtualAccounts
 
 Types:

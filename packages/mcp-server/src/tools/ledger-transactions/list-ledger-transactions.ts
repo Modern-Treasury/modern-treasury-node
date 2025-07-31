@@ -61,14 +61,7 @@ export const tool: Tool = {
       },
       ledgerable_type: {
         type: 'string',
-        enum: [
-          'expected_payment',
-          'incoming_payment_detail',
-          'paper_item',
-          'payment_order',
-          'return',
-          'reversal',
-        ],
+        enum: ['expected_payment', 'incoming_payment_detail', 'payment_order', 'return', 'reversal'],
       },
       metadata: {
         type: 'object',

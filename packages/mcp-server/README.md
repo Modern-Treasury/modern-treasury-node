@@ -390,11 +390,6 @@ The following tools are available in this MCP server.
 
 - `validate_routing_number_validations` (`read`): Validates the routing number information supplied without creating a routing detail
 
-### Resource `paper_items`:
-
-- `retrieve_paper_items` (`read`): Get details on a single paper item.
-- `list_paper_items` (`read`): Get a list of all paper items.
-
 ### Resource `virtual_accounts`:
 
 - `create_virtual_accounts` (`write`): create virtual_account
