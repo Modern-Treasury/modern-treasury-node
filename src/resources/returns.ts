@@ -650,8 +650,8 @@ export interface ReturnListParams extends PageParams {
   returnable_id?: string;
 
   /**
-   * One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
-   * Must be accompanied by `returnable_id`.
+   * One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
+   * accompanied by `returnable_id`.
    */
   returnable_type?: 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
 }
