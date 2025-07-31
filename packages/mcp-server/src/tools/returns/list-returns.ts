@@ -42,7 +42,7 @@ export const tool: Tool = {
       returnable_type: {
         type: 'string',
         description:
-          'One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`. Must be accompanied by `returnable_id`.',
+          'One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be accompanied by `returnable_id`.',
         enum: ['incoming_payment_detail', 'payment_order', 'return', 'reversal'],
       },
     },
