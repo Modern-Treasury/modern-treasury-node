@@ -131,8 +131,6 @@ import retrieve_transactions_line_items from './transactions/line-items/retrieve
 import list_transactions_line_items from './transactions/line-items/list-transactions-line-items';
 import delete_transactions_line_items from './transactions/line-items/delete-transactions-line-items';
 import validate_routing_number_validations from './validations/validate-routing-number-validations';
-import retrieve_paper_items from './paper-items/retrieve-paper-items';
-import list_paper_items from './paper-items/list-paper-items';
 import create_virtual_accounts from './virtual-accounts/create-virtual-accounts';
 import retrieve_virtual_accounts from './virtual-accounts/retrieve-virtual-accounts';
 import update_virtual_accounts from './virtual-accounts/update-virtual-accounts';
@@ -299,8 +297,6 @@ addEndpoint(retrieve_transactions_line_items);
 addEndpoint(list_transactions_line_items);
 addEndpoint(delete_transactions_line_items);
 addEndpoint(validate_routing_number_validations);
-addEndpoint(retrieve_paper_items);
-addEndpoint(list_paper_items);
 addEndpoint(create_virtual_accounts);
 addEndpoint(retrieve_virtual_accounts);
 addEndpoint(update_virtual_accounts);

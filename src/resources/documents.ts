@@ -84,7 +84,6 @@ export interface Document {
     | 'incoming_payment_detail'
     | 'internal_account'
     | 'organization'
-    | 'paper_item'
     | 'payment_order'
     | 'transaction'
     | 'connection';
@@ -162,7 +161,6 @@ export interface DocumentCreateParams {
     | 'incoming_payment_details'
     | 'internal_accounts'
     | 'organizations'
-    | 'paper_items'
     | 'payment_orders'
     | 'transactions'
     | 'connections';
@@ -194,7 +192,6 @@ export interface DocumentListParams extends PageParams {
     | 'incoming_payment_details'
     | 'internal_accounts'
     | 'organizations'
-    | 'paper_items'
     | 'payment_orders'
     | 'transactions'
     | 'connections';
