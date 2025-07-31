@@ -46,10 +46,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { internal_account_id, id, ...body } = args as any;
+  const { internal_account_id, id, jq_filter, ...body } = args as any;
   return asTextContentResult(
     await maybeFilter(
-      args,
+      jq_filter,
       await client.internalAccounts.updateAccountCapability(internal_account_id, id, body),
     ),
   );

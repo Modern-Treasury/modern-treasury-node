@@ -292,8 +292,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.incomingPaymentDetails.createAsync(body)));
+  const { jq_filter, ...body } = args as any;
+  return asTextContentResult(
+    await maybeFilter(jq_filter, await client.incomingPaymentDetails.createAsync(body)),
+  );
 };
 
 export default { metadata, tool, handler };
