@@ -446,8 +446,6 @@ Methods:
 
 - <code title="get /api/validations/routing_numbers">client.validations.<a href="./src/resources/validations.ts">validateRoutingNumber</a>({ ...params }) -> RoutingNumberLookupRequest</code>
 
-# PaperItems
-
 # VirtualAccounts
 
 Types:

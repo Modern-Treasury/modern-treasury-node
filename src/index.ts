@@ -165,7 +165,6 @@ import {
   LineItems,
   LineItemsPage,
 } from './resources/line-items';
-import { PaperItems } from './resources/paper-items';
 import {
   PaymentActionCreateParams,
   PaymentActionCreateResponse,
@@ -443,7 +442,6 @@ export class ModernTreasury extends Core.APIClient {
   returns: API.Returns = new API.Returns(this);
   transactions: API.Transactions = new API.Transactions(this);
   validations: API.Validations = new API.Validations(this);
-  paperItems: API.PaperItems = new API.PaperItems(this);
   virtualAccounts: API.VirtualAccounts = new API.VirtualAccounts(this);
   bulkRequests: API.BulkRequests = new API.BulkRequests(this);
   bulkResults: API.BulkResults = new API.BulkResults(this);
@@ -569,7 +567,6 @@ ModernTreasury.ReturnObjectsPage = ReturnObjectsPage;
 ModernTreasury.Transactions = Transactions;
 ModernTreasury.TransactionsPage = TransactionsPage;
 ModernTreasury.Validations = Validations;
-ModernTreasury.PaperItems = PaperItems;
 ModernTreasury.VirtualAccounts = VirtualAccounts;
 ModernTreasury.VirtualAccountsPage = VirtualAccountsPage;
 ModernTreasury.BulkRequests = BulkRequests;
@@ -830,8 +827,6 @@ export declare namespace ModernTreasury {
     type RoutingNumberLookupRequest as RoutingNumberLookupRequest,
     type ValidationValidateRoutingNumberParams as ValidationValidateRoutingNumberParams,
   };
-
-  export { PaperItems as PaperItems };
 
   export {
     VirtualAccounts as VirtualAccounts,
