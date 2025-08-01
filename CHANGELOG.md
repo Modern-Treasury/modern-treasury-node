@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.42.0 (2025-08-01)
+
+Full Changelog: [v2.41.0...v2.42.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.41.0...v2.42.0)
+
+### Features
+
+* **api:** api update ([87f942a](https://github.com/Modern-Treasury/modern-treasury-node/commit/87f942a725ce47ea4f6c839c06d1f0584ed0fa12))
+* **api:** api update ([ae93753](https://github.com/Modern-Treasury/modern-treasury-node/commit/ae9375321bced90d294bac3922eea84b7827b5ef))
+* **api:** api update ([5ce3f2e](https://github.com/Modern-Treasury/modern-treasury-node/commit/5ce3f2e568ef83f0ccba9347a99654da4b3b5d46))
+* **api:** api update ([14cda96](https://github.com/Modern-Treasury/modern-treasury-node/commit/14cda9651628bcd6022b2690c9ad4e213b407c52))
+* **api:** api update ([7ee8d4c](https://github.com/Modern-Treasury/modern-treasury-node/commit/7ee8d4c3d813df6080d72b631272e884f30a77ed))
+* **api:** api update ([d3d5fc2](https://github.com/Modern-Treasury/modern-treasury-node/commit/d3d5fc22727fefdca2c0e45fe3fe50cf326fdfdb))
+* **api:** api update ([1b729f7](https://github.com/Modern-Treasury/modern-treasury-node/commit/1b729f72f139cb96a2d6090824c4571ebc6f8a8d))
+* **mcp:** add logging when environment variable is set ([27c162a](https://github.com/Modern-Treasury/modern-treasury-node/commit/27c162a8ad9251d7e3cd9253973566f261cc1f2e))
+
+
+### Bug Fixes
+
+* **api:** make Legal Entity change backwards compatibile ([51a5c47](https://github.com/Modern-Treasury/modern-treasury-node/commit/51a5c475dfa05080b2c913603f2445e595030793))
+* **client:** remove circular imports ([41a2163](https://github.com/Modern-Treasury/modern-treasury-node/commit/41a216398b1d3cc8f2162f11f572cac8cbc37d43))
+* **client:** unique model names ([0ebc10f](https://github.com/Modern-Treasury/modern-treasury-node/commit/0ebc10f1ab3ae91f990e541024bb9d00ce35a99b))
+* **mcp:** avoid sending `jq_filter` to base API ([e10088a](https://github.com/Modern-Treasury/modern-treasury-node/commit/e10088a649b35a43a52284ca44cc78b10452ca37))
+* **mcp:** fix tool description of jq_filter ([21061a1](https://github.com/Modern-Treasury/modern-treasury-node/commit/21061a11a63a0c59953d51b252e9eb27b50ffe51))
+* **mcp:** include required section for top-level properties and support naming transformations ([0cc518f](https://github.com/Modern-Treasury/modern-treasury-node/commit/0cc518fae5c4be8559ede3dda2523781f60dca1d))
+* **mcp:** reverse validJson capability option and limit scope ([d0190f4](https://github.com/Modern-Treasury/modern-treasury-node/commit/d0190f4156a63475d1468178a08b0a54db198e08))
+
+
+### Chores
+
+* **internal:** codegen related update ([fa7400d](https://github.com/Modern-Treasury/modern-treasury-node/commit/fa7400dadd80d49eb39ce9a7b5fd007edf2067f9))
+* **internal:** remove redundant imports config ([47f39aa](https://github.com/Modern-Treasury/modern-treasury-node/commit/47f39aa0c573c2f198fb840f0676aba14125dfc5))
+* **mcp:** formatting ([d36e73d](https://github.com/Modern-Treasury/modern-treasury-node/commit/d36e73d10749938f990a47cf08f9203b3a4719a5))
+
 ## 2.41.0 (2025-07-15)
 
 Full Changelog: [v2.40.0...v2.41.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.40.0...v2.41.0)
