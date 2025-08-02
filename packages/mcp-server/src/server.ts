@@ -26,7 +26,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'modern_treasury_api',
-    version: '2.41.0',
+    version: '2.42.0',
   },
   { capabilities: { tools: {}, logging: {} } },
 );
