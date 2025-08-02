@@ -175,7 +175,9 @@ export {
 export {
   LegalEntitiesPage,
   LegalEntities,
+  type BankSettings,
   type LegalEntity,
+  type WealthAndEmploymentDetails,
   type LegalEntityCreateParams,
   type LegalEntityUpdateParams,
   type LegalEntityListParams,
