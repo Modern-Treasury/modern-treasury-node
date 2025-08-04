@@ -80,7 +80,7 @@ export const tool: Tool = {
       type: {
         type: 'string',
         description: 'The type of payment action.',
-        enum: ['evolve_non_processing_transaction', 'stop', 'issue'],
+        enum: ['evolve_non_processing_transaction', 'control_file', 'stop', 'issue'],
       },
       jq_filter: {
         type: 'string',
