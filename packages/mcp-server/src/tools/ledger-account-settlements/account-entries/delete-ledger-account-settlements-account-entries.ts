@@ -41,7 +41,7 @@ export const tool: Tool = {
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  const response = await client.ledgerAccountSettlements.accountEntries.del(id, body).asResponse();
+  const response = await client.ledgerAccountSettlements.accountEntries.delete(id, body).asResponse();
   return asTextContentResult(await response.text());
 };
 

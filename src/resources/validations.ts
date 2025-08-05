@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class Validations extends APIResource {
   /**
@@ -11,8 +12,8 @@ export class Validations extends APIResource {
    */
   validateRoutingNumber(
     query: ValidationValidateRoutingNumberParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RoutingNumberLookupRequest> {
+    options?: RequestOptions,
+  ): APIPromise<RoutingNumberLookupRequest> {
     return this._client.get('/api/validations/routing_numbers', { query, ...options });
   }
 }

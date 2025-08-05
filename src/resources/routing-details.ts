@@ -1,93 +1,67 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class RoutingDetails extends APIResource {
   /**
    * Create a routing detail for a single external account.
    */
   create(
-    accountsType: 'external_accounts',
-    accountId: string,
+    accountID: string,
     params: RoutingDetailCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RoutingDetail> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post(`/api/${accountsType}/${accountId}/routing_details`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    options?: RequestOptions,
+  ): APIPromise<RoutingDetail> {
+    const { accounts_type, ...body } = params;
+    return this._client.post(path`/api/${accounts_type}/${accountID}/routing_details`, { body, ...options });
   }
 
   /**
    * Get a single routing detail for a single internal or external account.
    */
   retrieve(
-    accountsType: Shared.AccountsType,
-    accountId: string,
     id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RoutingDetail> {
-    return this._client.get(`/api/${accountsType}/${accountId}/routing_details/${id}`, options);
+    params: RoutingDetailRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<RoutingDetail> {
+    const { accounts_type, account_id } = params;
+    return this._client.get(path`/api/${accounts_type}/${account_id}/routing_details/${id}`, options);
   }
 
   /**
    * Get a list of routing details for a single internal or external account.
    */
   list(
-    accountsType: Shared.AccountsType,
-    accountId: string,
-    query?: RoutingDetailListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<RoutingDetailsPage, RoutingDetail>;
-  list(
-    accountsType: Shared.AccountsType,
-    accountId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<RoutingDetailsPage, RoutingDetail>;
-  list(
-    accountsType: Shared.AccountsType,
-    accountId: string,
-    query: RoutingDetailListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<RoutingDetailsPage, RoutingDetail> {
-    if (isRequestOptions(query)) {
-      return this.list(accountsType, accountId, {}, query);
-    }
-    return this._client.getAPIList(`/api/${accountsType}/${accountId}/routing_details`, RoutingDetailsPage, {
-      query,
-      ...options,
-    });
+    accountID: string,
+    params: RoutingDetailListParams,
+    options?: RequestOptions,
+  ): PagePromise<RoutingDetailsPage, RoutingDetail> {
+    const { accounts_type, ...query } = params;
+    return this._client.getAPIList(
+      path`/api/${accounts_type}/${accountID}/routing_details`,
+      Page<RoutingDetail>,
+      { query, ...options },
+    );
   }
 
   /**
    * Delete a routing detail for a single external account.
    */
-  del(
-    accountsType: 'external_accounts',
-    accountId: string,
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.delete(`/api/${accountsType}/${accountId}/routing_details/${id}`, {
+  delete(id: string, params: RoutingDetailDeleteParams, options?: RequestOptions): APIPromise<void> {
+    const { accounts_type, account_id } = params;
+    return this._client.delete(path`/api/${accounts_type}/${account_id}/routing_details/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export class RoutingDetailsPage extends Page<RoutingDetail> {}
+export type RoutingDetailsPage = Page<RoutingDetail>;
 
 export interface RoutingDetail {
   id: string;
@@ -191,12 +165,17 @@ export interface RoutingDetail {
 
 export interface RoutingDetailCreateParams {
   /**
-   * The routing number of the bank.
+   * Path param:
+   */
+  accounts_type: 'external_accounts';
+
+  /**
+   * Body param: The routing number of the bank.
    */
   routing_number: string;
 
   /**
-   * The type of routing number. See
+   * Body param: The type of routing number. See
    * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
    * more details.
    */
@@ -225,8 +204,8 @@ export interface RoutingDetailCreateParams {
     | 'za_national_clearing_code';
 
   /**
-   * If the routing detail is to be used for a specific payment type this field will
-   * be populated, otherwise null.
+   * Body param: If the routing detail is to be used for a specific payment type this
+   * field will be populated, otherwise null.
    */
   payment_type?:
     | 'ach'
@@ -266,15 +245,38 @@ export interface RoutingDetailCreateParams {
     | null;
 }
 
-export interface RoutingDetailListParams extends PageParams {}
+export interface RoutingDetailRetrieveParams {
+  accounts_type: Shared.AccountsType;
 
-RoutingDetails.RoutingDetailsPage = RoutingDetailsPage;
+  /**
+   * The ID of the account.
+   */
+  account_id: string;
+}
+
+export interface RoutingDetailListParams extends PageParams {
+  /**
+   * Path param:
+   */
+  accounts_type: Shared.AccountsType;
+}
+
+export interface RoutingDetailDeleteParams {
+  accounts_type: 'external_accounts';
+
+  /**
+   * The ID of the account.
+   */
+  account_id: string;
+}
 
 export declare namespace RoutingDetails {
   export {
     type RoutingDetail as RoutingDetail,
-    RoutingDetailsPage as RoutingDetailsPage,
+    type RoutingDetailsPage as RoutingDetailsPage,
     type RoutingDetailCreateParams as RoutingDetailCreateParams,
+    type RoutingDetailRetrieveParams as RoutingDetailRetrieveParams,
     type RoutingDetailListParams as RoutingDetailListParams,
+    type RoutingDetailDeleteParams as RoutingDetailDeleteParams,
   };
 }

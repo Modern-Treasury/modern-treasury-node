@@ -1,10 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class LedgerAccounts extends APIResource {
   /**
@@ -20,19 +21,8 @@ export class LedgerAccounts extends APIResource {
    * });
    * ```
    */
-  create(params: LedgerAccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/ledger_accounts', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: LedgerAccountCreateParams, options?: RequestOptions): APIPromise<LedgerAccount> {
+    return this._client.post('/api/ledger_accounts', { body, ...options });
   }
 
   /**
@@ -47,19 +37,10 @@ export class LedgerAccounts extends APIResource {
    */
   retrieve(
     id: string,
-    query?: LedgerAccountRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccount>;
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount>;
-  retrieve(
-    id: string,
-    query: LedgerAccountRetrieveParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccount> {
-    if (isRequestOptions(query)) {
-      return this.retrieve(id, {}, query);
-    }
-    return this._client.get(`/api/ledger_accounts/${id}`, { query, ...options });
+    query: LedgerAccountRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccount> {
+    return this._client.get(path`/api/ledger_accounts/${id}`, { query, ...options });
   }
 
   /**
@@ -74,19 +55,10 @@ export class LedgerAccounts extends APIResource {
    */
   update(
     id: string,
-    body?: LedgerAccountUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccount>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount>;
-  update(
-    id: string,
-    body: LedgerAccountUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccount> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/ledger_accounts/${id}`, { body, ...options });
+    body: LedgerAccountUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccount> {
+    return this._client.patch(path`/api/ledger_accounts/${id}`, { body, ...options });
   }
 
   /**
@@ -101,18 +73,10 @@ export class LedgerAccounts extends APIResource {
    * ```
    */
   list(
-    query?: LedgerAccountListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountsPage, LedgerAccount>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerAccountsPage, LedgerAccount>;
-  list(
-    query: LedgerAccountListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountsPage, LedgerAccount> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/ledger_accounts', LedgerAccountsPage, { query, ...options });
+    query: LedgerAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerAccountsPage, LedgerAccount> {
+    return this._client.getAPIList('/api/ledger_accounts', Page<LedgerAccount>, { query, ...options });
   }
 
   /**
@@ -120,15 +84,17 @@ export class LedgerAccounts extends APIResource {
    *
    * @example
    * ```ts
-   * const ledgerAccount = await client.ledgerAccounts.del('id');
+   * const ledgerAccount = await client.ledgerAccounts.delete(
+   *   'id',
+   * );
    * ```
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccount> {
-    return this._client.delete(`/api/ledger_accounts/${id}`, options);
+  delete(id: string, options?: RequestOptions): APIPromise<LedgerAccount> {
+    return this._client.delete(path`/api/ledger_accounts/${id}`, options);
   }
 }
 
-export class LedgerAccountsPage extends Page<LedgerAccount> {}
+export type LedgerAccountsPage = Page<LedgerAccount>;
 
 export interface LedgerAccount {
   id: string;
@@ -501,12 +467,10 @@ export namespace LedgerAccountListParams {
   }
 }
 
-LedgerAccounts.LedgerAccountsPage = LedgerAccountsPage;
-
 export declare namespace LedgerAccounts {
   export {
     type LedgerAccount as LedgerAccount,
-    LedgerAccountsPage as LedgerAccountsPage,
+    type LedgerAccountsPage as LedgerAccountsPage,
     type LedgerAccountCreateParams as LedgerAccountCreateParams,
     type LedgerAccountRetrieveParams as LedgerAccountRetrieveParams,
     type LedgerAccountUpdateParams as LedgerAccountUpdateParams,

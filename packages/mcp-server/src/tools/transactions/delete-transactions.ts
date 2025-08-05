@@ -33,7 +33,7 @@ export const tool: Tool = {
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  const response = await client.transactions.del(id).asResponse();
+  const response = await client.transactions.delete(id).asResponse();
   return asTextContentResult(await response.text());
 };
 

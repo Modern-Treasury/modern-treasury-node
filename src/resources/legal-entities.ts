@@ -1,11 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as LegalEntityAssociationsAPI from './legal-entity-associations';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class LegalEntities extends APIResource {
   /**
@@ -18,19 +19,8 @@ export class LegalEntities extends APIResource {
    * });
    * ```
    */
-  create(params: LegalEntityCreateParams, options?: Core.RequestOptions): Core.APIPromise<LegalEntity> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/legal_entities', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: LegalEntityCreateParams, options?: RequestOptions): APIPromise<LegalEntity> {
+    return this._client.post('/api/legal_entities', { body, ...options });
   }
 
   /**
@@ -43,8 +33,8 @@ export class LegalEntities extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LegalEntity> {
-    return this._client.get(`/api/legal_entities/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<LegalEntity> {
+    return this._client.get(path`/api/legal_entities/${id}`, options);
   }
 
   /**
@@ -57,19 +47,10 @@ export class LegalEntities extends APIResource {
    */
   update(
     id: string,
-    body?: LegalEntityUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LegalEntity>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LegalEntity>;
-  update(
-    id: string,
-    body: LegalEntityUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LegalEntity> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/legal_entities/${id}`, { body, ...options });
+    body: LegalEntityUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LegalEntity> {
+    return this._client.patch(path`/api/legal_entities/${id}`, { body, ...options });
   }
 
   /**
@@ -84,22 +65,14 @@ export class LegalEntities extends APIResource {
    * ```
    */
   list(
-    query?: LegalEntityListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LegalEntitiesPage, LegalEntity>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LegalEntitiesPage, LegalEntity>;
-  list(
-    query: LegalEntityListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LegalEntitiesPage, LegalEntity> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/legal_entities', LegalEntitiesPage, { query, ...options });
+    query: LegalEntityListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LegalEntitiesPage, LegalEntity> {
+    return this._client.getAPIList('/api/legal_entities', Page<LegalEntity>, { query, ...options });
   }
 }
 
-export class LegalEntitiesPage extends Page<LegalEntity> {}
+export type LegalEntitiesPage = Page<LegalEntity>;
 
 export interface BankSettings {
   id: string;
@@ -860,14 +833,12 @@ export interface LegalEntityListParams extends PageParams {
   show_deleted?: string;
 }
 
-LegalEntities.LegalEntitiesPage = LegalEntitiesPage;
-
 export declare namespace LegalEntities {
   export {
     type BankSettings as BankSettings,
     type LegalEntity as LegalEntity,
     type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
-    LegalEntitiesPage as LegalEntitiesPage,
+    type LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
     type LegalEntityListParams as LegalEntityListParams,

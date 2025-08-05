@@ -1,31 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
 
 export class Connections extends APIResource {
   /**
    * Get a list of all connections.
    */
   list(
-    query?: ConnectionListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ConnectionsPage, Connection>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ConnectionsPage, Connection>;
-  list(
-    query: ConnectionListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ConnectionsPage, Connection> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/connections', ConnectionsPage, { query, ...options });
+    query: ConnectionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ConnectionsPage, Connection> {
+    return this._client.getAPIList('/api/connections', Page<Connection>, { query, ...options });
   }
 }
 
-export class ConnectionsPage extends Page<Connection> {}
+export type ConnectionsPage = Page<Connection>;
 
 export interface Connection {
   id: string;
@@ -72,12 +63,10 @@ export interface ConnectionListParams extends PageParams {
   vendor_customer_id?: string;
 }
 
-Connections.ConnectionsPage = ConnectionsPage;
-
 export declare namespace Connections {
   export {
     type Connection as Connection,
-    ConnectionsPage as ConnectionsPage,
+    type ConnectionsPage as ConnectionsPage,
     type ConnectionListParams as ConnectionListParams,
   };
 }

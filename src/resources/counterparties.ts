@@ -1,15 +1,17 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as AccountDetailsAPI from './account-details';
 import * as ExternalAccountsAPI from './external-accounts';
 import * as LegalEntitiesAPI from './legal-entities';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Counterparties extends APIResource {
   /**
@@ -22,18 +24,12 @@ export class Counterparties extends APIResource {
    * });
    * ```
    */
-  create(params: CounterpartyCreateParams, options?: Core.RequestOptions): Core.APIPromise<Counterparty> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
+  create(params: CounterpartyCreateParams, options?: RequestOptions): APIPromise<Counterparty> {
+    const { query_external_id, ...body } = params;
     return this._client.post('/api/counterparties', {
+      query: { external_id: query_external_id },
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -47,8 +43,8 @@ export class Counterparties extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Counterparty> {
-    return this._client.get(`/api/counterparties/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Counterparty> {
+    return this._client.get(path`/api/counterparties/${id}`, options);
   }
 
   /**
@@ -63,19 +59,10 @@ export class Counterparties extends APIResource {
    */
   update(
     id: string,
-    body?: CounterpartyUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Counterparty>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<Counterparty>;
-  update(
-    id: string,
-    body: CounterpartyUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Counterparty> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/counterparties/${id}`, { body, ...options });
+    body: CounterpartyUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Counterparty> {
+    return this._client.patch(path`/api/counterparties/${id}`, { body, ...options });
   }
 
   /**
@@ -90,18 +77,10 @@ export class Counterparties extends APIResource {
    * ```
    */
   list(
-    query?: CounterpartyListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<CounterpartiesPage, Counterparty>;
-  list(options?: Core.RequestOptions): Core.PagePromise<CounterpartiesPage, Counterparty>;
-  list(
-    query: CounterpartyListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<CounterpartiesPage, Counterparty> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/counterparties', CounterpartiesPage, { query, ...options });
+    query: CounterpartyListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CounterpartiesPage, Counterparty> {
+    return this._client.getAPIList('/api/counterparties', Page<Counterparty>, { query, ...options });
   }
 
   /**
@@ -109,13 +88,13 @@ export class Counterparties extends APIResource {
    *
    * @example
    * ```ts
-   * await client.counterparties.del('id');
+   * await client.counterparties.delete('id');
    * ```
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/counterparties/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/api/counterparties/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -132,25 +111,14 @@ export class Counterparties extends APIResource {
    */
   collectAccount(
     id: string,
-    params: CounterpartyCollectAccountParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CounterpartyCollectAccountResponse> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post(`/api/counterparties/${id}/collect_account`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: CounterpartyCollectAccountParams,
+    options?: RequestOptions,
+  ): APIPromise<CounterpartyCollectAccountResponse> {
+    return this._client.post(path`/api/counterparties/${id}/collect_account`, { body, ...options });
   }
 }
 
-export class CounterpartiesPage extends Page<Counterparty> {}
+export type CounterpartiesPage = Page<Counterparty>;
 
 export interface Counterparty {
   id: string;
@@ -830,13 +798,11 @@ export interface CounterpartyCollectAccountParams {
   send_email?: boolean;
 }
 
-Counterparties.CounterpartiesPage = CounterpartiesPage;
-
 export declare namespace Counterparties {
   export {
     type Counterparty as Counterparty,
     type CounterpartyCollectAccountResponse as CounterpartyCollectAccountResponse,
-    CounterpartiesPage as CounterpartiesPage,
+    type CounterpartiesPage as CounterpartiesPage,
     type CounterpartyCreateParams as CounterpartyCreateParams,
     type CounterpartyUpdateParams as CounterpartyUpdateParams,
     type CounterpartyListParams as CounterpartyListParams,

@@ -35,8 +35,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { id, ledger_account_id, ...body } = args as any;
-  const response = await client.ledgerAccountCategories.addLedgerAccount(id, ledger_account_id).asResponse();
+  const { ledger_account_id, ...body } = args as any;
+  const response = await client.ledgerAccountCategories
+    .addLedgerAccount(ledger_account_id, body)
+    .asResponse();
   return asTextContentResult(await response.text());
 };
 

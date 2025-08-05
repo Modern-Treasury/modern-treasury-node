@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as AccountDetailsAPI from '../account-details';
 import * as ConnectionsAPI from '../connections';
 import * as RoutingDetailsAPI from '../routing-details';
@@ -11,11 +9,16 @@ import * as BalanceReportsAPI from './balance-reports';
 import {
   BalanceReport,
   BalanceReportCreateParams,
+  BalanceReportDeleteParams,
   BalanceReportListParams,
+  BalanceReportRetrieveParams,
   BalanceReports,
   BalanceReportsPage,
 } from './balance-reports';
-import { Page, type PageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class InternalAccounts extends APIResource {
   balanceReports: BalanceReportsAPI.BalanceReports = new BalanceReportsAPI.BalanceReports(this._client);
@@ -34,22 +37,8 @@ export class InternalAccounts extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: InternalAccountCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InternalAccount> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/internal_accounts', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: InternalAccountCreateParams, options?: RequestOptions): APIPromise<InternalAccount> {
+    return this._client.post('/api/internal_accounts', { body, ...options });
   }
 
   /**
@@ -61,8 +50,8 @@ export class InternalAccounts extends APIResource {
    *   await client.internalAccounts.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<InternalAccount> {
-    return this._client.get(`/api/internal_accounts/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<InternalAccount> {
+    return this._client.get(path`/api/internal_accounts/${id}`, options);
   }
 
   /**
@@ -76,19 +65,10 @@ export class InternalAccounts extends APIResource {
    */
   update(
     id: string,
-    body?: InternalAccountUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InternalAccount>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<InternalAccount>;
-  update(
-    id: string,
-    body: InternalAccountUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InternalAccount> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/internal_accounts/${id}`, { body, ...options });
+    body: InternalAccountUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<InternalAccount> {
+    return this._client.patch(path`/api/internal_accounts/${id}`, { body, ...options });
   }
 
   /**
@@ -103,18 +83,10 @@ export class InternalAccounts extends APIResource {
    * ```
    */
   list(
-    query?: InternalAccountListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InternalAccountsPage, InternalAccount>;
-  list(options?: Core.RequestOptions): Core.PagePromise<InternalAccountsPage, InternalAccount>;
-  list(
-    query: InternalAccountListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InternalAccountsPage, InternalAccount> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/internal_accounts', InternalAccountsPage, { query, ...options });
+    query: InternalAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InternalAccountsPage, InternalAccount> {
+    return this._client.getAPIList('/api/internal_accounts', Page<InternalAccount>, { query, ...options });
   }
 
   /**
@@ -124,26 +96,28 @@ export class InternalAccounts extends APIResource {
    * ```ts
    * const response =
    *   await client.internalAccounts.updateAccountCapability(
-   *     'internal_account_id',
    *     'id',
-   *     { identifier: 'identifier' },
+   *     {
+   *       internal_account_id: 'internal_account_id',
+   *       identifier: 'identifier',
+   *     },
    *   );
    * ```
    */
   updateAccountCapability(
-    internalAccountId: string,
     id: string,
-    body: InternalAccountUpdateAccountCapabilityParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InternalAccountUpdateAccountCapabilityResponse> {
-    return this._client.patch(`/api/internal_accounts/${internalAccountId}/account_capabilities/${id}`, {
-      body,
-      ...options,
-    });
+    params: InternalAccountUpdateAccountCapabilityParams,
+    options?: RequestOptions,
+  ): APIPromise<InternalAccountUpdateAccountCapabilityResponse> {
+    const { internal_account_id, ...body } = params;
+    return this._client.patch(
+      path`/api/internal_accounts/${internal_account_id}/account_capabilities/${id}`,
+      { body, ...options },
+    );
   }
 }
 
-export class InternalAccountsPage extends Page<InternalAccount> {}
+export type InternalAccountsPage = Page<InternalAccount>;
 
 export interface InternalAccount {
   id: string;
@@ -679,21 +653,25 @@ export interface InternalAccountListParams extends PageParams {
 
 export interface InternalAccountUpdateAccountCapabilityParams {
   /**
-   * A unique reference assigned by your bank for tracking and recognizing payment
-   * files. It is important this is formatted exactly how the bank assigned it.
+   * Path param: Unique identifier for the internal account.
+   */
+  internal_account_id: string;
+
+  /**
+   * Body param: A unique reference assigned by your bank for tracking and
+   * recognizing payment files. It is important this is formatted exactly how the
+   * bank assigned it.
    */
   identifier: string;
 }
 
-InternalAccounts.InternalAccountsPage = InternalAccountsPage;
 InternalAccounts.BalanceReports = BalanceReports;
-InternalAccounts.BalanceReportsPage = BalanceReportsPage;
 
 export declare namespace InternalAccounts {
   export {
     type InternalAccount as InternalAccount,
     type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
-    InternalAccountsPage as InternalAccountsPage,
+    type InternalAccountsPage as InternalAccountsPage,
     type InternalAccountCreateParams as InternalAccountCreateParams,
     type InternalAccountUpdateParams as InternalAccountUpdateParams,
     type InternalAccountListParams as InternalAccountListParams,
@@ -703,8 +681,10 @@ export declare namespace InternalAccounts {
   export {
     BalanceReports as BalanceReports,
     type BalanceReport as BalanceReport,
-    BalanceReportsPage as BalanceReportsPage,
+    type BalanceReportsPage as BalanceReportsPage,
     type BalanceReportCreateParams as BalanceReportCreateParams,
+    type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
     type BalanceReportListParams as BalanceReportListParams,
+    type BalanceReportDeleteParams as BalanceReportDeleteParams,
   };
 }

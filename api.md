@@ -55,7 +55,7 @@ Methods:
 - <code title="get /api/counterparties/{id}">client.counterparties.<a href="./src/resources/counterparties.ts">retrieve</a>(id) -> Counterparty</code>
 - <code title="patch /api/counterparties/{id}">client.counterparties.<a href="./src/resources/counterparties.ts">update</a>(id, { ...params }) -> Counterparty</code>
 - <code title="get /api/counterparties">client.counterparties.<a href="./src/resources/counterparties.ts">list</a>({ ...params }) -> CounterpartiesPage</code>
-- <code title="delete /api/counterparties/{id}">client.counterparties.<a href="./src/resources/counterparties.ts">del</a>(id) -> void</code>
+- <code title="delete /api/counterparties/{id}">client.counterparties.<a href="./src/resources/counterparties.ts">delete</a>(id) -> void</code>
 - <code title="post /api/counterparties/{id}/collect_account">client.counterparties.<a href="./src/resources/counterparties.ts">collectAccount</a>(id, { ...params }) -> CounterpartyCollectAccountResponse</code>
 
 # Events
@@ -83,7 +83,7 @@ Methods:
 - <code title="get /api/expected_payments/{id}">client.expectedPayments.<a href="./src/resources/expected-payments.ts">retrieve</a>(id) -> ExpectedPayment</code>
 - <code title="patch /api/expected_payments/{id}">client.expectedPayments.<a href="./src/resources/expected-payments.ts">update</a>(id, { ...params }) -> ExpectedPayment</code>
 - <code title="get /api/expected_payments">client.expectedPayments.<a href="./src/resources/expected-payments.ts">list</a>({ ...params }) -> ExpectedPaymentsPage</code>
-- <code title="delete /api/expected_payments/{id}">client.expectedPayments.<a href="./src/resources/expected-payments.ts">del</a>(id) -> ExpectedPayment</code>
+- <code title="delete /api/expected_payments/{id}">client.expectedPayments.<a href="./src/resources/expected-payments.ts">delete</a>(id) -> ExpectedPayment</code>
 
 # ExternalAccounts
 
@@ -99,7 +99,7 @@ Methods:
 - <code title="get /api/external_accounts/{id}">client.externalAccounts.<a href="./src/resources/external-accounts.ts">retrieve</a>(id) -> ExternalAccount</code>
 - <code title="patch /api/external_accounts/{id}">client.externalAccounts.<a href="./src/resources/external-accounts.ts">update</a>(id, { ...params }) -> ExternalAccount</code>
 - <code title="get /api/external_accounts">client.externalAccounts.<a href="./src/resources/external-accounts.ts">list</a>({ ...params }) -> ExternalAccountsPage</code>
-- <code title="delete /api/external_accounts/{id}">client.externalAccounts.<a href="./src/resources/external-accounts.ts">del</a>(id) -> void</code>
+- <code title="delete /api/external_accounts/{id}">client.externalAccounts.<a href="./src/resources/external-accounts.ts">delete</a>(id) -> void</code>
 - <code title="post /api/external_accounts/{id}/complete_verification">client.externalAccounts.<a href="./src/resources/external-accounts.ts">completeVerification</a>(id, { ...params }) -> ExternalAccount</code>
 - <code title="post /api/external_accounts/{id}/verify">client.externalAccounts.<a href="./src/resources/external-accounts.ts">verify</a>(id, { ...params }) -> ExternalAccountVerifyResponse</code>
 
@@ -128,7 +128,7 @@ Methods:
 - <code title="get /api/invoices/{id}">client.invoices.<a href="./src/resources/invoices/invoices.ts">retrieve</a>(id) -> Invoice</code>
 - <code title="patch /api/invoices/{id}">client.invoices.<a href="./src/resources/invoices/invoices.ts">update</a>(id, { ...params }) -> Invoice</code>
 - <code title="get /api/invoices">client.invoices.<a href="./src/resources/invoices/invoices.ts">list</a>({ ...params }) -> InvoicesPage</code>
-- <code title="put /api/invoices/{id}/payment_orders/{payment_order_id}">client.invoices.<a href="./src/resources/invoices/invoices.ts">addPaymentOrder</a>(id, paymentOrderId) -> void</code>
+- <code title="put /api/invoices/{id}/payment_orders/{payment_order_id}">client.invoices.<a href="./src/resources/invoices/invoices.ts">addPaymentOrder</a>(paymentOrderID, { ...params }) -> void</code>
 
 ## LineItems
 
@@ -138,11 +138,11 @@ Types:
 
 Methods:
 
-- <code title="post /api/invoices/{invoice_id}/invoice_line_items">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">create</a>(invoiceId, { ...params }) -> InvoiceLineItem</code>
-- <code title="get /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">retrieve</a>(invoiceId, id) -> InvoiceLineItem</code>
-- <code title="patch /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">update</a>(invoiceId, id, { ...params }) -> InvoiceLineItem</code>
-- <code title="get /api/invoices/{invoice_id}/invoice_line_items">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">list</a>(invoiceId, { ...params }) -> InvoiceLineItemsPage</code>
-- <code title="delete /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">del</a>(invoiceId, id) -> InvoiceLineItem</code>
+- <code title="post /api/invoices/{invoice_id}/invoice_line_items">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">create</a>(invoiceID, { ...params }) -> InvoiceLineItem</code>
+- <code title="get /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">retrieve</a>(id, { ...params }) -> InvoiceLineItem</code>
+- <code title="patch /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">update</a>(id, { ...params }) -> InvoiceLineItem</code>
+- <code title="get /api/invoices/{invoice_id}/invoice_line_items">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">list</a>(invoiceID, { ...params }) -> InvoiceLineItemsPage</code>
+- <code title="delete /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.lineItems.<a href="./src/resources/invoices/line-items.ts">delete</a>(id, { ...params }) -> InvoiceLineItem</code>
 
 # Documents
 
@@ -177,10 +177,10 @@ Types:
 
 Methods:
 
-- <code title="post /api/{accounts_type}/{account_id}/account_details">client.accountDetails.<a href="./src/resources/account-details.ts">create</a>(accountsType, accountId, { ...params }) -> AccountDetail</code>
-- <code title="get /api/{accounts_type}/{account_id}/account_details/{id}">client.accountDetails.<a href="./src/resources/account-details.ts">retrieve</a>(accountsType, accountId, id) -> AccountDetail</code>
-- <code title="get /api/{accounts_type}/{account_id}/account_details">client.accountDetails.<a href="./src/resources/account-details.ts">list</a>(accountsType, accountId, { ...params }) -> AccountDetailsPage</code>
-- <code title="delete /api/{accounts_type}/{account_id}/account_details/{id}">client.accountDetails.<a href="./src/resources/account-details.ts">del</a>(accountsType, accountId, id) -> void</code>
+- <code title="post /api/{accounts_type}/{account_id}/account_details">client.accountDetails.<a href="./src/resources/account-details.ts">create</a>(accountID, { ...params }) -> AccountDetail</code>
+- <code title="get /api/{accounts_type}/{account_id}/account_details/{id}">client.accountDetails.<a href="./src/resources/account-details.ts">retrieve</a>(id, { ...params }) -> AccountDetail</code>
+- <code title="get /api/{accounts_type}/{account_id}/account_details">client.accountDetails.<a href="./src/resources/account-details.ts">list</a>(accountID, { ...params }) -> AccountDetailsPage</code>
+- <code title="delete /api/{accounts_type}/{account_id}/account_details/{id}">client.accountDetails.<a href="./src/resources/account-details.ts">delete</a>(id, { ...params }) -> void</code>
 
 # RoutingDetails
 
@@ -190,10 +190,10 @@ Types:
 
 Methods:
 
-- <code title="post /api/{accounts_type}/{account_id}/routing_details">client.routingDetails.<a href="./src/resources/routing-details.ts">create</a>(accountsType, accountId, { ...params }) -> RoutingDetail</code>
-- <code title="get /api/{accounts_type}/{account_id}/routing_details/{id}">client.routingDetails.<a href="./src/resources/routing-details.ts">retrieve</a>(accountsType, accountId, id) -> RoutingDetail</code>
-- <code title="get /api/{accounts_type}/{account_id}/routing_details">client.routingDetails.<a href="./src/resources/routing-details.ts">list</a>(accountsType, accountId, { ...params }) -> RoutingDetailsPage</code>
-- <code title="delete /api/{accounts_type}/{account_id}/routing_details/{id}">client.routingDetails.<a href="./src/resources/routing-details.ts">del</a>(accountsType, accountId, id) -> void</code>
+- <code title="post /api/{accounts_type}/{account_id}/routing_details">client.routingDetails.<a href="./src/resources/routing-details.ts">create</a>(accountID, { ...params }) -> RoutingDetail</code>
+- <code title="get /api/{accounts_type}/{account_id}/routing_details/{id}">client.routingDetails.<a href="./src/resources/routing-details.ts">retrieve</a>(id, { ...params }) -> RoutingDetail</code>
+- <code title="get /api/{accounts_type}/{account_id}/routing_details">client.routingDetails.<a href="./src/resources/routing-details.ts">list</a>(accountID, { ...params }) -> RoutingDetailsPage</code>
+- <code title="delete /api/{accounts_type}/{account_id}/routing_details/{id}">client.routingDetails.<a href="./src/resources/routing-details.ts">delete</a>(id, { ...params }) -> void</code>
 
 # InternalAccounts
 
@@ -208,7 +208,7 @@ Methods:
 - <code title="get /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">retrieve</a>(id) -> InternalAccount</code>
 - <code title="patch /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">update</a>(id, { ...params }) -> InternalAccount</code>
 - <code title="get /api/internal_accounts">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">list</a>({ ...params }) -> InternalAccountsPage</code>
-- <code title="patch /api/internal_accounts/{internal_account_id}/account_capabilities/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">updateAccountCapability</a>(internalAccountId, id, { ...params }) -> InternalAccountUpdateAccountCapabilityResponse</code>
+- <code title="patch /api/internal_accounts/{internal_account_id}/account_capabilities/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">updateAccountCapability</a>(id, { ...params }) -> InternalAccountUpdateAccountCapabilityResponse</code>
 
 ## BalanceReports
 
@@ -218,10 +218,10 @@ Types:
 
 Methods:
 
-- <code title="post /api/internal_accounts/{internal_account_id}/balance_reports">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">create</a>(internalAccountId, { ...params }) -> BalanceReport</code>
-- <code title="get /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">retrieve</a>(internalAccountId, id) -> BalanceReport</code>
-- <code title="get /api/internal_accounts/{internal_account_id}/balance_reports">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">list</a>(internalAccountId, { ...params }) -> BalanceReportsPage</code>
-- <code title="delete /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">del</a>(internalAccountId, id) -> void</code>
+- <code title="post /api/internal_accounts/{internal_account_id}/balance_reports">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">create</a>(internalAccountID, { ...params }) -> BalanceReport</code>
+- <code title="get /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">retrieve</a>(id, { ...params }) -> BalanceReport</code>
+- <code title="get /api/internal_accounts/{internal_account_id}/balance_reports">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">list</a>(internalAccountID, { ...params }) -> BalanceReportsPage</code>
+- <code title="delete /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internalAccounts.balanceReports.<a href="./src/resources/internal-accounts/balance-reports.ts">delete</a>(id, { ...params }) -> void</code>
 
 # Ledgers
 
@@ -235,7 +235,7 @@ Methods:
 - <code title="get /api/ledgers/{id}">client.ledgers.<a href="./src/resources/ledgers.ts">retrieve</a>(id) -> Ledger</code>
 - <code title="patch /api/ledgers/{id}">client.ledgers.<a href="./src/resources/ledgers.ts">update</a>(id, { ...params }) -> Ledger</code>
 - <code title="get /api/ledgers">client.ledgers.<a href="./src/resources/ledgers.ts">list</a>({ ...params }) -> LedgersPage</code>
-- <code title="delete /api/ledgers/{id}">client.ledgers.<a href="./src/resources/ledgers.ts">del</a>(id) -> Ledger</code>
+- <code title="delete /api/ledgers/{id}">client.ledgers.<a href="./src/resources/ledgers.ts">delete</a>(id) -> Ledger</code>
 
 # LedgerAccountCategories
 
@@ -249,11 +249,11 @@ Methods:
 - <code title="get /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">retrieve</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="patch /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">update</a>(id, { ...params }) -> LedgerAccountCategory</code>
 - <code title="get /api/ledger_account_categories">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">list</a>({ ...params }) -> LedgerAccountCategoriesPage</code>
-- <code title="delete /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">del</a>(id) -> LedgerAccountCategory</code>
-- <code title="put /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">addLedgerAccount</a>(id, ledgerAccountId) -> void</code>
-- <code title="put /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">addNestedCategory</a>(id, subCategoryId) -> void</code>
-- <code title="delete /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">removeLedgerAccount</a>(id, ledgerAccountId) -> void</code>
-- <code title="delete /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">removeNestedCategory</a>(id, subCategoryId) -> void</code>
+- <code title="delete /api/ledger_account_categories/{id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">delete</a>(id) -> LedgerAccountCategory</code>
+- <code title="put /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">addLedgerAccount</a>(ledgerAccountID, { ...params }) -> void</code>
+- <code title="put /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">addNestedCategory</a>(subCategoryID, { ...params }) -> void</code>
+- <code title="delete /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">removeLedgerAccount</a>(ledgerAccountID, { ...params }) -> void</code>
+- <code title="delete /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledgerAccountCategories.<a href="./src/resources/ledger-account-categories.ts">removeNestedCategory</a>(subCategoryID, { ...params }) -> void</code>
 
 # LedgerAccounts
 
@@ -267,7 +267,7 @@ Methods:
 - <code title="get /api/ledger_accounts/{id}">client.ledgerAccounts.<a href="./src/resources/ledger-accounts.ts">retrieve</a>(id, { ...params }) -> LedgerAccount</code>
 - <code title="patch /api/ledger_accounts/{id}">client.ledgerAccounts.<a href="./src/resources/ledger-accounts.ts">update</a>(id, { ...params }) -> LedgerAccount</code>
 - <code title="get /api/ledger_accounts">client.ledgerAccounts.<a href="./src/resources/ledger-accounts.ts">list</a>({ ...params }) -> LedgerAccountsPage</code>
-- <code title="delete /api/ledger_accounts/{id}">client.ledgerAccounts.<a href="./src/resources/ledger-accounts.ts">del</a>(id) -> LedgerAccount</code>
+- <code title="delete /api/ledger_accounts/{id}">client.ledgerAccounts.<a href="./src/resources/ledger-accounts.ts">delete</a>(id) -> LedgerAccount</code>
 
 # LedgerAccountBalanceMonitors
 
@@ -281,7 +281,7 @@ Methods:
 - <code title="get /api/ledger_account_balance_monitors/{id}">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">retrieve</a>(id) -> LedgerAccountBalanceMonitor</code>
 - <code title="patch /api/ledger_account_balance_monitors/{id}">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">update</a>(id, { ...params }) -> LedgerAccountBalanceMonitor</code>
 - <code title="get /api/ledger_account_balance_monitors">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">list</a>({ ...params }) -> LedgerAccountBalanceMonitorsPage</code>
-- <code title="delete /api/ledger_account_balance_monitors/{id}">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">del</a>(id) -> LedgerAccountBalanceMonitor</code>
+- <code title="delete /api/ledger_account_balance_monitors/{id}">client.ledgerAccountBalanceMonitors.<a href="./src/resources/ledger-account-balance-monitors.ts">delete</a>(id) -> LedgerAccountBalanceMonitor</code>
 
 # LedgerAccountStatements
 
@@ -340,9 +340,9 @@ Types:
 
 Methods:
 
-- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./src/resources/line-items.ts">retrieve</a>(itemizableType, itemizableId, id) -> LineItem</code>
-- <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./src/resources/line-items.ts">update</a>(itemizableType, itemizableId, id, { ...params }) -> LineItem</code>
-- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.lineItems.<a href="./src/resources/line-items.ts">list</a>(itemizableType, itemizableId, { ...params }) -> LineItemsPage</code>
+- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./src/resources/line-items.ts">retrieve</a>(id, { ...params }) -> LineItem</code>
+- <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./src/resources/line-items.ts">update</a>(id, { ...params }) -> LineItem</code>
+- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.lineItems.<a href="./src/resources/line-items.ts">list</a>(itemizableID, { ...params }) -> LineItemsPage</code>
 
 # PaymentFlows
 
@@ -382,9 +382,9 @@ Types:
 
 Methods:
 
-- <code title="post /api/payment_orders/{payment_order_id}/reversals">client.paymentOrders.reversals.<a href="./src/resources/payment-orders/reversals.ts">create</a>(paymentOrderId, { ...params }) -> Reversal</code>
-- <code title="get /api/payment_orders/{payment_order_id}/reversals/{reversal_id}">client.paymentOrders.reversals.<a href="./src/resources/payment-orders/reversals.ts">retrieve</a>(paymentOrderId, reversalId) -> Reversal</code>
-- <code title="get /api/payment_orders/{payment_order_id}/reversals">client.paymentOrders.reversals.<a href="./src/resources/payment-orders/reversals.ts">list</a>(paymentOrderId, { ...params }) -> ReversalsPage</code>
+- <code title="post /api/payment_orders/{payment_order_id}/reversals">client.paymentOrders.reversals.<a href="./src/resources/payment-orders/reversals.ts">create</a>(paymentOrderID, { ...params }) -> Reversal</code>
+- <code title="get /api/payment_orders/{payment_order_id}/reversals/{reversal_id}">client.paymentOrders.reversals.<a href="./src/resources/payment-orders/reversals.ts">retrieve</a>(reversalID, { ...params }) -> Reversal</code>
+- <code title="get /api/payment_orders/{payment_order_id}/reversals">client.paymentOrders.reversals.<a href="./src/resources/payment-orders/reversals.ts">list</a>(paymentOrderID, { ...params }) -> ReversalsPage</code>
 
 # PaymentReferences
 
@@ -421,7 +421,7 @@ Methods:
 - <code title="get /api/transactions/{id}">client.transactions.<a href="./src/resources/transactions/transactions.ts">retrieve</a>(id) -> Transaction</code>
 - <code title="patch /api/transactions/{id}">client.transactions.<a href="./src/resources/transactions/transactions.ts">update</a>(id, { ...params }) -> Transaction</code>
 - <code title="get /api/transactions">client.transactions.<a href="./src/resources/transactions/transactions.ts">list</a>({ ...params }) -> TransactionsPage</code>
-- <code title="delete /api/transactions/{id}">client.transactions.<a href="./src/resources/transactions/transactions.ts">del</a>(id) -> void</code>
+- <code title="delete /api/transactions/{id}">client.transactions.<a href="./src/resources/transactions/transactions.ts">delete</a>(id) -> void</code>
 
 ## LineItems
 
@@ -434,7 +434,7 @@ Methods:
 - <code title="post /api/transaction_line_items">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">create</a>({ ...params }) -> TransactionLineItem</code>
 - <code title="get /api/transaction_line_items/{id}">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">retrieve</a>(id) -> TransactionLineItem</code>
 - <code title="get /api/transaction_line_items">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">list</a>({ ...params }) -> TransactionLineItemsPage</code>
-- <code title="delete /api/transaction_line_items/{id}">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">del</a>(id) -> void</code>
+- <code title="delete /api/transaction_line_items/{id}">client.transactions.lineItems.<a href="./src/resources/transactions/line-items.ts">delete</a>(id) -> void</code>
 
 # Validations
 
@@ -458,7 +458,7 @@ Methods:
 - <code title="get /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">retrieve</a>(id) -> VirtualAccount</code>
 - <code title="patch /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">update</a>(id, { ...params }) -> VirtualAccount</code>
 - <code title="get /api/virtual_accounts">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">list</a>({ ...params }) -> VirtualAccountsPage</code>
-- <code title="delete /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">del</a>(id) -> VirtualAccount</code>
+- <code title="delete /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">delete</a>(id) -> VirtualAccount</code>
 
 # BulkRequests
 
@@ -501,7 +501,7 @@ Methods:
 Methods:
 
 - <code title="patch /api/ledger_account_settlements/{id}/ledger_entries">client.ledgerAccountSettlements.accountEntries.<a href="./src/resources/ledger-account-settlements/account-entries.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="delete /api/ledger_account_settlements/{id}/ledger_entries">client.ledgerAccountSettlements.accountEntries.<a href="./src/resources/ledger-account-settlements/account-entries.ts">del</a>(id, { ...params }) -> void</code>
+- <code title="delete /api/ledger_account_settlements/{id}/ledger_entries">client.ledgerAccountSettlements.accountEntries.<a href="./src/resources/ledger-account-settlements/account-entries.ts">delete</a>(id, { ...params }) -> void</code>
 
 # ForeignExchangeQuotes
 

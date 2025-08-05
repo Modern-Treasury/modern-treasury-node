@@ -1,18 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
 import * as VirtualAccountsAPI from './virtual-accounts';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
    * Get an existing Incoming Payment Detail.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<IncomingPaymentDetail> {
-    return this._client.get(`/api/incoming_payment_details/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<IncomingPaymentDetail> {
+    return this._client.get(path`/api/incoming_payment_details/${id}`, options);
   }
 
   /**
@@ -20,37 +21,20 @@ export class IncomingPaymentDetails extends APIResource {
    */
   update(
     id: string,
-    body?: IncomingPaymentDetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<IncomingPaymentDetail>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<IncomingPaymentDetail>;
-  update(
-    id: string,
-    body: IncomingPaymentDetailUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<IncomingPaymentDetail> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/incoming_payment_details/${id}`, { body, ...options });
+    body: IncomingPaymentDetailUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<IncomingPaymentDetail> {
+    return this._client.patch(path`/api/incoming_payment_details/${id}`, { body, ...options });
   }
 
   /**
    * Get a list of Incoming Payment Details.
    */
   list(
-    query?: IncomingPaymentDetailListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail>;
-  list(options?: Core.RequestOptions): Core.PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail>;
-  list(
-    query: IncomingPaymentDetailListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/incoming_payment_details', IncomingPaymentDetailsPage, {
+    query: IncomingPaymentDetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail> {
+    return this._client.getAPIList('/api/incoming_payment_details', Page<IncomingPaymentDetail>, {
       query,
       ...options,
     });
@@ -60,33 +44,14 @@ export class IncomingPaymentDetails extends APIResource {
    * Simulate Incoming Payment Detail
    */
   createAsync(
-    params?: IncomingPaymentDetailCreateAsyncParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AsyncResponse>;
-  createAsync(options?: Core.RequestOptions): Core.APIPromise<Shared.AsyncResponse>;
-  createAsync(
-    params: IncomingPaymentDetailCreateAsyncParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AsyncResponse> {
-    if (isRequestOptions(params)) {
-      return this.createAsync({}, params);
-    }
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/simulations/incoming_payment_details/create_async', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: IncomingPaymentDetailCreateAsyncParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AsyncResponse> {
+    return this._client.post('/api/simulations/incoming_payment_details/create_async', { body, ...options });
   }
 }
 
-export class IncomingPaymentDetailsPage extends Page<IncomingPaymentDetail> {}
+export type IncomingPaymentDetailsPage = Page<IncomingPaymentDetail>;
 
 export interface IncomingPaymentDetail {
   id: string;
@@ -392,12 +357,10 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   virtual_account_id?: string | null;
 }
 
-IncomingPaymentDetails.IncomingPaymentDetailsPage = IncomingPaymentDetailsPage;
-
 export declare namespace IncomingPaymentDetails {
   export {
     type IncomingPaymentDetail as IncomingPaymentDetail,
-    IncomingPaymentDetailsPage as IncomingPaymentDetailsPage,
+    type IncomingPaymentDetailsPage as IncomingPaymentDetailsPage,
     type IncomingPaymentDetailUpdateParams as IncomingPaymentDetailUpdateParams,
     type IncomingPaymentDetailListParams as IncomingPaymentDetailListParams,
     type IncomingPaymentDetailCreateAsyncParams as IncomingPaymentDetailCreateAsyncParams,

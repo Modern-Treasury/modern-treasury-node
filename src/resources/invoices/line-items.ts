@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { Page, type PageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class LineItems extends APIResource {
   /**
@@ -19,22 +20,11 @@ export class LineItems extends APIResource {
    * ```
    */
   create(
-    invoiceId: string,
-    params: LineItemCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InvoiceLineItem> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post(`/api/invoices/${invoiceId}/invoice_line_items`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    invoiceID: string,
+    body: LineItemCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<InvoiceLineItem> {
+    return this._client.post(path`/api/invoices/${invoiceID}/invoice_line_items`, { body, ...options });
   }
 
   /**
@@ -43,14 +33,18 @@ export class LineItems extends APIResource {
    * @example
    * ```ts
    * const invoiceLineItem =
-   *   await client.invoices.lineItems.retrieve(
-   *     'invoice_id',
-   *     'id',
-   *   );
+   *   await client.invoices.lineItems.retrieve('id', {
+   *     invoice_id: 'invoice_id',
+   *   });
    * ```
    */
-  retrieve(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem> {
-    return this._client.get(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
+  retrieve(
+    id: string,
+    params: LineItemRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<InvoiceLineItem> {
+    const { invoice_id } = params;
+    return this._client.get(path`/api/invoices/${invoice_id}/invoice_line_items/${id}`, options);
   }
 
   /**
@@ -59,29 +53,17 @@ export class LineItems extends APIResource {
    * @example
    * ```ts
    * const invoiceLineItem =
-   *   await client.invoices.lineItems.update(
-   *     'invoice_id',
-   *     'id',
-   *   );
+   *   await client.invoices.lineItems.update('id', {
+   *     invoice_id: 'invoice_id',
+   *   });
    * ```
    */
-  update(
-    invoiceId: string,
-    id: string,
-    body?: LineItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InvoiceLineItem>;
-  update(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem>;
-  update(
-    invoiceId: string,
-    id: string,
-    body: LineItemUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InvoiceLineItem> {
-    if (isRequestOptions(body)) {
-      return this.update(invoiceId, id, {}, body);
-    }
-    return this._client.patch(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, { body, ...options });
+  update(id: string, params: LineItemUpdateParams, options?: RequestOptions): APIPromise<InvoiceLineItem> {
+    const { invoice_id, ...body } = params;
+    return this._client.patch(path`/api/invoices/${invoice_id}/invoice_line_items/${id}`, {
+      body,
+      ...options,
+    });
   }
 
   /**
@@ -98,26 +80,15 @@ export class LineItems extends APIResource {
    * ```
    */
   list(
-    invoiceId: string,
-    query?: LineItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InvoiceLineItemsPage, InvoiceLineItem>;
-  list(
-    invoiceId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InvoiceLineItemsPage, InvoiceLineItem>;
-  list(
-    invoiceId: string,
-    query: LineItemListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InvoiceLineItemsPage, InvoiceLineItem> {
-    if (isRequestOptions(query)) {
-      return this.list(invoiceId, {}, query);
-    }
-    return this._client.getAPIList(`/api/invoices/${invoiceId}/invoice_line_items`, InvoiceLineItemsPage, {
-      query,
-      ...options,
-    });
+    invoiceID: string,
+    query: LineItemListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InvoiceLineItemsPage, InvoiceLineItem> {
+    return this._client.getAPIList(
+      path`/api/invoices/${invoiceID}/invoice_line_items`,
+      Page<InvoiceLineItem>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -125,18 +96,19 @@ export class LineItems extends APIResource {
    *
    * @example
    * ```ts
-   * const invoiceLineItem = await client.invoices.lineItems.del(
-   *   'invoice_id',
-   *   'id',
-   * );
+   * const invoiceLineItem =
+   *   await client.invoices.lineItems.delete('id', {
+   *     invoice_id: 'invoice_id',
+   *   });
    * ```
    */
-  del(invoiceId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<InvoiceLineItem> {
-    return this._client.delete(`/api/invoices/${invoiceId}/invoice_line_items/${id}`, options);
+  delete(id: string, params: LineItemDeleteParams, options?: RequestOptions): APIPromise<InvoiceLineItem> {
+    const { invoice_id } = params;
+    return this._client.delete(path`/api/invoices/${invoice_id}/invoice_line_items/${id}`, options);
   }
 }
 
-export class InvoiceLineItemsPage extends Page<InvoiceLineItem> {}
+export type InvoiceLineItemsPage = Page<InvoiceLineItem>;
 
 export interface InvoiceLineItem {
   id: string;
@@ -251,60 +223,79 @@ export interface LineItemCreateParams {
   unit_amount_decimal?: string;
 }
 
+export interface LineItemRetrieveParams {
+  /**
+   * invoice_id
+   */
+  invoice_id: string;
+}
+
 export interface LineItemUpdateParams {
   /**
-   * An optional free-form description of the line item.
+   * Path param: invoice_id
+   */
+  invoice_id: string;
+
+  /**
+   * Body param: An optional free-form description of the line item.
    */
   description?: string;
 
   /**
-   * Either `debit` or `credit`. `debit` indicates that a client owes the business
-   * money and increases the invoice's `total_amount` due. `credit` has the opposite
-   * intention and effect.
+   * Body param: Either `debit` or `credit`. `debit` indicates that a client owes the
+   * business money and increases the invoice's `total_amount` due. `credit` has the
+   * opposite intention and effect.
    */
   direction?: string;
 
   /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
+   * Body param: Additional data represented as key-value pairs. Both the key and
+   * value must be strings.
    */
   metadata?: { [key: string]: string };
 
   /**
-   * The name of the line item, typically a product or SKU name.
+   * Body param: The name of the line item, typically a product or SKU name.
    */
   name?: string;
 
   /**
-   * The number of units of a product or service that this line item is for. Must be
-   * a whole number. Defaults to 1 if not provided.
+   * Body param: The number of units of a product or service that this line item is
+   * for. Must be a whole number. Defaults to 1 if not provided.
    */
   quantity?: number;
 
   /**
-   * The cost per unit of the product or service that this line item is for,
-   * specified in the invoice currency's smallest unit.
+   * Body param: The cost per unit of the product or service that this line item is
+   * for, specified in the invoice currency's smallest unit.
    */
   unit_amount?: number;
 
   /**
-   * The cost per unit of the product or service that this line item is for,
-   * specified in the invoice currency's smallest unit. Accepts decimal strings with
-   * up to 12 decimals
+   * Body param: The cost per unit of the product or service that this line item is
+   * for, specified in the invoice currency's smallest unit. Accepts decimal strings
+   * with up to 12 decimals
    */
   unit_amount_decimal?: string;
 }
 
 export interface LineItemListParams extends PageParams {}
 
-LineItems.InvoiceLineItemsPage = InvoiceLineItemsPage;
+export interface LineItemDeleteParams {
+  /**
+   * invoice_id
+   */
+  invoice_id: string;
+}
 
 export declare namespace LineItems {
   export {
     type InvoiceLineItem as InvoiceLineItem,
-    InvoiceLineItemsPage as InvoiceLineItemsPage,
+    type InvoiceLineItemsPage as InvoiceLineItemsPage,
     type LineItemCreateParams as LineItemCreateParams,
+    type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
     type LineItemListParams as LineItemListParams,
+    type LineItemDeleteParams as LineItemDeleteParams,
   };
 }

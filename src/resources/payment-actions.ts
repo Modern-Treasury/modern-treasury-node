@@ -1,37 +1,24 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class PaymentActions extends APIResource {
   /**
    * Create a payment action.
    */
-  create(
-    params: PaymentActionCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PaymentActionCreateResponse> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/payment_actions', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: PaymentActionCreateParams, options?: RequestOptions): APIPromise<PaymentActionCreateResponse> {
+    return this._client.post('/api/payment_actions', { body, ...options });
   }
 
   /**
    * Get details on a single payment action.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentActionRetrieveResponse> {
-    return this._client.get(`/api/payment_actions/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentActionRetrieveResponse> {
+    return this._client.get(path`/api/payment_actions/${id}`, options);
   }
 
   /**
@@ -40,36 +27,26 @@ export class PaymentActions extends APIResource {
   update(
     id: string,
     body: PaymentActionUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PaymentActionUpdateResponse> {
-    return this._client.patch(`/api/payment_actions/${id}`, { body, ...options });
+    options?: RequestOptions,
+  ): APIPromise<PaymentActionUpdateResponse> {
+    return this._client.patch(path`/api/payment_actions/${id}`, { body, ...options });
   }
 
   /**
    * Get a list of all payment actions.
    */
   list(
-    query?: PaymentActionListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse>;
-  list(
-    query: PaymentActionListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/payment_actions', PaymentActionListResponsesPage, {
+    query: PaymentActionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse> {
+    return this._client.getAPIList('/api/payment_actions', Page<PaymentActionListResponse>, {
       query,
       ...options,
     });
   }
 }
 
-export class PaymentActionListResponsesPage extends Page<PaymentActionListResponse> {}
+export type PaymentActionListResponsesPage = Page<PaymentActionListResponse>;
 
 export interface PaymentActionCreateResponse {
   id: string;
@@ -362,15 +339,13 @@ export namespace PaymentActionListParams {
   }
 }
 
-PaymentActions.PaymentActionListResponsesPage = PaymentActionListResponsesPage;
-
 export declare namespace PaymentActions {
   export {
     type PaymentActionCreateResponse as PaymentActionCreateResponse,
     type PaymentActionRetrieveResponse as PaymentActionRetrieveResponse,
     type PaymentActionUpdateResponse as PaymentActionUpdateResponse,
     type PaymentActionListResponse as PaymentActionListResponse,
-    PaymentActionListResponsesPage as PaymentActionListResponsesPage,
+    type PaymentActionListResponsesPage as PaymentActionListResponsesPage,
     type PaymentActionCreateParams as PaymentActionCreateParams,
     type PaymentActionUpdateParams as PaymentActionUpdateParams,
     type PaymentActionListParams as PaymentActionListParams,

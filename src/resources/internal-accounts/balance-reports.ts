@@ -1,10 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import { Page, type PageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class BalanceReports extends APIResource {
   /**
@@ -32,21 +34,13 @@ export class BalanceReports extends APIResource {
    * ```
    */
   create(
-    internalAccountId: string,
-    params: BalanceReportCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BalanceReport> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post(`/api/internal_accounts/${internalAccountId}/balance_reports`, {
+    internalAccountID: string,
+    body: BalanceReportCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<BalanceReport> {
+    return this._client.post(path`/api/internal_accounts/${internalAccountID}/balance_reports`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -57,17 +51,21 @@ export class BalanceReports extends APIResource {
    * ```ts
    * const balanceReport =
    *   await client.internalAccounts.balanceReports.retrieve(
-   *     'internal_account_id',
    *     'string',
+   *     { internal_account_id: 'internal_account_id' },
    *   );
    * ```
    */
   retrieve(
-    internalAccountId: string,
     id: (string & {}) | 'latest',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BalanceReport> {
-    return this._client.get(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, options);
+    params: BalanceReportRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<BalanceReport> {
+    const { internal_account_id } = params;
+    return this._client.get(
+      path`/api/internal_accounts/${internal_account_id}/balance_reports/${id}`,
+      options,
+    );
   }
 
   /**
@@ -84,25 +82,13 @@ export class BalanceReports extends APIResource {
    * ```
    */
   list(
-    internalAccountId: string,
-    query?: BalanceReportListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BalanceReportsPage, BalanceReport>;
-  list(
-    internalAccountId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BalanceReportsPage, BalanceReport>;
-  list(
-    internalAccountId: string,
-    query: BalanceReportListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BalanceReportsPage, BalanceReport> {
-    if (isRequestOptions(query)) {
-      return this.list(internalAccountId, {}, query);
-    }
+    internalAccountID: string,
+    query: BalanceReportListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BalanceReportsPage, BalanceReport> {
     return this._client.getAPIList(
-      `/api/internal_accounts/${internalAccountId}/balance_reports`,
-      BalanceReportsPage,
+      path`/api/internal_accounts/${internalAccountID}/balance_reports`,
+      Page<BalanceReport>,
       { query, ...options },
     );
   }
@@ -112,21 +98,21 @@ export class BalanceReports extends APIResource {
    *
    * @example
    * ```ts
-   * await client.internalAccounts.balanceReports.del(
-   *   'internal_account_id',
-   *   'id',
-   * );
+   * await client.internalAccounts.balanceReports.delete('id', {
+   *   internal_account_id: 'internal_account_id',
+   * });
    * ```
    */
-  del(internalAccountId: string, id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/internal_accounts/${internalAccountId}/balance_reports/${id}`, {
+  delete(id: string, params: BalanceReportDeleteParams, options?: RequestOptions): APIPromise<void> {
+    const { internal_account_id } = params;
+    return this._client.delete(path`/api/internal_accounts/${internal_account_id}/balance_reports/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export class BalanceReportsPage extends Page<BalanceReport> {}
+export type BalanceReportsPage = Page<BalanceReport>;
 
 export interface BalanceReport {
   id: string;
@@ -305,6 +291,10 @@ export namespace BalanceReportCreateParams {
   }
 }
 
+export interface BalanceReportRetrieveParams {
+  internal_account_id: string;
+}
+
 export interface BalanceReportListParams extends PageParams {
   /**
    * The date of the balance report in local time.
@@ -318,13 +308,17 @@ export interface BalanceReportListParams extends PageParams {
   balance_report_type?: 'intraday' | 'other' | 'previous_day' | 'real_time';
 }
 
-BalanceReports.BalanceReportsPage = BalanceReportsPage;
+export interface BalanceReportDeleteParams {
+  internal_account_id: string;
+}
 
 export declare namespace BalanceReports {
   export {
     type BalanceReport as BalanceReport,
-    BalanceReportsPage as BalanceReportsPage,
+    type BalanceReportsPage as BalanceReportsPage,
     type BalanceReportCreateParams as BalanceReportCreateParams,
+    type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
     type BalanceReportListParams as BalanceReportListParams,
+    type BalanceReportDeleteParams as BalanceReportDeleteParams,
   };
 }

@@ -50,10 +50,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { itemizable_type, itemizable_id, id, jq_filter, ...body } = args as any;
-  return asTextContentResult(
-    await maybeFilter(jq_filter, await client.lineItems.update(itemizable_type, itemizable_id, id, body)),
-  );
+  const { id, jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.lineItems.update(id, body)));
 };
 
 export default { metadata, tool, handler };
