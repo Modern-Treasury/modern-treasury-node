@@ -110,21 +110,13 @@ export const tool: Tool = {
           'If true, response will include ledger entries that were deleted. When you update a ledger transaction to specify a new set of entries, the previous entries are deleted.',
       },
       status: {
-        anyOf: [
-          {
-            type: 'string',
-            enum: ['pending', 'posted', 'archived'],
-          },
-          {
-            type: 'array',
-            items: {
-              type: 'string',
-              enum: ['pending', 'posted', 'archived'],
-            },
-          },
-        ],
+        type: 'array',
         description:
           'Get all ledger entries that match the status specified. One of `pending`, `posted`, or `archived`. For multiple statuses, use `status[]=pending&status[]=posted`.',
+        items: {
+          type: 'string',
+          enum: ['pending', 'posted', 'archived'],
+        },
       },
       updated_at: {
         type: 'object',

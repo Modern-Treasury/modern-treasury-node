@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   tags: [],
   httpMethod: 'post',
   httpPath: '/api/payment_actions',
+  operationId: 'createPaymentAction',
 };
 
 export const tool: Tool = {

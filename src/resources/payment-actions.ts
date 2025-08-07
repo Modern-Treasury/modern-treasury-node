@@ -340,7 +340,7 @@ export interface PaymentActionListParams extends PageParams {
   /**
    * The type of payment action.
    */
-  type?: 'evolve_non_processing_transaction' | 'stop' | 'issue';
+  type?: 'evolve_non_processing_transaction' | 'control_file' | 'stop' | 'issue';
 }
 
 export namespace PaymentActionListParams {

@@ -278,7 +278,7 @@ export interface LedgerEntryListParams extends PageParams {
    * `posted`, or `archived`. For multiple statuses, use
    * `status[]=pending&status[]=posted`.
    */
-  status?: 'pending' | 'posted' | 'archived' | Array<'pending' | 'posted' | 'archived'>;
+  status?: Array<'pending' | 'posted' | 'archived'>;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the

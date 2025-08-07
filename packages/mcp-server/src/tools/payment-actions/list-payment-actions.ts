@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   tags: [],
   httpMethod: 'get',
   httpPath: '/api/payment_actions',
+  operationId: 'listPaymentActions',
 };
 
 export const tool: Tool = {
@@ -80,7 +81,7 @@ export const tool: Tool = {
       type: {
         type: 'string',
         description: 'The type of payment action.',
-        enum: ['evolve_non_processing_transaction', 'stop', 'issue'],
+        enum: ['evolve_non_processing_transaction', 'control_file', 'stop', 'issue'],
       },
       jq_filter: {
         type: 'string',

@@ -175,7 +175,9 @@ export {
 export {
   LegalEntitiesPage,
   LegalEntities,
+  type BankSettings,
   type LegalEntity,
+  type WealthAndEmploymentDetails,
   type LegalEntityCreateParams,
   type LegalEntityUpdateParams,
   type LegalEntityListParams,
@@ -192,7 +194,6 @@ export {
   type LineItemUpdateParams,
   type LineItemListParams,
 } from './line-items';
-export { PaperItems } from './paper-items';
 export {
   PaymentActionListResponsesPage,
   PaymentActions,

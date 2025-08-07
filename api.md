@@ -446,7 +446,6 @@ Methods:
 
 - <code title="get /api/validations/routing_numbers">client.validations.<a href="./src/resources/validations.ts">validateRoutingNumber</a>({ ...params }) -> RoutingNumberLookupRequest</code>
 
-# PaperItems
 # Webhooks
 
 Methods:
@@ -540,7 +539,9 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/legal-entities.ts">BankSettings</a></code>
 - <code><a href="./src/resources/legal-entities.ts">LegalEntity</a></code>
+- <code><a href="./src/resources/legal-entities.ts">WealthAndEmploymentDetails</a></code>
 
 Methods:
 

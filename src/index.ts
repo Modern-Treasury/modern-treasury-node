@@ -147,12 +147,14 @@ import {
   LedgersPage,
 } from './resources/ledgers';
 import {
+  BankSettings,
   LegalEntities,
   LegalEntitiesPage,
   LegalEntity,
   LegalEntityCreateParams,
   LegalEntityListParams,
   LegalEntityUpdateParams,
+  WealthAndEmploymentDetails,
 } from './resources/legal-entities';
 import {
   LegalEntityAssociation,
@@ -166,7 +168,6 @@ import {
   LineItems,
   LineItemsPage,
 } from './resources/line-items';
-import { PaperItems } from './resources/paper-items';
 import {
   PaymentActionCreateParams,
   PaymentActionCreateResponse,
@@ -444,7 +445,6 @@ export class ModernTreasury extends Core.APIClient {
   returns: API.Returns = new API.Returns(this);
   transactions: API.Transactions = new API.Transactions(this);
   validations: API.Validations = new API.Validations(this);
-  paperItems: API.PaperItems = new API.PaperItems(this);
   webhooks: API.Webhooks = new API.Webhooks(this);
   virtualAccounts: API.VirtualAccounts = new API.VirtualAccounts(this);
   bulkRequests: API.BulkRequests = new API.BulkRequests(this);
@@ -571,7 +571,6 @@ ModernTreasury.ReturnObjectsPage = ReturnObjectsPage;
 ModernTreasury.Transactions = Transactions;
 ModernTreasury.TransactionsPage = TransactionsPage;
 ModernTreasury.Validations = Validations;
-ModernTreasury.PaperItems = PaperItems;
 ModernTreasury.VirtualAccounts = VirtualAccounts;
 ModernTreasury.VirtualAccountsPage = VirtualAccountsPage;
 ModernTreasury.BulkRequests = BulkRequests;
@@ -833,8 +832,6 @@ export declare namespace ModernTreasury {
     type ValidationValidateRoutingNumberParams as ValidationValidateRoutingNumberParams,
   };
 
-  export { PaperItems as PaperItems };
-
   export { Webhooks };
 
   export {
@@ -889,7 +886,9 @@ export declare namespace ModernTreasury {
 
   export {
     LegalEntities as LegalEntities,
+    type BankSettings as BankSettings,
     type LegalEntity as LegalEntity,
+    type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
     LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
