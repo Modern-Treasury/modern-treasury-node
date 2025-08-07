@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   tags: [],
   httpMethod: 'get',
   httpPath: '/api/payment_actions',
+  operationId: 'listPaymentActions',
 };
 
 export const tool: Tool = {
