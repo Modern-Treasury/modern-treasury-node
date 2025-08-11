@@ -216,7 +216,7 @@ export interface LedgerAccountSettlementCreateParams {
    * The status of the ledger account settlement. It is set to `pending` by default.
    * To post a ledger account settlement at creation, use `posted`.
    */
-  status?: 'pending' | 'posted' | null;
+  status?: 'pending' | 'posted' | 'drafting' | null;
 }
 
 export interface LedgerAccountSettlementUpdateParams {
