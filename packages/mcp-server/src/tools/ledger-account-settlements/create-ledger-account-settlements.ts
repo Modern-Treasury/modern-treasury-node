@@ -61,7 +61,7 @@ export const tool: Tool = {
         type: 'string',
         description:
           'The status of the ledger account settlement. It is set to `pending` by default. To post a ledger account settlement at creation, use `posted`.',
-        enum: ['pending', 'posted'],
+        enum: ['pending', 'posted', 'drafting'],
       },
       jq_filter: {
         type: 'string',
