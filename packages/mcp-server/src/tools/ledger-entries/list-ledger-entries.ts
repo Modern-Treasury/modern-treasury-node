@@ -33,6 +33,27 @@ export const tool: Tool = {
       after_cursor: {
         type: 'string',
       },
+      amount: {
+        type: 'object',
+        description: 'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.',
+        properties: {
+          eq: {
+            type: 'integer',
+          },
+          gt: {
+            type: 'integer',
+          },
+          gte: {
+            type: 'integer',
+          },
+          lt: {
+            type: 'integer',
+          },
+          lte: {
+            type: 'integer',
+          },
+        },
+      },
       as_of_lock_version: {
         type: 'integer',
         description:
