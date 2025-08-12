@@ -349,6 +349,11 @@ export interface LedgerTransactionListParams extends PageParams {
   id?: Array<string>;
 
   /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
+   */
+  amount?: LedgerTransactionListParams.Amount;
+
+  /**
    * Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
    * effective at. For example, for all transactions after Jan 1 2000, use
    * effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
@@ -412,6 +417,21 @@ export interface LedgerTransactionListParams extends PageParams {
 }
 
 export namespace LedgerTransactionListParams {
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
+   */
+  export interface Amount {
+    eq?: number;
+
+    gt?: number;
+
+    gte?: number;
+
+    lt?: number;
+
+    lte?: number;
+  }
+
   /**
    * Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
    * to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
