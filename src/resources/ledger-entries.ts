@@ -195,6 +195,11 @@ export interface LedgerEntryListParams extends PageParams {
   id?: Array<string>;
 
   /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
+   */
+  amount?: LedgerEntryListParams.Amount;
+
+  /**
    * Shows all ledger entries that were present on a ledger account at a particular
    * `lock_version`. You must also specify `ledger_account_id`.
    */
@@ -289,6 +294,21 @@ export interface LedgerEntryListParams extends PageParams {
 }
 
 export namespace LedgerEntryListParams {
+  /**
+   * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
+   */
+  export interface Amount {
+    eq?: number;
+
+    gt?: number;
+
+    gte?: number;
+
+    lt?: number;
+
+    lte?: number;
+  }
+
   /**
    * Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
    * to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
