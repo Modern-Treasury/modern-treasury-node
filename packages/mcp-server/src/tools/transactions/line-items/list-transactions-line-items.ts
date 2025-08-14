@@ -24,6 +24,7 @@ export const tool: Tool = {
     properties: {
       id: {
         type: 'object',
+        additionalProperties: true,
       },
       after_cursor: {
         type: 'string',

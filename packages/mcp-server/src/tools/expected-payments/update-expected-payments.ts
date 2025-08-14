@@ -72,14 +72,17 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
       reconciliation_filters: {
         type: 'object',
         description: 'The reconciliation filters you have for this payment.',
+        additionalProperties: true,
       },
       reconciliation_groups: {
         type: 'object',
         description: 'The reconciliation groups you have for this payment.',
+        additionalProperties: true,
       },
       reconciliation_rule_variables: {
         type: 'array',
@@ -344,6 +347,7 @@ export const tool: Tool = {
           custom_identifiers: {
             type: 'object',
             description: 'A hash of custom identifiers for this payment',
+            additionalProperties: true,
           },
           date_lower_bound: {
             type: 'string',
