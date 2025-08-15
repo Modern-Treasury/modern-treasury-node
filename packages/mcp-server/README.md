@@ -140,13 +140,13 @@ Additionally, authorization can be provided via the following headers:
 | `x-modern-treasury-organization-id` | `organizationId` | basic_auth |
 | `x-modern-treasury-api-key` | `apiKey` | basic_auth |
 
-A configuration JSON for this server might look like this:
+A configuration JSON for this server might look like this, assuming the server is hosted at `http://localhost:3000`:
 
 ```json
 {
   "mcpServers": {
     "modern_treasury_api": {
-      "url": "http://localhost:3000", # or wherever the server is hosted
+      "url": "http://localhost:3000",
       "headers": {
         "Authorization": "Basic <auth value>"
       }
