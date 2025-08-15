@@ -1077,6 +1077,7 @@ export class ModernTreasury {
   legalEntityAssociations: API.LegalEntityAssociations = new API.LegalEntityAssociations(this);
   paymentActions: API.PaymentActions = new API.PaymentActions(this);
 }
+
 ModernTreasury.Connections = Connections;
 ModernTreasury.Counterparties = Counterparties;
 ModernTreasury.Events = Events;
@@ -1112,6 +1113,7 @@ ModernTreasury.ConnectionLegalEntities = ConnectionLegalEntities;
 ModernTreasury.LegalEntities = LegalEntities;
 ModernTreasury.LegalEntityAssociations = LegalEntityAssociations;
 ModernTreasury.PaymentActions = PaymentActions;
+
 export declare namespace ModernTreasury {
   export type RequestOptions = Opts.RequestOptions;
 
