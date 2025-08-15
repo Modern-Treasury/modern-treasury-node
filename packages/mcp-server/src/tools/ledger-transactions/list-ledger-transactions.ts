@@ -31,15 +31,38 @@ export const tool: Tool = {
       after_cursor: {
         type: 'string',
       },
+      amount: {
+        type: 'object',
+        description: 'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.',
+        properties: {
+          eq: {
+            type: 'integer',
+          },
+          gt: {
+            type: 'integer',
+          },
+          gte: {
+            type: 'integer',
+          },
+          lt: {
+            type: 'integer',
+          },
+          lte: {
+            type: 'integer',
+          },
+        },
+      },
       effective_at: {
         type: 'object',
         description:
           'Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by effective at. For example, for all transactions after Jan 1 2000, use effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.',
+        additionalProperties: true,
       },
       effective_date: {
         type: 'object',
         description:
           'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by effective date. For example, for all dates after Jan 1 2000, use effective_date%5Bgt%5D=2000-01-01.',
+        additionalProperties: true,
       },
       external_id: {
         type: 'string',
@@ -67,6 +90,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
+        additionalProperties: true,
       },
       order_by: {
         type: 'object',
@@ -93,6 +117,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use posted_at%5Bgt%5D=2000-01-01T12:00:00Z.',
+        additionalProperties: true,
       },
       reverses_ledger_transaction_id: {
         type: 'string',
@@ -116,6 +141,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use updated_at%5Bgt%5D=2000-01-01T12:00:00Z.',
+        additionalProperties: true,
       },
     },
     required: [],

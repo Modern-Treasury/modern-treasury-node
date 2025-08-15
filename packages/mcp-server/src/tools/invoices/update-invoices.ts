@@ -143,6 +143,7 @@ export const tool: Tool = {
               type: 'object',
               description:
                 'Additional data represented as key-value pairs. Both the key and value must be strings.',
+              additionalProperties: true,
             },
             quantity: {
               type: 'integer',
@@ -195,6 +196,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
       notification_email_addresses: {
         type: 'array',

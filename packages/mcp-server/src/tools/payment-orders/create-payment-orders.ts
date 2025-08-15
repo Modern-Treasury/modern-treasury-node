@@ -161,6 +161,7 @@ export const tool: Tool = {
               type: 'object',
               description:
                 'Additional data represented as key-value pairs. Both the key and value must be strings.',
+              additionalProperties: true,
             },
           },
           required: ['amount'],
@@ -170,6 +171,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
       nsf_protected: {
         type: 'boolean',
@@ -254,6 +256,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           name: {
             type: 'string',
@@ -711,6 +714,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           status: {
             type: 'string',
@@ -739,6 +743,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s available balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           lock_version: {
             type: 'integer',
@@ -749,16 +754,19 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           pending_balance_amount: {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s pending balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           posted_balance_amount: {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s posted balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           show_resulting_ledger_account_balances: {
             type: 'boolean',
@@ -852,6 +860,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
         },
         required: ['currency', 'ledger_id', 'name', 'normal_balance'],

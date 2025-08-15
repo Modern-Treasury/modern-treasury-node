@@ -96,6 +96,7 @@ export const tool: Tool = {
               type: 'object',
               description:
                 'Additional data represented as key-value pairs. Both the key and value must be strings.',
+              additionalProperties: true,
             },
             name: {
               type: 'string',
@@ -388,6 +389,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           middle_name: {
             type: 'string',
@@ -628,6 +630,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
       send_remittance_advice: {
         type: 'boolean',
@@ -726,6 +729,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
         },
         required: ['currency', 'ledger_id', 'name', 'normal_balance'],
@@ -1121,6 +1125,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           middle_name: {
             type: 'string',
