@@ -586,6 +586,7 @@ ModernTreasury.LegalEntitiesPage = LegalEntitiesPage;
 ModernTreasury.LegalEntityAssociations = LegalEntityAssociations;
 ModernTreasury.PaymentActions = PaymentActions;
 ModernTreasury.PaymentActionListResponsesPage = PaymentActionListResponsesPage;
+
 export declare namespace ModernTreasury {
   export type RequestOptions = Core.RequestOptions;
 
