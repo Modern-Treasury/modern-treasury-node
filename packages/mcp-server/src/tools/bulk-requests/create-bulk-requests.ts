@@ -152,6 +152,7 @@ export const tool: Tool = {
                         type: 'object',
                         description:
                           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                        additionalProperties: true,
                       },
                     },
                     required: ['amount'],
@@ -161,6 +162,7 @@ export const tool: Tool = {
                   type: 'object',
                   description:
                     'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                  additionalProperties: true,
                 },
                 nsf_protected: {
                   type: 'boolean',
@@ -245,6 +247,7 @@ export const tool: Tool = {
                       type: 'object',
                       description:
                         'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                      additionalProperties: true,
                     },
                     name: {
                       type: 'string',
@@ -478,6 +481,7 @@ export const tool: Tool = {
                         type: 'object',
                         description:
                           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                        additionalProperties: true,
                       },
                     },
                     required: ['amount'],
@@ -487,14 +491,17 @@ export const tool: Tool = {
                   type: 'object',
                   description:
                     'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                  additionalProperties: true,
                 },
                 reconciliation_filters: {
                   type: 'object',
                   description: 'The reconciliation filters you have for this payment.',
+                  additionalProperties: true,
                 },
                 reconciliation_groups: {
                   type: 'object',
                   description: 'The reconciliation groups you have for this payment.',
+                  additionalProperties: true,
                 },
                 reconciliation_rule_variables: {
                   type: 'array',
@@ -559,6 +566,7 @@ export const tool: Tool = {
                   type: 'object',
                   description:
                     'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                  additionalProperties: true,
                 },
                 posted: {
                   type: 'boolean',
@@ -733,6 +741,7 @@ export const tool: Tool = {
                         type: 'object',
                         description:
                           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                        additionalProperties: true,
                       },
                     },
                     required: ['amount'],
@@ -742,6 +751,7 @@ export const tool: Tool = {
                   type: 'object',
                   description:
                     'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                  additionalProperties: true,
                 },
                 nsf_protected: {
                   type: 'boolean',
@@ -830,6 +840,7 @@ export const tool: Tool = {
                       type: 'object',
                       description:
                         'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                      additionalProperties: true,
                     },
                     name: {
                       type: 'string',
@@ -1059,14 +1070,17 @@ export const tool: Tool = {
                   type: 'object',
                   description:
                     'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                  additionalProperties: true,
                 },
                 reconciliation_filters: {
                   type: 'object',
                   description: 'The reconciliation filters you have for this payment.',
+                  additionalProperties: true,
                 },
                 reconciliation_groups: {
                   type: 'object',
                   description: 'The reconciliation groups you have for this payment.',
+                  additionalProperties: true,
                 },
                 reconciliation_rule_variables: {
                   type: 'array',
@@ -1106,6 +1120,7 @@ export const tool: Tool = {
                   type: 'object',
                   description:
                     'Additional data in the form of key-value pairs. Pairs can be removed by passing an empty string or `null` as the value.',
+                  additionalProperties: true,
                 },
               },
             },
@@ -1153,6 +1168,7 @@ export const tool: Tool = {
                   type: 'object',
                   description:
                     'Additional data represented as key-value pairs. Both the key and value must be strings.',
+                  additionalProperties: true,
                 },
                 status: {
                   type: 'string',
@@ -1168,6 +1184,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
     },
     required: ['action_type', 'resource_type', 'resources'],
@@ -1476,6 +1493,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           status: {
             type: 'string',
@@ -1504,6 +1522,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s available balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           lock_version: {
             type: 'integer',
@@ -1514,16 +1533,19 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           pending_balance_amount: {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s pending balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           posted_balance_amount: {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s posted balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           show_resulting_ledger_account_balances: {
             type: 'boolean',
@@ -1617,6 +1639,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
         },
         required: ['currency', 'ledger_id', 'name', 'normal_balance'],
@@ -1717,6 +1740,7 @@ export const tool: Tool = {
           custom_identifiers: {
             type: 'object',
             description: 'A hash of custom identifiers for this payment',
+            additionalProperties: true,
           },
           date_lower_bound: {
             type: 'string',
