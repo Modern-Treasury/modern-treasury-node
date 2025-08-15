@@ -174,6 +174,7 @@ export const tool: Tool = {
       data: {
         type: 'object',
         description: 'The raw data from the return file that we get from the bank.',
+        additionalProperties: true,
       },
       date_of_death: {
         type: 'string',

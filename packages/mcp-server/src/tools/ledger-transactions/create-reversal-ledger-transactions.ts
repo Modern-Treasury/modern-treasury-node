@@ -53,6 +53,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data to be added to the reversal ledger transaction as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
       status: {
         type: 'string',

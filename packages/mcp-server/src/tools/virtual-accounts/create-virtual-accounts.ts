@@ -88,6 +88,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
       routing_details: {
         type: 'array',
@@ -225,6 +226,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
         },
         required: ['currency', 'ledger_id', 'name', 'normal_balance'],

@@ -56,6 +56,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters.',
+        additionalProperties: true,
       },
       originating_account_id: {
         type: 'string',
