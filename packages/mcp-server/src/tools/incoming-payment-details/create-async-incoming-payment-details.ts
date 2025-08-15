@@ -38,6 +38,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'An object passed through to the simulated IPD that could reflect what a vendor would pass.',
+        additionalProperties: true,
       },
       description: {
         type: 'string',
