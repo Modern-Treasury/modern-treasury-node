@@ -21,11 +21,11 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
   }
 
   const organizationId =
-    req.headers['x-modern-treasury-organization-id'] instanceof Array ?
+    Array.isArray(req.headers['x-modern-treasury-organization-id']) ?
       req.headers['x-modern-treasury-organization-id'][0]
     : req.headers['x-modern-treasury-organization-id'];
   const apiKey =
-    req.headers['x-modern-treasury-api-key'] instanceof Array ?
+    Array.isArray(req.headers['x-modern-treasury-api-key']) ?
       req.headers['x-modern-treasury-api-key'][0]
     : req.headers['x-modern-treasury-api-key'];
   return { organizationId, apiKey };
