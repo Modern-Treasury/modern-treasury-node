@@ -84,7 +84,7 @@ export interface PaymentActionCreateResponse {
 
   /**
    * The current status of the payment action. One of `pending`, `processing`,
-   * `sent`, `cancelled`, or `failed`.
+   * `sent`, `acknowledged`, `cancelled`, or `failed`.
    */
   status: string;
 
@@ -132,7 +132,7 @@ export interface PaymentActionRetrieveResponse {
 
   /**
    * The current status of the payment action. One of `pending`, `processing`,
-   * `sent`, `cancelled`, or `failed`.
+   * `sent`, `acknowledged`, `cancelled`, or `failed`.
    */
   status: string;
 
@@ -180,7 +180,7 @@ export interface PaymentActionUpdateResponse {
 
   /**
    * The current status of the payment action. One of `pending`, `processing`,
-   * `sent`, `cancelled`, or `failed`.
+   * `sent`, `acknowledged`, `cancelled`, or `failed`.
    */
   status: string;
 
@@ -228,7 +228,7 @@ export interface PaymentActionListResponse {
 
   /**
    * The current status of the payment action. One of `pending`, `processing`,
-   * `sent`, `cancelled`, or `failed`.
+   * `sent`, `acknowledged`, `cancelled`, or `failed`.
    */
   status: string;
 
@@ -275,7 +275,7 @@ export interface PaymentActionUpdateParams {
    * payment action. This will only work if the payment action is in a `pending`
    * state.
    */
-  status: 'pending' | 'processable' | 'processing' | 'sent' | 'failed' | 'cancelled';
+  status: 'pending' | 'processable' | 'processing' | 'sent' | 'acknowledged' | 'failed' | 'cancelled';
 }
 
 export interface PaymentActionListParams extends PageParams {
@@ -312,12 +312,12 @@ export interface PaymentActionListParams extends PageParams {
   /**
    * Filter by payment actions of a specific status.
    */
-  status?: 'pending' | 'processable' | 'processing' | 'sent' | 'failed' | 'cancelled';
+  status?: 'pending' | 'processable' | 'processing' | 'sent' | 'acknowledged' | 'failed' | 'cancelled';
 
   /**
    * The type of payment action.
    */
-  type?: 'evolve_non_processing_transaction' | 'control_file' | 'stop' | 'issue';
+  type?: 'stop' | 'issue';
 }
 
 export namespace PaymentActionListParams {
