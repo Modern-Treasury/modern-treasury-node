@@ -1,10 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from 'modern-treasury/index';
-
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import ModernTreasury from 'modern-treasury';
+import ModernTreasury, { ClientOptions } from 'modern-treasury';
 import { Endpoint, ContentBlock, Metadata } from './tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
