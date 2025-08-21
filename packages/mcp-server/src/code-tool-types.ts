@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from 'modern-treasury/index';
+import { ClientOptions } from 'modern-treasury';
 
 export type WorkerInput = {
   opts: ClientOptions;
