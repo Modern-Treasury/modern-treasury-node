@@ -151,7 +151,7 @@ export interface LedgerAccountSettlement {
    * be included in the ledger account settlement. The default value is the
    * created_at timestamp of the ledger account settlement.
    */
-  effective_at_upper_bound: string;
+  effective_at_upper_bound: string | null;
 
   /**
    * The id of the ledger that this ledger account settlement belongs to.
