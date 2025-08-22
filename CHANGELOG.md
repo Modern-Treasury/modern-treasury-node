@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.47.0 (2025-08-22)
+
+Full Changelog: [v2.46.0...v2.47.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.46.0...v2.47.0)
+
+### Features
+
+* **api:** api update ([856f251](https://github.com/Modern-Treasury/modern-treasury-node/commit/856f2515bfef136d35ed22bc8116ff08a1711bd9))
+* **api:** api update ([bc875bc](https://github.com/Modern-Treasury/modern-treasury-node/commit/bc875bcb8191c9bcd17981c89119d50e3bb77255))
+* **api:** api update ([3b4bdb3](https://github.com/Modern-Treasury/modern-treasury-node/commit/3b4bdb3dff8036a15799b545e61641977dbe4a2b))
+* **mcp:** add code execution tool ([d9e1588](https://github.com/Modern-Treasury/modern-treasury-node/commit/d9e15881552fd78d98c8ef04b58f67e5d7a3d27c))
+* **mcp:** add option to infer mcp client ([2ffe483](https://github.com/Modern-Treasury/modern-treasury-node/commit/2ffe483d5ad2e4d13b46e18824dce3271a034e56))
+* **mcp:** parse query string as mcp client options in mcp server ([5089733](https://github.com/Modern-Treasury/modern-treasury-node/commit/50897330201d7a8fb15f5feb1fe1a84bd203e67f))
+
+
+### Chores
+
+* **internal:** codegen related update ([84b3ee5](https://github.com/Modern-Treasury/modern-treasury-node/commit/84b3ee515f9675f8c14b641f4552f39a0b88540c))
+* **internal:** formatting change ([56b885b](https://github.com/Modern-Treasury/modern-treasury-node/commit/56b885b7aceb189e466184e58782b46140d8895d))
+* **internal:** make mcp-server publishing public by defaut ([6534bf4](https://github.com/Modern-Treasury/modern-treasury-node/commit/6534bf4425d9a4d5a787be8b60d6185f92836af1))
+* **internal:** refactor array check ([8f36c30](https://github.com/Modern-Treasury/modern-treasury-node/commit/8f36c302c1c18484c84c6b09478b1f36597843d5))
+* **mcp:** add cors to oauth metadata route ([1bf5a22](https://github.com/Modern-Treasury/modern-treasury-node/commit/1bf5a2225c11d5990286ad0ede459699f4f56591))
+* **mcp:** update package.json ([cdea851](https://github.com/Modern-Treasury/modern-treasury-node/commit/cdea8518bfb7d57eeeb0163b0734b9fd09df1607))
+* **mcp:** update README ([acae046](https://github.com/Modern-Treasury/modern-treasury-node/commit/acae046585f0cedfdf54eb49dbf0cf260a52f82e))
+* **mcp:** update types ([6dda7c3](https://github.com/Modern-Treasury/modern-treasury-node/commit/6dda7c386f7989ee1a862a4322ca3a80b6b35552))
+* update CI script ([fdaa2f5](https://github.com/Modern-Treasury/modern-treasury-node/commit/fdaa2f5a13274434e2423dcffd21998c230076e3))
+
 ## 2.46.0 (2025-08-12)
 
 Full Changelog: [v2.45.0...v2.46.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.45.0...v2.46.0)
