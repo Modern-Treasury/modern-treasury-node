@@ -35,6 +35,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data in the form of key-value pairs. Pairs can be removed by passing an empty string or `null` as the value.',
+        additionalProperties: true,
       },
       name: {
         type: 'string',

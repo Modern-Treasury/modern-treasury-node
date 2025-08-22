@@ -49,6 +49,7 @@ export const tool: Tool = {
               type: 'object',
               description:
                 'Additional data represented as key-value pairs. Both the key and value must be strings.',
+              additionalProperties: true,
             },
           },
           required: ['amount', 'direction', 'ledger_account_id'],
@@ -69,6 +70,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
     },
     required: ['id', 'posted_ledger_entries'],
