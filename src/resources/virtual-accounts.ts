@@ -296,6 +296,7 @@ export namespace VirtualAccountCreateParams {
       | 'dk_nets'
       | 'eft'
       | 'ethereum'
+      | 'gb_fps'
       | 'hu_ics'
       | 'interac'
       | 'masav'
