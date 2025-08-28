@@ -403,7 +403,6 @@ The following tools are available in this MCP server.
 
 - `retrieve_payment_references` (`read`): get payment_reference
 - `list_payment_references` (`read`): list payment_references
-- `retireve_payment_references` (`read`): get payment_reference
 
 ### Resource `returns`:
 

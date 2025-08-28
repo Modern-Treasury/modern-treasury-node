@@ -117,7 +117,6 @@ import retrieve_payment_orders_reversals from './payment-orders/reversals/retrie
 import list_payment_orders_reversals from './payment-orders/reversals/list-payment-orders-reversals';
 import retrieve_payment_references from './payment-references/retrieve-payment-references';
 import list_payment_references from './payment-references/list-payment-references';
-import retireve_payment_references from './payment-references/retireve-payment-references';
 import create_returns from './returns/create-returns';
 import retrieve_returns from './returns/retrieve-returns';
 import list_returns from './returns/list-returns';
@@ -283,7 +282,6 @@ addEndpoint(retrieve_payment_orders_reversals);
 addEndpoint(list_payment_orders_reversals);
 addEndpoint(retrieve_payment_references);
 addEndpoint(list_payment_references);
-addEndpoint(retireve_payment_references);
 addEndpoint(create_returns);
 addEndpoint(retrieve_returns);
 addEndpoint(list_returns);
