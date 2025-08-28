@@ -88,6 +88,7 @@ export const tool: Tool = {
                 'dk_nets',
                 'eft',
                 'ethereum',
+                'gb_fps',
                 'hu_ics',
                 'interac',
                 'masav',
@@ -195,6 +196,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'A hash of vendor specific attributes that will be used when creating the account at the vendor specified by the given connection.',
+        additionalProperties: true,
       },
     },
     required: ['connection_id', 'currency', 'name', 'party_name'],

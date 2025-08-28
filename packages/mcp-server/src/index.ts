@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { init, selectTools, server } from './server';
+import { selectTools } from './server';
 import { Endpoint, endpoints } from './tools';
-import { McpOptions, parseOptions } from './options';
+import { McpOptions, parseCLIOptions } from './options';
+import { launchStdioServer } from './stdio';
+import { launchStreamableHTTPServer } from './http';
 
 async function main() {
   const options = parseOptionsOrError();
@@ -13,18 +14,21 @@ async function main() {
     return;
   }
 
-  const includedTools = selectToolsOrError(endpoints, options);
+  const selectedTools = selectToolsOrError(endpoints, options);
 
   console.error(
-    `MCP Server starting with ${includedTools.length} tools:`,
-    includedTools.map((e) => e.tool.name),
+    `MCP Server starting with ${selectedTools.length} tools:`,
+    selectedTools.map((e) => e.tool.name),
   );
 
-  init({ server, endpoints: includedTools });
-
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('MCP Server running on stdio');
+  switch (options.transport) {
+    case 'stdio':
+      await launchStdioServer(options);
+      break;
+    case 'http':
+      await launchStreamableHTTPServer(options, options.port ?? options.socket);
+      break;
+  }
 }
 
 if (require.main === module) {
@@ -36,14 +40,14 @@ if (require.main === module) {
 
 function parseOptionsOrError() {
   try {
-    return parseOptions();
+    return parseCLIOptions();
   } catch (error) {
     console.error('Error parsing options:', error);
     process.exit(1);
   }
 }
 
-function selectToolsOrError(endpoints: Endpoint[], options: McpOptions) {
+function selectToolsOrError(endpoints: Endpoint[], options: McpOptions): Endpoint[] {
   try {
     const includedTools = selectTools(endpoints, options);
     if (includedTools.length === 0) {

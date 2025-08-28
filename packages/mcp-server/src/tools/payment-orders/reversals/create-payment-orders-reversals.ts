@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_payment_orders_reversals',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreate a reversal for a payment order.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/reversal',\n  $defs: {\n    reversal: {\n      type: 'object',\n      properties: {\n        id: {\n          type: 'string'\n        },\n        created_at: {\n          type: 'string',\n          format: 'date-time'\n        },\n        ledger_transaction_id: {\n          type: 'string',\n          description: 'The ID of the ledger transaction linked to the reversal.'\n        },\n        live_mode: {\n          type: 'boolean',\n          description: 'This field will be true if this object exists in the live environment or false if it exists in the test environment.'\n        },\n        metadata: {\n          type: 'object',\n          description: 'Additional data represented as key-value pairs. Both the key and value must be strings.'\n        },\n        object: {\n          type: 'string'\n        },\n        payment_order_id: {\n          type: 'string',\n          description: 'The ID of the relevant Payment Order.'\n        },\n        reason: {\n          type: 'string',\n          description: 'The reason for the reversal.',\n          enum: [            'duplicate',\n            'incorrect_amount',\n            'incorrect_receiving_account',\n            'date_earlier_than_intended',\n            'date_later_than_intended'\n          ]\n        },\n        status: {\n          type: 'string',\n          description: 'The current status of the reversal.',\n          enum: [            'completed',\n            'failed',\n            'pending',\n            'processing',\n            'returned',\n            'sent'\n          ]\n        },\n        transaction_ids: {\n          type: 'array',\n          items: {\n            type: 'string',\n            description: 'The ID of the relevant Transaction or `null`.'\n          }\n        },\n        updated_at: {\n          type: 'string',\n          format: 'date-time'\n        }\n      },\n      required: [        'id',\n        'created_at',\n        'ledger_transaction_id',\n        'live_mode',\n        'metadata',\n        'object',\n        'payment_order_id',\n        'reason',\n        'status',\n        'transaction_ids',\n        'updated_at'\n      ]\n    }\n  }\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreate a reversal for a payment order.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/reversal',\n  $defs: {\n    reversal: {\n      type: 'object',\n      properties: {\n        id: {\n          type: 'string'\n        },\n        created_at: {\n          type: 'string',\n          format: 'date-time'\n        },\n        ledger_transaction_id: {\n          type: 'string',\n          description: 'The ID of the ledger transaction linked to the reversal.'\n        },\n        live_mode: {\n          type: 'boolean',\n          description: 'This field will be true if this object exists in the live environment or false if it exists in the test environment.'\n        },\n        metadata: {\n          type: 'object',\n          description: 'Additional data represented as key-value pairs. Both the key and value must be strings.',\n          additionalProperties: true\n        },\n        object: {\n          type: 'string'\n        },\n        payment_order_id: {\n          type: 'string',\n          description: 'The ID of the relevant Payment Order.'\n        },\n        reason: {\n          type: 'string',\n          description: 'The reason for the reversal.',\n          enum: [            'duplicate',\n            'incorrect_amount',\n            'incorrect_receiving_account',\n            'date_earlier_than_intended',\n            'date_later_than_intended'\n          ]\n        },\n        status: {\n          type: 'string',\n          description: 'The current status of the reversal.',\n          enum: [            'completed',\n            'failed',\n            'pending',\n            'processing',\n            'returned',\n            'sent'\n          ]\n        },\n        transaction_ids: {\n          type: 'array',\n          items: {\n            type: 'string',\n            description: 'The ID of the relevant Transaction or `null`.'\n          }\n        },\n        updated_at: {\n          type: 'string',\n          format: 'date-time'\n        }\n      },\n      required: [        'id',\n        'created_at',\n        'ledger_transaction_id',\n        'live_mode',\n        'metadata',\n        'object',\n        'payment_order_id',\n        'reason',\n        'status',\n        'transaction_ids',\n        'updated_at'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
@@ -45,6 +45,7 @@ export const tool: Tool = {
         type: 'object',
         description:
           'Additional data represented as key-value pairs. Both the key and value must be strings.',
+        additionalProperties: true,
       },
       jq_filter: {
         type: 'string',
@@ -101,6 +102,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           status: {
             type: 'string',
@@ -129,6 +131,7 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s available balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           lock_version: {
             type: 'integer',
@@ -139,16 +142,19 @@ export const tool: Tool = {
             type: 'object',
             description:
               'Additional data represented as key-value pairs. Both the key and value must be strings.',
+            additionalProperties: true,
           },
           pending_balance_amount: {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s pending balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           posted_balance_amount: {
             type: 'object',
             description:
               'Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the account’s posted balance. If any of these conditions would be false after the transaction is created, the entire call will fail with error code 422.',
+            additionalProperties: true,
           },
           show_resulting_ledger_account_balances: {
             type: 'boolean',

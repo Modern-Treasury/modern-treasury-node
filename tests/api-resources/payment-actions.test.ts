@@ -101,7 +101,7 @@ describe('resource paymentActions', () => {
           metadata: { foo: 'string' },
           per_page: 0,
           status: 'pending',
-          type: 'evolve_non_processing_transaction',
+          type: 'stop',
         },
         { path: '/_stainless_unknown_path' },
       ),
