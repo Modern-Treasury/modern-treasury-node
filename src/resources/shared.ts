@@ -95,7 +95,7 @@ export interface ChildLegalEntityCreate {
    */
   addresses?: Array<LegalEntityAddressCreateRequest>;
 
-  bank_settings?: ChildLegalEntityCreate.legal_entity_bank_setting | null;
+  bank_settings?: ChildLegalEntityCreate.BankSettings | null;
 
   /**
    * The business's legal business name.
@@ -201,7 +201,7 @@ export interface ChildLegalEntityCreate {
    */
   suffix?: string | null;
 
-  wealth_and_employment_details?: ChildLegalEntityCreate.legal_entity_wealth_employment_detail | null;
+  wealth_and_employment_details?: ChildLegalEntityCreate.WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -210,7 +210,7 @@ export interface ChildLegalEntityCreate {
 }
 
 export namespace ChildLegalEntityCreate {
-  export interface legal_entity_bank_setting {
+  export interface BankSettings {
     id: string;
 
     /**
@@ -259,7 +259,7 @@ export namespace ChildLegalEntityCreate {
     phone_number?: string;
   }
 
-  export interface legal_entity_wealth_employment_detail {
+  export interface WealthAndEmploymentDetails {
     id: string;
 
     /**

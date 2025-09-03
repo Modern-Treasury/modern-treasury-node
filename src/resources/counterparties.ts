@@ -544,7 +544,7 @@ export namespace CounterpartyCreateParams {
      */
     addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-    bank_settings?: LegalEntity.legal_entity_bank_setting | null;
+    bank_settings?: LegalEntity.BankSettings | null;
 
     /**
      * The business's legal business name.
@@ -650,7 +650,7 @@ export namespace CounterpartyCreateParams {
      */
     suffix?: string | null;
 
-    wealth_and_employment_details?: LegalEntity.legal_entity_wealth_employment_detail | null;
+    wealth_and_employment_details?: LegalEntity.WealthAndEmploymentDetails | null;
 
     /**
      * The entity's primary website URL.
@@ -659,7 +659,7 @@ export namespace CounterpartyCreateParams {
   }
 
   export namespace LegalEntity {
-    export interface legal_entity_bank_setting {
+    export interface BankSettings {
       id: string;
 
       /**
@@ -732,7 +732,7 @@ export namespace CounterpartyCreateParams {
       phone_number?: string;
     }
 
-    export interface legal_entity_wealth_employment_detail {
+    export interface WealthAndEmploymentDetails {
       id: string;
 
       /**
