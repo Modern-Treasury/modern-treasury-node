@@ -70,7 +70,7 @@ export namespace LegalEntityAssociation {
      */
     addresses: Array<ChildLegalEntity.Address>;
 
-    bank_settings: ChildLegalEntity.legal_entity_bank_setting | null;
+    bank_settings: ChildLegalEntity.BankSettings | null;
 
     /**
      * The business's legal business name.
@@ -190,7 +190,7 @@ export namespace LegalEntityAssociation {
 
     updated_at: string;
 
-    wealth_and_employment_details: ChildLegalEntity.legal_entity_wealth_employment_detail | null;
+    wealth_and_employment_details: ChildLegalEntity.WealthAndEmploymentDetails | null;
 
     /**
      * The entity's primary website URL.
@@ -246,7 +246,7 @@ export namespace LegalEntityAssociation {
       updated_at: string;
     }
 
-    export interface legal_entity_bank_setting {
+    export interface BankSettings {
       id: string;
 
       /**
@@ -357,7 +357,7 @@ export namespace LegalEntityAssociation {
       phone_number?: string;
     }
 
-    export interface legal_entity_wealth_employment_detail {
+    export interface WealthAndEmploymentDetails {
       id: string;
 
       /**
