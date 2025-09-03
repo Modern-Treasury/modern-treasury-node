@@ -109,7 +109,7 @@ export interface LegalEntity {
    */
   addresses: Array<LegalEntity.Address>;
 
-  bank_settings: LegalEntity.legal_entity_bank_setting | null;
+  bank_settings: LegalEntity.BankSettings | null;
 
   /**
    * The business's legal business name.
@@ -234,7 +234,7 @@ export interface LegalEntity {
 
   updated_at: string;
 
-  wealth_and_employment_details: LegalEntity.legal_entity_wealth_employment_detail | null;
+  wealth_and_employment_details: LegalEntity.WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -290,7 +290,7 @@ export namespace LegalEntity {
     updated_at: string;
   }
 
-  export interface legal_entity_bank_setting {
+  export interface BankSettings {
     id: string;
 
     /**
@@ -401,7 +401,7 @@ export namespace LegalEntity {
     phone_number?: string;
   }
 
-  export interface legal_entity_wealth_employment_detail {
+  export interface WealthAndEmploymentDetails {
     id: string;
 
     /**
@@ -576,7 +576,7 @@ export interface LegalEntityCreateParams {
    */
   addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-  bank_settings?: LegalEntityCreateParams.legal_entity_bank_setting | null;
+  bank_settings?: LegalEntityCreateParams.BankSettings | null;
 
   /**
    * The business's legal business name.
@@ -682,7 +682,7 @@ export interface LegalEntityCreateParams {
    */
   suffix?: string | null;
 
-  wealth_and_employment_details?: LegalEntityCreateParams.legal_entity_wealth_employment_detail | null;
+  wealth_and_employment_details?: LegalEntityCreateParams.WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -691,7 +691,7 @@ export interface LegalEntityCreateParams {
 }
 
 export namespace LegalEntityCreateParams {
-  export interface legal_entity_bank_setting {
+  export interface BankSettings {
     id: string;
 
     /**
@@ -764,7 +764,7 @@ export namespace LegalEntityCreateParams {
     phone_number?: string;
   }
 
-  export interface legal_entity_wealth_employment_detail {
+  export interface WealthAndEmploymentDetails {
     id: string;
 
     /**
@@ -934,7 +934,7 @@ export interface LegalEntityUpdateParams {
    */
   addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-  bank_settings?: LegalEntityUpdateParams.legal_entity_bank_setting | null;
+  bank_settings?: LegalEntityUpdateParams.BankSettings | null;
 
   /**
    * The business's legal business name.
@@ -1035,7 +1035,7 @@ export interface LegalEntityUpdateParams {
    */
   suffix?: string | null;
 
-  wealth_and_employment_details?: LegalEntityUpdateParams.legal_entity_wealth_employment_detail | null;
+  wealth_and_employment_details?: LegalEntityUpdateParams.WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -1044,7 +1044,7 @@ export interface LegalEntityUpdateParams {
 }
 
 export namespace LegalEntityUpdateParams {
-  export interface legal_entity_bank_setting {
+  export interface BankSettings {
     id: string;
 
     /**
@@ -1093,7 +1093,7 @@ export namespace LegalEntityUpdateParams {
     phone_number?: string;
   }
 
-  export interface legal_entity_wealth_employment_detail {
+  export interface WealthAndEmploymentDetails {
     id: string;
 
     /**
