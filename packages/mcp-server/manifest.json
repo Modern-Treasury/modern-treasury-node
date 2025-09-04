@@ -1,0 +1,60 @@
+{
+  "dxt_version": "0.1",
+  "name": "modern-treasury-mcp",
+  "version": "2.46.0",
+  "description": "The official MCP Server for the Modern Treasury API",
+  "author": {
+    "name": "Modern Treasury",
+    "email": "sdk-feedback@moderntreasury.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Modern-Treasury/modern-treasury-node.git"
+  },
+  "homepage": "https://github.com/Modern-Treasury/modern-treasury-node/tree/main/packages/mcp-server#readme",
+  "documentation": "https://docs.moderntreasury.com",
+  "server": {
+    "type": "node",
+    "entry_point": "${"templates/TypeScriptSDK/mcp"}/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${"templates/TypeScriptSDK/mcp"}/index.js"
+      ],
+      "env": {
+        "MODERN_TREASURY_API_KEY": "${user_config.MODERN_TREASURY_API_KEY}",
+        "MODERN_TREASURY_ORGANIZATION_ID": "${user_config.MODERN_TREASURY_ORGANIZATION_ID}",
+        "MODERN_TREASURY_WEBHOOK_KEY": "${user_config.MODERN_TREASURY_WEBHOOK_KEY}"
+      }
+    }
+  },
+  "user_config": {
+    "MODERN_TREASURY_API_KEY": {
+      "title": "api_key",
+      "description": "",
+      "required": true,
+      "type": "string"
+    },
+    "MODERN_TREASURY_ORGANIZATION_ID": {
+      "title": "organization_id",
+      "description": "",
+      "required": true,
+      "type": "string"
+    },
+    "MODERN_TREASURY_WEBHOOK_KEY": {
+      "title": "webhook_key",
+      "description": "",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "tools_generated": true,
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "keywords": [
+    "api"
+  ]
+}
