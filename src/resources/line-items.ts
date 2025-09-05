@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as Shared from './shared';
 import { Page, type PageParams } from '../pagination';
 
 export class LineItems extends APIResource {
@@ -115,20 +114,11 @@ export class LineItemsPage extends Page<LineItem> {}
 export interface LineItem {
   id: string;
 
-  accounting: Shared.Accounting;
-
   /**
    * The ID of one of your accounting categories. Note that these will only be
    * accessible if your accounting system has been connected.
    */
   accounting_category_id: string | null;
-
-  /**
-   * The ID of one of the class objects in your accounting system. Class objects
-   * track segments of your business independent of client or project. Note that
-   * these will only be accessible if your accounting system has been connected.
-   */
-  accounting_ledger_class_id: string | null;
 
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented

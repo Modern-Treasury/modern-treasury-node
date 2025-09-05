@@ -65,18 +65,10 @@ export const tool: Tool = {
                 type: {
                   $ref: '#/$defs/payment_order_type',
                 },
-                accounting: {
-                  $ref: '#/$defs/accounting',
-                },
                 accounting_category_id: {
                   type: 'string',
                   description:
                     'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
-                },
-                accounting_ledger_class_id: {
-                  type: 'string',
-                  description:
-                    'The ID of one of your accounting ledger classes. Note that these will only be accessible if your accounting system has been connected.',
                 },
                 charge_bearer: {
                   type: 'string',
@@ -649,18 +641,10 @@ export const tool: Tool = {
                 id: {
                   type: 'string',
                 },
-                accounting: {
-                  $ref: '#/$defs/accounting',
-                },
                 accounting_category_id: {
                   type: 'string',
                   description:
                     'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
-                },
-                accounting_ledger_class_id: {
-                  type: 'string',
-                  description:
-                    'The ID of one of your accounting ledger classes. Note that these will only be accessible if your accounting system has been connected.',
                 },
                 amount: {
                   type: 'integer',
@@ -1233,21 +1217,6 @@ export const tool: Tool = {
           'wire',
           'zengin',
         ],
-      },
-      accounting: {
-        type: 'object',
-        properties: {
-          account_id: {
-            type: 'string',
-            description:
-              'The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected.',
-          },
-          class_id: {
-            type: 'string',
-            description:
-              'The ID of one of the class objects in your accounting system. Class objects track segments of your business independent of client or project. Note that these will only be accessible if your accounting system has been connected.',
-          },
-        },
       },
       currency: {
         type: 'string',
