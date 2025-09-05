@@ -1445,7 +1445,6 @@ export declare namespace ModernTreasury {
     type PaymentActionListParams as PaymentActionListParams,
   };
 
-  export type Accounting = API.Accounting;
   export type AccountsType = API.AccountsType;
   export type Address = API.Address;
   export type AddressRequest = API.AddressRequest;

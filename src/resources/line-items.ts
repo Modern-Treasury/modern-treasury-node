@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
@@ -75,20 +74,11 @@ export type LineItemsPage = Page<LineItem>;
 export interface LineItem {
   id: string;
 
-  accounting: Shared.Accounting;
-
   /**
    * The ID of one of your accounting categories. Note that these will only be
    * accessible if your accounting system has been connected.
    */
   accounting_category_id: string | null;
-
-  /**
-   * The ID of one of the class objects in your accounting system. Class objects
-   * track segments of your business independent of client or project. Note that
-   * these will only be accessible if your accounting system has been connected.
-   */
-  accounting_ledger_class_id: string | null;
 
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
