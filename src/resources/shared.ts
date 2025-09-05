@@ -1,20 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export interface Accounting {
-  /**
-   * The ID of one of your accounting categories. Note that these will only be
-   * accessible if your accounting system has been connected.
-   */
-  account_id?: string | null;
-
-  /**
-   * The ID of one of the class objects in your accounting system. Class objects
-   * track segments of your business independent of client or project. Note that
-   * these will only be accessible if your accounting system has been connected.
-   */
-  class_id?: string | null;
-}
-
 export type AccountsType = 'external_accounts' | 'internal_accounts';
 
 export interface Address {
