@@ -12,7 +12,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/shared.ts">Accounting</a></code>
 - <code><a href="./src/resources/shared.ts">AccountsType</a></code>
 - <code><a href="./src/resources/shared.ts">Address</a></code>
 - <code><a href="./src/resources/shared.ts">AddressRequest</a></code>

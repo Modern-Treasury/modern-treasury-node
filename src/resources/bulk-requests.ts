@@ -219,19 +219,11 @@ export namespace BulkRequestCreateParams {
      */
     type: PaymentOrdersAPI.PaymentOrderType;
 
-    accounting?: Shared.Accounting;
-
     /**
      * @deprecated The ID of one of your accounting categories. Note that these will
      * only be accessible if your accounting system has been connected.
      */
     accounting_category_id?: string | null;
-
-    /**
-     * @deprecated The ID of one of your accounting ledger classes. Note that these
-     * will only be accessible if your accounting system has been connected.
-     */
-    accounting_ledger_class_id?: string | null;
 
     /**
      * The party that will pay the fees for the payment order. See
@@ -850,19 +842,11 @@ export namespace BulkRequestCreateParams {
   export interface PaymentOrderUpdateRequestWithID {
     id?: string;
 
-    accounting?: Shared.Accounting;
-
     /**
      * @deprecated The ID of one of your accounting categories. Note that these will
      * only be accessible if your accounting system has been connected.
      */
     accounting_category_id?: string | null;
-
-    /**
-     * @deprecated The ID of one of your accounting ledger classes. Note that these
-     * will only be accessible if your accounting system has been connected.
-     */
-    accounting_ledger_class_id?: string | null;
 
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented as
