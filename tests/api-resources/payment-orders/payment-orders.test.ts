@@ -33,7 +33,12 @@ describe('resource paymentOrders', () => {
       direction: 'credit',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       type: 'ach',
+      accounting: {
+        account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      },
       accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       charge_bearer: 'shared',
       currency: 'AED',
       description: 'description',
@@ -164,7 +169,12 @@ describe('resource paymentOrders', () => {
       client.paymentOrders.update(
         'id',
         {
+          accounting: {
+            account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          },
           accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           amount: 0,
           charge_bearer: 'shared',
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -305,7 +315,12 @@ describe('resource paymentOrders', () => {
       direction: 'credit',
       originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       type: 'ach',
+      accounting: {
+        account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      },
       accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       charge_bearer: 'shared',
       currency: 'AED',
       description: 'description',

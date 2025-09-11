@@ -75,10 +75,22 @@ export interface LineItem {
   id: string;
 
   /**
-   * The ID of one of your accounting categories. Note that these will only be
-   * accessible if your accounting system has been connected.
+   * @deprecated
+   */
+  accounting: LineItem.Accounting;
+
+  /**
+   * @deprecated The ID of one of your accounting categories. Note that these will
+   * only be accessible if your accounting system has been connected.
    */
   accounting_category_id: string | null;
+
+  /**
+   * @deprecated The ID of one of the class objects in your accounting system. Class
+   * objects track segments of your business independent of client or project. Note
+   * that these will only be accessible if your accounting system has been connected.
+   */
+  accounting_ledger_class_id: string | null;
 
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -118,6 +130,26 @@ export interface LineItem {
   object: string;
 
   updated_at: string;
+}
+
+export namespace LineItem {
+  /**
+   * @deprecated
+   */
+  export interface Accounting {
+    /**
+     * @deprecated The ID of one of your accounting categories. Note that these will
+     * only be accessible if your accounting system has been connected.
+     */
+    account_id?: string | null;
+
+    /**
+     * @deprecated The ID of one of the class objects in your accounting system. Class
+     * objects track segments of your business independent of client or project. Note
+     * that these will only be accessible if your accounting system has been connected.
+     */
+    class_id?: string | null;
+  }
 }
 
 export interface LineItemRetrieveParams {
