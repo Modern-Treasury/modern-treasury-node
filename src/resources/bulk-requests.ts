@@ -220,10 +220,21 @@ export namespace BulkRequestCreateParams {
     type: PaymentOrdersAPI.PaymentOrderType;
 
     /**
+     * @deprecated
+     */
+    accounting?: PaymentOrderAsyncCreateRequest.Accounting;
+
+    /**
      * @deprecated The ID of one of your accounting categories. Note that these will
      * only be accessible if your accounting system has been connected.
      */
     accounting_category_id?: string | null;
+
+    /**
+     * @deprecated The ID of one of your accounting ledger classes. Note that these
+     * will only be accessible if your accounting system has been connected.
+     */
+    accounting_ledger_class_id?: string | null;
 
     /**
      * The party that will pay the fees for the payment order. See
@@ -411,6 +422,24 @@ export namespace BulkRequestCreateParams {
   }
 
   export namespace PaymentOrderAsyncCreateRequest {
+    /**
+     * @deprecated
+     */
+    export interface Accounting {
+      /**
+       * @deprecated The ID of one of your accounting categories. Note that these will
+       * only be accessible if your accounting system has been connected.
+       */
+      account_id?: string | null;
+
+      /**
+       * @deprecated The ID of one of the class objects in your accounting system. Class
+       * objects track segments of your business independent of client or project. Note
+       * that these will only be accessible if your accounting system has been connected.
+       */
+      class_id?: string | null;
+    }
+
     export interface LineItem {
       /**
        * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -843,10 +872,21 @@ export namespace BulkRequestCreateParams {
     id?: string;
 
     /**
+     * @deprecated
+     */
+    accounting?: PaymentOrderUpdateRequestWithID.Accounting;
+
+    /**
      * @deprecated The ID of one of your accounting categories. Note that these will
      * only be accessible if your accounting system has been connected.
      */
     accounting_category_id?: string | null;
+
+    /**
+     * @deprecated The ID of one of your accounting ledger classes. Note that these
+     * will only be accessible if your accounting system has been connected.
+     */
+    accounting_ledger_class_id?: string | null;
 
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented as
@@ -1070,6 +1110,24 @@ export namespace BulkRequestCreateParams {
   }
 
   export namespace PaymentOrderUpdateRequestWithID {
+    /**
+     * @deprecated
+     */
+    export interface Accounting {
+      /**
+       * @deprecated The ID of one of your accounting categories. Note that these will
+       * only be accessible if your accounting system has been connected.
+       */
+      account_id?: string | null;
+
+      /**
+       * @deprecated The ID of one of the class objects in your accounting system. Class
+       * objects track segments of your business independent of client or project. Note
+       * that these will only be accessible if your accounting system has been connected.
+       */
+      class_id?: string | null;
+    }
+
     export interface LineItem {
       /**
        * Value in specified currency's smallest unit. e.g. $10 would be represented

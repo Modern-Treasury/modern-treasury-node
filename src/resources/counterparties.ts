@@ -317,7 +317,7 @@ export interface CounterpartyCreateParams {
   query_external_id?: string;
 
   /**
-   * Body param:
+   * @deprecated Body param:
    */
   accounting?: CounterpartyCreateParams.Accounting;
 
@@ -376,6 +376,9 @@ export interface CounterpartyCreateParams {
 }
 
 export namespace CounterpartyCreateParams {
+  /**
+   * @deprecated
+   */
   export interface Accounting {
     /**
      * An optional type to auto-sync the counterparty to your ledger. Either `customer`
