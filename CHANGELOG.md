@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.48.0 (2025-09-11)
+
+Full Changelog: [v2.47.0...v2.48.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.47.0...v2.48.0)
+
+### Features
+
+* **api:** api update ([067b5af](https://github.com/Modern-Treasury/modern-treasury-node/commit/067b5af506f47fd451a157d298b5d0cc1263b985))
+
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([0d14256](https://github.com/Modern-Treasury/modern-treasury-node/commit/0d142563bf765ce5bdad5cc9d02c7e1d511a7354))
+* **mcp:** fix uploading dxt release assets ([b046ef3](https://github.com/Modern-Treasury/modern-treasury-node/commit/b046ef337f794de93793914a6ae576c56bcc5640))
+
+
+### Chores
+
+* **internal:** codegen related update ([ff03fce](https://github.com/Modern-Treasury/modern-treasury-node/commit/ff03fce8b8fd7b0ef843d028a6981f43598f9d42))
+
 ## 2.47.0 (2025-09-05)
 
 Full Changelog: [v2.46.0...v2.47.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.46.0...v2.47.0)
