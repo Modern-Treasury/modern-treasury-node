@@ -250,6 +250,11 @@ export interface InternalAccount {
    */
   routing_details: Array<RoutingDetailsAPI.RoutingDetail>;
 
+  /**
+   * The internal account status.
+   */
+  status: string | null;
+
   updated_at: string;
 
   /**
