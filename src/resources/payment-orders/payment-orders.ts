@@ -533,6 +533,7 @@ export namespace PaymentOrder {
       | 'jpmc_payment_returned_datetime'
       | 'jpmc_transaction_reference_number'
       | 'lob_check_id'
+      | 'mt_fof_transfer_id'
       | 'other'
       | 'partial_swift_mir'
       | 'pnc_clearing_reference'
