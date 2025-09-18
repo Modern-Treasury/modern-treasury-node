@@ -262,6 +262,7 @@ export interface Transaction {
     | 'hifi'
     | 'iso20022'
     | 'jpmc'
+    | 'mt_fof'
     | 'mx'
     | 'paypal'
     | 'plaid'
