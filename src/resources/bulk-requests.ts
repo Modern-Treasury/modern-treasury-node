@@ -1057,6 +1057,7 @@ export namespace BulkRequestCreateParams {
       | 'completed'
       | 'denied'
       | 'failed'
+      | 'held'
       | 'needs_approval'
       | 'pending'
       | 'processing'
