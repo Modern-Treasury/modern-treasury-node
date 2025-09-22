@@ -275,7 +275,7 @@ describe('resource counterparties', () => {
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       send_remittance_advice: true,
       taxpayer_identifier: 'taxpayer_identifier',
-      verification_status: 'denied',
+      verification_status: 'verification_status',
     });
   });
 
