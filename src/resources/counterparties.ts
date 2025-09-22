@@ -176,7 +176,7 @@ export interface Counterparty {
   /**
    * @deprecated The verification status of the counterparty.
    */
-  verification_status: string | null;
+  verification_status: string;
 }
 
 export namespace Counterparty {
@@ -340,7 +340,7 @@ export interface CounterpartyCreateParams {
   /**
    * @deprecated Body param: The verification status of the counterparty.
    */
-  verification_status?: string | null;
+  verification_status?: string;
 }
 
 export namespace CounterpartyCreateParams {
