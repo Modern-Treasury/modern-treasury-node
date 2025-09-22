@@ -206,9 +206,9 @@ export interface Counterparty {
   updated_at: string;
 
   /**
-   * The verification status of the counterparty.
+   * @deprecated The verification status of the counterparty.
    */
-  verification_status: 'denied' | 'needs_approval' | 'unverified' | 'verified';
+  verification_status: string | null;
 }
 
 export namespace Counterparty {
@@ -370,9 +370,9 @@ export interface CounterpartyCreateParams {
   taxpayer_identifier?: string;
 
   /**
-   * Body param: The verification status of the counterparty.
+   * @deprecated Body param: The verification status of the counterparty.
    */
-  verification_status?: 'denied' | 'needs_approval' | 'unverified' | 'verified';
+  verification_status?: string | null;
 }
 
 export namespace CounterpartyCreateParams {
