@@ -26,6 +26,16 @@ export const tool: Tool = {
       counterparty_id: {
         type: 'string',
       },
+      created_at_end: {
+        type: 'string',
+        description: 'An inclusive upper bound for searching created_at',
+        format: 'date-time',
+      },
+      created_at_start: {
+        type: 'string',
+        description: 'An inclusive lower bound for searching created_at',
+        format: 'date-time',
+      },
       due_date_end: {
         type: 'string',
         description: 'An inclusive upper bound for searching due_date',

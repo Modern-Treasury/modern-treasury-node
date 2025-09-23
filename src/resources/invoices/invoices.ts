@@ -967,6 +967,16 @@ export interface InvoiceListParams extends PageParams {
   counterparty_id?: string;
 
   /**
+   * An inclusive upper bound for searching created_at
+   */
+  created_at_end?: string;
+
+  /**
+   * An inclusive lower bound for searching created_at
+   */
+  created_at_start?: string;
+
+  /**
    * An inclusive upper bound for searching due_date
    */
   due_date_end?: string;
