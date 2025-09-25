@@ -7,11 +7,10 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "modern-treasury/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "modern-treasury/*": ["src/*"],
-      "modern-treasury": ["src/index.ts"]
+      "modern-treasury/_shims/auto/*": ["./src/_shims/auto/*-node"],
+      "modern-treasury/*": ["./src/*"],
+      "modern-treasury": ["./src/index.ts"]
     },
     "noEmit": true,
 
@@ -32,7 +31,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-		"isolatedModules": false,
+    "isolatedModules": false,
 
     "skipLibCheck": true
   }
