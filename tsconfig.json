@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "modern-treasury/*": ["src/*"],
-      "modern-treasury": ["src/index.ts"]
+      "modern-treasury/*": ["./src/*"],
+      "modern-treasury": ["./src/index.ts"]
     },
     "noEmit": true,
 
