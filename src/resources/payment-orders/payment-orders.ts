@@ -175,6 +175,12 @@ export interface PaymentOrder {
   currency: Shared.Currency;
 
   /**
+   * If the payment order's status is `held`, this will include the hold object's
+   * data.
+   */
+  current_hold: PaymentOrder.CurrentHold | null;
+
+  /**
    * If the payment order's status is `returned`, this will include the return
    * object's data.
    */
@@ -425,6 +431,64 @@ export namespace PaymentOrder {
      * that these will only be accessible if your accounting system has been connected.
      */
     class_id?: string | null;
+  }
+
+  /**
+   * If the payment order's status is `held`, this will include the hold object's
+   * data.
+   */
+  export interface CurrentHold {
+    id: string;
+
+    created_at: string;
+
+    /**
+     * The type of object
+     */
+    object: 'hold';
+
+    /**
+     * The status of the hold
+     */
+    status: 'active' | 'resolved';
+
+    /**
+     * The ID of the target being held
+     */
+    target_id: string;
+
+    /**
+     * The type of target being held
+     */
+    target_type: 'payment_order';
+
+    updated_at: string;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode?: boolean;
+
+    /**
+     * Additional metadata for the hold
+     */
+    metadata?: { [key: string]: string } | null;
+
+    /**
+     * The reason for the hold
+     */
+    reason?: string | null;
+
+    /**
+     * The resolution of the hold
+     */
+    resolution?: string | null;
+
+    /**
+     * When the hold was resolved
+     */
+    resolved_at?: string | null;
   }
 
   export interface ReferenceNumber {

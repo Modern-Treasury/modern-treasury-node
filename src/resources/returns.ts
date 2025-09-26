@@ -249,6 +249,7 @@ export interface ReturnObject {
     | 'check'
     | 'cross_border'
     | 'eft'
+    | 'gb_fps'
     | 'interac'
     | 'manual'
     | 'sepa'
