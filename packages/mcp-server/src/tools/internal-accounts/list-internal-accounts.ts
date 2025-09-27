@@ -87,6 +87,11 @@ export const tool: Tool = {
       per_page: {
         type: 'integer',
       },
+      status: {
+        type: 'string',
+        description: 'Only return internal accounts with this status.',
+        enum: ['active', 'pending_activation', 'suspended', 'pending_closure', 'closed'],
+      },
     },
     required: [],
     $defs: {

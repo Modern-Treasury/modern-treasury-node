@@ -227,7 +227,7 @@ export interface InternalAccount {
   /**
    * The internal account status.
    */
-  status: string | null;
+  status: 'active' | 'closed' | 'pending_activation' | 'pending_closure' | 'suspended' | null;
 
   updated_at: string;
 
@@ -658,6 +658,11 @@ export interface InternalAccountListParams extends PageParams {
     | 'solana'
     | 'wire'
     | 'zengin';
+
+  /**
+   * Only return internal accounts with this status.
+   */
+  status?: 'active' | 'pending_activation' | 'suspended' | 'pending_closure' | 'closed';
 }
 
 export interface InternalAccountUpdateAccountCapabilityParams {
