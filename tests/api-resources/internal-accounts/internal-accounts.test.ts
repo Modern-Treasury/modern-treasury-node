@@ -145,6 +145,7 @@ describe('resource internalAccounts', () => {
           payment_direction: 'credit',
           payment_type: 'ach',
           per_page: 0,
+          status: 'active',
         },
         { path: '/_stainless_unknown_path' },
       ),
