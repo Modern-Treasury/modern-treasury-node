@@ -2,33 +2,18 @@
 
 ## Installation
 
-### Building
+### Direct invocation
 
-Because it's not published yet, clone the repo and build it:
-
-```sh
-git clone git@github.com:stainless-sdks/modern-treasury-typescript.git
-cd modern-treasury-typescript
-./scripts/bootstrap
-./scripts/build
-```
-
-### Running
+You can run the MCP Server directly via `npx`:
 
 ```sh
-# set env vars as needed
 export MODERN_TREASURY_API_KEY="My API Key"
 export MODERN_TREASURY_ORGANIZATION_ID="my-organization-ID"
 export MODERN_TREASURY_WEBHOOK_KEY="My Webhook Key"
-node ./packages/mcp-server/dist/index.js
+npx -y modern-treasury-mcp@latest
 ```
 
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npx -y modern-treasury-mcp`
-
 ### Via MCP Client
-
-[Build the project](#building) as mentioned above.
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
@@ -39,12 +24,8 @@ For clients with a configuration JSON, it might look something like this:
 {
   "mcpServers": {
     "modern_treasury_api": {
-      "command": "node",
-      "args": [
-        "/path/to/local/modern-treasury-typescript/packages/mcp-server",
-        "--client=claude",
-        "--tools=dynamic"
-      ],
+      "command": "npx",
+      "args": ["-y", "modern-treasury-mcp", "--client=claude", "--tools=dynamic"],
       "env": {
         "MODERN_TREASURY_API_KEY": "My API Key",
         "MODERN_TREASURY_ORGANIZATION_ID": "my-organization-ID",
