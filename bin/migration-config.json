@@ -1,0 +1,887 @@
+{
+  "pkg": "modern-treasury",
+  "githubRepo": "https://github.com/stainless-sdks/modern-treasury-typescript",
+  "clientClass": "ModernTreasury",
+  "methods": [
+    {
+      "base": "counterparties",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "expectedPayments",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "externalAccounts",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "invoices",
+      "name": "addPaymentOrder",
+      "params": [
+        {
+          "type": "param",
+          "key": "payment_order_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "payment_order_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "invoices.lineItems",
+      "name": "retrieve",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "invoice_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "invoices.lineItems",
+      "name": "update",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "invoice_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": true
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "invoices.lineItems",
+      "name": "delete",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldName": "del",
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "invoice_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "accountDetails",
+      "name": "create",
+      "params": [
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "accountDetails",
+      "name": "retrieve",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "accountDetails",
+      "name": "list",
+      "params": [
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": true
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "accountDetails",
+      "name": "delete",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldName": "del",
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "routingDetails",
+      "name": "create",
+      "params": [
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "routingDetails",
+      "name": "retrieve",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "routingDetails",
+      "name": "list",
+      "params": [
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": true
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "routingDetails",
+      "name": "delete",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldName": "del",
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "internalAccounts",
+      "name": "updateAccountCapability",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "internal_account_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "internalAccounts.balanceReports",
+      "name": "retrieve",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "internal_account_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "internalAccounts.balanceReports",
+      "name": "delete",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldName": "del",
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "internal_account_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "ledgers",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "ledgerAccountCategories",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "ledgerAccountCategories",
+      "name": "addLedgerAccount",
+      "params": [
+        {
+          "type": "param",
+          "key": "ledger_account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "ledger_account_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "ledgerAccountCategories",
+      "name": "addNestedCategory",
+      "params": [
+        {
+          "type": "param",
+          "key": "sub_category_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "sub_category_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "ledgerAccountCategories",
+      "name": "removeLedgerAccount",
+      "params": [
+        {
+          "type": "param",
+          "key": "ledger_account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "ledger_account_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "ledgerAccountCategories",
+      "name": "removeNestedCategory",
+      "params": [
+        {
+          "type": "param",
+          "key": "sub_category_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "sub_category_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "ledgerAccounts",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "ledgerAccountBalanceMonitors",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "lineItems",
+      "name": "retrieve",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "itemizable_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "itemizable_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "lineItems",
+      "name": "update",
+      "params": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "itemizable_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "itemizable_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": true
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "lineItems",
+      "name": "list",
+      "params": [
+        {
+          "type": "param",
+          "key": "itemizable_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "itemizable_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "itemizable_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": true
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "paymentOrders.reversals",
+      "name": "retrieve",
+      "params": [
+        {
+          "type": "param",
+          "key": "reversal_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "payment_order_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "reversal_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "transactions",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "transactions.lineItems",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "virtualAccounts",
+      "name": "delete",
+      "oldName": "del"
+    },
+    {
+      "base": "ledgerAccountSettlements.accountEntries",
+      "name": "delete",
+      "oldName": "del"
+    }
+  ]
+}

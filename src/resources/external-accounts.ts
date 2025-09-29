@@ -1,13 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as AccountDetailsAPI from './account-details';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class ExternalAccounts extends APIResource {
   /**
@@ -21,21 +23,12 @@ export class ExternalAccounts extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: ExternalAccountCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExternalAccount> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
+  create(params: ExternalAccountCreateParams, options?: RequestOptions): APIPromise<ExternalAccount> {
+    const { query_external_id, ...body } = params;
     return this._client.post('/api/external_accounts', {
+      query: { external_id: query_external_id },
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
     });
   }
 
@@ -48,8 +41,8 @@ export class ExternalAccounts extends APIResource {
    *   await client.externalAccounts.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ExternalAccount> {
-    return this._client.get(`/api/external_accounts/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<ExternalAccount> {
+    return this._client.get(path`/api/external_accounts/${id}`, options);
   }
 
   /**
@@ -63,19 +56,10 @@ export class ExternalAccounts extends APIResource {
    */
   update(
     id: string,
-    body?: ExternalAccountUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExternalAccount>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<ExternalAccount>;
-  update(
-    id: string,
-    body: ExternalAccountUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExternalAccount> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/external_accounts/${id}`, { body, ...options });
+    body: ExternalAccountUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ExternalAccount> {
+    return this._client.patch(path`/api/external_accounts/${id}`, { body, ...options });
   }
 
   /**
@@ -90,18 +74,10 @@ export class ExternalAccounts extends APIResource {
    * ```
    */
   list(
-    query?: ExternalAccountListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ExternalAccountsPage, ExternalAccount>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ExternalAccountsPage, ExternalAccount>;
-  list(
-    query: ExternalAccountListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ExternalAccountsPage, ExternalAccount> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/external_accounts', ExternalAccountsPage, { query, ...options });
+    query: ExternalAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ExternalAccountsPage, ExternalAccount> {
+    return this._client.getAPIList('/api/external_accounts', Page<ExternalAccount>, { query, ...options });
   }
 
   /**
@@ -109,13 +85,13 @@ export class ExternalAccounts extends APIResource {
    *
    * @example
    * ```ts
-   * await client.externalAccounts.del('id');
+   * await client.externalAccounts.delete('id');
    * ```
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/external_accounts/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/api/external_accounts/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -130,30 +106,10 @@ export class ExternalAccounts extends APIResource {
    */
   completeVerification(
     id: string,
-    params?: ExternalAccountCompleteVerificationParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExternalAccount>;
-  completeVerification(id: string, options?: Core.RequestOptions): Core.APIPromise<ExternalAccount>;
-  completeVerification(
-    id: string,
-    params: ExternalAccountCompleteVerificationParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExternalAccount> {
-    if (isRequestOptions(params)) {
-      return this.completeVerification(id, {}, params);
-    }
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post(`/api/external_accounts/${id}/complete_verification`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: ExternalAccountCompleteVerificationParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ExternalAccount> {
+    return this._client.post(path`/api/external_accounts/${id}/complete_verification`, { body, ...options });
   }
 
   /**
@@ -173,25 +129,14 @@ export class ExternalAccounts extends APIResource {
    */
   verify(
     id: string,
-    params: ExternalAccountVerifyParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExternalAccountVerifyResponse> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post(`/api/external_accounts/${id}/verify`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: ExternalAccountVerifyParams,
+    options?: RequestOptions,
+  ): APIPromise<ExternalAccountVerifyResponse> {
+    return this._client.post(path`/api/external_accounts/${id}/verify`, { body, ...options });
   }
 }
 
-export class ExternalAccountsPage extends Page<ExternalAccount> {}
+export type ExternalAccountsPage = Page<ExternalAccount>;
 
 export interface ExternalAccount {
   id: string;
@@ -664,14 +609,12 @@ export interface ExternalAccountVerifyParams {
   priority?: 'high' | 'normal';
 }
 
-ExternalAccounts.ExternalAccountsPage = ExternalAccountsPage;
-
 export declare namespace ExternalAccounts {
   export {
     type ExternalAccount as ExternalAccount,
     type ExternalAccountType as ExternalAccountType,
     type ExternalAccountVerifyResponse as ExternalAccountVerifyResponse,
-    ExternalAccountsPage as ExternalAccountsPage,
+    type ExternalAccountsPage as ExternalAccountsPage,
     type ExternalAccountCreateParams as ExternalAccountCreateParams,
     type ExternalAccountUpdateParams as ExternalAccountUpdateParams,
     type ExternalAccountListParams as ExternalAccountListParams,

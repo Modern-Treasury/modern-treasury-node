@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class AccountEntries extends APIResource {
   /**
@@ -19,11 +22,11 @@ export class AccountEntries extends APIResource {
    * );
    * ```
    */
-  update(id: string, body: AccountEntryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.patch(`/api/ledger_account_settlements/${id}/ledger_entries`, {
+  update(id: string, body: AccountEntryUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.patch(path`/api/ledger_account_settlements/${id}/ledger_entries`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -32,7 +35,7 @@ export class AccountEntries extends APIResource {
    *
    * @example
    * ```ts
-   * await client.ledgerAccountSettlements.accountEntries.del(
+   * await client.ledgerAccountSettlements.accountEntries.delete(
    *   'id',
    *   {
    *     ledger_entry_ids: [
@@ -42,11 +45,11 @@ export class AccountEntries extends APIResource {
    * );
    * ```
    */
-  del(id: string, body: AccountEntryDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/ledger_account_settlements/${id}/ledger_entries`, {
+  delete(id: string, body: AccountEntryDeleteParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/api/ledger_account_settlements/${id}/ledger_entries`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

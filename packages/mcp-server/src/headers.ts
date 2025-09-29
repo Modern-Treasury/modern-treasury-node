@@ -11,7 +11,7 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
       case 'Basic':
         const rawValue = Buffer.from(value, 'base64').toString();
         return {
-          organizationId: rawValue.slice(0, rawValue.search(':')),
+          organizationID: rawValue.slice(0, rawValue.search(':')),
           apiKey: rawValue.slice(rawValue.search(':') + 1),
         };
       default:
@@ -19,7 +19,7 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
     }
   }
 
-  const organizationId =
+  const organizationID =
     Array.isArray(req.headers['x-modern-treasury-organization-id']) ?
       req.headers['x-modern-treasury-organization-id'][0]
     : req.headers['x-modern-treasury-organization-id'];
@@ -27,5 +27,5 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
     Array.isArray(req.headers['x-modern-treasury-api-key']) ?
       req.headers['x-modern-treasury-api-key'][0]
     : req.headers['x-modern-treasury-api-key'];
-  return { organizationId, apiKey };
+  return { organizationID, apiKey };
 };

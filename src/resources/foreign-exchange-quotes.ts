@@ -1,63 +1,42 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class ForeignExchangeQuotes extends APIResource {
   /**
    * create foreign_exchange_quote
    */
-  create(
-    params: ForeignExchangeQuoteCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ForeignExchangeQuote> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/foreign_exchange_quotes', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: ForeignExchangeQuoteCreateParams, options?: RequestOptions): APIPromise<ForeignExchangeQuote> {
+    return this._client.post('/api/foreign_exchange_quotes', { body, ...options });
   }
 
   /**
    * get foreign_exchange_quote
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ForeignExchangeQuote> {
-    return this._client.get(`/api/foreign_exchange_quotes/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<ForeignExchangeQuote> {
+    return this._client.get(path`/api/foreign_exchange_quotes/${id}`, options);
   }
 
   /**
    * list foreign_exchange_quotes
    */
   list(
-    query?: ForeignExchangeQuoteListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ForeignExchangeQuotesPage, ForeignExchangeQuote>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ForeignExchangeQuotesPage, ForeignExchangeQuote>;
-  list(
-    query: ForeignExchangeQuoteListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ForeignExchangeQuotesPage, ForeignExchangeQuote> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/foreign_exchange_quotes', ForeignExchangeQuotesPage, {
+    query: ForeignExchangeQuoteListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ForeignExchangeQuotesPage, ForeignExchangeQuote> {
+    return this._client.getAPIList('/api/foreign_exchange_quotes', Page<ForeignExchangeQuote>, {
       query,
       ...options,
     });
   }
 }
 
-export class ForeignExchangeQuotesPage extends Page<ForeignExchangeQuote> {}
+export type ForeignExchangeQuotesPage = Page<ForeignExchangeQuote>;
 
 export interface ForeignExchangeQuote {
   id: string;
@@ -186,12 +165,10 @@ export interface ForeignExchangeQuoteListParams extends PageParams {
   target_currency?: string;
 }
 
-ForeignExchangeQuotes.ForeignExchangeQuotesPage = ForeignExchangeQuotesPage;
-
 export declare namespace ForeignExchangeQuotes {
   export {
     type ForeignExchangeQuote as ForeignExchangeQuote,
-    ForeignExchangeQuotesPage as ForeignExchangeQuotesPage,
+    type ForeignExchangeQuotesPage as ForeignExchangeQuotesPage,
     type ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams,
     type ForeignExchangeQuoteListParams as ForeignExchangeQuoteListParams,
   };

@@ -1,11 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import ModernTreasury from 'modern-treasury';
-import { Response } from 'node-fetch';
 
 const client = new ModernTreasury({
   apiKey: 'My API Key',
-  organizationId: 'my-organization-ID',
+  organizationID: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -50,13 +49,6 @@ describe('resource ledgerAccountCategories', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountCategories.retrieve('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -77,13 +69,6 @@ describe('resource ledgerAccountCategories', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('update: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountCategories.update('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: request options and params are passed correctly', async () => {
@@ -112,13 +97,6 @@ describe('resource ledgerAccountCategories', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.ledgerAccountCategories.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      ModernTreasury.NotFoundError,
-    );
-  });
-
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -141,8 +119,8 @@ describe('resource ledgerAccountCategories', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('del', async () => {
-    const responsePromise = client.ledgerAccountCategories.del('id');
+  test('delete', async () => {
+    const responsePromise = client.ledgerAccountCategories.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -152,15 +130,10 @@ describe('resource ledgerAccountCategories', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('del: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountCategories.del('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('addLedgerAccount', async () => {
-    const responsePromise = client.ledgerAccountCategories.addLedgerAccount('id', 'ledger_account_id');
+  test('addLedgerAccount: only required params', async () => {
+    const responsePromise = client.ledgerAccountCategories.addLedgerAccount('ledger_account_id', {
+      id: 'id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -170,17 +143,12 @@ describe('resource ledgerAccountCategories', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('addLedgerAccount: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountCategories.addLedgerAccount('id', 'ledger_account_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  test('addLedgerAccount: required and optional params', async () => {
+    const response = await client.ledgerAccountCategories.addLedgerAccount('ledger_account_id', { id: 'id' });
   });
 
-  test('addNestedCategory', async () => {
-    const responsePromise = client.ledgerAccountCategories.addNestedCategory('id', 'sub_category_id');
+  test('addNestedCategory: only required params', async () => {
+    const responsePromise = client.ledgerAccountCategories.addNestedCategory('sub_category_id', { id: 'id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -190,17 +158,14 @@ describe('resource ledgerAccountCategories', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('addNestedCategory: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountCategories.addNestedCategory('id', 'sub_category_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  test('addNestedCategory: required and optional params', async () => {
+    const response = await client.ledgerAccountCategories.addNestedCategory('sub_category_id', { id: 'id' });
   });
 
-  test('removeLedgerAccount', async () => {
-    const responsePromise = client.ledgerAccountCategories.removeLedgerAccount('id', 'ledger_account_id');
+  test('removeLedgerAccount: only required params', async () => {
+    const responsePromise = client.ledgerAccountCategories.removeLedgerAccount('ledger_account_id', {
+      id: 'id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -210,17 +175,16 @@ describe('resource ledgerAccountCategories', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('removeLedgerAccount: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountCategories.removeLedgerAccount('id', 'ledger_account_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  test('removeLedgerAccount: required and optional params', async () => {
+    const response = await client.ledgerAccountCategories.removeLedgerAccount('ledger_account_id', {
+      id: 'id',
+    });
   });
 
-  test('removeNestedCategory', async () => {
-    const responsePromise = client.ledgerAccountCategories.removeNestedCategory('id', 'sub_category_id');
+  test('removeNestedCategory: only required params', async () => {
+    const responsePromise = client.ledgerAccountCategories.removeNestedCategory('sub_category_id', {
+      id: 'id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -230,12 +194,9 @@ describe('resource ledgerAccountCategories', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('removeNestedCategory: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountCategories.removeNestedCategory('id', 'sub_category_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  test('removeNestedCategory: required and optional params', async () => {
+    const response = await client.ledgerAccountCategories.removeNestedCategory('sub_category_id', {
+      id: 'id',
+    });
   });
 });

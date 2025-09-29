@@ -1,13 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
-  LedgerTransactionVersionsPage,
-  Versions,
-  type LedgerTransactionVersion,
-  type VersionListParams,
-} from './versions';
-export {
-  LedgerTransactionsPage,
   LedgerTransactions,
   type LedgerTransaction,
   type LedgerTransactionCreateParams,
@@ -15,4 +8,11 @@ export {
   type LedgerTransactionListParams,
   type LedgerTransactionCreatePartialPostParams,
   type LedgerTransactionCreateReversalParams,
+  type LedgerTransactionsPage,
 } from './ledger-transactions';
+export {
+  Versions,
+  type LedgerTransactionVersion,
+  type VersionListParams,
+  type LedgerTransactionVersionsPage,
+} from './versions';

@@ -43,12 +43,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { payment_order_id, reversal_id, jq_filter, ...body } = args as any;
+  const { reversal_id, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(
-      jq_filter,
-      await client.paymentOrders.reversals.retrieve(payment_order_id, reversal_id),
-    ),
+    await maybeFilter(jq_filter, await client.paymentOrders.reversals.retrieve(reversal_id, body)),
   );
 };
 

@@ -1,38 +1,28 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class ConnectionLegalEntities extends APIResource {
   /**
    * Create a connection legal entity.
    */
   create(
-    params: ConnectionLegalEntityCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConnectionLegalEntity> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/connection_legal_entities', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: ConnectionLegalEntityCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<ConnectionLegalEntity> {
+    return this._client.post('/api/connection_legal_entities', { body, ...options });
   }
 
   /**
    * Get details on a single connection legal entity.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ConnectionLegalEntity> {
-    return this._client.get(`/api/connection_legal_entities/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<ConnectionLegalEntity> {
+    return this._client.get(path`/api/connection_legal_entities/${id}`, options);
   }
 
   /**
@@ -40,44 +30,27 @@ export class ConnectionLegalEntities extends APIResource {
    */
   update(
     id: string,
-    body?: ConnectionLegalEntityUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConnectionLegalEntity>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<ConnectionLegalEntity>;
-  update(
-    id: string,
-    body: ConnectionLegalEntityUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConnectionLegalEntity> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/connection_legal_entities/${id}`, { body, ...options });
+    body: ConnectionLegalEntityUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ConnectionLegalEntity> {
+    return this._client.patch(path`/api/connection_legal_entities/${id}`, { body, ...options });
   }
 
   /**
    * Get a list of all connection legal entities.
    */
   list(
-    query?: ConnectionLegalEntityListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ConnectionLegalEntitiesPage, ConnectionLegalEntity>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ConnectionLegalEntitiesPage, ConnectionLegalEntity>;
-  list(
-    query: ConnectionLegalEntityListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ConnectionLegalEntitiesPage, ConnectionLegalEntity> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/connection_legal_entities', ConnectionLegalEntitiesPage, {
+    query: ConnectionLegalEntityListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ConnectionLegalEntitiesPage, ConnectionLegalEntity> {
+    return this._client.getAPIList('/api/connection_legal_entities', Page<ConnectionLegalEntity>, {
       query,
       ...options,
     });
   }
 }
 
-export class ConnectionLegalEntitiesPage extends Page<ConnectionLegalEntity> {}
+export type ConnectionLegalEntitiesPage = Page<ConnectionLegalEntity>;
 
 export interface ConnectionLegalEntity {
   id: string;
@@ -517,12 +490,10 @@ export interface ConnectionLegalEntityListParams extends PageParams {
   status?: 'completed' | 'denied' | 'failed' | 'processing';
 }
 
-ConnectionLegalEntities.ConnectionLegalEntitiesPage = ConnectionLegalEntitiesPage;
-
 export declare namespace ConnectionLegalEntities {
   export {
     type ConnectionLegalEntity as ConnectionLegalEntity,
-    ConnectionLegalEntitiesPage as ConnectionLegalEntitiesPage,
+    type ConnectionLegalEntitiesPage as ConnectionLegalEntitiesPage,
     type ConnectionLegalEntityCreateParams as ConnectionLegalEntityCreateParams,
     type ConnectionLegalEntityUpdateParams as ConnectionLegalEntityUpdateParams,
     type ConnectionLegalEntityListParams as ConnectionLegalEntityListParams,

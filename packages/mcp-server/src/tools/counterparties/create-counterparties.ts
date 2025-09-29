@@ -645,7 +645,6 @@ export const tool: Tool = {
       verification_status: {
         type: 'string',
         description: 'The verification status of the counterparty.',
-        enum: ['denied', 'needs_approval', 'unverified', 'verified'],
       },
     },
     required: ['name'],

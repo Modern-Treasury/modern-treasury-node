@@ -35,9 +35,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { id, sub_category_id, ...body } = args as any;
+  const { sub_category_id, ...body } = args as any;
   const response = await client.ledgerAccountCategories
-    .removeNestedCategory(id, sub_category_id)
+    .removeNestedCategory(sub_category_id, body)
     .asResponse();
   return asTextContentResult(await response.text());
 };

@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'modern-treasury/resource';
+import { getRequiredHeader, HeadersLike } from '../internal/headers';
+import { APIResource } from '../resource';
 import { createHmac } from 'crypto';
-import type { HeadersLike } from 'modern-treasury/core';
-import { getRequiredHeader } from 'modern-treasury/core';
 
 export class Webhooks extends APIResource {
   /**

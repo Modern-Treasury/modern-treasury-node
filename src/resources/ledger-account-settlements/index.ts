@@ -6,10 +6,10 @@ export {
   type AccountEntryDeleteParams,
 } from './account-entries';
 export {
-  LedgerAccountSettlementsPage,
   LedgerAccountSettlements,
   type LedgerAccountSettlement,
   type LedgerAccountSettlementCreateParams,
   type LedgerAccountSettlementUpdateParams,
   type LedgerAccountSettlementListParams,
+  type LedgerAccountSettlementsPage,
 } from './ledger-account-settlements';

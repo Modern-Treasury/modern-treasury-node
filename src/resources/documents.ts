@@ -1,56 +1,43 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { type Uploadable } from '../core/uploads';
+import { RequestOptions } from '../internal/request-options';
+import { multipartFormRequestOptions } from '../internal/uploads';
+import { path } from '../internal/utils/path';
 
 export class Documents extends APIResource {
   /**
    * Create a document.
    */
-  create(params: DocumentCreateParams, options?: Core.RequestOptions): Core.APIPromise<Document> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
+  create(body: DocumentCreateParams, options?: RequestOptions): APIPromise<Document> {
     return this._client.post(
       '/api/documents',
-      Core.multipartFormRequestOptions({
-        body,
-        ...options,
-        headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-      }),
+      multipartFormRequestOptions({ body, ...options }, this._client),
     );
   }
 
   /**
    * Get an existing document.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Document> {
-    return this._client.get(`/api/documents/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Document> {
+    return this._client.get(path`/api/documents/${id}`, options);
   }
 
   /**
    * Get a list of documents.
    */
-  list(query?: DocumentListParams, options?: Core.RequestOptions): Core.PagePromise<DocumentsPage, Document>;
-  list(options?: Core.RequestOptions): Core.PagePromise<DocumentsPage, Document>;
   list(
-    query: DocumentListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DocumentsPage, Document> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/documents', DocumentsPage, { query, ...options });
+    query: DocumentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DocumentsPage, Document> {
+    return this._client.getAPIList('/api/documents', Page<Document>, { query, ...options });
   }
 }
 
-export class DocumentsPage extends Page<Document> {}
+export type DocumentsPage = Page<Document>;
 
 export interface Document {
   id: string;
@@ -165,7 +152,7 @@ export interface DocumentCreateParams {
     | 'transactions'
     | 'connections';
 
-  file: Core.Uploadable;
+  file: Uploadable;
 
   /**
    * A category given to the document, can be `null`.
@@ -197,12 +184,10 @@ export interface DocumentListParams extends PageParams {
     | 'connections';
 }
 
-Documents.DocumentsPage = DocumentsPage;
-
 export declare namespace Documents {
   export {
     type Document as Document,
-    DocumentsPage as DocumentsPage,
+    type DocumentsPage as DocumentsPage,
     type DocumentCreateParams as DocumentCreateParams,
     type DocumentListParams as DocumentListParams,
   };

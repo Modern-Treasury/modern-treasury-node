@@ -35,9 +35,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { id, ledger_account_id, ...body } = args as any;
+  const { ledger_account_id, ...body } = args as any;
   const response = await client.ledgerAccountCategories
-    .removeLedgerAccount(id, ledger_account_id)
+    .removeLedgerAccount(ledger_account_id, body)
     .asResponse();
   return asTextContentResult(await response.text());
 };

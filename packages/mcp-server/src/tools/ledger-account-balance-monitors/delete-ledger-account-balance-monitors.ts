@@ -41,7 +41,9 @@ export const tool: Tool = {
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   const { id, jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.ledgerAccountBalanceMonitors.del(id)));
+  return asTextContentResult(
+    await maybeFilter(jq_filter, await client.ledgerAccountBalanceMonitors.delete(id)),
+  );
 };
 
 export default { metadata, tool, handler };

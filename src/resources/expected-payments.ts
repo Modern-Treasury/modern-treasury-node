@@ -1,10 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class ExpectedPayments extends APIResource {
   /**
@@ -17,29 +18,10 @@ export class ExpectedPayments extends APIResource {
    * ```
    */
   create(
-    params?: ExpectedPaymentCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExpectedPayment>;
-  create(options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment>;
-  create(
-    params: ExpectedPaymentCreateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExpectedPayment> {
-    if (isRequestOptions(params)) {
-      return this.create({}, params);
-    }
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/expected_payments', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: ExpectedPaymentCreateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ExpectedPayment> {
+    return this._client.post('/api/expected_payments', { body, ...options });
   }
 
   /**
@@ -51,8 +33,8 @@ export class ExpectedPayments extends APIResource {
    *   await client.expectedPayments.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment> {
-    return this._client.get(`/api/expected_payments/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<ExpectedPayment> {
+    return this._client.get(path`/api/expected_payments/${id}`, options);
   }
 
   /**
@@ -66,19 +48,10 @@ export class ExpectedPayments extends APIResource {
    */
   update(
     id: string,
-    body?: ExpectedPaymentUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExpectedPayment>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment>;
-  update(
-    id: string,
-    body: ExpectedPaymentUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExpectedPayment> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/expected_payments/${id}`, { body, ...options });
+    body: ExpectedPaymentUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ExpectedPayment> {
+    return this._client.patch(path`/api/expected_payments/${id}`, { body, ...options });
   }
 
   /**
@@ -93,18 +66,10 @@ export class ExpectedPayments extends APIResource {
    * ```
    */
   list(
-    query?: ExpectedPaymentListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ExpectedPaymentsPage, ExpectedPayment>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ExpectedPaymentsPage, ExpectedPayment>;
-  list(
-    query: ExpectedPaymentListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ExpectedPaymentsPage, ExpectedPayment> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/expected_payments', ExpectedPaymentsPage, { query, ...options });
+    query: ExpectedPaymentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ExpectedPaymentsPage, ExpectedPayment> {
+    return this._client.getAPIList('/api/expected_payments', Page<ExpectedPayment>, { query, ...options });
   }
 
   /**
@@ -112,17 +77,16 @@ export class ExpectedPayments extends APIResource {
    *
    * @example
    * ```ts
-   * const expectedPayment = await client.expectedPayments.del(
-   *   'id',
-   * );
+   * const expectedPayment =
+   *   await client.expectedPayments.delete('id');
    * ```
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<ExpectedPayment> {
-    return this._client.delete(`/api/expected_payments/${id}`, options);
+  delete(id: string, options?: RequestOptions): APIPromise<ExpectedPayment> {
+    return this._client.delete(path`/api/expected_payments/${id}`, options);
   }
 }
 
-export class ExpectedPaymentsPage extends Page<ExpectedPayment> {}
+export type ExpectedPaymentsPage = Page<ExpectedPayment>;
 
 export interface ExpectedPayment {
   id: string;
@@ -733,14 +697,12 @@ export interface ExpectedPaymentListParams extends PageParams {
   updated_at_upper_bound?: string;
 }
 
-ExpectedPayments.ExpectedPaymentsPage = ExpectedPaymentsPage;
-
 export declare namespace ExpectedPayments {
   export {
     type ExpectedPayment as ExpectedPayment,
     type ExpectedPaymentType as ExpectedPaymentType,
     type ReconciliationRule as ReconciliationRule,
-    ExpectedPaymentsPage as ExpectedPaymentsPage,
+    type ExpectedPaymentsPage as ExpectedPaymentsPage,
     type ExpectedPaymentCreateParams as ExpectedPaymentCreateParams,
     type ExpectedPaymentUpdateParams as ExpectedPaymentUpdateParams,
     type ExpectedPaymentListParams as ExpectedPaymentListParams,

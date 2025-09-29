@@ -1,29 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class LegalEntityAssociations extends APIResource {
   /**
    * create legal_entity_association
    */
   create(
-    params: LegalEntityAssociationCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LegalEntityAssociation> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/legal_entity_associations', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: LegalEntityAssociationCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<LegalEntityAssociation> {
+    return this._client.post('/api/legal_entity_associations', { body, ...options });
   }
 }
 

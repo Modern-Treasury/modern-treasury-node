@@ -1,43 +1,36 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as ExpectedPaymentsAPI from './expected-payments';
 import * as LedgerAccountsAPI from './ledger-accounts';
 import * as LedgerTransactionsAPI from './ledger-transactions/ledger-transactions';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
 import * as TransactionsAPI from './transactions/transactions';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class BulkResults extends APIResource {
   /**
    * get bulk_result
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BulkResult> {
-    return this._client.get(`/api/bulk_results/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<BulkResult> {
+    return this._client.get(path`/api/bulk_results/${id}`, options);
   }
 
   /**
    * list bulk_results
    */
   list(
-    query?: BulkResultListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BulkResultsPage, BulkResult>;
-  list(options?: Core.RequestOptions): Core.PagePromise<BulkResultsPage, BulkResult>;
-  list(
-    query: BulkResultListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BulkResultsPage, BulkResult> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/bulk_results', BulkResultsPage, { query, ...options });
+    query: BulkResultListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BulkResultsPage, BulkResult> {
+    return this._client.getAPIList('/api/bulk_results', Page<BulkResult>, { query, ...options });
   }
 }
 
-export class BulkResultsPage extends Page<BulkResult> {}
+export type BulkResultsPage = Page<BulkResult>;
 
 export interface BulkResult {
   id: string;
@@ -180,12 +173,10 @@ export interface BulkResultListParams extends PageParams {
   status?: 'pending' | 'successful' | 'failed';
 }
 
-BulkResults.BulkResultsPage = BulkResultsPage;
-
 export declare namespace BulkResults {
   export {
     type BulkResult as BulkResult,
-    BulkResultsPage as BulkResultsPage,
+    type BulkResultsPage as BulkResultsPage,
     type BulkResultListParams as BulkResultListParams,
   };
 }

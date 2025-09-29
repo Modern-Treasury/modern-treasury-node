@@ -6,6 +6,7 @@ import { Endpoint, endpoints, HandlerFunction, query } from './tools';
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
+  SetLevelRequestSchema,
   Implementation,
   Tool,
 } from '@modelcontextprotocol/sdk/types.js';
@@ -20,6 +21,7 @@ import {
 } from './compat';
 import { dynamicTools } from './dynamic-tools';
 import { codeTool } from './code-tool';
+import docsSearchTool from './docs-search-tool';
 import { McpOptions } from './options';
 
 export { McpOptions } from './options';
@@ -32,7 +34,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'modern_treasury_api',
-      version: '2.48.0',
+      version: '2.42.0',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
@@ -70,7 +72,23 @@ export function initMcpServer(params: {
     endpointMap ??= Object.fromEntries(providedEndpoints.map((endpoint) => [endpoint.tool.name, endpoint]));
   };
 
-  const client = new ModernTreasury({
+  const logAtLevel =
+    (level: 'debug' | 'info' | 'warning' | 'error') =>
+    (message: string, ...rest: unknown[]) => {
+      void server.sendLoggingMessage({
+        level,
+        data: { message, rest },
+      });
+    };
+  const logger = {
+    debug: logAtLevel('debug'),
+    info: logAtLevel('info'),
+    warn: logAtLevel('warning'),
+    error: logAtLevel('error'),
+  };
+
+  let client = new ModernTreasury({
+    logger,
     ...params.clientOptions,
     defaultHeaders: {
       ...params.clientOptions?.defaultHeaders,
@@ -99,6 +117,29 @@ export function initMcpServer(params: {
 
     return executeHandler(endpoint.tool, endpoint.handler, client, args, mcpOptions.capabilities);
   });
+
+  server.setRequestHandler(SetLevelRequestSchema, async (request) => {
+    const { level } = request.params;
+    switch (level) {
+      case 'debug':
+        client = client.withOptions({ logLevel: 'debug' });
+        break;
+      case 'info':
+        client = client.withOptions({ logLevel: 'info' });
+        break;
+      case 'notice':
+      case 'warning':
+        client = client.withOptions({ logLevel: 'warn' });
+        break;
+      case 'error':
+        client = client.withOptions({ logLevel: 'error' });
+        break;
+      default:
+        client = client.withOptions({ logLevel: 'off' });
+        break;
+    }
+    return {};
+  });
 }
 
 /**
@@ -107,7 +148,7 @@ export function initMcpServer(params: {
 export async function selectTools(endpoints: Endpoint[], options?: McpOptions): Promise<Endpoint[]> {
   const filteredEndpoints = query(options?.filters ?? [], endpoints);
 
-  let includedTools = filteredEndpoints;
+  let includedTools = filteredEndpoints.slice();
 
   if (includedTools.length > 0) {
     if (options?.includeDynamicTools) {
@@ -115,16 +156,18 @@ export async function selectTools(endpoints: Endpoint[], options?: McpOptions): 
     }
   } else {
     if (options?.includeAllTools) {
-      includedTools = endpoints;
+      includedTools = endpoints.slice();
     } else if (options?.includeDynamicTools) {
       includedTools = dynamicTools(endpoints);
     } else if (options?.includeCodeTools) {
       includedTools = [await codeTool()];
     } else {
-      includedTools = endpoints;
+      includedTools = endpoints.slice();
     }
   }
-
+  if (options?.includeDocsTools ?? true) {
+    includedTools.push(docsSearchTool);
+  }
   const capabilities = { ...defaultClientCapabilities, ...options?.capabilities };
   return applyCompatibilityTransformations(includedTools, capabilities);
 }
