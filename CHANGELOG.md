@@ -1,5 +1,48 @@
 # Changelog
 
+## 2.49.0 (2025-09-29)
+
+Full Changelog: [v2.48.0...v2.49.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.48.0...v2.49.0)
+
+### Features
+
+* **api:** api update ([491b9c3](https://github.com/Modern-Treasury/modern-treasury-node/commit/491b9c361db8f427a3abeb37128c13c291972591))
+* **api:** api update ([9d3bfa9](https://github.com/Modern-Treasury/modern-treasury-node/commit/9d3bfa9e90bb5f668b7d8565c185cb24a390509f))
+* **api:** api update ([7f36ba4](https://github.com/Modern-Treasury/modern-treasury-node/commit/7f36ba48240ef3bb6c4baa332eaf66d0d3ae84ac))
+* **api:** api update ([81c9909](https://github.com/Modern-Treasury/modern-treasury-node/commit/81c9909dc7fd8288cbd42280b989dd403f016c3a))
+* **api:** api update ([5a9211d](https://github.com/Modern-Treasury/modern-treasury-node/commit/5a9211d1f51c1f7b37fba94c9efbe01d92a4487f))
+* **api:** api update ([fde9656](https://github.com/Modern-Treasury/modern-treasury-node/commit/fde9656c15b55b29f2d8503847fea0dc9c4bca25))
+* **api:** api update ([b44c250](https://github.com/Modern-Treasury/modern-treasury-node/commit/b44c25066a5f8f10c09bc23a1fb215e9ee63c139))
+* **api:** api update ([bb6dda0](https://github.com/Modern-Treasury/modern-treasury-node/commit/bb6dda0f64640d1a68f8a471e98a634626fec05c))
+* **api:** api update ([0cc36f3](https://github.com/Modern-Treasury/modern-treasury-node/commit/0cc36f3daf62ed6ec0d86f75790f70e883b5acb8))
+* **mcp:** add docs search tool ([74e024f](https://github.com/Modern-Treasury/modern-treasury-node/commit/74e024fd589def9f2dc8a09fa7aad4e33acea716))
+* **mcp:** add option for including docs tools ([7cd4674](https://github.com/Modern-Treasury/modern-treasury-node/commit/7cd467499b079e1d70398d37e83d0f87123f8043))
+* **mcp:** enable experimental docs search tool ([71011dc](https://github.com/Modern-Treasury/modern-treasury-node/commit/71011dc5d97e7cda0c26b6212d27c048672a9e82))
+
+
+### Bug Fixes
+
+* **ci:** set permissions for DXT publish action ([d21fe23](https://github.com/Modern-Treasury/modern-treasury-node/commit/d21fe2301390f35641c02972f0b0f078d9be5d7f))
+* **mcp:** fix cli argument parsing logic ([1120010](https://github.com/Modern-Treasury/modern-treasury-node/commit/11200101ee11dfd0071aca59af83c908864d835f))
+
+
+### Performance Improvements
+
+* faster formatting ([9753f79](https://github.com/Modern-Treasury/modern-treasury-node/commit/9753f79548011379f85fe0b8eb04911879de2e76))
+
+
+### Chores
+
+* **codegen:** internal codegen update ([3be46ab](https://github.com/Modern-Treasury/modern-treasury-node/commit/3be46abf81597af8afcd9c8f5ad8fb4522d89177))
+* do not install brew dependencies in ./scripts/bootstrap by default ([7f5a50b](https://github.com/Modern-Treasury/modern-treasury-node/commit/7f5a50bb824f482841044d4969b40204988f335b))
+* **internal:** codegen related update ([bd5e50c](https://github.com/Modern-Treasury/modern-treasury-node/commit/bd5e50cc15b798a14def74746d4b81ef03962ac9))
+* **internal:** fix incremental formatting in some cases ([279547b](https://github.com/Modern-Treasury/modern-treasury-node/commit/279547bd6339e4203dc5512eaa2eb3d1889f67a4))
+* **internal:** gitignore .mcpb files ([c2ffcbd](https://github.com/Modern-Treasury/modern-treasury-node/commit/c2ffcbd636eac02707c74edee9160a43562a61ec))
+* **internal:** ignore .eslintcache ([c20ee80](https://github.com/Modern-Treasury/modern-treasury-node/commit/c20ee8084998ff91ac622951e61f8014cf9c47b8))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([e2404a7](https://github.com/Modern-Treasury/modern-treasury-node/commit/e2404a752b3cab998ae75f4c3f0fdf0a08e4b86e))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([e043e8d](https://github.com/Modern-Treasury/modern-treasury-node/commit/e043e8d9eb73a40496fd55e3b9b285664cab83de))
+* **mcp:** rename dxt to mcpb ([2dd9fe4](https://github.com/Modern-Treasury/modern-treasury-node/commit/2dd9fe4a9d5d7f25159bcceffa2141f051ad14c8))
+
 ## 2.48.0 (2025-09-11)
 
 Full Changelog: [v2.47.0...v2.48.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.47.0...v2.48.0)
