@@ -175,46 +175,6 @@ client.example.list(undefined, { headers: { ... } });
 
 </details>
 
-### HTTP method naming
-
-Previously some methods could not be named intuitively due to an internal naming conflict. This has been fixed and the affected methods are now correctly named.
-
-```ts
-// Before
-client.counterparties.del();
-client.expectedPayments.del();
-client.externalAccounts.del();
-client.invoices.lineItems.del();
-client.accountDetails.del();
-client.routingDetails.del();
-client.internalAccounts.balanceReports.del();
-client.ledgers.del();
-client.ledgerAccountCategories.del();
-client.ledgerAccounts.del();
-client.ledgerAccountBalanceMonitors.del();
-client.transactions.del();
-client.transactions.lineItems.del();
-client.virtualAccounts.del();
-client.ledgerAccountSettlements.accountEntries.del();
-
-// After
-client.counterparties.delete();
-client.expectedPayments.delete();
-client.externalAccounts.delete();
-client.invoices.lineItems.delete();
-client.accountDetails.delete();
-client.routingDetails.delete();
-client.internalAccounts.balanceReports.delete();
-client.ledgers.delete();
-client.ledgerAccountCategories.delete();
-client.ledgerAccounts.delete();
-client.ledgerAccountBalanceMonitors.delete();
-client.transactions.delete();
-client.transactions.lineItems.delete();
-client.virtualAccounts.delete();
-client.ledgerAccountSettlements.accountEntries.delete();
-```
-
 ### Removed `httpAgent` in favor of `fetchOptions`
 
 The `httpAgent` client option has been removed in favor of a [platform-specific `fetchOptions` property](https://github.com/Modern-Treasury/modern-treasury-node#fetch-options).
