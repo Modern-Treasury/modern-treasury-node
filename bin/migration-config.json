@@ -1,6 +1,6 @@
 {
   "pkg": "modern-treasury",
-  "githubRepo": "https://github.com/stainless-sdks/modern-treasury-typescript",
+  "githubRepo": "https://github.com/Modern-Treasury/modern-treasury-node",
   "clientClass": "ModernTreasury",
   "methods": [
     {
