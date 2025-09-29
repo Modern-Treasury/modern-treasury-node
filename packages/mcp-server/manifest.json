@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/modern-treasury-typescript.git"
+    "url": "git+https://github.com/Modern-Treasury/modern-treasury-node.git"
   },
-  "homepage": "https://github.com/stainless-sdks/modern-treasury-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/Modern-Treasury/modern-treasury-node/tree/main/packages/mcp-server#readme",
   "documentation": "https://docs.moderntreasury.com",
   "server": {
     "type": "node",

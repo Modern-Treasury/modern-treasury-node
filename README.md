@@ -9,11 +9,8 @@ The REST API documentation can be found on [docs.moderntreasury.com](https://doc
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:stainless-sdks/modern-treasury-typescript.git
+npm install modern-treasury
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install modern-treasury`
 
 ## Usage
 
@@ -420,7 +417,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/modern-treasury-typescript/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-node/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 
