@@ -1,10 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class LedgerEntries extends APIResource {
   /**
@@ -19,19 +20,10 @@ export class LedgerEntries extends APIResource {
    */
   retrieve(
     id: string,
-    query?: LedgerEntryRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerEntry>;
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEntry>;
-  retrieve(
-    id: string,
-    query: LedgerEntryRetrieveParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerEntry> {
-    if (isRequestOptions(query)) {
-      return this.retrieve(id, {}, query);
-    }
-    return this._client.get(`/api/ledger_entries/${id}`, { query, ...options });
+    query: LedgerEntryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerEntry> {
+    return this._client.get(path`/api/ledger_entries/${id}`, { query, ...options });
   }
 
   /**
@@ -44,19 +36,10 @@ export class LedgerEntries extends APIResource {
    */
   update(
     id: string,
-    body?: LedgerEntryUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerEntry>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerEntry>;
-  update(
-    id: string,
-    body: LedgerEntryUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerEntry> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/ledger_entries/${id}`, { body, ...options });
+    body: LedgerEntryUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerEntry> {
+    return this._client.patch(path`/api/ledger_entries/${id}`, { body, ...options });
   }
 
   /**
@@ -71,22 +54,14 @@ export class LedgerEntries extends APIResource {
    * ```
    */
   list(
-    query?: LedgerEntryListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerEntriesPage, LedgerEntry>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerEntriesPage, LedgerEntry>;
-  list(
-    query: LedgerEntryListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerEntriesPage, LedgerEntry> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/ledger_entries', LedgerEntriesPage, { query, ...options });
+    query: LedgerEntryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerEntriesPage, LedgerEntry> {
+    return this._client.getAPIList('/api/ledger_entries', Page<LedgerEntry>, { query, ...options });
   }
 }
 
-export class LedgerEntriesPage extends Page<LedgerEntry> {}
+export type LedgerEntriesPage = Page<LedgerEntry>;
 
 export interface LedgerEntry {
   id: string;
@@ -321,12 +296,10 @@ export namespace LedgerEntryListParams {
   }
 }
 
-LedgerEntries.LedgerEntriesPage = LedgerEntriesPage;
-
 export declare namespace LedgerEntries {
   export {
     type LedgerEntry as LedgerEntry,
-    LedgerEntriesPage as LedgerEntriesPage,
+    type LedgerEntriesPage as LedgerEntriesPage,
     type LedgerEntryRetrieveParams as LedgerEntryRetrieveParams,
     type LedgerEntryUpdateParams as LedgerEntryUpdateParams,
     type LedgerEntryListParams as LedgerEntryListParams,

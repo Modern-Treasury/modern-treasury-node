@@ -1,34 +1,27 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class PaymentReferences extends APIResource {
   /**
    * get payment_reference
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentReference> {
-    return this._client.get(`/api/payment_references/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentReference> {
+    return this._client.get(path`/api/payment_references/${id}`, options);
   }
 
   /**
    * list payment_references
    */
   list(
-    query?: PaymentReferenceListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentReferencesPage, PaymentReference>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PaymentReferencesPage, PaymentReference>;
-  list(
-    query: PaymentReferenceListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentReferencesPage, PaymentReference> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/payment_references', PaymentReferencesPage, { query, ...options });
+    query: PaymentReferenceListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PaymentReferencesPage, PaymentReference> {
+    return this._client.getAPIList('/api/payment_references', Page<PaymentReference>, { query, ...options });
   }
 
   /**
@@ -37,7 +30,7 @@ export class PaymentReferences extends APIResource {
   retireve = this.retrieve;
 }
 
-export class PaymentReferencesPage extends Page<PaymentReference> {}
+export type PaymentReferencesPage = Page<PaymentReference>;
 
 export interface PaymentReference {
   id: string;
@@ -117,6 +110,7 @@ export interface PaymentReference {
     | 'jpmc_payment_returned_datetime'
     | 'jpmc_transaction_reference_number'
     | 'lob_check_id'
+    | 'mt_fof_transfer_id'
     | 'other'
     | 'partial_swift_mir'
     | 'pnc_clearing_reference'
@@ -184,12 +178,10 @@ export interface PaymentReferenceListParams extends PageParams {
   referenceable_type?: 'payment_order' | 'return' | 'reversal';
 }
 
-PaymentReferences.PaymentReferencesPage = PaymentReferencesPage;
-
 export declare namespace PaymentReferences {
   export {
     type PaymentReference as PaymentReference,
-    PaymentReferencesPage as PaymentReferencesPage,
+    type PaymentReferencesPage as PaymentReferencesPage,
     type PaymentReferenceListParams as PaymentReferenceListParams,
   };
 }

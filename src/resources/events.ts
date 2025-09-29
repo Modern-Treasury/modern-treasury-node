@@ -1,35 +1,31 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Events extends APIResource {
   /**
    * get event
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Event> {
-    return this._client.get(`/api/events/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Event> {
+    return this._client.get(path`/api/events/${id}`, options);
   }
 
   /**
    * list events
    */
-  list(query?: EventListParams, options?: Core.RequestOptions): Core.PagePromise<EventsPage, Event>;
-  list(options?: Core.RequestOptions): Core.PagePromise<EventsPage, Event>;
   list(
-    query: EventListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<EventsPage, Event> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/events', EventsPage, { query, ...options });
+    query: EventListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EventsPage, Event> {
+    return this._client.getAPIList('/api/events', Page<Event>, { query, ...options });
   }
 }
 
-export class EventsPage extends Page<Event> {}
+export type EventsPage = Page<Event>;
 
 export interface Event {
   id: string;
@@ -90,8 +86,6 @@ export interface EventListParams extends PageParams {
   resource?: string;
 }
 
-Events.EventsPage = EventsPage;
-
 export declare namespace Events {
-  export { type Event as Event, EventsPage as EventsPage, type EventListParams as EventListParams };
+  export { type Event as Event, type EventsPage as EventsPage, type EventListParams as EventListParams };
 }

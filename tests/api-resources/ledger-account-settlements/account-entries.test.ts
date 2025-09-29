@@ -1,11 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import ModernTreasury from 'modern-treasury';
-import { Response } from 'node-fetch';
 
 const client = new ModernTreasury({
   apiKey: 'My API Key',
-  organizationId: 'my-organization-ID',
+  organizationID: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -29,8 +28,8 @@ describe('resource accountEntries', () => {
     });
   });
 
-  test('del: only required params', async () => {
-    const responsePromise = client.ledgerAccountSettlements.accountEntries.del('id', {
+  test('delete: only required params', async () => {
+    const responsePromise = client.ledgerAccountSettlements.accountEntries.delete('id', {
       ledger_entry_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -42,8 +41,8 @@ describe('resource accountEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('del: required and optional params', async () => {
-    const response = await client.ledgerAccountSettlements.accountEntries.del('id', {
+  test('delete: required and optional params', async () => {
+    const response = await client.ledgerAccountSettlements.accountEntries.delete('id', {
       ledger_entry_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
     });
   });

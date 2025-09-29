@@ -2,39 +2,45 @@
 
 export * from './shared';
 export {
-  AccountCollectionFlowsPage,
   AccountCollectionFlows,
   type AccountCollectionFlow,
   type AccountCollectionFlowCreateParams,
   type AccountCollectionFlowUpdateParams,
   type AccountCollectionFlowListParams,
+  type AccountCollectionFlowsPage,
 } from './account-collection-flows';
 export {
-  AccountDetailsPage,
   AccountDetails,
   type AccountDetail,
   type AccountDetailCreateParams,
+  type AccountDetailRetrieveParams,
   type AccountDetailListParams,
+  type AccountDetailDeleteParams,
+  type AccountDetailsPage,
 } from './account-details';
 export {
-  BulkRequestsPage,
   BulkRequests,
   type BulkRequest,
   type BulkRequestCreateParams,
   type BulkRequestListParams,
+  type BulkRequestsPage,
 } from './bulk-requests';
-export { BulkResultsPage, BulkResults, type BulkResult, type BulkResultListParams } from './bulk-results';
 export {
-  ConnectionLegalEntitiesPage,
+  BulkResults,
+  type BulkResult,
+  type BulkResultListParams,
+  type BulkResultsPage,
+} from './bulk-results';
+export {
   ConnectionLegalEntities,
   type ConnectionLegalEntity,
   type ConnectionLegalEntityCreateParams,
   type ConnectionLegalEntityUpdateParams,
   type ConnectionLegalEntityListParams,
+  type ConnectionLegalEntitiesPage,
 } from './connection-legal-entities';
-export { ConnectionsPage, Connections, type Connection, type ConnectionListParams } from './connections';
+export { Connections, type Connection, type ConnectionListParams, type ConnectionsPage } from './connections';
 export {
-  CounterpartiesPage,
   Counterparties,
   type Counterparty,
   type CounterpartyCollectAccountResponse,
@@ -42,17 +48,17 @@ export {
   type CounterpartyUpdateParams,
   type CounterpartyListParams,
   type CounterpartyCollectAccountParams,
+  type CounterpartiesPage,
 } from './counterparties';
 export {
-  DocumentsPage,
   Documents,
   type Document,
   type DocumentCreateParams,
   type DocumentListParams,
+  type DocumentsPage,
 } from './documents';
-export { EventsPage, Events, type Event, type EventListParams } from './events';
+export { Events, type Event, type EventListParams, type EventsPage } from './events';
 export {
-  ExpectedPaymentsPage,
   ExpectedPayments,
   type ExpectedPayment,
   type ExpectedPaymentType,
@@ -60,9 +66,9 @@ export {
   type ExpectedPaymentCreateParams,
   type ExpectedPaymentUpdateParams,
   type ExpectedPaymentListParams,
+  type ExpectedPaymentsPage,
 } from './expected-payments';
 export {
-  ExternalAccountsPage,
   ExternalAccounts,
   type ExternalAccount,
   type ExternalAccountType,
@@ -72,24 +78,24 @@ export {
   type ExternalAccountListParams,
   type ExternalAccountCompleteVerificationParams,
   type ExternalAccountVerifyParams,
+  type ExternalAccountsPage,
 } from './external-accounts';
 export {
-  ForeignExchangeQuotesPage,
   ForeignExchangeQuotes,
   type ForeignExchangeQuote,
   type ForeignExchangeQuoteCreateParams,
   type ForeignExchangeQuoteListParams,
+  type ForeignExchangeQuotesPage,
 } from './foreign-exchange-quotes';
 export {
-  IncomingPaymentDetailsPage,
   IncomingPaymentDetails,
   type IncomingPaymentDetail,
   type IncomingPaymentDetailUpdateParams,
   type IncomingPaymentDetailListParams,
   type IncomingPaymentDetailCreateAsyncParams,
+  type IncomingPaymentDetailsPage,
 } from './incoming-payment-details';
 export {
-  InternalAccountsPage,
   InternalAccounts,
   type InternalAccount,
   type InternalAccountUpdateAccountCapabilityResponse,
@@ -97,39 +103,45 @@ export {
   type InternalAccountUpdateParams,
   type InternalAccountListParams,
   type InternalAccountUpdateAccountCapabilityParams,
+  type InternalAccountsPage,
 } from './internal-accounts/internal-accounts';
 export {
-  InvoicesPage,
   Invoices,
   type Invoice,
   type InvoiceCreateParams,
   type InvoiceUpdateParams,
   type InvoiceListParams,
+  type InvoiceAddPaymentOrderParams,
+  type InvoicesPage,
 } from './invoices/invoices';
 export {
-  LedgerAccountBalanceMonitorsPage,
   LedgerAccountBalanceMonitors,
   type LedgerAccountBalanceMonitor,
   type LedgerAccountBalanceMonitorCreateParams,
   type LedgerAccountBalanceMonitorUpdateParams,
   type LedgerAccountBalanceMonitorListParams,
+  type LedgerAccountBalanceMonitorsPage,
 } from './ledger-account-balance-monitors';
 export {
-  LedgerAccountCategoriesPage,
   LedgerAccountCategories,
   type LedgerAccountCategory,
   type LedgerAccountCategoryCreateParams,
   type LedgerAccountCategoryRetrieveParams,
   type LedgerAccountCategoryUpdateParams,
   type LedgerAccountCategoryListParams,
+  type LedgerAccountCategoryAddLedgerAccountParams,
+  type LedgerAccountCategoryAddNestedCategoryParams,
+  type LedgerAccountCategoryRemoveLedgerAccountParams,
+  type LedgerAccountCategoryRemoveNestedCategoryParams,
+  type LedgerAccountCategoriesPage,
 } from './ledger-account-categories';
 export {
-  LedgerAccountSettlementsPage,
   LedgerAccountSettlements,
   type LedgerAccountSettlement,
   type LedgerAccountSettlementCreateParams,
   type LedgerAccountSettlementUpdateParams,
   type LedgerAccountSettlementListParams,
+  type LedgerAccountSettlementsPage,
 } from './ledger-account-settlements/ledger-account-settlements';
 export {
   LedgerAccountStatements,
@@ -138,24 +150,23 @@ export {
   type LedgerAccountStatementCreateParams,
 } from './ledger-account-statements';
 export {
-  LedgerAccountsPage,
   LedgerAccounts,
   type LedgerAccount,
   type LedgerAccountCreateParams,
   type LedgerAccountRetrieveParams,
   type LedgerAccountUpdateParams,
   type LedgerAccountListParams,
+  type LedgerAccountsPage,
 } from './ledger-accounts';
 export {
-  LedgerEntriesPage,
   LedgerEntries,
   type LedgerEntry,
   type LedgerEntryRetrieveParams,
   type LedgerEntryUpdateParams,
   type LedgerEntryListParams,
+  type LedgerEntriesPage,
 } from './ledger-entries';
 export {
-  LedgerTransactionsPage,
   LedgerTransactions,
   type LedgerTransaction,
   type LedgerTransactionCreateParams,
@@ -163,22 +174,23 @@ export {
   type LedgerTransactionListParams,
   type LedgerTransactionCreatePartialPostParams,
   type LedgerTransactionCreateReversalParams,
+  type LedgerTransactionsPage,
 } from './ledger-transactions/ledger-transactions';
 export {
-  LedgersPage,
   Ledgers,
   type Ledger,
   type LedgerCreateParams,
   type LedgerUpdateParams,
   type LedgerListParams,
+  type LedgersPage,
 } from './ledgers';
 export {
-  LegalEntitiesPage,
   LegalEntities,
   type LegalEntity,
   type LegalEntityCreateParams,
   type LegalEntityUpdateParams,
   type LegalEntityListParams,
+  type LegalEntitiesPage,
 } from './legal-entities';
 export {
   LegalEntityAssociations,
@@ -186,14 +198,14 @@ export {
   type LegalEntityAssociationCreateParams,
 } from './legal-entity-associations';
 export {
-  LineItemsPage,
   LineItems,
   type LineItem,
+  type LineItemRetrieveParams,
   type LineItemUpdateParams,
   type LineItemListParams,
+  type LineItemsPage,
 } from './line-items';
 export {
-  PaymentActionListResponsesPage,
   PaymentActions,
   type PaymentActionCreateResponse,
   type PaymentActionRetrieveResponse,
@@ -202,17 +214,17 @@ export {
   type PaymentActionCreateParams,
   type PaymentActionUpdateParams,
   type PaymentActionListParams,
+  type PaymentActionListResponsesPage,
 } from './payment-actions';
 export {
-  PaymentFlowsPage,
   PaymentFlows,
   type PaymentFlow,
   type PaymentFlowCreateParams,
   type PaymentFlowUpdateParams,
   type PaymentFlowListParams,
+  type PaymentFlowsPage,
 } from './payment-flows';
 export {
-  PaymentOrdersPage,
   PaymentOrders,
   type ContactDetailCreateRequest,
   type PaymentOrder,
@@ -222,34 +234,37 @@ export {
   type PaymentOrderUpdateParams,
   type PaymentOrderListParams,
   type PaymentOrderCreateAsyncParams,
+  type PaymentOrdersPage,
 } from './payment-orders/payment-orders';
 export {
-  PaymentReferencesPage,
   PaymentReferences,
   type PaymentReference,
   type PaymentReferenceListParams,
+  type PaymentReferencesPage,
 } from './payment-references';
 export {
-  ReturnObjectsPage,
   Returns,
   type ReturnObject,
   type ReturnCreateParams,
   type ReturnListParams,
+  type ReturnObjectsPage,
 } from './returns';
 export {
-  RoutingDetailsPage,
   RoutingDetails,
   type RoutingDetail,
   type RoutingDetailCreateParams,
+  type RoutingDetailRetrieveParams,
   type RoutingDetailListParams,
+  type RoutingDetailDeleteParams,
+  type RoutingDetailsPage,
 } from './routing-details';
 export {
-  TransactionsPage,
   Transactions,
   type Transaction,
   type TransactionCreateParams,
   type TransactionUpdateParams,
   type TransactionListParams,
+  type TransactionsPage,
 } from './transactions/transactions';
 export {
   Validations,
@@ -257,12 +272,12 @@ export {
   type ValidationValidateRoutingNumberParams,
 } from './validations';
 export {
-  VirtualAccountsPage,
   VirtualAccounts,
   type VirtualAccount,
   type VirtualAccountCreateParams,
   type VirtualAccountUpdateParams,
   type VirtualAccountListParams,
+  type VirtualAccountsPage,
 } from './virtual-accounts';
 export { Webhooks } from './webhooks';
 export { type PingResponse } from './top-level';

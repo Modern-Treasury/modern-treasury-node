@@ -365,6 +365,7 @@ export const tool: Tool = {
           'completed',
           'denied',
           'failed',
+          'held',
           'needs_approval',
           'pending',
           'processing',

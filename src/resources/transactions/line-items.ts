@@ -1,9 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { Page, type PageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class LineItems extends APIResource {
   /**
@@ -20,7 +22,7 @@ export class LineItems extends APIResource {
    *   });
    * ```
    */
-  create(body: LineItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<TransactionLineItem> {
+  create(body: LineItemCreateParams, options?: RequestOptions): APIPromise<TransactionLineItem> {
     return this._client.post('/api/transaction_line_items', { body, ...options });
   }
 
@@ -33,8 +35,8 @@ export class LineItems extends APIResource {
    *   await client.transactions.lineItems.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<TransactionLineItem> {
-    return this._client.get(`/api/transaction_line_items/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<TransactionLineItem> {
+    return this._client.get(path`/api/transaction_line_items/${id}`, options);
   }
 
   /**
@@ -49,18 +51,10 @@ export class LineItems extends APIResource {
    * ```
    */
   list(
-    query?: LineItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem>;
-  list(options?: Core.RequestOptions): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem>;
-  list(
-    query: LineItemListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionLineItemsPage, TransactionLineItem> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/transaction_line_items', TransactionLineItemsPage, {
+    query: LineItemListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TransactionLineItemsPage, TransactionLineItem> {
+    return this._client.getAPIList('/api/transaction_line_items', Page<TransactionLineItem>, {
       query,
       ...options,
     });
@@ -71,18 +65,18 @@ export class LineItems extends APIResource {
    *
    * @example
    * ```ts
-   * await client.transactions.lineItems.del('id');
+   * await client.transactions.lineItems.delete('id');
    * ```
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/transaction_line_items/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/api/transaction_line_items/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export class TransactionLineItemsPage extends Page<TransactionLineItem> {}
+export type TransactionLineItemsPage = Page<TransactionLineItem>;
 
 export interface TransactionLineItem {
   id: string;
@@ -193,12 +187,10 @@ export interface LineItemListParams extends PageParams {
   type?: 'originating' | 'receiving' | null;
 }
 
-LineItems.TransactionLineItemsPage = TransactionLineItemsPage;
-
 export declare namespace LineItems {
   export {
     type TransactionLineItem as TransactionLineItem,
-    TransactionLineItemsPage as TransactionLineItemsPage,
+    type TransactionLineItemsPage as TransactionLineItemsPage,
     type LineItemCreateParams as LineItemCreateParams,
     type LineItemListParams as LineItemListParams,
   };

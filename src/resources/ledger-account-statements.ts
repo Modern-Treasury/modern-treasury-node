@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class LedgerAccountStatements extends APIResource {
   /**
@@ -20,21 +22,10 @@ export class LedgerAccountStatements extends APIResource {
    * ```
    */
   create(
-    params: LedgerAccountStatementCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccountStatementCreateResponse> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/ledger_account_statements', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: LedgerAccountStatementCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccountStatementCreateResponse> {
+    return this._client.post('/api/ledger_account_statements', { body, ...options });
   }
 
   /**
@@ -46,11 +37,8 @@ export class LedgerAccountStatements extends APIResource {
    *   await client.ledgerAccountStatements.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccountStatementRetrieveResponse> {
-    return this._client.get(`/api/ledger_account_statements/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<LedgerAccountStatementRetrieveResponse> {
+    return this._client.get(path`/api/ledger_account_statements/${id}`, options);
   }
 }
 

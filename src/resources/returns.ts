@@ -1,57 +1,39 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Returns extends APIResource {
   /**
    * Create a return.
    */
-  create(params: ReturnCreateParams, options?: Core.RequestOptions): Core.APIPromise<ReturnObject> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/returns', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: ReturnCreateParams, options?: RequestOptions): APIPromise<ReturnObject> {
+    return this._client.post('/api/returns', { body, ...options });
   }
 
   /**
    * Get a single return.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ReturnObject> {
-    return this._client.get(`/api/returns/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<ReturnObject> {
+    return this._client.get(path`/api/returns/${id}`, options);
   }
 
   /**
    * Get a list of returns.
    */
   list(
-    query?: ReturnListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ReturnObjectsPage, ReturnObject>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ReturnObjectsPage, ReturnObject>;
-  list(
-    query: ReturnListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ReturnObjectsPage, ReturnObject> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/returns', ReturnObjectsPage, { query, ...options });
+    query: ReturnListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ReturnObjectsPage, ReturnObject> {
+    return this._client.getAPIList('/api/returns', Page<ReturnObject>, { query, ...options });
   }
 }
 
-export class ReturnObjectsPage extends Page<ReturnObject> {}
+export type ReturnObjectsPage = Page<ReturnObject>;
 
 export interface ReturnObject {
   id: string;
@@ -267,6 +249,7 @@ export interface ReturnObject {
     | 'check'
     | 'cross_border'
     | 'eft'
+    | 'gb_fps'
     | 'interac'
     | 'manual'
     | 'sepa'
@@ -408,6 +391,7 @@ export namespace ReturnObject {
       | 'jpmc_payment_returned_datetime'
       | 'jpmc_transaction_reference_number'
       | 'lob_check_id'
+      | 'mt_fof_transfer_id'
       | 'other'
       | 'partial_swift_mir'
       | 'pnc_clearing_reference'
@@ -657,12 +641,10 @@ export interface ReturnListParams extends PageParams {
   returnable_type?: 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
 }
 
-Returns.ReturnObjectsPage = ReturnObjectsPage;
-
 export declare namespace Returns {
   export {
     type ReturnObject as ReturnObject,
-    ReturnObjectsPage as ReturnObjectsPage,
+    type ReturnObjectsPage as ReturnObjectsPage,
     type ReturnCreateParams as ReturnCreateParams,
     type ReturnListParams as ReturnListParams,
   };

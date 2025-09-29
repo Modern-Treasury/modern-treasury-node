@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as LedgerEntriesAPI from '../ledger-entries';
 import * as Shared from '../shared';
 import * as VersionsAPI from './versions';
@@ -12,7 +10,10 @@ import {
   VersionListParams,
   Versions,
 } from './versions';
-import { Page, type PageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class LedgerTransactions extends APIResource {
   versions: VersionsAPI.Versions = new VersionsAPI.Versions(this._client);
@@ -35,22 +36,8 @@ export class LedgerTransactions extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: LedgerTransactionCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerTransaction> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/ledger_transactions', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: LedgerTransactionCreateParams, options?: RequestOptions): APIPromise<LedgerTransaction> {
+    return this._client.post('/api/ledger_transactions', { body, ...options });
   }
 
   /**
@@ -62,8 +49,8 @@ export class LedgerTransactions extends APIResource {
    *   await client.ledgerTransactions.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerTransaction> {
-    return this._client.get(`/api/ledger_transactions/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<LedgerTransaction> {
+    return this._client.get(path`/api/ledger_transactions/${id}`, options);
   }
 
   /**
@@ -77,19 +64,10 @@ export class LedgerTransactions extends APIResource {
    */
   update(
     id: string,
-    body?: LedgerTransactionUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerTransaction>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerTransaction>;
-  update(
-    id: string,
-    body: LedgerTransactionUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerTransaction> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/ledger_transactions/${id}`, { body, ...options });
+    body: LedgerTransactionUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerTransaction> {
+    return this._client.patch(path`/api/ledger_transactions/${id}`, { body, ...options });
   }
 
   /**
@@ -104,18 +82,13 @@ export class LedgerTransactions extends APIResource {
    * ```
    */
   list(
-    query?: LedgerTransactionListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionsPage, LedgerTransaction>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgerTransactionsPage, LedgerTransaction>;
-  list(
-    query: LedgerTransactionListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionsPage, LedgerTransaction> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/ledger_transactions', LedgerTransactionsPage, { query, ...options });
+    query: LedgerTransactionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerTransactionsPage, LedgerTransaction> {
+    return this._client.getAPIList('/api/ledger_transactions', Page<LedgerTransaction>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -139,9 +112,9 @@ export class LedgerTransactions extends APIResource {
   createPartialPost(
     id: string,
     body: LedgerTransactionCreatePartialPostParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerTransaction> {
-    return this._client.post(`/api/ledger_transactions/${id}/partial_post`, { body, ...options });
+    options?: RequestOptions,
+  ): APIPromise<LedgerTransaction> {
+    return this._client.post(path`/api/ledger_transactions/${id}/partial_post`, { body, ...options });
   }
 
   /**
@@ -155,23 +128,14 @@ export class LedgerTransactions extends APIResource {
    */
   createReversal(
     id: string,
-    body?: LedgerTransactionCreateReversalParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerTransaction>;
-  createReversal(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerTransaction>;
-  createReversal(
-    id: string,
-    body: LedgerTransactionCreateReversalParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerTransaction> {
-    if (isRequestOptions(body)) {
-      return this.createReversal(id, {}, body);
-    }
-    return this._client.post(`/api/ledger_transactions/${id}/reversal`, { body, ...options });
+    body: LedgerTransactionCreateReversalParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerTransaction> {
+    return this._client.post(path`/api/ledger_transactions/${id}/reversal`, { body, ...options });
   }
 }
 
-export class LedgerTransactionsPage extends Page<LedgerTransaction> {}
+export type LedgerTransactionsPage = Page<LedgerTransaction>;
 
 export interface LedgerTransaction {
   id: string;
@@ -580,14 +544,12 @@ export interface LedgerTransactionCreateReversalParams {
   status?: 'archived' | 'pending' | 'posted';
 }
 
-LedgerTransactions.LedgerTransactionsPage = LedgerTransactionsPage;
 LedgerTransactions.Versions = Versions;
-LedgerTransactions.LedgerTransactionVersionsPage = LedgerTransactionVersionsPage;
 
 export declare namespace LedgerTransactions {
   export {
     type LedgerTransaction as LedgerTransaction,
-    LedgerTransactionsPage as LedgerTransactionsPage,
+    type LedgerTransactionsPage as LedgerTransactionsPage,
     type LedgerTransactionCreateParams as LedgerTransactionCreateParams,
     type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,
     type LedgerTransactionListParams as LedgerTransactionListParams,
@@ -598,7 +560,7 @@ export declare namespace LedgerTransactions {
   export {
     Versions as Versions,
     type LedgerTransactionVersion as LedgerTransactionVersion,
-    LedgerTransactionVersionsPage as LedgerTransactionVersionsPage,
+    type LedgerTransactionVersionsPage as LedgerTransactionVersionsPage,
     type VersionListParams as VersionListParams,
   };
 }

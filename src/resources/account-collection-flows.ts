@@ -1,37 +1,27 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class AccountCollectionFlows extends APIResource {
   /**
    * create account_collection_flow
    */
   create(
-    params: AccountCollectionFlowCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AccountCollectionFlow> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/account_collection_flows', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: AccountCollectionFlowCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<AccountCollectionFlow> {
+    return this._client.post('/api/account_collection_flows', { body, ...options });
   }
 
   /**
    * get account_collection_flow
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AccountCollectionFlow> {
-    return this._client.get(`/api/account_collection_flows/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AccountCollectionFlow> {
+    return this._client.get(path`/api/account_collection_flows/${id}`, options);
   }
 
   /**
@@ -39,46 +29,27 @@ export class AccountCollectionFlows extends APIResource {
    */
   update(
     id: string,
-    params: AccountCollectionFlowUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AccountCollectionFlow> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.patch(`/api/account_collection_flows/${id}`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: AccountCollectionFlowUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<AccountCollectionFlow> {
+    return this._client.patch(path`/api/account_collection_flows/${id}`, { body, ...options });
   }
 
   /**
    * list account_collection_flows
    */
   list(
-    query?: AccountCollectionFlowListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow>;
-  list(
-    query: AccountCollectionFlowListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/account_collection_flows', AccountCollectionFlowsPage, {
+    query: AccountCollectionFlowListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow> {
+    return this._client.getAPIList('/api/account_collection_flows', Page<AccountCollectionFlow>, {
       query,
       ...options,
     });
   }
 }
 
-export class AccountCollectionFlowsPage extends Page<AccountCollectionFlow> {}
+export type AccountCollectionFlowsPage = Page<AccountCollectionFlow>;
 
 export interface AccountCollectionFlow {
   /**
@@ -190,12 +161,10 @@ export interface AccountCollectionFlowListParams extends PageParams {
   status?: string;
 }
 
-AccountCollectionFlows.AccountCollectionFlowsPage = AccountCollectionFlowsPage;
-
 export declare namespace AccountCollectionFlows {
   export {
     type AccountCollectionFlow as AccountCollectionFlow,
-    AccountCollectionFlowsPage as AccountCollectionFlowsPage,
+    type AccountCollectionFlowsPage as AccountCollectionFlowsPage,
     type AccountCollectionFlowCreateParams as AccountCollectionFlowCreateParams,
     type AccountCollectionFlowUpdateParams as AccountCollectionFlowUpdateParams,
     type AccountCollectionFlowListParams as AccountCollectionFlowListParams,

@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Ledgers extends APIResource {
   /**
@@ -16,19 +17,8 @@ export class Ledgers extends APIResource {
    * });
    * ```
    */
-  create(params: LedgerCreateParams, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/ledgers', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: LedgerCreateParams, options?: RequestOptions): APIPromise<Ledger> {
+    return this._client.post('/api/ledgers', { body, ...options });
   }
 
   /**
@@ -39,8 +29,8 @@ export class Ledgers extends APIResource {
    * const ledger = await client.ledgers.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
-    return this._client.get(`/api/ledgers/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Ledger> {
+    return this._client.get(path`/api/ledgers/${id}`, options);
   }
 
   /**
@@ -51,17 +41,12 @@ export class Ledgers extends APIResource {
    * const ledger = await client.ledgers.update('id');
    * ```
    */
-  update(id: string, body?: LedgerUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Ledger>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger>;
   update(
     id: string,
-    body: LedgerUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Ledger> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/ledgers/${id}`, { body, ...options });
+    body: LedgerUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Ledger> {
+    return this._client.patch(path`/api/ledgers/${id}`, { body, ...options });
   }
 
   /**
@@ -75,16 +60,11 @@ export class Ledgers extends APIResource {
    * }
    * ```
    */
-  list(query?: LedgerListParams, options?: Core.RequestOptions): Core.PagePromise<LedgersPage, Ledger>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LedgersPage, Ledger>;
   list(
-    query: LedgerListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgersPage, Ledger> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/ledgers', LedgersPage, { query, ...options });
+    query: LedgerListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgersPage, Ledger> {
+    return this._client.getAPIList('/api/ledgers', Page<Ledger>, { query, ...options });
   }
 
   /**
@@ -92,15 +72,15 @@ export class Ledgers extends APIResource {
    *
    * @example
    * ```ts
-   * const ledger = await client.ledgers.del('id');
+   * const ledger = await client.ledgers.delete('id');
    * ```
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<Ledger> {
-    return this._client.delete(`/api/ledgers/${id}`, options);
+  delete(id: string, options?: RequestOptions): APIPromise<Ledger> {
+    return this._client.delete(path`/api/ledgers/${id}`, options);
   }
 }
 
-export class LedgersPage extends Page<Ledger> {}
+export type LedgersPage = Page<Ledger>;
 
 export interface Ledger {
   id: string;
@@ -196,12 +176,10 @@ export interface LedgerListParams extends PageParams {
   updated_at?: { [key: string]: string };
 }
 
-Ledgers.LedgersPage = LedgersPage;
-
 export declare namespace Ledgers {
   export {
     type Ledger as Ledger,
-    LedgersPage as LedgersPage,
+    type LedgersPage as LedgersPage,
     type LedgerCreateParams as LedgerCreateParams,
     type LedgerUpdateParams as LedgerUpdateParams,
     type LedgerListParams as LedgerListParams,

@@ -1,11 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import ModernTreasury from 'modern-treasury';
-import { Response } from 'node-fetch';
 
 const client = new ModernTreasury({
   apiKey: 'My API Key',
-  organizationId: 'my-organization-ID',
+  organizationID: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -21,13 +20,6 @@ describe('resource incomingPaymentDetails', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.incomingPaymentDetails.retrieve('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
   test('update', async () => {
     const responsePromise = client.incomingPaymentDetails.update('id');
     const rawResponse = await responsePromise.asResponse();
@@ -37,13 +29,6 @@ describe('resource incomingPaymentDetails', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('update: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.incomingPaymentDetails.update('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('update: request options and params are passed correctly', async () => {
@@ -66,13 +51,6 @@ describe('resource incomingPaymentDetails', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.incomingPaymentDetails.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      ModernTreasury.NotFoundError,
-    );
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -104,13 +82,6 @@ describe('resource incomingPaymentDetails', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createAsync: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.incomingPaymentDetails.createAsync({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('createAsync: request options and params are passed correctly', async () => {

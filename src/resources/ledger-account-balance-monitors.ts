@@ -1,10 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class LedgerAccountBalanceMonitors extends APIResource {
   /**
@@ -24,21 +25,10 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    * ```
    */
   create(
-    params: LedgerAccountBalanceMonitorCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccountBalanceMonitor> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/ledger_account_balance_monitors', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: LedgerAccountBalanceMonitorCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccountBalanceMonitor> {
+    return this._client.post('/api/ledger_account_balance_monitors', { body, ...options });
   }
 
   /**
@@ -50,8 +40,8 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    *   await client.ledgerAccountBalanceMonitors.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountBalanceMonitor> {
-    return this._client.get(`/api/ledger_account_balance_monitors/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<LedgerAccountBalanceMonitor> {
+    return this._client.get(path`/api/ledger_account_balance_monitors/${id}`, options);
   }
 
   /**
@@ -65,19 +55,10 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    */
   update(
     id: string,
-    body?: LedgerAccountBalanceMonitorUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccountBalanceMonitor>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountBalanceMonitor>;
-  update(
-    id: string,
-    body: LedgerAccountBalanceMonitorUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LedgerAccountBalanceMonitor> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/ledger_account_balance_monitors/${id}`, { body, ...options });
+    body: LedgerAccountBalanceMonitorUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccountBalanceMonitor> {
+    return this._client.patch(path`/api/ledger_account_balance_monitors/${id}`, { body, ...options });
   }
 
   /**
@@ -92,23 +73,14 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    * ```
    */
   list(
-    query?: LedgerAccountBalanceMonitorListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountBalanceMonitorsPage, LedgerAccountBalanceMonitor>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountBalanceMonitorsPage, LedgerAccountBalanceMonitor>;
-  list(
-    query: LedgerAccountBalanceMonitorListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerAccountBalanceMonitorsPage, LedgerAccountBalanceMonitor> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/ledger_account_balance_monitors', LedgerAccountBalanceMonitorsPage, {
-      query,
-      ...options,
-    });
+    query: LedgerAccountBalanceMonitorListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerAccountBalanceMonitorsPage, LedgerAccountBalanceMonitor> {
+    return this._client.getAPIList(
+      '/api/ledger_account_balance_monitors',
+      Page<LedgerAccountBalanceMonitor>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -117,15 +89,15 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    * @example
    * ```ts
    * const ledgerAccountBalanceMonitor =
-   *   await client.ledgerAccountBalanceMonitors.del('id');
+   *   await client.ledgerAccountBalanceMonitors.delete('id');
    * ```
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<LedgerAccountBalanceMonitor> {
-    return this._client.delete(`/api/ledger_account_balance_monitors/${id}`, options);
+  delete(id: string, options?: RequestOptions): APIPromise<LedgerAccountBalanceMonitor> {
+    return this._client.delete(path`/api/ledger_account_balance_monitors/${id}`, options);
   }
 }
 
-export class LedgerAccountBalanceMonitorsPage extends Page<LedgerAccountBalanceMonitor> {}
+export type LedgerAccountBalanceMonitorsPage = Page<LedgerAccountBalanceMonitor>;
 
 export interface LedgerAccountBalanceMonitor {
   id: string;
@@ -301,12 +273,10 @@ export interface LedgerAccountBalanceMonitorListParams extends PageParams {
   metadata?: { [key: string]: string };
 }
 
-LedgerAccountBalanceMonitors.LedgerAccountBalanceMonitorsPage = LedgerAccountBalanceMonitorsPage;
-
 export declare namespace LedgerAccountBalanceMonitors {
   export {
     type LedgerAccountBalanceMonitor as LedgerAccountBalanceMonitor,
-    LedgerAccountBalanceMonitorsPage as LedgerAccountBalanceMonitorsPage,
+    type LedgerAccountBalanceMonitorsPage as LedgerAccountBalanceMonitorsPage,
     type LedgerAccountBalanceMonitorCreateParams as LedgerAccountBalanceMonitorCreateParams,
     type LedgerAccountBalanceMonitorUpdateParams as LedgerAccountBalanceMonitorUpdateParams,
     type LedgerAccountBalanceMonitorListParams as LedgerAccountBalanceMonitorListParams,

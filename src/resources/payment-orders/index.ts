@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
-  PaymentOrdersPage,
   PaymentOrders,
   type ContactDetailCreateRequest,
   type PaymentOrder,
@@ -11,11 +10,13 @@ export {
   type PaymentOrderUpdateParams,
   type PaymentOrderListParams,
   type PaymentOrderCreateAsyncParams,
+  type PaymentOrdersPage,
 } from './payment-orders';
 export {
-  ReversalsPage,
   Reversals,
   type Reversal,
   type ReversalCreateParams,
+  type ReversalRetrieveParams,
   type ReversalListParams,
+  type ReversalsPage,
 } from './reversals';

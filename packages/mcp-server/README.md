@@ -1,19 +1,34 @@
-# Modern Treasury Node MCP Server
+# Modern Treasury TypeScript MCP Server
 
 ## Installation
 
-### Direct invocation
+### Building
 
-You can run the MCP Server directly via `npx`:
+Because it's not published yet, clone the repo and build it:
 
 ```sh
+git clone git@github.com:stainless-sdks/modern-treasury-typescript.git
+cd modern-treasury-typescript
+./scripts/bootstrap
+./scripts/build
+```
+
+### Running
+
+```sh
+# set env vars as needed
 export MODERN_TREASURY_API_KEY="My API Key"
 export MODERN_TREASURY_ORGANIZATION_ID="my-organization-ID"
 export MODERN_TREASURY_WEBHOOK_KEY="My Webhook Key"
-npx -y modern-treasury-mcp@latest
+node ./packages/mcp-server/dist/index.js
 ```
 
+> [!NOTE]
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npx -y modern-treasury-mcp`
+
 ### Via MCP Client
+
+[Build the project](#building) as mentioned above.
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
@@ -24,8 +39,12 @@ For clients with a configuration JSON, it might look something like this:
 {
   "mcpServers": {
     "modern_treasury_api": {
-      "command": "npx",
-      "args": ["-y", "modern-treasury-mcp", "--client=claude", "--tools=dynamic"],
+      "command": "node",
+      "args": [
+        "/path/to/local/modern-treasury-typescript/packages/mcp-server",
+        "--client=claude",
+        "--tools=dynamic"
+      ],
       "env": {
         "MODERN_TREASURY_API_KEY": "My API Key",
         "MODERN_TREASURY_ORGANIZATION_ID": "my-organization-ID",
@@ -137,7 +156,7 @@ Authorization can be provided via the `Authorization` header using the Basic sch
 Additionally, authorization can be provided via the following headers:
 | Header | Equivalent client option | Security scheme |
 | ----------------------------------- | ------------------------ | --------------- |
-| `x-modern-treasury-organization-id` | `organizationId` | basic_auth |
+| `x-modern-treasury-organization-id` | `organizationID` | basic_auth |
 | `x-modern-treasury-api-key` | `apiKey` | basic_auth |
 
 A configuration JSON for this server might look like this, assuming the server is hosted at `http://localhost:3000`:

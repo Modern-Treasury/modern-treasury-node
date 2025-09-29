@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as ExpectedPaymentsAPI from '../expected-payments';
 import * as Shared from '../shared';
 import * as LineItemsAPI from './line-items';
@@ -10,12 +8,18 @@ import {
   InvoiceLineItem as LineItemsAPIInvoiceLineItem,
   InvoiceLineItemsPage,
   LineItemCreateParams,
+  LineItemDeleteParams,
   LineItemListParams,
+  LineItemRetrieveParams,
   LineItemUpdateParams,
   LineItems,
 } from './line-items';
 import * as PaymentOrdersAPI from '../payment-orders/payment-orders';
-import { Page, type PageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Invoices extends APIResource {
   lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this._client);
@@ -32,19 +36,8 @@ export class Invoices extends APIResource {
    * });
    * ```
    */
-  create(params: InvoiceCreateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/invoices', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: InvoiceCreateParams, options?: RequestOptions): APIPromise<Invoice> {
+    return this._client.post('/api/invoices', { body, ...options });
   }
 
   /**
@@ -55,8 +48,8 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
-    return this._client.get(`/api/invoices/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Invoice> {
+    return this._client.get(path`/api/invoices/${id}`, options);
   }
 
   /**
@@ -67,17 +60,12 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.update('id');
    * ```
    */
-  update(id: string, body?: InvoiceUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<Invoice>;
   update(
     id: string,
-    body: InvoiceUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Invoice> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/invoices/${id}`, { body, ...options });
+    body: InvoiceUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Invoice> {
+    return this._client.patch(path`/api/invoices/${id}`, { body, ...options });
   }
 
   /**
@@ -91,16 +79,11 @@ export class Invoices extends APIResource {
    * }
    * ```
    */
-  list(query?: InvoiceListParams, options?: Core.RequestOptions): Core.PagePromise<InvoicesPage, Invoice>;
-  list(options?: Core.RequestOptions): Core.PagePromise<InvoicesPage, Invoice>;
   list(
-    query: InvoiceListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InvoicesPage, Invoice> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/invoices', InvoicesPage, { query, ...options });
+    query: InvoiceListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InvoicesPage, Invoice> {
+    return this._client.getAPIList('/api/invoices', Page<Invoice>, { query, ...options });
   }
 
   /**
@@ -108,21 +91,25 @@ export class Invoices extends APIResource {
    *
    * @example
    * ```ts
-   * await client.invoices.addPaymentOrder(
-   *   'id',
-   *   'payment_order_id',
-   * );
+   * await client.invoices.addPaymentOrder('payment_order_id', {
+   *   id: 'id',
+   * });
    * ```
    */
-  addPaymentOrder(id: string, paymentOrderId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/api/invoices/${id}/payment_orders/${paymentOrderId}`, {
+  addPaymentOrder(
+    paymentOrderID: string,
+    params: InvoiceAddPaymentOrderParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { id } = params;
+    return this._client.put(path`/api/invoices/${id}/payment_orders/${paymentOrderID}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export class InvoicesPage extends Page<Invoice> {}
+export type InvoicesPage = Page<Invoice>;
 
 export interface Invoice {
   id: string;
@@ -980,6 +967,16 @@ export interface InvoiceListParams extends PageParams {
   counterparty_id?: string;
 
   /**
+   * An inclusive upper bound for searching created_at
+   */
+  created_at_end?: string;
+
+  /**
+   * An inclusive lower bound for searching created_at
+   */
+  created_at_start?: string;
+
+  /**
    * An inclusive upper bound for searching due_date
    */
   due_date_end?: string;
@@ -1010,25 +1007,33 @@ export interface InvoiceListParams extends PageParams {
   status?: 'draft' | 'paid' | 'partially_paid' | 'payment_pending' | 'unpaid' | 'voided';
 }
 
-Invoices.InvoicesPage = InvoicesPage;
+export interface InvoiceAddPaymentOrderParams {
+  /**
+   * id
+   */
+  id: string;
+}
+
 Invoices.LineItems = LineItems;
-Invoices.InvoiceLineItemsPage = InvoiceLineItemsPage;
 
 export declare namespace Invoices {
   export {
     type Invoice as Invoice,
-    InvoicesPage as InvoicesPage,
+    type InvoicesPage as InvoicesPage,
     type InvoiceCreateParams as InvoiceCreateParams,
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
+    type InvoiceAddPaymentOrderParams as InvoiceAddPaymentOrderParams,
   };
 
   export {
     LineItems as LineItems,
     type LineItemsAPIInvoiceLineItem as InvoiceLineItem,
-    InvoiceLineItemsPage as InvoiceLineItemsPage,
+    type InvoiceLineItemsPage as InvoiceLineItemsPage,
     type LineItemCreateParams as LineItemCreateParams,
+    type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
     type LineItemListParams as LineItemListParams,
+    type LineItemDeleteParams as LineItemDeleteParams,
   };
 }

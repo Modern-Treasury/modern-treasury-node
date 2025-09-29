@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import { Page, type PageParams } from '../../pagination';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Versions extends APIResource {
   /**
@@ -19,27 +18,17 @@ export class Versions extends APIResource {
    * ```
    */
   list(
-    query?: VersionListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion>;
-  list(
-    query: VersionListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/ledger_transaction_versions', LedgerTransactionVersionsPage, {
+    query: VersionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion> {
+    return this._client.getAPIList('/api/ledger_transaction_versions', Page<LedgerTransactionVersion>, {
       query,
       ...options,
     });
   }
 }
 
-export class LedgerTransactionVersionsPage extends Page<LedgerTransactionVersion> {}
+export type LedgerTransactionVersionsPage = Page<LedgerTransactionVersion>;
 
 export interface LedgerTransactionVersion {
   id: string;
@@ -266,12 +255,10 @@ export interface VersionListParams extends PageParams {
   version?: { [key: string]: number };
 }
 
-Versions.LedgerTransactionVersionsPage = LedgerTransactionVersionsPage;
-
 export declare namespace Versions {
   export {
     type LedgerTransactionVersion as LedgerTransactionVersion,
-    LedgerTransactionVersionsPage as LedgerTransactionVersionsPage,
+    type LedgerTransactionVersionsPage as LedgerTransactionVersionsPage,
     type VersionListParams as VersionListParams,
   };
 }

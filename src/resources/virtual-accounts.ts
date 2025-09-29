@@ -1,37 +1,27 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as AccountDetailsAPI from './account-details';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class VirtualAccounts extends APIResource {
   /**
    * create virtual_account
    */
-  create(params: VirtualAccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/virtual_accounts', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: VirtualAccountCreateParams, options?: RequestOptions): APIPromise<VirtualAccount> {
+    return this._client.post('/api/virtual_accounts', { body, ...options });
   }
 
   /**
    * get virtual_account
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
-    return this._client.get(`/api/virtual_accounts/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<VirtualAccount> {
+    return this._client.get(path`/api/virtual_accounts/${id}`, options);
   }
 
   /**
@@ -39,48 +29,31 @@ export class VirtualAccounts extends APIResource {
    */
   update(
     id: string,
-    body?: VirtualAccountUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<VirtualAccount>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount>;
-  update(
-    id: string,
-    body: VirtualAccountUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<VirtualAccount> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/virtual_accounts/${id}`, { body, ...options });
+    body: VirtualAccountUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VirtualAccount> {
+    return this._client.patch(path`/api/virtual_accounts/${id}`, { body, ...options });
   }
 
   /**
    * Get a list of virtual accounts.
    */
   list(
-    query?: VirtualAccountListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<VirtualAccountsPage, VirtualAccount>;
-  list(options?: Core.RequestOptions): Core.PagePromise<VirtualAccountsPage, VirtualAccount>;
-  list(
-    query: VirtualAccountListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<VirtualAccountsPage, VirtualAccount> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/virtual_accounts', VirtualAccountsPage, { query, ...options });
+    query: VirtualAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<VirtualAccountsPage, VirtualAccount> {
+    return this._client.getAPIList('/api/virtual_accounts', Page<VirtualAccount>, { query, ...options });
   }
 
   /**
    * delete virtual_account
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<VirtualAccount> {
-    return this._client.delete(`/api/virtual_accounts/${id}`, options);
+  delete(id: string, options?: RequestOptions): APIPromise<VirtualAccount> {
+    return this._client.delete(path`/api/virtual_accounts/${id}`, options);
   }
 }
 
-export class VirtualAccountsPage extends Page<VirtualAccount> {}
+export type VirtualAccountsPage = Page<VirtualAccount>;
 
 export interface VirtualAccount {
   id: string;
@@ -349,12 +322,10 @@ export interface VirtualAccountListParams extends PageParams {
   metadata?: { [key: string]: string };
 }
 
-VirtualAccounts.VirtualAccountsPage = VirtualAccountsPage;
-
 export declare namespace VirtualAccounts {
   export {
     type VirtualAccount as VirtualAccount,
-    VirtualAccountsPage as VirtualAccountsPage,
+    type VirtualAccountsPage as VirtualAccountsPage,
     type VirtualAccountCreateParams as VirtualAccountCreateParams,
     type VirtualAccountUpdateParams as VirtualAccountUpdateParams,
     type VirtualAccountListParams as VirtualAccountListParams,

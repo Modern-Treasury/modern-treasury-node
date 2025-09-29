@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class LineItems extends APIResource {
   /**
@@ -11,20 +12,15 @@ export class LineItems extends APIResource {
    *
    * @example
    * ```ts
-   * const lineItem = await client.lineItems.retrieve(
-   *   'expected_payments',
-   *   'itemizable_id',
-   *   'id',
-   * );
+   * const lineItem = await client.lineItems.retrieve('id', {
+   *   itemizable_type: 'expected_payments',
+   *   itemizable_id: 'itemizable_id',
+   * });
    * ```
    */
-  retrieve(
-    itemizableType: 'expected_payments' | 'payment_orders',
-    itemizableId: string,
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LineItem> {
-    return this._client.get(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, options);
+  retrieve(id: string, params: LineItemRetrieveParams, options?: RequestOptions): APIPromise<LineItem> {
+    const { itemizable_type, itemizable_id } = params;
+    return this._client.get(path`/api/${itemizable_type}/${itemizable_id}/line_items/${id}`, options);
   }
 
   /**
@@ -32,37 +28,15 @@ export class LineItems extends APIResource {
    *
    * @example
    * ```ts
-   * const lineItem = await client.lineItems.update(
-   *   'expected_payments',
-   *   'itemizable_id',
-   *   'id',
-   * );
+   * const lineItem = await client.lineItems.update('id', {
+   *   itemizable_type: 'expected_payments',
+   *   itemizable_id: 'itemizable_id',
+   * });
    * ```
    */
-  update(
-    itemizableType: 'expected_payments' | 'payment_orders',
-    itemizableId: string,
-    id: string,
-    body?: LineItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LineItem>;
-  update(
-    itemizableType: 'expected_payments' | 'payment_orders',
-    itemizableId: string,
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LineItem>;
-  update(
-    itemizableType: 'expected_payments' | 'payment_orders',
-    itemizableId: string,
-    id: string,
-    body: LineItemUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LineItem> {
-    if (isRequestOptions(body)) {
-      return this.update(itemizableType, itemizableId, id, {}, body);
-    }
-    return this._client.patch(`/api/${itemizableType}/${itemizableId}/line_items/${id}`, {
+  update(id: string, params: LineItemUpdateParams, options?: RequestOptions): APIPromise<LineItem> {
+    const { itemizable_type, itemizable_id, ...body } = params;
+    return this._client.patch(path`/api/${itemizable_type}/${itemizable_id}/line_items/${id}`, {
       body,
       ...options,
     });
@@ -75,41 +49,27 @@ export class LineItems extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const lineItem of client.lineItems.list(
-   *   'expected_payments',
    *   'itemizable_id',
+   *   { itemizable_type: 'expected_payments' },
    * )) {
    *   // ...
    * }
    * ```
    */
   list(
-    itemizableType: 'expected_payments' | 'payment_orders',
-    itemizableId: string,
-    query?: LineItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LineItemsPage, LineItem>;
-  list(
-    itemizableType: 'expected_payments' | 'payment_orders',
-    itemizableId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LineItemsPage, LineItem>;
-  list(
-    itemizableType: 'expected_payments' | 'payment_orders',
-    itemizableId: string,
-    query: LineItemListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<LineItemsPage, LineItem> {
-    if (isRequestOptions(query)) {
-      return this.list(itemizableType, itemizableId, {}, query);
-    }
-    return this._client.getAPIList(`/api/${itemizableType}/${itemizableId}/line_items`, LineItemsPage, {
+    itemizableID: string,
+    params: LineItemListParams,
+    options?: RequestOptions,
+  ): PagePromise<LineItemsPage, LineItem> {
+    const { itemizable_type, ...query } = params;
+    return this._client.getAPIList(path`/api/${itemizable_type}/${itemizableID}/line_items`, Page<LineItem>, {
       query,
       ...options,
     });
   }
 }
 
-export class LineItemsPage extends Page<LineItem> {}
+export type LineItemsPage = Page<LineItem>;
 
 export interface LineItem {
   id: string;
@@ -192,22 +152,48 @@ export namespace LineItem {
   }
 }
 
+export interface LineItemRetrieveParams {
+  /**
+   * One of `payment_orders` or `expected_payments`.
+   */
+  itemizable_type: 'expected_payments' | 'payment_orders';
+
+  /**
+   * The ID of the payment order or expected payment.
+   */
+  itemizable_id: string;
+}
+
 export interface LineItemUpdateParams {
   /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
+   * Path param: One of `payment_orders` or `expected_payments`.
+   */
+  itemizable_type: 'expected_payments' | 'payment_orders';
+
+  /**
+   * Path param: The ID of the payment order or expected payment.
+   */
+  itemizable_id: string;
+
+  /**
+   * Body param: Additional data represented as key-value pairs. Both the key and
+   * value must be strings.
    */
   metadata?: { [key: string]: string };
 }
 
-export interface LineItemListParams extends PageParams {}
-
-LineItems.LineItemsPage = LineItemsPage;
+export interface LineItemListParams extends PageParams {
+  /**
+   * Path param: One of `payment_orders` or `expected_payments`.
+   */
+  itemizable_type: 'expected_payments' | 'payment_orders';
+}
 
 export declare namespace LineItems {
   export {
     type LineItem as LineItem,
-    LineItemsPage as LineItemsPage,
+    type LineItemsPage as LineItemsPage,
+    type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
     type LineItemListParams as LineItemListParams,
   };

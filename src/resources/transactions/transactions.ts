@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as LineItemsAPI from './line-items';
 import {
@@ -12,7 +10,11 @@ import {
   TransactionLineItem,
   TransactionLineItemsPage,
 } from './line-items';
-import { Page, type PageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Transactions extends APIResource {
   lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this._client);
@@ -33,19 +35,8 @@ export class Transactions extends APIResource {
    * });
    * ```
    */
-  create(params: TransactionCreateParams, options?: Core.RequestOptions): Core.APIPromise<Transaction> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/transactions', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: TransactionCreateParams, options?: RequestOptions): APIPromise<Transaction> {
+    return this._client.post('/api/transactions', { body, ...options });
   }
 
   /**
@@ -58,8 +49,8 @@ export class Transactions extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Transaction> {
-    return this._client.get(`/api/transactions/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Transaction> {
+    return this._client.get(path`/api/transactions/${id}`, options);
   }
 
   /**
@@ -72,19 +63,10 @@ export class Transactions extends APIResource {
    */
   update(
     id: string,
-    body?: TransactionUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Transaction>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<Transaction>;
-  update(
-    id: string,
-    body: TransactionUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Transaction> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/transactions/${id}`, { body, ...options });
+    body: TransactionUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Transaction> {
+    return this._client.patch(path`/api/transactions/${id}`, { body, ...options });
   }
 
   /**
@@ -99,18 +81,10 @@ export class Transactions extends APIResource {
    * ```
    */
   list(
-    query?: TransactionListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionsPage, Transaction>;
-  list(options?: Core.RequestOptions): Core.PagePromise<TransactionsPage, Transaction>;
-  list(
-    query: TransactionListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionsPage, Transaction> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/transactions', TransactionsPage, { query, ...options });
+    query: TransactionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TransactionsPage, Transaction> {
+    return this._client.getAPIList('/api/transactions', Page<Transaction>, { query, ...options });
   }
 
   /**
@@ -118,18 +92,18 @@ export class Transactions extends APIResource {
    *
    * @example
    * ```ts
-   * await client.transactions.del('id');
+   * await client.transactions.delete('id');
    * ```
    */
-  del(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/transactions/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/api/transactions/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export class TransactionsPage extends Page<Transaction> {}
+export type TransactionsPage = Page<Transaction>;
 
 export interface Transaction {
   id: string;
@@ -288,6 +262,7 @@ export interface Transaction {
     | 'hifi'
     | 'iso20022'
     | 'jpmc'
+    | 'mt_fof'
     | 'mx'
     | 'paypal'
     | 'plaid'
@@ -491,14 +466,12 @@ export interface TransactionListParams extends PageParams {
   virtual_account_id?: string;
 }
 
-Transactions.TransactionsPage = TransactionsPage;
 Transactions.LineItems = LineItems;
-Transactions.TransactionLineItemsPage = TransactionLineItemsPage;
 
 export declare namespace Transactions {
   export {
     type Transaction as Transaction,
-    TransactionsPage as TransactionsPage,
+    type TransactionsPage as TransactionsPage,
     type TransactionCreateParams as TransactionCreateParams,
     type TransactionUpdateParams as TransactionUpdateParams,
     type TransactionListParams as TransactionListParams,
@@ -507,7 +480,7 @@ export declare namespace Transactions {
   export {
     LineItems as LineItems,
     type TransactionLineItem as TransactionLineItem,
-    TransactionLineItemsPage as TransactionLineItemsPage,
+    type TransactionLineItemsPage as TransactionLineItemsPage,
     type LineItemCreateParams as LineItemCreateParams,
     type LineItemListParams as LineItemListParams,
   };

@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as PaymentOrdersAPI from './payment-orders';
 import * as ExternalAccountsAPI from '../external-accounts';
 import * as ReturnsAPI from '../returns';
@@ -10,8 +8,20 @@ import * as Shared from '../shared';
 import * as VirtualAccountsAPI from '../virtual-accounts';
 import * as InternalAccountsAPI from '../internal-accounts/internal-accounts';
 import * as ReversalsAPI from './reversals';
-import { Reversal, ReversalCreateParams, ReversalListParams, Reversals, ReversalsPage } from './reversals';
-import { Page, type PageParams } from '../../pagination';
+import {
+  Reversal,
+  ReversalCreateParams,
+  ReversalListParams,
+  ReversalRetrieveParams,
+  Reversals,
+  ReversalsPage,
+} from './reversals';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { type Uploadable } from '../../core/uploads';
+import { RequestOptions } from '../../internal/request-options';
+import { maybeMultipartFormRequestOptions } from '../../internal/uploads';
+import { path } from '../../internal/utils/path';
 
 export class PaymentOrders extends APIResource {
   reversals: ReversalsAPI.Reversals = new ReversalsAPI.Reversals(this._client);
@@ -30,21 +40,10 @@ export class PaymentOrders extends APIResource {
    * });
    * ```
    */
-  create(params: PaymentOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
+  create(body: PaymentOrderCreateParams, options?: RequestOptions): APIPromise<PaymentOrder> {
     return this._client.post(
       '/api/payment_orders',
-      Core.maybeMultipartFormRequestOptions({
-        body,
-        ...options,
-        headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-      }),
+      maybeMultipartFormRequestOptions({ body, ...options }, this._client),
     );
   }
 
@@ -58,8 +57,8 @@ export class PaymentOrders extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder> {
-    return this._client.get(`/api/payment_orders/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentOrder> {
+    return this._client.get(path`/api/payment_orders/${id}`, options);
   }
 
   /**
@@ -74,19 +73,10 @@ export class PaymentOrders extends APIResource {
    */
   update(
     id: string,
-    body?: PaymentOrderUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PaymentOrder>;
-  update(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentOrder>;
-  update(
-    id: string,
-    body: PaymentOrderUpdateParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PaymentOrder> {
-    if (isRequestOptions(body)) {
-      return this.update(id, {}, body);
-    }
-    return this._client.patch(`/api/payment_orders/${id}`, { body, ...options });
+    body: PaymentOrderUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PaymentOrder> {
+    return this._client.patch(path`/api/payment_orders/${id}`, { body, ...options });
   }
 
   /**
@@ -101,18 +91,10 @@ export class PaymentOrders extends APIResource {
    * ```
    */
   list(
-    query?: PaymentOrderListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentOrdersPage, PaymentOrder>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PaymentOrdersPage, PaymentOrder>;
-  list(
-    query: PaymentOrderListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentOrdersPage, PaymentOrder> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/payment_orders', PaymentOrdersPage, { query, ...options });
+    query: PaymentOrderListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PaymentOrdersPage, PaymentOrder> {
+    return this._client.getAPIList('/api/payment_orders', Page<PaymentOrder>, { query, ...options });
   }
 
   /**
@@ -131,25 +113,14 @@ export class PaymentOrders extends APIResource {
    * ```
    */
   createAsync(
-    params: PaymentOrderCreateAsyncParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AsyncResponse> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/payment_orders/create_async', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+    body: PaymentOrderCreateAsyncParams,
+    options?: RequestOptions,
+  ): APIPromise<Shared.AsyncResponse> {
+    return this._client.post('/api/payment_orders/create_async', { body, ...options });
   }
 }
 
-export class PaymentOrdersPage extends Page<PaymentOrder> {}
+export type PaymentOrdersPage = Page<PaymentOrder>;
 
 export interface ContactDetailCreateRequest {
   contact_identifier?: string;
@@ -202,6 +173,12 @@ export interface PaymentOrder {
    * Defaults to the currency of the originating account.
    */
   currency: Shared.Currency;
+
+  /**
+   * If the payment order's status is `held`, this will include the hold object's
+   * data.
+   */
+  current_hold: PaymentOrder.CurrentHold | null;
 
   /**
    * If the payment order's status is `returned`, this will include the return
@@ -359,6 +336,7 @@ export interface PaymentOrder {
     | 'completed'
     | 'denied'
     | 'failed'
+    | 'held'
     | 'needs_approval'
     | 'pending'
     | 'processing'
@@ -455,6 +433,64 @@ export namespace PaymentOrder {
     class_id?: string | null;
   }
 
+  /**
+   * If the payment order's status is `held`, this will include the hold object's
+   * data.
+   */
+  export interface CurrentHold {
+    id: string;
+
+    created_at: string;
+
+    /**
+     * The type of object
+     */
+    object: 'hold';
+
+    /**
+     * The status of the hold
+     */
+    status: 'active' | 'resolved';
+
+    /**
+     * The ID of the target being held
+     */
+    target_id: string;
+
+    /**
+     * The type of target being held
+     */
+    target_type: 'payment_order';
+
+    updated_at: string;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode?: boolean;
+
+    /**
+     * Additional metadata for the hold
+     */
+    metadata?: { [key: string]: string } | null;
+
+    /**
+     * The reason for the hold
+     */
+    reason?: string | null;
+
+    /**
+     * The resolution of the hold
+     */
+    resolution?: string | null;
+
+    /**
+     * When the hold was resolved
+     */
+    resolved_at?: string | null;
+  }
+
   export interface ReferenceNumber {
     id: string;
 
@@ -533,6 +569,7 @@ export namespace PaymentOrder {
       | 'jpmc_payment_returned_datetime'
       | 'jpmc_transaction_reference_number'
       | 'lob_check_id'
+      | 'mt_fof_transfer_id'
       | 'other'
       | 'partial_swift_mir'
       | 'pnc_clearing_reference'
@@ -922,7 +959,7 @@ export namespace PaymentOrderCreateParams {
       | 'transactions'
       | 'connections';
 
-    file: Core.Uploadable;
+    file: Uploadable;
 
     /**
      * A category given to the document, can be `null`.
@@ -1297,6 +1334,7 @@ export interface PaymentOrderUpdateParams {
     | 'completed'
     | 'denied'
     | 'failed'
+    | 'held'
     | 'needs_approval'
     | 'pending'
     | 'processing'
@@ -1612,6 +1650,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'completed'
     | 'denied'
     | 'failed'
+    | 'held'
     | 'needs_approval'
     | 'pending'
     | 'processing'
@@ -2091,9 +2130,7 @@ export namespace PaymentOrderCreateAsyncParams {
   }
 }
 
-PaymentOrders.PaymentOrdersPage = PaymentOrdersPage;
 PaymentOrders.Reversals = Reversals;
-PaymentOrders.ReversalsPage = ReversalsPage;
 
 export declare namespace PaymentOrders {
   export {
@@ -2101,7 +2138,7 @@ export declare namespace PaymentOrders {
     type PaymentOrder as PaymentOrder,
     type PaymentOrderSubtype as PaymentOrderSubtype,
     type PaymentOrderType as PaymentOrderType,
-    PaymentOrdersPage as PaymentOrdersPage,
+    type PaymentOrdersPage as PaymentOrdersPage,
     type PaymentOrderCreateParams as PaymentOrderCreateParams,
     type PaymentOrderUpdateParams as PaymentOrderUpdateParams,
     type PaymentOrderListParams as PaymentOrderListParams,
@@ -2111,8 +2148,9 @@ export declare namespace PaymentOrders {
   export {
     Reversals as Reversals,
     type Reversal as Reversal,
-    ReversalsPage as ReversalsPage,
+    type ReversalsPage as ReversalsPage,
     type ReversalCreateParams as ReversalCreateParams,
+    type ReversalRetrieveParams as ReversalRetrieveParams,
     type ReversalListParams as ReversalListParams,
   };
 }

@@ -35,8 +35,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
-  const { id, payment_order_id, ...body } = args as any;
-  const response = await client.invoices.addPaymentOrder(id, payment_order_id).asResponse();
+  const { payment_order_id, ...body } = args as any;
+  const response = await client.invoices.addPaymentOrder(payment_order_id, body).asResponse();
   return asTextContentResult(await response.text());
 };
 

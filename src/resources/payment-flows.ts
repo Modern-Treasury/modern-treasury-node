@@ -1,78 +1,45 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
-import { Page, type PageParams } from '../pagination';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class PaymentFlows extends APIResource {
   /**
    * create payment_flow
    */
-  create(params: PaymentFlowCreateParams, options?: Core.RequestOptions): Core.APIPromise<PaymentFlow> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/payment_flows', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: PaymentFlowCreateParams, options?: RequestOptions): APIPromise<PaymentFlow> {
+    return this._client.post('/api/payment_flows', { body, ...options });
   }
 
   /**
    * get payment_flow
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PaymentFlow> {
-    return this._client.get(`/api/payment_flows/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentFlow> {
+    return this._client.get(path`/api/payment_flows/${id}`, options);
   }
 
   /**
    * update payment_flow
    */
-  update(
-    id: string,
-    params: PaymentFlowUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PaymentFlow> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.patch(`/api/payment_flows/${id}`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  update(id: string, body: PaymentFlowUpdateParams, options?: RequestOptions): APIPromise<PaymentFlow> {
+    return this._client.patch(path`/api/payment_flows/${id}`, { body, ...options });
   }
 
   /**
    * list payment_flows
    */
   list(
-    query?: PaymentFlowListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentFlowsPage, PaymentFlow>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PaymentFlowsPage, PaymentFlow>;
-  list(
-    query: PaymentFlowListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentFlowsPage, PaymentFlow> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/payment_flows', PaymentFlowsPage, { query, ...options });
+    query: PaymentFlowListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PaymentFlowsPage, PaymentFlow> {
+    return this._client.getAPIList('/api/payment_flows', Page<PaymentFlow>, { query, ...options });
   }
 }
 
-export class PaymentFlowsPage extends Page<PaymentFlow> {}
+export type PaymentFlowsPage = Page<PaymentFlow>;
 
 export interface PaymentFlow {
   id?: string;
@@ -232,12 +199,10 @@ export interface PaymentFlowListParams extends PageParams {
   status?: string;
 }
 
-PaymentFlows.PaymentFlowsPage = PaymentFlowsPage;
-
 export declare namespace PaymentFlows {
   export {
     type PaymentFlow as PaymentFlow,
-    PaymentFlowsPage as PaymentFlowsPage,
+    type PaymentFlowsPage as PaymentFlowsPage,
     type PaymentFlowCreateParams as PaymentFlowCreateParams,
     type PaymentFlowUpdateParams as PaymentFlowUpdateParams,
     type PaymentFlowListParams as PaymentFlowListParams,

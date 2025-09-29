@@ -1,13 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as ExpectedPaymentsAPI from './expected-payments';
 import * as ExternalAccountsAPI from './external-accounts';
 import * as Shared from './shared';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
-import { Page, type PageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class BulkRequests extends APIResource {
   /**
@@ -30,19 +31,8 @@ export class BulkRequests extends APIResource {
    * });
    * ```
    */
-  create(params: BulkRequestCreateParams, options?: Core.RequestOptions): Core.APIPromise<BulkRequest> {
-    // @ts-expect-error idempotency key header isn't defined anymore but is included here for back-compat
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    if (idempotencyKey) {
-      console.warn(
-        "The Idempotency-Key request param is deprecated, the 'idempotencyToken' option should be set instead",
-      );
-    }
-    return this._client.post('/api/bulk_requests', {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey, ...options?.headers },
-    });
+  create(body: BulkRequestCreateParams, options?: RequestOptions): APIPromise<BulkRequest> {
+    return this._client.post('/api/bulk_requests', { body, ...options });
   }
 
   /**
@@ -55,8 +45,8 @@ export class BulkRequests extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BulkRequest> {
-    return this._client.get(`/api/bulk_requests/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<BulkRequest> {
+    return this._client.get(path`/api/bulk_requests/${id}`, options);
   }
 
   /**
@@ -71,22 +61,14 @@ export class BulkRequests extends APIResource {
    * ```
    */
   list(
-    query?: BulkRequestListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BulkRequestsPage, BulkRequest>;
-  list(options?: Core.RequestOptions): Core.PagePromise<BulkRequestsPage, BulkRequest>;
-  list(
-    query: BulkRequestListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BulkRequestsPage, BulkRequest> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/api/bulk_requests', BulkRequestsPage, { query, ...options });
+    query: BulkRequestListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BulkRequestsPage, BulkRequest> {
+    return this._client.getAPIList('/api/bulk_requests', Page<BulkRequest>, { query, ...options });
   }
 }
 
-export class BulkRequestsPage extends Page<BulkRequest> {}
+export type BulkRequestsPage = Page<BulkRequest>;
 
 export interface BulkRequest {
   id: string;
@@ -1057,6 +1039,7 @@ export namespace BulkRequestCreateParams {
       | 'completed'
       | 'denied'
       | 'failed'
+      | 'held'
       | 'needs_approval'
       | 'pending'
       | 'processing'
@@ -1504,12 +1487,10 @@ export interface BulkRequestListParams extends PageParams {
   status?: 'pending' | 'processing' | 'completed';
 }
 
-BulkRequests.BulkRequestsPage = BulkRequestsPage;
-
 export declare namespace BulkRequests {
   export {
     type BulkRequest as BulkRequest,
-    BulkRequestsPage as BulkRequestsPage,
+    type BulkRequestsPage as BulkRequestsPage,
     type BulkRequestCreateParams as BulkRequestCreateParams,
     type BulkRequestListParams as BulkRequestListParams,
   };

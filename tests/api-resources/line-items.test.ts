@@ -1,17 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import ModernTreasury from 'modern-treasury';
-import { Response } from 'node-fetch';
 
 const client = new ModernTreasury({
   apiKey: 'My API Key',
-  organizationId: 'my-organization-ID',
+  organizationID: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource lineItems', () => {
-  test('retrieve', async () => {
-    const responsePromise = client.lineItems.retrieve('expected_payments', 'itemizable_id', 'id');
+  test('retrieve: only required params', async () => {
+    const responsePromise = client.lineItems.retrieve('id', {
+      itemizable_type: 'expected_payments',
+      itemizable_id: 'itemizable_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,17 +23,18 @@ describe('resource lineItems', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.lineItems.retrieve('expected_payments', 'itemizable_id', 'id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  test('retrieve: required and optional params', async () => {
+    const response = await client.lineItems.retrieve('id', {
+      itemizable_type: 'expected_payments',
+      itemizable_id: 'itemizable_id',
+    });
   });
 
-  test('update', async () => {
-    const responsePromise = client.lineItems.update('expected_payments', 'itemizable_id', 'id');
+  test('update: only required params', async () => {
+    const responsePromise = client.lineItems.update('id', {
+      itemizable_type: 'expected_payments',
+      itemizable_id: 'itemizable_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -41,31 +44,17 @@ describe('resource lineItems', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('update: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.lineItems.update('expected_payments', 'itemizable_id', 'id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('update: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.lineItems.update(
-        'expected_payments',
-        'itemizable_id',
-        'id',
-        { metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  test('update: required and optional params', async () => {
+    const response = await client.lineItems.update('id', {
+      itemizable_type: 'expected_payments',
+      itemizable_id: 'itemizable_id',
+      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+    });
   });
 
   // Prism is broken in this case
-  test.skip('list', async () => {
-    const responsePromise = client.lineItems.list('expected_payments', 'itemizable_id');
+  test.skip('list: only required params', async () => {
+    const responsePromise = client.lineItems.list('itemizable_id', { itemizable_type: 'expected_payments' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -76,23 +65,11 @@ describe('resource lineItems', () => {
   });
 
   // Prism is broken in this case
-  test.skip('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.lineItems.list('expected_payments', 'itemizable_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  // Prism is broken in this case
-  test.skip('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.lineItems.list(
-        'expected_payments',
-        'itemizable_id',
-        { after_cursor: 'after_cursor', per_page: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  test.skip('list: required and optional params', async () => {
+    const response = await client.lineItems.list('itemizable_id', {
+      itemizable_type: 'expected_payments',
+      after_cursor: 'after_cursor',
+      per_page: 0,
+    });
   });
 });

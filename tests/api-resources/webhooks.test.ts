@@ -4,7 +4,7 @@ import ModernTreasury from 'modern-treasury';
 
 const modernTreasury = new ModernTreasury({
   apiKey: 'My API Key',
-  organizationId: 'my-organization-ID',
+  organizationID: 'my-organization-ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -29,7 +29,7 @@ describe('resource webhooks', () => {
     const client = new ModernTreasury({
       apiKey: 'something1234',
       baseURL: 'http://127.0.0.1:4010',
-      organizationId: 'c40c0b40-11d3-42ee-8f2e-18ee8b8239aa',
+      organizationID: 'c40c0b40-11d3-42ee-8f2e-18ee8b8239aa',
     });
     expect(() => client.webhooks.getSignature('bar')).toThrowError(/webhook key/);
   });
@@ -38,7 +38,7 @@ describe('resource webhooks', () => {
     const client = new ModernTreasury({
       apiKey: 'something1234',
       baseURL: 'http://127.0.0.1:4010',
-      organizationId: 'c40c0b40-11d3-42ee-8f2e-18ee8b8239aa',
+      organizationID: 'c40c0b40-11d3-42ee-8f2e-18ee8b8239aa',
       webhookKey: 'hello, world',
     });
     const payload = '{"foo":"bar"}';
