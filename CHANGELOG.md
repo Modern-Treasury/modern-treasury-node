@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.0.0 (2025-09-29)
+
+Full Changelog: [v2.48.0...v3.0.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.48.0...v3.0.0)
+
+### Features
+
+* **api:** manual updates ([929997c](https://github.com/Modern-Treasury/modern-treasury-node/commit/929997c7e891dc98b07335fd803e1f48e234722d))
+* **api:** manual updates ([fdf325a](https://github.com/Modern-Treasury/modern-treasury-node/commit/fdf325add6b11c78b63532a4c3568b0c90dd4d48))
+
+
+### Bug Fixes
+
+* **mcp:** resolve a linting issue in server code ([97e09c1](https://github.com/Modern-Treasury/modern-treasury-node/commit/97e09c126784ce283d63faede1c50f5f484990a6))
+
+
+### Chores
+
+* sync repo ([97bdad3](https://github.com/Modern-Treasury/modern-treasury-node/commit/97bdad3cfb412750edbaf20c5b6479ae04e2ad1f))
+
 ## 2.42.0 (2025-08-01)
 
 Full Changelog: [v2.41.0...v2.42.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.41.0...v2.42.0)
