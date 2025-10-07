@@ -202,6 +202,11 @@ export interface ReturnObject {
   reason: string | null;
 
   /**
+   * True if the object is reconciled, false otherwise.
+   */
+  reconciled: boolean;
+
+  /**
    * An array of Payment Reference objects.
    */
   reference_numbers: Array<ReturnObject.ReferenceNumber>;
@@ -569,6 +574,11 @@ export interface ReturnCreateParams {
    * and will not be transmitted to the bank.”
    */
   reason?: string | null;
+
+  /**
+   * True if the object is reconciled, false otherwise.
+   */
+  reconciled?: boolean;
 }
 
 export namespace ReturnCreateParams {

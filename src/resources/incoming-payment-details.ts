@@ -170,6 +170,11 @@ export interface IncomingPaymentDetail {
     | null;
 
   /**
+   * True if the object is reconciled, false otherwise.
+   */
+  reconciled: boolean;
+
+  /**
    * The current status of the incoming payment order. One of `pending`, `completed`,
    * or `returned`.
    */

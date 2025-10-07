@@ -302,6 +302,11 @@ export interface PaymentOrder {
 
   receiving_account_type: 'internal_account' | 'external_account';
 
+  /**
+   * True if the object is reconciled, false otherwise.
+   */
+  reconciled: boolean;
+
   reference_numbers: Array<PaymentOrder.ReferenceNumber>;
 
   /**
@@ -865,6 +870,11 @@ export interface PaymentOrderCreateParams {
   receiving_account_id?: string;
 
   /**
+   * True if the object is reconciled, false otherwise.
+   */
+  reconciled?: boolean;
+
+  /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
    * payments the field will be passed through as the "Originator to Beneficiary
    * Information", also known as OBI or Fedwire tag 6000.
@@ -1299,6 +1309,11 @@ export interface PaymentOrderUpdateParams {
    * internal account.
    */
   receiving_account_id?: string;
+
+  /**
+   * True if the object is reconciled, false otherwise.
+   */
+  reconciled?: boolean;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1872,6 +1887,11 @@ export interface PaymentOrderCreateAsyncParams {
    * internal account.
    */
   receiving_account_id?: string;
+
+  /**
+   * True if the object is reconciled, false otherwise.
+   */
+  reconciled?: boolean;
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
