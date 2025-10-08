@@ -187,9 +187,10 @@ export const tool: Tool = {
         description:
           'An optional description of the reason for the return. This is for internal usage and will not be transmitted to the bank.”',
       },
-      reconciled: {
-        type: 'boolean',
-        description: 'True if the object is reconciled, false otherwise.',
+      reconciliation_status: {
+        type: 'string',
+        description: 'One of `unreconciled`, `tentatively_reconciled` or `reconciled`.',
+        enum: ['reconciled', 'unreconciled', 'tentatively_reconciled'],
       },
     },
     required: ['returnable_id', 'returnable_type'],
