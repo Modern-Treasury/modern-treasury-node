@@ -131,7 +131,7 @@ describe('resource bulkRequests', () => {
             ],
           },
           receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          reconciled: true,
+          reconciliation_status: 'reconciled',
           remittance_information: 'remittance_information',
           send_remittance_advice: true,
           statement_descriptor: 'statement_descriptor',

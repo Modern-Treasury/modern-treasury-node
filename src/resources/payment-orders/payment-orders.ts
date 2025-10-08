@@ -303,9 +303,9 @@ export interface PaymentOrder {
   receiving_account_type: 'internal_account' | 'external_account';
 
   /**
-   * True if the object is reconciled, false otherwise.
+   * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciled: boolean;
+  reconciliation_status: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
 
   reference_numbers: Array<PaymentOrder.ReferenceNumber>;
 
@@ -870,9 +870,9 @@ export interface PaymentOrderCreateParams {
   receiving_account_id?: string;
 
   /**
-   * True if the object is reconciled, false otherwise.
+   * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciled?: boolean;
+  reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1311,9 +1311,9 @@ export interface PaymentOrderUpdateParams {
   receiving_account_id?: string;
 
   /**
-   * True if the object is reconciled, false otherwise.
+   * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciled?: boolean;
+  reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1889,9 +1889,9 @@ export interface PaymentOrderCreateAsyncParams {
   receiving_account_id?: string;
 
   /**
-   * True if the object is reconciled, false otherwise.
+   * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciled?: boolean;
+  reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`

@@ -112,9 +112,9 @@ export interface Reversal {
     | 'date_later_than_intended';
 
   /**
-   * True if the object is reconciled, false otherwise.
+   * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciled: boolean;
+  reconciliation_status: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
 
   /**
    * The current status of the reversal.

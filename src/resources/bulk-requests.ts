@@ -346,9 +346,9 @@ export namespace BulkRequestCreateParams {
     receiving_account_id?: string;
 
     /**
-     * True if the object is reconciled, false otherwise.
+     * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
      */
-    reconciled?: boolean;
+    reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
 
     /**
      * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1011,9 +1011,9 @@ export namespace BulkRequestCreateParams {
     receiving_account_id?: string;
 
     /**
-     * True if the object is reconciled, false otherwise.
+     * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
      */
-    reconciled?: boolean;
+    reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
 
     /**
      * For `ach`, this field will be passed through on an addenda record. For `wire`

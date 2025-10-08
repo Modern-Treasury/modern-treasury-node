@@ -340,9 +340,10 @@ export const tool: Tool = {
         description:
           'Either `receiving_account` or `receiving_account_id` must be present. When using `receiving_account_id`, you may pass the id of an external account or an internal account.',
       },
-      reconciled: {
-        type: 'boolean',
-        description: 'True if the object is reconciled, false otherwise.',
+      reconciliation_status: {
+        type: 'string',
+        description: 'One of `unreconciled`, `tentatively_reconciled` or `reconciled`.',
+        enum: ['reconciled', 'unreconciled', 'tentatively_reconciled'],
       },
       remittance_information: {
         type: 'string',
