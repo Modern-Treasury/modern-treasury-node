@@ -204,7 +204,7 @@ export interface ReturnObject {
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciliation_status: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
+  reconciliation_status: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
 
   /**
    * An array of Payment Reference objects.
@@ -578,7 +578,7 @@ export interface ReturnCreateParams {
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
+  reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
 }
 
 export namespace ReturnCreateParams {
