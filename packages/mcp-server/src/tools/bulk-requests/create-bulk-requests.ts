@@ -376,7 +376,7 @@ export const tool: Tool = {
                 reconciliation_status: {
                   type: 'string',
                   description: 'One of `unreconciled`, `tentatively_reconciled` or `reconciled`.',
-                  enum: ['reconciled', 'unreconciled', 'tentatively_reconciled'],
+                  enum: ['unreconciled', 'tentatively_reconciled', 'reconciled'],
                 },
                 remittance_information: {
                   type: 'string',
@@ -988,7 +988,7 @@ export const tool: Tool = {
                 reconciliation_status: {
                   type: 'string',
                   description: 'One of `unreconciled`, `tentatively_reconciled` or `reconciled`.',
-                  enum: ['reconciled', 'unreconciled', 'tentatively_reconciled'],
+                  enum: ['unreconciled', 'tentatively_reconciled', 'reconciled'],
                 },
                 remittance_information: {
                   type: 'string',

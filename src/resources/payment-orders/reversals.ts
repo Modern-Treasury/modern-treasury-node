@@ -114,7 +114,7 @@ export interface Reversal {
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciliation_status: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
+  reconciliation_status: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
 
   /**
    * The current status of the reversal.

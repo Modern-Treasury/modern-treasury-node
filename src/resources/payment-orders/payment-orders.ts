@@ -305,7 +305,7 @@ export interface PaymentOrder {
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciliation_status: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
+  reconciliation_status: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
 
   reference_numbers: Array<PaymentOrder.ReferenceNumber>;
 
@@ -872,7 +872,7 @@ export interface PaymentOrderCreateParams {
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
+  reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1313,7 +1313,7 @@ export interface PaymentOrderUpdateParams {
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
+  reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1891,7 +1891,7 @@ export interface PaymentOrderCreateAsyncParams {
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
    */
-  reconciliation_status?: 'reconciled' | 'unreconciled' | 'tentatively_reconciled';
+  reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
 
   /**
    * For `ach`, this field will be passed through on an addenda record. For `wire`

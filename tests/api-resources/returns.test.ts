@@ -40,7 +40,7 @@ describe('resource returns', () => {
       data: {},
       date_of_death: '2019-12-27',
       reason: 'reason',
-      reconciliation_status: 'reconciled',
+      reconciliation_status: 'unreconciled',
     });
   });
 

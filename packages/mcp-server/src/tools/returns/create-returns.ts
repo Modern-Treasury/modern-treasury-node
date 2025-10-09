@@ -190,7 +190,7 @@ export const tool: Tool = {
       reconciliation_status: {
         type: 'string',
         description: 'One of `unreconciled`, `tentatively_reconciled` or `reconciled`.',
-        enum: ['reconciled', 'unreconciled', 'tentatively_reconciled'],
+        enum: ['unreconciled', 'tentatively_reconciled', 'reconciled'],
       },
     },
     required: ['returnable_id', 'returnable_type'],
