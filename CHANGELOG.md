@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.1.0 (2025-10-09)
+
+Full Changelog: [v3.0.0...v3.1.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.0.0...v3.1.0)
+
+### Features
+
+* **api:** api update ([ca3e191](https://github.com/Modern-Treasury/modern-treasury-node/commit/ca3e1916884fe3efb3ea5807e6b5e783325aef72))
+* **api:** api update ([5a90f2f](https://github.com/Modern-Treasury/modern-treasury-node/commit/5a90f2fe8e7ef2084f4fa7d15cf2dd49b49047cb))
+* **api:** api update ([80cd7c2](https://github.com/Modern-Treasury/modern-treasury-node/commit/80cd7c2ed7eae9f086303b358a733c486a96e263))
+
+
+### Chores
+
+* extract some types in mcp docs ([3d1490d](https://github.com/Modern-Treasury/modern-treasury-node/commit/3d1490d86db03ffac784990bb069e0957416cfe1))
+* **internal:** use npm pack for build uploads ([2e60bc6](https://github.com/Modern-Treasury/modern-treasury-node/commit/2e60bc6ebe46b68dc473554d2dfc33d715c6cd55))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([7b580e0](https://github.com/Modern-Treasury/modern-treasury-node/commit/7b580e011e039e437fba88df1825e84e5e0d451d))
+* update lockfile ([aef5b33](https://github.com/Modern-Treasury/modern-treasury-node/commit/aef5b33f0071d59df6d9185d0ff6f056c10a47ba))
+
 ## 3.0.0 (2025-09-29)
 
 Full Changelog: [v2.48.0...v3.0.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.48.0...v3.0.0)
