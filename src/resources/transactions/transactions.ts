@@ -264,7 +264,6 @@ export interface Transaction {
     | 'mt_fof'
     | 'mx'
     | 'paypal'
-    | 'plaid'
     | 'pnc'
     | 'signet'
     | 'silvergate'
