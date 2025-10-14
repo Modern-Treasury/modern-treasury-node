@@ -249,7 +249,6 @@ export interface Transaction {
     | 'bankprov'
     | 'bnk_dev'
     | 'brale'
-    | 'bridge'
     | 'cleartouch'
     | 'column'
     | 'cross_river'
