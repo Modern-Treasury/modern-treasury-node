@@ -139,6 +139,10 @@ export class Page<Item> extends AbstractPage<Item> {
     return this.items ?? [];
   }
 
+  override hasNextPage(): boolean {
+    return this.nextPageRequestOptions() != null;
+  }
+
   nextPageRequestOptions(): PageRequestOptions | null {
     const cursor = this.after_cursor;
     if (!cursor) {
