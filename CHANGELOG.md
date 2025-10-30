@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.2.1 (2025-10-30)
+
+Full Changelog: [v3.2.0...v3.2.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.2.0...v3.2.1)
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([d61800f](https://github.com/Modern-Treasury/modern-treasury-node/commit/d61800fd6353d607dde0e2797b9d59dcab8a7992))
+
+
+### Chores
+
+* **internal:** codegen related update ([2cbfb9d](https://github.com/Modern-Treasury/modern-treasury-node/commit/2cbfb9dff458360335cc5d27f0f9031afdaede33))
+
 ## 3.2.0 (2025-10-22)
 
 Full Changelog: [v3.1.0...v3.2.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.1.0...v3.2.0)
