@@ -34,7 +34,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'modern_treasury_api',
-      version: '3.2.0',
+      version: '3.2.1',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
