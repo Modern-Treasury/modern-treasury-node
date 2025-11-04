@@ -623,6 +623,7 @@ export type PaymentOrderSubtype =
   | 'CIE'
   | 'CTX'
   | 'IAT'
+  | 'POS'
   | 'PPD'
   | 'TEL'
   | 'WEB'
