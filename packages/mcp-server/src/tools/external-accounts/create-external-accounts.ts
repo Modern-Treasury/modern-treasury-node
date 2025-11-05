@@ -23,10 +23,6 @@ export const tool: Tool = {
       counterparty_id: {
         type: 'string',
       },
-      query_external_id: {
-        type: 'string',
-        description: 'An optional user-defined 180 character unique identifier.',
-      },
       account_details: {
         type: 'array',
         items: {
@@ -67,7 +63,7 @@ export const tool: Tool = {
           $ref: '#/$defs/contact_detail_create_request',
         },
       },
-      body_external_id: {
+      external_id: {
         type: 'string',
         description: 'An optional user-defined 180 character unique identifier.',
       },

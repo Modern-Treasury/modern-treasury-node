@@ -23,7 +23,6 @@ describe('resource counterparties', () => {
   test('create: required and optional params', async () => {
     const response = await client.counterparties.create({
       name: 'name',
-      query_external_id: 'external_id',
       accounting: { type: 'customer' },
       accounts: [
         {
@@ -63,7 +62,7 @@ describe('resource counterparties', () => {
         },
       ],
       email: 'dev@stainless.com',
-      body_external_id: 'external_id',
+      external_id: 'external_id',
       ledger_type: 'customer',
       legal_entity: {
         legal_entity_type: 'business',

@@ -23,13 +23,8 @@ export class ExternalAccounts extends APIResource {
    *   });
    * ```
    */
-  create(params: ExternalAccountCreateParams, options?: RequestOptions): APIPromise<ExternalAccount> {
-    const { query_external_id, ...body } = params;
-    return this._client.post('/api/external_accounts', {
-      query: { external_id: query_external_id },
-      body,
-      ...options,
-    });
+  create(body: ExternalAccountCreateParams, options?: RequestOptions): APIPromise<ExternalAccount> {
+    return this._client.post('/api/external_accounts', { body, ...options });
   }
 
   /**
@@ -314,87 +309,66 @@ export namespace ExternalAccountVerifyResponse {
 }
 
 export interface ExternalAccountCreateParams {
-  /**
-   * Body param:
-   */
   counterparty_id: string | null;
 
-  /**
-   * Query param: An optional user-defined 180 character unique identifier.
-   */
-  query_external_id?: string;
-
-  /**
-   * Body param:
-   */
   account_details?: Array<ExternalAccountCreateParams.AccountDetail>;
 
   /**
-   * Body param: Can be `checking`, `savings` or `other`.
+   * Can be `checking`, `savings` or `other`.
    */
   account_type?: ExternalAccountType;
 
-  /**
-   * Body param:
-   */
   contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
 
   /**
-   * Body param: An optional user-defined 180 character unique identifier.
+   * An optional user-defined 180 character unique identifier.
    */
-  body_external_id?: string | null;
+  external_id?: string | null;
 
   /**
-   * Body param: Specifies a ledger account object that will be created with the
-   * external account. The resulting ledger account is linked to the external account
-   * for auto-ledgering Payment objects. See
+   * Specifies a ledger account object that will be created with the external
+   * account. The resulting ledger account is linked to the external account for
+   * auto-ledgering Payment objects. See
    * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
    * for more details.
    */
   ledger_account?: Shared.LedgerAccountCreateRequest;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: { [key: string]: string };
 
   /**
-   * Body param: A nickname for the external account. This is only for internal usage
-   * and won't affect any payments
+   * A nickname for the external account. This is only for internal usage and won't
+   * affect any payments
    */
   name?: string | null;
 
   /**
-   * Body param: Required if receiving wire payments.
+   * Required if receiving wire payments.
    */
   party_address?: Shared.AddressRequest;
 
-  /**
-   * Body param:
-   */
   party_identifier?: string;
 
   /**
-   * Body param: If this value isn't provided, it will be inherited from the
-   * counterparty's name.
+   * If this value isn't provided, it will be inherited from the counterparty's name.
    */
   party_name?: string;
 
   /**
-   * Body param: Either `individual` or `business`.
+   * Either `individual` or `business`.
    */
   party_type?: 'business' | 'individual' | null;
 
   /**
-   * Body param: If you've enabled the Modern Treasury + Plaid integration in your
-   * Plaid account, you can pass the processor token in this field.
+   * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
+   * you can pass the processor token in this field.
    */
   plaid_processor_token?: string;
 
-  /**
-   * Body param:
-   */
   routing_details?: Array<ExternalAccountCreateParams.RoutingDetail>;
 }
 
