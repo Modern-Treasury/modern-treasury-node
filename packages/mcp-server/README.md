@@ -303,6 +303,7 @@ The following tools are available in this MCP server.
 - `retrieve_internal_accounts` (`read`): get internal account
 - `update_internal_accounts` (`write`): update internal account
 - `list_internal_accounts` (`read`): list internal accounts
+- `request_closure_internal_accounts` (`write`): request closure of internal account
 - `update_account_capability_internal_accounts` (`write`): update account_capability
 
 ### Resource `internal_accounts.balance_reports`:
@@ -490,3 +491,21 @@ The following tools are available in this MCP server.
 - `retrieve_payment_actions` (`read`): Get details on a single payment action.
 - `update_payment_actions` (`write`): Update a single payment action.
 - `list_payment_actions` (`read`): Get a list of all payment actions.
+
+### Resource `journal_entries`:
+
+- `retrieve_journal_entries` (`read`): Retrieve a specific journal entry
+- `list_journal_entries` (`read`): Retrieve a list of journal entries
+
+### Resource `journal_reports`:
+
+- `retrieve_journal_reports` (`read`): Retrieve a specific journal report
+- `update_journal_reports` (`write`): Update a journal report
+- `list_journal_reports` (`read`): Retrieve a list of journal reports
+
+### Resource `holds`:
+
+- `create_holds` (`write`): Create a new hold
+- `retrieve_holds` (`read`): Get a specific hold
+- `update_holds` (`write`): Update a hold
+- `list_holds` (`read`): Get a list of holds.

@@ -90,6 +90,19 @@ export class InternalAccounts extends APIResource {
   }
 
   /**
+   * request closure of internal account
+   *
+   * @example
+   * ```ts
+   * const internalAccount =
+   *   await client.internalAccounts.requestClosure('id');
+   * ```
+   */
+  requestClosure(id: string, options?: RequestOptions): APIPromise<InternalAccount> {
+    return this._client.post(path`/api/internal_accounts/${id}/request_closure`, options);
+  }
+
+  /**
    * update account_capability
    *
    * @example

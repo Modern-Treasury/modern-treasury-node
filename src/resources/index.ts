@@ -88,6 +88,17 @@ export {
   type ForeignExchangeQuotesPage,
 } from './foreign-exchange-quotes';
 export {
+  Holds,
+  type HoldCreateResponse,
+  type HoldRetrieveResponse,
+  type HoldUpdateResponse,
+  type HoldListResponse,
+  type HoldCreateParams,
+  type HoldUpdateParams,
+  type HoldListParams,
+  type HoldListResponsesPage,
+} from './holds';
+export {
   IncomingPaymentDetails,
   type IncomingPaymentDetail,
   type IncomingPaymentDetailUpdateParams,
@@ -114,6 +125,8 @@ export {
   type InvoiceAddPaymentOrderParams,
   type InvoicesPage,
 } from './invoices/invoices';
+export { JournalEntries, type JournalEntryListParams } from './journal-entries';
+export { JournalReports, type JournalReportUpdateParams } from './journal-reports';
 export {
   LedgerAccountBalanceMonitors,
   type LedgerAccountBalanceMonitor,

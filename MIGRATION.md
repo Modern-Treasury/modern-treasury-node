@@ -172,6 +172,8 @@ client.example.list(undefined, { headers: { ... } });
 - `client.legalEntities.update()`
 - `client.legalEntities.list()`
 - `client.paymentActions.list()`
+- `client.journalReports.update()`
+- `client.holds.list()`
 
 </details>
 
