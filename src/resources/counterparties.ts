@@ -23,13 +23,8 @@ export class Counterparties extends APIResource {
    * });
    * ```
    */
-  create(params: CounterpartyCreateParams, options?: RequestOptions): APIPromise<Counterparty> {
-    const { query_external_id, ...body } = params;
-    return this._client.post('/api/counterparties', {
-      query: { external_id: query_external_id },
-      body,
-      ...options,
-    });
+  create(body: CounterpartyCreateParams, options?: RequestOptions): APIPromise<Counterparty> {
+    return this._client.post('/api/counterparties', { body, ...options });
   }
 
   /**
@@ -275,70 +270,62 @@ export interface CounterpartyCollectAccountResponse {
 
 export interface CounterpartyCreateParams {
   /**
-   * Body param: A human friendly name for this counterparty.
+   * A human friendly name for this counterparty.
    */
   name: string | null;
 
   /**
-   * Query param: An optional user-defined 180 character unique identifier.
-   */
-  query_external_id?: string;
-
-  /**
-   * @deprecated Body param:
+   * @deprecated
    */
   accounting?: CounterpartyCreateParams.Accounting;
 
   /**
-   * Body param: The accounts for this counterparty.
+   * The accounts for this counterparty.
    */
   accounts?: Array<CounterpartyCreateParams.Account>;
 
   /**
-   * Body param: The counterparty's email.
+   * The counterparty's email.
    */
   email?: string | null;
 
   /**
-   * Body param: An optional user-defined 180 character unique identifier.
+   * An optional user-defined 180 character unique identifier.
    */
-  body_external_id?: string | null;
+  external_id?: string | null;
 
   /**
-   * @deprecated Body param: An optional type to auto-sync the counterparty to your
-   * ledger. Either `customer` or `vendor`.
+   * @deprecated An optional type to auto-sync the counterparty to your ledger.
+   * Either `customer` or `vendor`.
    */
   ledger_type?: 'customer' | 'vendor';
 
-  /**
-   * Body param:
-   */
   legal_entity?: CounterpartyCreateParams.LegalEntity;
 
   /**
-   * Body param: The id of the legal entity.
+   * The id of the legal entity.
    */
   legal_entity_id?: string | null;
 
   /**
-   * Body param: Additional data represented as key-value pairs. Both the key and
-   * value must be strings.
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
    */
   metadata?: { [key: string]: string };
 
   /**
-   * Body param: Send an email to the counterparty whenever an associated payment
-   * order is sent to the bank.
+   * Send an email to the counterparty whenever an associated payment order is sent
+   * to the bank.
    */
   send_remittance_advice?: boolean;
 
   /**
-   * Body param: Either a valid SSN or EIN.
+   * Either a valid SSN or EIN.
    */
   taxpayer_identifier?: string;
 
   /**
-   * @deprecated Body param: The verification status of the counterparty.
+   * @deprecated The verification status of the counterparty.
    */
   verification_status?: string;
 }
