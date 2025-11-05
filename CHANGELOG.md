@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.3.0 (2025-11-05)
+
+Full Changelog: [v3.2.1...v3.3.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.2.1...v3.3.0)
+
+### Features
+
+* **api:** api update ([0a15b50](https://github.com/Modern-Treasury/modern-treasury-node/commit/0a15b50106ab480864edcdce526cf0849b20c86b))
+* **api:** api update ([6ed4315](https://github.com/Modern-Treasury/modern-treasury-node/commit/6ed4315987bf41a973fe0ec0c2d873c3e2f0d979))
+* **mcp:** enable optional code execution tool on http mcp servers ([d5c5463](https://github.com/Modern-Treasury/modern-treasury-node/commit/d5c546399d4413cc04b1ddd5f80e373f9054bb7f))
+
+
+### Chores
+
+* **internal:** grammar fix (it's -&gt; its) ([b431bed](https://github.com/Modern-Treasury/modern-treasury-node/commit/b431bed3e8dc27b3e06eace29b4495f219208eb5))
+* mcp code tool explicit error message when missing a run function ([610cd24](https://github.com/Modern-Treasury/modern-treasury-node/commit/610cd246b3d096df5036bae9d0a383aed540d329))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([9bb9fd0](https://github.com/Modern-Treasury/modern-treasury-node/commit/9bb9fd058b16e74411814c48edea418d7c484b4d))
+* **mcp:** add line numbers to code tool errors ([f30b825](https://github.com/Modern-Treasury/modern-treasury-node/commit/f30b8255dd2cf59ce4fe4a61019d2e637cee3515))
+* use structured error when code execution tool errors ([06b20d9](https://github.com/Modern-Treasury/modern-treasury-node/commit/06b20d988b9cabcd21c35d8528ba3d012303f1f2))
+
 ## 3.2.1 (2025-10-30)
 
 Full Changelog: [v3.2.0...v3.2.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.2.0...v3.2.1)
