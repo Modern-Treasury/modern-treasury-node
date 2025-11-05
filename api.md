@@ -207,6 +207,7 @@ Methods:
 - <code title="get /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">retrieve</a>(id) -> InternalAccount</code>
 - <code title="patch /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">update</a>(id, { ...params }) -> InternalAccount</code>
 - <code title="get /api/internal_accounts">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">list</a>({ ...params }) -> InternalAccountsPage</code>
+- <code title="post /api/internal_accounts/{id}/request_closure">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">requestClosure</a>(id) -> InternalAccount</code>
 - <code title="patch /api/internal_accounts/{internal_account_id}/account_capabilities/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">updateAccountCapability</a>(id, { ...params }) -> InternalAccountUpdateAccountCapabilityResponse</code>
 
 ## BalanceReports
@@ -565,3 +566,34 @@ Methods:
 - <code title="get /api/payment_actions/{id}">client.paymentActions.<a href="./src/resources/payment-actions.ts">retrieve</a>(id) -> PaymentActionRetrieveResponse</code>
 - <code title="patch /api/payment_actions/{id}">client.paymentActions.<a href="./src/resources/payment-actions.ts">update</a>(id, { ...params }) -> PaymentActionUpdateResponse</code>
 - <code title="get /api/payment_actions">client.paymentActions.<a href="./src/resources/payment-actions.ts">list</a>({ ...params }) -> PaymentActionListResponsesPage</code>
+
+# JournalEntries
+
+Methods:
+
+- <code title="get /api/journal_entries/{id}">client.journalEntries.<a href="./src/resources/journal-entries.ts">retrieve</a>(id) -> void</code>
+- <code title="get /api/journal_entries">client.journalEntries.<a href="./src/resources/journal-entries.ts">list</a>({ ...params }) -> void</code>
+
+# JournalReports
+
+Methods:
+
+- <code title="get /api/journal_reports/{id}">client.journalReports.<a href="./src/resources/journal-reports.ts">retrieve</a>(id) -> void</code>
+- <code title="patch /api/journal_reports/{id}">client.journalReports.<a href="./src/resources/journal-reports.ts">update</a>(id, { ...params }) -> void</code>
+- <code title="get /api/journal_reports">client.journalReports.<a href="./src/resources/journal-reports.ts">list</a>() -> void</code>
+
+# Holds
+
+Types:
+
+- <code><a href="./src/resources/holds.ts">HoldCreateResponse</a></code>
+- <code><a href="./src/resources/holds.ts">HoldRetrieveResponse</a></code>
+- <code><a href="./src/resources/holds.ts">HoldUpdateResponse</a></code>
+- <code><a href="./src/resources/holds.ts">HoldListResponse</a></code>
+
+Methods:
+
+- <code title="post /api/holds">client.holds.<a href="./src/resources/holds.ts">create</a>({ ...params }) -> HoldCreateResponse</code>
+- <code title="get /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">retrieve</a>(id) -> HoldRetrieveResponse</code>
+- <code title="patch /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">update</a>(id, { ...params }) -> HoldUpdateResponse</code>
+- <code title="get /api/holds">client.holds.<a href="./src/resources/holds.ts">list</a>({ ...params }) -> HoldListResponsesPage</code>

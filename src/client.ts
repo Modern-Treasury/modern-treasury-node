@@ -103,6 +103,17 @@ import {
   ForeignExchangeQuotesPage,
 } from './resources/foreign-exchange-quotes';
 import {
+  HoldCreateParams,
+  HoldCreateResponse,
+  HoldListParams,
+  HoldListResponse,
+  HoldListResponsesPage,
+  HoldRetrieveResponse,
+  HoldUpdateParams,
+  HoldUpdateResponse,
+  Holds,
+} from './resources/holds';
+import {
   IncomingPaymentDetail,
   IncomingPaymentDetailCreateAsyncParams,
   IncomingPaymentDetailListParams,
@@ -110,6 +121,8 @@ import {
   IncomingPaymentDetails,
   IncomingPaymentDetailsPage,
 } from './resources/incoming-payment-details';
+import { JournalEntries, JournalEntryListParams } from './resources/journal-entries';
+import { JournalReportUpdateParams, JournalReports } from './resources/journal-reports';
 import {
   LedgerAccountBalanceMonitor,
   LedgerAccountBalanceMonitorCreateParams,
@@ -1076,6 +1089,9 @@ export class ModernTreasury {
   legalEntities: API.LegalEntities = new API.LegalEntities(this);
   legalEntityAssociations: API.LegalEntityAssociations = new API.LegalEntityAssociations(this);
   paymentActions: API.PaymentActions = new API.PaymentActions(this);
+  journalEntries: API.JournalEntries = new API.JournalEntries(this);
+  journalReports: API.JournalReports = new API.JournalReports(this);
+  holds: API.Holds = new API.Holds(this);
 }
 
 ModernTreasury.Connections = Connections;
@@ -1113,6 +1129,9 @@ ModernTreasury.ConnectionLegalEntities = ConnectionLegalEntities;
 ModernTreasury.LegalEntities = LegalEntities;
 ModernTreasury.LegalEntityAssociations = LegalEntityAssociations;
 ModernTreasury.PaymentActions = PaymentActions;
+ModernTreasury.JournalEntries = JournalEntries;
+ModernTreasury.JournalReports = JournalReports;
+ModernTreasury.Holds = Holds;
 
 export declare namespace ModernTreasury {
   export type RequestOptions = Opts.RequestOptions;
@@ -1443,6 +1462,22 @@ export declare namespace ModernTreasury {
     type PaymentActionCreateParams as PaymentActionCreateParams,
     type PaymentActionUpdateParams as PaymentActionUpdateParams,
     type PaymentActionListParams as PaymentActionListParams,
+  };
+
+  export { JournalEntries as JournalEntries, type JournalEntryListParams as JournalEntryListParams };
+
+  export { JournalReports as JournalReports, type JournalReportUpdateParams as JournalReportUpdateParams };
+
+  export {
+    Holds as Holds,
+    type HoldCreateResponse as HoldCreateResponse,
+    type HoldRetrieveResponse as HoldRetrieveResponse,
+    type HoldUpdateResponse as HoldUpdateResponse,
+    type HoldListResponse as HoldListResponse,
+    type HoldListResponsesPage as HoldListResponsesPage,
+    type HoldCreateParams as HoldCreateParams,
+    type HoldUpdateParams as HoldUpdateParams,
+    type HoldListParams as HoldListParams,
   };
 
   export type AccountsType = API.AccountsType;

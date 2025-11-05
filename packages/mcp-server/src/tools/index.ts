@@ -59,6 +59,7 @@ import create_internal_accounts from './internal-accounts/create-internal-accoun
 import retrieve_internal_accounts from './internal-accounts/retrieve-internal-accounts';
 import update_internal_accounts from './internal-accounts/update-internal-accounts';
 import list_internal_accounts from './internal-accounts/list-internal-accounts';
+import request_closure_internal_accounts from './internal-accounts/request-closure-internal-accounts';
 import update_account_capability_internal_accounts from './internal-accounts/update-account-capability-internal-accounts';
 import create_internal_accounts_balance_reports from './internal-accounts/balance-reports/create-internal-accounts-balance-reports';
 import retrieve_internal_accounts_balance_reports from './internal-accounts/balance-reports/retrieve-internal-accounts-balance-reports';
@@ -162,6 +163,15 @@ import create_payment_actions from './payment-actions/create-payment-actions';
 import retrieve_payment_actions from './payment-actions/retrieve-payment-actions';
 import update_payment_actions from './payment-actions/update-payment-actions';
 import list_payment_actions from './payment-actions/list-payment-actions';
+import retrieve_journal_entries from './journal-entries/retrieve-journal-entries';
+import list_journal_entries from './journal-entries/list-journal-entries';
+import retrieve_journal_reports from './journal-reports/retrieve-journal-reports';
+import update_journal_reports from './journal-reports/update-journal-reports';
+import list_journal_reports from './journal-reports/list-journal-reports';
+import create_holds from './holds/create-holds';
+import retrieve_holds from './holds/retrieve-holds';
+import update_holds from './holds/update-holds';
+import list_holds from './holds/list-holds';
 
 export const endpoints: Endpoint[] = [];
 
@@ -224,6 +234,7 @@ addEndpoint(create_internal_accounts);
 addEndpoint(retrieve_internal_accounts);
 addEndpoint(update_internal_accounts);
 addEndpoint(list_internal_accounts);
+addEndpoint(request_closure_internal_accounts);
 addEndpoint(update_account_capability_internal_accounts);
 addEndpoint(create_internal_accounts_balance_reports);
 addEndpoint(retrieve_internal_accounts_balance_reports);
@@ -327,6 +338,15 @@ addEndpoint(create_payment_actions);
 addEndpoint(retrieve_payment_actions);
 addEndpoint(update_payment_actions);
 addEndpoint(list_payment_actions);
+addEndpoint(retrieve_journal_entries);
+addEndpoint(list_journal_entries);
+addEndpoint(retrieve_journal_reports);
+addEndpoint(update_journal_reports);
+addEndpoint(list_journal_reports);
+addEndpoint(create_holds);
+addEndpoint(retrieve_holds);
+addEndpoint(update_holds);
+addEndpoint(list_holds);
 
 export type Filter = {
   type: 'resource' | 'operation' | 'tag' | 'tool';
