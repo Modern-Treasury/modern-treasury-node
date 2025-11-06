@@ -43,6 +43,22 @@ in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > Ne
 
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiU2V0IHlvdXIgTU9ERVJOX1RSRUFTVVJZX0FQSV9LRVkgaGVyZS4iLCJNT0RFUk5fVFJFQVNVUllfT1JHQU5JWkFUSU9OX0lEIjoiU2V0IHlvdXIgTU9ERVJOX1RSRUFTVVJZX09SR0FOSVpBVElPTl9JRCBoZXJlLiIsIk1PREVSTl9UUkVBU1VSWV9XRUJIT09LX0tFWSI6IlNldCB5b3VyIE1PREVSTl9UUkVBU1VSWV9XRUJIT09LX0tFWSBoZXJlLiJ9fQ)
 
+### VS Code
+
+If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
+in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
+
+[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22Set%20your%20MODERN_TREASURY_API_KEY%20here.%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22Set%20your%20MODERN_TREASURY_ORGANIZATION_ID%20here.%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22Set%20your%20MODERN_TREASURY_WEBHOOK_KEY%20here.%22%7D%7D)
+
+### Claude Code
+
+If you use Claude Code, you can install the MCP server by running the command below in your terminal. You will need to set your
+environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
+
+```
+claude mcp add --transport stdio modern_treasury_api --env MODERN_TREASURY_API_KEY="Your MODERN_TREASURY_API_KEY here." MODERN_TREASURY_ORGANIZATION_ID="Your MODERN_TREASURY_ORGANIZATION_ID here." MODERN_TREASURY_WEBHOOK_KEY="Your MODERN_TREASURY_WEBHOOK_KEY here." -- npx -y modern-treasury-mcp
+```
+
 ## Exposing endpoints to your MCP Client
 
 There are three ways to expose endpoints as tools in the MCP server:
