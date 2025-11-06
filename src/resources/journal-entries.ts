@@ -34,6 +34,16 @@ export interface JournalEntryListParams {
    * The ID of the journal report
    */
   journal_report_id: string;
+
+  /**
+   * Page number for pagination
+   */
+  page?: number;
+
+  /**
+   * Number of items per page
+   */
+  per_page?: number;
 }
 
 export declare namespace JournalEntries {

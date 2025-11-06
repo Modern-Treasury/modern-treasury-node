@@ -24,6 +24,14 @@ export const tool: Tool = {
         type: 'string',
         description: 'The ID of the journal report',
       },
+      page: {
+        type: 'integer',
+        description: 'Page number for pagination',
+      },
+      per_page: {
+        type: 'integer',
+        description: 'Number of items per page',
+      },
     },
     required: ['journal_report_id'],
   },
