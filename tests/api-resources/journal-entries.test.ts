@@ -32,6 +32,10 @@ describe('resource journalEntries', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.journalEntries.list({ journal_report_id: 'journal_report_id' });
+    const response = await client.journalEntries.list({
+      journal_report_id: 'journal_report_id',
+      page: 0,
+      per_page: 0,
+    });
   });
 });
