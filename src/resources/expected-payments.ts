@@ -98,6 +98,30 @@ export interface ExpectedPayment {
   amount_lower_bound: number | null;
 
   /**
+   * The amount reconciled for this expected payment. Value in specified currency's
+   * smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_reconciled: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+   * amount.
+   */
+  amount_reconciled_direction: 'credit' | 'debit' | null;
+
+  /**
+   * The amount that remains unreconciled for this expected payment. Value in
+   * specified currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_unreconciled: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_unreconciled is a credit or
+   * debit amount.
+   */
+  amount_unreconciled_direction: 'credit' | 'debit' | null;
+
+  /**
    * The highest amount this expected payment may be equal to. Value in specified
    * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
@@ -368,6 +392,30 @@ export interface ExpectedPaymentCreateParams {
   amount_lower_bound?: number | null;
 
   /**
+   * The amount reconciled for this expected payment. Value in specified currency's
+   * smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_reconciled?: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+   * amount.
+   */
+  amount_reconciled_direction?: 'credit' | 'debit' | null;
+
+  /**
+   * The amount that remains unreconciled for this expected payment. Value in
+   * specified currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_unreconciled?: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_unreconciled is a credit or
+   * debit amount.
+   */
+  amount_unreconciled_direction?: 'credit' | 'debit' | null;
+
+  /**
    * The highest amount this expected payment may be equal to. Value in specified
    * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
@@ -508,6 +556,30 @@ export interface ExpectedPaymentUpdateParams {
    * currency's smallest unit. e.g. $10 would be represented as 1000.
    */
   amount_lower_bound?: number | null;
+
+  /**
+   * The amount reconciled for this expected payment. Value in specified currency's
+   * smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_reconciled?: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+   * amount.
+   */
+  amount_reconciled_direction?: 'credit' | 'debit' | null;
+
+  /**
+   * The amount that remains unreconciled for this expected payment. Value in
+   * specified currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_unreconciled?: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_unreconciled is a credit or
+   * debit amount.
+   */
+  amount_unreconciled_direction?: 'credit' | 'debit' | null;
 
   /**
    * The highest amount this expected payment may be equal to. Value in specified

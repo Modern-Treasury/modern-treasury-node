@@ -428,6 +428,28 @@ export const tool: Tool = {
                   description:
                     "The lowest amount this expected payment may be equal to. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
                 },
+                amount_reconciled: {
+                  type: 'integer',
+                  description:
+                    "The amount reconciled for this expected payment. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+                },
+                amount_reconciled_direction: {
+                  type: 'string',
+                  description:
+                    'One of credit or debit. Indicates whether amount_reconciled is a credit or debit amount.',
+                  enum: ['credit', 'debit'],
+                },
+                amount_unreconciled: {
+                  type: 'integer',
+                  description:
+                    "The amount that remains unreconciled for this expected payment. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+                },
+                amount_unreconciled_direction: {
+                  type: 'string',
+                  description:
+                    'One of credit or debit. Indicates whether amount_unreconciled is a credit or debit amount.',
+                  enum: ['credit', 'debit'],
+                },
                 amount_upper_bound: {
                   type: 'integer',
                   description:
@@ -1063,6 +1085,28 @@ export const tool: Tool = {
                   type: 'integer',
                   description:
                     "The lowest amount this expected payment may be equal to. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+                },
+                amount_reconciled: {
+                  type: 'integer',
+                  description:
+                    "The amount reconciled for this expected payment. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+                },
+                amount_reconciled_direction: {
+                  type: 'string',
+                  description:
+                    'One of credit or debit. Indicates whether amount_reconciled is a credit or debit amount.',
+                  enum: ['credit', 'debit'],
+                },
+                amount_unreconciled: {
+                  type: 'integer',
+                  description:
+                    "The amount that remains unreconciled for this expected payment. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000.",
+                },
+                amount_unreconciled_direction: {
+                  type: 'string',
+                  description:
+                    'One of credit or debit. Indicates whether amount_unreconciled is a credit or debit amount.',
+                  enum: ['credit', 'debit'],
                 },
                 amount_upper_bound: {
                   type: 'integer',
