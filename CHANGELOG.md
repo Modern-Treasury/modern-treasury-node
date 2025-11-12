@@ -1,5 +1,34 @@
 # Changelog
 
+## 3.4.0 (2025-11-12)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.3.0...v3.4.0)
+
+### Features
+
+* **api:** api update ([184c7cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/184c7cdc565975616d748b739273e01ee2466276))
+* **api:** api update ([7fe6b1c](https://github.com/Modern-Treasury/modern-treasury-node/commit/7fe6b1c15c4e9ae3ce697a3f83e2a3ebfb0f4683))
+* **api:** manual updates ([c2708fe](https://github.com/Modern-Treasury/modern-treasury-node/commit/c2708fe493fd42e8a8615bac6c7f0f1b6057e838))
+
+
+### Bug Fixes
+
+* **mcp:** return tool execution error on jq failure ([cdd503a](https://github.com/Modern-Treasury/modern-treasury-node/commit/cdd503a3ac25f893229dc68f48100252a27ba31f))
+
+
+### Chores
+
+* **internal:** codegen related update ([a81ba50](https://github.com/Modern-Treasury/modern-treasury-node/commit/a81ba5083c6055f405fece571f02983bf8928a6e))
+* **internal:** codegen related update ([0dec104](https://github.com/Modern-Treasury/modern-treasury-node/commit/0dec1045ad37f543b010b1c664bf9a720964fd88))
+* **mcp:** clarify http auth error ([4ca24af](https://github.com/Modern-Treasury/modern-treasury-node/commit/4ca24af9b0fce578f51fbf792b0e2f5b65c618dc))
+* **mcp:** upgrade jq-web ([f5111cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/f5111cd4e797cb0a5652d8dbae85a8352fdf8c58))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([eeb0d93](https://github.com/Modern-Treasury/modern-treasury-node/commit/eeb0d936f9bad1bfa00cd6ac60f430a75d5f00a1))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([9dfcc45](https://github.com/Modern-Treasury/modern-treasury-node/commit/9dfcc45720a28e04cf1520f10cb8eda64e293f1f))
+
 ## 3.3.0 (2025-11-05)
 
 Full Changelog: [v3.2.1...v3.3.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.2.1...v3.3.0)
