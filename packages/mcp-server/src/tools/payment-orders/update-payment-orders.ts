@@ -739,7 +739,6 @@ export const tool: Tool = {
           'CIE',
           'CTX',
           'IAT',
-          'POS',
           'PPD',
           'TEL',
           'WEB',

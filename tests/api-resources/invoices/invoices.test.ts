@@ -61,7 +61,6 @@ describe('resource invoices', () => {
       currency: 'AED',
       description: 'description',
       fallback_payment_method: 'fallback_payment_method',
-      ingest_ledger_entries: true,
       invoice_line_items: [
         {
           name: 'name',
@@ -81,7 +80,6 @@ describe('resource invoices', () => {
         region: 'region',
         line2: 'line2',
       },
-      ledger_account_settlement_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
       notification_email_addresses: ['string'],
       notifications_enabled: true,
@@ -157,7 +155,6 @@ describe('resource invoices', () => {
           description: 'description',
           due_date: '2019-12-27T18:11:19.117Z',
           fallback_payment_method: 'fallback_payment_method',
-          ingest_ledger_entries: true,
           invoice_line_items: [
             {
               name: 'name',
@@ -177,7 +174,6 @@ describe('resource invoices', () => {
             region: 'region',
             line2: 'line2',
           },
-          ledger_account_settlement_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
           notification_email_addresses: ['string'],
           notifications_enabled: true,

@@ -191,7 +191,7 @@ export interface Invoice {
   invoicer_name: string | null;
 
   /**
-   * The ledger account settlement object linked to the invoice.
+   * @deprecated The ledger account settlement object linked to the invoice.
    */
   ledger_account_settlement_id: string | null;
 
@@ -452,13 +452,6 @@ export interface InvoiceCreateParams {
   fallback_payment_method?: string | null;
 
   /**
-   * Whether to ingest the ledger_entries to populate the invoice line items. If this
-   * is false, then a line item must be provided. If this is true, line_items must be
-   * empty. Ignored if ledger_account_settlement_id is empty.
-   */
-  ingest_ledger_entries?: boolean | null;
-
-  /**
    * An array of invoice line items. The API supports a maximum of 50 invoice line
    * items per invoice. If a greater number of invoice line items is required, please
    * contact support.
@@ -469,11 +462,6 @@ export interface InvoiceCreateParams {
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
-
-  /**
-   * The ID of the virtual account the invoice should be paid to.
-   */
-  ledger_account_settlement_id?: string | null;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -723,13 +711,6 @@ export interface InvoiceUpdateParams {
   fallback_payment_method?: string | null;
 
   /**
-   * Whether to ingest the ledger_entries to populate the invoice line items. If this
-   * is false, then a line item must be provided. If this is true, line_items must be
-   * empty. Ignored if ledger_account_settlement_id is empty.
-   */
-  ingest_ledger_entries?: boolean | null;
-
-  /**
    * An array of invoice line items. The API supports a maximum of 50 invoice line
    * items per invoice. If a greater number of invoice line items is required, please
    * contact support.
@@ -740,11 +721,6 @@ export interface InvoiceUpdateParams {
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceUpdateParams.InvoicerAddress | null;
-
-  /**
-   * The ID of the virtual account the invoice should be paid to.
-   */
-  ledger_account_settlement_id?: string | null;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be

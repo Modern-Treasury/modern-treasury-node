@@ -26,6 +26,10 @@ describe('resource expectedPayments', () => {
       client.expectedPayments.create(
         {
           amount_lower_bound: 0,
+          amount_reconciled: 0,
+          amount_reconciled_direction: 'credit',
+          amount_unreconciled: 0,
+          amount_unreconciled_direction: 'credit',
           amount_upper_bound: 0,
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           currency: 'AED',
@@ -122,6 +126,10 @@ describe('resource expectedPayments', () => {
         'id',
         {
           amount_lower_bound: 0,
+          amount_reconciled: 0,
+          amount_reconciled_direction: 'credit',
+          amount_unreconciled: 0,
+          amount_unreconciled_direction: 'credit',
           amount_upper_bound: 0,
           counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           currency: 'AED',

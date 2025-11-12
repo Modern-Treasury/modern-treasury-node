@@ -115,11 +115,6 @@ export const tool: Tool = {
         description:
           'When payment_method is automatic, the fallback payment method to use when an automatic payment fails. One of `manual` or `ui`.',
       },
-      ingest_ledger_entries: {
-        type: 'boolean',
-        description:
-          'Whether to ingest the ledger_entries to populate the invoice line items. If this is false, then a line item must be provided. If this is true, line_items must be empty. Ignored if ledger_account_settlement_id is empty.',
-      },
       invoice_line_items: {
         type: 'array',
         description:
@@ -193,10 +188,6 @@ export const tool: Tool = {
           },
         },
         required: ['country', 'line1', 'locality', 'postal_code', 'region'],
-      },
-      ledger_account_settlement_id: {
-        type: 'string',
-        description: 'The ID of the virtual account the invoice should be paid to.',
       },
       metadata: {
         type: 'object',
