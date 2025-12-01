@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Metadata, asTextContentResult } from 'modern-treasury-mcp/tools/types';
+import { Metadata, asErrorResult, asTextContentResult } from 'modern-treasury-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import ModernTreasury from 'modern-treasury';
@@ -135,7 +135,14 @@ export const tool: Tool = {
 
 export const handler = async (client: ModernTreasury, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await client.ledgerTransactions.create(body));
+  try {
+    return asTextContentResult(await client.ledgerTransactions.create(body));
+  } catch (error) {
+    if (error instanceof ModernTreasury.APIError) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
