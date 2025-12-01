@@ -68,7 +68,7 @@ export const handler = async (client: ModernTreasury, args: Record<string, unkno
       await maybeFilter(jq_filter, await client.ledgerAccountStatements.create(body)),
     );
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof ModernTreasury.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
