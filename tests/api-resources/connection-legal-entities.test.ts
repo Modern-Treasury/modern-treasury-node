@@ -286,7 +286,7 @@ describe('resource connectionLegalEntities', () => {
           connection_id: 'connection_id',
           legal_entity_id: 'legal_entity_id',
           per_page: 0,
-          status: 'completed',
+          status: 'closed',
         },
         { path: '/_stainless_unknown_path' },
       ),
