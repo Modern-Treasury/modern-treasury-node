@@ -263,6 +263,7 @@ export interface Transaction {
     | 'jpmc'
     | 'mt_flow'
     | 'mx'
+    | 'paxos'
     | 'paypal'
     | 'pnc'
     | 'signet'

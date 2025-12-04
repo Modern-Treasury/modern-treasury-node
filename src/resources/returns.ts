@@ -258,7 +258,8 @@ export interface ReturnObject {
     | 'interac'
     | 'manual'
     | 'sepa'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 
   updated_at: string;
 
@@ -393,9 +394,11 @@ export namespace ReturnObject {
       | 'jpmc_payment_returned_datetime'
       | 'jpmc_transaction_reference_number'
       | 'lob_check_id'
+      | 'mt_flow_ach_noc_id'
       | 'mt_flow_transfer_id'
       | 'other'
       | 'partial_swift_mir'
+      | 'paxos_transfer_id'
       | 'pnc_clearing_reference'
       | 'pnc_instruction_id'
       | 'pnc_multipayment_id'

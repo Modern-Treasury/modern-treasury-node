@@ -23,6 +23,10 @@ export const tool: Tool = {
       id: {
         type: 'string',
       },
+      contra_ledger_account_id: {
+        type: 'string',
+        description: 'The Contra Ledger Account associated to this account.',
+      },
       counterparty_id: {
         type: 'string',
         description: 'The Counterparty associated to this account.',

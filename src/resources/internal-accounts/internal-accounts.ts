@@ -171,6 +171,12 @@ export interface InternalAccount {
   connection: ConnectionsAPI.Connection;
 
   /**
+   * If the internal account links to a contra ledger account in Modern Treasury, the
+   * id of the contra ledger account will be populated here.
+   */
+  contra_ledger_account_id: string | null;
+
+  /**
    * The Counterparty associated to this account.
    */
   counterparty_id: string | null;
@@ -577,6 +583,11 @@ export namespace InternalAccountCreateParams {
 }
 
 export interface InternalAccountUpdateParams {
+  /**
+   * The Contra Ledger Account associated to this account.
+   */
+  contra_ledger_account_id?: string;
+
   /**
    * The Counterparty associated to this account.
    */
