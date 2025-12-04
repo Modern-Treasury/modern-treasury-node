@@ -88,6 +88,7 @@ describe('resource internalAccounts', () => {
       client.internalAccounts.update(
         'id',
         {
+          contra_ledger_account_id: 'contra_ledger_account_id',
           counterparty_id: 'counterparty_id',
           ledger_account_id: 'ledger_account_id',
           metadata: { foo: 'string' },
