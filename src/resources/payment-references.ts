@@ -58,6 +58,7 @@ export interface PaymentReference {
     | 'ach_trace_number'
     | 'bankprov_payment_activity_date'
     | 'bankprov_payment_id'
+    | 'blockchain_transaction_hash'
     | 'bnk_dev_prenotification_id'
     | 'bnk_dev_transfer_id'
     | 'bny_mellon_transaction_reference_number'

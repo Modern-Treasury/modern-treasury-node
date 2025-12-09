@@ -198,15 +198,19 @@ export interface IncomingPaymentDetail {
     | 'ach'
     | 'au_becs'
     | 'bacs'
+    | 'base'
     | 'book'
     | 'check'
     | 'eft'
+    | 'ethereum'
     | 'interac'
     | 'neft'
     | 'nz_becs'
+    | 'polygon'
     | 'rtp'
     | 'sepa'
     | 'signet'
+    | 'solana'
     | 'wire';
 
   updated_at: string;
@@ -281,15 +285,19 @@ export interface IncomingPaymentDetailListParams extends PageParams {
     | 'ach'
     | 'au_becs'
     | 'bacs'
+    | 'base'
     | 'book'
     | 'check'
     | 'eft'
+    | 'ethereum'
     | 'interac'
     | 'neft'
     | 'nz_becs'
+    | 'polygon'
     | 'rtp'
     | 'sepa'
     | 'signet'
+    | 'solana'
     | 'wire';
 
   /**
@@ -344,15 +352,19 @@ export interface IncomingPaymentDetailCreateAsyncParams {
     | 'ach'
     | 'au_becs'
     | 'bacs'
+    | 'base'
     | 'book'
     | 'check'
     | 'eft'
+    | 'ethereum'
     | 'interac'
     | 'neft'
     | 'nz_becs'
+    | 'polygon'
     | 'rtp'
     | 'sepa'
     | 'signet'
+    | 'solana'
     | 'wire';
 
   /**
