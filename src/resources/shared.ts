@@ -132,6 +132,11 @@ export interface ChildLegalEntityCreate {
   last_name?: string | null;
 
   /**
+   * The legal entity associations and its child legal entities.
+   */
+  legal_entity_associations?: Array<unknown> | null;
+
+  /**
    * The type of legal entity.
    */
   legal_entity_type?: 'business' | 'individual';
