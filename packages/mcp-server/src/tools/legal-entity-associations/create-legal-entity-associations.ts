@@ -173,6 +173,14 @@ export const tool: Tool = {
             type: 'string',
             description: "An individual's last name.",
           },
+          legal_entity_associations: {
+            type: 'array',
+            description: 'The legal entity associations and its child legal entities.',
+            items: {
+              type: 'object',
+              additionalProperties: true,
+            },
+          },
           legal_entity_type: {
             type: 'string',
             description: 'The type of legal entity.',
