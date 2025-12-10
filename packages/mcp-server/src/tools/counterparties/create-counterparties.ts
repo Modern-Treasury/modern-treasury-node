@@ -288,6 +288,10 @@ export const tool: Tool = {
               'updated_at',
             ],
           },
+          business_description: {
+            type: 'string',
+            description: 'A description of the business.',
+          },
           business_name: {
             type: 'string',
             description: "The business's legal business name.",
@@ -298,6 +302,11 @@ export const tool: Tool = {
           },
           compliance_details: {
             $ref: '#/$defs/legal_entity_compliance_detail',
+          },
+          country_of_incorporation: {
+            type: 'string',
+            description:
+              'The country code where the business is incorporated in the ISO 3166-1 alpha-2 or alpha-3 formats.',
           },
           date_formed: {
             type: 'string',
@@ -321,6 +330,10 @@ export const tool: Tool = {
             type: 'string',
             description: "The entity's primary email.",
           },
+          expected_activity_volume: {
+            type: 'integer',
+            description: "Monthly expected transaction volume in entity's local currency.",
+          },
           first_name: {
             type: 'string',
             description: "An individual's first name.",
@@ -338,6 +351,10 @@ export const tool: Tool = {
             items: {
               $ref: '#/$defs/legal_entity_industry_classification',
             },
+          },
+          intended_use: {
+            type: 'string',
+            description: 'A description of the intended use of the legal entity.',
           },
           last_name: {
             type: 'string',
@@ -392,6 +409,14 @@ export const tool: Tool = {
             type: 'string',
             description: "An individual's middle name.",
           },
+          operating_jurisdictions: {
+            type: 'array',
+            description:
+              'A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3 codes).',
+            items: {
+              type: 'string',
+            },
+          },
           phone_numbers: {
             type: 'array',
             items: {
@@ -415,6 +440,13 @@ export const tool: Tool = {
           prefix: {
             type: 'string',
             description: "An individual's prefix.",
+          },
+          primary_social_media_sites: {
+            type: 'array',
+            description: 'A list of primary social media URLs for the business.',
+            items: {
+              type: 'string',
+            },
           },
           risk_rating: {
             type: 'string',
@@ -1052,6 +1084,10 @@ export const tool: Tool = {
               'updated_at',
             ],
           },
+          business_description: {
+            type: 'string',
+            description: 'A description of the business.',
+          },
           business_name: {
             type: 'string',
             description: "The business's legal business name.",
@@ -1062,6 +1098,11 @@ export const tool: Tool = {
           },
           compliance_details: {
             $ref: '#/$defs/legal_entity_compliance_detail',
+          },
+          country_of_incorporation: {
+            type: 'string',
+            description:
+              'The country code where the business is incorporated in the ISO 3166-1 alpha-2 or alpha-3 formats.',
           },
           date_formed: {
             type: 'string',
@@ -1085,6 +1126,10 @@ export const tool: Tool = {
             type: 'string',
             description: "The entity's primary email.",
           },
+          expected_activity_volume: {
+            type: 'integer',
+            description: "Monthly expected transaction volume in entity's local currency.",
+          },
           first_name: {
             type: 'string',
             description: "An individual's first name.",
@@ -1102,6 +1147,10 @@ export const tool: Tool = {
             items: {
               $ref: '#/$defs/legal_entity_industry_classification',
             },
+          },
+          intended_use: {
+            type: 'string',
+            description: 'A description of the intended use of the legal entity.',
           },
           last_name: {
             type: 'string',
@@ -1135,6 +1184,14 @@ export const tool: Tool = {
             type: 'string',
             description: "An individual's middle name.",
           },
+          operating_jurisdictions: {
+            type: 'array',
+            description:
+              'A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3 codes).',
+            items: {
+              type: 'string',
+            },
+          },
           phone_numbers: {
             type: 'array',
             items: {
@@ -1158,6 +1215,13 @@ export const tool: Tool = {
           prefix: {
             type: 'string',
             description: "An individual's prefix.",
+          },
+          primary_social_media_sites: {
+            type: 'array',
+            description: 'A list of primary social media URLs for the business.',
+            items: {
+              type: 'string',
+            },
           },
           risk_rating: {
             type: 'string',

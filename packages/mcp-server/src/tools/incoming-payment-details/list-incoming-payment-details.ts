@@ -74,6 +74,7 @@ export const tool: Tool = {
           'signet',
           'solana',
           'wire',
+          'zengin',
         ],
       },
       virtual_account_id: {

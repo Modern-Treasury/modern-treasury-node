@@ -83,6 +83,11 @@ export interface ChildLegalEntityCreate {
   bank_settings?: ChildLegalEntityCreate.BankSettings | null;
 
   /**
+   * A description of the business.
+   */
+  business_description?: string | null;
+
+  /**
    * The business's legal business name.
    */
   business_name?: string | null;
@@ -93,6 +98,12 @@ export interface ChildLegalEntityCreate {
   citizenship_country?: string | null;
 
   compliance_details?: LegalEntityComplianceDetail | null;
+
+  /**
+   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+   * alpha-3 formats.
+   */
+  country_of_incorporation?: string | null;
 
   /**
    * A business's formation date (YYYY-MM-DD).
@@ -112,6 +123,11 @@ export interface ChildLegalEntityCreate {
   email?: string | null;
 
   /**
+   * Monthly expected transaction volume in entity's local currency.
+   */
+  expected_activity_volume?: number | null;
+
+  /**
    * An individual's first name.
    */
   first_name?: string | null;
@@ -125,6 +141,11 @@ export interface ChildLegalEntityCreate {
    * A list of industry classifications for the legal entity.
    */
   industry_classifications?: Array<LegalEntityIndustryClassification>;
+
+  /**
+   * A description of the intended use of the legal entity.
+   */
+  intended_use?: string | null;
 
   /**
    * An individual's last name.
@@ -164,6 +185,12 @@ export interface ChildLegalEntityCreate {
    */
   middle_name?: string | null;
 
+  /**
+   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+   * codes).
+   */
+  operating_jurisdictions?: Array<string>;
+
   phone_numbers?: Array<ChildLegalEntityCreate.PhoneNumber>;
 
   /**
@@ -180,6 +207,11 @@ export interface ChildLegalEntityCreate {
    * An individual's prefix.
    */
   prefix?: string | null;
+
+  /**
+   * A list of primary social media URLs for the business.
+   */
+  primary_social_media_sites?: Array<string>;
 
   /**
    * The risk rating of the legal entity. One of low, medium, high.
