@@ -211,7 +211,8 @@ export interface IncomingPaymentDetail {
     | 'sepa'
     | 'signet'
     | 'solana'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 
   updated_at: string;
 
@@ -298,7 +299,8 @@ export interface IncomingPaymentDetailListParams extends PageParams {
     | 'sepa'
     | 'signet'
     | 'solana'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 
   /**
    * If the incoming payment detail is in a virtual account, the ID of the Virtual
@@ -365,7 +367,8 @@ export interface IncomingPaymentDetailCreateAsyncParams {
     | 'sepa'
     | 'signet'
     | 'solana'
-    | 'wire';
+    | 'wire'
+    | 'zengin';
 
   /**
    * An optional parameter to associate the incoming payment detail to a virtual

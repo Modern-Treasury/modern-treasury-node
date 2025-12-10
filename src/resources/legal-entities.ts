@@ -85,6 +85,11 @@ export interface LegalEntity {
   bank_settings: LegalEntity.BankSettings | null;
 
   /**
+   * A description of the business.
+   */
+  business_description: string | null;
+
+  /**
    * The business's legal business name.
    */
   business_name: string | null;
@@ -95,6 +100,12 @@ export interface LegalEntity {
   citizenship_country: string | null;
 
   compliance_details: Shared.LegalEntityComplianceDetail | null;
+
+  /**
+   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+   * alpha-3 formats.
+   */
+  country_of_incorporation: string | null;
 
   created_at: string;
 
@@ -118,6 +129,11 @@ export interface LegalEntity {
   email: string | null;
 
   /**
+   * Monthly expected transaction volume in entity's local currency.
+   */
+  expected_activity_volume: number | null;
+
+  /**
    * An individual's first name.
    */
   first_name: string | null;
@@ -133,14 +149,14 @@ export interface LegalEntity {
   industry_classifications: Array<Shared.LegalEntityIndustryClassification>;
 
   /**
+   * A description of the intended use of the legal entity.
+   */
+  intended_use: string | null;
+
+  /**
    * An individual's last name.
    */
   last_name: string | null;
-
-  /**
-   * The legal entity associations and its child legal entities.
-   */
-  legal_entity_associations: Array<LegalEntityAssociationsAPI.LegalEntityAssociation> | null;
 
   /**
    * The type of legal entity.
@@ -178,6 +194,12 @@ export interface LegalEntity {
 
   object: string;
 
+  /**
+   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+   * codes).
+   */
+  operating_jurisdictions: Array<string>;
+
   phone_numbers: Array<LegalEntity.PhoneNumber>;
 
   /**
@@ -194,6 +216,11 @@ export interface LegalEntity {
    * An individual's prefix.
    */
   prefix: string | null;
+
+  /**
+   * A list of primary social media URLs for the business.
+   */
+  primary_social_media_sites: Array<string>;
 
   /**
    * The risk rating of the legal entity. One of low, medium, high.
@@ -213,6 +240,11 @@ export interface LegalEntity {
    * The entity's primary website URL.
    */
   website: string | null;
+
+  /**
+   * The legal entity associations and its child legal entities.
+   */
+  legal_entity_associations?: Array<LegalEntityAssociationsAPI.LegalEntityAssociation> | null;
 }
 
 export namespace LegalEntity {
@@ -552,6 +584,11 @@ export interface LegalEntityCreateParams {
   bank_settings?: LegalEntityCreateParams.BankSettings | null;
 
   /**
+   * A description of the business.
+   */
+  business_description?: string | null;
+
+  /**
    * The business's legal business name.
    */
   business_name?: string | null;
@@ -562,6 +599,12 @@ export interface LegalEntityCreateParams {
   citizenship_country?: string | null;
 
   compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
+  /**
+   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+   * alpha-3 formats.
+   */
+  country_of_incorporation?: string | null;
 
   /**
    * A business's formation date (YYYY-MM-DD).
@@ -581,6 +624,11 @@ export interface LegalEntityCreateParams {
   email?: string | null;
 
   /**
+   * Monthly expected transaction volume in entity's local currency.
+   */
+  expected_activity_volume?: number | null;
+
+  /**
    * An individual's first name.
    */
   first_name?: string | null;
@@ -594,6 +642,11 @@ export interface LegalEntityCreateParams {
    * A list of industry classifications for the legal entity.
    */
   industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
+
+  /**
+   * A description of the intended use of the legal entity.
+   */
+  intended_use?: string | null;
 
   /**
    * An individual's last name.
@@ -628,6 +681,12 @@ export interface LegalEntityCreateParams {
    */
   middle_name?: string | null;
 
+  /**
+   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+   * codes).
+   */
+  operating_jurisdictions?: Array<string>;
+
   phone_numbers?: Array<LegalEntityCreateParams.PhoneNumber>;
 
   /**
@@ -644,6 +703,11 @@ export interface LegalEntityCreateParams {
    * An individual's prefix.
    */
   prefix?: string | null;
+
+  /**
+   * A list of primary social media URLs for the business.
+   */
+  primary_social_media_sites?: Array<string>;
 
   /**
    * The risk rating of the legal entity. One of low, medium, high.
@@ -910,6 +974,11 @@ export interface LegalEntityUpdateParams {
   bank_settings?: LegalEntityUpdateParams.BankSettings | null;
 
   /**
+   * A description of the business.
+   */
+  business_description?: string | null;
+
+  /**
    * The business's legal business name.
    */
   business_name?: string | null;
@@ -920,6 +989,12 @@ export interface LegalEntityUpdateParams {
   citizenship_country?: string | null;
 
   compliance_details?: Shared.LegalEntityComplianceDetail | null;
+
+  /**
+   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+   * alpha-3 formats.
+   */
+  country_of_incorporation?: string | null;
 
   /**
    * A business's formation date (YYYY-MM-DD).
@@ -939,6 +1014,11 @@ export interface LegalEntityUpdateParams {
   email?: string | null;
 
   /**
+   * Monthly expected transaction volume in entity's local currency.
+   */
+  expected_activity_volume?: number | null;
+
+  /**
    * An individual's first name.
    */
   first_name?: string | null;
@@ -952,6 +1032,11 @@ export interface LegalEntityUpdateParams {
    * A list of industry classifications for the legal entity.
    */
   industry_classifications?: Array<Shared.LegalEntityIndustryClassification>;
+
+  /**
+   * A description of the intended use of the legal entity.
+   */
+  intended_use?: string | null;
 
   /**
    * An individual's last name.
@@ -981,6 +1066,12 @@ export interface LegalEntityUpdateParams {
    */
   middle_name?: string | null;
 
+  /**
+   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+   * codes).
+   */
+  operating_jurisdictions?: Array<string>;
+
   phone_numbers?: Array<LegalEntityUpdateParams.PhoneNumber>;
 
   /**
@@ -997,6 +1088,11 @@ export interface LegalEntityUpdateParams {
    * An individual's prefix.
    */
   prefix?: string | null;
+
+  /**
+   * A list of primary social media URLs for the business.
+   */
+  primary_social_media_sites?: Array<string>;
 
   /**
    * The risk rating of the legal entity. One of low, medium, high.
