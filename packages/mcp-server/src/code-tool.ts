@@ -39,6 +39,7 @@ export async function codeTool() {
           MODERN_TREASURY_API_KEY: readEnv('MODERN_TREASURY_API_KEY'),
           MODERN_TREASURY_ORGANIZATION_ID: readEnv('MODERN_TREASURY_ORGANIZATION_ID'),
           MODERN_TREASURY_WEBHOOK_KEY: readEnv('MODERN_TREASURY_WEBHOOK_KEY'),
+          MODERN_TREASURY_BASE_URL: readEnv('MODERN_TREASURY_BASE_URL'),
         }),
       },
       body: JSON.stringify({
