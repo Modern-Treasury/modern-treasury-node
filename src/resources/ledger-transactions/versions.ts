@@ -168,6 +168,12 @@ export namespace LedgerTransactionVersion {
     direction: Shared.TransactionDirection;
 
     /**
+     * The timestamp (ISO8601 format) at which the ledger transaction happened for
+     * reporting purposes.
+     */
+    effective_at: string;
+
+    /**
      * The currency of the ledger account.
      */
     ledger_account_currency: string;
