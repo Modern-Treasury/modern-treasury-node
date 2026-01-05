@@ -56,7 +56,7 @@ If you use Claude Code, you can install the MCP server by running the command be
 environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
 
 ```
-claude mcp add --transport stdio modern_treasury_api --env MODERN_TREASURY_API_KEY="Your MODERN_TREASURY_API_KEY here." MODERN_TREASURY_ORGANIZATION_ID="Your MODERN_TREASURY_ORGANIZATION_ID here." MODERN_TREASURY_WEBHOOK_KEY="Your MODERN_TREASURY_WEBHOOK_KEY here." -- npx -y modern-treasury-mcp
+claude mcp add modern_treasury_mcp_api --env MODERN_TREASURY_API_KEY="Your MODERN_TREASURY_API_KEY here." MODERN_TREASURY_ORGANIZATION_ID="Your MODERN_TREASURY_ORGANIZATION_ID here." MODERN_TREASURY_WEBHOOK_KEY="Your MODERN_TREASURY_WEBHOOK_KEY here." -- npx -y modern-treasury-mcp
 ```
 
 ## Code Mode
