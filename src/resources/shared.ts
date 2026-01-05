@@ -883,6 +883,12 @@ export interface LedgerEntryCreateRequest {
   available_balance_amount?: { [key: string]: number } | null;
 
   /**
+   * The timestamp (ISO8601 format) at which the ledger transaction happened for
+   * reporting purposes.
+   */
+  effective_at?: string;
+
+  /**
    * Lock version of the ledger account. This can be passed when creating a ledger
    * transaction to only succeed if no ledger transactions have posted since the
    * given version. See our post about Designing the Ledgers API with Optimistic
