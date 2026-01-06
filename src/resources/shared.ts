@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import * as LegalEntitiesAPI from './legal-entities';
+
 export type AccountsType = 'external_accounts' | 'internal_accounts';
 
 export interface Address {
@@ -155,7 +157,7 @@ export interface ChildLegalEntityCreate {
   /**
    * The legal entity associations and its child legal entities.
    */
-  legal_entity_associations?: Array<unknown> | null;
+  legal_entity_associations?: Array<LegalEntitiesAPI.LegalEntityAssociationInlineCreate> | null;
 
   /**
    * The type of legal entity.

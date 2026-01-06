@@ -12,6 +12,7 @@ export {
 export {
   LineItems,
   type InvoiceLineItem,
+  type InvoiceLineItemCreate,
   type LineItemCreateParams,
   type LineItemRetrieveParams,
   type LineItemUpdateParams,
