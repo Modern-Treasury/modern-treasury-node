@@ -11,7 +11,11 @@ const client = new ModernTreasury({
 describe('resource ledgerAccountBalanceMonitors', () => {
   test('create: only required params', async () => {
     const responsePromise = client.ledgerAccountBalanceMonitors.create({
-      alert_condition: { field: 'field', operator: 'operator', value: 0 },
+      alert_condition: {
+        field: 'field',
+        operator: 'operator',
+        value: 0,
+      },
       ledger_account_id: 'ledger_account_id',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,10 +29,18 @@ describe('resource ledgerAccountBalanceMonitors', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.ledgerAccountBalanceMonitors.create({
-      alert_condition: { field: 'field', operator: 'operator', value: 0 },
+      alert_condition: {
+        field: 'field',
+        operator: 'operator',
+        value: 0,
+      },
       ledger_account_id: 'ledger_account_id',
       description: 'description',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
     });
   });
 
@@ -59,7 +71,14 @@ describe('resource ledgerAccountBalanceMonitors', () => {
     await expect(
       client.ledgerAccountBalanceMonitors.update(
         'id',
-        { description: 'description', metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
+        {
+          description: 'description',
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);

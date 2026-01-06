@@ -24,7 +24,11 @@ describe('resource ledgers', () => {
     const response = await client.ledgers.create({
       name: 'name',
       description: 'description',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
     });
   });
 
@@ -57,7 +61,11 @@ describe('resource ledgers', () => {
         'id',
         {
           description: 'description',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
           name: 'name',
         },
         { path: '/_stainless_unknown_path' },

@@ -101,7 +101,11 @@ describe('resource legalEntityAssociations', () => {
         legal_entity_associations: [{}],
         legal_entity_type: 'business',
         legal_structure: 'corporation',
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+        metadata: {
+          key: 'value',
+          foo: 'bar',
+          modern: 'treasury',
+        },
         middle_name: 'middle_name',
         operating_jurisdictions: ['string'],
         phone_numbers: [{ phone_number: 'phone_number' }],

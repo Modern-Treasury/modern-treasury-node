@@ -35,7 +35,11 @@ describe('resource transactions', () => {
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       vendor_code: 'vendor_code',
       vendor_code_type: 'vendor_code_type',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
       posted: true,
       type: 'ach',
       vendor_customer_id: 'vendor_customer_id',

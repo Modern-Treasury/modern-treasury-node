@@ -66,7 +66,11 @@ describe('resource bulkRequests', () => {
                 available_balance_amount: { foo: 0 },
                 effective_at: '2019-12-27T18:11:19.117Z',
                 lock_version: 0,
-                metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+                metadata: {
+                  key: 'value',
+                  foo: 'bar',
+                  modern: 'treasury',
+                },
                 pending_balance_amount: { foo: 0 },
                 posted_balance_amount: { foo: 0 },
                 show_resulting_ledger_account_balances: true,
@@ -78,7 +82,11 @@ describe('resource bulkRequests', () => {
             external_id: 'external_id',
             ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
             ledgerable_type: 'expected_payment',
-            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+            metadata: {
+              key: 'value',
+              foo: 'bar',
+              modern: 'treasury',
+            },
             status: 'archived',
           },
           ledger_transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -87,10 +95,18 @@ describe('resource bulkRequests', () => {
               amount: 0,
               accounting_category_id: 'accounting_category_id',
               description: 'description',
-              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+              metadata: {
+                key: 'value',
+                foo: 'bar',
+                modern: 'treasury',
+              },
             },
           ],
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
           nsf_protected: true,
           originating_party_name: 'originating_party_name',
           priority: 'high',
@@ -111,9 +127,17 @@ describe('resource bulkRequests', () => {
               ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
               ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
               ledgerable_type: 'counterparty',
-              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+              metadata: {
+                key: 'value',
+                foo: 'bar',
+                modern: 'treasury',
+              },
             },
-            metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+            metadata: {
+              key: 'value',
+              foo: 'bar',
+              modern: 'treasury',
+            },
             name: 'name',
             party_address: {
               country: 'country',
@@ -128,7 +152,11 @@ describe('resource bulkRequests', () => {
             party_type: 'business',
             plaid_processor_token: 'plaid_processor_token',
             routing_details: [
-              { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+              {
+                routing_number: 'routing_number',
+                routing_number_type: 'aba',
+                payment_type: 'ach',
+              },
             ],
           },
           receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -144,7 +172,11 @@ describe('resource bulkRequests', () => {
           ultimate_receiving_party_name: 'ultimate_receiving_party_name',
         },
       ],
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
     });
   });
 

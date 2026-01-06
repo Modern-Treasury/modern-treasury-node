@@ -43,7 +43,13 @@ describe('resource ledgerEntries', () => {
     await expect(
       client.ledgerEntries.update(
         'id',
-        { metadata: { key: 'value', foo: 'bar', modern: 'treasury' } },
+        {
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
@@ -67,7 +73,13 @@ describe('resource ledgerEntries', () => {
         {
           id: ['string'],
           after_cursor: 'after_cursor',
-          amount: { eq: 0, gt: 0, gte: 0, lt: 0, lte: 0 },
+          amount: {
+            eq: 0,
+            gt: 0,
+            gte: 0,
+            lt: 0,
+            lte: 0,
+          },
           as_of_lock_version: 0,
           direction: 'credit',
           effective_at: { foo: '2019-12-27T18:11:19.117Z' },
