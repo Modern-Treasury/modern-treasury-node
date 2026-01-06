@@ -56,7 +56,11 @@ describe('resource internalAccounts', () => {
         region: 'region',
         line2: 'line2',
       },
-      vendor_attributes: { key: 'value', foo: 'bar', modern: 'treasury' },
+      vendor_attributes: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
     });
   });
 

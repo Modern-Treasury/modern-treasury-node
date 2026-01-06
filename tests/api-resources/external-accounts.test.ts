@@ -39,9 +39,17 @@ describe('resource externalAccounts', () => {
         ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
         ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         ledgerable_type: 'counterparty',
-        metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+        metadata: {
+          key: 'value',
+          foo: 'bar',
+          modern: 'treasury',
+        },
       },
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
       name: 'name',
       party_address: {
         country: 'country',
@@ -56,7 +64,11 @@ describe('resource externalAccounts', () => {
       party_type: 'business',
       plaid_processor_token: 'plaid_processor_token',
       routing_details: [
-        { routing_number: 'routing_number', routing_number_type: 'aba', payment_type: 'ach' },
+        {
+          routing_number: 'routing_number',
+          routing_number_type: 'aba',
+          payment_type: 'ach',
+        },
       ],
     });
   });

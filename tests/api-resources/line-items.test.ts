@@ -48,7 +48,11 @@ describe('resource lineItems', () => {
     const response = await client.lineItems.update('id', {
       itemizable_type: 'expected_payments',
       itemizable_id: 'itemizable_id',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
     });
   });
 
