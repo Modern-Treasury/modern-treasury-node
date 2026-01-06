@@ -34,7 +34,11 @@ describe('resource ledgerAccountCategories', () => {
       currency_exponent: 0,
       description: 'description',
       ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
     });
   });
 
@@ -78,7 +82,11 @@ describe('resource ledgerAccountCategories', () => {
         'id',
         {
           description: 'description',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
           name: 'name',
         },
         { path: '/_stainless_unknown_path' },

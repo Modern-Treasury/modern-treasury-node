@@ -30,7 +30,11 @@ describe('resource ledgerAccountSettlements', () => {
       allow_either_direction: true,
       description: 'description',
       effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
       skip_settlement_ledger_transaction: true,
       status: 'pending',
     });
@@ -65,7 +69,11 @@ describe('resource ledgerAccountSettlements', () => {
         'id',
         {
           description: 'description',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
           status: 'posted',
         },
         { path: '/_stainless_unknown_path' },

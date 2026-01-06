@@ -12,7 +12,11 @@ describe('resource ledgerTransactions', () => {
   test('create: only required params', async () => {
     const responsePromise = client.ledgerTransactions.create({
       ledger_entries: [
-        { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        {
+          amount: 0,
+          direction: 'credit',
+          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
       ],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -34,7 +38,11 @@ describe('resource ledgerTransactions', () => {
           available_balance_amount: { foo: 0 },
           effective_at: '2019-12-27T18:11:19.117Z',
           lock_version: 0,
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
           pending_balance_amount: { foo: 0 },
           posted_balance_amount: { foo: 0 },
           show_resulting_ledger_account_balances: true,
@@ -46,7 +54,11 @@ describe('resource ledgerTransactions', () => {
       external_id: 'external_id',
       ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       ledgerable_type: 'expected_payment',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
       status: 'archived',
     });
   });
@@ -89,7 +101,11 @@ describe('resource ledgerTransactions', () => {
               available_balance_amount: { foo: 0 },
               effective_at: '2019-12-27T18:11:19.117Z',
               lock_version: 0,
-              metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+              metadata: {
+                key: 'value',
+                foo: 'bar',
+                modern: 'treasury',
+              },
               pending_balance_amount: { foo: 0 },
               posted_balance_amount: { foo: 0 },
               show_resulting_ledger_account_balances: true,
@@ -97,7 +113,11 @@ describe('resource ledgerTransactions', () => {
           ],
           ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           ledgerable_type: 'expected_payment',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
           status: 'archived',
         },
         { path: '/_stainless_unknown_path' },
@@ -123,7 +143,13 @@ describe('resource ledgerTransactions', () => {
         {
           id: ['string'],
           after_cursor: 'after_cursor',
-          amount: { eq: 0, gt: 0, gte: 0, lt: 0, lte: 0 },
+          amount: {
+            eq: 0,
+            gt: 0,
+            gte: 0,
+            lt: 0,
+            lte: 0,
+          },
           effective_at: { foo: '2019-12-27T18:11:19.117Z' },
           effective_date: { foo: '2019-12-27T18:11:19.117Z' },
           external_id: 'external_id',
@@ -150,7 +176,11 @@ describe('resource ledgerTransactions', () => {
   test('createPartialPost: only required params', async () => {
     const responsePromise = client.ledgerTransactions.createPartialPost('id', {
       posted_ledger_entries: [
-        { amount: 0, direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        {
+          amount: 0,
+          direction: 'credit',
+          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
       ],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -169,12 +199,20 @@ describe('resource ledgerTransactions', () => {
           amount: 0,
           direction: 'credit',
           ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
         },
       ],
       description: 'description',
       effective_at: '2019-12-27T18:11:19.117Z',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
     });
   });
 
@@ -200,7 +238,11 @@ describe('resource ledgerTransactions', () => {
           external_id: 'external_id',
           ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           ledgerable_type: 'expected_payment',
-          metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
           status: 'archived',
         },
         { path: '/_stainless_unknown_path' },

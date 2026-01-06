@@ -26,7 +26,11 @@ describe('resource lineItems', () => {
       unit_amount: 0,
       description: 'description',
       direction: 'direction',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
       quantity: 0,
       unit_amount_decimal: 'unit_amount_decimal',
     });
@@ -63,7 +67,11 @@ describe('resource lineItems', () => {
       invoice_id: 'invoice_id',
       description: 'description',
       direction: 'direction',
-      metadata: { key: 'value', foo: 'bar', modern: 'treasury' },
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
       name: 'name',
       quantity: 0,
       unit_amount: 0,

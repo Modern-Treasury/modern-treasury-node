@@ -36,7 +36,10 @@ describe('resource journalReports', () => {
     await expect(
       client.journalReports.update(
         'id',
-        { metadata: {}, status: 'status' },
+        {
+          metadata: {},
+          status: 'status',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
