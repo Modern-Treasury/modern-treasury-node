@@ -245,6 +245,48 @@ export interface LedgerTransaction {
   updated_at: string;
 }
 
+export interface LedgerTransactionUpdate {
+  /**
+   * An optional description for internal use.
+   */
+  description?: string | null;
+
+  /**
+   * The timestamp (ISO8601 format) at which the ledger transaction happened for
+   * reporting purposes.
+   */
+  effective_at?: string;
+
+  /**
+   * An array of ledger entry objects.
+   */
+  ledger_entries?: Array<Shared.LedgerEntryCreateRequest>;
+
+  /**
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the id will be populated here, otherwise null.
+   */
+  ledgerable_id?: string;
+
+  /**
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the type will be populated here, otherwise null. This can be one of
+   * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+   */
+  ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * To post a ledger transaction at creation, use `posted`.
+   */
+  status?: 'archived' | 'pending' | 'posted';
+}
+
 export interface LedgerTransactionCreateParams {
   /**
    * An array of ledger entry objects.
@@ -549,6 +591,7 @@ LedgerTransactions.Versions = Versions;
 export declare namespace LedgerTransactions {
   export {
     type LedgerTransaction as LedgerTransaction,
+    type LedgerTransactionUpdate as LedgerTransactionUpdate,
     type LedgerTransactionsPage as LedgerTransactionsPage,
     type LedgerTransactionCreateParams as LedgerTransactionCreateParams,
     type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,

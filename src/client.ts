@@ -31,6 +31,7 @@ import {
 } from './resources/account-collection-flows';
 import {
   AccountDetail,
+  AccountDetailCreate,
   AccountDetailCreateParams,
   AccountDetailDeleteParams,
   AccountDetailListParams,
@@ -67,6 +68,7 @@ import {
 } from './resources/counterparties';
 import {
   Document,
+  DocumentCreate,
   DocumentCreateParams,
   DocumentListParams,
   Documents,
@@ -75,12 +77,15 @@ import {
 import { Event, EventListParams, Events, EventsPage } from './resources/events';
 import {
   ExpectedPayment,
+  ExpectedPaymentCreate,
   ExpectedPaymentCreateParams,
   ExpectedPaymentListParams,
   ExpectedPaymentType,
+  ExpectedPaymentUpdate,
   ExpectedPaymentUpdateParams,
   ExpectedPayments,
   ExpectedPaymentsPage,
+  LineItem,
   ReconciliationRule,
 } from './resources/expected-payments';
 import {
@@ -103,15 +108,12 @@ import {
   ForeignExchangeQuotesPage,
 } from './resources/foreign-exchange-quotes';
 import {
+  Hold,
   HoldCreateParams,
-  HoldCreateResponse,
   HoldListParams,
-  HoldListResponse,
-  HoldListResponsesPage,
-  HoldRetrieveResponse,
   HoldUpdateParams,
-  HoldUpdateResponse,
   Holds,
+  HoldsPage,
 } from './resources/holds';
 import {
   IncomingPaymentDetail,
@@ -145,9 +147,8 @@ import {
   LedgerAccountCategoryUpdateParams,
 } from './resources/ledger-account-categories';
 import {
+  LedgerAccountStatement,
   LedgerAccountStatementCreateParams,
-  LedgerAccountStatementCreateResponse,
-  LedgerAccountStatementRetrieveResponse,
   LedgerAccountStatements,
 } from './resources/ledger-account-statements';
 import {
@@ -179,33 +180,36 @@ import {
   LegalEntities,
   LegalEntitiesPage,
   LegalEntity,
+  LegalEntityAssociationInlineCreate,
+  LegalEntityCreate,
   LegalEntityCreateParams,
   LegalEntityListParams,
   LegalEntityUpdateParams,
 } from './resources/legal-entities';
 import {
+  ChildLegalEntity,
   LegalEntityAssociation,
   LegalEntityAssociationCreateParams,
   LegalEntityAssociations,
 } from './resources/legal-entity-associations';
 import {
-  LineItem,
+  Accounting,
   LineItemListParams,
+  LineItemListResponse,
+  LineItemListResponsesPage,
   LineItemRetrieveParams,
+  LineItemRetrieveResponse,
   LineItemUpdateParams,
+  LineItemUpdateResponse,
   LineItems,
-  LineItemsPage,
 } from './resources/line-items';
 import {
+  PaymentAction,
   PaymentActionCreateParams,
-  PaymentActionCreateResponse,
   PaymentActionListParams,
-  PaymentActionListResponse,
-  PaymentActionListResponsesPage,
-  PaymentActionRetrieveResponse,
   PaymentActionUpdateParams,
-  PaymentActionUpdateResponse,
   PaymentActions,
+  PaymentActionsPage,
 } from './resources/payment-actions';
 import {
   PaymentFlow,
@@ -230,6 +234,7 @@ import {
 } from './resources/returns';
 import {
   RoutingDetail,
+  RoutingDetailCreate,
   RoutingDetailCreateParams,
   RoutingDetailDeleteParams,
   RoutingDetailListParams,
@@ -251,6 +256,7 @@ import {
   VirtualAccountsPage,
 } from './resources/virtual-accounts';
 import {
+  AccountCapability,
   InternalAccount,
   InternalAccountCreateParams,
   InternalAccountListParams,
@@ -283,6 +289,7 @@ import {
   LedgerTransactionCreatePartialPostParams,
   LedgerTransactionCreateReversalParams,
   LedgerTransactionListParams,
+  LedgerTransactionUpdate,
   LedgerTransactionUpdateParams,
   LedgerTransactions,
   LedgerTransactionsPage,
@@ -290,19 +297,23 @@ import {
 import {
   ContactDetailCreateRequest,
   PaymentOrder,
+  PaymentOrderAsyncCreate,
   PaymentOrderCreateAsyncParams,
   PaymentOrderCreateParams,
   PaymentOrderListParams,
   PaymentOrderSubtype,
   PaymentOrderType,
+  PaymentOrderUpdate,
   PaymentOrderUpdateParams,
   PaymentOrders,
   PaymentOrdersPage,
 } from './resources/payment-orders/payment-orders';
 import {
   Transaction,
+  TransactionCreate,
   TransactionCreateParams,
   TransactionListParams,
+  TransactionUpdate,
   TransactionUpdateParams,
   Transactions,
   TransactionsPage,
@@ -1169,7 +1180,10 @@ export declare namespace ModernTreasury {
   export {
     ExpectedPayments as ExpectedPayments,
     type ExpectedPayment as ExpectedPayment,
+    type ExpectedPaymentCreate as ExpectedPaymentCreate,
     type ExpectedPaymentType as ExpectedPaymentType,
+    type ExpectedPaymentUpdate as ExpectedPaymentUpdate,
+    type LineItem as LineItem,
     type ReconciliationRule as ReconciliationRule,
     type ExpectedPaymentsPage as ExpectedPaymentsPage,
     type ExpectedPaymentCreateParams as ExpectedPaymentCreateParams,
@@ -1212,6 +1226,7 @@ export declare namespace ModernTreasury {
   export {
     Documents as Documents,
     type Document as Document,
+    type DocumentCreate as DocumentCreate,
     type DocumentsPage as DocumentsPage,
     type DocumentCreateParams as DocumentCreateParams,
     type DocumentListParams as DocumentListParams,
@@ -1229,6 +1244,7 @@ export declare namespace ModernTreasury {
   export {
     AccountDetails as AccountDetails,
     type AccountDetail as AccountDetail,
+    type AccountDetailCreate as AccountDetailCreate,
     type AccountDetailsPage as AccountDetailsPage,
     type AccountDetailCreateParams as AccountDetailCreateParams,
     type AccountDetailRetrieveParams as AccountDetailRetrieveParams,
@@ -1239,6 +1255,7 @@ export declare namespace ModernTreasury {
   export {
     RoutingDetails as RoutingDetails,
     type RoutingDetail as RoutingDetail,
+    type RoutingDetailCreate as RoutingDetailCreate,
     type RoutingDetailsPage as RoutingDetailsPage,
     type RoutingDetailCreateParams as RoutingDetailCreateParams,
     type RoutingDetailRetrieveParams as RoutingDetailRetrieveParams,
@@ -1248,6 +1265,7 @@ export declare namespace ModernTreasury {
 
   export {
     InternalAccounts as InternalAccounts,
+    type AccountCapability as AccountCapability,
     type InternalAccount as InternalAccount,
     type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
     type InternalAccountsPage as InternalAccountsPage,
@@ -1301,8 +1319,7 @@ export declare namespace ModernTreasury {
 
   export {
     LedgerAccountStatements as LedgerAccountStatements,
-    type LedgerAccountStatementCreateResponse as LedgerAccountStatementCreateResponse,
-    type LedgerAccountStatementRetrieveResponse as LedgerAccountStatementRetrieveResponse,
+    type LedgerAccountStatement as LedgerAccountStatement,
     type LedgerAccountStatementCreateParams as LedgerAccountStatementCreateParams,
   };
 
@@ -1318,6 +1335,7 @@ export declare namespace ModernTreasury {
   export {
     LedgerTransactions as LedgerTransactions,
     type LedgerTransaction as LedgerTransaction,
+    type LedgerTransactionUpdate as LedgerTransactionUpdate,
     type LedgerTransactionsPage as LedgerTransactionsPage,
     type LedgerTransactionCreateParams as LedgerTransactionCreateParams,
     type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,
@@ -1328,8 +1346,11 @@ export declare namespace ModernTreasury {
 
   export {
     LineItems as LineItems,
-    type LineItem as LineItem,
-    type LineItemsPage as LineItemsPage,
+    type Accounting as Accounting,
+    type LineItemRetrieveResponse as LineItemRetrieveResponse,
+    type LineItemUpdateResponse as LineItemUpdateResponse,
+    type LineItemListResponse as LineItemListResponse,
+    type LineItemListResponsesPage as LineItemListResponsesPage,
     type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
     type LineItemListParams as LineItemListParams,
@@ -1348,8 +1369,10 @@ export declare namespace ModernTreasury {
     PaymentOrders as PaymentOrders,
     type ContactDetailCreateRequest as ContactDetailCreateRequest,
     type PaymentOrder as PaymentOrder,
+    type PaymentOrderAsyncCreate as PaymentOrderAsyncCreate,
     type PaymentOrderSubtype as PaymentOrderSubtype,
     type PaymentOrderType as PaymentOrderType,
+    type PaymentOrderUpdate as PaymentOrderUpdate,
     type PaymentOrdersPage as PaymentOrdersPage,
     type PaymentOrderCreateParams as PaymentOrderCreateParams,
     type PaymentOrderUpdateParams as PaymentOrderUpdateParams,
@@ -1375,6 +1398,8 @@ export declare namespace ModernTreasury {
   export {
     Transactions as Transactions,
     type Transaction as Transaction,
+    type TransactionCreate as TransactionCreate,
+    type TransactionUpdate as TransactionUpdate,
     type TransactionsPage as TransactionsPage,
     type TransactionCreateParams as TransactionCreateParams,
     type TransactionUpdateParams as TransactionUpdateParams,
@@ -1440,6 +1465,8 @@ export declare namespace ModernTreasury {
   export {
     LegalEntities as LegalEntities,
     type LegalEntity as LegalEntity,
+    type LegalEntityAssociationInlineCreate as LegalEntityAssociationInlineCreate,
+    type LegalEntityCreate as LegalEntityCreate,
     type LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
@@ -1448,17 +1475,15 @@ export declare namespace ModernTreasury {
 
   export {
     LegalEntityAssociations as LegalEntityAssociations,
+    type ChildLegalEntity as ChildLegalEntity,
     type LegalEntityAssociation as LegalEntityAssociation,
     type LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
   };
 
   export {
     PaymentActions as PaymentActions,
-    type PaymentActionCreateResponse as PaymentActionCreateResponse,
-    type PaymentActionRetrieveResponse as PaymentActionRetrieveResponse,
-    type PaymentActionUpdateResponse as PaymentActionUpdateResponse,
-    type PaymentActionListResponse as PaymentActionListResponse,
-    type PaymentActionListResponsesPage as PaymentActionListResponsesPage,
+    type PaymentAction as PaymentAction,
+    type PaymentActionsPage as PaymentActionsPage,
     type PaymentActionCreateParams as PaymentActionCreateParams,
     type PaymentActionUpdateParams as PaymentActionUpdateParams,
     type PaymentActionListParams as PaymentActionListParams,
@@ -1470,11 +1495,8 @@ export declare namespace ModernTreasury {
 
   export {
     Holds as Holds,
-    type HoldCreateResponse as HoldCreateResponse,
-    type HoldRetrieveResponse as HoldRetrieveResponse,
-    type HoldUpdateResponse as HoldUpdateResponse,
-    type HoldListResponse as HoldListResponse,
-    type HoldListResponsesPage as HoldListResponsesPage,
+    type Hold as Hold,
+    type HoldsPage as HoldsPage,
     type HoldCreateParams as HoldCreateParams,
     type HoldUpdateParams as HoldUpdateParams,
     type HoldListParams as HoldListParams,

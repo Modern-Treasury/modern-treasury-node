@@ -11,6 +11,7 @@ export {
 } from './balance-reports';
 export {
   InternalAccounts,
+  type AccountCapability,
   type InternalAccount,
   type InternalAccountUpdateAccountCapabilityResponse,
   type InternalAccountCreateParams,

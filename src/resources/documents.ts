@@ -134,6 +134,32 @@ export namespace Document {
   }
 }
 
+export interface DocumentCreate {
+  /**
+   * The unique identifier for the associated object.
+   */
+  documentable_id: string;
+
+  documentable_type:
+    | 'counterparties'
+    | 'expected_payments'
+    | 'external_accounts'
+    | 'identifications'
+    | 'incoming_payment_details'
+    | 'internal_accounts'
+    | 'organizations'
+    | 'payment_orders'
+    | 'transactions'
+    | 'connections';
+
+  file: Uploadable;
+
+  /**
+   * A category given to the document, can be `null`.
+   */
+  document_type?: string;
+}
+
 export interface DocumentCreateParams {
   /**
    * The unique identifier for the associated object.
@@ -187,6 +213,7 @@ export interface DocumentListParams extends PageParams {
 export declare namespace Documents {
   export {
     type Document as Document,
+    type DocumentCreate as DocumentCreate,
     type DocumentsPage as DocumentsPage,
     type DocumentCreateParams as DocumentCreateParams,
     type DocumentListParams as DocumentListParams,

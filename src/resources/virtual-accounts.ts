@@ -144,7 +144,7 @@ export interface VirtualAccountCreateParams {
   /**
    * An array of account detail objects.
    */
-  account_details?: Array<VirtualAccountCreateParams.AccountDetail>;
+  account_details?: Array<AccountDetailsAPI.AccountDetailCreate>;
 
   /**
    * The ID of the counterparty that the virtual account belongs to.
@@ -186,114 +186,7 @@ export interface VirtualAccountCreateParams {
   /**
    * An array of routing detail objects.
    */
-  routing_details?: Array<VirtualAccountCreateParams.RoutingDetail>;
-}
-
-export namespace VirtualAccountCreateParams {
-  export interface AccountDetail {
-    /**
-     * The account number for the bank account.
-     */
-    account_number: string;
-
-    /**
-     * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
-     * account number is in a generic format.
-     */
-    account_number_type?:
-      | 'au_number'
-      | 'base_address'
-      | 'clabe'
-      | 'ethereum_address'
-      | 'hk_number'
-      | 'iban'
-      | 'id_number'
-      | 'nz_number'
-      | 'other'
-      | 'pan'
-      | 'polygon_address'
-      | 'sg_number'
-      | 'solana_address'
-      | 'wallet_address';
-  }
-
-  export interface RoutingDetail {
-    /**
-     * The routing number of the bank.
-     */
-    routing_number: string;
-
-    /**
-     * The type of routing number. See
-     * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
-     * more details.
-     */
-    routing_number_type:
-      | 'aba'
-      | 'au_bsb'
-      | 'br_codigo'
-      | 'ca_cpa'
-      | 'chips'
-      | 'cnaps'
-      | 'dk_interbank_clearing_code'
-      | 'gb_sort_code'
-      | 'hk_interbank_clearing_code'
-      | 'hu_interbank_clearing_code'
-      | 'id_sknbi_code'
-      | 'il_bank_code'
-      | 'in_ifsc'
-      | 'jp_zengin_code'
-      | 'mx_bank_identifier'
-      | 'my_branch_code'
-      | 'nz_national_clearing_code'
-      | 'pl_national_clearing_code'
-      | 'se_bankgiro_clearing_code'
-      | 'sg_interbank_clearing_code'
-      | 'swift'
-      | 'za_national_clearing_code';
-
-    /**
-     * If the routing detail is to be used for a specific payment type this field will
-     * be populated, otherwise null.
-     */
-    payment_type?:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'base'
-      | 'book'
-      | 'card'
-      | 'chats'
-      | 'check'
-      | 'cross_border'
-      | 'dk_nets'
-      | 'eft'
-      | 'ethereum'
-      | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
-      | 'masav'
-      | 'mx_ccen'
-      | 'neft'
-      | 'nics'
-      | 'nz_becs'
-      | 'pl_elixir'
-      | 'polygon'
-      | 'provxchange'
-      | 'ro_sent'
-      | 'rtp'
-      | 'se_bankgirot'
-      | 'sen'
-      | 'sepa'
-      | 'sg_giro'
-      | 'sic'
-      | 'signet'
-      | 'sknbi'
-      | 'solana'
-      | 'wire'
-      | 'zengin'
-      | null;
-  }
+  routing_details?: Array<RoutingDetailsAPI.RoutingDetailCreate>;
 }
 
 export interface VirtualAccountUpdateParams {
