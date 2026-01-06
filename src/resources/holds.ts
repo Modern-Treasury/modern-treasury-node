@@ -10,21 +10,21 @@ export class Holds extends APIResource {
   /**
    * Create a new hold
    */
-  create(body: HoldCreateParams, options?: RequestOptions): APIPromise<HoldCreateResponse> {
+  create(body: HoldCreateParams, options?: RequestOptions): APIPromise<Hold> {
     return this._client.post('/api/holds', { body, ...options });
   }
 
   /**
    * Get a specific hold
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<HoldRetrieveResponse> {
+  retrieve(id: string, options?: RequestOptions): APIPromise<Hold> {
     return this._client.get(path`/api/holds/${id}`, options);
   }
 
   /**
    * Update a hold
    */
-  update(id: string, body: HoldUpdateParams, options?: RequestOptions): APIPromise<HoldUpdateResponse> {
+  update(id: string, body: HoldUpdateParams, options?: RequestOptions): APIPromise<Hold> {
     return this._client.patch(path`/api/holds/${id}`, { body, ...options });
   }
 
@@ -34,176 +34,14 @@ export class Holds extends APIResource {
   list(
     query: HoldListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<HoldListResponsesPage, HoldListResponse> {
-    return this._client.getAPIList('/api/holds', Page<HoldListResponse>, { query, ...options });
+  ): PagePromise<HoldsPage, Hold> {
+    return this._client.getAPIList('/api/holds', Page<Hold>, { query, ...options });
   }
 }
 
-export type HoldListResponsesPage = Page<HoldListResponse>;
+export type HoldsPage = Page<Hold>;
 
-export interface HoldCreateResponse {
-  id: string;
-
-  created_at: string;
-
-  /**
-   * The type of object
-   */
-  object: 'hold';
-
-  /**
-   * The status of the hold
-   */
-  status: 'active' | 'resolved';
-
-  /**
-   * The ID of the target being held
-   */
-  target_id: string;
-
-  /**
-   * The type of target being held
-   */
-  target_type: 'payment_order';
-
-  updated_at: string;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode?: boolean;
-
-  /**
-   * Additional metadata for the hold
-   */
-  metadata?: { [key: string]: string } | null;
-
-  /**
-   * The reason for the hold
-   */
-  reason?: string | null;
-
-  /**
-   * The resolution of the hold
-   */
-  resolution?: string | null;
-
-  /**
-   * When the hold was resolved
-   */
-  resolved_at?: string | null;
-}
-
-export interface HoldRetrieveResponse {
-  id: string;
-
-  created_at: string;
-
-  /**
-   * The type of object
-   */
-  object: 'hold';
-
-  /**
-   * The status of the hold
-   */
-  status: 'active' | 'resolved';
-
-  /**
-   * The ID of the target being held
-   */
-  target_id: string;
-
-  /**
-   * The type of target being held
-   */
-  target_type: 'payment_order';
-
-  updated_at: string;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode?: boolean;
-
-  /**
-   * Additional metadata for the hold
-   */
-  metadata?: { [key: string]: string } | null;
-
-  /**
-   * The reason for the hold
-   */
-  reason?: string | null;
-
-  /**
-   * The resolution of the hold
-   */
-  resolution?: string | null;
-
-  /**
-   * When the hold was resolved
-   */
-  resolved_at?: string | null;
-}
-
-export interface HoldUpdateResponse {
-  id: string;
-
-  created_at: string;
-
-  /**
-   * The type of object
-   */
-  object: 'hold';
-
-  /**
-   * The status of the hold
-   */
-  status: 'active' | 'resolved';
-
-  /**
-   * The ID of the target being held
-   */
-  target_id: string;
-
-  /**
-   * The type of target being held
-   */
-  target_type: 'payment_order';
-
-  updated_at: string;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode?: boolean;
-
-  /**
-   * Additional metadata for the hold
-   */
-  metadata?: { [key: string]: string } | null;
-
-  /**
-   * The reason for the hold
-   */
-  reason?: string | null;
-
-  /**
-   * The resolution of the hold
-   */
-  resolution?: string | null;
-
-  /**
-   * When the hold was resolved
-   */
-  resolved_at?: string | null;
-}
-
-export interface HoldListResponse {
+export interface Hold {
   id: string;
 
   created_at: string;
@@ -324,11 +162,8 @@ export interface HoldListParams extends PageParams {
 
 export declare namespace Holds {
   export {
-    type HoldCreateResponse as HoldCreateResponse,
-    type HoldRetrieveResponse as HoldRetrieveResponse,
-    type HoldUpdateResponse as HoldUpdateResponse,
-    type HoldListResponse as HoldListResponse,
-    type HoldListResponsesPage as HoldListResponsesPage,
+    type Hold as Hold,
+    type HoldsPage as HoldsPage,
     type HoldCreateParams as HoldCreateParams,
     type HoldUpdateParams as HoldUpdateParams,
     type HoldListParams as HoldListParams,

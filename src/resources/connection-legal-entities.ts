@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as LegalEntitiesAPI from './legal-entities';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../core/pagination';
@@ -192,7 +193,7 @@ export namespace ConnectionLegalEntityCreateParams {
     /**
      * The legal entity associations and its child legal entities.
      */
-    legal_entity_associations?: Array<LegalEntity.LegalEntityAssociation> | null;
+    legal_entity_associations?: Array<LegalEntitiesAPI.LegalEntityAssociationInlineCreate> | null;
 
     /**
      * The type of legal entity.
@@ -309,30 +310,6 @@ export namespace ConnectionLegalEntityCreateParams {
       regulation_o: boolean | null;
 
       updated_at: string;
-    }
-
-    export interface LegalEntityAssociation {
-      relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
-
-      /**
-       * The child legal entity.
-       */
-      child_legal_entity?: Shared.ChildLegalEntityCreate;
-
-      /**
-       * The ID of the child legal entity.
-       */
-      child_legal_entity_id?: string;
-
-      /**
-       * The child entity's ownership percentage iff they are a beneficial owner.
-       */
-      ownership_percentage?: number | null;
-
-      /**
-       * The job title of the child entity at the parent entity.
-       */
-      title?: string | null;
     }
 
     /**

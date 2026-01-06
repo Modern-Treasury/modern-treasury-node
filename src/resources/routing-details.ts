@@ -164,6 +164,84 @@ export interface RoutingDetail {
   updated_at: string;
 }
 
+export interface RoutingDetailCreate {
+  /**
+   * The routing number of the bank.
+   */
+  routing_number: string;
+
+  /**
+   * The type of routing number. See
+   * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+   * more details.
+   */
+  routing_number_type:
+    | 'aba'
+    | 'au_bsb'
+    | 'br_codigo'
+    | 'ca_cpa'
+    | 'chips'
+    | 'cnaps'
+    | 'dk_interbank_clearing_code'
+    | 'gb_sort_code'
+    | 'hk_interbank_clearing_code'
+    | 'hu_interbank_clearing_code'
+    | 'id_sknbi_code'
+    | 'il_bank_code'
+    | 'in_ifsc'
+    | 'jp_zengin_code'
+    | 'mx_bank_identifier'
+    | 'my_branch_code'
+    | 'nz_national_clearing_code'
+    | 'pl_national_clearing_code'
+    | 'se_bankgiro_clearing_code'
+    | 'sg_interbank_clearing_code'
+    | 'swift'
+    | 'za_national_clearing_code';
+
+  /**
+   * If the routing detail is to be used for a specific payment type this field will
+   * be populated, otherwise null.
+   */
+  payment_type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'base'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'ethereum'
+    | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'polygon'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'solana'
+    | 'wire'
+    | 'zengin'
+    | null;
+}
+
 export interface RoutingDetailCreateParams {
   /**
    * Path param:
@@ -275,6 +353,7 @@ export interface RoutingDetailDeleteParams {
 export declare namespace RoutingDetails {
   export {
     type RoutingDetail as RoutingDetail,
+    type RoutingDetailCreate as RoutingDetailCreate,
     type RoutingDetailsPage as RoutingDetailsPage,
     type RoutingDetailCreateParams as RoutingDetailCreateParams,
     type RoutingDetailRetrieveParams as RoutingDetailRetrieveParams,

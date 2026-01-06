@@ -250,6 +250,145 @@ export interface ExpectedPayment {
   updated_at: string;
 }
 
+export interface ExpectedPaymentCreate {
+  /**
+   * The lowest amount this expected payment may be equal to. Value in specified
+   * currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_lower_bound?: number | null;
+
+  /**
+   * The amount reconciled for this expected payment. Value in specified currency's
+   * smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_reconciled?: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+   * amount.
+   */
+  amount_reconciled_direction?: 'credit' | 'debit' | null;
+
+  /**
+   * The amount that remains unreconciled for this expected payment. Value in
+   * specified currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_unreconciled?: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_unreconciled is a credit or
+   * debit amount.
+   */
+  amount_unreconciled_direction?: 'credit' | 'debit' | null;
+
+  /**
+   * The highest amount this expected payment may be equal to. Value in specified
+   * currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_upper_bound?: number | null;
+
+  /**
+   * The ID of the counterparty you expect for this payment.
+   */
+  counterparty_id?: string | null;
+
+  /**
+   * Must conform to ISO 4217. Defaults to the currency of the internal account.
+   */
+  currency?: Shared.Currency | null;
+
+  /**
+   * The earliest date the payment may come in. Format: yyyy-mm-dd
+   */
+  date_lower_bound?: string | null;
+
+  /**
+   * The latest date the payment may come in. Format: yyyy-mm-dd
+   */
+  date_upper_bound?: string | null;
+
+  /**
+   * An optional description for internal use.
+   */
+  description?: string | null;
+
+  /**
+   * One of credit or debit. When you are receiving money, use credit. When you are
+   * being charged, use debit.
+   */
+  direction?: 'credit' | 'debit' | null;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
+   * The ID of the Internal Account for the expected payment.
+   */
+  internal_account_id?: string | null;
+
+  /**
+   * Specifies a ledger transaction object that will be created with the expected
+   * payment. If the ledger transaction cannot be created, then the expected payment
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the expected payment.
+   */
+  ledger_transaction?: Shared.LedgerTransactionCreateRequest;
+
+  /**
+   * Either ledger_transaction or ledger_transaction_id can be provided. Only a
+   * pending ledger transaction can be attached upon expected payment creation. Once
+   * the expected payment is created, the status of the ledger transaction tracks the
+   * expected payment automatically.
+   */
+  ledger_transaction_id?: string;
+
+  line_items?: Array<LineItem>;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * The reconciliation filters you have for this payment.
+   */
+  reconciliation_filters?: unknown | null;
+
+  /**
+   * The reconciliation groups you have for this payment.
+   */
+  reconciliation_groups?: unknown | null;
+
+  /**
+   * An array of reconciliation rule variables for this payment.
+   */
+  reconciliation_rule_variables?: Array<ReconciliationRule> | null;
+
+  /**
+   * For `ach`, this field will be passed through on an addenda record. For `wire`
+   * payments the field will be passed through as the "Originator to Beneficiary
+   * Information", also known as OBI or Fedwire tag 6000.
+   */
+  remittance_information?: string | null;
+
+  /**
+   * The statement description you expect to see on the transaction. For ACH
+   * payments, this will be the full line item passed from the bank. For wire
+   * payments, this will be the OBI field on the wire. For check payments, this will
+   * be the memo field.
+   */
+  statement_descriptor?: string | null;
+
+  /**
+   * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+   * sepa, signet, wire.
+   */
+  type?: ExpectedPaymentType | null;
+}
+
 /**
  * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
  * sepa, signet, wire.
@@ -291,6 +430,158 @@ export type ExpectedPaymentType =
   | 'wire'
   | 'zengin'
   | null;
+
+export interface ExpectedPaymentUpdate {
+  /**
+   * The lowest amount this expected payment may be equal to. Value in specified
+   * currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_lower_bound?: number | null;
+
+  /**
+   * The amount reconciled for this expected payment. Value in specified currency's
+   * smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_reconciled?: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+   * amount.
+   */
+  amount_reconciled_direction?: 'credit' | 'debit' | null;
+
+  /**
+   * The amount that remains unreconciled for this expected payment. Value in
+   * specified currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_unreconciled?: number | null;
+
+  /**
+   * One of credit or debit. Indicates whether amount_unreconciled is a credit or
+   * debit amount.
+   */
+  amount_unreconciled_direction?: 'credit' | 'debit' | null;
+
+  /**
+   * The highest amount this expected payment may be equal to. Value in specified
+   * currency's smallest unit. e.g. $10 would be represented as 1000.
+   */
+  amount_upper_bound?: number | null;
+
+  /**
+   * The ID of the counterparty you expect for this payment.
+   */
+  counterparty_id?: string | null;
+
+  /**
+   * Must conform to ISO 4217. Defaults to the currency of the internal account.
+   */
+  currency?: Shared.Currency | null;
+
+  /**
+   * The earliest date the payment may come in. Format: yyyy-mm-dd
+   */
+  date_lower_bound?: string | null;
+
+  /**
+   * The latest date the payment may come in. Format: yyyy-mm-dd
+   */
+  date_upper_bound?: string | null;
+
+  /**
+   * An optional description for internal use.
+   */
+  description?: string | null;
+
+  /**
+   * One of credit or debit. When you are receiving money, use credit. When you are
+   * being charged, use debit.
+   */
+  direction?: 'credit' | 'debit' | null;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
+   * The ID of the Internal Account for the expected payment.
+   */
+  internal_account_id?: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * The reconciliation filters you have for this payment.
+   */
+  reconciliation_filters?: unknown | null;
+
+  /**
+   * The reconciliation groups you have for this payment.
+   */
+  reconciliation_groups?: unknown | null;
+
+  /**
+   * An array of reconciliation rule variables for this payment.
+   */
+  reconciliation_rule_variables?: Array<ReconciliationRule> | null;
+
+  /**
+   * For `ach`, this field will be passed through on an addenda record. For `wire`
+   * payments the field will be passed through as the "Originator to Beneficiary
+   * Information", also known as OBI or Fedwire tag 6000.
+   */
+  remittance_information?: string | null;
+
+  /**
+   * The statement description you expect to see on the transaction. For ACH
+   * payments, this will be the full line item passed from the bank. For wire
+   * payments, this will be the OBI field on the wire. For check payments, this will
+   * be the memo field.
+   */
+  statement_descriptor?: string | null;
+
+  /**
+   * The Expected Payment's status can be updated from partially_reconciled to
+   * reconciled.
+   */
+  status?: 'reconciled' | null;
+
+  /**
+   * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+   * sepa, signet, wire.
+   */
+  type?: ExpectedPaymentType | null;
+}
+
+export interface LineItem {
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
+   */
+  amount: number;
+
+  /**
+   * The ID of one of your accounting categories. Note that these will only be
+   * accessible if your accounting system has been connected.
+   */
+  accounting_category_id?: string | null;
+
+  /**
+   * A free-form description of the line item.
+   */
+  description?: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+}
 
 export interface ReconciliationRule {
   /**
@@ -478,7 +769,7 @@ export interface ExpectedPaymentCreateParams {
    */
   ledger_transaction_id?: string;
 
-  line_items?: Array<ExpectedPaymentCreateParams.LineItem>;
+  line_items?: Array<LineItem>;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -521,33 +812,6 @@ export interface ExpectedPaymentCreateParams {
    * sepa, signet, wire.
    */
   type?: ExpectedPaymentType | null;
-}
-
-export namespace ExpectedPaymentCreateParams {
-  export interface LineItem {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
-  }
 }
 
 export interface ExpectedPaymentUpdateParams {
@@ -772,7 +1036,10 @@ export interface ExpectedPaymentListParams extends PageParams {
 export declare namespace ExpectedPayments {
   export {
     type ExpectedPayment as ExpectedPayment,
+    type ExpectedPaymentCreate as ExpectedPaymentCreate,
     type ExpectedPaymentType as ExpectedPaymentType,
+    type ExpectedPaymentUpdate as ExpectedPaymentUpdate,
+    type LineItem as LineItem,
     type ReconciliationRule as ReconciliationRule,
     type ExpectedPaymentsPage as ExpectedPaymentsPage,
     type ExpectedPaymentCreateParams as ExpectedPaymentCreateParams,

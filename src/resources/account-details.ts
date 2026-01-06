@@ -111,6 +111,33 @@ export interface AccountDetail {
   account_number?: string;
 }
 
+export interface AccountDetailCreate {
+  /**
+   * The account number for the bank account.
+   */
+  account_number: string;
+
+  /**
+   * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
+   * account number is in a generic format.
+   */
+  account_number_type?:
+    | 'au_number'
+    | 'base_address'
+    | 'clabe'
+    | 'ethereum_address'
+    | 'hk_number'
+    | 'iban'
+    | 'id_number'
+    | 'nz_number'
+    | 'other'
+    | 'pan'
+    | 'polygon_address'
+    | 'sg_number'
+    | 'solana_address'
+    | 'wallet_address';
+}
+
 export interface AccountDetailCreateParams {
   /**
    * Path param:
@@ -171,6 +198,7 @@ export interface AccountDetailDeleteParams {
 export declare namespace AccountDetails {
   export {
     type AccountDetail as AccountDetail,
+    type AccountDetailCreate as AccountDetailCreate,
     type AccountDetailsPage as AccountDetailsPage,
     type AccountDetailCreateParams as AccountDetailCreateParams,
     type AccountDetailRetrieveParams as AccountDetailRetrieveParams,
