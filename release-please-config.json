@@ -59,7 +59,7 @@
       "hidden": true
     }
   ],
-  "reviewers": ["samridh90", "Modern-Treasury/apps-platform"],
+  "reviewers": ["samridh90", "wzhu20", "bullfight", "ankitk-mt", "eveyili"],
   "release-type": "node",
   "extra-files": [
     "src/version.ts",
