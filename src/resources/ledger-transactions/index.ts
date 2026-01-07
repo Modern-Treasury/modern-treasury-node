@@ -3,7 +3,6 @@
 export {
   LedgerTransactions,
   type LedgerTransaction,
-  type LedgerTransactionUpdate,
   type LedgerTransactionCreateParams,
   type LedgerTransactionUpdateParams,
   type LedgerTransactionListParams,
