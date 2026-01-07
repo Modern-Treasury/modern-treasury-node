@@ -570,30 +570,6 @@ export namespace LegalEntity {
   }
 }
 
-export interface LegalEntityAssociationInlineCreate {
-  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
-
-  /**
-   * The child legal entity.
-   */
-  child_legal_entity?: Shared.ChildLegalEntityCreate;
-
-  /**
-   * The ID of the child legal entity.
-   */
-  child_legal_entity_id?: string;
-
-  /**
-   * The child entity's ownership percentage iff they are a beneficial owner.
-   */
-  ownership_percentage?: number | null;
-
-  /**
-   * The job title of the child entity at the parent entity.
-   */
-  title?: string | null;
-}
-
 export interface LegalEntityCreateParams {
   /**
    * The type of legal entity.
@@ -680,7 +656,7 @@ export interface LegalEntityCreateParams {
   /**
    * The legal entity associations and its child legal entities.
    */
-  legal_entity_associations?: Array<LegalEntityAssociationInlineCreate> | null;
+  legal_entity_associations?: Array<Shared.LegalEntityAssociationInlineCreate> | null;
 
   /**
    * The business's legal structure.
@@ -1342,7 +1318,6 @@ export interface LegalEntityListParams extends PageParams {
 export declare namespace LegalEntities {
   export {
     type LegalEntity as LegalEntity,
-    type LegalEntityAssociationInlineCreate as LegalEntityAssociationInlineCreate,
     type LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,

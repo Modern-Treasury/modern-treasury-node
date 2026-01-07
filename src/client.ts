@@ -179,7 +179,6 @@ import {
   LegalEntities,
   LegalEntitiesPage,
   LegalEntity,
-  LegalEntityAssociationInlineCreate,
   LegalEntityCreateParams,
   LegalEntityListParams,
   LegalEntityUpdateParams,
@@ -1444,7 +1443,6 @@ export declare namespace ModernTreasury {
   export {
     LegalEntities as LegalEntities,
     type LegalEntity as LegalEntity,
-    type LegalEntityAssociationInlineCreate as LegalEntityAssociationInlineCreate,
     type LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
@@ -1501,6 +1499,7 @@ export declare namespace ModernTreasury {
   export type LedgerEntryCreateRequest = API.LedgerEntryCreateRequest;
   export type LedgerTransactionCreateRequest = API.LedgerTransactionCreateRequest;
   export type LegalEntityAddressCreateRequest = API.LegalEntityAddressCreateRequest;
+  export type LegalEntityAssociationInlineCreate = API.LegalEntityAssociationInlineCreate;
   export type LegalEntityComplianceDetail = API.LegalEntityComplianceDetail;
   export type LegalEntityIndustryClassification = API.LegalEntityIndustryClassification;
   export type TransactionDirection = API.TransactionDirection;

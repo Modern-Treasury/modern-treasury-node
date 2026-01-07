@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as LegalEntitiesAPI from './legal-entities';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../core/pagination';
@@ -193,7 +192,7 @@ export namespace ConnectionLegalEntityCreateParams {
     /**
      * The legal entity associations and its child legal entities.
      */
-    legal_entity_associations?: Array<LegalEntitiesAPI.LegalEntityAssociationInlineCreate> | null;
+    legal_entity_associations?: Array<Shared.LegalEntityAssociationInlineCreate> | null;
 
     /**
      * The type of legal entity.
