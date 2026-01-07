@@ -302,116 +302,6 @@ export interface Transaction {
   vendor_description?: string | null;
 }
 
-export interface TransactionCreate {
-  /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000.
-   */
-  amount: number;
-
-  /**
-   * The date on which the transaction occurred.
-   */
-  as_of_date: string | null;
-
-  /**
-   * Either `credit` or `debit`.
-   */
-  direction: string;
-
-  /**
-   * The ID of the relevant Internal Account.
-   */
-  internal_account_id: string;
-
-  /**
-   * When applicable, the bank-given code that determines the transaction's category.
-   * For most banks this is the BAI2/BTRS transaction code.
-   */
-  vendor_code: string | null;
-
-  /**
-   * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
-   * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-   * `swift`, `us_bank`, or others.
-   */
-  vendor_code_type: string | null;
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * This field will be `true` if the transaction has posted to the account.
-   */
-  posted?: boolean;
-
-  /**
-   * The type of the transaction. Examples could be
-   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
-   */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'base'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'ethereum'
-    | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'polygon'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'solana'
-    | 'wire'
-    | 'zengin'
-    | 'other'
-    | null;
-
-  /**
-   * An identifier given to this transaction by the bank, often `null`.
-   */
-  vendor_customer_id?: string | null;
-
-  /**
-   * The transaction detail text that often appears in on your bank statement and in
-   * your banking portal.
-   */
-  vendor_description?: string | null;
-}
-
-export interface TransactionUpdate {
-  /**
-   * Additional data in the form of key-value pairs. Pairs can be removed by passing
-   * an empty string or `null` as the value.
-   */
-  metadata?: { [key: string]: string };
-}
-
 export interface TransactionCreateParams {
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -580,8 +470,6 @@ Transactions.LineItems = LineItems;
 export declare namespace Transactions {
   export {
     type Transaction as Transaction,
-    type TransactionCreate as TransactionCreate,
-    type TransactionUpdate as TransactionUpdate,
     type TransactionsPage as TransactionsPage,
     type TransactionCreateParams as TransactionCreateParams,
     type TransactionUpdateParams as TransactionUpdateParams,

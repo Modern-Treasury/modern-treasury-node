@@ -132,79 +132,6 @@ export class InternalAccounts extends APIResource {
 
 export type InternalAccountsPage = Page<InternalAccount>;
 
-export interface AccountCapability {
-  id: string;
-
-  created_at: string;
-
-  /**
-   * One of `debit` or `credit`. Indicates the direction of money movement this
-   * capability is responsible for.
-   */
-  direction: Shared.TransactionDirection;
-
-  discarded_at: string | null;
-
-  /**
-   * A unique reference assigned by your bank for tracking and recognizing payment
-   * files. It is important this is formatted exactly how the bank assigned it.
-   */
-  identifier: string | null;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode: boolean;
-
-  object: string;
-
-  /**
-   * Indicates the the type of payment this capability is responsible for
-   * originating.
-   */
-  payment_type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'base'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'ethereum'
-    | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'polygon'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'solana'
-    | 'wire'
-    | 'zengin';
-
-  updated_at: string;
-
-  [k: string]: unknown;
-}
-
 export interface InternalAccount {
   id: string;
 
@@ -212,7 +139,7 @@ export interface InternalAccount {
    * An array of AccountCapability objects that list the originating abilities of the
    * internal account and any relevant information for them.
    */
-  account_capabilities: Array<AccountCapability>;
+  account_capabilities: Array<InternalAccount.AccountCapability>;
 
   /**
    * An array of account detail objects.
@@ -329,6 +256,81 @@ export interface InternalAccount {
   vendor_id: string | null;
 }
 
+export namespace InternalAccount {
+  export interface AccountCapability {
+    id: string;
+
+    created_at: string;
+
+    /**
+     * One of `debit` or `credit`. Indicates the direction of money movement this
+     * capability is responsible for.
+     */
+    direction: Shared.TransactionDirection;
+
+    discarded_at: string | null;
+
+    /**
+     * A unique reference assigned by your bank for tracking and recognizing payment
+     * files. It is important this is formatted exactly how the bank assigned it.
+     */
+    identifier: string | null;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode: boolean;
+
+    object: string;
+
+    /**
+     * Indicates the the type of payment this capability is responsible for
+     * originating.
+     */
+    payment_type:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'base'
+      | 'book'
+      | 'card'
+      | 'chats'
+      | 'check'
+      | 'cross_border'
+      | 'dk_nets'
+      | 'eft'
+      | 'ethereum'
+      | 'gb_fps'
+      | 'hu_ics'
+      | 'interac'
+      | 'masav'
+      | 'mx_ccen'
+      | 'neft'
+      | 'nics'
+      | 'nz_becs'
+      | 'pl_elixir'
+      | 'polygon'
+      | 'provxchange'
+      | 'ro_sent'
+      | 'rtp'
+      | 'se_bankgirot'
+      | 'sen'
+      | 'sepa'
+      | 'sg_giro'
+      | 'sic'
+      | 'signet'
+      | 'sknbi'
+      | 'solana'
+      | 'wire'
+      | 'zengin';
+
+    updated_at: string;
+
+    [k: string]: unknown;
+  }
+}
+
 export interface InternalAccountUpdateAccountCapabilityResponse {
   id: string;
 
@@ -428,7 +430,7 @@ export interface InternalAccountCreateParams {
    * An array of AccountCapability objects that list the originating abilities of the
    * internal account and any relevant information for them.
    */
-  account_capabilities?: Array<AccountCapability>;
+  account_capabilities?: Array<InternalAccountCreateParams.AccountCapability>;
 
   /**
    * The account type, used to provision the appropriate account at the financial
@@ -477,6 +479,79 @@ export interface InternalAccountCreateParams {
 }
 
 export namespace InternalAccountCreateParams {
+  export interface AccountCapability {
+    id: string;
+
+    created_at: string;
+
+    /**
+     * One of `debit` or `credit`. Indicates the direction of money movement this
+     * capability is responsible for.
+     */
+    direction: Shared.TransactionDirection;
+
+    discarded_at: string | null;
+
+    /**
+     * A unique reference assigned by your bank for tracking and recognizing payment
+     * files. It is important this is formatted exactly how the bank assigned it.
+     */
+    identifier: string | null;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode: boolean;
+
+    object: string;
+
+    /**
+     * Indicates the the type of payment this capability is responsible for
+     * originating.
+     */
+    payment_type:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'base'
+      | 'book'
+      | 'card'
+      | 'chats'
+      | 'check'
+      | 'cross_border'
+      | 'dk_nets'
+      | 'eft'
+      | 'ethereum'
+      | 'gb_fps'
+      | 'hu_ics'
+      | 'interac'
+      | 'masav'
+      | 'mx_ccen'
+      | 'neft'
+      | 'nics'
+      | 'nz_becs'
+      | 'pl_elixir'
+      | 'polygon'
+      | 'provxchange'
+      | 'ro_sent'
+      | 'rtp'
+      | 'se_bankgirot'
+      | 'sen'
+      | 'sepa'
+      | 'sg_giro'
+      | 'sic'
+      | 'signet'
+      | 'sknbi'
+      | 'solana'
+      | 'wire'
+      | 'zengin';
+
+    updated_at: string;
+
+    [k: string]: unknown;
+  }
+
   /**
    * The address associated with the owner or null.
    */
@@ -632,7 +707,6 @@ InternalAccounts.BalanceReports = BalanceReports;
 
 export declare namespace InternalAccounts {
   export {
-    type AccountCapability as AccountCapability,
     type InternalAccount as InternalAccount,
     type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
     type InternalAccountsPage as InternalAccountsPage,
