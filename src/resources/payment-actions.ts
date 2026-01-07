@@ -10,21 +10,25 @@ export class PaymentActions extends APIResource {
   /**
    * Create a payment action.
    */
-  create(body: PaymentActionCreateParams, options?: RequestOptions): APIPromise<PaymentAction> {
+  create(body: PaymentActionCreateParams, options?: RequestOptions): APIPromise<PaymentActionCreateResponse> {
     return this._client.post('/api/payment_actions', { body, ...options });
   }
 
   /**
    * Get details on a single payment action.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentAction> {
+  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentActionRetrieveResponse> {
     return this._client.get(path`/api/payment_actions/${id}`, options);
   }
 
   /**
    * Update a single payment action.
    */
-  update(id: string, body: PaymentActionUpdateParams, options?: RequestOptions): APIPromise<PaymentAction> {
+  update(
+    id: string,
+    body: PaymentActionUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<PaymentActionUpdateResponse> {
     return this._client.patch(path`/api/payment_actions/${id}`, { body, ...options });
   }
 
@@ -34,14 +38,161 @@ export class PaymentActions extends APIResource {
   list(
     query: PaymentActionListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<PaymentActionsPage, PaymentAction> {
-    return this._client.getAPIList('/api/payment_actions', Page<PaymentAction>, { query, ...options });
+  ): PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse> {
+    return this._client.getAPIList('/api/payment_actions', Page<PaymentActionListResponse>, {
+      query,
+      ...options,
+    });
   }
 }
 
-export type PaymentActionsPage = Page<PaymentAction>;
+export type PaymentActionListResponsesPage = Page<PaymentActionListResponse>;
 
-export interface PaymentAction {
+export interface PaymentActionCreateResponse {
+  id: string;
+
+  /**
+   * The ID of the associated actionable object.
+   */
+  actionable_id: string | null;
+
+  /**
+   * The type of the associated actionable object. One of `payment_order`,
+   * `expected_payment`.
+   */
+  actionable_type: string | null;
+
+  created_at: string;
+
+  /**
+   * The specifc details of the payment action based on type.
+   */
+  details: unknown;
+
+  /**
+   * The ID of the internal account associated with the payment action.
+   */
+  internal_account_id: string;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  /**
+   * The current status of the payment action. One of `pending`, `processing`,
+   * `sent`, `acknowledged`, `cancelled`, or `failed`.
+   */
+  status: string;
+
+  /**
+   * The type of the payment action. Determines the action to be taken.
+   */
+  type: string;
+
+  updated_at: string;
+}
+
+export interface PaymentActionRetrieveResponse {
+  id: string;
+
+  /**
+   * The ID of the associated actionable object.
+   */
+  actionable_id: string | null;
+
+  /**
+   * The type of the associated actionable object. One of `payment_order`,
+   * `expected_payment`.
+   */
+  actionable_type: string | null;
+
+  created_at: string;
+
+  /**
+   * The specifc details of the payment action based on type.
+   */
+  details: unknown;
+
+  /**
+   * The ID of the internal account associated with the payment action.
+   */
+  internal_account_id: string;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  /**
+   * The current status of the payment action. One of `pending`, `processing`,
+   * `sent`, `acknowledged`, `cancelled`, or `failed`.
+   */
+  status: string;
+
+  /**
+   * The type of the payment action. Determines the action to be taken.
+   */
+  type: string;
+
+  updated_at: string;
+}
+
+export interface PaymentActionUpdateResponse {
+  id: string;
+
+  /**
+   * The ID of the associated actionable object.
+   */
+  actionable_id: string | null;
+
+  /**
+   * The type of the associated actionable object. One of `payment_order`,
+   * `expected_payment`.
+   */
+  actionable_type: string | null;
+
+  created_at: string;
+
+  /**
+   * The specifc details of the payment action based on type.
+   */
+  details: unknown;
+
+  /**
+   * The ID of the internal account associated with the payment action.
+   */
+  internal_account_id: string;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  /**
+   * The current status of the payment action. One of `pending`, `processing`,
+   * `sent`, `acknowledged`, `cancelled`, or `failed`.
+   */
+  status: string;
+
+  /**
+   * The type of the payment action. Determines the action to be taken.
+   */
+  type: string;
+
+  updated_at: string;
+}
+
+export interface PaymentActionListResponse {
   id: string;
 
   /**
@@ -190,8 +341,11 @@ export namespace PaymentActionListParams {
 
 export declare namespace PaymentActions {
   export {
-    type PaymentAction as PaymentAction,
-    type PaymentActionsPage as PaymentActionsPage,
+    type PaymentActionCreateResponse as PaymentActionCreateResponse,
+    type PaymentActionRetrieveResponse as PaymentActionRetrieveResponse,
+    type PaymentActionUpdateResponse as PaymentActionUpdateResponse,
+    type PaymentActionListResponse as PaymentActionListResponse,
+    type PaymentActionListResponsesPage as PaymentActionListResponsesPage,
     type PaymentActionCreateParams as PaymentActionCreateParams,
     type PaymentActionUpdateParams as PaymentActionUpdateParams,
     type PaymentActionListParams as PaymentActionListParams,

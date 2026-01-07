@@ -12,7 +12,6 @@ export {
 export {
   AccountDetails,
   type AccountDetail,
-  type AccountDetailCreate,
   type AccountDetailCreateParams,
   type AccountDetailRetrieveParams,
   type AccountDetailListParams,
@@ -54,7 +53,6 @@ export {
 export {
   Documents,
   type Document,
-  type DocumentCreate,
   type DocumentCreateParams,
   type DocumentListParams,
   type DocumentsPage,
@@ -63,10 +61,7 @@ export { Events, type Event, type EventListParams, type EventsPage } from './eve
 export {
   ExpectedPayments,
   type ExpectedPayment,
-  type ExpectedPaymentCreate,
   type ExpectedPaymentType,
-  type ExpectedPaymentUpdate,
-  type LineItem,
   type ReconciliationRule,
   type ExpectedPaymentCreateParams,
   type ExpectedPaymentUpdateParams,
@@ -94,11 +89,14 @@ export {
 } from './foreign-exchange-quotes';
 export {
   Holds,
-  type Hold,
+  type HoldCreateResponse,
+  type HoldRetrieveResponse,
+  type HoldUpdateResponse,
+  type HoldListResponse,
   type HoldCreateParams,
   type HoldUpdateParams,
   type HoldListParams,
-  type HoldsPage,
+  type HoldListResponsesPage,
 } from './holds';
 export {
   IncomingPaymentDetails,
@@ -110,7 +108,6 @@ export {
 } from './incoming-payment-details';
 export {
   InternalAccounts,
-  type AccountCapability,
   type InternalAccount,
   type InternalAccountUpdateAccountCapabilityResponse,
   type InternalAccountCreateParams,
@@ -161,7 +158,8 @@ export {
 } from './ledger-account-settlements/ledger-account-settlements';
 export {
   LedgerAccountStatements,
-  type LedgerAccountStatement,
+  type LedgerAccountStatementCreateResponse,
+  type LedgerAccountStatementRetrieveResponse,
   type LedgerAccountStatementCreateParams,
 } from './ledger-account-statements';
 export {
@@ -184,7 +182,6 @@ export {
 export {
   LedgerTransactions,
   type LedgerTransaction,
-  type LedgerTransactionUpdate,
   type LedgerTransactionCreateParams,
   type LedgerTransactionUpdateParams,
   type LedgerTransactionListParams,
@@ -204,7 +201,6 @@ export {
   LegalEntities,
   type LegalEntity,
   type LegalEntityAssociationInlineCreate,
-  type LegalEntityCreate,
   type LegalEntityCreateParams,
   type LegalEntityUpdateParams,
   type LegalEntityListParams,
@@ -218,22 +214,22 @@ export {
 } from './legal-entity-associations';
 export {
   LineItems,
-  type Accounting,
-  type LineItemRetrieveResponse,
-  type LineItemUpdateResponse,
-  type LineItemListResponse,
+  type LineItem,
   type LineItemRetrieveParams,
   type LineItemUpdateParams,
   type LineItemListParams,
-  type LineItemListResponsesPage,
+  type LineItemsPage,
 } from './line-items';
 export {
   PaymentActions,
-  type PaymentAction,
+  type PaymentActionCreateResponse,
+  type PaymentActionRetrieveResponse,
+  type PaymentActionUpdateResponse,
+  type PaymentActionListResponse,
   type PaymentActionCreateParams,
   type PaymentActionUpdateParams,
   type PaymentActionListParams,
-  type PaymentActionsPage,
+  type PaymentActionListResponsesPage,
 } from './payment-actions';
 export {
   PaymentFlows,
@@ -247,10 +243,8 @@ export {
   PaymentOrders,
   type ContactDetailCreateRequest,
   type PaymentOrder,
-  type PaymentOrderAsyncCreate,
   type PaymentOrderSubtype,
   type PaymentOrderType,
-  type PaymentOrderUpdate,
   type PaymentOrderCreateParams,
   type PaymentOrderUpdateParams,
   type PaymentOrderListParams,
@@ -273,7 +267,6 @@ export {
 export {
   RoutingDetails,
   type RoutingDetail,
-  type RoutingDetailCreate,
   type RoutingDetailCreateParams,
   type RoutingDetailRetrieveParams,
   type RoutingDetailListParams,
@@ -283,8 +276,6 @@ export {
 export {
   Transactions,
   type Transaction,
-  type TransactionCreate,
-  type TransactionUpdate,
   type TransactionCreateParams,
   type TransactionUpdateParams,
   type TransactionListParams,

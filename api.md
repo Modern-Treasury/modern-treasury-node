@@ -73,10 +73,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/expected-payments.ts">ExpectedPayment</a></code>
-- <code><a href="./src/resources/expected-payments.ts">ExpectedPaymentCreate</a></code>
 - <code><a href="./src/resources/expected-payments.ts">ExpectedPaymentType</a></code>
-- <code><a href="./src/resources/expected-payments.ts">ExpectedPaymentUpdate</a></code>
-- <code><a href="./src/resources/expected-payments.ts">LineItem</a></code>
 - <code><a href="./src/resources/expected-payments.ts">ReconciliationRule</a></code>
 
 Methods:
@@ -137,7 +134,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/invoices/line-items.ts">InvoiceLineItem</a></code>
-- <code><a href="./src/resources/invoices/line-items.ts">InvoiceLineItemCreate</a></code>
 
 Methods:
 
@@ -152,7 +148,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/documents.ts">Document</a></code>
-- <code><a href="./src/resources/documents.ts">DocumentCreate</a></code>
 
 Methods:
 
@@ -178,7 +173,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/account-details.ts">AccountDetail</a></code>
-- <code><a href="./src/resources/account-details.ts">AccountDetailCreate</a></code>
 
 Methods:
 
@@ -192,7 +186,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/routing-details.ts">RoutingDetail</a></code>
-- <code><a href="./src/resources/routing-details.ts">RoutingDetailCreate</a></code>
 
 Methods:
 
@@ -205,7 +198,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/internal-accounts/internal-accounts.ts">AccountCapability</a></code>
 - <code><a href="./src/resources/internal-accounts/internal-accounts.ts">InternalAccount</a></code>
 - <code><a href="./src/resources/internal-accounts/internal-accounts.ts">InternalAccountUpdateAccountCapabilityResponse</a></code>
 
@@ -295,12 +287,13 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/ledger-account-statements.ts">LedgerAccountStatement</a></code>
+- <code><a href="./src/resources/ledger-account-statements.ts">LedgerAccountStatementCreateResponse</a></code>
+- <code><a href="./src/resources/ledger-account-statements.ts">LedgerAccountStatementRetrieveResponse</a></code>
 
 Methods:
 
-- <code title="post /api/ledger_account_statements">client.ledgerAccountStatements.<a href="./src/resources/ledger-account-statements.ts">create</a>({ ...params }) -> LedgerAccountStatement</code>
-- <code title="get /api/ledger_account_statements/{id}">client.ledgerAccountStatements.<a href="./src/resources/ledger-account-statements.ts">retrieve</a>(id) -> LedgerAccountStatement</code>
+- <code title="post /api/ledger_account_statements">client.ledgerAccountStatements.<a href="./src/resources/ledger-account-statements.ts">create</a>({ ...params }) -> LedgerAccountStatementCreateResponse</code>
+- <code title="get /api/ledger_account_statements/{id}">client.ledgerAccountStatements.<a href="./src/resources/ledger-account-statements.ts">retrieve</a>(id) -> LedgerAccountStatementRetrieveResponse</code>
 
 # LedgerEntries
 
@@ -319,7 +312,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/ledger-transactions/ledger-transactions.ts">LedgerTransaction</a></code>
-- <code><a href="./src/resources/ledger-transactions/ledger-transactions.ts">LedgerTransactionUpdate</a></code>
 
 Methods:
 
@@ -344,16 +336,13 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/line-items.ts">Accounting</a></code>
-- <code><a href="./src/resources/line-items.ts">LineItemRetrieveResponse</a></code>
-- <code><a href="./src/resources/line-items.ts">LineItemUpdateResponse</a></code>
-- <code><a href="./src/resources/line-items.ts">LineItemListResponse</a></code>
+- <code><a href="./src/resources/line-items.ts">LineItem</a></code>
 
 Methods:
 
-- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./src/resources/line-items.ts">retrieve</a>(id, { ...params }) -> LineItemRetrieveResponse</code>
-- <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./src/resources/line-items.ts">update</a>(id, { ...params }) -> LineItemUpdateResponse</code>
-- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.lineItems.<a href="./src/resources/line-items.ts">list</a>(itemizableID, { ...params }) -> LineItemListResponsesPage</code>
+- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./src/resources/line-items.ts">retrieve</a>(id, { ...params }) -> LineItem</code>
+- <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.lineItems.<a href="./src/resources/line-items.ts">update</a>(id, { ...params }) -> LineItem</code>
+- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.lineItems.<a href="./src/resources/line-items.ts">list</a>(itemizableID, { ...params }) -> LineItemsPage</code>
 
 # PaymentFlows
 
@@ -374,10 +363,8 @@ Types:
 
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">ContactDetailCreateRequest</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrder</a></code>
-- <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderAsyncCreate</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderSubtype</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderType</a></code>
-- <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderUpdate</a></code>
 
 Methods:
 
@@ -427,8 +414,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/transactions/transactions.ts">Transaction</a></code>
-- <code><a href="./src/resources/transactions/transactions.ts">TransactionCreate</a></code>
-- <code><a href="./src/resources/transactions/transactions.ts">TransactionUpdate</a></code>
 
 Methods:
 
@@ -549,7 +534,6 @@ Types:
 
 - <code><a href="./src/resources/legal-entities.ts">LegalEntity</a></code>
 - <code><a href="./src/resources/legal-entities.ts">LegalEntityAssociationInlineCreate</a></code>
-- <code><a href="./src/resources/legal-entities.ts">LegalEntityCreate</a></code>
 
 Methods:
 
@@ -573,14 +557,17 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/payment-actions.ts">PaymentAction</a></code>
+- <code><a href="./src/resources/payment-actions.ts">PaymentActionCreateResponse</a></code>
+- <code><a href="./src/resources/payment-actions.ts">PaymentActionRetrieveResponse</a></code>
+- <code><a href="./src/resources/payment-actions.ts">PaymentActionUpdateResponse</a></code>
+- <code><a href="./src/resources/payment-actions.ts">PaymentActionListResponse</a></code>
 
 Methods:
 
-- <code title="post /api/payment_actions">client.paymentActions.<a href="./src/resources/payment-actions.ts">create</a>({ ...params }) -> PaymentAction</code>
-- <code title="get /api/payment_actions/{id}">client.paymentActions.<a href="./src/resources/payment-actions.ts">retrieve</a>(id) -> PaymentAction</code>
-- <code title="patch /api/payment_actions/{id}">client.paymentActions.<a href="./src/resources/payment-actions.ts">update</a>(id, { ...params }) -> PaymentAction</code>
-- <code title="get /api/payment_actions">client.paymentActions.<a href="./src/resources/payment-actions.ts">list</a>({ ...params }) -> PaymentActionsPage</code>
+- <code title="post /api/payment_actions">client.paymentActions.<a href="./src/resources/payment-actions.ts">create</a>({ ...params }) -> PaymentActionCreateResponse</code>
+- <code title="get /api/payment_actions/{id}">client.paymentActions.<a href="./src/resources/payment-actions.ts">retrieve</a>(id) -> PaymentActionRetrieveResponse</code>
+- <code title="patch /api/payment_actions/{id}">client.paymentActions.<a href="./src/resources/payment-actions.ts">update</a>(id, { ...params }) -> PaymentActionUpdateResponse</code>
+- <code title="get /api/payment_actions">client.paymentActions.<a href="./src/resources/payment-actions.ts">list</a>({ ...params }) -> PaymentActionListResponsesPage</code>
 
 # JournalEntries
 
@@ -601,11 +588,14 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/holds.ts">Hold</a></code>
+- <code><a href="./src/resources/holds.ts">HoldCreateResponse</a></code>
+- <code><a href="./src/resources/holds.ts">HoldRetrieveResponse</a></code>
+- <code><a href="./src/resources/holds.ts">HoldUpdateResponse</a></code>
+- <code><a href="./src/resources/holds.ts">HoldListResponse</a></code>
 
 Methods:
 
-- <code title="post /api/holds">client.holds.<a href="./src/resources/holds.ts">create</a>({ ...params }) -> Hold</code>
-- <code title="get /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">retrieve</a>(id) -> Hold</code>
-- <code title="patch /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">update</a>(id, { ...params }) -> Hold</code>
-- <code title="get /api/holds">client.holds.<a href="./src/resources/holds.ts">list</a>({ ...params }) -> HoldsPage</code>
+- <code title="post /api/holds">client.holds.<a href="./src/resources/holds.ts">create</a>({ ...params }) -> HoldCreateResponse</code>
+- <code title="get /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">retrieve</a>(id) -> HoldRetrieveResponse</code>
+- <code title="patch /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">update</a>(id, { ...params }) -> HoldUpdateResponse</code>
+- <code title="get /api/holds">client.holds.<a href="./src/resources/holds.ts">list</a>({ ...params }) -> HoldListResponsesPage</code>
