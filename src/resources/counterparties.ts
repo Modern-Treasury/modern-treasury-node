@@ -3,7 +3,6 @@
 import { APIResource } from '../core/resource';
 import * as AccountDetailsAPI from './account-details';
 import * as ExternalAccountsAPI from './external-accounts';
-import * as LegalEntitiesAPI from './legal-entities';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
@@ -578,7 +577,7 @@ export namespace CounterpartyCreateParams {
     /**
      * The legal entity associations and its child legal entities.
      */
-    legal_entity_associations?: Array<LegalEntitiesAPI.LegalEntityAssociationInlineCreate> | null;
+    legal_entity_associations?: Array<Shared.LegalEntityAssociationInlineCreate> | null;
 
     /**
      * The business's legal structure.

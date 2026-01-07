@@ -200,7 +200,6 @@ export {
 export {
   LegalEntities,
   type LegalEntity,
-  type LegalEntityAssociationInlineCreate,
   type LegalEntityCreateParams,
   type LegalEntityUpdateParams,
   type LegalEntityListParams,

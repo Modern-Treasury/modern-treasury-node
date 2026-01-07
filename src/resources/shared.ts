@@ -1,7 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as LegalEntitiesAPI from './legal-entities';
-
 export type AccountsType = 'external_accounts' | 'internal_accounts';
 
 export interface Address {
@@ -157,7 +155,7 @@ export interface ChildLegalEntityCreate {
   /**
    * The legal entity associations and its child legal entities.
    */
-  legal_entity_associations?: Array<LegalEntitiesAPI.LegalEntityAssociationInlineCreate> | null;
+  legal_entity_associations?: Array<LegalEntityAssociationInlineCreate> | null;
 
   /**
    * The type of legal entity.
@@ -1008,6 +1006,30 @@ export interface LegalEntityAddressCreateRequest {
   address_types?: Array<'business' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
   line2?: string | null;
+}
+
+export interface LegalEntityAssociationInlineCreate {
+  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
+
+  /**
+   * The child legal entity.
+   */
+  child_legal_entity?: ChildLegalEntityCreate;
+
+  /**
+   * The ID of the child legal entity.
+   */
+  child_legal_entity_id?: string;
+
+  /**
+   * The child entity's ownership percentage iff they are a beneficial owner.
+   */
+  ownership_percentage?: number | null;
+
+  /**
+   * The job title of the child entity at the parent entity.
+   */
+  title?: string | null;
 }
 
 export interface LegalEntityComplianceDetail {
