@@ -1,5 +1,68 @@
 # Changelog
 
+## 4.0.0 (2026-01-07)
+
+Full Changelog: [v3.3.0...v4.0.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.3.0...v4.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** remove deprecated tool schemes
+* **mcp:** **Migration:** To migrate, simply modify the command used to invoke the MCP server. Currently, the only supported tool scheme is code mode. Now, starting the server with just `node /path/to/mcp/server` or `npx package-name` will invoke code tools: changing your command to one of these is likely all you will need to do.
+
+### Features
+
+* **api:** api update ([1308732](https://github.com/Modern-Treasury/modern-treasury-node/commit/1308732f1398a346f1c60a0aec921c59a3019ff1))
+* **api:** api update ([74267ca](https://github.com/Modern-Treasury/modern-treasury-node/commit/74267ca526cbce9cdb73226f14276ed19f724671))
+* **api:** api update ([19beaf4](https://github.com/Modern-Treasury/modern-treasury-node/commit/19beaf45659b8b679cba10be67de41955d0ba357))
+* **api:** api update ([1f894b3](https://github.com/Modern-Treasury/modern-treasury-node/commit/1f894b3b2362e1f35fa7068a390d8a0f01da4715))
+* **api:** api update ([184c7cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/184c7cdc565975616d748b739273e01ee2466276))
+* **api:** api update ([7fe6b1c](https://github.com/Modern-Treasury/modern-treasury-node/commit/7fe6b1c15c4e9ae3ce697a3f83e2a3ebfb0f4683))
+* **api:** manual updates ([c7517a9](https://github.com/Modern-Treasury/modern-treasury-node/commit/c7517a9a0bd658f8317f66140bc127ecfeab1ed3))
+* **api:** manual updates ([53d89ec](https://github.com/Modern-Treasury/modern-treasury-node/commit/53d89ec385ee2bbc27dcfdca2e3172ba53737018))
+* **api:** manual updates ([7661fa1](https://github.com/Modern-Treasury/modern-treasury-node/commit/7661fa11acd3b16ecf08ace1775094d7b09ecfcf))
+* **api:** manual updates ([c2708fe](https://github.com/Modern-Treasury/modern-treasury-node/commit/c2708fe493fd42e8a8615bac6c7f0f1b6057e838))
+* **mcp:** add detail field to docs search tool ([5519e11](https://github.com/Modern-Treasury/modern-treasury-node/commit/5519e116a05401f49e4e51cd71b92ec415713e9f))
+* **mcp:** add typescript check to code execution tool ([491d6fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/491d6fa180f0aedd0c14bf588ed993008de036df))
+* **mcp:** handle code mode calls in the Stainless API ([72b1e17](https://github.com/Modern-Treasury/modern-treasury-node/commit/72b1e17bd4174e0e0c5de47ed4a91e60d485db17))
+* **mcp:** return logs on code tool errors ([ca196a5](https://github.com/Modern-Treasury/modern-treasury-node/commit/ca196a5ccca96400e34de77b009761c20d083b59))
+
+
+### Bug Fixes
+
+* **mcp:** add client instantiation options to code tool ([f3818fc](https://github.com/Modern-Treasury/modern-treasury-node/commit/f3818fc21990e2bfeafb22657e60607eb24c5f5d))
+* **mcp:** correct code tool API endpoint ([54373a0](https://github.com/Modern-Treasury/modern-treasury-node/commit/54373a0b53e215026fcf7d104a553f90f7295942))
+* **mcp:** correct code tool api output types ([49791fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/49791fa871c6704f5152e76609402701bbcb3168))
+* **mcp:** fix env parsing ([861b7b2](https://github.com/Modern-Treasury/modern-treasury-node/commit/861b7b2bec3401452d24738bf2e20aa4fff90df3))
+* **mcp:** fix options parsing ([591276e](https://github.com/Modern-Treasury/modern-treasury-node/commit/591276eb9c27634002d06f15aeba1b096d344782))
+* **mcp:** pass base url to code tool ([7029868](https://github.com/Modern-Treasury/modern-treasury-node/commit/7029868ad12e0b8c6269a3f6812af6ee04cecba1))
+* **mcp:** return correct lines on typescript errors ([1ba48f0](https://github.com/Modern-Treasury/modern-treasury-node/commit/1ba48f0e0389d277bf83e855a8cb0ceb158d00c4))
+* **mcp:** return tool execution error on api error ([34ce4f0](https://github.com/Modern-Treasury/modern-treasury-node/commit/34ce4f00bdc809c9673d7c1180c95e62bb9e4779))
+* **mcp:** return tool execution error on jq failure ([cdd503a](https://github.com/Modern-Treasury/modern-treasury-node/commit/cdd503a3ac25f893229dc68f48100252a27ba31f))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([5e56b8a](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e56b8a76bfd4a118973ee9e2066f48f6d83f0ac))
+* **client:** fix logger property type ([a8cabba](https://github.com/Modern-Treasury/modern-treasury-node/commit/a8cabbaae2848756c47e3b411bf0f252ce402415))
+* **internal:** codegen related update ([e1f0fcd](https://github.com/Modern-Treasury/modern-treasury-node/commit/e1f0fcd4113aaaf5c3c276df32e2683fe7585f29))
+* **internal:** codegen related update ([35caa89](https://github.com/Modern-Treasury/modern-treasury-node/commit/35caa8910f85d20384695c41d7e0d8a4bc701f53))
+* **internal:** codegen related update ([dd8b1db](https://github.com/Modern-Treasury/modern-treasury-node/commit/dd8b1dbba481c683daabe9ba142c1ad718e3843a))
+* **internal:** codegen related update ([a81ba50](https://github.com/Modern-Treasury/modern-treasury-node/commit/a81ba5083c6055f405fece571f02983bf8928a6e))
+* **internal:** codegen related update ([0dec104](https://github.com/Modern-Treasury/modern-treasury-node/commit/0dec1045ad37f543b010b1c664bf9a720964fd88))
+* **internal:** upgrade eslint ([2844c22](https://github.com/Modern-Treasury/modern-treasury-node/commit/2844c22f2c12aff8a6134e6648c2a138e547e49e))
+* **mcp:** clarify http auth error ([4ca24af](https://github.com/Modern-Treasury/modern-treasury-node/commit/4ca24af9b0fce578f51fbf792b0e2f5b65c618dc))
+* **mcp:** remove deprecated tool schemes ([926baca](https://github.com/Modern-Treasury/modern-treasury-node/commit/926baca28e75c0c9b044bf9b5cb9c7d49d3875c7))
+* **mcp:** update lockfile ([f3d7279](https://github.com/Modern-Treasury/modern-treasury-node/commit/f3d727993a23643be5edb583bbaaadc3bbadeccc))
+* **mcp:** upgrade jq-web ([f5111cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/f5111cd4e797cb0a5652d8dbae85a8352fdf8c58))
+* use latest @modelcontextprotocol/sdk ([73f2a3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/73f2a3cf0ef91d088d51a5a2c5b6db203bfbe1e9))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([eeb0d93](https://github.com/Modern-Treasury/modern-treasury-node/commit/eeb0d936f9bad1bfa00cd6ac60f430a75d5f00a1))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([9dfcc45](https://github.com/Modern-Treasury/modern-treasury-node/commit/9dfcc45720a28e04cf1520f10cb8eda64e293f1f))
+* prominently feature MCP server setup in root SDK readmes ([1eff7c0](https://github.com/Modern-Treasury/modern-treasury-node/commit/1eff7c0df913ec8cc05047247f2f069f4f410cb1))
+
 ## 3.3.0 (2025-11-05)
 
 Full Changelog: [v3.2.1...v3.3.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.2.1...v3.3.0)
