@@ -27,6 +27,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">LedgerEntryCreateRequest</a></code>
 - <code><a href="./src/resources/shared.ts">LedgerTransactionCreateRequest</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityAddressCreateRequest</a></code>
+- <code><a href="./src/resources/shared.ts">LegalEntityAssociationInlineCreate</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityComplianceDetail</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityIndustryClassification</a></code>
 - <code><a href="./src/resources/shared.ts">TransactionDirection</a></code>
@@ -533,7 +534,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/legal-entities.ts">LegalEntity</a></code>
-- <code><a href="./src/resources/legal-entities.ts">LegalEntityAssociationInlineCreate</a></code>
 
 Methods:
 
