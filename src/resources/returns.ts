@@ -229,7 +229,7 @@ export interface ReturnObject {
   /**
    * The current status of the return.
    */
-  status: 'completed' | 'failed' | 'pending' | 'processing' | 'returned' | 'sent';
+  status: 'cancelled' | 'completed' | 'failed' | 'pending' | 'processing' | 'returned' | 'sent';
 
   /**
    * The ID of the relevant Transaction or `null`.
