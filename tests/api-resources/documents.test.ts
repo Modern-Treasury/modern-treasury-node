@@ -11,8 +11,6 @@ const client = new ModernTreasury({
 describe('resource documents', () => {
   test('create: only required params', async () => {
     const responsePromise = client.documents.create({
-      documentable_id: 'documentable_id',
-      documentable_type: 'counterparties',
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
@@ -26,10 +24,10 @@ describe('resource documents', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.documents.create({
-      documentable_id: 'documentable_id',
-      documentable_type: 'counterparties',
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
       document_type: 'document_type',
+      documentable_id: 'documentable_id',
+      documentable_type: 'connections',
     });
   });
 
@@ -62,7 +60,7 @@ describe('resource documents', () => {
         {
           after_cursor: 'after_cursor',
           documentable_id: 'documentable_id',
-          documentable_type: 'counterparties',
+          documentable_type: 'connections',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },

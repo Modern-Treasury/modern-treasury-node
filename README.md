@@ -75,35 +75,35 @@ const client = new ModernTreasury();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
 await client.documents.create({
+  file: fs.createReadStream('my/file.txt'),
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
-  file: fs.createReadStream('my/file.txt'),
 });
 
 // Or if you have the web `File` API you can pass a `File` instance:
 await client.documents.create({
+  file: new File(['my bytes'], 'file.txt'),
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
-  file: new File(['my bytes'], 'file.txt'),
 });
 
 // You can also pass a `fetch` `Response`:
 await client.documents.create({
+  file: await fetch('https://somesite/file.txt'),
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
-  file: await fetch('https://somesite/file.txt'),
 });
 
 // Finally, if none of the above are convenient, you can use our `toFile` helper:
 await client.documents.create({
+  file: await toFile(Buffer.from('my bytes'), 'file.txt'),
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
-  file: await toFile(Buffer.from('my bytes'), 'file.txt'),
 });
 await client.documents.create({
+  file: await toFile(new Uint8Array([0, 1, 2]), 'file.txt'),
   documentable_id: '24c6b7a3-02...',
   documentable_type: 'counterparties',
-  file: await toFile(new Uint8Array([0, 1, 2]), 'file.txt'),
 });
 ```
 

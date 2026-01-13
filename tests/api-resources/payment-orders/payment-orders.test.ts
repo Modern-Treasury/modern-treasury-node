@@ -44,10 +44,10 @@ describe('resource paymentOrders', () => {
       description: 'description',
       documents: [
         {
-          documentable_id: 'documentable_id',
-          documentable_type: 'counterparties',
           file: await toFile(Buffer.from('# my file contents'), 'README.md'),
           document_type: 'document_type',
+          documentable_id: 'documentable_id',
+          documentable_type: 'connections',
         },
       ],
       effective_date: '2019-12-27',

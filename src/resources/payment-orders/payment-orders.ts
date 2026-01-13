@@ -953,29 +953,30 @@ export namespace PaymentOrderCreateParams {
   }
 
   export interface Document {
-    /**
-     * The unique identifier for the associated object.
-     */
-    documentable_id: string;
-
-    documentable_type:
-      | 'counterparties'
-      | 'expected_payments'
-      | 'external_accounts'
-      | 'identifications'
-      | 'incoming_payment_details'
-      | 'internal_accounts'
-      | 'organizations'
-      | 'payment_orders'
-      | 'transactions'
-      | 'connections';
-
     file: Uploadable;
 
     /**
      * A category given to the document, can be `null`.
      */
     document_type?: string;
+
+    /**
+     * The unique identifier for the associated object.
+     */
+    documentable_id?: string;
+
+    documentable_type?:
+      | 'connections'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'identifications'
+      | 'incoming_payment_details'
+      | 'internal_accounts'
+      | 'legal_entities'
+      | 'organizations'
+      | 'payment_orders'
+      | 'transactions';
   }
 
   export interface LineItem {
