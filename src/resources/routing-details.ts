@@ -166,7 +166,7 @@ export interface RoutingDetail {
 
 export interface RoutingDetailCreateParams {
   /**
-   * Path param:
+   * Path param
    */
   accounts_type: 'external_accounts';
 
@@ -258,7 +258,7 @@ export interface RoutingDetailRetrieveParams {
 
 export interface RoutingDetailListParams extends PageParams {
   /**
-   * Path param:
+   * Path param
    */
   accounts_type: Shared.AccountsType;
 }
