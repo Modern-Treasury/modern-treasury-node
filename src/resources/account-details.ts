@@ -113,7 +113,7 @@ export interface AccountDetail {
 
 export interface AccountDetailCreateParams {
   /**
-   * Path param:
+   * Path param
    */
   accounts_type: 'external_accounts';
 
@@ -154,7 +154,7 @@ export interface AccountDetailRetrieveParams {
 
 export interface AccountDetailListParams extends PageParams {
   /**
-   * Path param:
+   * Path param
    */
   accounts_type: Shared.AccountsType;
 }
