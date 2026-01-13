@@ -56,7 +56,7 @@ export interface Document {
   /**
    * The unique identifier for the associated object.
    */
-  documentable_id: string;
+  documentable_id: string | null;
 
   /**
    * The type of the associated object. Currently can be one of `payment_order`,
@@ -64,16 +64,18 @@ export interface Document {
    * `internal_account`, `decision`, or `external_account`.
    */
   documentable_type:
+    | 'connection'
     | 'counterparty'
     | 'expected_payment'
     | 'external_account'
     | 'identification'
     | 'incoming_payment_detail'
     | 'internal_account'
+    | 'legal_entity'
     | 'organization'
     | 'payment_order'
     | 'transaction'
-    | 'connection';
+    | null;
 
   file: Document.File;
 
@@ -135,29 +137,30 @@ export namespace Document {
 }
 
 export interface DocumentCreateParams {
-  /**
-   * The unique identifier for the associated object.
-   */
-  documentable_id: string;
-
-  documentable_type:
-    | 'counterparties'
-    | 'expected_payments'
-    | 'external_accounts'
-    | 'identifications'
-    | 'incoming_payment_details'
-    | 'internal_accounts'
-    | 'organizations'
-    | 'payment_orders'
-    | 'transactions'
-    | 'connections';
-
   file: Uploadable;
 
   /**
    * A category given to the document, can be `null`.
    */
   document_type?: string;
+
+  /**
+   * The unique identifier for the associated object.
+   */
+  documentable_id?: string;
+
+  documentable_type?:
+    | 'connections'
+    | 'counterparties'
+    | 'expected_payments'
+    | 'external_accounts'
+    | 'identifications'
+    | 'incoming_payment_details'
+    | 'internal_accounts'
+    | 'legal_entities'
+    | 'organizations'
+    | 'payment_orders'
+    | 'transactions';
 }
 
 export interface DocumentListParams extends PageParams {
@@ -172,16 +175,17 @@ export interface DocumentListParams extends PageParams {
    * `internal_account`, `decision`, or `external_account`.
    */
   documentable_type?:
+    | 'connections'
     | 'counterparties'
     | 'expected_payments'
     | 'external_accounts'
     | 'identifications'
     | 'incoming_payment_details'
     | 'internal_accounts'
+    | 'legal_entities'
     | 'organizations'
     | 'payment_orders'
-    | 'transactions'
-    | 'connections';
+    | 'transactions';
 }
 
 export declare namespace Documents {
