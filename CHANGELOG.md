@@ -1,5 +1,33 @@
 # Changelog
 
+## 4.1.0 (2026-01-14)
+
+Full Changelog: [v4.0.0...v4.1.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.0.0...v4.1.0)
+
+### Features
+
+* **api:** api update ([9495fa9](https://github.com/Modern-Treasury/modern-treasury-node/commit/9495fa939b3a83d5d2d516558efc0fbebf14d125))
+* **api:** api update ([a7b7350](https://github.com/Modern-Treasury/modern-treasury-node/commit/a7b73501245835123254799111748a7637a5f252))
+* **api:** manual updates ([652db48](https://github.com/Modern-Treasury/modern-treasury-node/commit/652db489d0b1d64c928edf1616894e1f9a19f14b))
+* **api:** manual updates ([3a82c3f](https://github.com/Modern-Treasury/modern-treasury-node/commit/3a82c3f5cc63bbfe1f0e38c72d6bf8e7ac35eecd))
+* **api:** manual updates ([8e68f84](https://github.com/Modern-Treasury/modern-treasury-node/commit/8e68f8475e55b851c2a0d2aa90253498ae506623))
+
+
+### Bug Fixes
+
+* **mcp:** update code tool prompt ([784a008](https://github.com/Modern-Treasury/modern-treasury-node/commit/784a008ab4baf5d26247a261ae328180a8d3a754))
+
+
+### Chores
+
+* add splat as owner of SDK PRs ([9887d4b](https://github.com/Modern-Treasury/modern-treasury-node/commit/9887d4b3032bc02d69f1da204d1904d7442ac1b3))
+* fix typo in descriptions ([0ed9a0a](https://github.com/Modern-Treasury/modern-treasury-node/commit/0ed9a0a125c45693208ed87897d9685237f41a15))
+* **internal:** codegen related update ([04a6538](https://github.com/Modern-Treasury/modern-treasury-node/commit/04a6538411912c3d4ea5fa81573cd9f9643a69f5))
+* **internal:** codegen related update ([0ec82eb](https://github.com/Modern-Treasury/modern-treasury-node/commit/0ec82eb19275dd64c57fb4fb251f40e45461b239))
+* **internal:** codegen related update ([7b9fea5](https://github.com/Modern-Treasury/modern-treasury-node/commit/7b9fea522d08c10c7e7fc013c7e10a7c4d361ab5))
+* **internal:** codegen related update ([7689428](https://github.com/Modern-Treasury/modern-treasury-node/commit/768942828815436ef389e40978fde9bf7c1f32ff))
+* **mcp:** upgrade dependencies ([f0d4a8f](https://github.com/Modern-Treasury/modern-treasury-node/commit/f0d4a8f13a146ef8ef213a532b0708c2727da489))
+
 ## 4.0.0 (2026-01-07)
 
 Full Changelog: [v3.3.0...v4.0.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.3.0...v4.0.0)
