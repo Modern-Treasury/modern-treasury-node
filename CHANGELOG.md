@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.1.1 (2026-01-16)
+
+Full Changelog: [v4.1.0...v4.1.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.1.0...v4.1.1)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([3cbbbc2](https://github.com/Modern-Treasury/modern-treasury-node/commit/3cbbbc2bd5ef0038f632b02c36981a9981c706ee))
+* **internal:** upgrade babel, qs, js-yaml ([10153a5](https://github.com/Modern-Treasury/modern-treasury-node/commit/10153a55c9c40ceffe04faf86b2746bade719530))
+* **mcp:** add intent param to execute tool ([a9bddfc](https://github.com/Modern-Treasury/modern-treasury-node/commit/a9bddfc3f2f39b519f3c3683d491b0fad8645114))
+* **mcp:** pass intent param to execute handler ([e56af43](https://github.com/Modern-Treasury/modern-treasury-node/commit/e56af4300608f9de22d3eb7748d93e013de3a78d))
+
 ## 4.1.0 (2026-01-14)
 
 Full Changelog: [v4.0.0...v4.1.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.0.0...v4.1.0)
