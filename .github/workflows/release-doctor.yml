@@ -12,10 +12,11 @@ jobs:
     if: github.repository == 'Modern-Treasury/modern-treasury-node' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'release-please') || github.head_ref == 'next')
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Check release environment
         run: |
           bash ./bin/check-release-environment
         env:
           NPM_TOKEN: ${{ secrets.MODERN_TREASURY_NPM_TOKEN || secrets.NPM_TOKEN }}
+
