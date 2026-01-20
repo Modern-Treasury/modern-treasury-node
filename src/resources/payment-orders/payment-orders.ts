@@ -907,8 +907,8 @@ export interface PaymentOrderCreateParams {
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * A flag that determines whether a payment order should go through transaction
-   * monitoring.
+   * @deprecated A flag that determines whether a payment order should go through
+   * transaction monitoring.
    */
   transaction_monitoring_enabled?: boolean;
 
@@ -1078,6 +1078,7 @@ export namespace PaymentOrderCreateParams {
       account_number_type?:
         | 'au_number'
         | 'base_address'
+        | 'card_token'
         | 'clabe'
         | 'ethereum_address'
         | 'hk_number'
@@ -1522,6 +1523,7 @@ export namespace PaymentOrderUpdateParams {
       account_number_type?:
         | 'au_number'
         | 'base_address'
+        | 'card_token'
         | 'clabe'
         | 'ethereum_address'
         | 'hk_number'
@@ -1927,8 +1929,8 @@ export interface PaymentOrderCreateAsyncParams {
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * A flag that determines whether a payment order should go through transaction
-   * monitoring.
+   * @deprecated A flag that determines whether a payment order should go through
+   * transaction monitoring.
    */
   transaction_monitoring_enabled?: boolean;
 
@@ -2071,6 +2073,7 @@ export namespace PaymentOrderCreateAsyncParams {
       account_number_type?:
         | 'au_number'
         | 'base_address'
+        | 'card_token'
         | 'clabe'
         | 'ethereum_address'
         | 'hk_number'
