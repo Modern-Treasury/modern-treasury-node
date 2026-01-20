@@ -382,8 +382,8 @@ export namespace BulkRequestCreateParams {
     subtype?: PaymentOrdersAPI.PaymentOrderSubtype | null;
 
     /**
-     * A flag that determines whether a payment order should go through transaction
-     * monitoring.
+     * @deprecated A flag that determines whether a payment order should go through
+     * transaction monitoring.
      */
     transaction_monitoring_enabled?: boolean;
 
@@ -526,6 +526,7 @@ export namespace BulkRequestCreateParams {
         account_number_type?:
           | 'au_number'
           | 'base_address'
+          | 'card_token'
           | 'clabe'
           | 'ethereum_address'
           | 'hk_number'
@@ -1244,6 +1245,7 @@ export namespace BulkRequestCreateParams {
         account_number_type?:
           | 'au_number'
           | 'base_address'
+          | 'card_token'
           | 'clabe'
           | 'ethereum_address'
           | 'hk_number'

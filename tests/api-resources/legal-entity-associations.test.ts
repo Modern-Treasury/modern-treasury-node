@@ -68,6 +68,7 @@ describe('resource legalEntityAssociations', () => {
           validated: true,
           validated_at: '2019-12-27T18:11:19.117Z',
         },
+        connection_id: 'connection_id',
         country_of_incorporation: 'country_of_incorporation',
         date_formed: '2019-12-27',
         date_of_birth: '2019-12-27',

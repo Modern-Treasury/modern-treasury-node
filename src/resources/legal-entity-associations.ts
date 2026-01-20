@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as DocumentsAPI from './documents';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
@@ -64,6 +65,8 @@ export interface ChildLegalEntity {
 
   discarded_at: string | null;
 
+  documents: Array<DocumentsAPI.Document>;
+
   doing_business_as_names: Array<string>;
 
   /**
@@ -72,7 +75,7 @@ export interface ChildLegalEntity {
   email: string | null;
 
   /**
-   * Monthly expected transaction volume in entity's local currency.
+   * Monthly expected transaction volume in USD.
    */
   expected_activity_volume: number | null;
 
@@ -287,6 +290,8 @@ export namespace ChildLegalEntity {
 
     discarded_at: string | null;
 
+    documents: Array<DocumentsAPI.Document>;
+
     /**
      * The date when the Identification is no longer considered valid by the issuing
      * authority.
@@ -353,7 +358,7 @@ export namespace ChildLegalEntity {
     id: string;
 
     /**
-     * The annual income of the individual.
+     * The annual income of the individual in USD.
      */
     annual_income: number | null;
 

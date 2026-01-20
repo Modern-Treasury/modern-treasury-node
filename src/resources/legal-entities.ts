@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as DocumentsAPI from './documents';
 import * as LegalEntityAssociationsAPI from './legal-entity-associations';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
@@ -121,6 +122,8 @@ export interface LegalEntity {
 
   discarded_at: string | null;
 
+  documents: Array<DocumentsAPI.Document>;
+
   doing_business_as_names: Array<string>;
 
   /**
@@ -129,7 +132,7 @@ export interface LegalEntity {
   email: string | null;
 
   /**
-   * Monthly expected transaction volume in entity's local currency.
+   * Monthly expected transaction volume in USD.
    */
   expected_activity_volume: number | null;
 
@@ -344,6 +347,8 @@ export namespace LegalEntity {
 
     discarded_at: string | null;
 
+    documents: Array<DocumentsAPI.Document>;
+
     /**
      * The date when the Identification is no longer considered valid by the issuing
      * authority.
@@ -410,7 +415,7 @@ export namespace LegalEntity {
     id: string;
 
     /**
-     * The annual income of the individual.
+     * The annual income of the individual in USD.
      */
     annual_income: number | null;
 
@@ -601,6 +606,15 @@ export interface LegalEntityCreateParams {
   compliance_details?: Shared.LegalEntityComplianceDetail | null;
 
   /**
+   * The connection ID for the connection the legal entity is associated with.
+   * Defaults to the id of the connection designated with an is_default value of true
+   * or the id of an existing operational connection if only one is available. Pass
+   * in a value of null to prevent the connection from being associated with the
+   * legal entity.
+   */
+  connection_id?: string | null;
+
+  /**
    * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
    * alpha-3 formats.
    */
@@ -624,7 +638,7 @@ export interface LegalEntityCreateParams {
   email?: string | null;
 
   /**
-   * Monthly expected transaction volume in entity's local currency.
+   * Monthly expected transaction volume in USD.
    */
   expected_activity_volume?: number | null;
 
@@ -781,7 +795,7 @@ export namespace LegalEntityCreateParams {
     id: string;
 
     /**
-     * The annual income of the individual.
+     * The annual income of the individual in USD.
      */
     annual_income: number | null;
 
@@ -990,7 +1004,7 @@ export interface LegalEntityUpdateParams {
   email?: string | null;
 
   /**
-   * Monthly expected transaction volume in entity's local currency.
+   * Monthly expected transaction volume in USD.
    */
   expected_activity_volume?: number | null;
 
@@ -1142,7 +1156,7 @@ export namespace LegalEntityUpdateParams {
     id: string;
 
     /**
-     * The annual income of the individual.
+     * The annual income of the individual in USD.
      */
     annual_income: number | null;
 
