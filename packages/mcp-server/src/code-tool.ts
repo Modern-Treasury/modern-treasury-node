@@ -4,6 +4,7 @@ import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult }
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv, readEnvOrError } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { ModernTreasury } from 'modern-treasury';
 
 const prompt = `Runs JavaScript code to interact with the Modern Treasury API.
 
@@ -54,7 +55,7 @@ export function codeTool(): McpTool {
       required: ['code'],
     },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: ModernTreasury, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
     const intent = args.intent as string | undefined;
 
@@ -70,10 +71,12 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          MODERN_TREASURY_API_KEY: readEnvOrError('MODERN_TREASURY_API_KEY'),
-          MODERN_TREASURY_ORGANIZATION_ID: readEnvOrError('MODERN_TREASURY_ORGANIZATION_ID'),
-          MODERN_TREASURY_WEBHOOK_KEY: readEnv('MODERN_TREASURY_WEBHOOK_KEY'),
-          MODERN_TREASURY_BASE_URL: readEnv('MODERN_TREASURY_BASE_URL'),
+          MODERN_TREASURY_API_KEY: readEnvOrError('MODERN_TREASURY_API_KEY') ?? client.apiKey ?? undefined,
+          MODERN_TREASURY_ORGANIZATION_ID:
+            readEnvOrError('MODERN_TREASURY_ORGANIZATION_ID') ?? client.organizationID ?? undefined,
+          MODERN_TREASURY_WEBHOOK_KEY:
+            readEnv('MODERN_TREASURY_WEBHOOK_KEY') ?? client.webhookKey ?? undefined,
+          MODERN_TREASURY_BASE_URL: readEnv('MODERN_TREASURY_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
