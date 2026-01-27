@@ -2,7 +2,7 @@
 
 import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { readEnv, readEnvOrError } from './server';
+import { readEnv, requireValue } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
 import { ModernTreasury } from 'modern-treasury';
 
@@ -71,9 +71,14 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          MODERN_TREASURY_API_KEY: readEnvOrError('MODERN_TREASURY_API_KEY') ?? client.apiKey ?? undefined,
-          MODERN_TREASURY_ORGANIZATION_ID:
-            readEnvOrError('MODERN_TREASURY_ORGANIZATION_ID') ?? client.organizationID ?? undefined,
+          MODERN_TREASURY_API_KEY: requireValue(
+            readEnv('MODERN_TREASURY_API_KEY') ?? client.apiKey,
+            'set MODERN_TREASURY_API_KEY environment variable or provide apiKey client option',
+          ),
+          MODERN_TREASURY_ORGANIZATION_ID: requireValue(
+            readEnv('MODERN_TREASURY_ORGANIZATION_ID') ?? client.organizationID,
+            'set MODERN_TREASURY_ORGANIZATION_ID environment variable or provide organizationID client option',
+          ),
           MODERN_TREASURY_WEBHOOK_KEY:
             readEnv('MODERN_TREASURY_WEBHOOK_KEY') ?? client.webhookKey ?? undefined,
           MODERN_TREASURY_BASE_URL: readEnv('MODERN_TREASURY_BASE_URL') ?? client.baseURL ?? undefined,
