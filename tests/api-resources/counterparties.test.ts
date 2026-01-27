@@ -227,6 +227,7 @@ describe('resource counterparties', () => {
               legal_entity_associations: [],
               legal_entity_type: 'business',
               legal_structure: 'corporation',
+              listed_exchange: 'listed_exchange',
               metadata: {
                 key: 'value',
                 foo: 'bar',
@@ -239,8 +240,20 @@ describe('resource counterparties', () => {
               preferred_name: 'preferred_name',
               prefix: 'prefix',
               primary_social_media_sites: ['string'],
+              regulators: [
+                {
+                  jurisdiction: 'jurisdiction',
+                  name: 'name',
+                  registration_number: 'registration_number',
+                },
+              ],
               risk_rating: 'low',
               suffix: 'suffix',
+              third_party_verification: {
+                vendor: 'persona',
+                vendor_verification_id: 'vendor_verification_id',
+              },
+              ticker_symbol: 'ticker_symbol',
               wealth_and_employment_details: {
                 id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
                 annual_income: 0,
@@ -269,6 +282,7 @@ describe('resource counterparties', () => {
           },
         ],
         legal_structure: 'corporation',
+        listed_exchange: 'listed_exchange',
         metadata: {
           key: 'value',
           foo: 'bar',
@@ -281,8 +295,17 @@ describe('resource counterparties', () => {
         preferred_name: 'preferred_name',
         prefix: 'prefix',
         primary_social_media_sites: ['string'],
+        regulators: [
+          {
+            jurisdiction: 'jurisdiction',
+            name: 'name',
+            registration_number: 'registration_number',
+          },
+        ],
         risk_rating: 'low',
         suffix: 'suffix',
+        third_party_verification: { vendor: 'persona', vendor_verification_id: 'vendor_verification_id' },
+        ticker_symbol: 'ticker_symbol',
         wealth_and_employment_details: {
           id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           annual_income: 0,

@@ -184,6 +184,11 @@ export interface ChildLegalEntityCreate {
     | null;
 
   /**
+   * ISO 10383 market identifier code.
+   */
+  listed_exchange?: string | null;
+
+  /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
@@ -223,6 +228,11 @@ export interface ChildLegalEntityCreate {
   primary_social_media_sites?: Array<string>;
 
   /**
+   * Array of regulatory bodies overseeing this institution.
+   */
+  regulators?: Array<ChildLegalEntityCreate.Regulator> | null;
+
+  /**
    * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating?: 'low' | 'medium' | 'high' | null;
@@ -231,6 +241,16 @@ export interface ChildLegalEntityCreate {
    * An individual's suffix.
    */
   suffix?: string | null;
+
+  /**
+   * Information describing a third-party verification run by an external vendor.
+   */
+  third_party_verification?: ChildLegalEntityCreate.ThirdPartyVerification | null;
+
+  /**
+   * Stock ticker symbol for publicly traded companies.
+   */
+  ticker_symbol?: string | null;
 
   wealth_and_employment_details?: ChildLegalEntityCreate.WealthAndEmploymentDetails | null;
 
@@ -288,6 +308,39 @@ export namespace ChildLegalEntityCreate {
    */
   export interface PhoneNumber {
     phone_number?: string;
+  }
+
+  export interface Regulator {
+    /**
+     * The country code where the regulator operates in the ISO 3166-1 alpha-2 format
+     * (e.g., "US", "CA", "GB").
+     */
+    jurisdiction: string;
+
+    /**
+     * Full name of the regulatory body.
+     */
+    name: string;
+
+    /**
+     * Registration or identification number with the regulator.
+     */
+    registration_number: string;
+  }
+
+  /**
+   * Information describing a third-party verification run by an external vendor.
+   */
+  export interface ThirdPartyVerification {
+    /**
+     * The vendor that performed the verification, e.g. `persona`.
+     */
+    vendor: 'persona';
+
+    /**
+     * The identification of the third party verification in `vendor`'s system.
+     */
+    vendor_verification_id: string;
   }
 
   export interface WealthAndEmploymentDetails {
