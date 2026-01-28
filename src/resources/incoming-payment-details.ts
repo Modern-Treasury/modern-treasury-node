@@ -122,6 +122,7 @@ export interface IncomingPaymentDetail {
   originating_account_number_type:
     | 'au_number'
     | 'base_address'
+    | 'card_token'
     | 'clabe'
     | 'ethereum_address'
     | 'hk_number'

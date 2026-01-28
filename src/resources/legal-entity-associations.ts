@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as DocumentsAPI from './documents';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
@@ -64,6 +65,8 @@ export interface ChildLegalEntity {
 
   discarded_at: string | null;
 
+  documents: Array<DocumentsAPI.Document>;
+
   doing_business_as_names: Array<string>;
 
   /**
@@ -72,7 +75,7 @@ export interface ChildLegalEntity {
   email: string | null;
 
   /**
-   * Monthly expected transaction volume in entity's local currency.
+   * Monthly expected transaction volume in USD.
    */
   expected_activity_volume: number | null;
 
@@ -124,6 +127,11 @@ export interface ChildLegalEntity {
     | null;
 
   /**
+   * ISO 10383 market identifier code.
+   */
+  listed_exchange: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -171,6 +179,11 @@ export interface ChildLegalEntity {
   primary_social_media_sites: Array<string>;
 
   /**
+   * Array of regulatory bodies overseeing this institution.
+   */
+  regulators: Array<ChildLegalEntity.Regulator> | null;
+
+  /**
    * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating: 'low' | 'medium' | 'high' | null;
@@ -179,6 +192,16 @@ export interface ChildLegalEntity {
    * An individual's suffix.
    */
   suffix: string | null;
+
+  /**
+   * Information describing a third-party verification run by an external vendor.
+   */
+  third_party_verification: ChildLegalEntity.ThirdPartyVerification | null;
+
+  /**
+   * Stock ticker symbol for publicly traded companies.
+   */
+  ticker_symbol: string | null;
 
   updated_at: string;
 
@@ -287,6 +310,8 @@ export namespace ChildLegalEntity {
 
     discarded_at: string | null;
 
+    documents: Array<DocumentsAPI.Document>;
+
     /**
      * The date when the Identification is no longer considered valid by the issuing
      * authority.
@@ -349,11 +374,44 @@ export namespace ChildLegalEntity {
     phone_number?: string;
   }
 
+  export interface Regulator {
+    /**
+     * The country code where the regulator operates in the ISO 3166-1 alpha-2 format
+     * (e.g., "US", "CA", "GB").
+     */
+    jurisdiction: string;
+
+    /**
+     * Full name of the regulatory body.
+     */
+    name: string;
+
+    /**
+     * Registration or identification number with the regulator.
+     */
+    registration_number: string;
+  }
+
+  /**
+   * Information describing a third-party verification run by an external vendor.
+   */
+  export interface ThirdPartyVerification {
+    /**
+     * The vendor that performed the verification, e.g. `persona`.
+     */
+    vendor: 'persona';
+
+    /**
+     * The identification of the third party verification in `vendor`'s system.
+     */
+    vendor_verification_id: string;
+  }
+
   export interface WealthAndEmploymentDetails {
     id: string;
 
     /**
-     * The annual income of the individual.
+     * The annual income of the individual in USD.
      */
     annual_income: number | null;
 

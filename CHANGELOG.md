@@ -1,5 +1,35 @@
 # Changelog
 
+## 4.2.0 (2026-01-28)
+
+Full Changelog: [v4.1.0...v4.2.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.1.0...v4.2.0)
+
+### Features
+
+* **api:** api update ([c639777](https://github.com/Modern-Treasury/modern-treasury-node/commit/c639777540b1cd4fc438ed3649e73192568b05d5))
+* **api:** api update ([af070cc](https://github.com/Modern-Treasury/modern-treasury-node/commit/af070cc4b32c097aed7d88c29a0a63191a3437fa))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([53203d1](https://github.com/Modern-Treasury/modern-treasury-node/commit/53203d1c0f3b474296a4b674f10e86ba211a7f71))
+* **mcp:** allow falling back for required env variables ([9a728bc](https://github.com/Modern-Treasury/modern-treasury-node/commit/9a728bcf36336eb34f94dbdfd26c8828dc4d442a))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([6bf0249](https://github.com/Modern-Treasury/modern-treasury-node/commit/6bf0249def5b8966e18436367aa27948f3b3c68c))
+* **internal:** codegen related update ([cb76de5](https://github.com/Modern-Treasury/modern-treasury-node/commit/cb76de526237b9e873add16ad87c9a5f67435ce9))
+* **internal:** codegen related update ([f47b96d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f47b96df64a04095549459ec56c5be743d69d8d3))
+* **internal:** codegen related update ([17fd655](https://github.com/Modern-Treasury/modern-treasury-node/commit/17fd65598ba9a2fc3fae58fa4df40e71c3472518))
+* **internal:** codegen related update ([c68e333](https://github.com/Modern-Treasury/modern-treasury-node/commit/c68e333620d6227e468129dd5ed0c96b7272dc0b))
+* **internal:** update `actions/checkout` version ([3cbbbc2](https://github.com/Modern-Treasury/modern-treasury-node/commit/3cbbbc2bd5ef0038f632b02c36981a9981c706ee))
+* **internal:** update lock file ([ba7cdeb](https://github.com/Modern-Treasury/modern-treasury-node/commit/ba7cdeb032ef09872d7b3b8921a4d1bc76da295c))
+* **internal:** upgrade babel, qs, js-yaml ([10153a5](https://github.com/Modern-Treasury/modern-treasury-node/commit/10153a55c9c40ceffe04faf86b2746bade719530))
+* **mcp:** add intent param to execute tool ([a9bddfc](https://github.com/Modern-Treasury/modern-treasury-node/commit/a9bddfc3f2f39b519f3c3683d491b0fad8645114))
+* **mcp:** pass intent param to execute handler ([e56af43](https://github.com/Modern-Treasury/modern-treasury-node/commit/e56af4300608f9de22d3eb7748d93e013de3a78d))
+* **mcp:** up tsconfig lib version to es2022 ([9e09179](https://github.com/Modern-Treasury/modern-treasury-node/commit/9e091798682af179a079349cbb48afb2e6a94404))
+
 ## 4.1.0 (2026-01-14)
 
 Full Changelog: [v4.0.0...v4.1.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.0.0...v4.1.0)
