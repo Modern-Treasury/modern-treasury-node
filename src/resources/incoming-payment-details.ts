@@ -238,6 +238,22 @@ export interface IncomingPaymentDetail {
    * The account number of the originating account for the incoming payment detail.
    */
   originating_account_number?: string | null;
+
+  /**
+   * The address of the originating party for the incoming payment detail, or `null`.
+   */
+  originating_party_address?: Shared.Address | null;
+
+  /**
+   * The name of the originating party for the incoming payment detail.
+   */
+  originating_party_name?: string | null;
+
+  /**
+   * The vendor-assigned identifier for the originating party of the incoming payment
+   * detail, or `null`.
+   */
+  originating_party_vendor_identifier?: string | null;
 }
 
 export interface IncomingPaymentDetailUpdateParams {
