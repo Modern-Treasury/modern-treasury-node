@@ -241,6 +241,12 @@ export interface LegalEntity {
   risk_rating: 'low' | 'medium' | 'high' | null;
 
   /**
+   * The activation status of the legal entity. One of pending, active, suspended, or
+   * closed.
+   */
+  status: 'active' | 'closed' | 'pending' | 'suspended' | null;
+
+  /**
    * An individual's suffix.
    */
   suffix: string | null;
@@ -792,6 +798,12 @@ export interface LegalEntityCreateParams {
   risk_rating?: 'low' | 'medium' | 'high' | null;
 
   /**
+   * The activation status of the legal entity. One of pending, active, suspended, or
+   * closed.
+   */
+  status?: 'active' | 'closed' | 'pending' | 'suspended' | null;
+
+  /**
    * An individual's suffix.
    */
   suffix?: string | null;
@@ -1206,6 +1218,12 @@ export interface LegalEntityUpdateParams {
   risk_rating?: 'low' | 'medium' | 'high' | null;
 
   /**
+   * The activation status of the legal entity. One of pending, active, suspended, or
+   * closed.
+   */
+  status?: 'active' | 'closed' | 'pending' | 'suspended' | null;
+
+  /**
    * An individual's suffix.
    */
   suffix?: string | null;
@@ -1486,6 +1504,8 @@ export interface LegalEntityListParams extends PageParams {
   metadata?: { [key: string]: string };
 
   show_deleted?: string;
+
+  status?: 'pending' | 'active' | 'suspended' | 'closed';
 }
 
 export declare namespace LegalEntities {
