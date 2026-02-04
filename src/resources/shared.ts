@@ -238,6 +238,12 @@ export interface ChildLegalEntityCreate {
   risk_rating?: 'low' | 'medium' | 'high' | null;
 
   /**
+   * The activation status of the legal entity. One of pending, active, suspended, or
+   * closed.
+   */
+  status?: 'active' | 'closed' | 'pending' | 'suspended' | null;
+
+  /**
    * An individual's suffix.
    */
   suffix?: string | null;
