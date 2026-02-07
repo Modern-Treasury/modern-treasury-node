@@ -137,6 +137,15 @@ export namespace ConnectionLegalEntityCreateParams {
     compliance_details?: Shared.LegalEntityComplianceDetail | null;
 
     /**
+     * The connection ID for the connection the legal entity is associated with.
+     * Defaults to the id of the connection designated with an is_default value of true
+     * or the id of an existing operational connection if only one is available. Pass
+     * in a value of null to prevent the connection from being associated with the
+     * legal entity.
+     */
+    connection_id?: string | null;
+
+    /**
      * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
      * alpha-3 formats.
      */
@@ -160,7 +169,7 @@ export namespace ConnectionLegalEntityCreateParams {
     email?: string | null;
 
     /**
-     * Monthly expected transaction volume in entity's local currency.
+     * Monthly expected transaction volume in USD.
      */
     expected_activity_volume?: number | null;
 
@@ -212,6 +221,11 @@ export namespace ConnectionLegalEntityCreateParams {
       | null;
 
     /**
+     * ISO 10383 market identifier code.
+     */
+    listed_exchange?: string | null;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
@@ -251,14 +265,35 @@ export namespace ConnectionLegalEntityCreateParams {
     primary_social_media_sites?: Array<string>;
 
     /**
+     * Array of regulatory bodies overseeing this institution.
+     */
+    regulators?: Array<LegalEntity.Regulator> | null;
+
+    /**
      * The risk rating of the legal entity. One of low, medium, high.
      */
     risk_rating?: 'low' | 'medium' | 'high' | null;
 
     /**
+     * The activation status of the legal entity. One of pending, active, suspended, or
+     * closed.
+     */
+    status?: 'active' | 'closed' | 'pending' | 'suspended' | null;
+
+    /**
      * An individual's suffix.
      */
     suffix?: string | null;
+
+    /**
+     * Information describing a third-party verification run by an external vendor.
+     */
+    third_party_verification?: LegalEntity.ThirdPartyVerification | null;
+
+    /**
+     * Stock ticker symbol for publicly traded companies.
+     */
+    ticker_symbol?: string | null;
 
     wealth_and_employment_details?: LegalEntity.WealthAndEmploymentDetails | null;
 
@@ -318,11 +353,44 @@ export namespace ConnectionLegalEntityCreateParams {
       phone_number?: string;
     }
 
+    export interface Regulator {
+      /**
+       * The country code where the regulator operates in the ISO 3166-1 alpha-2 format
+       * (e.g., "US", "CA", "GB").
+       */
+      jurisdiction: string;
+
+      /**
+       * Full name of the regulatory body.
+       */
+      name: string;
+
+      /**
+       * Registration or identification number with the regulator.
+       */
+      registration_number: string;
+    }
+
+    /**
+     * Information describing a third-party verification run by an external vendor.
+     */
+    export interface ThirdPartyVerification {
+      /**
+       * The vendor that performed the verification, e.g. `persona`.
+       */
+      vendor: 'persona';
+
+      /**
+       * The identification of the third party verification in `vendor`'s system.
+       */
+      vendor_verification_id: string;
+    }
+
     export interface WealthAndEmploymentDetails {
       id: string;
 
       /**
-       * The annual income of the individual.
+       * The annual income of the individual in USD.
        */
       annual_income: number | null;
 
