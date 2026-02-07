@@ -860,6 +860,11 @@ export interface LedgerAccountCreateRequest {
   description?: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * The array of ledger account category ids that this ledger account should be a
    * child of.
    */
