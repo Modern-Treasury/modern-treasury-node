@@ -97,8 +97,6 @@ export interface ChildLegalEntityCreate {
    */
   citizenship_country?: string | null;
 
-  compliance_details?: LegalEntityComplianceDetail | null;
-
   /**
    * The connection ID for the connection the legal entity is associated with.
    * Defaults to the id of the connection designated with an is_default value of true
@@ -1103,54 +1101,6 @@ export interface LegalEntityAssociationInlineCreate {
    * The job title of the child entity at the parent entity.
    */
   title?: string | null;
-}
-
-export interface LegalEntityComplianceDetail {
-  id: string;
-
-  created_at: string;
-
-  discarded_at: string | null;
-
-  /**
-   * The issuer of the compliance token.
-   */
-  issuer: string;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode: boolean;
-
-  object: string;
-
-  /**
-   * The timestamp when the compliance token expires.
-   */
-  token_expires_at: string | null;
-
-  /**
-   * The timestamp when the compliance token was issued.
-   */
-  token_issued_at: string | null;
-
-  /**
-   * The URL to the compliance token. (ex. provider portal URL)
-   */
-  token_url: string | null;
-
-  updated_at: string;
-
-  /**
-   * Whether entity corresponding to the compliance token has been validated.
-   */
-  validated: boolean;
-
-  /**
-   * The timestamp when the entity was validated.
-   */
-  validated_at: string | null;
 }
 
 export interface LegalEntityIndustryClassification {
