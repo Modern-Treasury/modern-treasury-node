@@ -100,7 +100,10 @@ export interface LegalEntity {
    */
   citizenship_country: string | null;
 
-  compliance_details: Shared.LegalEntityComplianceDetail | null;
+  /**
+   * @deprecated
+   */
+  compliance_details: unknown | null;
 
   /**
    * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
@@ -662,8 +665,6 @@ export interface LegalEntityCreateParams {
    */
   citizenship_country?: string | null;
 
-  compliance_details?: Shared.LegalEntityComplianceDetail | null;
-
   /**
    * The connection ID for the connection the legal entity is associated with.
    * Defaults to the id of the connection designated with an is_default value of true
@@ -1095,8 +1096,6 @@ export interface LegalEntityUpdateParams {
    * The country of citizenship for an individual.
    */
   citizenship_country?: string | null;
-
-  compliance_details?: Shared.LegalEntityComplianceDetail | null;
 
   /**
    * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or

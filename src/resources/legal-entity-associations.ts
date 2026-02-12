@@ -43,7 +43,10 @@ export interface ChildLegalEntity {
    */
   citizenship_country: string | null;
 
-  compliance_details: Shared.LegalEntityComplianceDetail | null;
+  /**
+   * @deprecated
+   */
+  compliance_details: unknown | null;
 
   /**
    * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or

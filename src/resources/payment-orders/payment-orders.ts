@@ -155,6 +155,12 @@ export interface PaymentOrder {
   amount: number;
 
   /**
+   * The ID of the batch in which the payment order is included. Only populated after
+   * the payment order begins processing.
+   */
+  batch_id: string | null;
+
+  /**
    * The party that will pay the fees for the payment order. See
    * https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
    * differences between the options.
