@@ -520,8 +520,6 @@ export namespace CounterpartyCreateParams {
      */
     citizenship_country?: string | null;
 
-    compliance_details?: Shared.LegalEntityComplianceDetail | null;
-
     /**
      * The connection ID for the connection the legal entity is associated with.
      * Defaults to the id of the connection designated with an is_default value of true
