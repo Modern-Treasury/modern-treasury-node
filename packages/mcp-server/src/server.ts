@@ -56,7 +56,7 @@ export const newMcpServer = async () =>
   new McpServer(
     {
       name: 'modern_treasury_api',
-      version: '4.1.0',
+      version: '4.2.0',
     },
     {
       instructions: await getInstructions(),
