@@ -155,6 +155,12 @@ export interface PaymentOrder {
   amount: number;
 
   /**
+   * The ID of the batch in which the payment order is included. Only populated after
+   * the payment order begins processing.
+   */
+  batch_id: string | null;
+
+  /**
    * The party that will pay the fees for the payment order. See
    * https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
    * differences between the options.
@@ -592,8 +598,6 @@ export namespace PaymentOrder {
       | 'silvergate_payment_id'
       | 'svb_end_to_end_id'
       | 'svb_payment_id'
-      | 'svb_transaction_cleared_for_sanctions_review'
-      | 'svb_transaction_held_for_sanctions_review'
       | 'swift_mir'
       | 'swift_uetr'
       | 'umb_product_partner_account_number'
@@ -907,8 +911,8 @@ export interface PaymentOrderCreateParams {
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * A flag that determines whether a payment order should go through transaction
-   * monitoring.
+   * @deprecated A flag that determines whether a payment order should go through
+   * transaction monitoring.
    */
   transaction_monitoring_enabled?: boolean;
 
@@ -1078,6 +1082,7 @@ export namespace PaymentOrderCreateParams {
       account_number_type?:
         | 'au_number'
         | 'base_address'
+        | 'card_token'
         | 'clabe'
         | 'ethereum_address'
         | 'hk_number'
@@ -1522,6 +1527,7 @@ export namespace PaymentOrderUpdateParams {
       account_number_type?:
         | 'au_number'
         | 'base_address'
+        | 'card_token'
         | 'clabe'
         | 'ethereum_address'
         | 'hk_number'
@@ -1927,8 +1933,8 @@ export interface PaymentOrderCreateAsyncParams {
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * A flag that determines whether a payment order should go through transaction
-   * monitoring.
+   * @deprecated A flag that determines whether a payment order should go through
+   * transaction monitoring.
    */
   transaction_monitoring_enabled?: boolean;
 
@@ -2071,6 +2077,7 @@ export namespace PaymentOrderCreateAsyncParams {
       account_number_type?:
         | 'au_number'
         | 'base_address'
+        | 'card_token'
         | 'clabe'
         | 'ethereum_address'
         | 'hk_number'

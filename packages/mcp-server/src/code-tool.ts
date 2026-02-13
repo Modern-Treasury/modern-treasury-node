@@ -2,8 +2,10 @@
 
 import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { readEnv, readEnvOrError } from './server';
+import { readEnv, requireValue } from './util';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { SdkMethod } from './methods';
+import { ModernTreasury } from 'modern-treasury';
 
 const prompt = `Runs JavaScript code to interact with the Modern Treasury API.
 
@@ -34,15 +36,47 @@ Variables will not persist between calls, so make sure to return or log any data
  *
  * @param endpoints - The endpoints to include in the list.
  */
-export function codeTool(): McpTool {
+export function codeTool(params: { blockedMethods: SdkMethod[] | undefined }): McpTool {
   const metadata: Metadata = { resource: 'all', operation: 'write', tags: [] };
   const tool: Tool = {
     name: 'execute',
     description: prompt,
-    inputSchema: { type: 'object', properties: { code: { type: 'string' } } },
+    inputSchema: {
+      type: 'object',
+      properties: {
+        code: {
+          type: 'string',
+          description: 'Code to execute.',
+        },
+        intent: {
+          type: 'string',
+          description: 'Task you are trying to perform. Used for improving the service.',
+        },
+      },
+      required: ['code'],
+    },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: ModernTreasury, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
+    const intent = args.intent as string | undefined;
+
+    // Do very basic blocking of code that includes forbidden method names.
+    //
+    // WARNING: This is not secure against obfuscation and other evasion methods. If
+    // stronger security blocks are required, then these should be enforced in the downstream
+    // API (e.g., by having users call the MCP server with API keys with limited permissions).
+    if (params.blockedMethods) {
+      const blockedMatches = params.blockedMethods.filter((method) =>
+        code.includes(method.fullyQualifiedName),
+      );
+      if (blockedMatches.length > 0) {
+        return asErrorResult(
+          `The following methods have been blocked by the MCP server and cannot be used in code execution: ${blockedMatches
+            .map((m) => m.fullyQualifiedName)
+            .join(', ')}`,
+        );
+      }
+    }
 
     // this is not required, but passing a Stainless API key for the matching project_name
     // will allow you to run code-mode queries against non-published versions of your SDK.
@@ -56,15 +90,23 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          MODERN_TREASURY_API_KEY: readEnvOrError('MODERN_TREASURY_API_KEY'),
-          MODERN_TREASURY_ORGANIZATION_ID: readEnvOrError('MODERN_TREASURY_ORGANIZATION_ID'),
-          MODERN_TREASURY_WEBHOOK_KEY: readEnv('MODERN_TREASURY_WEBHOOK_KEY'),
-          MODERN_TREASURY_BASE_URL: readEnv('MODERN_TREASURY_BASE_URL'),
+          MODERN_TREASURY_API_KEY: requireValue(
+            readEnv('MODERN_TREASURY_API_KEY') ?? client.apiKey,
+            'set MODERN_TREASURY_API_KEY environment variable or provide apiKey client option',
+          ),
+          MODERN_TREASURY_ORGANIZATION_ID: requireValue(
+            readEnv('MODERN_TREASURY_ORGANIZATION_ID') ?? client.organizationID,
+            'set MODERN_TREASURY_ORGANIZATION_ID environment variable or provide organizationID client option',
+          ),
+          MODERN_TREASURY_WEBHOOK_KEY:
+            readEnv('MODERN_TREASURY_WEBHOOK_KEY') ?? client.webhookKey ?? undefined,
+          MODERN_TREASURY_BASE_URL: readEnv('MODERN_TREASURY_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
         project_name: 'modern-treasury',
         code,
+        intent,
         client_opts: {},
       } satisfies WorkerInput),
     });

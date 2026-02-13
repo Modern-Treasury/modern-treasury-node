@@ -97,7 +97,14 @@ export interface ChildLegalEntityCreate {
    */
   citizenship_country?: string | null;
 
-  compliance_details?: LegalEntityComplianceDetail | null;
+  /**
+   * The connection ID for the connection the legal entity is associated with.
+   * Defaults to the id of the connection designated with an is_default value of true
+   * or the id of an existing operational connection if only one is available. Pass
+   * in a value of null to prevent the connection from being associated with the
+   * legal entity.
+   */
+  connection_id?: string | null;
 
   /**
    * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
@@ -123,7 +130,7 @@ export interface ChildLegalEntityCreate {
   email?: string | null;
 
   /**
-   * Monthly expected transaction volume in entity's local currency.
+   * Monthly expected transaction volume in USD.
    */
   expected_activity_volume?: number | null;
 
@@ -175,6 +182,11 @@ export interface ChildLegalEntityCreate {
     | null;
 
   /**
+   * ISO 10383 market identifier code.
+   */
+  listed_exchange?: string | null;
+
+  /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
@@ -214,14 +226,35 @@ export interface ChildLegalEntityCreate {
   primary_social_media_sites?: Array<string>;
 
   /**
+   * Array of regulatory bodies overseeing this institution.
+   */
+  regulators?: Array<ChildLegalEntityCreate.Regulator> | null;
+
+  /**
    * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating?: 'low' | 'medium' | 'high' | null;
 
   /**
+   * The activation status of the legal entity. One of pending, active, suspended, or
+   * closed.
+   */
+  status?: 'active' | 'closed' | 'pending' | 'suspended' | null;
+
+  /**
    * An individual's suffix.
    */
   suffix?: string | null;
+
+  /**
+   * Information describing a third-party verification run by an external vendor.
+   */
+  third_party_verification?: ChildLegalEntityCreate.ThirdPartyVerification | null;
+
+  /**
+   * Stock ticker symbol for publicly traded companies.
+   */
+  ticker_symbol?: string | null;
 
   wealth_and_employment_details?: ChildLegalEntityCreate.WealthAndEmploymentDetails | null;
 
@@ -281,11 +314,44 @@ export namespace ChildLegalEntityCreate {
     phone_number?: string;
   }
 
+  export interface Regulator {
+    /**
+     * The country code where the regulator operates in the ISO 3166-1 alpha-2 format
+     * (e.g., "US", "CA", "GB").
+     */
+    jurisdiction: string;
+
+    /**
+     * Full name of the regulatory body.
+     */
+    name: string;
+
+    /**
+     * Registration or identification number with the regulator.
+     */
+    registration_number: string;
+  }
+
+  /**
+   * Information describing a third-party verification run by an external vendor.
+   */
+  export interface ThirdPartyVerification {
+    /**
+     * The vendor that performed the verification, e.g. `persona`.
+     */
+    vendor: 'persona';
+
+    /**
+     * The identification of the third party verification in `vendor`'s system.
+     */
+    vendor_verification_id: string;
+  }
+
   export interface WealthAndEmploymentDetails {
     id: string;
 
     /**
-     * The annual income of the individual.
+     * The annual income of the individual in USD.
      */
     annual_income: number | null;
 
@@ -792,6 +858,11 @@ export interface LedgerAccountCreateRequest {
   description?: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * The array of ledger account category ids that this ledger account should be a
    * child of.
    */
@@ -1030,54 +1101,6 @@ export interface LegalEntityAssociationInlineCreate {
    * The job title of the child entity at the parent entity.
    */
   title?: string | null;
-}
-
-export interface LegalEntityComplianceDetail {
-  id: string;
-
-  created_at: string;
-
-  discarded_at: string | null;
-
-  /**
-   * The issuer of the compliance token.
-   */
-  issuer: string;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode: boolean;
-
-  object: string;
-
-  /**
-   * The timestamp when the compliance token expires.
-   */
-  token_expires_at: string | null;
-
-  /**
-   * The timestamp when the compliance token was issued.
-   */
-  token_issued_at: string | null;
-
-  /**
-   * The URL to the compliance token. (ex. provider portal URL)
-   */
-  token_url: string | null;
-
-  updated_at: string;
-
-  /**
-   * Whether entity corresponding to the compliance token has been validated.
-   */
-  validated: boolean;
-
-  /**
-   * The timestamp when the entity was validated.
-   */
-  validated_at: string | null;
 }
 
 export interface LegalEntityIndustryClassification {

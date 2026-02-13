@@ -33,6 +33,7 @@ describe('resource ledgerAccountCategories', () => {
       normal_balance: 'credit',
       currency_exponent: 0,
       description: 'description',
+      external_id: 'external_id',
       ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
       metadata: {
         key: 'value',
@@ -118,7 +119,7 @@ describe('resource ledgerAccountCategories', () => {
           ledger_account_id: 'ledger_account_id',
           ledger_id: 'ledger_id',
           metadata: { foo: 'string' },
-          name: ['string'],
+          name: 'name',
           parent_ledger_account_category_id: 'parent_ledger_account_category_id',
           per_page: 0,
         },

@@ -18,10 +18,14 @@ async function main() {
 
   switch (options.transport) {
     case 'stdio':
-      await launchStdioServer();
+      await launchStdioServer(options);
       break;
     case 'http':
-      await launchStreamableHTTPServer(options, options.port ?? options.socket);
+      await launchStreamableHTTPServer({
+        mcpOptions: options,
+        debug: options.debug,
+        port: options.port ?? options.socket,
+      });
       break;
   }
 }

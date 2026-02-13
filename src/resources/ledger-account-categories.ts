@@ -283,6 +283,11 @@ export interface LedgerAccountCategoryCreateParams {
   description?: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * The array of ledger account category ids that this ledger account category
    * should be a child of.
    */
@@ -371,11 +376,7 @@ export interface LedgerAccountCategoryListParams extends PageParams {
    */
   metadata?: { [key: string]: string };
 
-  /**
-   * If you have specific names to retrieve in bulk, you can pass them as query
-   * parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
-   */
-  name?: Array<string>;
+  name?: string;
 
   /**
    * Query categories that are nested underneath a parent category

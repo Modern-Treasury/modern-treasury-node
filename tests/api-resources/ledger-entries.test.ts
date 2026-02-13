@@ -96,7 +96,7 @@ describe('resource ledgerEntries', () => {
           per_page: 0,
           show_balances: true,
           show_deleted: true,
-          status: ['pending'],
+          status: 'pending',
           updated_at: { foo: '2019-12-27T18:11:19.117Z' },
         },
         { path: '/_stainless_unknown_path' },

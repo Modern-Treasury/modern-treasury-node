@@ -12,28 +12,63 @@ import ModernTreasury from 'modern-treasury';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { McpOptions } from './options';
+import { blockedMethodsForCodeTool } from './methods';
 import { HandlerFunction, McpTool } from './types';
+import { readEnv } from './util';
 
-export { McpOptions } from './options';
-export { ClientOptions } from 'modern-treasury';
+async function getInstructions() {
+  // This API key is optional; providing it allows the server to fetch instructions for unreleased versions.
+  const stainlessAPIKey = readEnv('STAINLESS_API_KEY');
+  const response = await fetch(
+    readEnv('CODE_MODE_INSTRUCTIONS_URL') ?? 'https://api.stainless.com/api/ai/instructions/modern-treasury',
+    {
+      method: 'GET',
+      headers: { ...(stainlessAPIKey && { Authorization: stainlessAPIKey }) },
+    },
+  );
 
-export const newMcpServer = () =>
+  let instructions: string | undefined;
+  if (!response.ok) {
+    console.warn(
+      'Warning: failed to retrieve MCP server instructions. Proceeding with default instructions...',
+    );
+
+    instructions = `
+      This is the modern-treasury MCP server. You will use Code Mode to help the user perform
+      actions. You can use search_docs tool to learn about how to take action with this server. Then,
+      you will write TypeScript code using the execute tool take action. It is CRITICAL that you be
+      thoughtful and deliberate when executing code. Always try to entirely solve the problem in code
+      block: it can be as long as you need to get the job done!
+    `;
+  }
+
+  instructions ??= ((await response.json()) as { instructions: string }).instructions;
+  instructions = `
+    The current time in Unix timestamps is ${Date.now()}.
+
+    ${instructions}
+  `;
+
+  return instructions;
+}
+
+export const newMcpServer = async () =>
   new McpServer(
     {
       name: 'modern_treasury_api',
-      version: '4.1.0',
+      version: '4.2.0',
     },
-    { capabilities: { tools: {}, logging: {} } },
+    {
+      instructions: await getInstructions(),
+      capabilities: { tools: {}, logging: {} },
+    },
   );
-
-// Create server instance
-export const server = newMcpServer();
 
 /**
  * Initializes the provided MCP Server with the given tools and handlers.
  * If not provided, the default client, tools and handlers will be used.
  */
-export function initMcpServer(params: {
+export async function initMcpServer(params: {
   server: Server | McpServer;
   clientOptions?: ClientOptions;
   mcpOptions?: McpOptions;
@@ -111,7 +146,11 @@ export function initMcpServer(params: {
  * Selects the tools to include in the MCP Server based on the provided options.
  */
 export function selectTools(options?: McpOptions): McpTool[] {
-  const includedTools = [codeTool()];
+  const includedTools = [
+    codeTool({
+      blockedMethods: blockedMethodsForCodeTool(options),
+    }),
+  ];
   if (options?.includeDocsTools ?? true) {
     includedTools.push(docsSearchTool);
   }
@@ -128,20 +167,3 @@ export async function executeHandler(
 ) {
   return await handler(client, args || {});
 }
-
-export const readEnv = (env: string): string | undefined => {
-  if (typeof (globalThis as any).process !== 'undefined') {
-    return (globalThis as any).process.env?.[env]?.trim();
-  } else if (typeof (globalThis as any).Deno !== 'undefined') {
-    return (globalThis as any).Deno.env?.get?.(env)?.trim();
-  }
-  return;
-};
-
-export const readEnvOrError = (env: string): string => {
-  let envValue = readEnv(env);
-  if (envValue === undefined) {
-    throw new Error(`Environment variable ${env} is not set`);
-  }
-  return envValue;
-};
