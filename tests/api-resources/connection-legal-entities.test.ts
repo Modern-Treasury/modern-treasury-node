@@ -57,6 +57,7 @@ describe('resource connectionLegalEntities', () => {
         doing_business_as_names: ['string'],
         email: 'email',
         expected_activity_volume: 0,
+        external_id: 'external_id',
         first_name: 'first_name',
         identifications: [
           {
@@ -118,6 +119,7 @@ describe('resource connectionLegalEntities', () => {
               doing_business_as_names: ['string'],
               email: 'email',
               expected_activity_volume: 0,
+              external_id: 'external_id',
               first_name: 'first_name',
               identifications: [
                 {

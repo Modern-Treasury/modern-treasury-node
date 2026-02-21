@@ -189,6 +189,11 @@ export interface InternalAccount {
   currency: Shared.Currency;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id: string | null;
+
+  /**
    * If the internal account links to a ledger account in Modern Treasury, the id of
    * the ledger account will be populated here.
    */
@@ -457,6 +462,11 @@ export interface InternalAccountCreateParams {
   counterparty_id?: string;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * The LegalEntity associated to this account.
    */
   legal_entity_id?: string;
@@ -594,6 +604,11 @@ export interface InternalAccountUpdateParams {
   counterparty_id?: string;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * The Ledger Account associated to this account.
    */
   ledger_account_id?: string;
@@ -625,6 +640,11 @@ export interface InternalAccountListParams extends PageParams {
    * Only return internal accounts with this currency.
    */
   currency?: Shared.Currency;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
 
   /**
    * Only return internal accounts associated with this legal entity.

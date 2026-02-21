@@ -83,6 +83,11 @@ export interface ChildLegalEntity {
   expected_activity_volume: number | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id: string | null;
+
+  /**
    * An individual's first name.
    */
   first_name: string | null;

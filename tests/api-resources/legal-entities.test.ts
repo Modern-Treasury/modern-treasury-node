@@ -56,6 +56,7 @@ describe('resource legalEntities', () => {
       doing_business_as_names: ['string'],
       email: 'email',
       expected_activity_volume: 0,
+      external_id: 'external_id',
       first_name: 'first_name',
       identifications: [
         {
@@ -117,6 +118,7 @@ describe('resource legalEntities', () => {
             doing_business_as_names: ['string'],
             email: 'email',
             expected_activity_volume: 0,
+            external_id: 'external_id',
             first_name: 'first_name',
             identifications: [
               {
@@ -306,6 +308,7 @@ describe('resource legalEntities', () => {
           doing_business_as_names: ['string'],
           email: 'email',
           expected_activity_volume: 0,
+          external_id: 'external_id',
           first_name: 'first_name',
           identifications: [
             {
@@ -400,6 +403,7 @@ describe('resource legalEntities', () => {
       client.legalEntities.list(
         {
           after_cursor: 'after_cursor',
+          external_id: 'external_id',
           legal_entity_type: 'business',
           metadata: { foo: 'string' },
           per_page: 0,

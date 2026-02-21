@@ -140,6 +140,11 @@ export interface LegalEntity {
   expected_activity_volume: number | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id: string | null;
+
+  /**
    * An individual's first name.
    */
   first_name: string | null;
@@ -710,6 +715,11 @@ export interface LegalEntityCreateParams {
   expected_activity_volume?: number | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * An individual's first name.
    */
   first_name?: string | null;
@@ -1140,6 +1150,11 @@ export interface LegalEntityUpdateParams {
   expected_activity_volume?: number | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * An individual's first name.
    */
   first_name?: string | null;
@@ -1514,6 +1529,11 @@ export namespace LegalEntityUpdateParams {
 }
 
 export interface LegalEntityListParams extends PageParams {
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
+
   legal_entity_type?: 'business' | 'individual';
 
   /**
