@@ -46,6 +46,7 @@ describe('resource internalAccounts', () => {
       ],
       account_type: 'checking',
       counterparty_id: 'counterparty_id',
+      external_id: 'external_id',
       legal_entity_id: 'legal_entity_id',
       parent_account_id: 'parent_account_id',
       party_address: {
@@ -94,6 +95,7 @@ describe('resource internalAccounts', () => {
         {
           contra_ledger_account_id: 'contra_ledger_account_id',
           counterparty_id: 'counterparty_id',
+          external_id: 'external_id',
           ledger_account_id: 'ledger_account_id',
           metadata: { foo: 'string' },
           name: 'name',
@@ -123,6 +125,7 @@ describe('resource internalAccounts', () => {
           after_cursor: 'after_cursor',
           counterparty_id: 'counterparty_id',
           currency: 'AED',
+          external_id: 'external_id',
           legal_entity_id: 'legal_entity_id',
           metadata: { foo: 'string' },
           payment_direction: 'credit',
