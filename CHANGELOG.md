@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.3.0 (2026-02-21)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** api update ([9f81f33](https://github.com/Modern-Treasury/modern-treasury-node/commit/9f81f33af83ab740ef01ef8424094cd3383f03d5))
+* **api:** api update ([fbd0999](https://github.com/Modern-Treasury/modern-treasury-node/commit/fbd099916d495afa30f9f020e7c2549f47363dff))
+
 ## 4.2.0 (2026-02-19)
 
 Full Changelog: [v4.1.0...v4.2.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.1.0...v4.2.0)
