@@ -78,6 +78,11 @@ export interface Reversal {
   created_at: string;
 
   /**
+   * The ID of the relevant Internal Account.
+   */
+  internal_account_id: string | null;
+
+  /**
    * The ID of the ledger transaction linked to the reversal.
    */
   ledger_transaction_id: string | null;
