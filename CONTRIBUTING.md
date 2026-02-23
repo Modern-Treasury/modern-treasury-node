@@ -60,7 +60,7 @@ $ yarn link modern-treasury
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global modern-treasury
+$ pnpm link --global modern-treasury
 ```
 
 ## Running tests
