@@ -780,6 +780,11 @@ export interface PaymentOrderCreateParams {
   expires_at?: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * A payment type to fallback to if the original type is not valid for the
    * receiving account. Currently, this only supports falling back from RTP to ACH
    * (type=rtp and fallback_type=ach)
@@ -1232,6 +1237,11 @@ export interface PaymentOrderUpdateParams {
    * RFP payments require an expires_at. This value must be past the effective_date.
    */
   expires_at?: string | null;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
 
   /**
    * A payment type to fallback to if the original type is not valid for the
@@ -1800,6 +1810,11 @@ export interface PaymentOrderCreateAsyncParams {
    * RFP payments require an expires_at. This value must be past the effective_date.
    */
   expires_at?: string | null;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
 
   /**
    * A payment type to fallback to if the original type is not valid for the

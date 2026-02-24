@@ -93,6 +93,7 @@ describe('resource ledgerTransactions', () => {
         {
           description: 'description',
           effective_at: '2019-12-27T18:11:19.117Z',
+          external_id: 'external_id',
           ledger_entries: [
             {
               amount: 0,

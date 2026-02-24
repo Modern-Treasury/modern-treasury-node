@@ -331,6 +331,11 @@ export interface LedgerAccountCategoryUpdateParams {
   description?: string | null;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
