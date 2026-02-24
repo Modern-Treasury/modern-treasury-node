@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.4.1 (2026-02-24)
+
+Full Changelog: [v4.4.0...v4.4.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.0...v4.4.1)
+
+### Chores
+
+* **api:** publish to npm using oidc ([070d34f](https://github.com/Modern-Treasury/modern-treasury-node/commit/070d34f05817b74cda5585fd05615d9f36483bc0))
+* **internal:** make MCP code execution location configurable via a flag ([0b0c852](https://github.com/Modern-Treasury/modern-treasury-node/commit/0b0c852c500c574f68b681057d7e34b1b5113269))
+
 ## 4.4.0 (2026-02-24)
 
 Full Changelog: [v4.3.0...v4.4.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.3.0...v4.4.0)
