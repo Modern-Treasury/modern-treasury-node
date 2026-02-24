@@ -83,6 +83,7 @@ describe('resource ledgerAccountCategories', () => {
         'id',
         {
           description: 'description',
+          external_id: 'external_id',
           metadata: {
             key: 'value',
             foo: 'bar',

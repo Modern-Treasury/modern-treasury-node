@@ -949,6 +949,11 @@ export interface CounterpartyUpdateParams {
   email?: string;
 
   /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
    * The id of the legal entity.
    */
   legal_entity_id?: string | null;

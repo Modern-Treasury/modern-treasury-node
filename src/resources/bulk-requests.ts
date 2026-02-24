@@ -248,6 +248,11 @@ export namespace BulkRequestCreateParams {
     expires_at?: string | null;
 
     /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
+
+    /**
      * A payment type to fallback to if the original type is not valid for the
      * receiving account. Currently, this only supports falling back from RTP to ACH
      * (type=rtp and fallback_type=ach)
@@ -949,6 +954,11 @@ export namespace BulkRequestCreateParams {
     expires_at?: string | null;
 
     /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
+
+    /**
      * A payment type to fallback to if the original type is not valid for the
      * receiving account. Currently, this only supports falling back from RTP to ACH
      * (type=rtp and fallback_type=ach)
@@ -1479,6 +1489,12 @@ export namespace BulkRequestCreateParams {
      * reporting purposes.
      */
     effective_at?: string;
+
+    /**
+     * A unique string to represent the ledger transaction. Only one pending or posted
+     * ledger transaction may have this ID in the ledger.
+     */
+    external_id?: string | null;
 
     /**
      * An array of ledger entry objects.
