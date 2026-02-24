@@ -1,5 +1,25 @@
 # Changelog
 
+## 4.3.0 (2026-02-24)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** api update ([97fbdb1](https://github.com/Modern-Treasury/modern-treasury-node/commit/97fbdb146650d99e7039adc9b3033f3f85ace514))
+* **api:** api update ([9f81f33](https://github.com/Modern-Treasury/modern-treasury-node/commit/9f81f33af83ab740ef01ef8424094cd3383f03d5))
+* **api:** api update ([fbd0999](https://github.com/Modern-Treasury/modern-treasury-node/commit/fbd099916d495afa30f9f020e7c2549f47363dff))
+
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([5e89f13](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e89f135fdf35797d546c6b9562f880b9c64adae))
+
+
+### Chores
+
+* **internal:** upgrade @modelcontextprotocol/sdk and hono ([3ea5f40](https://github.com/Modern-Treasury/modern-treasury-node/commit/3ea5f40969f70eb61bcd4a651c11e586c6e1780d))
+
 ## 4.2.0 (2026-02-19)
 
 Full Changelog: [v4.1.0...v4.2.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.1.0...v4.2.0)
