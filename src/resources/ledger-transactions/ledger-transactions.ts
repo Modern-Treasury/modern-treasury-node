@@ -312,6 +312,12 @@ export interface LedgerTransactionUpdateParams {
   effective_at?: string;
 
   /**
+   * A unique string to represent the ledger transaction. Only one pending or posted
+   * ledger transaction may have this ID in the ledger.
+   */
+  external_id?: string | null;
+
+  /**
    * An array of ledger entry objects.
    */
   ledger_entries?: Array<Shared.LedgerEntryCreateRequest>;

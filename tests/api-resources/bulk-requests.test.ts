@@ -54,6 +54,7 @@ describe('resource bulkRequests', () => {
           description: 'description',
           effective_date: '2019-12-27',
           expires_at: '2019-12-27T18:11:19.117Z',
+          external_id: 'external_id',
           fallback_type: 'ach',
           foreign_exchange_contract: 'foreign_exchange_contract',
           foreign_exchange_indicator: 'fixed_to_variable',
