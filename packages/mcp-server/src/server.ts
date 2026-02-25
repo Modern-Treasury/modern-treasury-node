@@ -20,7 +20,7 @@ export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
     {
       name: 'modern_treasury_api',
-      version: '4.4.1',
+      version: '4.4.2',
     },
     {
       instructions: await getInstructions(stainlessApiKey),
