@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.4.2 (2026-02-25)
+
+Full Changelog: [v4.4.1...v4.4.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.1...v4.4.2)
+
+### Chores
+
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([773c7b5](https://github.com/Modern-Treasury/modern-treasury-node/commit/773c7b5f7dfe6bf7a446fa7be976def5abb63ce1))
+
 ## 4.4.1 (2026-02-24)
 
 Full Changelog: [v4.4.0...v4.4.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.0...v4.4.1)
