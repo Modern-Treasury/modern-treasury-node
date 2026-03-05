@@ -254,6 +254,18 @@ export interface IncomingPaymentDetail {
    * detail, or `null`.
    */
   originating_party_vendor_identifier?: string | null;
+
+  /**
+   * The account number of the receiving account for the incoming payment detail, or
+   * `null`.
+   */
+  receiving_account_number?: string | null;
+
+  /**
+   * The last 4 digits of the receiving account number for the incoming payment
+   * detail, or `null`.
+   */
+  receiving_account_number_safe?: string | null;
 }
 
 export interface IncomingPaymentDetailUpdateParams {
