@@ -1,5 +1,34 @@
 # Changelog
 
+## 4.5.0 (2026-03-05)
+
+Full Changelog: [v4.4.2...v4.5.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.2...v4.5.0)
+
+### Features
+
+* **api:** api update ([81cc4ac](https://github.com/Modern-Treasury/modern-treasury-node/commit/81cc4accf08e87216d84da6b911756ac462df320))
+* **api:** api update ([97f9d30](https://github.com/Modern-Treasury/modern-treasury-node/commit/97f9d308ed9e8baff20cd85bac87fcc6d3504821))
+* **api:** api update ([ccc1d0d](https://github.com/Modern-Treasury/modern-treasury-node/commit/ccc1d0d362e0b199a648d5a4b82a67d7b9017823))
+* **api:** api update ([9d160fc](https://github.com/Modern-Treasury/modern-treasury-node/commit/9d160fca010370ef4bdfff9c25954005e4b3e7bd))
+* **mcp:** add an option to disable code tool ([a02efbf](https://github.com/Modern-Treasury/modern-treasury-node/commit/a02efbf02bf2e0063981daf89c00ad6fcd604d34))
+
+
+### Bug Fixes
+
+* fix request delays for retrying to be more respectful of high requested delays ([0b791d9](https://github.com/Modern-Treasury/modern-treasury-node/commit/0b791d975d715db92d3d12dcbef0f88afae0f931))
+* **mcp:** update prompt ([240e0b0](https://github.com/Modern-Treasury/modern-treasury-node/commit/240e0b0efe0dae82e6e4340204eb970111e119b7))
+
+
+### Chores
+
+* **api:** remove an obsolete reviewer ([795eb26](https://github.com/Modern-Treasury/modern-treasury-node/commit/795eb26125d22f959fb0190426e7ae5c6f03ac63))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([3b82655](https://github.com/Modern-Treasury/modern-treasury-node/commit/3b82655979273607b539ad421b9dda1f1e953867))
+* **internal:** move stringifyQuery implementation to internal function ([e906836](https://github.com/Modern-Treasury/modern-treasury-node/commit/e9068368034579f0196e50765b2340660362614d))
+* **internal:** switch MCP servers to use pino for logging ([853bf50](https://github.com/Modern-Treasury/modern-treasury-node/commit/853bf50b47788d1d490d4aa16b75f725fbecc2ad))
+* **internal:** use x-stainless-mcp-client-envs header for MCP remote code tool calls ([09ddb0d](https://github.com/Modern-Treasury/modern-treasury-node/commit/09ddb0db9e8250e68536286571e10e105ad9a29a))
+* **mcp-server:** return access instructions for 404 without API key ([62f5cdd](https://github.com/Modern-Treasury/modern-treasury-node/commit/62f5cdd05436909393d6feb0a9f5f368bb26ab5b))
+* **test:** do not count install time for mock server timeout ([6acf219](https://github.com/Modern-Treasury/modern-treasury-node/commit/6acf21919308887211d0e8f4eafeb36d225d2cbb))
+
 ## 4.4.2 (2026-02-25)
 
 Full Changelog: [v4.4.1...v4.4.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.1...v4.4.2)
