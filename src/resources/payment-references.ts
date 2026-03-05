@@ -66,6 +66,7 @@ export interface PaymentReference {
     | 'bofa_transaction_id'
     | 'brale_transfer_id'
     | 'check_number'
+    | 'chips_uid'
     | 'citibank_reference_number'
     | 'citibank_worldlink_clearing_system_reference_number'
     | 'column_fx_quote_id'
