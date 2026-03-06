@@ -124,7 +124,7 @@ export interface Reversal {
   /**
    * The current status of the reversal.
    */
-  status: 'completed' | 'failed' | 'pending' | 'processing' | 'returned' | 'sent';
+  status: 'cancelled' | 'completed' | 'failed' | 'pending' | 'processing' | 'returned' | 'sent';
 
   transaction_ids: Array<string | null>;
 
