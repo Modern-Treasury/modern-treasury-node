@@ -11,7 +11,7 @@ const client = new ModernTreasury({
 describe('resource documents', () => {
   test('create: only required params', async () => {
     const responsePromise = client.documents.create({
-      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -24,7 +24,7 @@ describe('resource documents', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.documents.create({
-      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
       document_type: 'document_type',
       documentable_id: 'documentable_id',
       documentable_type: 'connections',
