@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.6.0 (2026-03-09)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* **api:** api update ([7bb408f](https://github.com/Modern-Treasury/modern-treasury-node/commit/7bb408f938d66eb4660928213c74157e5b4d7d35))
+
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([670e345](https://github.com/Modern-Treasury/modern-treasury-node/commit/670e34513b3998bd2bbd555f054b4a08eeb3c6f8))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([3bfc281](https://github.com/Modern-Treasury/modern-treasury-node/commit/3bfc281bb508c1d05b5bac389e403c689b8dcb3b))
+* **internal:** update dependencies to address dependabot vulnerabilities ([27b8643](https://github.com/Modern-Treasury/modern-treasury-node/commit/27b864319e8f9d6dfb22b5c09c4bc307bc986783))
+* **mcp-server:** improve instructions ([acbcf00](https://github.com/Modern-Treasury/modern-treasury-node/commit/acbcf00c69260b480c0f22779a4ffd483973b334))
+* update placeholder string ([702796b](https://github.com/Modern-Treasury/modern-treasury-node/commit/702796b57a1dacace89035be7433749a11b4b42f))
+
 ## 4.5.0 (2026-03-05)
 
 Full Changelog: [v4.4.2...v4.5.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.2...v4.5.0)
