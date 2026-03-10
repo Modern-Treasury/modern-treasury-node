@@ -54,6 +54,13 @@ describe('resource connectionLegalEntities', () => {
         country_of_incorporation: 'country_of_incorporation',
         date_formed: '2019-12-27',
         date_of_birth: '2019-12-27',
+        documents: [
+          {
+            document_type: 'articles_of_incorporation',
+            file_data: 'file_data',
+            filename: 'filename',
+          },
+        ],
         doing_business_as_names: ['string'],
         email: 'email',
         expected_activity_volume: 0,
@@ -63,6 +70,13 @@ describe('resource connectionLegalEntities', () => {
           {
             id_number: 'id_number',
             id_type: 'ar_cuil',
+            documents: [
+              {
+                document_type: 'articles_of_incorporation',
+                file_data: 'file_data',
+                filename: 'filename',
+              },
+            ],
             expiration_date: '2019-12-27',
             issuing_country: 'issuing_country',
             issuing_region: 'issuing_region',
@@ -116,6 +130,13 @@ describe('resource connectionLegalEntities', () => {
               country_of_incorporation: 'country_of_incorporation',
               date_formed: '2019-12-27',
               date_of_birth: '2019-12-27',
+              documents: [
+                {
+                  document_type: 'articles_of_incorporation',
+                  file_data: 'file_data',
+                  filename: 'filename',
+                },
+              ],
               doing_business_as_names: ['string'],
               email: 'email',
               expected_activity_volume: 0,
@@ -125,6 +146,13 @@ describe('resource connectionLegalEntities', () => {
                 {
                   id_number: 'id_number',
                   id_type: 'ar_cuil',
+                  documents: [
+                    {
+                      document_type: 'articles_of_incorporation',
+                      file_data: 'file_data',
+                      filename: 'filename',
+                    },
+                  ],
                   expiration_date: '2019-12-27',
                   issuing_country: 'issuing_country',
                   issuing_region: 'issuing_region',
