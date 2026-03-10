@@ -122,6 +122,12 @@ export interface ChildLegalEntityCreate {
    */
   date_of_birth?: string | null;
 
+  /**
+   * A list of documents to attach to the legal entity (e.g. articles of
+   * incorporation, certificate of good standing, proof of address).
+   */
+  documents?: Array<ChildLegalEntityCreate.Document>;
+
   doing_business_as_names?: Array<string>;
 
   /**
@@ -310,6 +316,29 @@ export namespace ChildLegalEntityCreate {
     regulation_o: boolean | null;
 
     updated_at: string;
+  }
+
+  export interface Document {
+    /**
+     * A category given to the document, can be `null`.
+     */
+    document_type:
+      | 'articles_of_incorporation'
+      | 'certificate_of_good_standing'
+      | 'ein_letter'
+      | 'identification_back'
+      | 'identification_front'
+      | 'proof_of_address';
+
+    /**
+     * Base64-encoded file content for the document.
+     */
+    file_data: string;
+
+    /**
+     * The original filename of the document.
+     */
+    filename?: string;
   }
 
   /**
@@ -822,6 +851,11 @@ export interface IdentificationCreateRequest {
     | 'vn_tin';
 
   /**
+   * A list of documents to attach to the identification.
+   */
+  documents?: Array<IdentificationCreateRequest.Document>;
+
+  /**
    * The date when the Identification is no longer considered valid by the issuing
    * authority.
    */
@@ -837,6 +871,31 @@ export interface IdentificationCreateRequest {
    * The region in which the identifcation was issued.
    */
   issuing_region?: string | null;
+}
+
+export namespace IdentificationCreateRequest {
+  export interface Document {
+    /**
+     * A category given to the document, can be `null`.
+     */
+    document_type:
+      | 'articles_of_incorporation'
+      | 'certificate_of_good_standing'
+      | 'ein_letter'
+      | 'identification_back'
+      | 'identification_front'
+      | 'proof_of_address';
+
+    /**
+     * Base64-encoded file content for the document.
+     */
+    file_data: string;
+
+    /**
+     * The original filename of the document.
+     */
+    filename?: string;
+  }
 }
 
 export interface LedgerAccountCreateRequest {
