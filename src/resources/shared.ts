@@ -742,6 +742,7 @@ export type Currency =
   | 'USD'
   | 'USDB'
   | 'USDC'
+  | 'USDG'
   | 'USDP'
   | 'USDT'
   | 'UYU'
