@@ -472,6 +472,12 @@ export interface InternalAccountCreateParams {
   legal_entity_id?: string;
 
   /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
    * The parent internal account of this new account.
    */
   parent_account_id?: string;
