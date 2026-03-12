@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.8.0 (2026-03-12)
+
+Full Changelog: [v4.7.0...v4.8.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.7.0...v4.8.0)
+
+### Features
+
+* **api:** api update ([9cfe2a6](https://github.com/Modern-Treasury/modern-treasury-node/commit/9cfe2a63147585ebcc5a4212f28d5879a84d37cf))
+* **api:** api update ([2478f85](https://github.com/Modern-Treasury/modern-treasury-node/commit/2478f85732396623bca77a4c7f97d648271ec52e))
+
+
+### Chores
+
+* **internal:** bump @modelcontextprotocol/sdk, @hono/node-server, and minimatch ([e378db7](https://github.com/Modern-Treasury/modern-treasury-node/commit/e378db76697079ceb535cebeb46c6958cab1c939))
+
 ## 4.7.0 (2026-03-10)
 
 Full Changelog: [v4.6.0...v4.7.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.6.0...v4.7.0)
