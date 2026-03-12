@@ -48,6 +48,7 @@ describe('resource internalAccounts', () => {
       counterparty_id: 'counterparty_id',
       external_id: 'external_id',
       legal_entity_id: 'legal_entity_id',
+      metadata: { foo: 'string' },
       parent_account_id: 'parent_account_id',
       party_address: {
         country: 'country',
