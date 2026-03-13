@@ -166,10 +166,20 @@ describe('resource paymentOrders', () => {
       statement_descriptor: 'statement_descriptor',
       subtype: '0C',
       transaction_monitoring_enabled: true,
+      ultimate_originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      ultimate_originating_party_address: {
+        country: 'country',
+        line1: 'line1',
+        line2: 'line2',
+        locality: 'locality',
+        postal_code: 'postal_code',
+        region: 'region',
+      },
       ultimate_originating_party_identifier: 'ultimate_originating_party_identifier',
       ultimate_originating_party_name: 'ultimate_originating_party_name',
       ultimate_receiving_party_identifier: 'ultimate_receiving_party_identifier',
       ultimate_receiving_party_name: 'ultimate_receiving_party_name',
+      vendor_attributes: {},
     });
   });
 
@@ -495,10 +505,20 @@ describe('resource paymentOrders', () => {
       statement_descriptor: 'statement_descriptor',
       subtype: '0C',
       transaction_monitoring_enabled: true,
+      ultimate_originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      ultimate_originating_party_address: {
+        country: 'country',
+        line1: 'line1',
+        line2: 'line2',
+        locality: 'locality',
+        postal_code: 'postal_code',
+        region: 'region',
+      },
       ultimate_originating_party_identifier: 'ultimate_originating_party_identifier',
       ultimate_originating_party_name: 'ultimate_originating_party_name',
       ultimate_receiving_party_identifier: 'ultimate_receiving_party_identifier',
       ultimate_receiving_party_name: 'ultimate_receiving_party_name',
+      vendor_attributes: {},
     });
   });
 });
