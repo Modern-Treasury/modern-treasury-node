@@ -393,6 +393,17 @@ export namespace BulkRequestCreateParams {
     transaction_monitoring_enabled?: boolean;
 
     /**
+     * The ultimate originating account ID. Can be a `virtual_account` or
+     * `internal_account`.
+     */
+    ultimate_originating_account_id?: string;
+
+    /**
+     * Address of the ultimate originator of the payment order.
+     */
+    ultimate_originating_party_address?: PaymentOrderAsyncCreateRequest.UltimateOriginatingPartyAddress | null;
+
+    /**
      * Identifier of the ultimate originator of the payment order.
      */
     ultimate_originating_party_identifier?: string | null;
@@ -411,6 +422,12 @@ export namespace BulkRequestCreateParams {
      * Name of the ultimate funds recipient.
      */
     ultimate_receiving_party_name?: string | null;
+
+    /**
+     * Additional vendor specific fields for this payment. Data must be represented as
+     * key-value pairs.
+     */
+    vendor_attributes?: unknown;
   }
 
   export namespace PaymentOrderAsyncCreateRequest {
@@ -610,6 +627,35 @@ export namespace BulkRequestCreateParams {
           | 'wire'
           | 'zengin';
       }
+    }
+
+    /**
+     * Address of the ultimate originator of the payment order.
+     */
+    export interface UltimateOriginatingPartyAddress {
+      /**
+       * Country code conforms to [ISO 3166-1 alpha-2]
+       */
+      country?: string;
+
+      line1?: string;
+
+      line2?: string;
+
+      /**
+       * Locality or City.
+       */
+      locality?: string;
+
+      /**
+       * The postal code of the address.
+       */
+      postal_code?: string;
+
+      /**
+       * Region or State.
+       */
+      region?: string;
     }
   }
 

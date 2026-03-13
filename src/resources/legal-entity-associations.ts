@@ -200,7 +200,7 @@ export interface ChildLegalEntity {
    * The activation status of the legal entity. One of pending, active, suspended, or
    * closed.
    */
-  status: 'active' | 'closed' | 'pending' | 'suspended' | null;
+  status: 'active' | 'closed' | 'denied' | 'pending' | 'suspended' | null;
 
   /**
    * An individual's suffix.

@@ -464,6 +464,12 @@ export interface InvoiceCreateParams {
   invoicer_address?: InvoiceCreateParams.InvoicerAddress | null;
 
   /**
+   * The name of the issuer for the invoice. Defaults to the name of the
+   * Organization.
+   */
+  invoicer_name?: string | null;
+
+  /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
@@ -721,6 +727,12 @@ export interface InvoiceUpdateParams {
    * The invoice issuer's business address.
    */
   invoicer_address?: InvoiceUpdateParams.InvoicerAddress | null;
+
+  /**
+   * The name of the issuer for the invoice. Defaults to the name of the
+   * Organization.
+   */
+  invoicer_name?: string | null;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be

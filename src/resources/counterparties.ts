@@ -521,6 +521,11 @@ export namespace CounterpartyCreateParams {
     citizenship_country?: string | null;
 
     /**
+     * @deprecated
+     */
+    compliance_details?: unknown | null;
+
+    /**
      * The connection ID for the connection the legal entity is associated with.
      * Defaults to the id of the connection designated with an is_default value of true
      * or the id of an existing operational connection if only one is available. Pass
@@ -668,7 +673,7 @@ export namespace CounterpartyCreateParams {
      * The activation status of the legal entity. One of pending, active, suspended, or
      * closed.
      */
-    status?: 'active' | 'closed' | 'pending' | 'suspended' | null;
+    status?: 'active' | 'closed' | 'denied' | 'pending' | 'suspended' | null;
 
     /**
      * An individual's suffix.
