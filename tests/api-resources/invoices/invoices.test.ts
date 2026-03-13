@@ -84,6 +84,7 @@ describe('resource invoices', () => {
         region: 'region',
         line2: 'line2',
       },
+      invoicer_name: 'invoicer_name',
       metadata: {
         key: 'value',
         foo: 'bar',
@@ -186,6 +187,7 @@ describe('resource invoices', () => {
             region: 'region',
             line2: 'line2',
           },
+          invoicer_name: 'invoicer_name',
           metadata: {
             key: 'value',
             foo: 'bar',

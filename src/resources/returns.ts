@@ -572,6 +572,13 @@ export interface ReturnCreateParams {
   date_of_death?: string | null;
 
   /**
+   * Specifies a ledger transaction object that will be created with the return. If
+   * the ledger transaction cannot be created, then the return creation will fail.
+   * The resulting ledger transaction will mirror the status of the return.
+   */
+  ledger_transaction?: Shared.LedgerTransactionCreateRequest;
+
+  /**
    * An optional description of the reason for the return. This is for internal usage
    * and will not be transmitted to the bank.”
    */

@@ -39,6 +39,38 @@ describe('resource returns', () => {
       },
       data: {},
       date_of_death: '2019-12-27',
+      ledger_transaction: {
+        ledger_entries: [
+          {
+            amount: 0,
+            direction: 'credit',
+            ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            available_balance_amount: { foo: 0 },
+            effective_at: '2019-12-27T18:11:19.117Z',
+            lock_version: 0,
+            metadata: {
+              key: 'value',
+              foo: 'bar',
+              modern: 'treasury',
+            },
+            pending_balance_amount: { foo: 0 },
+            posted_balance_amount: { foo: 0 },
+            show_resulting_ledger_account_balances: true,
+          },
+        ],
+        description: 'description',
+        effective_at: '2019-12-27T18:11:19.117Z',
+        effective_date: '2019-12-27',
+        external_id: 'external_id',
+        ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        ledgerable_type: 'expected_payment',
+        metadata: {
+          key: 'value',
+          foo: 'bar',
+          modern: 'treasury',
+        },
+        status: 'archived',
+      },
       reason: 'reason',
       reconciliation_status: 'unreconciled',
     });
