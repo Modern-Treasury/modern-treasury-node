@@ -54,6 +54,7 @@ describe('resource legalEntityAssociations', () => {
         business_description: 'business_description',
         business_name: 'business_name',
         citizenship_country: 'citizenship_country',
+        compliance_details: {},
         connection_id: 'connection_id',
         country_of_incorporation: 'country_of_incorporation',
         date_formed: '2019-12-27',

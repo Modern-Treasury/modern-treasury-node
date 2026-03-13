@@ -98,6 +98,11 @@ export interface ChildLegalEntityCreate {
   citizenship_country?: string | null;
 
   /**
+   * @deprecated
+   */
+  compliance_details?: unknown | null;
+
+  /**
    * The connection ID for the connection the legal entity is associated with.
    * Defaults to the id of the connection designated with an is_default value of true
    * or the id of an existing operational connection if only one is available. Pass
@@ -250,7 +255,7 @@ export interface ChildLegalEntityCreate {
    * The activation status of the legal entity. One of pending, active, suspended, or
    * closed.
    */
-  status?: 'active' | 'closed' | 'pending' | 'suspended' | null;
+  status?: 'active' | 'closed' | 'denied' | 'pending' | 'suspended' | null;
 
   /**
    * An individual's suffix.
@@ -719,11 +724,13 @@ export type Currency =
   | 'SGD'
   | 'SHP'
   | 'SKK'
+  | 'SLE'
   | 'SLL'
   | 'SOS'
   | 'SRD'
   | 'SSP'
   | 'STD'
+  | 'STN'
   | 'SVC'
   | 'SYP'
   | 'SZL'
@@ -760,6 +767,7 @@ export type Currency =
   | 'XBC'
   | 'XBD'
   | 'XCD'
+  | 'XCG'
   | 'XDR'
   | 'XFU'
   | 'XOF'
@@ -772,6 +780,7 @@ export type Currency =
   | 'ZMK'
   | 'ZMW'
   | 'ZWD'
+  | 'ZWG'
   | 'ZWL'
   | 'ZWN'
   | 'ZWR';
