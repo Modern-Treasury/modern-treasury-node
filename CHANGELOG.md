@@ -1,5 +1,22 @@
 # Changelog
 
+## 4.9.0 (2026-03-16)
+
+Full Changelog: [v4.8.0...v4.9.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.8.0...v4.9.0)
+
+### Features
+
+* **api:** api update ([60a47ac](https://github.com/Modern-Treasury/modern-treasury-node/commit/60a47acf57739e88eacbc72dadf6a6e2362078fe))
+* **api:** api update ([a188bb6](https://github.com/Modern-Treasury/modern-treasury-node/commit/a188bb64b5c24bd533002967bdfa2778144ee839))
+* **api:** api update ([d581461](https://github.com/Modern-Treasury/modern-treasury-node/commit/d581461274d54f98b734683dbffb583acd4432ed))
+
+
+### Chores
+
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([7421120](https://github.com/Modern-Treasury/modern-treasury-node/commit/74211208195091bfae2e141a51bc402effde1a5e))
+* **internal:** support x-stainless-mcp-client-envs header in MCP servers ([2ee0aeb](https://github.com/Modern-Treasury/modern-treasury-node/commit/2ee0aebf0463ad6bdf2b2c08e07059b1fa63f727))
+* **internal:** tweak CI branches ([ebd4a75](https://github.com/Modern-Treasury/modern-treasury-node/commit/ebd4a75742e191bc411032d8659a2d5d9b8e8fc7))
+
 ## 4.8.0 (2026-03-12)
 
 Full Changelog: [v4.7.0...v4.8.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.7.0...v4.8.0)
