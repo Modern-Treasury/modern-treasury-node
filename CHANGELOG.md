@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.10.0 (2026-03-17)
+
+Full Changelog: [v4.9.0...v4.10.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.9.0...v4.10.0)
+
+### Features
+
+* **api:** api update ([a752a2b](https://github.com/Modern-Treasury/modern-treasury-node/commit/a752a2bc45d0906be7d3c2960b8050186dfe4b44))
+* **api:** disable breaking change detection ([a898d65](https://github.com/Modern-Treasury/modern-treasury-node/commit/a898d65f94bf272db7b4a7436f07c8e9423f1b1d))
+* **tests:** enable breaking change detection ([761f8e7](https://github.com/Modern-Treasury/modern-treasury-node/commit/761f8e7b77b61532c504027cfc03d9e0c2751200))
+
+
+### Chores
+
+* **internal:** configure MCP Server hosting ([36044fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/36044fa3499af6e35d2d7a19ad9b7e79c275e5c9))
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([f45874d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f45874daaff418ce086189f6fbf088c2bfe26e89))
+
 ## 4.9.0 (2026-03-16)
 
 Full Changelog: [v4.8.0...v4.9.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.8.0...v4.9.0)
