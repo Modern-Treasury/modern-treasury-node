@@ -80,7 +80,7 @@ export interface ConnectionLegalEntity {
   /**
    * The status of the connection legal entity.
    */
-  status: 'closed' | 'completed' | 'denied' | 'failed' | 'processing' | 'suspended';
+  status: 'completed' | 'denied' | 'failed' | 'processing' | 'suspended';
 
   updated_at: string;
 
@@ -292,7 +292,7 @@ export namespace ConnectionLegalEntityCreateParams {
      * The activation status of the legal entity. One of pending, active, suspended, or
      * closed.
      */
-    status?: 'active' | 'closed' | 'denied' | 'pending' | 'suspended' | null;
+    status?: 'active' | 'denied' | 'pending' | 'suspended' | null;
 
     /**
      * An individual's suffix.
@@ -607,7 +607,7 @@ export interface ConnectionLegalEntityListParams extends PageParams {
 
   legal_entity_id?: string;
 
-  status?: 'closed' | 'completed' | 'denied' | 'failed' | 'processing' | 'suspended';
+  status?: 'completed' | 'denied' | 'failed' | 'processing' | 'suspended';
 }
 
 export declare namespace ConnectionLegalEntities {

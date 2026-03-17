@@ -252,7 +252,7 @@ export interface LegalEntity {
    * The activation status of the legal entity. One of pending, active, suspended, or
    * closed.
    */
-  status: 'active' | 'closed' | 'denied' | 'pending' | 'suspended' | null;
+  status: 'active' | 'denied' | 'pending' | 'suspended' | null;
 
   /**
    * An individual's suffix.
@@ -831,7 +831,7 @@ export interface LegalEntityCreateParams {
    * The activation status of the legal entity. One of pending, active, suspended, or
    * closed.
    */
-  status?: 'active' | 'closed' | 'denied' | 'pending' | 'suspended' | null;
+  status?: 'active' | 'denied' | 'pending' | 'suspended' | null;
 
   /**
    * An individual's suffix.
@@ -1284,7 +1284,7 @@ export interface LegalEntityUpdateParams {
    * The activation status of the legal entity. One of pending, active, suspended, or
    * closed.
    */
-  status?: 'active' | 'closed' | 'denied' | 'pending' | 'suspended' | null;
+  status?: 'active' | 'denied' | 'pending' | 'suspended' | null;
 
   /**
    * An individual's suffix.
@@ -1580,7 +1580,7 @@ export interface LegalEntityListParams extends PageParams {
 
   show_deleted?: string;
 
-  status?: 'pending' | 'active' | 'suspended' | 'closed' | 'denied';
+  status?: 'pending' | 'active' | 'suspended' | 'denied';
 }
 
 export declare namespace LegalEntities {
