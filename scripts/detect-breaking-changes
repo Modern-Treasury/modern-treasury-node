@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Detecting breaking changes"
+
+TEST_PATHS=(
+	tests/api-resources/top-level.test.ts
+	tests/api-resources/connections.test.ts
+	tests/api-resources/counterparties.test.ts
+	tests/api-resources/events.test.ts
+	tests/api-resources/expected-payments.test.ts
+	tests/api-resources/external-accounts.test.ts
+	tests/api-resources/incoming-payment-details.test.ts
+	tests/api-resources/invoices/invoices.test.ts
+	tests/api-resources/invoices/line-items.test.ts
+	tests/api-resources/documents.test.ts
+	tests/api-resources/account-collection-flows.test.ts
+	tests/api-resources/account-details.test.ts
+	tests/api-resources/routing-details.test.ts
+	tests/api-resources/internal-accounts/internal-accounts.test.ts
+	tests/api-resources/internal-accounts/balance-reports.test.ts
+	tests/api-resources/ledgers.test.ts
+	tests/api-resources/ledger-account-categories.test.ts
+	tests/api-resources/ledger-accounts.test.ts
+	tests/api-resources/ledger-account-balance-monitors.test.ts
+	tests/api-resources/ledger-account-statements.test.ts
+	tests/api-resources/ledger-entries.test.ts
+	tests/api-resources/ledger-transactions/ledger-transactions.test.ts
+	tests/api-resources/ledger-transactions/versions.test.ts
+	tests/api-resources/line-items.test.ts
+	tests/api-resources/payment-flows.test.ts
+	tests/api-resources/payment-orders/payment-orders.test.ts
+	tests/api-resources/payment-orders/reversals.test.ts
+	tests/api-resources/payment-references.test.ts
+	tests/api-resources/returns.test.ts
+	tests/api-resources/transactions/transactions.test.ts
+	tests/api-resources/transactions/line-items.test.ts
+	tests/api-resources/validations.test.ts
+	tests/api-resources/virtual-accounts.test.ts
+	tests/api-resources/bulk-requests.test.ts
+	tests/api-resources/bulk-results.test.ts
+	tests/api-resources/ledger-account-settlements/ledger-account-settlements.test.ts
+	tests/api-resources/ledger-account-settlements/account-entries.test.ts
+	tests/api-resources/foreign-exchange-quotes.test.ts
+	tests/api-resources/connection-legal-entities.test.ts
+	tests/api-resources/legal-entities.test.ts
+	tests/api-resources/legal-entity-associations.test.ts
+	tests/api-resources/payment-actions.test.ts
+	tests/api-resources/journal-entries.test.ts
+	tests/api-resources/journal-reports.test.ts
+	tests/api-resources/holds.test.ts
+	tests/index.test.ts
+)
+
+for PATHSPEC in "${TEST_PATHS[@]}"; do
+    # Try to check out previous versions of the test files
+    # with the current SDK.
+    git checkout "$1" -- "${PATHSPEC}" 2>/dev/null || true
+done
+
+# Instead of running the tests, use the linter to check if an
+# older test is no longer compatible with the latest SDK.
+./scripts/lint
