@@ -289,12 +289,6 @@ export namespace ConnectionLegalEntityCreateParams {
     risk_rating?: 'low' | 'medium' | 'high' | null;
 
     /**
-     * The activation status of the legal entity. One of pending, active, suspended, or
-     * closed.
-     */
-    status?: 'active' | 'denied' | 'pending' | 'suspended' | null;
-
-    /**
      * An individual's suffix.
      */
     suffix?: string | null;

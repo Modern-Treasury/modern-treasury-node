@@ -132,7 +132,6 @@ describe('resource legalEntityAssociations', () => {
           },
         ],
         risk_rating: 'low',
-        status: 'active',
         suffix: 'suffix',
         third_party_verification: { vendor: 'persona', vendor_verification_id: 'vendor_verification_id' },
         ticker_symbol: 'ticker_symbol',
