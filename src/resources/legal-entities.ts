@@ -250,7 +250,7 @@ export interface LegalEntity {
 
   /**
    * The activation status of the legal entity. One of pending, active, suspended, or
-   * closed.
+   * denied.
    */
   status: 'active' | 'denied' | 'pending' | 'suspended' | null;
 
@@ -828,12 +828,6 @@ export interface LegalEntityCreateParams {
   risk_rating?: 'low' | 'medium' | 'high' | null;
 
   /**
-   * The activation status of the legal entity. One of pending, active, suspended, or
-   * closed.
-   */
-  status?: 'active' | 'denied' | 'pending' | 'suspended' | null;
-
-  /**
    * An individual's suffix.
    */
   suffix?: string | null;
@@ -1279,12 +1273,6 @@ export interface LegalEntityUpdateParams {
    * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating?: 'low' | 'medium' | 'high' | null;
-
-  /**
-   * The activation status of the legal entity. One of pending, active, suspended, or
-   * closed.
-   */
-  status?: 'active' | 'denied' | 'pending' | 'suspended' | null;
 
   /**
    * An individual's suffix.
