@@ -250,6 +250,7 @@ export interface Transaction {
     | 'bnk_dev'
     | 'brale'
     | 'cleartouch'
+    | 'coinbase_prime'
     | 'column'
     | 'cross_river'
     | 'currencycloud'
