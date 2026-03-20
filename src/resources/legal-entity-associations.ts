@@ -624,7 +624,7 @@ export interface LegalEntityAssociation {
    */
   parent_legal_entity_id: string;
 
-  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
+  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person' | 'service_customer'>;
 
   /**
    * The job title of the child entity at the parent entity.
@@ -641,7 +641,7 @@ export interface LegalEntityAssociationCreateParams {
    */
   parent_legal_entity_id: string;
 
-  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
+  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person' | 'service_customer'>;
 
   /**
    * The child legal entity.
