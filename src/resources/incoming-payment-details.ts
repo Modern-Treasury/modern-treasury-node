@@ -46,7 +46,7 @@ export class IncomingPaymentDetails extends APIResource {
   createAsync(
     body: IncomingPaymentDetailCreateAsyncParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<Shared.AsyncResponse> {
+  ): APIPromise<IncomingPaymentDetail> {
     return this._client.post('/api/simulations/incoming_payment_details/create_async', { body, ...options });
   }
 }

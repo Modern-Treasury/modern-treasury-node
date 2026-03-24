@@ -113,7 +113,7 @@ Methods:
 - <code title="get /api/incoming_payment_details/{id}">client.incomingPaymentDetails.<a href="./src/resources/incoming-payment-details.ts">retrieve</a>(id) -> IncomingPaymentDetail</code>
 - <code title="patch /api/incoming_payment_details/{id}">client.incomingPaymentDetails.<a href="./src/resources/incoming-payment-details.ts">update</a>(id, { ...params }) -> IncomingPaymentDetail</code>
 - <code title="get /api/incoming_payment_details">client.incomingPaymentDetails.<a href="./src/resources/incoming-payment-details.ts">list</a>({ ...params }) -> IncomingPaymentDetailsPage</code>
-- <code title="post /api/simulations/incoming_payment_details/create_async">client.incomingPaymentDetails.<a href="./src/resources/incoming-payment-details.ts">createAsync</a>({ ...params }) -> AsyncResponse</code>
+- <code title="post /api/simulations/incoming_payment_details/create_async">client.incomingPaymentDetails.<a href="./src/resources/incoming-payment-details.ts">createAsync</a>({ ...params }) -> IncomingPaymentDetail</code>
 
 # Invoices
 
