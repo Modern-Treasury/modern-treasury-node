@@ -1,5 +1,33 @@
 # Changelog
 
+## 4.12.0 (2026-03-25)
+
+Full Changelog: [v4.11.0...v4.12.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.11.0...v4.12.0)
+
+### Features
+
+* **api:** api update ([640d1ae](https://github.com/Modern-Treasury/modern-treasury-node/commit/640d1ae32a6cee0291305910d20347e410dbd866))
+* **api:** api update ([fb9fc39](https://github.com/Modern-Treasury/modern-treasury-node/commit/fb9fc39816a1132af5477284561b697bbc555593))
+* **api:** api update ([ee44a11](https://github.com/Modern-Treasury/modern-treasury-node/commit/ee44a114e5966252ee0d662d291ff83330479fe6))
+* **api:** api update ([a3f9b8f](https://github.com/Modern-Treasury/modern-treasury-node/commit/a3f9b8fd3901c4354d4bcf684de2e8de825b8068))
+* **api:** switch back to prism mock server ([afa7d8a](https://github.com/Modern-Treasury/modern-treasury-node/commit/afa7d8a31c3a9664b3c12b1d50acbfa2f992c0c5))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([1a74e52](https://github.com/Modern-Treasury/modern-treasury-node/commit/1a74e522d514402c82bd7548db0dbd70871be65c))
+* **internal:** fix MCP server TS errors that occur with required client options ([0918aab](https://github.com/Modern-Treasury/modern-treasury-node/commit/0918aabe7584de0ded43798c9931424c2bc95cf7))
+* **internal:** update gitignore ([8ac8051](https://github.com/Modern-Treasury/modern-treasury-node/commit/8ac80510c38ab6adac8848adfa7ee4266d450830))
+* **tests:** bump steady to v0.19.4 ([0840627](https://github.com/Modern-Treasury/modern-treasury-node/commit/084062734dde09538edd1a31c1a1e77101ac9b46))
+* **tests:** bump steady to v0.19.5 ([058bde3](https://github.com/Modern-Treasury/modern-treasury-node/commit/058bde3dc33b136553b4b50e2674c5c05b20b8e1))
+* **tests:** bump steady to v0.19.6 ([c47dc5f](https://github.com/Modern-Treasury/modern-treasury-node/commit/c47dc5fa8a3acc5152babb81f7088a9d8ce78a9c))
+* **tests:** bump steady to v0.19.7 ([f045622](https://github.com/Modern-Treasury/modern-treasury-node/commit/f045622680fe567fc833b2b4b569341f1079d3ed))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([d0f1d3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/d0f1d3cad641f98e09d82f5e620d588f4f8c8608))
+
 ## 4.11.0 (2026-03-18)
 
 Full Changelog: [v4.10.0...v4.11.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.10.0...v4.11.0)
