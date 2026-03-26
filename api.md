@@ -548,10 +548,6 @@ Types:
 - <code><a href="./src/resources/legal-entity-associations.ts">ChildLegalEntity</a></code>
 - <code><a href="./src/resources/legal-entity-associations.ts">LegalEntityAssociation</a></code>
 
-Methods:
-
-- <code title="post /api/legal_entity_associations">client.legalEntityAssociations.<a href="./src/resources/legal-entity-associations.ts">create</a>({ ...params }) -> LegalEntityAssociation</code>
-
 # PaymentActions
 
 Types:

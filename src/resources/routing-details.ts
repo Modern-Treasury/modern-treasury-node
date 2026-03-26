@@ -123,6 +123,7 @@ export interface RoutingDetail {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin'
     | null;
@@ -242,6 +243,7 @@ export interface RoutingDetailCreateParams {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin'
     | null;

@@ -936,12 +936,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/legal_entities',
   },
   {
-    clientCallName: 'client.legalEntityAssociations.create',
-    fullyQualifiedName: 'legalEntityAssociations.create',
-    httpMethod: 'post',
-    httpPath: '/api/legal_entity_associations',
-  },
-  {
     clientCallName: 'client.paymentActions.create',
     fullyQualifiedName: 'paymentActions.create',
     httpMethod: 'post',

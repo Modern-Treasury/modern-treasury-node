@@ -186,7 +186,6 @@ import {
 import {
   ChildLegalEntity,
   LegalEntityAssociation,
-  LegalEntityAssociationCreateParams,
   LegalEntityAssociations,
 } from './resources/legal-entity-associations';
 import {
@@ -1472,7 +1471,6 @@ export declare namespace ModernTreasury {
     LegalEntityAssociations as LegalEntityAssociations,
     type ChildLegalEntity as ChildLegalEntity,
     type LegalEntityAssociation as LegalEntityAssociation,
-    type LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
   };
 
   export {

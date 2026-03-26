@@ -1158,7 +1158,7 @@ export interface LegalEntityAddressCreateRequest {
 }
 
 export interface LegalEntityAssociationInlineCreate {
-  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person' | 'service_customer'>;
+  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
 
   /**
    * The child legal entity.

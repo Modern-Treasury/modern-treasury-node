@@ -3,20 +3,8 @@
 import { APIResource } from '../core/resource';
 import * as DocumentsAPI from './documents';
 import * as Shared from './shared';
-import { APIPromise } from '../core/api-promise';
-import { RequestOptions } from '../internal/request-options';
 
-export class LegalEntityAssociations extends APIResource {
-  /**
-   * create legal_entity_association
-   */
-  create(
-    body: LegalEntityAssociationCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<LegalEntityAssociation> {
-    return this._client.post('/api/legal_entity_associations', { body, ...options });
-  }
-}
+export class LegalEntityAssociations extends APIResource {}
 
 export interface ChildLegalEntity {
   id: string;
@@ -624,7 +612,7 @@ export interface LegalEntityAssociation {
    */
   parent_legal_entity_id: string;
 
-  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person' | 'service_customer'>;
+  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
 
   /**
    * The job title of the child entity at the parent entity.
@@ -634,40 +622,6 @@ export interface LegalEntityAssociation {
   updated_at: string;
 }
 
-export interface LegalEntityAssociationCreateParams {
-  /**
-   * The ID of the parent legal entity. This must be a business or joint legal
-   * entity.
-   */
-  parent_legal_entity_id: string;
-
-  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person' | 'service_customer'>;
-
-  /**
-   * The child legal entity.
-   */
-  child_legal_entity?: Shared.ChildLegalEntityCreate;
-
-  /**
-   * The ID of the child legal entity.
-   */
-  child_legal_entity_id?: string;
-
-  /**
-   * The child entity's ownership percentage iff they are a beneficial owner.
-   */
-  ownership_percentage?: number | null;
-
-  /**
-   * The job title of the child entity at the parent entity.
-   */
-  title?: string | null;
-}
-
 export declare namespace LegalEntityAssociations {
-  export {
-    type ChildLegalEntity as ChildLegalEntity,
-    type LegalEntityAssociation as LegalEntityAssociation,
-    type LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
-  };
+  export { type ChildLegalEntity as ChildLegalEntity, type LegalEntityAssociation as LegalEntityAssociation };
 }

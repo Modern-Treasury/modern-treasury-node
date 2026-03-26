@@ -259,7 +259,6 @@ const fuse = new Fuse(
     'client.legalEntities.list',
     'client.legalEntities.retrieve',
     'client.legalEntities.update',
-    'client.legalEntityAssociations.create',
     'client.paymentActions.create',
     'client.paymentActions.list',
     'client.paymentActions.retrieve',

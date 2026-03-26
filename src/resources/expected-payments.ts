@@ -288,6 +288,7 @@ export type ExpectedPaymentType =
   | 'signet'
   | 'sknbi'
   | 'solana'
+  | 'stablecoin'
   | 'wire'
   | 'zengin'
   | null;
@@ -379,6 +380,7 @@ export interface ReconciliationRule {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin'
     | null;
@@ -755,6 +757,7 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 

@@ -291,6 +291,7 @@ export namespace VirtualAccountCreateParams {
       | 'signet'
       | 'sknbi'
       | 'solana'
+      | 'stablecoin'
       | 'wire'
       | 'zengin'
       | null;
