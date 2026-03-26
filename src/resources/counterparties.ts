@@ -487,6 +487,7 @@ export namespace CounterpartyCreateParams {
         | 'signet'
         | 'sknbi'
         | 'solana'
+        | 'stablecoin'
         | 'wire'
         | 'zengin';
     }

@@ -290,6 +290,7 @@ export namespace ExternalAccountVerifyResponse {
       | 'signet'
       | 'sknbi'
       | 'solana'
+      | 'stablecoin'
       | 'wire'
       | 'zengin';
 
@@ -455,6 +456,7 @@ export namespace ExternalAccountCreateParams {
       | 'signet'
       | 'sknbi'
       | 'solana'
+      | 'stablecoin'
       | 'wire'
       | 'zengin';
   }
@@ -562,6 +564,7 @@ export interface ExternalAccountVerifyParams {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 

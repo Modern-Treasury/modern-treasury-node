@@ -225,6 +225,7 @@ export interface Transaction {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin'
     | 'other';
@@ -387,6 +388,7 @@ export interface TransactionCreateParams {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin'
     | 'other'

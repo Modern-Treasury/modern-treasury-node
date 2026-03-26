@@ -624,6 +624,7 @@ export namespace BulkRequestCreateParams {
           | 'signet'
           | 'sknbi'
           | 'solana'
+          | 'stablecoin'
           | 'wire'
           | 'zengin';
       }
@@ -910,6 +911,7 @@ export namespace BulkRequestCreateParams {
       | 'signet'
       | 'sknbi'
       | 'solana'
+      | 'stablecoin'
       | 'wire'
       | 'zengin'
       | 'other'
@@ -1377,6 +1379,7 @@ export namespace BulkRequestCreateParams {
           | 'signet'
           | 'sknbi'
           | 'solana'
+          | 'stablecoin'
           | 'wire'
           | 'zengin';
       }
