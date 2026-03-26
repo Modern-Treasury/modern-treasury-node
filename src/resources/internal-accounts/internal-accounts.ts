@@ -327,6 +327,7 @@ export namespace InternalAccount {
       | 'signet'
       | 'sknbi'
       | 'solana'
+      | 'stablecoin'
       | 'wire'
       | 'zengin';
 
@@ -401,6 +402,7 @@ export interface InternalAccountUpdateAccountCapabilityResponse {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 
@@ -560,6 +562,7 @@ export namespace InternalAccountCreateParams {
       | 'signet'
       | 'sknbi'
       | 'solana'
+      | 'stablecoin'
       | 'wire'
       | 'zengin';
 
@@ -706,6 +709,7 @@ export interface InternalAccountListParams extends PageParams {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 

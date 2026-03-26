@@ -639,6 +639,7 @@ export type PaymentOrderSubtype =
   | 'chats'
   | 'dk_nets'
   | 'eft'
+  | 'ethereum'
   | 'hu_ics'
   | 'masav'
   | 'mx_ccen'
@@ -652,6 +653,7 @@ export type PaymentOrderSubtype =
   | 'sg_giro'
   | 'sic'
   | 'sknbi'
+  | 'solana'
   | 'zengin'
   | null;
 
@@ -694,6 +696,7 @@ export type PaymentOrderType =
   | 'signet'
   | 'sknbi'
   | 'solana'
+  | 'stablecoin'
   | 'wire'
   | 'zengin';
 
@@ -1180,6 +1183,7 @@ export namespace PaymentOrderCreateParams {
         | 'signet'
         | 'sknbi'
         | 'solana'
+        | 'stablecoin'
         | 'wire'
         | 'zengin';
     }
@@ -1659,6 +1663,7 @@ export namespace PaymentOrderUpdateParams {
         | 'signet'
         | 'sknbi'
         | 'solana'
+        | 'stablecoin'
         | 'wire'
         | 'zengin';
     }
@@ -1777,6 +1782,7 @@ export interface PaymentOrderListParams extends PageParams {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 }
@@ -2231,6 +2237,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'signet'
         | 'sknbi'
         | 'solana'
+        | 'stablecoin'
         | 'wire'
         | 'zengin';
     }

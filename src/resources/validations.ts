@@ -96,6 +96,7 @@ export interface RoutingNumberLookupRequest {
     | 'signet'
     | 'sknbi'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin'
   >;

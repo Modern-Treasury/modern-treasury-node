@@ -209,7 +209,6 @@ export {
   LegalEntityAssociations,
   type ChildLegalEntity,
   type LegalEntityAssociation,
-  type LegalEntityAssociationCreateParams,
 } from './legal-entity-associations';
 export {
   LineItems,
