@@ -249,6 +249,11 @@ export interface LegalEntity {
   risk_rating: 'low' | 'medium' | 'high' | null;
 
   /**
+   * The UUID of the parent legal entity in the service provider tree.
+   */
+  service_provider_legal_entity_id: string | null;
+
+  /**
    * The activation status of the legal entity. One of pending, active, suspended, or
    * denied.
    */
@@ -828,6 +833,11 @@ export interface LegalEntityCreateParams {
   risk_rating?: 'low' | 'medium' | 'high' | null;
 
   /**
+   * The UUID of the parent legal entity in the service provider tree.
+   */
+  service_provider_legal_entity_id?: string | null;
+
+  /**
    * An individual's suffix.
    */
   suffix?: string | null;
@@ -1273,6 +1283,11 @@ export interface LegalEntityUpdateParams {
    * The risk rating of the legal entity. One of low, medium, high.
    */
   risk_rating?: 'low' | 'medium' | 'high' | null;
+
+  /**
+   * The UUID of the parent legal entity in the service provider tree.
+   */
+  service_provider_legal_entity_id?: string | null;
 
   /**
    * An individual's suffix.
