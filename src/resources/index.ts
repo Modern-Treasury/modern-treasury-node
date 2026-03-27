@@ -126,7 +126,11 @@ export {
   type InvoicesPage,
 } from './invoices/invoices';
 export { JournalEntries, type JournalEntryListParams } from './journal-entries';
-export { JournalReports, type JournalReportUpdateParams } from './journal-reports';
+export {
+  JournalReports,
+  type JournalReportUpdateParams,
+  type JournalReportListParams,
+} from './journal-reports';
 export {
   LedgerAccountBalanceMonitors,
   type LedgerAccountBalanceMonitor,

@@ -584,7 +584,7 @@ Methods:
 
 - <code title="get /api/journal_reports/{id}">client.journalReports.<a href="./src/resources/journal-reports.ts">retrieve</a>(id) -> void</code>
 - <code title="patch /api/journal_reports/{id}">client.journalReports.<a href="./src/resources/journal-reports.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="get /api/journal_reports">client.journalReports.<a href="./src/resources/journal-reports.ts">list</a>() -> void</code>
+- <code title="get /api/journal_reports">client.journalReports.<a href="./src/resources/journal-reports.ts">list</a>({ ...params }) -> void</code>
 
 # Holds
 

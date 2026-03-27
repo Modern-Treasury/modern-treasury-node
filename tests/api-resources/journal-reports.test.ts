@@ -55,4 +55,11 @@ describe('resource journalReports', () => {
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
   });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.journalReports.list({ status: 'draft' }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
 });
