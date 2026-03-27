@@ -35,8 +35,9 @@ export class JournalReports extends APIResource {
   /**
    * Retrieve a list of journal reports
    */
-  list(options?: RequestOptions): APIPromise<void> {
+  list(query: JournalReportListParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/api/journal_reports', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -49,6 +50,13 @@ export interface JournalReportUpdateParams {
   status?: string;
 }
 
+export interface JournalReportListParams {
+  status?: 'draft' | 'published' | 'ready';
+}
+
 export declare namespace JournalReports {
-  export { type JournalReportUpdateParams as JournalReportUpdateParams };
+  export {
+    type JournalReportUpdateParams as JournalReportUpdateParams,
+    type JournalReportListParams as JournalReportListParams,
+  };
 }

@@ -3220,8 +3220,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Retrieve a list of journal reports',
     stainlessPath: '(resource) journal_reports > (method) list',
     qualified: 'client.journalReports.list',
+    params: ["status?: 'draft' | 'published' | 'ready';"],
     markdown:
-      "## list\n\n`client.journalReports.list(): void`\n\n**get** `/api/journal_reports`\n\nRetrieve a list of journal reports\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nawait client.journalReports.list()\n```",
+      "## list\n\n`client.journalReports.list(status?: 'draft' | 'published' | 'ready'): void`\n\n**get** `/api/journal_reports`\n\nRetrieve a list of journal reports\n\n### Parameters\n\n- `status?: 'draft' | 'published' | 'ready'`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nawait client.journalReports.list()\n```",
   },
   {
     name: 'create',

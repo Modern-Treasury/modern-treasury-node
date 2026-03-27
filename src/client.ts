@@ -122,7 +122,11 @@ import {
   IncomingPaymentDetailsPage,
 } from './resources/incoming-payment-details';
 import { JournalEntries, JournalEntryListParams } from './resources/journal-entries';
-import { JournalReportUpdateParams, JournalReports } from './resources/journal-reports';
+import {
+  JournalReportListParams,
+  JournalReportUpdateParams,
+  JournalReports,
+} from './resources/journal-reports';
 import {
   LedgerAccountBalanceMonitor,
   LedgerAccountBalanceMonitorCreateParams,
@@ -1487,7 +1491,11 @@ export declare namespace ModernTreasury {
 
   export { JournalEntries as JournalEntries, type JournalEntryListParams as JournalEntryListParams };
 
-  export { JournalReports as JournalReports, type JournalReportUpdateParams as JournalReportUpdateParams };
+  export {
+    JournalReports as JournalReports,
+    type JournalReportUpdateParams as JournalReportUpdateParams,
+    type JournalReportListParams as JournalReportListParams,
+  };
 
   export {
     Holds as Holds,
