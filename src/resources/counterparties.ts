@@ -681,9 +681,14 @@ export namespace CounterpartyCreateParams {
     suffix?: string | null;
 
     /**
-     * Information describing a third-party verification run by an external vendor.
+     * @deprecated Deprecated. Use `third_party_verifications` instead.
      */
     third_party_verification?: LegalEntity.ThirdPartyVerification | null;
+
+    /**
+     * A list of third-party verifications run by external vendors.
+     */
+    third_party_verifications?: Array<LegalEntity.ThirdPartyVerification>;
 
     /**
      * Stock ticker symbol for publicly traded companies.
@@ -790,18 +795,90 @@ export namespace CounterpartyCreateParams {
     }
 
     /**
-     * Information describing a third-party verification run by an external vendor.
+     * @deprecated Deprecated. Use `third_party_verifications` instead.
      */
     export interface ThirdPartyVerification {
       /**
+       * The outcome of the verification. One of `passed` or `failed`.
+       */
+      outcome: 'passed' | 'failed';
+
+      /**
        * The vendor that performed the verification, e.g. `persona`.
        */
-      vendor: 'persona';
+      vendor: 'persona' | 'middesk' | 'alloy' | 'sumsub' | 'veriff';
 
       /**
        * The identification of the third party verification in `vendor`'s system.
        */
       vendor_verification_id: string;
+
+      /**
+       * The category of verification performed.
+       */
+      verification_category:
+        | 'legal_name'
+        | 'date_of_birth'
+        | 'address'
+        | 'government_id_number'
+        | 'adverse_media';
+
+      /**
+       * The method used to perform the verification.
+       */
+      verification_method: string;
+
+      /**
+       * The timestamp when the verification was performed.
+       */
+      verification_time: string;
+
+      /**
+       * An optional comment about the verification.
+       */
+      comment?: string | null;
+    }
+
+    export interface ThirdPartyVerification {
+      /**
+       * The outcome of the verification. One of `passed` or `failed`.
+       */
+      outcome: 'passed' | 'failed';
+
+      /**
+       * The vendor that performed the verification, e.g. `persona`.
+       */
+      vendor: 'persona' | 'middesk' | 'alloy' | 'sumsub' | 'veriff';
+
+      /**
+       * The identification of the third party verification in `vendor`'s system.
+       */
+      vendor_verification_id: string;
+
+      /**
+       * The category of verification performed.
+       */
+      verification_category:
+        | 'legal_name'
+        | 'date_of_birth'
+        | 'address'
+        | 'government_id_number'
+        | 'adverse_media';
+
+      /**
+       * The method used to perform the verification.
+       */
+      verification_method: string;
+
+      /**
+       * The timestamp when the verification was performed.
+       */
+      verification_time: string;
+
+      /**
+       * An optional comment about the verification.
+       */
+      comment?: string | null;
     }
 
     export interface WealthAndEmploymentDetails {
