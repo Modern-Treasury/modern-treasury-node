@@ -1528,5 +1528,6 @@ export declare namespace ModernTreasury {
   export type LegalEntityAddressCreateRequest = API.LegalEntityAddressCreateRequest;
   export type LegalEntityAssociationInlineCreate = API.LegalEntityAssociationInlineCreate;
   export type LegalEntityIndustryClassification = API.LegalEntityIndustryClassification;
+  export type ThirdPartyVerification = API.ThirdPartyVerification;
   export type TransactionDirection = API.TransactionDirection;
 }

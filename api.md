@@ -29,6 +29,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">LegalEntityAddressCreateRequest</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityAssociationInlineCreate</a></code>
 - <code><a href="./src/resources/shared.ts">LegalEntityIndustryClassification</a></code>
+- <code><a href="./src/resources/shared.ts">ThirdPartyVerification</a></code>
 - <code><a href="./src/resources/shared.ts">TransactionDirection</a></code>
 
 # Connections
