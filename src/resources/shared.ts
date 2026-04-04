@@ -1148,7 +1148,7 @@ export interface LegalEntityAddressCreateRequest {
   /**
    * The types of this address.
    */
-  address_types?: Array<'business' | 'mailing' | 'other' | 'po_box' | 'residential'>;
+  address_types?: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
   line2?: string | null;
 }
