@@ -1,5 +1,41 @@
 # Changelog
 
+## 4.13.0 (2026-04-04)
+
+Full Changelog: [v4.12.0...v4.13.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.12.0...v4.13.0)
+
+### Features
+
+* **api:** add third_party_verification model ([86ecefc](https://github.com/Modern-Treasury/modern-treasury-node/commit/86ecefcd8ae694f1284285374606d2d8e2f574db))
+* **api:** api update ([712e9cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/712e9cdacf1aa4d601551d7713e4be944d2e1ab1))
+* **api:** api update ([a71e2b6](https://github.com/Modern-Treasury/modern-treasury-node/commit/a71e2b6258c59064fa9b2a275f53732514ae0be4))
+* **api:** api update ([3249a4e](https://github.com/Modern-Treasury/modern-treasury-node/commit/3249a4e6d672df1230de0631510884b5fb4d4805))
+* **api:** api update ([8264871](https://github.com/Modern-Treasury/modern-treasury-node/commit/82648719f8cc45924ca1a946386cad682b914615))
+* **api:** api update ([ffdf211](https://github.com/Modern-Treasury/modern-treasury-node/commit/ffdf2118bec7c08bb69449d8bb37e2942eed35b4))
+* **api:** api update ([8c90645](https://github.com/Modern-Treasury/modern-treasury-node/commit/8c9064509f25fb1df4576f0b517dbd3488ecea7d))
+* **api:** api update ([b6983a8](https://github.com/Modern-Treasury/modern-treasury-node/commit/b6983a867bdaaada1536630fbe03cf176917bc86))
+* **api:** api update ([53f403a](https://github.com/Modern-Treasury/modern-treasury-node/commit/53f403a9be945eb81021154856527926f37045e2))
+
+
+### Bug Fixes
+
+* **internal:** gitignore generated `oidc` dir ([71f5c2c](https://github.com/Modern-Treasury/modern-treasury-node/commit/71f5c2c98a61a54112e9bd4a629db4c8b8fcfc88))
+
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([b7bf532](https://github.com/Modern-Treasury/modern-treasury-node/commit/b7bf532e09479a1239ec738d93530f00eceece86))
+* **internal:** codegen related update ([44f8fc9](https://github.com/Modern-Treasury/modern-treasury-node/commit/44f8fc9baa6aa9f2682e37be6dddef0031d3848d))
+* **internal:** fix MCP docker image builds in yarn projects ([8afc1a1](https://github.com/Modern-Treasury/modern-treasury-node/commit/8afc1a10965e9192589621b52349f44acfcbc382))
+* **internal:** improve local docs search for MCP servers ([70717f9](https://github.com/Modern-Treasury/modern-treasury-node/commit/70717f9ab6a76818d37560bfe1ff55f92cbb7cad))
+* **internal:** improve local docs search for MCP servers ([90c7b1a](https://github.com/Modern-Treasury/modern-treasury-node/commit/90c7b1af6149b39583231785912853fa802fa7fa))
+* **internal:** support custom-instructions-path flag in MCP servers ([3a09f8f](https://github.com/Modern-Treasury/modern-treasury-node/commit/3a09f8f4408c92cb434bdb1427d55d8b39a55132))
+* **internal:** support local docs search in MCP servers ([0b9a098](https://github.com/Modern-Treasury/modern-treasury-node/commit/0b9a09816e36927203b369765be43ed6eb154da7))
+* **internal:** support type annotations when running MCP in local execution mode ([126b57e](https://github.com/Modern-Treasury/modern-treasury-node/commit/126b57e654b17096a41db78cbcb3725cffd12ae3))
+* **internal:** use link instead of file in MCP server package.json files ([f09920d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f09920dab32994b8e9acc108f1623b02629da3a3))
+* **mcp-server:** add support for session id, forward client info ([4052c7e](https://github.com/Modern-Treasury/modern-treasury-node/commit/4052c7e2866eedffdf16bfa09b1cfe9e0827d005))
+* **mcp-server:** log client info ([a0a9230](https://github.com/Modern-Treasury/modern-treasury-node/commit/a0a923085fb1fbde72835d79f0999004ee8ab5ae))
+
 ## 4.12.0 (2026-03-25)
 
 Full Changelog: [v4.11.0...v4.12.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.11.0...v4.12.0)
