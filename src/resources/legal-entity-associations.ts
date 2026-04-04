@@ -232,7 +232,7 @@ export namespace ChildLegalEntity {
     /**
      * The types of this address.
      */
-    address_types: Array<'business' | 'mailing' | 'other' | 'po_box' | 'residential'>;
+    address_types: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
