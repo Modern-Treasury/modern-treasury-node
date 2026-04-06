@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'modern_treasury_api',
-      version: '4.12.0',
+      version: '4.13.0',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
