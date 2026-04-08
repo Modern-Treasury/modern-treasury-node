@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.14.0 (2026-04-08)
+
+Full Changelog: [v4.13.0...v4.14.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.13.0...v4.14.0)
+
+### Features
+
+* **api:** api update ([c6eb2f9](https://github.com/Modern-Treasury/modern-treasury-node/commit/c6eb2f945908a79c584441470156146458b4da83))
+
+
+### Chores
+
+* **internal:** codegen related update ([7755d97](https://github.com/Modern-Treasury/modern-treasury-node/commit/7755d9728aeb00ec35afb3849301d743c26133e0))
+* **internal:** fix MCP server import ordering ([9bf3f3f](https://github.com/Modern-Treasury/modern-treasury-node/commit/9bf3f3f2dfaac7c6422e9f6535d7985e096f7f00))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([4a23e61](https://github.com/Modern-Treasury/modern-treasury-node/commit/4a23e61202ae366e0f3ef2abbeb1b29007a20ef2))
+
 ## 4.13.0 (2026-04-04)
 
 Full Changelog: [v4.12.0...v4.13.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.12.0...v4.13.0)
