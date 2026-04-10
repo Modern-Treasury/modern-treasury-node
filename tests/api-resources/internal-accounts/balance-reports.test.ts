@@ -49,7 +49,7 @@ describe('resource balanceReports', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.internalAccounts.balanceReports.retrieve('string', {
+    const responsePromise = client.internalAccounts.balanceReports.retrieve('latest', {
       internal_account_id: 'internal_account_id',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -62,7 +62,7 @@ describe('resource balanceReports', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.internalAccounts.balanceReports.retrieve('string', {
+    const response = await client.internalAccounts.balanceReports.retrieve('latest', {
       internal_account_id: 'internal_account_id',
     });
   });
