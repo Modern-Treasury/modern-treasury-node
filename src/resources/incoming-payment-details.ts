@@ -182,6 +182,13 @@ export interface IncomingPaymentDetail {
   status: 'completed' | 'pending' | 'returned';
 
   /**
+   * An additional layer of classification for the type of incoming payment detail.
+   * For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
+   * `solana`.
+   */
+  subtype: string | null;
+
+  /**
    * The ID of the reconciled Transaction or `null`.
    */
   transaction_id: string | null;
@@ -308,6 +315,13 @@ export interface IncomingPaymentDetailListParams extends PageParams {
   status?: 'completed' | 'pending' | 'returned';
 
   /**
+   * An additional layer of classification for the type of incoming payment detail.
+   * For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
+   * `solana`.
+   */
+  subtype?: string;
+
+  /**
    * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
    * `wire`.
    */
@@ -375,6 +389,12 @@ export interface IncomingPaymentDetailCreateAsyncParams {
    * The ID of one of your internal accounts.
    */
   internal_account_id?: string;
+
+  /**
+   * An additional layer of classification for the type of incoming payment detail,
+   * e.g. `ethereum` for a `stablecoin` type.
+   */
+  subtype?: string | null;
 
   /**
    * One of `ach`, `wire`, `check`.
