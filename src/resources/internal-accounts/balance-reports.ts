@@ -51,7 +51,7 @@ export class BalanceReports extends APIResource {
    * ```ts
    * const balanceReport =
    *   await client.internalAccounts.balanceReports.retrieve(
-   *     'string',
+   *     'latest',
    *     { internal_account_id: 'internal_account_id' },
    *   );
    * ```
