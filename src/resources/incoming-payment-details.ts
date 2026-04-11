@@ -219,6 +219,7 @@ export interface IncomingPaymentDetail {
     | 'sepa'
     | 'signet'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 
@@ -342,6 +343,7 @@ export interface IncomingPaymentDetailListParams extends PageParams {
     | 'sepa'
     | 'signet'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 
@@ -416,6 +418,7 @@ export interface IncomingPaymentDetailCreateAsyncParams {
     | 'sepa'
     | 'signet'
     | 'solana'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 
