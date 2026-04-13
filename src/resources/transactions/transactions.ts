@@ -249,7 +249,6 @@ export interface Transaction {
     | 'banking_circle'
     | 'bankprov'
     | 'bnk_dev'
-    | 'brale'
     | 'cleartouch'
     | 'coinbase_prime'
     | 'column'
