@@ -351,7 +351,6 @@ export namespace ReturnObject {
       | 'bny_mellon_transaction_reference_number'
       | 'bofa_end_to_end_id'
       | 'bofa_transaction_id'
-      | 'brale_transfer_id'
       | 'check_number'
       | 'chips_uid'
       | 'citibank_reference_number'
