@@ -2151,7 +2151,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       typescript: {
         method: 'client.documents.create',
         example:
-          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.documents.create({ file: fs.createReadStream('path/to/file') });\n\nconsole.log(document.id);",
+          "import fs from 'fs';\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.documents.create({ file: fs.createReadStream('path/to/file') });\n\nconsole.log(document.id);",
       },
     },
   },
