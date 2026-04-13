@@ -708,7 +708,6 @@ export type Currency =
   | 'RUB'
   | 'RWF'
   | 'SAR'
-  | 'SBC'
   | 'SBD'
   | 'SCR'
   | 'SDG'
