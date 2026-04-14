@@ -232,6 +232,12 @@ export interface LedgerAccountSettlementUpdateParams {
   metadata?: { [key: string]: string };
 
   /**
+   * It is set to `false` by default. It should be set to `true` when migrating
+   * existing settlements.
+   */
+  skip_settlement_ledger_transaction?: boolean | null;
+
+  /**
    * To post a pending ledger account settlement, use `posted`. To archive a pending
    * ledger transaction, use `archived`.
    */
