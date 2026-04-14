@@ -74,6 +74,7 @@ describe('resource ledgerAccountSettlements', () => {
             foo: 'bar',
             modern: 'treasury',
           },
+          skip_settlement_ledger_transaction: true,
           status: 'posted',
         },
         { path: '/_stainless_unknown_path' },
