@@ -351,6 +351,7 @@ export namespace ReturnObject {
       | 'bnk_dev_transfer_id'
       | 'bny_mellon_transaction_reference_number'
       | 'bofa_end_to_end_id'
+      | 'bofa_neft_clearing_reference_number'
       | 'bofa_transaction_id'
       | 'check_number'
       | 'chips_uid'
