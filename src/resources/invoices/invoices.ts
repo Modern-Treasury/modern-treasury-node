@@ -191,6 +191,11 @@ export interface Invoice {
   invoicer_name: string | null;
 
   /**
+   * Translation missing: en.openapi.descriptions.invoice.schema.issued_at
+   */
+  issued_at: string | null;
+
+  /**
    * @deprecated The ledger account settlement object linked to the invoice.
    */
   ledger_account_settlement_id: string | null;
@@ -231,6 +236,11 @@ export interface Invoice {
    * The ID of the internal account the invoice should be paid to.
    */
   originating_account_id: string;
+
+  /**
+   * Translation missing: en.openapi.descriptions.invoice.schema.paid_at
+   */
+  paid_at: string | null;
 
   /**
    * Date transactions are to be posted to the participants' account. Defaults to the
@@ -306,6 +316,11 @@ export interface Invoice {
    * The ID of the virtual account the invoice should be paid to.
    */
   virtual_account_id: string | null;
+
+  /**
+   * Translation missing: en.openapi.descriptions.invoice.schema.voided_at
+   */
+  voided_at: string | null;
 }
 
 export namespace Invoice {
