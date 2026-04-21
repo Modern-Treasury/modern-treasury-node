@@ -410,10 +410,10 @@ export interface InternalAccountCreateParams {
   connection_id: string;
 
   /**
-   * Either "USD" or "CAD". Internal accounts created at Increase only supports
-   * "USD".
+   * The currency of the internal account. Supports "USD" and "CAD" for fiat, and
+   * "USDC", "USDG", and "PYUSD" for stablecoin accounts.
    */
-  currency: 'USD' | 'CAD';
+  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'PYUSD';
 
   /**
    * The nickname of the account.
