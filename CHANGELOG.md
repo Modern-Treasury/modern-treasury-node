@@ -1,5 +1,35 @@
 # Changelog
 
+## 4.15.0 (2026-04-22)
+
+Full Changelog: [v4.14.0...v4.15.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.14.0...v4.15.0)
+
+### Features
+
+* **api:** api update ([9c77617](https://github.com/Modern-Treasury/modern-treasury-node/commit/9c77617d9d2e0fcb4f85cc1318e274191ecc75fb))
+* **api:** api update ([ec856a2](https://github.com/Modern-Treasury/modern-treasury-node/commit/ec856a2a33a6885669408459ad53d153d274f3e7))
+* **api:** api update ([73cda49](https://github.com/Modern-Treasury/modern-treasury-node/commit/73cda499029d2f69cdd9dbff5789cfd7ae1b4e01))
+* **api:** api update ([7bf3477](https://github.com/Modern-Treasury/modern-treasury-node/commit/7bf34774b03a4f840777ae0cd5ee1e7c614ef1de))
+* **api:** api update ([4ab8248](https://github.com/Modern-Treasury/modern-treasury-node/commit/4ab824831573ae58db908285a58d97e60820257f))
+* **api:** api update ([7f7e77a](https://github.com/Modern-Treasury/modern-treasury-node/commit/7f7e77a803548ffcc5740eba4c9106858834013b))
+* **api:** api update ([aac4500](https://github.com/Modern-Treasury/modern-treasury-node/commit/aac450006214bef41fb5f5d41292a5c1ac752643))
+* **api:** api update ([2170dea](https://github.com/Modern-Treasury/modern-treasury-node/commit/2170dea05d4edd055a9e899861ec3129bcd317f2))
+* **api:** api update ([3b6b75d](https://github.com/Modern-Treasury/modern-treasury-node/commit/3b6b75dea5cc8c2b1ce0a3c92c72471cc1cae104))
+
+
+### Chores
+
+* fix example snippet imports ([8eafc54](https://github.com/Modern-Treasury/modern-treasury-node/commit/8eafc542749661500fef0036cea34e36c44dbab7))
+* **internal:** codegen related update ([34e49c4](https://github.com/Modern-Treasury/modern-treasury-node/commit/34e49c47f45bdde543e75e5675f65069ca4460b6))
+* **internal:** more robust bootstrap script ([84c2ad9](https://github.com/Modern-Treasury/modern-treasury-node/commit/84c2ad91cccf10965967affabb3121898a229d01))
+* **internal:** show error causes in MCP servers when running in local mode ([397a02b](https://github.com/Modern-Treasury/modern-treasury-node/commit/397a02b787806db4dfd9ea43aa611b74edc87d67))
+* **internal:** update docs ordering ([6055b9a](https://github.com/Modern-Treasury/modern-treasury-node/commit/6055b9a99eed8652ecad6c1acb3097bdb4888723))
+
+
+### Documentation
+
+* improve examples ([39b9ec6](https://github.com/Modern-Treasury/modern-treasury-node/commit/39b9ec62eb78e4db89b2d4e5f1206c74fbf6d207))
+
 ## 4.14.0 (2026-04-08)
 
 Full Changelog: [v4.13.0...v4.14.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.13.0...v4.14.0)
