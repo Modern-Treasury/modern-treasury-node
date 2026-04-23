@@ -426,6 +426,7 @@ export namespace LegalEntity {
       | 'us_ein'
       | 'us_itin'
       | 'us_ssn'
+      | 'uy_rut'
       | 'vn_tin';
 
     /**
