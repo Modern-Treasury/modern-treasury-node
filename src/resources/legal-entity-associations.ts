@@ -351,12 +351,16 @@ export namespace ChildLegalEntity {
       | 'kr_brn'
       | 'kr_crn'
       | 'kr_rrn'
+      | 'mx_curp'
+      | 'mx_ine'
+      | 'mx_rfc'
       | 'passport'
       | 'sa_tin'
       | 'sa_vat'
       | 'us_ein'
       | 'us_itin'
       | 'us_ssn'
+      | 'uy_rut'
       | 'vn_tin';
 
     /**
