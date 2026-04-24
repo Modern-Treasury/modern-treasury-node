@@ -60,15 +60,12 @@ export class BulkRequests extends APIResource {
    * }
    * ```
    */
-  list(
-    query: BulkRequestListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BulkRequestsPage, BulkRequest> {
+  list(query: BulkRequestListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BulkRequestsPage, BulkRequest> {
     return this._client.getAPIList('/api/bulk_requests', Page<BulkRequest>, { query, ...options });
   }
 }
 
-export type BulkRequestsPage = Page<BulkRequest>;
+export type BulkRequestsPage = Page<BulkRequest>
 
 export interface BulkRequest {
   id: string;
@@ -102,14 +99,7 @@ export interface BulkRequest {
   /**
    * One of payment_order, expected_payment, or ledger_transaction.
    */
-  resource_type:
-    | 'payment_order'
-    | 'ledger_account'
-    | 'ledger_transaction'
-    | 'expected_payment'
-    | 'transaction'
-    | 'transaction_line_item'
-    | 'entity_link';
+  resource_type: 'payment_order' | 'ledger_account' | 'ledger_transaction' | 'expected_payment' | 'transaction' | 'transaction_line_item' | 'entity_link';
 
   /**
    * One of pending, processing, or completed.
@@ -140,31 +130,13 @@ export interface BulkRequestCreateParams {
   /**
    * One of payment_order, expected_payment, or ledger_transaction.
    */
-  resource_type:
-    | 'payment_order'
-    | 'ledger_account'
-    | 'ledger_transaction'
-    | 'expected_payment'
-    | 'transaction'
-    | 'transaction_line_item'
-    | 'entity_link';
+  resource_type: 'payment_order' | 'ledger_account' | 'ledger_transaction' | 'expected_payment' | 'transaction' | 'transaction_line_item' | 'entity_link';
 
   /**
    * An array of objects where each object contains the input params for a single
    * `action_type` request on a `resource_type` resource
    */
-  resources: Array<
-    | BulkRequestCreateParams.PaymentOrderAsyncCreateRequest
-    | BulkRequestCreateParams.ExpectedPaymentCreateRequest
-    | Shared.LedgerTransactionCreateRequest
-    | Shared.LedgerAccountCreateRequest
-    | BulkRequestCreateParams.TransactionCreateRequest
-    | BulkRequestCreateParams.ID
-    | BulkRequestCreateParams.PaymentOrderUpdateRequestWithID
-    | BulkRequestCreateParams.ExpectedPaymentUpdateRequestWithID
-    | BulkRequestCreateParams.TransactionUpdateRequestWithID
-    | BulkRequestCreateParams.LedgerTransactionUpdateRequestWithID
-  >;
+  resources: Array<BulkRequestCreateParams.PaymentOrderAsyncCreateRequest | BulkRequestCreateParams.ExpectedPaymentCreateRequest | Shared.LedgerTransactionCreateRequest | Shared.LedgerAccountCreateRequest | BulkRequestCreateParams.TransactionCreateRequest | BulkRequestCreateParams.ID | BulkRequestCreateParams.PaymentOrderUpdateRequestWithID | BulkRequestCreateParams.ExpectedPaymentUpdateRequestWithID | BulkRequestCreateParams.TransactionUpdateRequestWithID | BulkRequestCreateParams.LedgerTransactionUpdateRequestWithID>;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -545,84 +517,15 @@ export namespace BulkRequestCreateParams {
       export interface AccountDetail {
         account_number: string;
 
-        account_number_type?:
-          | 'au_number'
-          | 'base_address'
-          | 'card_token'
-          | 'clabe'
-          | 'ethereum_address'
-          | 'hk_number'
-          | 'iban'
-          | 'id_number'
-          | 'nz_number'
-          | 'other'
-          | 'pan'
-          | 'polygon_address'
-          | 'sg_number'
-          | 'solana_address'
-          | 'wallet_address';
+        account_number_type?: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
       }
 
       export interface RoutingDetail {
         routing_number: string;
 
-        routing_number_type:
-          | 'aba'
-          | 'au_bsb'
-          | 'br_codigo'
-          | 'ca_cpa'
-          | 'chips'
-          | 'cnaps'
-          | 'dk_interbank_clearing_code'
-          | 'gb_sort_code'
-          | 'hk_interbank_clearing_code'
-          | 'hu_interbank_clearing_code'
-          | 'id_sknbi_code'
-          | 'il_bank_code'
-          | 'in_ifsc'
-          | 'jp_zengin_code'
-          | 'my_branch_code'
-          | 'mx_bank_identifier'
-          | 'nz_national_clearing_code'
-          | 'pl_national_clearing_code'
-          | 'se_bankgiro_clearing_code'
-          | 'sg_interbank_clearing_code'
-          | 'swift'
-          | 'za_national_clearing_code';
+        routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'my_branch_code' | 'mx_bank_identifier' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
 
-        payment_type?:
-          | 'ach'
-          | 'au_becs'
-          | 'bacs'
-          | 'book'
-          | 'card'
-          | 'chats'
-          | 'check'
-          | 'cross_border'
-          | 'dk_nets'
-          | 'eft'
-          | 'gb_fps'
-          | 'hu_ics'
-          | 'interac'
-          | 'masav'
-          | 'mx_ccen'
-          | 'neft'
-          | 'nics'
-          | 'nz_becs'
-          | 'pl_elixir'
-          | 'provxchange'
-          | 'ro_sent'
-          | 'rtp'
-          | 'se_bankgirot'
-          | 'sen'
-          | 'sepa'
-          | 'sg_giro'
-          | 'sic'
-          | 'signet'
-          | 'sknbi'
-          | 'stablecoin'
-          | 'wire'
-          | 'zengin';
+        payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
       }
     }
 
@@ -873,41 +776,7 @@ export namespace BulkRequestCreateParams {
      * The type of the transaction. Examples could be
      * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
      */
-    type?:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'book'
-      | 'card'
-      | 'chats'
-      | 'check'
-      | 'cross_border'
-      | 'dk_nets'
-      | 'eft'
-      | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
-      | 'masav'
-      | 'mx_ccen'
-      | 'neft'
-      | 'nics'
-      | 'nz_becs'
-      | 'pl_elixir'
-      | 'provxchange'
-      | 'ro_sent'
-      | 'rtp'
-      | 'se_bankgirot'
-      | 'sen'
-      | 'sepa'
-      | 'sg_giro'
-      | 'sic'
-      | 'signet'
-      | 'sknbi'
-      | 'stablecoin'
-      | 'wire'
-      | 'zengin'
-      | 'other'
-      | null;
+    type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin' | 'other' | null;
 
     /**
      * An identifier given to this transaction by the bank, often `null`.
@@ -1118,20 +987,7 @@ export namespace BulkRequestCreateParams {
      * use `approved`. To undo approval on a denied or approved payment order, use
      * `needs_approval`.
      */
-    status?:
-      | 'approved'
-      | 'cancelled'
-      | 'completed'
-      | 'denied'
-      | 'failed'
-      | 'held'
-      | 'needs_approval'
-      | 'pending'
-      | 'processing'
-      | 'returned'
-      | 'reversed'
-      | 'sent'
-      | 'stopped';
+    status?: 'approved' | 'cancelled' | 'completed' | 'denied' | 'failed' | 'held' | 'needs_approval' | 'pending' | 'processing' | 'returned' | 'reversed' | 'sent' | 'stopped';
 
     /**
      * An additional layer of classification for the type of payment order you are
@@ -1292,84 +1148,15 @@ export namespace BulkRequestCreateParams {
       export interface AccountDetail {
         account_number: string;
 
-        account_number_type?:
-          | 'au_number'
-          | 'base_address'
-          | 'card_token'
-          | 'clabe'
-          | 'ethereum_address'
-          | 'hk_number'
-          | 'iban'
-          | 'id_number'
-          | 'nz_number'
-          | 'other'
-          | 'pan'
-          | 'polygon_address'
-          | 'sg_number'
-          | 'solana_address'
-          | 'wallet_address';
+        account_number_type?: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
       }
 
       export interface RoutingDetail {
         routing_number: string;
 
-        routing_number_type:
-          | 'aba'
-          | 'au_bsb'
-          | 'br_codigo'
-          | 'ca_cpa'
-          | 'chips'
-          | 'cnaps'
-          | 'dk_interbank_clearing_code'
-          | 'gb_sort_code'
-          | 'hk_interbank_clearing_code'
-          | 'hu_interbank_clearing_code'
-          | 'id_sknbi_code'
-          | 'il_bank_code'
-          | 'in_ifsc'
-          | 'jp_zengin_code'
-          | 'my_branch_code'
-          | 'mx_bank_identifier'
-          | 'nz_national_clearing_code'
-          | 'pl_national_clearing_code'
-          | 'se_bankgiro_clearing_code'
-          | 'sg_interbank_clearing_code'
-          | 'swift'
-          | 'za_national_clearing_code';
+        routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'my_branch_code' | 'mx_bank_identifier' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
 
-        payment_type?:
-          | 'ach'
-          | 'au_becs'
-          | 'bacs'
-          | 'book'
-          | 'card'
-          | 'chats'
-          | 'check'
-          | 'cross_border'
-          | 'dk_nets'
-          | 'eft'
-          | 'gb_fps'
-          | 'hu_ics'
-          | 'interac'
-          | 'masav'
-          | 'mx_ccen'
-          | 'neft'
-          | 'nics'
-          | 'nz_becs'
-          | 'pl_elixir'
-          | 'provxchange'
-          | 'ro_sent'
-          | 'rtp'
-          | 'se_bankgirot'
-          | 'sen'
-          | 'sepa'
-          | 'sg_giro'
-          | 'sic'
-          | 'signet'
-          | 'sknbi'
-          | 'stablecoin'
-          | 'wire'
-          | 'zengin';
+        payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
       }
     }
   }
@@ -1549,12 +1336,7 @@ export namespace BulkRequestCreateParams {
      * Treasury, the type will be populated here, otherwise null. This can be one of
      * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
      */
-    ledgerable_type?:
-      | 'expected_payment'
-      | 'incoming_payment_detail'
-      | 'payment_order'
-      | 'return'
-      | 'reversal';
+    ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
 
     /**
      * Additional data represented as key-value pairs. Both the key and value must be
@@ -1585,14 +1367,7 @@ export interface BulkRequestListParams extends PageParams {
   /**
    * One of payment_order, expected_payment, or ledger_transaction.
    */
-  resource_type?:
-    | 'payment_order'
-    | 'ledger_account'
-    | 'ledger_transaction'
-    | 'expected_payment'
-    | 'transaction'
-    | 'transaction_line_item'
-    | 'entity_link';
+  resource_type?: 'payment_order' | 'ledger_account' | 'ledger_transaction' | 'expected_payment' | 'transaction' | 'transaction_line_item' | 'entity_link';
 
   /**
    * One of pending, processing, or completed.
@@ -1605,6 +1380,6 @@ export declare namespace BulkRequests {
     type BulkRequest as BulkRequest,
     type BulkRequestsPage as BulkRequestsPage,
     type BulkRequestCreateParams as BulkRequestCreateParams,
-    type BulkRequestListParams as BulkRequestListParams,
+    type BulkRequestListParams as BulkRequestListParams
   };
 }

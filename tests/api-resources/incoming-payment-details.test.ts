@@ -5,7 +5,7 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource incomingPaymentDetails', () => {
@@ -33,13 +33,9 @@ describe('resource incomingPaymentDetails', () => {
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.incomingPaymentDetails.update(
-        'id',
-        { metadata: { foo: 'string' } },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.incomingPaymentDetails.update('id', { metadata: { foo: 'string' } }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list', async () => {
@@ -55,23 +51,20 @@ describe('resource incomingPaymentDetails', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.incomingPaymentDetails.list(
-        {
-          after_cursor: 'after_cursor',
-          as_of_date_end: '2019-12-27',
-          as_of_date_start: '2019-12-27',
-          direction: 'credit',
-          metadata: { foo: 'string' },
-          per_page: 0,
-          status: 'completed',
-          subtype: 'subtype',
-          type: 'ach',
-          virtual_account_id: 'virtual_account_id',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.incomingPaymentDetails.list({
+    after_cursor: 'after_cursor',
+    as_of_date_end: '2019-12-27',
+    as_of_date_start: '2019-12-27',
+    direction: 'credit',
+    metadata: { foo: 'string' },
+    per_page: 0,
+    status: 'completed',
+    subtype: 'subtype',
+    type: 'ach',
+    virtual_account_id: 'virtual_account_id',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(ModernTreasury.NotFoundError);
   });
 
   test('createAsync', async () => {
@@ -87,22 +80,19 @@ describe('resource incomingPaymentDetails', () => {
 
   test('createAsync: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.incomingPaymentDetails.createAsync(
-        {
-          amount: 0,
-          as_of_date: '2019-12-27',
-          currency: 'AED',
-          data: {},
-          description: 'description',
-          direction: 'credit',
-          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          subtype: 'subtype',
-          type: 'ach',
-          virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.incomingPaymentDetails.createAsync({
+    amount: 0,
+    as_of_date: '2019-12-27',
+    currency: 'AED',
+    data: {},
+    description: 'description',
+    direction: 'credit',
+    internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    subtype: 'subtype',
+    type: 'ach',
+    virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(ModernTreasury.NotFoundError);
   });
 });

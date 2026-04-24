@@ -24,29 +24,19 @@ export class PaymentActions extends APIResource {
   /**
    * Update a single payment action.
    */
-  update(
-    id: string,
-    body: PaymentActionUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<PaymentActionUpdateResponse> {
+  update(id: string, body: PaymentActionUpdateParams, options?: RequestOptions): APIPromise<PaymentActionUpdateResponse> {
     return this._client.patch(path`/api/payment_actions/${id}`, { body, ...options });
   }
 
   /**
    * Get a list of all payment actions.
    */
-  list(
-    query: PaymentActionListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse> {
-    return this._client.getAPIList('/api/payment_actions', Page<PaymentActionListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: PaymentActionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse> {
+    return this._client.getAPIList('/api/payment_actions', Page<PaymentActionListResponse>, { query, ...options });
   }
 }
 
-export type PaymentActionListResponsesPage = Page<PaymentActionListResponse>;
+export type PaymentActionListResponsesPage = Page<PaymentActionListResponse>
 
 export interface PaymentActionCreateResponse {
   id: string;
@@ -348,6 +338,6 @@ export declare namespace PaymentActions {
     type PaymentActionListResponsesPage as PaymentActionListResponsesPage,
     type PaymentActionCreateParams as PaymentActionCreateParams,
     type PaymentActionUpdateParams as PaymentActionUpdateParams,
-    type PaymentActionListParams as PaymentActionListParams,
+    type PaymentActionListParams as PaymentActionListParams
   };
 }

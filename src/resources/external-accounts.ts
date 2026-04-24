@@ -49,11 +49,7 @@ export class ExternalAccounts extends APIResource {
    *   await client.externalAccounts.update('id');
    * ```
    */
-  update(
-    id: string,
-    body: ExternalAccountUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ExternalAccount> {
+  update(id: string, body: ExternalAccountUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<ExternalAccount> {
     return this._client.patch(path`/api/external_accounts/${id}`, { body, ...options });
   }
 
@@ -68,10 +64,7 @@ export class ExternalAccounts extends APIResource {
    * }
    * ```
    */
-  list(
-    query: ExternalAccountListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ExternalAccountsPage, ExternalAccount> {
+  list(query: ExternalAccountListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ExternalAccountsPage, ExternalAccount> {
     return this._client.getAPIList('/api/external_accounts', Page<ExternalAccount>, { query, ...options });
   }
 
@@ -84,10 +77,7 @@ export class ExternalAccounts extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/external_accounts/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/api/external_accounts/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -99,11 +89,7 @@ export class ExternalAccounts extends APIResource {
    *   await client.externalAccounts.completeVerification('id');
    * ```
    */
-  completeVerification(
-    id: string,
-    body: ExternalAccountCompleteVerificationParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ExternalAccount> {
+  completeVerification(id: string, body: ExternalAccountCompleteVerificationParams | null | undefined = {}, options?: RequestOptions): APIPromise<ExternalAccount> {
     return this._client.post(path`/api/external_accounts/${id}/complete_verification`, { body, ...options });
   }
 
@@ -122,16 +108,12 @@ export class ExternalAccounts extends APIResource {
    * );
    * ```
    */
-  verify(
-    id: string,
-    body: ExternalAccountVerifyParams,
-    options?: RequestOptions,
-  ): APIPromise<ExternalAccountVerifyResponse> {
+  verify(id: string, body: ExternalAccountVerifyParams, options?: RequestOptions): APIPromise<ExternalAccountVerifyResponse> {
     return this._client.post(path`/api/external_accounts/${id}/verify`, { body, ...options });
   }
 }
 
-export type ExternalAccountsPage = Page<ExternalAccount>;
+export type ExternalAccountsPage = Page<ExternalAccount>
 
 export interface ExternalAccount {
   id: string;
@@ -209,24 +191,9 @@ export interface ExternalAccount {
 /**
  * Can be `checking`, `savings` or `other`.
  */
-export type ExternalAccountType =
-  | 'base_wallet'
-  | 'cash'
-  | 'checking'
-  | 'crypto_wallet'
-  | 'ethereum_wallet'
-  | 'general_ledger'
-  | 'loan'
-  | 'non_resident'
-  | 'other'
-  | 'overdraft'
-  | 'polygon_wallet'
-  | 'savings'
-  | 'solana_wallet';
+export type ExternalAccountType = 'base_wallet' | 'cash' | 'checking' | 'crypto_wallet' | 'ethereum_wallet' | 'general_ledger' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'polygon_wallet' | 'savings' | 'solana_wallet'
 
-export type ExternalAccountVerifyResponse =
-  | ExternalAccount
-  | ExternalAccountVerifyResponse.ExternalAccountVerificationAttempt;
+export type ExternalAccountVerifyResponse = ExternalAccount | ExternalAccountVerifyResponse.ExternalAccountVerificationAttempt
 
 export namespace ExternalAccountVerifyResponse {
   export interface ExternalAccountVerificationAttempt {
@@ -256,39 +223,7 @@ export namespace ExternalAccountVerifyResponse {
      * The type of payment that can be made to this account. Can be `ach`, `eft`, or
      * `rtp`.
      */
-    payment_type:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'book'
-      | 'card'
-      | 'chats'
-      | 'check'
-      | 'cross_border'
-      | 'dk_nets'
-      | 'eft'
-      | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
-      | 'masav'
-      | 'mx_ccen'
-      | 'neft'
-      | 'nics'
-      | 'nz_becs'
-      | 'pl_elixir'
-      | 'provxchange'
-      | 'ro_sent'
-      | 'rtp'
-      | 'se_bankgirot'
-      | 'sen'
-      | 'sepa'
-      | 'sg_giro'
-      | 'sic'
-      | 'signet'
-      | 'sknbi'
-      | 'stablecoin'
-      | 'wire'
-      | 'zengin';
+    payment_type: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
 
     /**
      * The priority of the payment. Can be `normal` or `high`.
@@ -373,84 +308,15 @@ export namespace ExternalAccountCreateParams {
   export interface AccountDetail {
     account_number: string;
 
-    account_number_type?:
-      | 'au_number'
-      | 'base_address'
-      | 'card_token'
-      | 'clabe'
-      | 'ethereum_address'
-      | 'hk_number'
-      | 'iban'
-      | 'id_number'
-      | 'nz_number'
-      | 'other'
-      | 'pan'
-      | 'polygon_address'
-      | 'sg_number'
-      | 'solana_address'
-      | 'wallet_address';
+    account_number_type?: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
   }
 
   export interface RoutingDetail {
     routing_number: string;
 
-    routing_number_type:
-      | 'aba'
-      | 'au_bsb'
-      | 'br_codigo'
-      | 'ca_cpa'
-      | 'chips'
-      | 'cnaps'
-      | 'dk_interbank_clearing_code'
-      | 'gb_sort_code'
-      | 'hk_interbank_clearing_code'
-      | 'hu_interbank_clearing_code'
-      | 'id_sknbi_code'
-      | 'il_bank_code'
-      | 'in_ifsc'
-      | 'jp_zengin_code'
-      | 'my_branch_code'
-      | 'mx_bank_identifier'
-      | 'nz_national_clearing_code'
-      | 'pl_national_clearing_code'
-      | 'se_bankgiro_clearing_code'
-      | 'sg_interbank_clearing_code'
-      | 'swift'
-      | 'za_national_clearing_code';
+    routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'my_branch_code' | 'mx_bank_identifier' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
 
-    payment_type?:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'book'
-      | 'card'
-      | 'chats'
-      | 'check'
-      | 'cross_border'
-      | 'dk_nets'
-      | 'eft'
-      | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
-      | 'masav'
-      | 'mx_ccen'
-      | 'neft'
-      | 'nics'
-      | 'nz_becs'
-      | 'pl_elixir'
-      | 'provxchange'
-      | 'ro_sent'
-      | 'rtp'
-      | 'se_bankgirot'
-      | 'sen'
-      | 'sepa'
-      | 'sg_giro'
-      | 'sic'
-      | 'signet'
-      | 'sknbi'
-      | 'stablecoin'
-      | 'wire'
-      | 'zengin';
+    payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
   }
 }
 
@@ -522,39 +388,7 @@ export interface ExternalAccountVerifyParams {
   /**
    * Can be `ach`, `eft`, or `rtp`.
    */
-  payment_type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
+  payment_type: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
 
   /**
    * Defaults to the currency of the originating account.
@@ -585,6 +419,6 @@ export declare namespace ExternalAccounts {
     type ExternalAccountUpdateParams as ExternalAccountUpdateParams,
     type ExternalAccountListParams as ExternalAccountListParams,
     type ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
-    type ExternalAccountVerifyParams as ExternalAccountVerifyParams,
+    type ExternalAccountVerifyParams as ExternalAccountVerifyParams
   };
 }

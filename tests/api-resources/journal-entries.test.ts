@@ -5,7 +5,7 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource journalEntries', () => {
@@ -33,9 +33,9 @@ describe('resource journalEntries', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.journalEntries.list({
-      journal_report_id: 'journal_report_id',
-      page: 0,
-      per_page: 0,
-    });
+    journal_report_id: 'journal_report_id',
+    page: 0,
+    per_page: 0,
+  });
   });
 });

@@ -10,10 +10,7 @@ export class AccountCollectionFlows extends APIResource {
   /**
    * create account_collection_flow
    */
-  create(
-    body: AccountCollectionFlowCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<AccountCollectionFlow> {
+  create(body: AccountCollectionFlowCreateParams, options?: RequestOptions): APIPromise<AccountCollectionFlow> {
     return this._client.post('/api/account_collection_flows', { body, ...options });
   }
 
@@ -27,29 +24,19 @@ export class AccountCollectionFlows extends APIResource {
   /**
    * update account_collection_flow
    */
-  update(
-    id: string,
-    body: AccountCollectionFlowUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<AccountCollectionFlow> {
+  update(id: string, body: AccountCollectionFlowUpdateParams, options?: RequestOptions): APIPromise<AccountCollectionFlow> {
     return this._client.patch(path`/api/account_collection_flows/${id}`, { body, ...options });
   }
 
   /**
    * list account_collection_flows
    */
-  list(
-    query: AccountCollectionFlowListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow> {
-    return this._client.getAPIList('/api/account_collection_flows', Page<AccountCollectionFlow>, {
-      query,
-      ...options,
-    });
+  list(query: AccountCollectionFlowListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow> {
+    return this._client.getAPIList('/api/account_collection_flows', Page<AccountCollectionFlow>, { query, ...options });
   }
 }
 
-export type AccountCollectionFlowsPage = Page<AccountCollectionFlow>;
+export type AccountCollectionFlowsPage = Page<AccountCollectionFlow>
 
 export interface AccountCollectionFlow {
   /**
@@ -83,26 +70,7 @@ export interface AccountCollectionFlow {
 
   object?: string;
 
-  receiving_countries?: Array<
-    | 'USA'
-    | 'AUS'
-    | 'BEL'
-    | 'CAN'
-    | 'CHL'
-    | 'CHN'
-    | 'COL'
-    | 'FRA'
-    | 'DEU'
-    | 'HKG'
-    | 'IND'
-    | 'IRL'
-    | 'ITA'
-    | 'MEX'
-    | 'NLD'
-    | 'PER'
-    | 'ESP'
-    | 'GBR'
-  >;
+  receiving_countries?: Array<'USA' | 'AUS' | 'BEL' | 'CAN' | 'CHL' | 'CHN' | 'COL' | 'FRA' | 'DEU' | 'HKG' | 'IND' | 'IRL' | 'ITA' | 'MEX' | 'NLD' | 'PER' | 'ESP' | 'GBR'>;
 
   /**
    * The current status of the account collection flow. One of `pending`,
@@ -121,26 +89,7 @@ export interface AccountCollectionFlowCreateParams {
 
   payment_types: Array<string>;
 
-  receiving_countries?: Array<
-    | 'USA'
-    | 'AUS'
-    | 'BEL'
-    | 'CAN'
-    | 'CHL'
-    | 'CHN'
-    | 'COL'
-    | 'FRA'
-    | 'DEU'
-    | 'HKG'
-    | 'IND'
-    | 'IRL'
-    | 'ITA'
-    | 'MEX'
-    | 'NLD'
-    | 'PER'
-    | 'ESP'
-    | 'GBR'
-  >;
+  receiving_countries?: Array<'USA' | 'AUS' | 'BEL' | 'CAN' | 'CHL' | 'CHN' | 'COL' | 'FRA' | 'DEU' | 'HKG' | 'IND' | 'IRL' | 'ITA' | 'MEX' | 'NLD' | 'PER' | 'ESP' | 'GBR'>;
 }
 
 export interface AccountCollectionFlowUpdateParams {
@@ -167,6 +116,6 @@ export declare namespace AccountCollectionFlows {
     type AccountCollectionFlowsPage as AccountCollectionFlowsPage,
     type AccountCollectionFlowCreateParams as AccountCollectionFlowCreateParams,
     type AccountCollectionFlowUpdateParams as AccountCollectionFlowUpdateParams,
-    type AccountCollectionFlowListParams as AccountCollectionFlowListParams,
+    type AccountCollectionFlowListParams as AccountCollectionFlowListParams
   };
 }

@@ -13,10 +13,7 @@ export class Documents extends APIResource {
    * Create a document.
    */
   create(body: DocumentCreateParams, options?: RequestOptions): APIPromise<Document> {
-    return this._client.post(
-      '/api/documents',
-      multipartFormRequestOptions({ body, ...options }, this._client),
-    );
+    return this._client.post('/api/documents', multipartFormRequestOptions({ body, ...options }, this._client));
   }
 
   /**
@@ -29,15 +26,12 @@ export class Documents extends APIResource {
   /**
    * Get a list of documents.
    */
-  list(
-    query: DocumentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<DocumentsPage, Document> {
+  list(query: DocumentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<DocumentsPage, Document> {
     return this._client.getAPIList('/api/documents', Page<Document>, { query, ...options });
   }
 }
 
-export type DocumentsPage = Page<Document>;
+export type DocumentsPage = Page<Document>
 
 export interface Document {
   id: string;
@@ -63,19 +57,7 @@ export interface Document {
    * `transaction`, `expected_payment`, `counterparty`, `organization`, `case`,
    * `internal_account`, `decision`, or `external_account`.
    */
-  documentable_type:
-    | 'connection'
-    | 'counterparty'
-    | 'expected_payment'
-    | 'external_account'
-    | 'identification'
-    | 'incoming_payment_detail'
-    | 'internal_account'
-    | 'legal_entity'
-    | 'organization'
-    | 'payment_order'
-    | 'transaction'
-    | null;
+  documentable_type: 'connection' | 'counterparty' | 'expected_payment' | 'external_account' | 'identification' | 'incoming_payment_detail' | 'internal_account' | 'legal_entity' | 'organization' | 'payment_order' | 'transaction' | null;
 
   file: Document.File;
 
@@ -149,18 +131,7 @@ export interface DocumentCreateParams {
    */
   documentable_id?: string;
 
-  documentable_type?:
-    | 'connections'
-    | 'counterparties'
-    | 'expected_payments'
-    | 'external_accounts'
-    | 'identifications'
-    | 'incoming_payment_details'
-    | 'internal_accounts'
-    | 'legal_entities'
-    | 'organizations'
-    | 'payment_orders'
-    | 'transactions';
+  documentable_type?: 'connections' | 'counterparties' | 'expected_payments' | 'external_accounts' | 'identifications' | 'incoming_payment_details' | 'internal_accounts' | 'legal_entities' | 'organizations' | 'payment_orders' | 'transactions';
 }
 
 export interface DocumentListParams extends PageParams {
@@ -174,18 +145,7 @@ export interface DocumentListParams extends PageParams {
    * `transaction`, `expected_payment`, `counterparty`, `organization`, `case`,
    * `internal_account`, `decision`, or `external_account`.
    */
-  documentable_type?:
-    | 'connections'
-    | 'counterparties'
-    | 'expected_payments'
-    | 'external_accounts'
-    | 'identifications'
-    | 'incoming_payment_details'
-    | 'internal_accounts'
-    | 'legal_entities'
-    | 'organizations'
-    | 'payment_orders'
-    | 'transactions';
+  documentable_type?: 'connections' | 'counterparties' | 'expected_payments' | 'external_accounts' | 'identifications' | 'incoming_payment_details' | 'internal_accounts' | 'legal_entities' | 'organizations' | 'payment_orders' | 'transactions';
 }
 
 export declare namespace Documents {
@@ -193,6 +153,6 @@ export declare namespace Documents {
     type Document as Document,
     type DocumentsPage as DocumentsPage,
     type DocumentCreateParams as DocumentCreateParams,
-    type DocumentListParams as DocumentListParams,
+    type DocumentListParams as DocumentListParams
   };
 }

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export type AccountsType = 'external_accounts' | 'internal_accounts';
+
+export type AccountsType = 'external_accounts' | 'internal_accounts'
 
 export interface Address {
   id: string;
@@ -188,14 +189,7 @@ export interface ChildLegalEntityCreate {
   /**
    * The business's legal structure.
    */
-  legal_structure?:
-    | 'corporation'
-    | 'llc'
-    | 'non_profit'
-    | 'partnership'
-    | 'sole_proprietorship'
-    | 'trust'
-    | null;
+  legal_structure?: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust' | null;
 
   /**
    * ISO 10383 market identifier code.
@@ -331,14 +325,7 @@ export namespace ChildLegalEntityCreate {
     /**
      * A category given to the document, can be `null`.
      */
-    document_type:
-      | 'articles_of_incorporation'
-      | 'certificate_of_good_standing'
-      | 'ein_letter'
-      | 'generic'
-      | 'identification_back'
-      | 'identification_front'
-      | 'proof_of_address';
+    document_type: 'articles_of_incorporation' | 'certificate_of_good_standing' | 'ein_letter' | 'generic' | 'identification_back' | 'identification_front' | 'proof_of_address';
 
     /**
      * Base64-encoded file content for the document.
@@ -416,16 +403,7 @@ export namespace ChildLegalEntityCreate {
     /**
      * The source of the individual's income.
      */
-    income_source:
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
+    income_source: 'family_support' | 'government_benefits' | 'inheritance' | 'investments' | 'rental_income' | 'retirement' | 'salary' | 'self_employed' | null;
 
     /**
      * The state in which the individual's income is earned.
@@ -435,41 +413,7 @@ export namespace ChildLegalEntityCreate {
     /**
      * The industry of the individual.
      */
-    industry:
-      | 'accounting'
-      | 'agriculture'
-      | 'automotive'
-      | 'chemical_manufacturing'
-      | 'construction'
-      | 'educational_medical'
-      | 'food_service'
-      | 'finance'
-      | 'gasoline'
-      | 'health_stores'
-      | 'laundry'
-      | 'maintenance'
-      | 'manufacturing'
-      | 'merchant_wholesale'
-      | 'mining'
-      | 'performing_arts'
-      | 'professional_non_legal'
-      | 'public_administration'
-      | 'publishing'
-      | 'real_estate'
-      | 'recreation_gambling'
-      | 'religious_charity'
-      | 'rental_services'
-      | 'retail_clothing'
-      | 'retail_electronics'
-      | 'retail_food'
-      | 'retail_furnishing'
-      | 'retail_home'
-      | 'retail_non_store'
-      | 'retail_sporting'
-      | 'transportation'
-      | 'travel'
-      | 'utilities'
-      | null;
+    industry: 'accounting' | 'agriculture' | 'automotive' | 'chemical_manufacturing' | 'construction' | 'educational_medical' | 'food_service' | 'finance' | 'gasoline' | 'health_stores' | 'laundry' | 'maintenance' | 'manufacturing' | 'merchant_wholesale' | 'mining' | 'performing_arts' | 'professional_non_legal' | 'public_administration' | 'publishing' | 'real_estate' | 'recreation_gambling' | 'religious_charity' | 'rental_services' | 'retail_clothing' | 'retail_electronics' | 'retail_food' | 'retail_furnishing' | 'retail_home' | 'retail_non_store' | 'retail_sporting' | 'transportation' | 'travel' | 'utilities' | null;
 
     /**
      * This field will be true if this object exists in the live environment or false
@@ -482,68 +426,19 @@ export namespace ChildLegalEntityCreate {
     /**
      * The occupation of the individual.
      */
-    occupation:
-      | 'consulting'
-      | 'executive'
-      | 'finance_accounting'
-      | 'food_services'
-      | 'government'
-      | 'healthcare'
-      | 'legal_services'
-      | 'manufacturing'
-      | 'other'
-      | 'sales'
-      | 'science_engineering'
-      | 'technology'
-      | null;
+    occupation: 'consulting' | 'executive' | 'finance_accounting' | 'food_services' | 'government' | 'healthcare' | 'legal_services' | 'manufacturing' | 'other' | 'sales' | 'science_engineering' | 'technology' | null;
 
     /**
      * The source of the individual's funds.
      */
-    source_of_funds:
-      | 'alimony'
-      | 'annuity'
-      | 'business_owner'
-      | 'business_revenue'
-      | 'debt_financing'
-      | 'general_employee'
-      | 'government_benefits'
-      | 'homemaker'
-      | 'inheritance_gift'
-      | 'intercompany_loan'
-      | 'investment'
-      | 'investor_funding'
-      | 'legal_settlement'
-      | 'lottery'
-      | 'real_estate'
-      | 'retained_earnings_or_savings'
-      | 'retired'
-      | 'retirement'
-      | 'salary'
-      | 'sale_of_business_assets'
-      | 'sale_of_real_estate'
-      | 'self_employed'
-      | 'senior_executive'
-      | 'trust_income'
-      | null;
+    source_of_funds: 'alimony' | 'annuity' | 'business_owner' | 'business_revenue' | 'debt_financing' | 'general_employee' | 'government_benefits' | 'homemaker' | 'inheritance_gift' | 'intercompany_loan' | 'investment' | 'investor_funding' | 'legal_settlement' | 'lottery' | 'real_estate' | 'retained_earnings_or_savings' | 'retired' | 'retirement' | 'salary' | 'sale_of_business_assets' | 'sale_of_real_estate' | 'self_employed' | 'senior_executive' | 'trust_income' | null;
 
     updated_at: string;
 
     /**
      * The source of the individual's wealth.
      */
-    wealth_source:
-      | 'business_sale'
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'other'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
+    wealth_source: 'business_sale' | 'family_support' | 'government_benefits' | 'inheritance' | 'investments' | 'other' | 'rental_income' | 'retirement' | 'salary' | 'self_employed' | null;
   }
 }
 
@@ -572,209 +467,7 @@ export interface ContactDetail {
 /**
  * Three-letter ISO currency code.
  */
-export type Currency =
-  | 'AED'
-  | 'AFN'
-  | 'ALL'
-  | 'AMD'
-  | 'ANG'
-  | 'AOA'
-  | 'ARS'
-  | 'AUD'
-  | 'AWG'
-  | 'AZN'
-  | 'BAM'
-  | 'BBD'
-  | 'BCH'
-  | 'BDT'
-  | 'BGN'
-  | 'BHD'
-  | 'BIF'
-  | 'BMD'
-  | 'BND'
-  | 'BOB'
-  | 'BRL'
-  | 'BSD'
-  | 'BTC'
-  | 'BTN'
-  | 'BWP'
-  | 'BYN'
-  | 'BYR'
-  | 'BZD'
-  | 'CAD'
-  | 'CDF'
-  | 'CHF'
-  | 'CLF'
-  | 'CLP'
-  | 'CNH'
-  | 'CNY'
-  | 'COP'
-  | 'CRC'
-  | 'CUC'
-  | 'CUP'
-  | 'CVE'
-  | 'CZK'
-  | 'DJF'
-  | 'DKK'
-  | 'DOP'
-  | 'DZD'
-  | 'EEK'
-  | 'EGP'
-  | 'ERN'
-  | 'ETB'
-  | 'ETH'
-  | 'EUR'
-  | 'EURC'
-  | 'FJD'
-  | 'FKP'
-  | 'GBP'
-  | 'GBX'
-  | 'GEL'
-  | 'GGP'
-  | 'GHS'
-  | 'GIP'
-  | 'GMD'
-  | 'GNF'
-  | 'GTQ'
-  | 'GYD'
-  | 'HKD'
-  | 'HNL'
-  | 'HRK'
-  | 'HTG'
-  | 'HUF'
-  | 'IDR'
-  | 'ILS'
-  | 'IMP'
-  | 'INR'
-  | 'IQD'
-  | 'IRR'
-  | 'ISK'
-  | 'JEP'
-  | 'JMD'
-  | 'JOD'
-  | 'JPY'
-  | 'KES'
-  | 'KGS'
-  | 'KHR'
-  | 'KMF'
-  | 'KPW'
-  | 'KRW'
-  | 'KWD'
-  | 'KYD'
-  | 'KZT'
-  | 'LAK'
-  | 'LBP'
-  | 'LKR'
-  | 'LRD'
-  | 'LSL'
-  | 'LTL'
-  | 'LVL'
-  | 'LYD'
-  | 'MAD'
-  | 'MDL'
-  | 'MGA'
-  | 'MKD'
-  | 'MMK'
-  | 'MNT'
-  | 'MOP'
-  | 'MRO'
-  | 'MRU'
-  | 'MTL'
-  | 'MUR'
-  | 'MVR'
-  | 'MWK'
-  | 'MXN'
-  | 'MYR'
-  | 'MZN'
-  | 'NAD'
-  | 'NGN'
-  | 'NIO'
-  | 'NOK'
-  | 'NPR'
-  | 'NZD'
-  | 'OMR'
-  | 'OP'
-  | 'PAB'
-  | 'PEN'
-  | 'PGK'
-  | 'PHP'
-  | 'PKR'
-  | 'PLN'
-  | 'PYG'
-  | 'PYUSD'
-  | 'QAR'
-  | 'RON'
-  | 'RSD'
-  | 'RUB'
-  | 'RWF'
-  | 'SAR'
-  | 'SBD'
-  | 'SCR'
-  | 'SDG'
-  | 'SEK'
-  | 'SGD'
-  | 'SHP'
-  | 'SKK'
-  | 'SLE'
-  | 'SLL'
-  | 'SOS'
-  | 'SRD'
-  | 'SSP'
-  | 'STD'
-  | 'STN'
-  | 'SVC'
-  | 'SYP'
-  | 'SZL'
-  | 'THB'
-  | 'TJS'
-  | 'TMM'
-  | 'TMT'
-  | 'TND'
-  | 'TOP'
-  | 'TRY'
-  | 'TTD'
-  | 'TWD'
-  | 'TZS'
-  | 'UAH'
-  | 'UGX'
-  | 'USD'
-  | 'USDB'
-  | 'USDC'
-  | 'USDG'
-  | 'USDP'
-  | 'USDT'
-  | 'UYU'
-  | 'UZS'
-  | 'VEF'
-  | 'VES'
-  | 'VND'
-  | 'VUV'
-  | 'WST'
-  | 'XAF'
-  | 'XAG'
-  | 'XAU'
-  | 'XBA'
-  | 'XBB'
-  | 'XBC'
-  | 'XBD'
-  | 'XCD'
-  | 'XCG'
-  | 'XDR'
-  | 'XFU'
-  | 'XOF'
-  | 'XPD'
-  | 'XPF'
-  | 'XPT'
-  | 'XTS'
-  | 'YER'
-  | 'ZAR'
-  | 'ZMK'
-  | 'ZMW'
-  | 'ZWD'
-  | 'ZWG'
-  | 'ZWL'
-  | 'ZWN'
-  | 'ZWR';
+export type Currency = 'AED' | 'AFN' | 'ALL' | 'AMD' | 'ANG' | 'AOA' | 'ARS' | 'AUD' | 'AWG' | 'AZN' | 'BAM' | 'BBD' | 'BCH' | 'BDT' | 'BGN' | 'BHD' | 'BIF' | 'BMD' | 'BND' | 'BOB' | 'BRL' | 'BSD' | 'BTC' | 'BTN' | 'BWP' | 'BYN' | 'BYR' | 'BZD' | 'CAD' | 'CDF' | 'CHF' | 'CLF' | 'CLP' | 'CNH' | 'CNY' | 'COP' | 'CRC' | 'CUC' | 'CUP' | 'CVE' | 'CZK' | 'DJF' | 'DKK' | 'DOP' | 'DZD' | 'EEK' | 'EGP' | 'ERN' | 'ETB' | 'ETH' | 'EUR' | 'EURC' | 'FJD' | 'FKP' | 'GBP' | 'GBX' | 'GEL' | 'GGP' | 'GHS' | 'GIP' | 'GMD' | 'GNF' | 'GTQ' | 'GYD' | 'HKD' | 'HNL' | 'HRK' | 'HTG' | 'HUF' | 'IDR' | 'ILS' | 'IMP' | 'INR' | 'IQD' | 'IRR' | 'ISK' | 'JEP' | 'JMD' | 'JOD' | 'JPY' | 'KES' | 'KGS' | 'KHR' | 'KMF' | 'KPW' | 'KRW' | 'KWD' | 'KYD' | 'KZT' | 'LAK' | 'LBP' | 'LKR' | 'LRD' | 'LSL' | 'LTL' | 'LVL' | 'LYD' | 'MAD' | 'MDL' | 'MGA' | 'MKD' | 'MMK' | 'MNT' | 'MOP' | 'MRO' | 'MRU' | 'MTL' | 'MUR' | 'MVR' | 'MWK' | 'MXN' | 'MYR' | 'MZN' | 'NAD' | 'NGN' | 'NIO' | 'NOK' | 'NPR' | 'NZD' | 'OMR' | 'OP' | 'PAB' | 'PEN' | 'PGK' | 'PHP' | 'PKR' | 'PLN' | 'PYG' | 'PYUSD' | 'QAR' | 'RON' | 'RSD' | 'RUB' | 'RWF' | 'SAR' | 'SBD' | 'SCR' | 'SDG' | 'SEK' | 'SGD' | 'SHP' | 'SKK' | 'SLE' | 'SLL' | 'SOS' | 'SRD' | 'SSP' | 'STD' | 'STN' | 'SVC' | 'SYP' | 'SZL' | 'THB' | 'TJS' | 'TMM' | 'TMT' | 'TND' | 'TOP' | 'TRY' | 'TTD' | 'TWD' | 'TZS' | 'UAH' | 'UGX' | 'USD' | 'USDB' | 'USDC' | 'USDG' | 'USDP' | 'USDT' | 'UYU' | 'UZS' | 'VEF' | 'VES' | 'VND' | 'VUV' | 'WST' | 'XAF' | 'XAG' | 'XAU' | 'XBA' | 'XBB' | 'XBC' | 'XBD' | 'XCD' | 'XCG' | 'XDR' | 'XFU' | 'XOF' | 'XPD' | 'XPF' | 'XPT' | 'XTS' | 'YER' | 'ZAR' | 'ZMK' | 'ZMW' | 'ZWD' | 'ZWG' | 'ZWL' | 'ZWN' | 'ZWR'
 
 export interface ForeignExchangeRate {
   /**
@@ -826,35 +519,7 @@ export interface IdentificationCreateRequest {
   /**
    * The type of ID number.
    */
-  id_type:
-    | 'ar_cuil'
-    | 'ar_cuit'
-    | 'br_cnpj'
-    | 'br_cpf'
-    | 'ca_sin'
-    | 'cl_run'
-    | 'cl_rut'
-    | 'co_cedulas'
-    | 'co_nit'
-    | 'drivers_license'
-    | 'hn_id'
-    | 'hn_rtn'
-    | 'ie_pps'
-    | 'in_lei'
-    | 'kr_brn'
-    | 'kr_crn'
-    | 'kr_rrn'
-    | 'mx_curp'
-    | 'mx_ine'
-    | 'mx_rfc'
-    | 'passport'
-    | 'sa_tin'
-    | 'sa_vat'
-    | 'us_ein'
-    | 'us_itin'
-    | 'us_ssn'
-    | 'uy_rut'
-    | 'vn_tin';
+  id_type: 'ar_cuil' | 'ar_cuit' | 'br_cnpj' | 'br_cpf' | 'ca_sin' | 'cl_run' | 'cl_rut' | 'co_cedulas' | 'co_nit' | 'drivers_license' | 'hn_id' | 'hn_rtn' | 'ie_pps' | 'in_lei' | 'kr_brn' | 'kr_crn' | 'kr_rrn' | 'mx_curp' | 'mx_ine' | 'mx_rfc' | 'passport' | 'sa_tin' | 'sa_vat' | 'us_ein' | 'us_itin' | 'us_ssn' | 'uy_rut' | 'vn_tin';
 
   /**
    * A list of documents to attach to the identification.
@@ -884,14 +549,7 @@ export namespace IdentificationCreateRequest {
     /**
      * A category given to the document, can be `null`.
      */
-    document_type:
-      | 'articles_of_incorporation'
-      | 'certificate_of_good_standing'
-      | 'ein_letter'
-      | 'generic'
-      | 'identification_back'
-      | 'identification_front'
-      | 'proof_of_address';
+    document_type: 'articles_of_incorporation' | 'certificate_of_good_standing' | 'ein_letter' | 'generic' | 'identification_back' | 'identification_front' | 'proof_of_address';
 
     /**
      * Base64-encoded file content for the document.
@@ -1193,22 +851,7 @@ export interface LegalEntityIndustryClassification {
   /**
    * The classification system of the classification codes.
    */
-  classification_type:
-    | 'anzsic'
-    | 'bics'
-    | 'gics'
-    | 'hsics'
-    | 'icb'
-    | 'isic'
-    | 'mgecs'
-    | 'nace'
-    | 'naics'
-    | 'rbics'
-    | 'sic'
-    | 'sni'
-    | 'trbc'
-    | 'uksic'
-    | 'unspsc';
+  classification_type: 'anzsic' | 'bics' | 'gics' | 'hsics' | 'icb' | 'isic' | 'mgecs' | 'nace' | 'naics' | 'rbics' | 'sic' | 'sni' | 'trbc' | 'uksic' | 'unspsc';
 
   created_at: string;
 
@@ -1244,12 +887,7 @@ export interface ThirdPartyVerification {
   /**
    * The category of verification performed.
    */
-  verification_category:
-    | 'legal_name'
-    | 'date_of_birth'
-    | 'address'
-    | 'government_id_number'
-    | 'adverse_media';
+  verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media';
 
   /**
    * The method used to perform the verification.
@@ -1267,4 +905,4 @@ export interface ThirdPartyVerification {
   comment?: string | null;
 }
 
-export type TransactionDirection = 'credit' | 'debit';
+export type TransactionDirection = 'credit' | 'debit'

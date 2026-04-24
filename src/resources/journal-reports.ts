@@ -11,36 +11,21 @@ export class JournalReports extends APIResource {
    * Retrieve a specific journal report
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.get(path`/api/journal_reports/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get(path`/api/journal_reports/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
    * Update a journal report
    */
-  update(
-    id: string,
-    body: JournalReportUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.patch(path`/api/journal_reports/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  update(id: string, body: JournalReportUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+    return this._client.patch(path`/api/journal_reports/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
    * Retrieve a list of journal reports
    */
   list(query: JournalReportListParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/api/journal_reports', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/api/journal_reports', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
@@ -57,6 +42,6 @@ export interface JournalReportListParams {
 export declare namespace JournalReports {
   export {
     type JournalReportUpdateParams as JournalReportUpdateParams,
-    type JournalReportListParams as JournalReportListParams,
+    type JournalReportListParams as JournalReportListParams
   };
 }

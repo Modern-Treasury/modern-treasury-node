@@ -5,24 +5,22 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource balanceReports', () => {
   test('create: only required params', async () => {
     const responsePromise = client.internalAccounts.balanceReports.create('internal_account_id', {
-      as_of_date: '2019-12-27',
-      as_of_time: 'as_of_time',
-      balance_report_type: 'intraday',
-      balances: [
-        {
-          amount: 0,
-          balance_type: 'closing_available',
-          vendor_code: 'vendor_code',
-          vendor_code_type: 'vendor_code_type',
-        },
-      ],
-    });
+    as_of_date: '2019-12-27',
+    as_of_time: 'as_of_time',
+    balance_report_type: 'intraday',
+    balances: [{
+    amount: 0,
+    balance_type: 'closing_available',
+    vendor_code: 'vendor_code',
+    vendor_code_type: 'vendor_code_type',
+  }],
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -34,24 +32,20 @@ describe('resource balanceReports', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.internalAccounts.balanceReports.create('internal_account_id', {
-      as_of_date: '2019-12-27',
-      as_of_time: 'as_of_time',
-      balance_report_type: 'intraday',
-      balances: [
-        {
-          amount: 0,
-          balance_type: 'closing_available',
-          vendor_code: 'vendor_code',
-          vendor_code_type: 'vendor_code_type',
-        },
-      ],
-    });
+    as_of_date: '2019-12-27',
+    as_of_time: 'as_of_time',
+    balance_report_type: 'intraday',
+    balances: [{
+    amount: 0,
+    balance_type: 'closing_available',
+    vendor_code: 'vendor_code',
+    vendor_code_type: 'vendor_code_type',
+  }],
+  });
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.internalAccounts.balanceReports.retrieve('latest', {
-      internal_account_id: 'internal_account_id',
-    });
+    const responsePromise = client.internalAccounts.balanceReports.retrieve('latest', { internal_account_id: 'internal_account_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,9 +56,7 @@ describe('resource balanceReports', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.internalAccounts.balanceReports.retrieve('latest', {
-      internal_account_id: 'internal_account_id',
-    });
+    const response = await client.internalAccounts.balanceReports.retrieve('latest', { internal_account_id: 'internal_account_id' });
   });
 
   test('list', async () => {
@@ -80,24 +72,18 @@ describe('resource balanceReports', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.internalAccounts.balanceReports.list(
-        'internal_account_id',
-        {
-          after_cursor: 'after_cursor',
-          as_of_date: '2019-12-27',
-          balance_report_type: 'intraday',
-          per_page: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.internalAccounts.balanceReports.list('internal_account_id', {
+    after_cursor: 'after_cursor',
+    as_of_date: '2019-12-27',
+    balance_report_type: 'intraday',
+    per_page: 0,
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(ModernTreasury.NotFoundError);
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.internalAccounts.balanceReports.delete('id', {
-      internal_account_id: 'internal_account_id',
-    });
+    const responsePromise = client.internalAccounts.balanceReports.delete('id', { internal_account_id: 'internal_account_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -108,8 +94,6 @@ describe('resource balanceReports', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.internalAccounts.balanceReports.delete('id', {
-      internal_account_id: 'internal_account_id',
-    });
+    const response = await client.internalAccounts.balanceReports.delete('id', { internal_account_id: 'internal_account_id' });
   });
 });

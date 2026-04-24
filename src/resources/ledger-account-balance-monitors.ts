@@ -24,10 +24,7 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    *   });
    * ```
    */
-  create(
-    body: LedgerAccountBalanceMonitorCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<LedgerAccountBalanceMonitor> {
+  create(body: LedgerAccountBalanceMonitorCreateParams, options?: RequestOptions): APIPromise<LedgerAccountBalanceMonitor> {
     return this._client.post('/api/ledger_account_balance_monitors', { body, ...options });
   }
 
@@ -53,11 +50,7 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    *   await client.ledgerAccountBalanceMonitors.update('id');
    * ```
    */
-  update(
-    id: string,
-    body: LedgerAccountBalanceMonitorUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<LedgerAccountBalanceMonitor> {
+  update(id: string, body: LedgerAccountBalanceMonitorUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerAccountBalanceMonitor> {
     return this._client.patch(path`/api/ledger_account_balance_monitors/${id}`, { body, ...options });
   }
 
@@ -72,15 +65,8 @@ export class LedgerAccountBalanceMonitors extends APIResource {
    * }
    * ```
    */
-  list(
-    query: LedgerAccountBalanceMonitorListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerAccountBalanceMonitorsPage, LedgerAccountBalanceMonitor> {
-    return this._client.getAPIList(
-      '/api/ledger_account_balance_monitors',
-      Page<LedgerAccountBalanceMonitor>,
-      { query, ...options },
-    );
+  list(query: LedgerAccountBalanceMonitorListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LedgerAccountBalanceMonitorsPage, LedgerAccountBalanceMonitor> {
+    return this._client.getAPIList('/api/ledger_account_balance_monitors', Page<LedgerAccountBalanceMonitor>, { query, ...options });
   }
 
   /**
@@ -97,7 +83,7 @@ export class LedgerAccountBalanceMonitors extends APIResource {
   }
 }
 
-export type LedgerAccountBalanceMonitorsPage = Page<LedgerAccountBalanceMonitor>;
+export type LedgerAccountBalanceMonitorsPage = Page<LedgerAccountBalanceMonitor>
 
 export interface LedgerAccountBalanceMonitor {
   id: string;
@@ -279,6 +265,6 @@ export declare namespace LedgerAccountBalanceMonitors {
     type LedgerAccountBalanceMonitorsPage as LedgerAccountBalanceMonitorsPage,
     type LedgerAccountBalanceMonitorCreateParams as LedgerAccountBalanceMonitorCreateParams,
     type LedgerAccountBalanceMonitorUpdateParams as LedgerAccountBalanceMonitorUpdateParams,
-    type LedgerAccountBalanceMonitorListParams as LedgerAccountBalanceMonitorListParams,
+    type LedgerAccountBalanceMonitorListParams as LedgerAccountBalanceMonitorListParams
   };
 }
