@@ -18,7 +18,11 @@ export class LedgerEntries extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, query: LedgerEntryRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerEntry> {
+  retrieve(
+    id: string,
+    query: LedgerEntryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerEntry> {
     return this._client.get(path`/api/ledger_entries/${id}`, { query, ...options });
   }
 
@@ -30,7 +34,11 @@ export class LedgerEntries extends APIResource {
    * const ledgerEntry = await client.ledgerEntries.update('id');
    * ```
    */
-  update(id: string, body: LedgerEntryUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerEntry> {
+  update(
+    id: string,
+    body: LedgerEntryUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerEntry> {
     return this._client.patch(path`/api/ledger_entries/${id}`, { body, ...options });
   }
 
@@ -45,12 +53,15 @@ export class LedgerEntries extends APIResource {
    * }
    * ```
    */
-  list(query: LedgerEntryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LedgerEntriesPage, LedgerEntry> {
+  list(
+    query: LedgerEntryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerEntriesPage, LedgerEntry> {
     return this._client.getAPIList('/api/ledger_entries', Page<LedgerEntry>, { query, ...options });
   }
 }
 
-export type LedgerEntriesPage = Page<LedgerEntry>
+export type LedgerEntriesPage = Page<LedgerEntry>;
 
 export interface LedgerEntry {
   id: string;
@@ -297,6 +308,6 @@ export declare namespace LedgerEntries {
     type LedgerEntriesPage as LedgerEntriesPage,
     type LedgerEntryRetrieveParams as LedgerEntryRetrieveParams,
     type LedgerEntryUpdateParams as LedgerEntryUpdateParams,
-    type LedgerEntryListParams as LedgerEntryListParams
+    type LedgerEntryListParams as LedgerEntryListParams,
   };
 }

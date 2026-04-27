@@ -10,9 +10,7 @@ const config: JestConfigWithTsJest = {
     '^modern-treasury-mcp$': '<rootDir>/src/index.ts',
     '^modern-treasury-mcp/(.*)$': '<rootDir>/src/$1',
   },
-  modulePathIgnorePatterns: [
-    '<rootDir>/dist/',
-  ],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],
 };
 

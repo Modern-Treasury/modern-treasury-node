@@ -5,7 +5,7 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource lineItems', () => {
@@ -22,18 +22,18 @@ describe('resource lineItems', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.invoices.lineItems.create('invoice_id', {
-    name: 'name',
-    unit_amount: 0,
-    description: 'description',
-    direction: 'direction',
-    metadata: {
-    key: 'value',
-    foo: 'bar',
-    modern: 'treasury',
-  },
-    quantity: 0,
-    unit_amount_decimal: 'unit_amount_decimal',
-  });
+      name: 'name',
+      unit_amount: 0,
+      description: 'description',
+      direction: 'direction',
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
+      quantity: 0,
+      unit_amount_decimal: 'unit_amount_decimal',
+    });
   });
 
   test('retrieve: only required params', async () => {
@@ -64,19 +64,19 @@ describe('resource lineItems', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.invoices.lineItems.update('id', {
-    invoice_id: 'invoice_id',
-    description: 'description',
-    direction: 'direction',
-    metadata: {
-    key: 'value',
-    foo: 'bar',
-    modern: 'treasury',
-  },
-    name: 'name',
-    quantity: 0,
-    unit_amount: 0,
-    unit_amount_decimal: 'unit_amount_decimal',
-  });
+      invoice_id: 'invoice_id',
+      description: 'description',
+      direction: 'direction',
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
+      name: 'name',
+      quantity: 0,
+      unit_amount: 0,
+      unit_amount_decimal: 'unit_amount_decimal',
+    });
   });
 
   test('list', async () => {
@@ -92,9 +92,13 @@ describe('resource lineItems', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.invoices.lineItems.list('invoice_id', { after_cursor: 'after_cursor', per_page: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(ModernTreasury.NotFoundError);
+    await expect(
+      client.invoices.lineItems.list(
+        'invoice_id',
+        { after_cursor: 'after_cursor', per_page: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('delete: only required params', async () => {

@@ -21,7 +21,10 @@ export class LedgerAccountStatements extends APIResource {
    *   });
    * ```
    */
-  create(body: LedgerAccountStatementCreateParams, options?: RequestOptions): APIPromise<LedgerAccountStatementCreateResponse> {
+  create(
+    body: LedgerAccountStatementCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccountStatementCreateResponse> {
     return this._client.post('/api/ledger_account_statements', { body, ...options });
   }
 
@@ -230,6 +233,6 @@ export declare namespace LedgerAccountStatements {
   export {
     type LedgerAccountStatementCreateResponse as LedgerAccountStatementCreateResponse,
     type LedgerAccountStatementRetrieveResponse as LedgerAccountStatementRetrieveResponse,
-    type LedgerAccountStatementCreateParams as LedgerAccountStatementCreateParams
+    type LedgerAccountStatementCreateParams as LedgerAccountStatementCreateParams,
   };
 }

@@ -31,12 +31,15 @@ export class PaymentFlows extends APIResource {
   /**
    * list payment_flows
    */
-  list(query: PaymentFlowListParams | null | undefined = {}, options?: RequestOptions): PagePromise<PaymentFlowsPage, PaymentFlow> {
+  list(
+    query: PaymentFlowListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PaymentFlowsPage, PaymentFlow> {
     return this._client.getAPIList('/api/payment_flows', Page<PaymentFlow>, { query, ...options });
   }
 }
 
-export type PaymentFlowsPage = Page<PaymentFlow>
+export type PaymentFlowsPage = Page<PaymentFlow>;
 
 export interface PaymentFlow {
   id?: string;
@@ -202,6 +205,6 @@ export declare namespace PaymentFlows {
     type PaymentFlowsPage as PaymentFlowsPage,
     type PaymentFlowCreateParams as PaymentFlowCreateParams,
     type PaymentFlowUpdateParams as PaymentFlowUpdateParams,
-    type PaymentFlowListParams as PaymentFlowListParams
+    type PaymentFlowListParams as PaymentFlowListParams,
   };
 }

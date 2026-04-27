@@ -5,7 +5,7 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('top level methods', () => {

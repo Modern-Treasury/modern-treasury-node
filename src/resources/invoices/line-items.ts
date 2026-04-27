@@ -19,7 +19,11 @@ export class LineItems extends APIResource {
    *   });
    * ```
    */
-  create(invoiceID: string, body: LineItemCreateParams, options?: RequestOptions): APIPromise<InvoiceLineItem> {
+  create(
+    invoiceID: string,
+    body: LineItemCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<InvoiceLineItem> {
     return this._client.post(path`/api/invoices/${invoiceID}/invoice_line_items`, { body, ...options });
   }
 
@@ -34,8 +38,12 @@ export class LineItems extends APIResource {
    *   });
    * ```
    */
-  retrieve(id: string, params: LineItemRetrieveParams, options?: RequestOptions): APIPromise<InvoiceLineItem> {
-    const { invoice_id } = params
+  retrieve(
+    id: string,
+    params: LineItemRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<InvoiceLineItem> {
+    const { invoice_id } = params;
     return this._client.get(path`/api/invoices/${invoice_id}/invoice_line_items/${id}`, options);
   }
 
@@ -51,8 +59,11 @@ export class LineItems extends APIResource {
    * ```
    */
   update(id: string, params: LineItemUpdateParams, options?: RequestOptions): APIPromise<InvoiceLineItem> {
-    const { invoice_id, ...body } = params
-    return this._client.patch(path`/api/invoices/${invoice_id}/invoice_line_items/${id}`, { body, ...options });
+    const { invoice_id, ...body } = params;
+    return this._client.patch(path`/api/invoices/${invoice_id}/invoice_line_items/${id}`, {
+      body,
+      ...options,
+    });
   }
 
   /**
@@ -68,8 +79,16 @@ export class LineItems extends APIResource {
    * }
    * ```
    */
-  list(invoiceID: string, query: LineItemListParams | null | undefined = {}, options?: RequestOptions): PagePromise<InvoiceLineItemsPage, InvoiceLineItem> {
-    return this._client.getAPIList(path`/api/invoices/${invoiceID}/invoice_line_items`, Page<InvoiceLineItem>, { query, ...options });
+  list(
+    invoiceID: string,
+    query: LineItemListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InvoiceLineItemsPage, InvoiceLineItem> {
+    return this._client.getAPIList(
+      path`/api/invoices/${invoiceID}/invoice_line_items`,
+      Page<InvoiceLineItem>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -84,12 +103,12 @@ export class LineItems extends APIResource {
    * ```
    */
   delete(id: string, params: LineItemDeleteParams, options?: RequestOptions): APIPromise<InvoiceLineItem> {
-    const { invoice_id } = params
+    const { invoice_id } = params;
     return this._client.delete(path`/api/invoices/${invoice_id}/invoice_line_items/${id}`, options);
   }
 }
 
-export type InvoiceLineItemsPage = Page<InvoiceLineItem>
+export type InvoiceLineItemsPage = Page<InvoiceLineItem>;
 
 export interface InvoiceLineItem {
   id: string;
@@ -260,8 +279,7 @@ export interface LineItemUpdateParams {
   unit_amount_decimal?: string;
 }
 
-export interface LineItemListParams extends PageParams {
-}
+export interface LineItemListParams extends PageParams {}
 
 export interface LineItemDeleteParams {
   /**
@@ -278,6 +296,6 @@ export declare namespace LineItems {
     type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
     type LineItemListParams as LineItemListParams,
-    type LineItemDeleteParams as LineItemDeleteParams
+    type LineItemDeleteParams as LineItemDeleteParams,
   };
 }

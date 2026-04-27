@@ -4,7 +4,12 @@ import { APIResource } from '../../core/resource';
 import * as LedgerEntriesAPI from '../ledger-entries';
 import * as Shared from '../shared';
 import * as VersionsAPI from './versions';
-import { LedgerTransactionVersion, LedgerTransactionVersionsPage, VersionListParams, Versions } from './versions';
+import {
+  LedgerTransactionVersion,
+  LedgerTransactionVersionsPage,
+  VersionListParams,
+  Versions,
+} from './versions';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
@@ -57,7 +62,11 @@ export class LedgerTransactions extends APIResource {
    *   await client.ledgerTransactions.update('id');
    * ```
    */
-  update(id: string, body: LedgerTransactionUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerTransaction> {
+  update(
+    id: string,
+    body: LedgerTransactionUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerTransaction> {
     return this._client.patch(path`/api/ledger_transactions/${id}`, { body, ...options });
   }
 
@@ -72,8 +81,14 @@ export class LedgerTransactions extends APIResource {
    * }
    * ```
    */
-  list(query: LedgerTransactionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LedgerTransactionsPage, LedgerTransaction> {
-    return this._client.getAPIList('/api/ledger_transactions', Page<LedgerTransaction>, { query, ...options });
+  list(
+    query: LedgerTransactionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerTransactionsPage, LedgerTransaction> {
+    return this._client.getAPIList('/api/ledger_transactions', Page<LedgerTransaction>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -94,7 +109,11 @@ export class LedgerTransactions extends APIResource {
    *   });
    * ```
    */
-  createPartialPost(id: string, body: LedgerTransactionCreatePartialPostParams, options?: RequestOptions): APIPromise<LedgerTransaction> {
+  createPartialPost(
+    id: string,
+    body: LedgerTransactionCreatePartialPostParams,
+    options?: RequestOptions,
+  ): APIPromise<LedgerTransaction> {
     return this._client.post(path`/api/ledger_transactions/${id}/partial_post`, { body, ...options });
   }
 
@@ -107,12 +126,16 @@ export class LedgerTransactions extends APIResource {
    *   await client.ledgerTransactions.createReversal('id');
    * ```
    */
-  createReversal(id: string, body: LedgerTransactionCreateReversalParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerTransaction> {
+  createReversal(
+    id: string,
+    body: LedgerTransactionCreateReversalParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerTransaction> {
     return this._client.post(path`/api/ledger_transactions/${id}/reversal`, { body, ...options });
   }
 }
 
-export type LedgerTransactionsPage = Page<LedgerTransaction>
+export type LedgerTransactionsPage = Page<LedgerTransaction>;
 
 export interface LedgerTransaction {
   id: string;
@@ -171,7 +194,13 @@ export interface LedgerTransaction {
    * Treasury, the type will be populated here, otherwise null. This can be one of
    * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
    */
-  ledgerable_type: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal' | null;
+  ledgerable_type:
+    | 'expected_payment'
+    | 'incoming_payment_detail'
+    | 'payment_order'
+    | 'return'
+    | 'reversal'
+    | null;
 
   /**
    * This field will be true if this object exists in the live environment or false
@@ -531,13 +560,13 @@ export declare namespace LedgerTransactions {
     type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,
     type LedgerTransactionListParams as LedgerTransactionListParams,
     type LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
-    type LedgerTransactionCreateReversalParams as LedgerTransactionCreateReversalParams
+    type LedgerTransactionCreateReversalParams as LedgerTransactionCreateReversalParams,
   };
 
   export {
     Versions as Versions,
     type LedgerTransactionVersion as LedgerTransactionVersion,
     type LedgerTransactionVersionsPage as LedgerTransactionVersionsPage,
-    type VersionListParams as VersionListParams
+    type VersionListParams as VersionListParams,
   };
 }

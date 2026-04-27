@@ -87,7 +87,8 @@ export class PagePromise<
     super(
       client,
       request,
-      async (client, props) => new Page(client, props.response, await defaultParseResponse(client, props), props.options)
+      async (client, props) =>
+        new Page(client, props.response, await defaultParseResponse(client, props), props.options),
     );
   }
 
@@ -121,7 +122,12 @@ export class Page<Item> extends AbstractPage<Item> {
 
   after_cursor: string | null;
 
-  constructor(client: ModernTreasury, response: Response, body: PageResponse<Item>, options: FinalRequestOptions) {
+  constructor(
+    client: ModernTreasury,
+    response: Response,
+    body: PageResponse<Item>,
+    options: FinalRequestOptions,
+  ) {
     super(client, response, body, options);
 
     this.items = body || [];
@@ -138,7 +144,7 @@ export class Page<Item> extends AbstractPage<Item> {
   }
 
   nextPageRequestOptions(): PageRequestOptions | null {
-    const cursor = this.after_cursor
+    const cursor = this.after_cursor;
     if (!cursor) {
       return null;
     }

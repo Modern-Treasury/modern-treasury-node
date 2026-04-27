@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as LineItemsAPI from './line-items';
-import { LineItemCreateParams, LineItemListParams, LineItems, TransactionLineItem, TransactionLineItemsPage } from './line-items';
+import {
+  LineItemCreateParams,
+  LineItemListParams,
+  LineItems,
+  TransactionLineItem,
+  TransactionLineItemsPage,
+} from './line-items';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -55,7 +61,11 @@ export class Transactions extends APIResource {
    * const transaction = await client.transactions.update('id');
    * ```
    */
-  update(id: string, body: TransactionUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Transaction> {
+  update(
+    id: string,
+    body: TransactionUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Transaction> {
     return this._client.patch(path`/api/transactions/${id}`, { body, ...options });
   }
 
@@ -70,7 +80,10 @@ export class Transactions extends APIResource {
    * }
    * ```
    */
-  list(query: TransactionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<TransactionsPage, Transaction> {
+  list(
+    query: TransactionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TransactionsPage, Transaction> {
     return this._client.getAPIList('/api/transactions', Page<Transaction>, { query, ...options });
   }
 
@@ -83,11 +96,14 @@ export class Transactions extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/transactions/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/api/transactions/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type TransactionsPage = Page<Transaction>
+export type TransactionsPage = Page<Transaction>;
 
 export interface Transaction {
   id: string;
@@ -175,7 +191,40 @@ export interface Transaction {
    * The type of the transaction. Examples could be
    * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
    */
-  type: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin' | 'other';
+  type:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin'
+    | 'other';
 
   updated_at: string;
 
@@ -191,7 +240,35 @@ export interface Transaction {
    * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
    * `swift`, `us_bank`, or others.
    */
-  vendor_code_type: 'bai2' | 'banking_circle' | 'bankprov' | 'bnk_dev' | 'cleartouch' | 'coinbase_prime' | 'column' | 'cross_river' | 'currencycloud' | 'dc_bank' | 'dwolla' | 'evolve' | 'fake_vendor' | 'goldman_sachs' | 'iso20022' | 'jpmc' | 'modern_treasury' | 'mx' | 'paxos' | 'paypal' | 'pnc' | 'signet' | 'silvergate' | 'swift' | 'us_bank' | 'user' | 'western_alliance' | null;
+  vendor_code_type:
+    | 'bai2'
+    | 'banking_circle'
+    | 'bankprov'
+    | 'bnk_dev'
+    | 'cleartouch'
+    | 'coinbase_prime'
+    | 'column'
+    | 'cross_river'
+    | 'currencycloud'
+    | 'dc_bank'
+    | 'dwolla'
+    | 'evolve'
+    | 'fake_vendor'
+    | 'goldman_sachs'
+    | 'iso20022'
+    | 'jpmc'
+    | 'modern_treasury'
+    | 'mx'
+    | 'paxos'
+    | 'paypal'
+    | 'pnc'
+    | 'signet'
+    | 'silvergate'
+    | 'swift'
+    | 'us_bank'
+    | 'user'
+    | 'western_alliance'
+    | null;
 
   /**
    * An identifier given to this transaction by the bank, often `null`.
@@ -272,7 +349,41 @@ export interface TransactionCreateParams {
    * The type of the transaction. Examples could be
    * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
    */
-  type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin' | 'other' | null;
+  type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin'
+    | 'other'
+    | null;
 
   /**
    * An identifier given to this transaction by the bank, often `null`.
@@ -355,7 +466,7 @@ export declare namespace Transactions {
     type TransactionsPage as TransactionsPage,
     type TransactionCreateParams as TransactionCreateParams,
     type TransactionUpdateParams as TransactionUpdateParams,
-    type TransactionListParams as TransactionListParams
+    type TransactionListParams as TransactionListParams,
   };
 
   export {
@@ -363,6 +474,6 @@ export declare namespace Transactions {
     type TransactionLineItem as TransactionLineItem,
     type TransactionLineItemsPage as TransactionLineItemsPage,
     type LineItemCreateParams as LineItemCreateParams,
-    type LineItemListParams as LineItemListParams
+    type LineItemListParams as LineItemListParams,
   };
 }

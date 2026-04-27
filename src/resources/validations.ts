@@ -10,7 +10,10 @@ export class Validations extends APIResource {
    * Validates the routing number information supplied without creating a routing
    * detail
    */
-  validateRoutingNumber(query: ValidationValidateRoutingNumberParams, options?: RequestOptions): APIPromise<RoutingNumberLookupRequest> {
+  validateRoutingNumber(
+    query: ValidationValidateRoutingNumberParams,
+    options?: RequestOptions,
+  ): APIPromise<RoutingNumberLookupRequest> {
     return this._client.get('/api/validations/routing_numbers', { query, ...options });
   }
 }
@@ -37,7 +40,16 @@ export interface RoutingNumberLookupRequest {
    * more details. In sandbox mode we currently only support `aba` and `swift` with
    * routing numbers '123456789' and 'GRINUST0XXX' respectively.
    */
-  routing_number_type?: 'aba' | 'au_bsb' | 'ca_cpa' | 'gb_sort_code' | 'in_ifsc' | 'nz_national_clearing_code' | 'se_bankgiro_clearing_code' | 'swift' | 'za_national_clearing_code';
+  routing_number_type?:
+    | 'aba'
+    | 'au_bsb'
+    | 'ca_cpa'
+    | 'gb_sort_code'
+    | 'in_ifsc'
+    | 'nz_national_clearing_code'
+    | 'se_bankgiro_clearing_code'
+    | 'swift'
+    | 'za_national_clearing_code';
 
   /**
    * An object containing key-value pairs, each with a sanctions list as the key and
@@ -50,7 +62,40 @@ export interface RoutingNumberLookupRequest {
    * An array of payment types that are supported for this routing number. This can
    * include `ach`, `wire`, `rtp`, `sepa`, `bacs`, `au_becs`, and 'fednow' currently.
    */
-  supported_payment_types?: Array<'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin'>;
+  supported_payment_types?: Array<
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin'
+  >;
 }
 
 export interface ValidationValidateRoutingNumberParams {
@@ -65,12 +110,34 @@ export interface ValidationValidateRoutingNumberParams {
    * more details. In sandbox mode we currently only support `aba` and `swift` with
    * routing numbers '123456789' and 'GRINUST0XXX' respectively.
    */
-  routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'mx_bank_identifier' | 'my_branch_code' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
+  routing_number_type:
+    | 'aba'
+    | 'au_bsb'
+    | 'br_codigo'
+    | 'ca_cpa'
+    | 'chips'
+    | 'cnaps'
+    | 'dk_interbank_clearing_code'
+    | 'gb_sort_code'
+    | 'hk_interbank_clearing_code'
+    | 'hu_interbank_clearing_code'
+    | 'id_sknbi_code'
+    | 'il_bank_code'
+    | 'in_ifsc'
+    | 'jp_zengin_code'
+    | 'mx_bank_identifier'
+    | 'my_branch_code'
+    | 'nz_national_clearing_code'
+    | 'pl_national_clearing_code'
+    | 'se_bankgiro_clearing_code'
+    | 'sg_interbank_clearing_code'
+    | 'swift'
+    | 'za_national_clearing_code';
 }
 
 export declare namespace Validations {
   export {
     type RoutingNumberLookupRequest as RoutingNumberLookupRequest,
-    type ValidationValidateRoutingNumberParams as ValidationValidateRoutingNumberParams
+    type ValidationValidateRoutingNumberParams as ValidationValidateRoutingNumberParams,
   };
 }

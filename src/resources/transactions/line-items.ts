@@ -50,8 +50,14 @@ export class LineItems extends APIResource {
    * }
    * ```
    */
-  list(query: LineItemListParams | null | undefined = {}, options?: RequestOptions): PagePromise<TransactionLineItemsPage, TransactionLineItem> {
-    return this._client.getAPIList('/api/transaction_line_items', Page<TransactionLineItem>, { query, ...options });
+  list(
+    query: LineItemListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TransactionLineItemsPage, TransactionLineItem> {
+    return this._client.getAPIList('/api/transaction_line_items', Page<TransactionLineItem>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -63,11 +69,14 @@ export class LineItems extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/transaction_line_items/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/api/transaction_line_items/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type TransactionLineItemsPage = Page<TransactionLineItem>
+export type TransactionLineItemsPage = Page<TransactionLineItem>;
 
 export interface TransactionLineItem {
   id: string;
@@ -130,7 +139,13 @@ export interface TransactionLineItem {
    * If a matching object exists in Modern Treasury, the type will be populated here,
    * otherwise `null`.
    */
-  transactable_type: 'incoming_payment_detail' | 'payment_order' | 'payment_order_attempt' | 'return' | 'reversal' | null;
+  transactable_type:
+    | 'incoming_payment_detail'
+    | 'payment_order'
+    | 'payment_order_attempt'
+    | 'return'
+    | 'reversal'
+    | null;
 
   /**
    * The ID of the parent transaction.
@@ -177,6 +192,6 @@ export declare namespace LineItems {
     type TransactionLineItem as TransactionLineItem,
     type TransactionLineItemsPage as TransactionLineItemsPage,
     type LineItemCreateParams as LineItemCreateParams,
-    type LineItemListParams as LineItemListParams
+    type LineItemListParams as LineItemListParams,
   };
 }
