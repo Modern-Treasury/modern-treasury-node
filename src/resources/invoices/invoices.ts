@@ -4,7 +4,16 @@ import { APIResource } from '../../core/resource';
 import * as ExpectedPaymentsAPI from '../expected-payments';
 import * as Shared from '../shared';
 import * as LineItemsAPI from './line-items';
-import { InvoiceLineItem as LineItemsAPIInvoiceLineItem, InvoiceLineItemsPage, LineItemCreateParams, LineItemDeleteParams, LineItemListParams, LineItemRetrieveParams, LineItemUpdateParams, LineItems } from './line-items';
+import {
+  InvoiceLineItem as LineItemsAPIInvoiceLineItem,
+  InvoiceLineItemsPage,
+  LineItemCreateParams,
+  LineItemDeleteParams,
+  LineItemListParams,
+  LineItemRetrieveParams,
+  LineItemUpdateParams,
+  LineItems,
+} from './line-items';
 import * as PaymentOrdersAPI from '../payment-orders/payment-orders';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
@@ -51,7 +60,11 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.update('id');
    * ```
    */
-  update(id: string, body: InvoiceUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Invoice> {
+  update(
+    id: string,
+    body: InvoiceUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Invoice> {
     return this._client.patch(path`/api/invoices/${id}`, { body, ...options });
   }
 
@@ -66,7 +79,10 @@ export class Invoices extends APIResource {
    * }
    * ```
    */
-  list(query: InvoiceListParams | null | undefined = {}, options?: RequestOptions): PagePromise<InvoicesPage, Invoice> {
+  list(
+    query: InvoiceListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InvoicesPage, Invoice> {
     return this._client.getAPIList('/api/invoices', Page<Invoice>, { query, ...options });
   }
 
@@ -80,13 +96,20 @@ export class Invoices extends APIResource {
    * });
    * ```
    */
-  addPaymentOrder(paymentOrderID: string, params: InvoiceAddPaymentOrderParams, options?: RequestOptions): APIPromise<void> {
-    const { id } = params
-    return this._client.put(path`/api/invoices/${id}/payment_orders/${paymentOrderID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  addPaymentOrder(
+    paymentOrderID: string,
+    params: InvoiceAddPaymentOrderParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { id } = params;
+    return this._client.put(path`/api/invoices/${id}/payment_orders/${paymentOrderID}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type InvoicesPage = Page<Invoice>
+export type InvoicesPage = Page<Invoice>;
 
 export interface Invoice {
   id: string;
@@ -1003,7 +1026,7 @@ export declare namespace Invoices {
     type InvoiceCreateParams as InvoiceCreateParams,
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
-    type InvoiceAddPaymentOrderParams as InvoiceAddPaymentOrderParams
+    type InvoiceAddPaymentOrderParams as InvoiceAddPaymentOrderParams,
   };
 
   export {
@@ -1014,6 +1037,6 @@ export declare namespace Invoices {
     type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
     type LineItemListParams as LineItemListParams,
-    type LineItemDeleteParams as LineItemDeleteParams
+    type LineItemDeleteParams as LineItemDeleteParams,
   };
 }

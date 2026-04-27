@@ -17,12 +17,18 @@ export class Versions extends APIResource {
    * }
    * ```
    */
-  list(query: VersionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion> {
-    return this._client.getAPIList('/api/ledger_transaction_versions', Page<LedgerTransactionVersion>, { query, ...options });
+  list(
+    query: VersionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerTransactionVersionsPage, LedgerTransactionVersion> {
+    return this._client.getAPIList('/api/ledger_transaction_versions', Page<LedgerTransactionVersion>, {
+      query,
+      ...options,
+    });
   }
 }
 
-export type LedgerTransactionVersionsPage = Page<LedgerTransactionVersion>
+export type LedgerTransactionVersionsPage = Page<LedgerTransactionVersion>;
 
 export interface LedgerTransactionVersion {
   id: string;
@@ -86,7 +92,13 @@ export interface LedgerTransactionVersion {
    * Treasury, the type will be populated here, otherwise null. This can be one of
    * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
    */
-  ledgerable_type: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal' | null;
+  ledgerable_type:
+    | 'expected_payment'
+    | 'incoming_payment_detail'
+    | 'payment_order'
+    | 'return'
+    | 'reversal'
+    | null;
 
   /**
    * This field will be true if this object exists in the live environment or false
@@ -253,6 +265,6 @@ export declare namespace Versions {
   export {
     type LedgerTransactionVersion as LedgerTransactionVersion,
     type LedgerTransactionVersionsPage as LedgerTransactionVersionsPage,
-    type VersionListParams as VersionListParams
+    type VersionListParams as VersionListParams,
   };
 }

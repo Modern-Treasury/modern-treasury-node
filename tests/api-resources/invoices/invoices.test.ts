@@ -5,16 +5,16 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource invoices', () => {
   test('create: only required params', async () => {
     const responsePromise = client.invoices.create({
-    counterparty_id: 'counterparty_id',
-    due_date: '2019-12-27T18:11:19.117Z',
-    originating_account_id: 'originating_account_id',
-  });
+      counterparty_id: 'counterparty_id',
+      due_date: '2019-12-27T18:11:19.117Z',
+      originating_account_id: 'originating_account_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -26,77 +26,81 @@ describe('resource invoices', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.invoices.create({
-    counterparty_id: 'counterparty_id',
-    due_date: '2019-12-27T18:11:19.117Z',
-    originating_account_id: 'originating_account_id',
-    auto_advance: true,
-    contact_details: [{
-    id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    contact_identifier: 'contact_identifier',
-    contact_identifier_type: 'email',
-    created_at: '2019-12-27T18:11:19.117Z',
-    discarded_at: '2019-12-27T18:11:19.117Z',
-    live_mode: true,
-    object: 'object',
-    updated_at: '2019-12-27T18:11:19.117Z',
-  }],
-    counterparty_billing_address: {
-    country: 'country',
-    line1: 'line1',
-    locality: 'locality',
-    postal_code: 'postal_code',
-    region: 'region',
-    line2: 'line2',
-  },
-    counterparty_shipping_address: {
-    country: 'country',
-    line1: 'line1',
-    locality: 'locality',
-    postal_code: 'postal_code',
-    region: 'region',
-    line2: 'line2',
-  },
-    currency: 'AED',
-    description: 'description',
-    fallback_payment_method: 'fallback_payment_method',
-    invoice_line_items: [{
-    name: 'name',
-    unit_amount: 0,
-    description: 'description',
-    direction: 'direction',
-    metadata: {
-    key: 'value',
-    foo: 'bar',
-    modern: 'treasury',
-  },
-    quantity: 0,
-    unit_amount_decimal: 'unit_amount_decimal',
-  }],
-    invoicer_address: {
-    country: 'country',
-    line1: 'line1',
-    locality: 'locality',
-    postal_code: 'postal_code',
-    region: 'region',
-    line2: 'line2',
-  },
-    invoicer_name: 'invoicer_name',
-    metadata: {
-    key: 'value',
-    foo: 'bar',
-    modern: 'treasury',
-  },
-    notification_email_addresses: ['string'],
-    notifications_enabled: true,
-    payment_effective_date: '2019-12-27',
-    payment_method: 'ui',
-    payment_type: 'ach',
-    receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    recipient_email: 'recipient_email',
-    recipient_name: 'recipient_name',
-    remind_after_overdue_days: [0],
-    virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-  });
+      counterparty_id: 'counterparty_id',
+      due_date: '2019-12-27T18:11:19.117Z',
+      originating_account_id: 'originating_account_id',
+      auto_advance: true,
+      contact_details: [
+        {
+          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          contact_identifier: 'contact_identifier',
+          contact_identifier_type: 'email',
+          created_at: '2019-12-27T18:11:19.117Z',
+          discarded_at: '2019-12-27T18:11:19.117Z',
+          live_mode: true,
+          object: 'object',
+          updated_at: '2019-12-27T18:11:19.117Z',
+        },
+      ],
+      counterparty_billing_address: {
+        country: 'country',
+        line1: 'line1',
+        locality: 'locality',
+        postal_code: 'postal_code',
+        region: 'region',
+        line2: 'line2',
+      },
+      counterparty_shipping_address: {
+        country: 'country',
+        line1: 'line1',
+        locality: 'locality',
+        postal_code: 'postal_code',
+        region: 'region',
+        line2: 'line2',
+      },
+      currency: 'AED',
+      description: 'description',
+      fallback_payment_method: 'fallback_payment_method',
+      invoice_line_items: [
+        {
+          name: 'name',
+          unit_amount: 0,
+          description: 'description',
+          direction: 'direction',
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
+          quantity: 0,
+          unit_amount_decimal: 'unit_amount_decimal',
+        },
+      ],
+      invoicer_address: {
+        country: 'country',
+        line1: 'line1',
+        locality: 'locality',
+        postal_code: 'postal_code',
+        region: 'region',
+        line2: 'line2',
+      },
+      invoicer_name: 'invoicer_name',
+      metadata: {
+        key: 'value',
+        foo: 'bar',
+        modern: 'treasury',
+      },
+      notification_email_addresses: ['string'],
+      notifications_enabled: true,
+      payment_effective_date: '2019-12-27',
+      payment_method: 'ui',
+      payment_type: 'ach',
+      receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      recipient_email: 'recipient_email',
+      recipient_name: 'recipient_name',
+      remind_after_overdue_days: [0],
+      virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('retrieve', async () => {
@@ -123,80 +127,88 @@ describe('resource invoices', () => {
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.invoices.update('id', {
-    contact_details: [{
-    id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    contact_identifier: 'contact_identifier',
-    contact_identifier_type: 'email',
-    created_at: '2019-12-27T18:11:19.117Z',
-    discarded_at: '2019-12-27T18:11:19.117Z',
-    live_mode: true,
-    object: 'object',
-    updated_at: '2019-12-27T18:11:19.117Z',
-  }],
-    counterparty_billing_address: {
-    country: 'country',
-    line1: 'line1',
-    locality: 'locality',
-    postal_code: 'postal_code',
-    region: 'region',
-    line2: 'line2',
-  },
-    counterparty_id: 'counterparty_id',
-    counterparty_shipping_address: {
-    country: 'country',
-    line1: 'line1',
-    locality: 'locality',
-    postal_code: 'postal_code',
-    region: 'region',
-    line2: 'line2',
-  },
-    currency: 'AED',
-    description: 'description',
-    due_date: '2019-12-27T18:11:19.117Z',
-    fallback_payment_method: 'fallback_payment_method',
-    invoice_line_items: [{
-    name: 'name',
-    unit_amount: 0,
-    description: 'description',
-    direction: 'direction',
-    metadata: {
-    key: 'value',
-    foo: 'bar',
-    modern: 'treasury',
-  },
-    quantity: 0,
-    unit_amount_decimal: 'unit_amount_decimal',
-  }],
-    invoicer_address: {
-    country: 'country',
-    line1: 'line1',
-    locality: 'locality',
-    postal_code: 'postal_code',
-    region: 'region',
-    line2: 'line2',
-  },
-    invoicer_name: 'invoicer_name',
-    metadata: {
-    key: 'value',
-    foo: 'bar',
-    modern: 'treasury',
-  },
-    notification_email_addresses: ['string'],
-    notifications_enabled: true,
-    originating_account_id: 'originating_account_id',
-    payment_effective_date: '2019-12-27',
-    payment_method: 'ui',
-    payment_type: 'ach',
-    receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    recipient_email: 'recipient_email',
-    recipient_name: 'recipient_name',
-    remind_after_overdue_days: [0],
-    status: 'status',
-    virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(ModernTreasury.NotFoundError);
+    await expect(
+      client.invoices.update(
+        'id',
+        {
+          contact_details: [
+            {
+              id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              contact_identifier: 'contact_identifier',
+              contact_identifier_type: 'email',
+              created_at: '2019-12-27T18:11:19.117Z',
+              discarded_at: '2019-12-27T18:11:19.117Z',
+              live_mode: true,
+              object: 'object',
+              updated_at: '2019-12-27T18:11:19.117Z',
+            },
+          ],
+          counterparty_billing_address: {
+            country: 'country',
+            line1: 'line1',
+            locality: 'locality',
+            postal_code: 'postal_code',
+            region: 'region',
+            line2: 'line2',
+          },
+          counterparty_id: 'counterparty_id',
+          counterparty_shipping_address: {
+            country: 'country',
+            line1: 'line1',
+            locality: 'locality',
+            postal_code: 'postal_code',
+            region: 'region',
+            line2: 'line2',
+          },
+          currency: 'AED',
+          description: 'description',
+          due_date: '2019-12-27T18:11:19.117Z',
+          fallback_payment_method: 'fallback_payment_method',
+          invoice_line_items: [
+            {
+              name: 'name',
+              unit_amount: 0,
+              description: 'description',
+              direction: 'direction',
+              metadata: {
+                key: 'value',
+                foo: 'bar',
+                modern: 'treasury',
+              },
+              quantity: 0,
+              unit_amount_decimal: 'unit_amount_decimal',
+            },
+          ],
+          invoicer_address: {
+            country: 'country',
+            line1: 'line1',
+            locality: 'locality',
+            postal_code: 'postal_code',
+            region: 'region',
+            line2: 'line2',
+          },
+          invoicer_name: 'invoicer_name',
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
+          notification_email_addresses: ['string'],
+          notifications_enabled: true,
+          originating_account_id: 'originating_account_id',
+          payment_effective_date: '2019-12-27',
+          payment_method: 'ui',
+          payment_type: 'ach',
+          receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          recipient_email: 'recipient_email',
+          recipient_name: 'recipient_name',
+          remind_after_overdue_days: [0],
+          status: 'status',
+          virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('list', async () => {
@@ -212,23 +224,26 @@ describe('resource invoices', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.invoices.list({
-    after_cursor: 'after_cursor',
-    counterparty_id: 'counterparty_id',
-    created_at_end: '2019-12-27T18:11:19.117Z',
-    created_at_start: '2019-12-27T18:11:19.117Z',
-    due_date_end: '2019-12-27',
-    due_date_start: '2019-12-27',
-    expected_payment_id: 'expected_payment_id',
-    metadata: { foo: 'string' },
-    number: 'number',
-    originating_account_id: 'originating_account_id',
-    payment_order_id: 'payment_order_id',
-    per_page: 0,
-    status: 'draft',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(ModernTreasury.NotFoundError);
+    await expect(
+      client.invoices.list(
+        {
+          after_cursor: 'after_cursor',
+          counterparty_id: 'counterparty_id',
+          created_at_end: '2019-12-27T18:11:19.117Z',
+          created_at_start: '2019-12-27T18:11:19.117Z',
+          due_date_end: '2019-12-27',
+          due_date_start: '2019-12-27',
+          expected_payment_id: 'expected_payment_id',
+          metadata: { foo: 'string' },
+          number: 'number',
+          originating_account_id: 'originating_account_id',
+          payment_order_id: 'payment_order_id',
+          per_page: 0,
+          status: 'draft',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('addPaymentOrder: only required params', async () => {

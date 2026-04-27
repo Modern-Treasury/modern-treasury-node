@@ -19,7 +19,7 @@ export class LineItems extends APIResource {
    * ```
    */
   retrieve(id: string, params: LineItemRetrieveParams, options?: RequestOptions): APIPromise<LineItem> {
-    const { itemizable_type, itemizable_id } = params
+    const { itemizable_type, itemizable_id } = params;
     return this._client.get(path`/api/${itemizable_type}/${itemizable_id}/line_items/${id}`, options);
   }
 
@@ -35,8 +35,11 @@ export class LineItems extends APIResource {
    * ```
    */
   update(id: string, params: LineItemUpdateParams, options?: RequestOptions): APIPromise<LineItem> {
-    const { itemizable_type, itemizable_id, ...body } = params
-    return this._client.patch(path`/api/${itemizable_type}/${itemizable_id}/line_items/${id}`, { body, ...options });
+    const { itemizable_type, itemizable_id, ...body } = params;
+    return this._client.patch(path`/api/${itemizable_type}/${itemizable_id}/line_items/${id}`, {
+      body,
+      ...options,
+    });
   }
 
   /**
@@ -53,13 +56,20 @@ export class LineItems extends APIResource {
    * }
    * ```
    */
-  list(itemizableID: string, params: LineItemListParams, options?: RequestOptions): PagePromise<LineItemsPage, LineItem> {
-    const { itemizable_type, ...query } = params
-    return this._client.getAPIList(path`/api/${itemizable_type}/${itemizableID}/line_items`, Page<LineItem>, { query, ...options });
+  list(
+    itemizableID: string,
+    params: LineItemListParams,
+    options?: RequestOptions,
+  ): PagePromise<LineItemsPage, LineItem> {
+    const { itemizable_type, ...query } = params;
+    return this._client.getAPIList(path`/api/${itemizable_type}/${itemizableID}/line_items`, Page<LineItem>, {
+      query,
+      ...options,
+    });
   }
 }
 
-export type LineItemsPage = Page<LineItem>
+export type LineItemsPage = Page<LineItem>;
 
 export interface LineItem {
   id: string;
@@ -185,6 +195,6 @@ export declare namespace LineItems {
     type LineItemsPage as LineItemsPage,
     type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
-    type LineItemListParams as LineItemListParams
+    type LineItemListParams as LineItemListParams,
   };
 }

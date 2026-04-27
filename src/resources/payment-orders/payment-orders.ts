@@ -8,7 +8,14 @@ import * as Shared from '../shared';
 import * as VirtualAccountsAPI from '../virtual-accounts';
 import * as InternalAccountsAPI from '../internal-accounts/internal-accounts';
 import * as ReversalsAPI from './reversals';
-import { Reversal, ReversalCreateParams, ReversalListParams, ReversalRetrieveParams, Reversals, ReversalsPage } from './reversals';
+import {
+  Reversal,
+  ReversalCreateParams,
+  ReversalListParams,
+  ReversalRetrieveParams,
+  Reversals,
+  ReversalsPage,
+} from './reversals';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
@@ -34,7 +41,10 @@ export class PaymentOrders extends APIResource {
    * ```
    */
   create(body: PaymentOrderCreateParams, options?: RequestOptions): APIPromise<PaymentOrder> {
-    return this._client.post('/api/payment_orders', maybeMultipartFormRequestOptions({ body, ...options }, this._client));
+    return this._client.post(
+      '/api/payment_orders',
+      maybeMultipartFormRequestOptions({ body, ...options }, this._client),
+    );
   }
 
   /**
@@ -61,7 +71,11 @@ export class PaymentOrders extends APIResource {
    * );
    * ```
    */
-  update(id: string, body: PaymentOrderUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<PaymentOrder> {
+  update(
+    id: string,
+    body: PaymentOrderUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PaymentOrder> {
     return this._client.patch(path`/api/payment_orders/${id}`, { body, ...options });
   }
 
@@ -76,7 +90,10 @@ export class PaymentOrders extends APIResource {
    * }
    * ```
    */
-  list(query: PaymentOrderListParams | null | undefined = {}, options?: RequestOptions): PagePromise<PaymentOrdersPage, PaymentOrder> {
+  list(
+    query: PaymentOrderListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PaymentOrdersPage, PaymentOrder> {
     return this._client.getAPIList('/api/payment_orders', Page<PaymentOrder>, { query, ...options });
   }
 
@@ -95,12 +112,15 @@ export class PaymentOrders extends APIResource {
    *   });
    * ```
    */
-  createAsync(body: PaymentOrderCreateAsyncParams, options?: RequestOptions): APIPromise<Shared.AsyncResponse> {
+  createAsync(
+    body: PaymentOrderCreateAsyncParams,
+    options?: RequestOptions,
+  ): APIPromise<Shared.AsyncResponse> {
     return this._client.post('/api/payment_orders/create_async', { body, ...options });
   }
 }
 
-export type PaymentOrdersPage = Page<PaymentOrder>
+export type PaymentOrdersPage = Page<PaymentOrder>;
 
 export interface ContactDetailCreateRequest {
   contact_identifier?: string;
@@ -321,7 +341,20 @@ export interface PaymentOrder {
   /**
    * The current status of the payment order.
    */
-  status: 'approved' | 'cancelled' | 'completed' | 'denied' | 'failed' | 'held' | 'needs_approval' | 'pending' | 'processing' | 'returned' | 'reversed' | 'sent' | 'stopped';
+  status:
+    | 'approved'
+    | 'cancelled'
+    | 'completed'
+    | 'denied'
+    | 'failed'
+    | 'held'
+    | 'needs_approval'
+    | 'pending'
+    | 'processing'
+    | 'returned'
+    | 'reversed'
+    | 'sent'
+    | 'stopped';
 
   /**
    * An additional layer of classification for the type of payment order you are
@@ -350,7 +383,10 @@ export interface PaymentOrder {
    * The account to which the originating of this payment should be attributed to.
    * Can be a `virtual_account` or `internal_account`.
    */
-  ultimate_originating_account: VirtualAccountsAPI.VirtualAccount | InternalAccountsAPI.InternalAccount | null;
+  ultimate_originating_account:
+    | VirtualAccountsAPI.VirtualAccount
+    | InternalAccountsAPI.InternalAccount
+    | null;
 
   /**
    * The ultimate originating account ID. Can be a `virtual_account` or
@@ -487,7 +523,98 @@ export namespace PaymentOrder {
     /**
      * The type of the reference number. Referring to the vendor payment id.
      */
-    reference_number_type: 'ach_original_trace_number' | 'ach_trace_number' | 'bankprov_payment_activity_date' | 'bankprov_payment_id' | 'blockchain_transaction_hash' | 'blockchain_transaction_index' | 'bnk_dev_prenotification_id' | 'bnk_dev_transfer_id' | 'bny_mellon_transaction_reference_number' | 'bofa_end_to_end_id' | 'bofa_neft_clearing_reference_number' | 'bofa_transaction_id' | 'check_number' | 'chips_uid' | 'citibank_reference_number' | 'citibank_worldlink_clearing_system_reference_number' | 'column_fx_quote_id' | 'column_reversal_pair_transfer_id' | 'column_transfer_id' | 'cross_river_card_trace_number' | 'cross_river_core_transaction_id' | 'cross_river_fed_batch_id' | 'cross_river_payment_id' | 'cross_river_retrieval_reference_id' | 'cross_river_service_message' | 'cross_river_transaction_id' | 'currencycloud_conversion_id' | 'currencycloud_payment_id' | 'dc_bank_transaction_id' | 'eft_trace_number' | 'evolve_core_batch' | 'evolve_core_file_key' | 'evolve_core_seq' | 'evolve_transaction_id' | 'fake_vendor_payment_id' | 'fedwire_imad' | 'fedwire_omad' | 'first_republic_internal_id' | 'goldman_sachs_collection_request_id' | 'goldman_sachs_end_to_end_id' | 'goldman_sachs_payment_request_id' | 'goldman_sachs_request_id' | 'goldman_sachs_unique_payment_id' | 'interac_message_id' | 'jpmc_ccn' | 'jpmc_clearing_system_reference' | 'jpmc_customer_reference_id' | 'jpmc_end_to_end_id' | 'jpmc_firm_root_id' | 'jpmc_fx_trn_id' | 'jpmc_p3_id' | 'jpmc_payment_batch_id' | 'jpmc_payment_information_id' | 'jpmc_payment_returned_datetime' | 'jpmc_transaction_reference_number' | 'lob_check_id' | 'other' | 'partial_swift_mir' | 'paxos_crypto_withdrawal_id' | 'paxos_fiat_withdrawal_id' | 'paxos_group_id' | 'paxos_orchestration_id' | 'paxos_transfer_id' | 'pnc_clearing_reference' | 'pnc_instruction_id' | 'pnc_multipayment_id' | 'pnc_payment_trace_id' | 'pnc_request_for_payment_id' | 'pnc_transaction_reference_number' | 'rbc_wire_reference_id' | 'rtp_instruction_id' | 'signet_api_reference_id' | 'signet_confirmation_id' | 'signet_request_id' | 'silvergate_payment_id' | 'svb_end_to_end_id' | 'svb_payment_id' | 'swift_mir' | 'swift_uetr' | 'umb_product_partner_account_number' | 'usbank_payment_application_reference_id' | 'usbank_payment_id' | 'usbank_pending_rtp_payment_id' | 'usbank_posted_rtp_payment_id' | 'wells_fargo_end_to_end_id' | 'wells_fargo_payment_id' | 'wells_fargo_trace_number' | 'wells_fargo_uetr' | 'western_alliance_payment_id' | 'western_alliance_transaction_id' | 'western_alliance_wire_confirmation_number';
+    reference_number_type:
+      | 'ach_original_trace_number'
+      | 'ach_trace_number'
+      | 'bankprov_payment_activity_date'
+      | 'bankprov_payment_id'
+      | 'blockchain_transaction_hash'
+      | 'blockchain_transaction_index'
+      | 'bnk_dev_prenotification_id'
+      | 'bnk_dev_transfer_id'
+      | 'bny_mellon_transaction_reference_number'
+      | 'bofa_end_to_end_id'
+      | 'bofa_neft_clearing_reference_number'
+      | 'bofa_transaction_id'
+      | 'check_number'
+      | 'chips_uid'
+      | 'citibank_reference_number'
+      | 'citibank_worldlink_clearing_system_reference_number'
+      | 'column_fx_quote_id'
+      | 'column_reversal_pair_transfer_id'
+      | 'column_transfer_id'
+      | 'cross_river_card_trace_number'
+      | 'cross_river_core_transaction_id'
+      | 'cross_river_fed_batch_id'
+      | 'cross_river_payment_id'
+      | 'cross_river_retrieval_reference_id'
+      | 'cross_river_service_message'
+      | 'cross_river_transaction_id'
+      | 'currencycloud_conversion_id'
+      | 'currencycloud_payment_id'
+      | 'dc_bank_transaction_id'
+      | 'eft_trace_number'
+      | 'evolve_core_batch'
+      | 'evolve_core_file_key'
+      | 'evolve_core_seq'
+      | 'evolve_transaction_id'
+      | 'fake_vendor_payment_id'
+      | 'fedwire_imad'
+      | 'fedwire_omad'
+      | 'first_republic_internal_id'
+      | 'goldman_sachs_collection_request_id'
+      | 'goldman_sachs_end_to_end_id'
+      | 'goldman_sachs_payment_request_id'
+      | 'goldman_sachs_request_id'
+      | 'goldman_sachs_unique_payment_id'
+      | 'interac_message_id'
+      | 'jpmc_ccn'
+      | 'jpmc_clearing_system_reference'
+      | 'jpmc_customer_reference_id'
+      | 'jpmc_end_to_end_id'
+      | 'jpmc_firm_root_id'
+      | 'jpmc_fx_trn_id'
+      | 'jpmc_p3_id'
+      | 'jpmc_payment_batch_id'
+      | 'jpmc_payment_information_id'
+      | 'jpmc_payment_returned_datetime'
+      | 'jpmc_transaction_reference_number'
+      | 'lob_check_id'
+      | 'other'
+      | 'partial_swift_mir'
+      | 'paxos_crypto_withdrawal_id'
+      | 'paxos_fiat_withdrawal_id'
+      | 'paxos_group_id'
+      | 'paxos_orchestration_id'
+      | 'paxos_transfer_id'
+      | 'pnc_clearing_reference'
+      | 'pnc_instruction_id'
+      | 'pnc_multipayment_id'
+      | 'pnc_payment_trace_id'
+      | 'pnc_request_for_payment_id'
+      | 'pnc_transaction_reference_number'
+      | 'rbc_wire_reference_id'
+      | 'rtp_instruction_id'
+      | 'signet_api_reference_id'
+      | 'signet_confirmation_id'
+      | 'signet_request_id'
+      | 'silvergate_payment_id'
+      | 'svb_end_to_end_id'
+      | 'svb_payment_id'
+      | 'swift_mir'
+      | 'swift_uetr'
+      | 'umb_product_partner_account_number'
+      | 'usbank_payment_application_reference_id'
+      | 'usbank_payment_id'
+      | 'usbank_pending_rtp_payment_id'
+      | 'usbank_posted_rtp_payment_id'
+      | 'wells_fargo_end_to_end_id'
+      | 'wells_fargo_payment_id'
+      | 'wells_fargo_trace_number'
+      | 'wells_fargo_uetr'
+      | 'western_alliance_payment_id'
+      | 'western_alliance_transaction_id'
+      | 'western_alliance_wire_confirmation_number';
 
     updated_at: string;
   }
@@ -499,14 +626,80 @@ export namespace PaymentOrder {
  * payment orders, the `subtype` represents the SEC code. We currently support
  * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
  */
-export type PaymentOrderSubtype = '0C' | '0N' | '0S' | 'CCD' | 'CIE' | 'CTX' | 'IAT' | 'PPD' | 'TEL' | 'WEB' | 'au_becs' | 'bacs' | 'base' | 'chats' | 'dk_nets' | 'eft' | 'ethereum' | 'hu_ics' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'polygon' | 'ro_sent' | 'se_bankgirot' | 'sepa' | 'sg_giro' | 'sic' | 'sknbi' | 'solana' | 'zengin' | null
+export type PaymentOrderSubtype =
+  | '0C'
+  | '0N'
+  | '0S'
+  | 'CCD'
+  | 'CIE'
+  | 'CTX'
+  | 'IAT'
+  | 'PPD'
+  | 'TEL'
+  | 'WEB'
+  | 'au_becs'
+  | 'bacs'
+  | 'base'
+  | 'chats'
+  | 'dk_nets'
+  | 'eft'
+  | 'ethereum'
+  | 'hu_ics'
+  | 'masav'
+  | 'mx_ccen'
+  | 'neft'
+  | 'nics'
+  | 'nz_becs'
+  | 'pl_elixir'
+  | 'polygon'
+  | 'ro_sent'
+  | 'se_bankgirot'
+  | 'sepa'
+  | 'sg_giro'
+  | 'sic'
+  | 'sknbi'
+  | 'solana'
+  | 'zengin'
+  | null;
 
 /**
  * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
  * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
  * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
  */
-export type PaymentOrderType = 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin'
+export type PaymentOrderType =
+  | 'ach'
+  | 'au_becs'
+  | 'bacs'
+  | 'book'
+  | 'card'
+  | 'chats'
+  | 'check'
+  | 'cross_border'
+  | 'dk_nets'
+  | 'eft'
+  | 'gb_fps'
+  | 'hu_ics'
+  | 'interac'
+  | 'masav'
+  | 'mx_ccen'
+  | 'neft'
+  | 'nics'
+  | 'nz_becs'
+  | 'pl_elixir'
+  | 'provxchange'
+  | 'ro_sent'
+  | 'rtp'
+  | 'se_bankgirot'
+  | 'sen'
+  | 'sepa'
+  | 'sg_giro'
+  | 'sic'
+  | 'signet'
+  | 'sknbi'
+  | 'stablecoin'
+  | 'wire'
+  | 'zengin';
 
 export interface PaymentOrderCreateParams {
   /**
@@ -802,7 +995,18 @@ export namespace PaymentOrderCreateParams {
      */
     documentable_id?: string;
 
-    documentable_type?: 'connections' | 'counterparties' | 'expected_payments' | 'external_accounts' | 'identifications' | 'incoming_payment_details' | 'internal_accounts' | 'legal_entities' | 'organizations' | 'payment_orders' | 'transactions';
+    documentable_type?:
+      | 'connections'
+      | 'counterparties'
+      | 'expected_payments'
+      | 'external_accounts'
+      | 'identifications'
+      | 'incoming_payment_details'
+      | 'internal_accounts'
+      | 'legal_entities'
+      | 'organizations'
+      | 'payment_orders'
+      | 'transactions';
   }
 
   export interface LineItem {
@@ -901,15 +1105,84 @@ export namespace PaymentOrderCreateParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
+      account_number_type?:
+        | 'au_number'
+        | 'base_address'
+        | 'card_token'
+        | 'clabe'
+        | 'ethereum_address'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'polygon_address'
+        | 'sg_number'
+        | 'solana_address'
+        | 'wallet_address';
     }
 
     export interface RoutingDetail {
       routing_number: string;
 
-      routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'my_branch_code' | 'mx_bank_identifier' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'dk_interbank_clearing_code'
+        | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
+        | 'hu_interbank_clearing_code'
+        | 'id_sknbi_code'
+        | 'il_bank_code'
+        | 'in_ifsc'
+        | 'jp_zengin_code'
+        | 'my_branch_code'
+        | 'mx_bank_identifier'
+        | 'nz_national_clearing_code'
+        | 'pl_national_clearing_code'
+        | 'se_bankgiro_clearing_code'
+        | 'sg_interbank_clearing_code'
+        | 'swift'
+        | 'za_national_clearing_code';
 
-      payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'chats'
+        | 'check'
+        | 'cross_border'
+        | 'dk_nets'
+        | 'eft'
+        | 'gb_fps'
+        | 'hu_ics'
+        | 'interac'
+        | 'masav'
+        | 'mx_ccen'
+        | 'neft'
+        | 'nics'
+        | 'nz_becs'
+        | 'pl_elixir'
+        | 'provxchange'
+        | 'ro_sent'
+        | 'rtp'
+        | 'se_bankgirot'
+        | 'sen'
+        | 'sepa'
+        | 'sg_giro'
+        | 'sic'
+        | 'signet'
+        | 'sknbi'
+        | 'stablecoin'
+        | 'wire'
+        | 'zengin';
     }
   }
 
@@ -1134,7 +1407,20 @@ export interface PaymentOrderUpdateParams {
    * use `approved`. To undo approval on a denied or approved payment order, use
    * `needs_approval`.
    */
-  status?: 'approved' | 'cancelled' | 'completed' | 'denied' | 'failed' | 'held' | 'needs_approval' | 'pending' | 'processing' | 'returned' | 'reversed' | 'sent' | 'stopped';
+  status?:
+    | 'approved'
+    | 'cancelled'
+    | 'completed'
+    | 'denied'
+    | 'failed'
+    | 'held'
+    | 'needs_approval'
+    | 'pending'
+    | 'processing'
+    | 'returned'
+    | 'reversed'
+    | 'sent'
+    | 'stopped';
 
   /**
    * An additional layer of classification for the type of payment order you are
@@ -1295,15 +1581,84 @@ export namespace PaymentOrderUpdateParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
+      account_number_type?:
+        | 'au_number'
+        | 'base_address'
+        | 'card_token'
+        | 'clabe'
+        | 'ethereum_address'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'polygon_address'
+        | 'sg_number'
+        | 'solana_address'
+        | 'wallet_address';
     }
 
     export interface RoutingDetail {
       routing_number: string;
 
-      routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'my_branch_code' | 'mx_bank_identifier' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'dk_interbank_clearing_code'
+        | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
+        | 'hu_interbank_clearing_code'
+        | 'id_sknbi_code'
+        | 'il_bank_code'
+        | 'in_ifsc'
+        | 'jp_zengin_code'
+        | 'my_branch_code'
+        | 'mx_bank_identifier'
+        | 'nz_national_clearing_code'
+        | 'pl_national_clearing_code'
+        | 'se_bankgiro_clearing_code'
+        | 'sg_interbank_clearing_code'
+        | 'swift'
+        | 'za_national_clearing_code';
 
-      payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'chats'
+        | 'check'
+        | 'cross_border'
+        | 'dk_nets'
+        | 'eft'
+        | 'gb_fps'
+        | 'hu_ics'
+        | 'interac'
+        | 'masav'
+        | 'mx_ccen'
+        | 'neft'
+        | 'nics'
+        | 'nz_becs'
+        | 'pl_elixir'
+        | 'provxchange'
+        | 'ro_sent'
+        | 'rtp'
+        | 'se_bankgirot'
+        | 'sen'
+        | 'sepa'
+        | 'sg_giro'
+        | 'sic'
+        | 'signet'
+        | 'sknbi'
+        | 'stablecoin'
+        | 'wire'
+        | 'zengin';
     }
   }
 }
@@ -1366,14 +1721,59 @@ export interface PaymentOrderListParams extends PageParams {
    */
   reference_number?: string;
 
-  status?: 'approved' | 'cancelled' | 'completed' | 'denied' | 'failed' | 'held' | 'needs_approval' | 'pending' | 'processing' | 'returned' | 'reversed' | 'sent' | 'stopped';
+  status?:
+    | 'approved'
+    | 'cancelled'
+    | 'completed'
+    | 'denied'
+    | 'failed'
+    | 'held'
+    | 'needs_approval'
+    | 'pending'
+    | 'processing'
+    | 'returned'
+    | 'reversed'
+    | 'sent'
+    | 'stopped';
 
   /**
    * The ID of a transaction that the payment order has been reconciled to.
    */
   transaction_id?: string;
 
-  type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
+  type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin';
 }
 
 export interface PaymentOrderCreateAsyncParams {
@@ -1747,15 +2147,84 @@ export namespace PaymentOrderCreateAsyncParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
+      account_number_type?:
+        | 'au_number'
+        | 'base_address'
+        | 'card_token'
+        | 'clabe'
+        | 'ethereum_address'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'polygon_address'
+        | 'sg_number'
+        | 'solana_address'
+        | 'wallet_address';
     }
 
     export interface RoutingDetail {
       routing_number: string;
 
-      routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'my_branch_code' | 'mx_bank_identifier' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'dk_interbank_clearing_code'
+        | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
+        | 'hu_interbank_clearing_code'
+        | 'id_sknbi_code'
+        | 'il_bank_code'
+        | 'in_ifsc'
+        | 'jp_zengin_code'
+        | 'my_branch_code'
+        | 'mx_bank_identifier'
+        | 'nz_national_clearing_code'
+        | 'pl_national_clearing_code'
+        | 'se_bankgiro_clearing_code'
+        | 'sg_interbank_clearing_code'
+        | 'swift'
+        | 'za_national_clearing_code';
 
-      payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'chats'
+        | 'check'
+        | 'cross_border'
+        | 'dk_nets'
+        | 'eft'
+        | 'gb_fps'
+        | 'hu_ics'
+        | 'interac'
+        | 'masav'
+        | 'mx_ccen'
+        | 'neft'
+        | 'nics'
+        | 'nz_becs'
+        | 'pl_elixir'
+        | 'provxchange'
+        | 'ro_sent'
+        | 'rtp'
+        | 'se_bankgirot'
+        | 'sen'
+        | 'sepa'
+        | 'sg_giro'
+        | 'sic'
+        | 'signet'
+        | 'sknbi'
+        | 'stablecoin'
+        | 'wire'
+        | 'zengin';
     }
   }
 
@@ -1801,7 +2270,7 @@ export declare namespace PaymentOrders {
     type PaymentOrderCreateParams as PaymentOrderCreateParams,
     type PaymentOrderUpdateParams as PaymentOrderUpdateParams,
     type PaymentOrderListParams as PaymentOrderListParams,
-    type PaymentOrderCreateAsyncParams as PaymentOrderCreateAsyncParams
+    type PaymentOrderCreateAsyncParams as PaymentOrderCreateAsyncParams,
   };
 
   export {
@@ -1810,6 +2279,6 @@ export declare namespace PaymentOrders {
     type ReversalsPage as ReversalsPage,
     type ReversalCreateParams as ReversalCreateParams,
     type ReversalRetrieveParams as ReversalRetrieveParams,
-    type ReversalListParams as ReversalListParams
+    type ReversalListParams as ReversalListParams,
   };
 }

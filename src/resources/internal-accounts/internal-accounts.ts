@@ -6,7 +6,15 @@ import * as ConnectionsAPI from '../connections';
 import * as RoutingDetailsAPI from '../routing-details';
 import * as Shared from '../shared';
 import * as BalanceReportsAPI from './balance-reports';
-import { BalanceReport, BalanceReportCreateParams, BalanceReportDeleteParams, BalanceReportListParams, BalanceReportRetrieveParams, BalanceReports, BalanceReportsPage } from './balance-reports';
+import {
+  BalanceReport,
+  BalanceReportCreateParams,
+  BalanceReportDeleteParams,
+  BalanceReportListParams,
+  BalanceReportRetrieveParams,
+  BalanceReports,
+  BalanceReportsPage,
+} from './balance-reports';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
@@ -55,7 +63,11 @@ export class InternalAccounts extends APIResource {
    *   await client.internalAccounts.update('id');
    * ```
    */
-  update(id: string, body: InternalAccountUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<InternalAccount> {
+  update(
+    id: string,
+    body: InternalAccountUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<InternalAccount> {
     return this._client.patch(path`/api/internal_accounts/${id}`, { body, ...options });
   }
 
@@ -70,7 +82,10 @@ export class InternalAccounts extends APIResource {
    * }
    * ```
    */
-  list(query: InternalAccountListParams | null | undefined = {}, options?: RequestOptions): PagePromise<InternalAccountsPage, InternalAccount> {
+  list(
+    query: InternalAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InternalAccountsPage, InternalAccount> {
     return this._client.getAPIList('/api/internal_accounts', Page<InternalAccount>, { query, ...options });
   }
 
@@ -102,13 +117,20 @@ export class InternalAccounts extends APIResource {
    *   );
    * ```
    */
-  updateAccountCapability(id: string, params: InternalAccountUpdateAccountCapabilityParams, options?: RequestOptions): APIPromise<InternalAccountUpdateAccountCapabilityResponse> {
-    const { internal_account_id, ...body } = params
-    return this._client.patch(path`/api/internal_accounts/${internal_account_id}/account_capabilities/${id}`, { body, ...options });
+  updateAccountCapability(
+    id: string,
+    params: InternalAccountUpdateAccountCapabilityParams,
+    options?: RequestOptions,
+  ): APIPromise<InternalAccountUpdateAccountCapabilityResponse> {
+    const { internal_account_id, ...body } = params;
+    return this._client.patch(
+      path`/api/internal_accounts/${internal_account_id}/account_capabilities/${id}`,
+      { body, ...options },
+    );
   }
 }
 
-export type InternalAccountsPage = Page<InternalAccount>
+export type InternalAccountsPage = Page<InternalAccount>;
 
 export interface InternalAccount {
   id: string;
@@ -127,7 +149,21 @@ export interface InternalAccount {
   /**
    * Can be checking, savings or other.
    */
-  account_type: 'base_wallet' | 'cash' | 'checking' | 'crypto_wallet' | 'ethereum_wallet' | 'general_ledger' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'polygon_wallet' | 'savings' | 'solana_wallet' | null;
+  account_type:
+    | 'base_wallet'
+    | 'cash'
+    | 'checking'
+    | 'crypto_wallet'
+    | 'ethereum_wallet'
+    | 'general_ledger'
+    | 'loan'
+    | 'non_resident'
+    | 'other'
+    | 'overdraft'
+    | 'polygon_wallet'
+    | 'savings'
+    | 'solana_wallet'
+    | null;
 
   /**
    * Specifies which financial institution the accounts belong to.
@@ -257,11 +293,43 @@ export namespace InternalAccount {
      * Indicates the the type of payment this capability is responsible for
      * originating.
      */
-    payment_type: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
+    payment_type:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'book'
+      | 'card'
+      | 'chats'
+      | 'check'
+      | 'cross_border'
+      | 'dk_nets'
+      | 'eft'
+      | 'gb_fps'
+      | 'hu_ics'
+      | 'interac'
+      | 'masav'
+      | 'mx_ccen'
+      | 'neft'
+      | 'nics'
+      | 'nz_becs'
+      | 'pl_elixir'
+      | 'provxchange'
+      | 'ro_sent'
+      | 'rtp'
+      | 'se_bankgirot'
+      | 'sen'
+      | 'sepa'
+      | 'sg_giro'
+      | 'sic'
+      | 'signet'
+      | 'sknbi'
+      | 'stablecoin'
+      | 'wire'
+      | 'zengin';
 
     updated_at: string;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 }
 
@@ -296,11 +364,43 @@ export interface InternalAccountUpdateAccountCapabilityResponse {
    * Indicates the the type of payment this capability is responsible for
    * originating.
    */
-  payment_type: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
+  payment_type:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin';
 
   updated_at: string;
 
-[k: string]: unknown
+  [k: string]: unknown;
 }
 
 export interface InternalAccountCreateParams {
@@ -335,7 +435,20 @@ export interface InternalAccountCreateParams {
    * The account type, used to provision the appropriate account at the financial
    * institution.
    */
-  account_type?: 'base_wallet' | 'cash' | 'checking' | 'crypto_wallet' | 'ethereum_wallet' | 'general_ledger' | 'loan' | 'non_resident' | 'other' | 'overdraft' | 'polygon_wallet' | 'savings' | 'solana_wallet';
+  account_type?:
+    | 'base_wallet'
+    | 'cash'
+    | 'checking'
+    | 'crypto_wallet'
+    | 'ethereum_wallet'
+    | 'general_ledger'
+    | 'loan'
+    | 'non_resident'
+    | 'other'
+    | 'overdraft'
+    | 'polygon_wallet'
+    | 'savings'
+    | 'solana_wallet';
 
   /**
    * The Counterparty associated to this account.
@@ -407,11 +520,43 @@ export namespace InternalAccountCreateParams {
      * Indicates the the type of payment this capability is responsible for
      * originating.
      */
-    payment_type: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
+    payment_type:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'book'
+      | 'card'
+      | 'chats'
+      | 'check'
+      | 'cross_border'
+      | 'dk_nets'
+      | 'eft'
+      | 'gb_fps'
+      | 'hu_ics'
+      | 'interac'
+      | 'masav'
+      | 'mx_ccen'
+      | 'neft'
+      | 'nics'
+      | 'nz_becs'
+      | 'pl_elixir'
+      | 'provxchange'
+      | 'ro_sent'
+      | 'rtp'
+      | 'se_bankgirot'
+      | 'sen'
+      | 'sepa'
+      | 'sg_giro'
+      | 'sic'
+      | 'signet'
+      | 'sknbi'
+      | 'stablecoin'
+      | 'wire'
+      | 'zengin';
 
     updated_at: string;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   /**
@@ -518,7 +663,39 @@ export interface InternalAccountListParams extends PageParams {
   /**
    * Only return internal accounts that can make this type of payment.
    */
-  payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
+  payment_type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin';
 
   /**
    * Only return internal accounts with this status.
@@ -550,7 +727,7 @@ export declare namespace InternalAccounts {
     type InternalAccountCreateParams as InternalAccountCreateParams,
     type InternalAccountUpdateParams as InternalAccountUpdateParams,
     type InternalAccountListParams as InternalAccountListParams,
-    type InternalAccountUpdateAccountCapabilityParams as InternalAccountUpdateAccountCapabilityParams
+    type InternalAccountUpdateAccountCapabilityParams as InternalAccountUpdateAccountCapabilityParams,
   };
 
   export {
@@ -560,6 +737,6 @@ export declare namespace InternalAccounts {
     type BalanceReportCreateParams as BalanceReportCreateParams,
     type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
     type BalanceReportListParams as BalanceReportListParams,
-    type BalanceReportDeleteParams as BalanceReportDeleteParams
+    type BalanceReportDeleteParams as BalanceReportDeleteParams,
   };
 }

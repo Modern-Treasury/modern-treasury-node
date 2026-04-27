@@ -25,12 +25,18 @@ export class ForeignExchangeQuotes extends APIResource {
   /**
    * list foreign_exchange_quotes
    */
-  list(query: ForeignExchangeQuoteListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ForeignExchangeQuotesPage, ForeignExchangeQuote> {
-    return this._client.getAPIList('/api/foreign_exchange_quotes', Page<ForeignExchangeQuote>, { query, ...options });
+  list(
+    query: ForeignExchangeQuoteListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ForeignExchangeQuotesPage, ForeignExchangeQuote> {
+    return this._client.getAPIList('/api/foreign_exchange_quotes', Page<ForeignExchangeQuote>, {
+      query,
+      ...options,
+    });
   }
 }
 
-export type ForeignExchangeQuotesPage = Page<ForeignExchangeQuote>
+export type ForeignExchangeQuotesPage = Page<ForeignExchangeQuote>;
 
 export interface ForeignExchangeQuote {
   id: string;
@@ -164,6 +170,6 @@ export declare namespace ForeignExchangeQuotes {
     type ForeignExchangeQuote as ForeignExchangeQuote,
     type ForeignExchangeQuotesPage as ForeignExchangeQuotesPage,
     type ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams,
-    type ForeignExchangeQuoteListParams as ForeignExchangeQuoteListParams
+    type ForeignExchangeQuoteListParams as ForeignExchangeQuoteListParams,
   };
 }

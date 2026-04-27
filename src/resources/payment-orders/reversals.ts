@@ -36,8 +36,12 @@ export class Reversals extends APIResource {
    *   );
    * ```
    */
-  retrieve(reversalID: string, params: ReversalRetrieveParams, options?: RequestOptions): APIPromise<Reversal> {
-    const { payment_order_id } = params
+  retrieve(
+    reversalID: string,
+    params: ReversalRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<Reversal> {
+    const { payment_order_id } = params;
     return this._client.get(path`/api/payment_orders/${payment_order_id}/reversals/${reversalID}`, options);
   }
 
@@ -54,12 +58,19 @@ export class Reversals extends APIResource {
    * }
    * ```
    */
-  list(paymentOrderID: string, query: ReversalListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ReversalsPage, Reversal> {
-    return this._client.getAPIList(path`/api/payment_orders/${paymentOrderID}/reversals`, Page<Reversal>, { query, ...options });
+  list(
+    paymentOrderID: string,
+    query: ReversalListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ReversalsPage, Reversal> {
+    return this._client.getAPIList(path`/api/payment_orders/${paymentOrderID}/reversals`, Page<Reversal>, {
+      query,
+      ...options,
+    });
   }
 }
 
-export type ReversalsPage = Page<Reversal>
+export type ReversalsPage = Page<Reversal>;
 
 export interface Reversal {
   id: string;
@@ -98,7 +109,12 @@ export interface Reversal {
   /**
    * The reason for the reversal.
    */
-  reason: 'duplicate' | 'incorrect_amount' | 'incorrect_receiving_account' | 'date_earlier_than_intended' | 'date_later_than_intended';
+  reason:
+    | 'duplicate'
+    | 'incorrect_amount'
+    | 'incorrect_receiving_account'
+    | 'date_earlier_than_intended'
+    | 'date_later_than_intended';
 
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
@@ -121,7 +137,12 @@ export interface ReversalCreateParams {
    * `incorrect_receiving_account`, `date_earlier_than_intended`,
    * `date_later_than_intended`.
    */
-  reason: 'duplicate' | 'incorrect_amount' | 'incorrect_receiving_account' | 'date_earlier_than_intended' | 'date_later_than_intended';
+  reason:
+    | 'duplicate'
+    | 'incorrect_amount'
+    | 'incorrect_receiving_account'
+    | 'date_earlier_than_intended'
+    | 'date_later_than_intended';
 
   /**
    * Specifies a ledger transaction object that will be created with the reversal. If
@@ -144,8 +165,7 @@ export interface ReversalRetrieveParams {
   payment_order_id: string;
 }
 
-export interface ReversalListParams extends PageParams {
-}
+export interface ReversalListParams extends PageParams {}
 
 export declare namespace Reversals {
   export {
@@ -153,6 +173,6 @@ export declare namespace Reversals {
     type ReversalsPage as ReversalsPage,
     type ReversalCreateParams as ReversalCreateParams,
     type ReversalRetrieveParams as ReversalRetrieveParams,
-    type ReversalListParams as ReversalListParams
+    type ReversalListParams as ReversalListParams,
   };
 }

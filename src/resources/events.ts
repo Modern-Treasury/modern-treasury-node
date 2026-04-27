@@ -17,12 +17,15 @@ export class Events extends APIResource {
   /**
    * list events
    */
-  list(query: EventListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EventsPage, Event> {
+  list(
+    query: EventListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EventsPage, Event> {
     return this._client.getAPIList('/api/events', Page<Event>, { query, ...options });
   }
 }
 
-export type EventsPage = Page<Event>
+export type EventsPage = Page<Event>;
 
 export interface Event {
   id: string;
@@ -84,9 +87,5 @@ export interface EventListParams extends PageParams {
 }
 
 export declare namespace Events {
-  export {
-    type Event as Event,
-    type EventsPage as EventsPage,
-    type EventListParams as EventListParams
-  };
+  export { type Event as Event, type EventsPage as EventsPage, type EventListParams as EventListParams };
 }

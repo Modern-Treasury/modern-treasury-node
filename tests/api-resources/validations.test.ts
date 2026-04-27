@@ -5,12 +5,15 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource validations', () => {
   test('validateRoutingNumber: only required params', async () => {
-    const responsePromise = client.validations.validateRoutingNumber({ routing_number: 'routing_number', routing_number_type: 'aba' });
+    const responsePromise = client.validations.validateRoutingNumber({
+      routing_number: 'routing_number',
+      routing_number_type: 'aba',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,6 +24,9 @@ describe('resource validations', () => {
   });
 
   test('validateRoutingNumber: required and optional params', async () => {
-    const response = await client.validations.validateRoutingNumber({ routing_number: 'routing_number', routing_number_type: 'aba' });
+    const response = await client.validations.validateRoutingNumber({
+      routing_number: 'routing_number',
+      routing_number_type: 'aba',
+    });
   });
 });

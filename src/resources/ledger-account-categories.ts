@@ -23,7 +23,10 @@ export class LedgerAccountCategories extends APIResource {
    *   });
    * ```
    */
-  create(body: LedgerAccountCategoryCreateParams, options?: RequestOptions): APIPromise<LedgerAccountCategory> {
+  create(
+    body: LedgerAccountCategoryCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccountCategory> {
     return this._client.post('/api/ledger_account_categories', { body, ...options });
   }
 
@@ -36,7 +39,11 @@ export class LedgerAccountCategories extends APIResource {
    *   await client.ledgerAccountCategories.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: LedgerAccountCategoryRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerAccountCategory> {
+  retrieve(
+    id: string,
+    query: LedgerAccountCategoryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccountCategory> {
     return this._client.get(path`/api/ledger_account_categories/${id}`, { query, ...options });
   }
 
@@ -49,7 +56,11 @@ export class LedgerAccountCategories extends APIResource {
    *   await client.ledgerAccountCategories.update('id');
    * ```
    */
-  update(id: string, body: LedgerAccountCategoryUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerAccountCategory> {
+  update(
+    id: string,
+    body: LedgerAccountCategoryUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LedgerAccountCategory> {
     return this._client.patch(path`/api/ledger_account_categories/${id}`, { body, ...options });
   }
 
@@ -64,8 +75,14 @@ export class LedgerAccountCategories extends APIResource {
    * }
    * ```
    */
-  list(query: LedgerAccountCategoryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LedgerAccountCategoriesPage, LedgerAccountCategory> {
-    return this._client.getAPIList('/api/ledger_account_categories', Page<LedgerAccountCategory>, { query, ...options });
+  list(
+    query: LedgerAccountCategoryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerAccountCategoriesPage, LedgerAccountCategory> {
+    return this._client.getAPIList('/api/ledger_account_categories', Page<LedgerAccountCategory>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -92,9 +109,16 @@ export class LedgerAccountCategories extends APIResource {
    * );
    * ```
    */
-  addLedgerAccount(ledgerAccountID: string, params: LedgerAccountCategoryAddLedgerAccountParams, options?: RequestOptions): APIPromise<void> {
-    const { id } = params
-    return this._client.put(path`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  addLedgerAccount(
+    ledgerAccountID: string,
+    params: LedgerAccountCategoryAddLedgerAccountParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { id } = params;
+    return this._client.put(path`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountID}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,9 +132,16 @@ export class LedgerAccountCategories extends APIResource {
    * );
    * ```
    */
-  addNestedCategory(subCategoryID: string, params: LedgerAccountCategoryAddNestedCategoryParams, options?: RequestOptions): APIPromise<void> {
-    const { id } = params
-    return this._client.put(path`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  addNestedCategory(
+    subCategoryID: string,
+    params: LedgerAccountCategoryAddNestedCategoryParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { id } = params;
+    return this._client.put(
+      path`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryID}`,
+      { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+    );
   }
 
   /**
@@ -124,9 +155,16 @@ export class LedgerAccountCategories extends APIResource {
    * );
    * ```
    */
-  removeLedgerAccount(ledgerAccountID: string, params: LedgerAccountCategoryRemoveLedgerAccountParams, options?: RequestOptions): APIPromise<void> {
-    const { id } = params
-    return this._client.delete(path`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  removeLedgerAccount(
+    ledgerAccountID: string,
+    params: LedgerAccountCategoryRemoveLedgerAccountParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { id } = params;
+    return this._client.delete(
+      path`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountID}`,
+      { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+    );
   }
 
   /**
@@ -140,13 +178,20 @@ export class LedgerAccountCategories extends APIResource {
    * );
    * ```
    */
-  removeNestedCategory(subCategoryID: string, params: LedgerAccountCategoryRemoveNestedCategoryParams, options?: RequestOptions): APIPromise<void> {
-    const { id } = params
-    return this._client.delete(path`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  removeNestedCategory(
+    subCategoryID: string,
+    params: LedgerAccountCategoryRemoveNestedCategoryParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { id } = params;
+    return this._client.delete(
+      path`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryID}`,
+      { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+    );
   }
 }
 
-export type LedgerAccountCategoriesPage = Page<LedgerAccountCategory>
+export type LedgerAccountCategoriesPage = Page<LedgerAccountCategory>;
 
 export interface LedgerAccountCategory {
   id: string;
@@ -395,6 +440,6 @@ export declare namespace LedgerAccountCategories {
     type LedgerAccountCategoryAddLedgerAccountParams as LedgerAccountCategoryAddLedgerAccountParams,
     type LedgerAccountCategoryAddNestedCategoryParams as LedgerAccountCategoryAddNestedCategoryParams,
     type LedgerAccountCategoryRemoveLedgerAccountParams as LedgerAccountCategoryRemoveLedgerAccountParams,
-    type LedgerAccountCategoryRemoveNestedCategoryParams as LedgerAccountCategoryRemoveNestedCategoryParams
+    type LedgerAccountCategoryRemoveNestedCategoryParams as LedgerAccountCategoryRemoveNestedCategoryParams,
   };
 }

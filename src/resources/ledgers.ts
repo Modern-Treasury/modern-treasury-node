@@ -41,7 +41,11 @@ export class Ledgers extends APIResource {
    * const ledger = await client.ledgers.update('id');
    * ```
    */
-  update(id: string, body: LedgerUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Ledger> {
+  update(
+    id: string,
+    body: LedgerUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Ledger> {
     return this._client.patch(path`/api/ledgers/${id}`, { body, ...options });
   }
 
@@ -56,7 +60,10 @@ export class Ledgers extends APIResource {
    * }
    * ```
    */
-  list(query: LedgerListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LedgersPage, Ledger> {
+  list(
+    query: LedgerListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgersPage, Ledger> {
     return this._client.getAPIList('/api/ledgers', Page<Ledger>, { query, ...options });
   }
 
@@ -73,7 +80,7 @@ export class Ledgers extends APIResource {
   }
 }
 
-export type LedgersPage = Page<Ledger>
+export type LedgersPage = Page<Ledger>;
 
 export interface Ledger {
   id: string;
@@ -108,7 +115,7 @@ export interface Ledger {
 
   updated_at: string;
 
-[k: string]: unknown
+  [k: string]: unknown;
 }
 
 export interface LedgerCreateParams {
@@ -175,6 +182,6 @@ export declare namespace Ledgers {
     type LedgersPage as LedgersPage,
     type LedgerCreateParams as LedgerCreateParams,
     type LedgerUpdateParams as LedgerUpdateParams,
-    type LedgerListParams as LedgerListParams
+    type LedgerListParams as LedgerListParams,
   };
 }

@@ -23,7 +23,11 @@ export class AccountEntries extends APIResource {
    * ```
    */
   update(id: string, body: AccountEntryUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.patch(path`/api/ledger_account_settlements/${id}/ledger_entries`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.patch(path`/api/ledger_account_settlements/${id}/ledger_entries`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -42,7 +46,11 @@ export class AccountEntries extends APIResource {
    * ```
    */
   delete(id: string, body: AccountEntryDeleteParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/ledger_account_settlements/${id}/ledger_entries`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/api/ledger_account_settlements/${id}/ledger_entries`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -65,6 +73,6 @@ export interface AccountEntryDeleteParams {
 export declare namespace AccountEntries {
   export {
     type AccountEntryUpdateParams as AccountEntryUpdateParams,
-    type AccountEntryDeleteParams as AccountEntryDeleteParams
+    type AccountEntryDeleteParams as AccountEntryDeleteParams,
   };
 }

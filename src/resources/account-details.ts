@@ -12,37 +12,56 @@ export class AccountDetails extends APIResource {
   /**
    * Create an account detail for an external account.
    */
-  create(accountID: string, params: AccountDetailCreateParams, options?: RequestOptions): APIPromise<AccountDetail> {
-    const { accounts_type, ...body } = params
+  create(
+    accountID: string,
+    params: AccountDetailCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<AccountDetail> {
+    const { accounts_type, ...body } = params;
     return this._client.post(path`/api/${accounts_type}/${accountID}/account_details`, { body, ...options });
   }
 
   /**
    * Get a single account detail for a single internal or external account.
    */
-  retrieve(id: string, params: AccountDetailRetrieveParams, options?: RequestOptions): APIPromise<AccountDetail> {
-    const { accounts_type, account_id } = params
+  retrieve(
+    id: string,
+    params: AccountDetailRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<AccountDetail> {
+    const { accounts_type, account_id } = params;
     return this._client.get(path`/api/${accounts_type}/${account_id}/account_details/${id}`, options);
   }
 
   /**
    * Get a list of account details for a single internal or external account.
    */
-  list(accountID: string, params: AccountDetailListParams, options?: RequestOptions): PagePromise<AccountDetailsPage, AccountDetail> {
-    const { accounts_type, ...query } = params
-    return this._client.getAPIList(path`/api/${accounts_type}/${accountID}/account_details`, Page<AccountDetail>, { query, ...options });
+  list(
+    accountID: string,
+    params: AccountDetailListParams,
+    options?: RequestOptions,
+  ): PagePromise<AccountDetailsPage, AccountDetail> {
+    const { accounts_type, ...query } = params;
+    return this._client.getAPIList(
+      path`/api/${accounts_type}/${accountID}/account_details`,
+      Page<AccountDetail>,
+      { query, ...options },
+    );
   }
 
   /**
    * Delete a single account detail for an external account.
    */
   delete(id: string, params: AccountDetailDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { accounts_type, account_id } = params
-    return this._client.delete(path`/api/${accounts_type}/${account_id}/account_details/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { accounts_type, account_id } = params;
+    return this._client.delete(path`/api/${accounts_type}/${account_id}/account_details/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type AccountDetailsPage = Page<AccountDetail>
+export type AccountDetailsPage = Page<AccountDetail>;
 
 export interface AccountDetail {
   id: string;
@@ -56,7 +75,22 @@ export interface AccountDetail {
    * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
    * account number is in a generic format.
    */
-  account_number_type: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
+  account_number_type:
+    | 'au_number'
+    | 'base_address'
+    | 'card_token'
+    | 'clabe'
+    | 'ethereum_address'
+    | 'hk_number'
+    | 'iban'
+    | 'id_number'
+    | 'nz_number'
+    | 'other'
+    | 'pan'
+    | 'polygon_address'
+    | 'sg_number'
+    | 'solana_address'
+    | 'wallet_address';
 
   created_at: string;
 
@@ -93,7 +127,22 @@ export interface AccountDetailCreateParams {
    * Body param: One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if
    * the bank account number is in a generic format.
    */
-  account_number_type?: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
+  account_number_type?:
+    | 'au_number'
+    | 'base_address'
+    | 'card_token'
+    | 'clabe'
+    | 'ethereum_address'
+    | 'hk_number'
+    | 'iban'
+    | 'id_number'
+    | 'nz_number'
+    | 'other'
+    | 'pan'
+    | 'polygon_address'
+    | 'sg_number'
+    | 'solana_address'
+    | 'wallet_address';
 }
 
 export interface AccountDetailRetrieveParams {
@@ -128,6 +177,6 @@ export declare namespace AccountDetails {
     type AccountDetailCreateParams as AccountDetailCreateParams,
     type AccountDetailRetrieveParams as AccountDetailRetrieveParams,
     type AccountDetailListParams as AccountDetailListParams,
-    type AccountDetailDeleteParams as AccountDetailDeleteParams
+    type AccountDetailDeleteParams as AccountDetailDeleteParams,
   };
 }

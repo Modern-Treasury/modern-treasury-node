@@ -8,12 +8,15 @@ export class Connections extends APIResource {
   /**
    * Get a list of all connections.
    */
-  list(query: ConnectionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ConnectionsPage, Connection> {
+  list(
+    query: ConnectionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ConnectionsPage, Connection> {
     return this._client.getAPIList('/api/connections', Page<Connection>, { query, ...options });
   }
 }
 
-export type ConnectionsPage = Page<Connection>
+export type ConnectionsPage = Page<Connection>;
 
 export interface Connection {
   id: string;
@@ -64,6 +67,6 @@ export declare namespace Connections {
   export {
     type Connection as Connection,
     type ConnectionsPage as ConnectionsPage,
-    type ConnectionListParams as ConnectionListParams
+    type ConnectionListParams as ConnectionListParams,
   };
 }
