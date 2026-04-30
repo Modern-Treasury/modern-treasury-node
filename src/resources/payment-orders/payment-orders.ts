@@ -150,7 +150,7 @@ export interface PaymentOrder {
 
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
-   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
    */
   amount: number;
 
@@ -704,7 +704,7 @@ export type PaymentOrderType =
 export interface PaymentOrderCreateParams {
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
-   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
    */
   amount: number;
 
@@ -1236,7 +1236,7 @@ export interface PaymentOrderUpdateParams {
 
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
-   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
    */
   amount?: number;
 
@@ -1779,7 +1779,7 @@ export interface PaymentOrderListParams extends PageParams {
 export interface PaymentOrderCreateAsyncParams {
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
-   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
    */
   amount: number;
 
