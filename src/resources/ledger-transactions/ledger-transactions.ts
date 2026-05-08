@@ -499,10 +499,45 @@ export namespace LedgerTransactionCreatePartialPostParams {
     ledger_account_id: string;
 
     /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s available balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    available_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * Lock version of the ledger account. This can be passed when creating a ledger
+     * transaction to only succeed if no ledger transactions have posted since the
+     * given version. See our post about Designing the Ledgers API with Optimistic
+     * Locking for more details.
+     */
+    lock_version?: number | null;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
     metadata?: { [key: string]: string };
+
+    /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s pending balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    pending_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s posted balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    posted_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * If true, response will include the balance of the associated ledger account for
+     * the entry.
+     */
+    show_resulting_ledger_account_balances?: boolean | null;
   }
 }
 
