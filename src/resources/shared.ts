@@ -1007,12 +1007,6 @@ export interface LedgerBalances {
 
 export interface LedgerEntryCreateRequest {
   /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000. Can be any integer up to 36 digits.
-   */
-  amount: number;
-
-  /**
    * One of `credit`, `debit`. Describes the direction money is flowing in the
    * transaction. A `credit` moves money from your account to someone else's. A
    * `debit` pulls money from someone else's account to your own. Note that wire,
@@ -1024,6 +1018,18 @@ export interface LedgerEntryCreateRequest {
    * The ledger account that this ledger entry is associated with.
    */
   ledger_account_id: string;
+
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000. Can be any integer up to 36 digits.
+   */
+  amount?: number;
+
+  /**
+   * The amount of the ledger entry as a string, preserving full precision for values
+   * that may exceed safe integer limits in some languages.
+   */
+  amount_string?: string;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
