@@ -410,10 +410,9 @@ export interface InternalAccountCreateParams {
   connection_id: string;
 
   /**
-   * The currency of the internal account. Supports "USD" and "CAD" for fiat, and
-   * "USDC", "USDG", and "PYUSD" for stablecoin accounts.
+   * The currency of the internal account. Supports fiat and stablecoin currencies.
    */
-  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'PYUSD';
+  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'USDT' | 'PYUSD';
 
   /**
    * The nickname of the account.
