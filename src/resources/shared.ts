@@ -738,10 +738,8 @@ export type Currency =
   | 'UAH'
   | 'UGX'
   | 'USD'
-  | 'USDB'
   | 'USDC'
   | 'USDG'
-  | 'USDP'
   | 'USDT'
   | 'UYU'
   | 'UZS'
@@ -970,7 +968,11 @@ export interface LedgerAccountCreateRequest {
 export interface LedgerBalance {
   amount: number;
 
+  amount_string: string;
+
   credits: number;
+
+  credits_string: string;
 
   /**
    * The currency of the ledger account.
@@ -983,6 +985,8 @@ export interface LedgerBalance {
   currency_exponent: number;
 
   debits: number;
+
+  debits_string: string;
 }
 
 export interface LedgerBalances {
