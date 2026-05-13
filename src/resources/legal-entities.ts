@@ -75,6 +75,48 @@ export class LegalEntities extends APIResource {
 
 export type LegalEntitiesPage = Page<LegalEntity>;
 
+export interface BankSettings {
+  id: string;
+
+  /**
+   * The percentage of backup withholding to apply to the legal entity.
+   */
+  backup_withholding_percentage: number | null;
+
+  created_at: string;
+
+  discarded_at: string | null;
+
+  /**
+   * Whether backup withholding is enabled. See more here -
+   * https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
+   */
+  enable_backup_withholding: boolean | null;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  /**
+   * Cross River Bank specific setting to opt out of privacy policy.
+   */
+  privacy_opt_out: boolean | null;
+
+  /**
+   * It covers, among other types of insider loans, extensions of credit by a member
+   * bank to an executive officer, director, or principal shareholder of the member
+   * bank; a bank holding company of which the member bank is a subsidiary; and any
+   * other subsidiary of that bank holding company.
+   */
+  regulation_o: boolean | null;
+
+  updated_at: string;
+}
+
 export interface LegalEntity {
   id: string;
 
@@ -83,7 +125,7 @@ export interface LegalEntity {
    */
   addresses: Array<LegalEntity.Address>;
 
-  bank_settings: LegalEntity.BankSettings | null;
+  bank_settings: BankSettings | null;
 
   /**
    * A description of the business.
@@ -281,7 +323,7 @@ export interface LegalEntity {
 
   updated_at: string;
 
-  wealth_and_employment_details: LegalEntity.WealthAndEmploymentDetails | null;
+  wealth_and_employment_details: WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -338,48 +380,6 @@ export namespace LegalEntity {
      * Region or State.
      */
     region: string | null;
-
-    updated_at: string;
-  }
-
-  export interface BankSettings {
-    id: string;
-
-    /**
-     * The percentage of backup withholding to apply to the legal entity.
-     */
-    backup_withholding_percentage: number | null;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * Whether backup withholding is enabled. See more here -
-     * https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
-     */
-    enable_backup_withholding: boolean | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * Cross River Bank specific setting to opt out of privacy policy.
-     */
-    privacy_opt_out: boolean | null;
-
-    /**
-     * It covers, among other types of insider loans, extensions of credit by a member
-     * bank to an executive officer, director, or principal shareholder of the member
-     * bank; a bank holding company of which the member bank is a subsidiary; and any
-     * other subsidiary of that bank holding company.
-     */
-    regulation_o: boolean | null;
 
     updated_at: string;
   }
@@ -478,176 +478,176 @@ export namespace LegalEntity {
      */
     registration_number: string;
   }
+}
 
-  export interface WealthAndEmploymentDetails {
-    id: string;
+export interface WealthAndEmploymentDetails {
+  id: string;
 
-    /**
-     * The annual income of the individual in USD.
-     */
-    annual_income: number | null;
+  /**
+   * The annual income of the individual in USD.
+   */
+  annual_income: number | null;
 
-    created_at: string;
+  created_at: string;
 
-    discarded_at: string | null;
+  discarded_at: string | null;
 
-    /**
-     * The country in which the employer is located.
-     */
-    employer_country: string | null;
+  /**
+   * The country in which the employer is located.
+   */
+  employer_country: string | null;
 
-    /**
-     * The name of the employer.
-     */
-    employer_name: string | null;
+  /**
+   * The name of the employer.
+   */
+  employer_name: string | null;
 
-    /**
-     * The state in which the employer is located.
-     */
-    employer_state: string | null;
+  /**
+   * The state in which the employer is located.
+   */
+  employer_state: string | null;
 
-    /**
-     * The employment status of the individual.
-     */
-    employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed' | null;
+  /**
+   * The employment status of the individual.
+   */
+  employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed' | null;
 
-    /**
-     * The country in which the individual's income is earned.
-     */
-    income_country: string | null;
+  /**
+   * The country in which the individual's income is earned.
+   */
+  income_country: string | null;
 
-    /**
-     * The source of the individual's income.
-     */
-    income_source:
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
+  /**
+   * The source of the individual's income.
+   */
+  income_source:
+    | 'family_support'
+    | 'government_benefits'
+    | 'inheritance'
+    | 'investments'
+    | 'rental_income'
+    | 'retirement'
+    | 'salary'
+    | 'self_employed'
+    | null;
 
-    /**
-     * The state in which the individual's income is earned.
-     */
-    income_state: string | null;
+  /**
+   * The state in which the individual's income is earned.
+   */
+  income_state: string | null;
 
-    /**
-     * The industry of the individual.
-     */
-    industry:
-      | 'accounting'
-      | 'agriculture'
-      | 'automotive'
-      | 'chemical_manufacturing'
-      | 'construction'
-      | 'educational_medical'
-      | 'food_service'
-      | 'finance'
-      | 'gasoline'
-      | 'health_stores'
-      | 'laundry'
-      | 'maintenance'
-      | 'manufacturing'
-      | 'merchant_wholesale'
-      | 'mining'
-      | 'performing_arts'
-      | 'professional_non_legal'
-      | 'public_administration'
-      | 'publishing'
-      | 'real_estate'
-      | 'recreation_gambling'
-      | 'religious_charity'
-      | 'rental_services'
-      | 'retail_clothing'
-      | 'retail_electronics'
-      | 'retail_food'
-      | 'retail_furnishing'
-      | 'retail_home'
-      | 'retail_non_store'
-      | 'retail_sporting'
-      | 'transportation'
-      | 'travel'
-      | 'utilities'
-      | null;
+  /**
+   * The industry of the individual.
+   */
+  industry:
+    | 'accounting'
+    | 'agriculture'
+    | 'automotive'
+    | 'chemical_manufacturing'
+    | 'construction'
+    | 'educational_medical'
+    | 'food_service'
+    | 'finance'
+    | 'gasoline'
+    | 'health_stores'
+    | 'laundry'
+    | 'maintenance'
+    | 'manufacturing'
+    | 'merchant_wholesale'
+    | 'mining'
+    | 'performing_arts'
+    | 'professional_non_legal'
+    | 'public_administration'
+    | 'publishing'
+    | 'real_estate'
+    | 'recreation_gambling'
+    | 'religious_charity'
+    | 'rental_services'
+    | 'retail_clothing'
+    | 'retail_electronics'
+    | 'retail_food'
+    | 'retail_furnishing'
+    | 'retail_home'
+    | 'retail_non_store'
+    | 'retail_sporting'
+    | 'transportation'
+    | 'travel'
+    | 'utilities'
+    | null;
 
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
 
-    object: string;
+  object: string;
 
-    /**
-     * The occupation of the individual.
-     */
-    occupation:
-      | 'consulting'
-      | 'executive'
-      | 'finance_accounting'
-      | 'food_services'
-      | 'government'
-      | 'healthcare'
-      | 'legal_services'
-      | 'manufacturing'
-      | 'other'
-      | 'sales'
-      | 'science_engineering'
-      | 'technology'
-      | null;
+  /**
+   * The occupation of the individual.
+   */
+  occupation:
+    | 'consulting'
+    | 'executive'
+    | 'finance_accounting'
+    | 'food_services'
+    | 'government'
+    | 'healthcare'
+    | 'legal_services'
+    | 'manufacturing'
+    | 'other'
+    | 'sales'
+    | 'science_engineering'
+    | 'technology'
+    | null;
 
-    /**
-     * The source of the individual's funds.
-     */
-    source_of_funds:
-      | 'alimony'
-      | 'annuity'
-      | 'business_owner'
-      | 'business_revenue'
-      | 'debt_financing'
-      | 'general_employee'
-      | 'government_benefits'
-      | 'homemaker'
-      | 'inheritance_gift'
-      | 'intercompany_loan'
-      | 'investment'
-      | 'investor_funding'
-      | 'legal_settlement'
-      | 'lottery'
-      | 'real_estate'
-      | 'retained_earnings_or_savings'
-      | 'retired'
-      | 'retirement'
-      | 'salary'
-      | 'sale_of_business_assets'
-      | 'sale_of_real_estate'
-      | 'self_employed'
-      | 'senior_executive'
-      | 'trust_income'
-      | null;
+  /**
+   * The source of the individual's funds.
+   */
+  source_of_funds:
+    | 'alimony'
+    | 'annuity'
+    | 'business_owner'
+    | 'business_revenue'
+    | 'debt_financing'
+    | 'general_employee'
+    | 'government_benefits'
+    | 'homemaker'
+    | 'inheritance_gift'
+    | 'intercompany_loan'
+    | 'investment'
+    | 'investor_funding'
+    | 'legal_settlement'
+    | 'lottery'
+    | 'real_estate'
+    | 'retained_earnings_or_savings'
+    | 'retired'
+    | 'retirement'
+    | 'salary'
+    | 'sale_of_business_assets'
+    | 'sale_of_real_estate'
+    | 'self_employed'
+    | 'senior_executive'
+    | 'trust_income'
+    | null;
 
-    updated_at: string;
+  updated_at: string;
 
-    /**
-     * The source of the individual's wealth.
-     */
-    wealth_source:
-      | 'business_sale'
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'other'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
-  }
+  /**
+   * The source of the individual's wealth.
+   */
+  wealth_source:
+    | 'business_sale'
+    | 'family_support'
+    | 'government_benefits'
+    | 'inheritance'
+    | 'investments'
+    | 'other'
+    | 'rental_income'
+    | 'retirement'
+    | 'salary'
+    | 'self_employed'
+    | null;
 }
 
 export interface LegalEntityCreateParams {
@@ -661,7 +661,7 @@ export interface LegalEntityCreateParams {
    */
   addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-  bank_settings?: LegalEntityCreateParams.BankSettings | null;
+  bank_settings?: BankSettings | null;
 
   /**
    * A description of the business.
@@ -852,7 +852,7 @@ export interface LegalEntityCreateParams {
    */
   ticker_symbol?: string | null;
 
-  wealth_and_employment_details?: LegalEntityCreateParams.WealthAndEmploymentDetails | null;
+  wealth_and_employment_details?: WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -861,48 +861,6 @@ export interface LegalEntityCreateParams {
 }
 
 export namespace LegalEntityCreateParams {
-  export interface BankSettings {
-    id: string;
-
-    /**
-     * The percentage of backup withholding to apply to the legal entity.
-     */
-    backup_withholding_percentage: number | null;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * Whether backup withholding is enabled. See more here -
-     * https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
-     */
-    enable_backup_withholding: boolean | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * Cross River Bank specific setting to opt out of privacy policy.
-     */
-    privacy_opt_out: boolean | null;
-
-    /**
-     * It covers, among other types of insider loans, extensions of credit by a member
-     * bank to an executive officer, director, or principal shareholder of the member
-     * bank; a bank holding company of which the member bank is a subsidiary; and any
-     * other subsidiary of that bank holding company.
-     */
-    regulation_o: boolean | null;
-
-    updated_at: string;
-  }
-
   export interface Document {
     /**
      * A category given to the document, can be `null`.
@@ -951,176 +909,6 @@ export namespace LegalEntityCreateParams {
      */
     registration_number: string;
   }
-
-  export interface WealthAndEmploymentDetails {
-    id: string;
-
-    /**
-     * The annual income of the individual in USD.
-     */
-    annual_income: number | null;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * The country in which the employer is located.
-     */
-    employer_country: string | null;
-
-    /**
-     * The name of the employer.
-     */
-    employer_name: string | null;
-
-    /**
-     * The state in which the employer is located.
-     */
-    employer_state: string | null;
-
-    /**
-     * The employment status of the individual.
-     */
-    employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed' | null;
-
-    /**
-     * The country in which the individual's income is earned.
-     */
-    income_country: string | null;
-
-    /**
-     * The source of the individual's income.
-     */
-    income_source:
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
-
-    /**
-     * The state in which the individual's income is earned.
-     */
-    income_state: string | null;
-
-    /**
-     * The industry of the individual.
-     */
-    industry:
-      | 'accounting'
-      | 'agriculture'
-      | 'automotive'
-      | 'chemical_manufacturing'
-      | 'construction'
-      | 'educational_medical'
-      | 'food_service'
-      | 'finance'
-      | 'gasoline'
-      | 'health_stores'
-      | 'laundry'
-      | 'maintenance'
-      | 'manufacturing'
-      | 'merchant_wholesale'
-      | 'mining'
-      | 'performing_arts'
-      | 'professional_non_legal'
-      | 'public_administration'
-      | 'publishing'
-      | 'real_estate'
-      | 'recreation_gambling'
-      | 'religious_charity'
-      | 'rental_services'
-      | 'retail_clothing'
-      | 'retail_electronics'
-      | 'retail_food'
-      | 'retail_furnishing'
-      | 'retail_home'
-      | 'retail_non_store'
-      | 'retail_sporting'
-      | 'transportation'
-      | 'travel'
-      | 'utilities'
-      | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * The occupation of the individual.
-     */
-    occupation:
-      | 'consulting'
-      | 'executive'
-      | 'finance_accounting'
-      | 'food_services'
-      | 'government'
-      | 'healthcare'
-      | 'legal_services'
-      | 'manufacturing'
-      | 'other'
-      | 'sales'
-      | 'science_engineering'
-      | 'technology'
-      | null;
-
-    /**
-     * The source of the individual's funds.
-     */
-    source_of_funds:
-      | 'alimony'
-      | 'annuity'
-      | 'business_owner'
-      | 'business_revenue'
-      | 'debt_financing'
-      | 'general_employee'
-      | 'government_benefits'
-      | 'homemaker'
-      | 'inheritance_gift'
-      | 'intercompany_loan'
-      | 'investment'
-      | 'investor_funding'
-      | 'legal_settlement'
-      | 'lottery'
-      | 'real_estate'
-      | 'retained_earnings_or_savings'
-      | 'retired'
-      | 'retirement'
-      | 'salary'
-      | 'sale_of_business_assets'
-      | 'sale_of_real_estate'
-      | 'self_employed'
-      | 'senior_executive'
-      | 'trust_income'
-      | null;
-
-    updated_at: string;
-
-    /**
-     * The source of the individual's wealth.
-     */
-    wealth_source:
-      | 'business_sale'
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'other'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
-  }
 }
 
 export interface LegalEntityUpdateParams {
@@ -1129,7 +917,7 @@ export interface LegalEntityUpdateParams {
    */
   addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-  bank_settings?: LegalEntityUpdateParams.BankSettings | null;
+  bank_settings?: BankSettings | null;
 
   /**
    * A description of the business.
@@ -1295,7 +1083,7 @@ export interface LegalEntityUpdateParams {
    */
   ticker_symbol?: string | null;
 
-  wealth_and_employment_details?: LegalEntityUpdateParams.WealthAndEmploymentDetails | null;
+  wealth_and_employment_details?: WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -1304,48 +1092,6 @@ export interface LegalEntityUpdateParams {
 }
 
 export namespace LegalEntityUpdateParams {
-  export interface BankSettings {
-    id: string;
-
-    /**
-     * The percentage of backup withholding to apply to the legal entity.
-     */
-    backup_withholding_percentage: number | null;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * Whether backup withholding is enabled. See more here -
-     * https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
-     */
-    enable_backup_withholding: boolean | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * Cross River Bank specific setting to opt out of privacy policy.
-     */
-    privacy_opt_out: boolean | null;
-
-    /**
-     * It covers, among other types of insider loans, extensions of credit by a member
-     * bank to an executive officer, director, or principal shareholder of the member
-     * bank; a bank holding company of which the member bank is a subsidiary; and any
-     * other subsidiary of that bank holding company.
-     */
-    regulation_o: boolean | null;
-
-    updated_at: string;
-  }
-
   /**
    * A list of phone numbers in E.164 format.
    */
@@ -1369,176 +1115,6 @@ export namespace LegalEntityUpdateParams {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
-  }
-
-  export interface WealthAndEmploymentDetails {
-    id: string;
-
-    /**
-     * The annual income of the individual in USD.
-     */
-    annual_income: number | null;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * The country in which the employer is located.
-     */
-    employer_country: string | null;
-
-    /**
-     * The name of the employer.
-     */
-    employer_name: string | null;
-
-    /**
-     * The state in which the employer is located.
-     */
-    employer_state: string | null;
-
-    /**
-     * The employment status of the individual.
-     */
-    employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed' | null;
-
-    /**
-     * The country in which the individual's income is earned.
-     */
-    income_country: string | null;
-
-    /**
-     * The source of the individual's income.
-     */
-    income_source:
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
-
-    /**
-     * The state in which the individual's income is earned.
-     */
-    income_state: string | null;
-
-    /**
-     * The industry of the individual.
-     */
-    industry:
-      | 'accounting'
-      | 'agriculture'
-      | 'automotive'
-      | 'chemical_manufacturing'
-      | 'construction'
-      | 'educational_medical'
-      | 'food_service'
-      | 'finance'
-      | 'gasoline'
-      | 'health_stores'
-      | 'laundry'
-      | 'maintenance'
-      | 'manufacturing'
-      | 'merchant_wholesale'
-      | 'mining'
-      | 'performing_arts'
-      | 'professional_non_legal'
-      | 'public_administration'
-      | 'publishing'
-      | 'real_estate'
-      | 'recreation_gambling'
-      | 'religious_charity'
-      | 'rental_services'
-      | 'retail_clothing'
-      | 'retail_electronics'
-      | 'retail_food'
-      | 'retail_furnishing'
-      | 'retail_home'
-      | 'retail_non_store'
-      | 'retail_sporting'
-      | 'transportation'
-      | 'travel'
-      | 'utilities'
-      | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * The occupation of the individual.
-     */
-    occupation:
-      | 'consulting'
-      | 'executive'
-      | 'finance_accounting'
-      | 'food_services'
-      | 'government'
-      | 'healthcare'
-      | 'legal_services'
-      | 'manufacturing'
-      | 'other'
-      | 'sales'
-      | 'science_engineering'
-      | 'technology'
-      | null;
-
-    /**
-     * The source of the individual's funds.
-     */
-    source_of_funds:
-      | 'alimony'
-      | 'annuity'
-      | 'business_owner'
-      | 'business_revenue'
-      | 'debt_financing'
-      | 'general_employee'
-      | 'government_benefits'
-      | 'homemaker'
-      | 'inheritance_gift'
-      | 'intercompany_loan'
-      | 'investment'
-      | 'investor_funding'
-      | 'legal_settlement'
-      | 'lottery'
-      | 'real_estate'
-      | 'retained_earnings_or_savings'
-      | 'retired'
-      | 'retirement'
-      | 'salary'
-      | 'sale_of_business_assets'
-      | 'sale_of_real_estate'
-      | 'self_employed'
-      | 'senior_executive'
-      | 'trust_income'
-      | null;
-
-    updated_at: string;
-
-    /**
-     * The source of the individual's wealth.
-     */
-    wealth_source:
-      | 'business_sale'
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'other'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
   }
 }
 
@@ -1564,7 +1140,9 @@ export interface LegalEntityListParams extends PageParams {
 
 export declare namespace LegalEntities {
   export {
+    type BankSettings as BankSettings,
     type LegalEntity as LegalEntity,
+    type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
     type LegalEntitiesPage as LegalEntitiesPage,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
