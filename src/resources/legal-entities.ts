@@ -413,6 +413,7 @@ export namespace LegalEntity {
       | 'co_cedulas'
       | 'co_nit'
       | 'drivers_license'
+      | 'es_nif'
       | 'hn_id'
       | 'hn_rtn'
       | 'ie_pps'
