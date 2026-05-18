@@ -304,6 +304,8 @@ export namespace ChildLegalEntity {
       | 'co_nit'
       | 'drivers_license'
       | 'es_nif'
+      | 'gb_nino'
+      | 'gb_utr'
       | 'hn_id'
       | 'hn_rtn'
       | 'ie_pps'
