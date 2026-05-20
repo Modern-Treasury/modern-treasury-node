@@ -959,6 +959,11 @@ export interface LegalEntityAddressCreateRequest {
   address_types?: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
   line2?: string | null;
+
+  /**
+   * Whether this address is the primary address for the legal entity.
+   */
+  primary?: boolean | null;
 }
 
 export interface LegalEntityAssociationInlineCreate {

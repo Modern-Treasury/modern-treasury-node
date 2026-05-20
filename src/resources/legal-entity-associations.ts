@@ -267,6 +267,11 @@ export namespace ChildLegalEntity {
     postal_code: string | null;
 
     /**
+     * Whether this address is the primary address for the legal entity.
+     */
+    primary: boolean | null;
+
+    /**
      * Region or State.
      */
     region: string | null;

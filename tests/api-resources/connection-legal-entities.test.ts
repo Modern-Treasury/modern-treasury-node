@@ -33,6 +33,7 @@ describe('resource connectionLegalEntities', () => {
             region: 'region',
             address_types: ['business'],
             line2: 'line2',
+            primary: true,
           },
         ],
         bank_settings: {
@@ -110,6 +111,7 @@ describe('resource connectionLegalEntities', () => {
                   region: 'region',
                   address_types: ['business'],
                   line2: 'line2',
+                  primary: true,
                 },
               ],
               bank_settings: {
