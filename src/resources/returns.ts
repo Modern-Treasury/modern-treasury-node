@@ -257,7 +257,12 @@ export interface ReturnObject {
     | 'gb_fps'
     | 'interac'
     | 'manual'
+    | 'neft'
+    | 'nz_becs'
+    | 'rtp'
     | 'sepa'
+    | 'signet'
+    | 'stablecoin'
     | 'wire'
     | 'zengin';
 
