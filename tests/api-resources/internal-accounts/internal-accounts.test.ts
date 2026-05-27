@@ -46,6 +46,7 @@ describe('resource internalAccounts', () => {
       ],
       account_type: 'checking',
       counterparty_id: 'counterparty_id',
+      debitable: true,
       external_id: 'external_id',
       legal_entity_id: 'legal_entity_id',
       metadata: { foo: 'string' },
