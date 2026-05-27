@@ -189,6 +189,15 @@ export interface InternalAccount {
   currency: Shared.Currency;
 
   /**
+   * Whether this account can receive ACH debits. Only applicable to accounts created
+   * under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
+   * accounts. Defaults to `false`. Configurable on create only. Please reach out to
+   * support@moderntreasury.com or your customer success manager to enable this
+   * capability for your connection.
+   */
+  debitable: boolean | null;
+
+  /**
    * An optional user-defined 180 character unique identifier.
    */
   external_id: string | null;
@@ -453,6 +462,15 @@ export interface InternalAccountCreateParams {
    * The Counterparty associated to this account.
    */
   counterparty_id?: string;
+
+  /**
+   * Whether this account can receive ACH debits. Only applicable to accounts created
+   * under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
+   * accounts. Defaults to `false`. Configurable on create only. Please reach out to
+   * support@moderntreasury.com or your customer success manager to enable this
+   * capability for your connection.
+   */
+  debitable?: boolean | null;
 
   /**
    * An optional user-defined 180 character unique identifier.
