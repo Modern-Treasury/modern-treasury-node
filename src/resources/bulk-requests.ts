@@ -164,6 +164,7 @@ export interface BulkRequestCreateParams {
     | BulkRequestCreateParams.ExpectedPaymentUpdateRequestWithID
     | BulkRequestCreateParams.TransactionUpdateRequestWithID
     | BulkRequestCreateParams.LedgerTransactionUpdateRequestWithID
+    | BulkRequestCreateParams.LedgerAccountUpdateRequestWithID
   >;
 
   /**
@@ -1566,6 +1567,31 @@ export namespace BulkRequestCreateParams {
      * To post a ledger transaction at creation, use `posted`.
      */
     status?: 'archived' | 'pending' | 'posted';
+  }
+
+  export interface LedgerAccountUpdateRequestWithID {
+    id?: string;
+
+    /**
+     * The description of the ledger account.
+     */
+    description?: string | null;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: { [key: string]: string };
+
+    /**
+     * The name of the ledger account.
+     */
+    name?: string;
   }
 }
 
