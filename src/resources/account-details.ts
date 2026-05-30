@@ -72,8 +72,8 @@ export interface AccountDetail {
   account_number_safe: string;
 
   /**
-   * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
-   * account number is in a generic format.
+   * One of `iban`, `clabe`, or `other`. Use `other` if the bank account number is in
+   * a generic format.
    */
   account_number_type:
     | 'au_number'
@@ -89,8 +89,7 @@ export interface AccountDetail {
     | 'pan'
     | 'polygon_address'
     | 'sg_number'
-    | 'solana_address'
-    | 'wallet_address';
+    | 'solana_address';
 
   created_at: string;
 
@@ -124,8 +123,8 @@ export interface AccountDetailCreateParams {
   account_number: string;
 
   /**
-   * Body param: One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if
-   * the bank account number is in a generic format.
+   * Body param: One of `iban`, `clabe`, or `other`. Use `other` if the bank account
+   * number is in a generic format.
    */
   account_number_type?:
     | 'au_number'
@@ -141,8 +140,7 @@ export interface AccountDetailCreateParams {
     | 'pan'
     | 'polygon_address'
     | 'sg_number'
-    | 'solana_address'
-    | 'wallet_address';
+    | 'solana_address';
 }
 
 export interface AccountDetailRetrieveParams {

@@ -134,7 +134,6 @@ export interface IncomingPaymentDetail {
     | 'polygon_address'
     | 'sg_number'
     | 'solana_address'
-    | 'wallet_address'
     | null;
 
   /**
