@@ -197,8 +197,8 @@ export namespace VirtualAccountCreateParams {
     account_number: string;
 
     /**
-     * One of `iban`, `clabe`, or `other`. Use `other` if the bank account number is in
-     * a generic format.
+     * One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
+     * account number is in a generic format.
      */
     account_number_type?:
       | 'au_number'
@@ -214,7 +214,8 @@ export namespace VirtualAccountCreateParams {
       | 'pan'
       | 'polygon_address'
       | 'sg_number'
-      | 'solana_address';
+      | 'solana_address'
+      | 'wallet_address';
   }
 
   export interface RoutingDetail {

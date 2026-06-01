@@ -1119,7 +1119,8 @@ export namespace PaymentOrderCreateParams {
         | 'pan'
         | 'polygon_address'
         | 'sg_number'
-        | 'solana_address';
+        | 'solana_address'
+        | 'wallet_address';
     }
 
     export interface RoutingDetail {
@@ -1594,7 +1595,8 @@ export namespace PaymentOrderUpdateParams {
         | 'pan'
         | 'polygon_address'
         | 'sg_number'
-        | 'solana_address';
+        | 'solana_address'
+        | 'wallet_address';
     }
 
     export interface RoutingDetail {
@@ -2159,7 +2161,8 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'pan'
         | 'polygon_address'
         | 'sg_number'
-        | 'solana_address';
+        | 'solana_address'
+        | 'wallet_address';
     }
 
     export interface RoutingDetail {
