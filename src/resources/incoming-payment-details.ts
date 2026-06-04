@@ -155,8 +155,6 @@ export interface IncomingPaymentDetail {
     | 'dk_interbank_clearing_code'
     | 'gb_sort_code'
     | 'hk_interbank_clearing_code'
-    | 'hu_interbank_clearing_code'
-    | 'id_sknbi_code'
     | 'il_bank_code'
     | 'in_ifsc'
     | 'jp_zengin_code'
@@ -199,8 +197,7 @@ export interface IncomingPaymentDetail {
   transaction_line_item_id: string | null;
 
   /**
-   * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
-   * `wire`.
+   * One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`.
    */
   type:
     | 'ach'
@@ -209,12 +206,10 @@ export interface IncomingPaymentDetail {
     | 'book'
     | 'check'
     | 'eft'
-    | 'interac'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
-    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -319,8 +314,7 @@ export interface IncomingPaymentDetailListParams extends PageParams {
   subtype?: string;
 
   /**
-   * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
-   * `wire`.
+   * One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`.
    */
   type?:
     | 'ach'
@@ -329,12 +323,10 @@ export interface IncomingPaymentDetailListParams extends PageParams {
     | 'book'
     | 'check'
     | 'eft'
-    | 'interac'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
-    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -400,12 +392,10 @@ export interface IncomingPaymentDetailCreateAsyncParams {
     | 'book'
     | 'check'
     | 'eft'
-    | 'interac'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
-    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
