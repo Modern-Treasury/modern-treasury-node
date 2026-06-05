@@ -20,13 +20,6 @@ export class Documents extends APIResource {
   }
 
   /**
-   * Get an existing document.
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Document> {
-    return this._client.get(path`/api/documents/${id}`, options);
-  }
-
-  /**
    * Get a list of documents.
    */
   list(
@@ -34,6 +27,13 @@ export class Documents extends APIResource {
     options?: RequestOptions,
   ): PagePromise<DocumentsPage, Document> {
     return this._client.getAPIList('/api/documents', Page<Document>, { query, ...options });
+  }
+
+  /**
+   * Get an existing document.
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<Document> {
+    return this._client.get(path`/api/documents/${id}`, options);
   }
 }
 

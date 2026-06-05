@@ -23,6 +23,18 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/connections',
   },
   {
+    clientCallName: 'client.counterparties.collectAccount',
+    fullyQualifiedName: 'counterparties.collectAccount',
+    httpMethod: 'post',
+    httpPath: '/api/counterparties/{id}/collect_account',
+  },
+  {
+    clientCallName: 'client.counterparties.list',
+    fullyQualifiedName: 'counterparties.list',
+    httpMethod: 'get',
+    httpPath: '/api/counterparties',
+  },
+  {
     clientCallName: 'client.counterparties.create',
     fullyQualifiedName: 'counterparties.create',
     httpMethod: 'post',
@@ -41,22 +53,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/counterparties/{id}',
   },
   {
-    clientCallName: 'client.counterparties.list',
-    fullyQualifiedName: 'counterparties.list',
-    httpMethod: 'get',
-    httpPath: '/api/counterparties',
-  },
-  {
     clientCallName: 'client.counterparties.delete',
     fullyQualifiedName: 'counterparties.delete',
     httpMethod: 'delete',
     httpPath: '/api/counterparties/{id}',
   },
   {
-    clientCallName: 'client.counterparties.collectAccount',
-    fullyQualifiedName: 'counterparties.collectAccount',
-    httpMethod: 'post',
-    httpPath: '/api/counterparties/{id}/collect_account',
+    clientCallName: 'client.events.list',
+    fullyQualifiedName: 'events.list',
+    httpMethod: 'get',
+    httpPath: '/api/events',
   },
   {
     clientCallName: 'client.events.retrieve',
@@ -65,10 +71,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/events/{id}',
   },
   {
-    clientCallName: 'client.events.list',
-    fullyQualifiedName: 'events.list',
+    clientCallName: 'client.expectedPayments.list',
+    fullyQualifiedName: 'expectedPayments.list',
     httpMethod: 'get',
-    httpPath: '/api/events',
+    httpPath: '/api/expected_payments',
   },
   {
     clientCallName: 'client.expectedPayments.create',
@@ -89,12 +95,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/expected_payments/{id}',
   },
   {
-    clientCallName: 'client.expectedPayments.list',
-    fullyQualifiedName: 'expectedPayments.list',
-    httpMethod: 'get',
-    httpPath: '/api/expected_payments',
-  },
-  {
     clientCallName: 'client.expectedPayments.delete',
     fullyQualifiedName: 'expectedPayments.delete',
     httpMethod: 'delete',
@@ -104,6 +104,30 @@ export const sdkMethods: SdkMethod[] = [
     clientCallName: 'client.externalAccounts.create',
     fullyQualifiedName: 'externalAccounts.create',
     httpMethod: 'post',
+    httpPath: '/api/external_accounts',
+  },
+  {
+    clientCallName: 'client.externalAccounts.delete',
+    fullyQualifiedName: 'externalAccounts.delete',
+    httpMethod: 'delete',
+    httpPath: '/api/external_accounts/{id}',
+  },
+  {
+    clientCallName: 'client.externalAccounts.verify',
+    fullyQualifiedName: 'externalAccounts.verify',
+    httpMethod: 'post',
+    httpPath: '/api/external_accounts/{id}/verify',
+  },
+  {
+    clientCallName: 'client.externalAccounts.completeVerification',
+    fullyQualifiedName: 'externalAccounts.completeVerification',
+    httpMethod: 'post',
+    httpPath: '/api/external_accounts/{id}/complete_verification',
+  },
+  {
+    clientCallName: 'client.externalAccounts.list',
+    fullyQualifiedName: 'externalAccounts.list',
+    httpMethod: 'get',
     httpPath: '/api/external_accounts',
   },
   {
@@ -119,28 +143,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/external_accounts/{id}',
   },
   {
-    clientCallName: 'client.externalAccounts.list',
-    fullyQualifiedName: 'externalAccounts.list',
+    clientCallName: 'client.incomingPaymentDetails.list',
+    fullyQualifiedName: 'incomingPaymentDetails.list',
     httpMethod: 'get',
-    httpPath: '/api/external_accounts',
-  },
-  {
-    clientCallName: 'client.externalAccounts.delete',
-    fullyQualifiedName: 'externalAccounts.delete',
-    httpMethod: 'delete',
-    httpPath: '/api/external_accounts/{id}',
-  },
-  {
-    clientCallName: 'client.externalAccounts.completeVerification',
-    fullyQualifiedName: 'externalAccounts.completeVerification',
-    httpMethod: 'post',
-    httpPath: '/api/external_accounts/{id}/complete_verification',
-  },
-  {
-    clientCallName: 'client.externalAccounts.verify',
-    fullyQualifiedName: 'externalAccounts.verify',
-    httpMethod: 'post',
-    httpPath: '/api/external_accounts/{id}/verify',
+    httpPath: '/api/incoming_payment_details',
   },
   {
     clientCallName: 'client.incomingPaymentDetails.retrieve',
@@ -155,16 +161,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/incoming_payment_details/{id}',
   },
   {
-    clientCallName: 'client.incomingPaymentDetails.list',
-    fullyQualifiedName: 'incomingPaymentDetails.list',
-    httpMethod: 'get',
-    httpPath: '/api/incoming_payment_details',
-  },
-  {
     clientCallName: 'client.incomingPaymentDetails.createAsync',
     fullyQualifiedName: 'incomingPaymentDetails.createAsync',
     httpMethod: 'post',
     httpPath: '/api/simulations/incoming_payment_details/create_async',
+  },
+  {
+    clientCallName: 'client.invoices.list',
+    fullyQualifiedName: 'invoices.list',
+    httpMethod: 'get',
+    httpPath: '/api/invoices',
   },
   {
     clientCallName: 'client.invoices.create',
@@ -185,16 +191,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/invoices/{id}',
   },
   {
-    clientCallName: 'client.invoices.list',
-    fullyQualifiedName: 'invoices.list',
-    httpMethod: 'get',
-    httpPath: '/api/invoices',
-  },
-  {
     clientCallName: 'client.invoices.addPaymentOrder',
     fullyQualifiedName: 'invoices.addPaymentOrder',
     httpMethod: 'put',
     httpPath: '/api/invoices/{id}/payment_orders/{payment_order_id}',
+  },
+  {
+    clientCallName: 'client.invoices.lineItems.list',
+    fullyQualifiedName: 'invoices.lineItems.list',
+    httpMethod: 'get',
+    httpPath: '/api/invoices/{invoice_id}/invoice_line_items',
   },
   {
     clientCallName: 'client.invoices.lineItems.create',
@@ -215,12 +221,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/invoices/{invoice_id}/invoice_line_items/{id}',
   },
   {
-    clientCallName: 'client.invoices.lineItems.list',
-    fullyQualifiedName: 'invoices.lineItems.list',
-    httpMethod: 'get',
-    httpPath: '/api/invoices/{invoice_id}/invoice_line_items',
-  },
-  {
     clientCallName: 'client.invoices.lineItems.delete',
     fullyQualifiedName: 'invoices.lineItems.delete',
     httpMethod: 'delete',
@@ -233,16 +233,22 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/documents',
   },
   {
+    clientCallName: 'client.documents.list',
+    fullyQualifiedName: 'documents.list',
+    httpMethod: 'get',
+    httpPath: '/api/documents',
+  },
+  {
     clientCallName: 'client.documents.retrieve',
     fullyQualifiedName: 'documents.retrieve',
     httpMethod: 'get',
     httpPath: '/api/documents/{id}',
   },
   {
-    clientCallName: 'client.documents.list',
-    fullyQualifiedName: 'documents.list',
+    clientCallName: 'client.accountCollectionFlows.list',
+    fullyQualifiedName: 'accountCollectionFlows.list',
     httpMethod: 'get',
-    httpPath: '/api/documents',
+    httpPath: '/api/account_collection_flows',
   },
   {
     clientCallName: 'client.accountCollectionFlows.create',
@@ -263,10 +269,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/account_collection_flows/{id}',
   },
   {
-    clientCallName: 'client.accountCollectionFlows.list',
-    fullyQualifiedName: 'accountCollectionFlows.list',
+    clientCallName: 'client.accountDetails.list',
+    fullyQualifiedName: 'accountDetails.list',
     httpMethod: 'get',
-    httpPath: '/api/account_collection_flows',
+    httpPath: '/api/{accounts_type}/{account_id}/account_details',
   },
   {
     clientCallName: 'client.accountDetails.create',
@@ -281,16 +287,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/{accounts_type}/{account_id}/account_details/{id}',
   },
   {
-    clientCallName: 'client.accountDetails.list',
-    fullyQualifiedName: 'accountDetails.list',
-    httpMethod: 'get',
-    httpPath: '/api/{accounts_type}/{account_id}/account_details',
-  },
-  {
     clientCallName: 'client.accountDetails.delete',
     fullyQualifiedName: 'accountDetails.delete',
     httpMethod: 'delete',
     httpPath: '/api/{accounts_type}/{account_id}/account_details/{id}',
+  },
+  {
+    clientCallName: 'client.routingDetails.list',
+    fullyQualifiedName: 'routingDetails.list',
+    httpMethod: 'get',
+    httpPath: '/api/{accounts_type}/{account_id}/routing_details',
   },
   {
     clientCallName: 'client.routingDetails.create',
@@ -305,16 +311,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/{accounts_type}/{account_id}/routing_details/{id}',
   },
   {
-    clientCallName: 'client.routingDetails.list',
-    fullyQualifiedName: 'routingDetails.list',
-    httpMethod: 'get',
-    httpPath: '/api/{accounts_type}/{account_id}/routing_details',
-  },
-  {
     clientCallName: 'client.routingDetails.delete',
     fullyQualifiedName: 'routingDetails.delete',
     httpMethod: 'delete',
     httpPath: '/api/{accounts_type}/{account_id}/routing_details/{id}',
+  },
+  {
+    clientCallName: 'client.internalAccounts.list',
+    fullyQualifiedName: 'internalAccounts.list',
+    httpMethod: 'get',
+    httpPath: '/api/internal_accounts',
   },
   {
     clientCallName: 'client.internalAccounts.create',
@@ -335,10 +341,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/internal_accounts/{id}',
   },
   {
-    clientCallName: 'client.internalAccounts.list',
-    fullyQualifiedName: 'internalAccounts.list',
-    httpMethod: 'get',
-    httpPath: '/api/internal_accounts',
+    clientCallName: 'client.internalAccounts.updateAccountCapability',
+    fullyQualifiedName: 'internalAccounts.updateAccountCapability',
+    httpMethod: 'patch',
+    httpPath: '/api/internal_accounts/{internal_account_id}/account_capabilities/{id}',
   },
   {
     clientCallName: 'client.internalAccounts.requestClosure',
@@ -347,15 +353,9 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/internal_accounts/{id}/request_closure',
   },
   {
-    clientCallName: 'client.internalAccounts.updateAccountCapability',
-    fullyQualifiedName: 'internalAccounts.updateAccountCapability',
-    httpMethod: 'patch',
-    httpPath: '/api/internal_accounts/{internal_account_id}/account_capabilities/{id}',
-  },
-  {
-    clientCallName: 'client.internalAccounts.balanceReports.create',
-    fullyQualifiedName: 'internalAccounts.balanceReports.create',
-    httpMethod: 'post',
+    clientCallName: 'client.internalAccounts.balanceReports.list',
+    fullyQualifiedName: 'internalAccounts.balanceReports.list',
+    httpMethod: 'get',
     httpPath: '/api/internal_accounts/{internal_account_id}/balance_reports',
   },
   {
@@ -365,9 +365,9 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/internal_accounts/{internal_account_id}/balance_reports/{id}',
   },
   {
-    clientCallName: 'client.internalAccounts.balanceReports.list',
-    fullyQualifiedName: 'internalAccounts.balanceReports.list',
-    httpMethod: 'get',
+    clientCallName: 'client.internalAccounts.balanceReports.create',
+    fullyQualifiedName: 'internalAccounts.balanceReports.create',
+    httpMethod: 'post',
     httpPath: '/api/internal_accounts/{internal_account_id}/balance_reports',
   },
   {
@@ -375,6 +375,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'internalAccounts.balanceReports.delete',
     httpMethod: 'delete',
     httpPath: '/api/internal_accounts/{internal_account_id}/balance_reports/{id}',
+  },
+  {
+    clientCallName: 'client.ledgers.list',
+    fullyQualifiedName: 'ledgers.list',
+    httpMethod: 'get',
+    httpPath: '/api/ledgers',
   },
   {
     clientCallName: 'client.ledgers.create',
@@ -395,16 +401,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledgers/{id}',
   },
   {
-    clientCallName: 'client.ledgers.list',
-    fullyQualifiedName: 'ledgers.list',
-    httpMethod: 'get',
-    httpPath: '/api/ledgers',
-  },
-  {
     clientCallName: 'client.ledgers.delete',
     fullyQualifiedName: 'ledgers.delete',
     httpMethod: 'delete',
     httpPath: '/api/ledgers/{id}',
+  },
+  {
+    clientCallName: 'client.ledgerAccountCategories.list',
+    fullyQualifiedName: 'ledgerAccountCategories.list',
+    httpMethod: 'get',
+    httpPath: '/api/ledger_account_categories',
   },
   {
     clientCallName: 'client.ledgerAccountCategories.create',
@@ -425,12 +431,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledger_account_categories/{id}',
   },
   {
-    clientCallName: 'client.ledgerAccountCategories.list',
-    fullyQualifiedName: 'ledgerAccountCategories.list',
-    httpMethod: 'get',
-    httpPath: '/api/ledger_account_categories',
-  },
-  {
     clientCallName: 'client.ledgerAccountCategories.delete',
     fullyQualifiedName: 'ledgerAccountCategories.delete',
     httpMethod: 'delete',
@@ -443,22 +443,28 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}',
   },
   {
-    clientCallName: 'client.ledgerAccountCategories.addNestedCategory',
-    fullyQualifiedName: 'ledgerAccountCategories.addNestedCategory',
-    httpMethod: 'put',
-    httpPath: '/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}',
-  },
-  {
     clientCallName: 'client.ledgerAccountCategories.removeLedgerAccount',
     fullyQualifiedName: 'ledgerAccountCategories.removeLedgerAccount',
     httpMethod: 'delete',
     httpPath: '/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}',
   },
   {
+    clientCallName: 'client.ledgerAccountCategories.addNestedCategory',
+    fullyQualifiedName: 'ledgerAccountCategories.addNestedCategory',
+    httpMethod: 'put',
+    httpPath: '/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}',
+  },
+  {
     clientCallName: 'client.ledgerAccountCategories.removeNestedCategory',
     fullyQualifiedName: 'ledgerAccountCategories.removeNestedCategory',
     httpMethod: 'delete',
     httpPath: '/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}',
+  },
+  {
+    clientCallName: 'client.ledgerAccounts.list',
+    fullyQualifiedName: 'ledgerAccounts.list',
+    httpMethod: 'get',
+    httpPath: '/api/ledger_accounts',
   },
   {
     clientCallName: 'client.ledgerAccounts.create',
@@ -479,12 +485,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledger_accounts/{id}',
   },
   {
-    clientCallName: 'client.ledgerAccounts.list',
-    fullyQualifiedName: 'ledgerAccounts.list',
-    httpMethod: 'get',
-    httpPath: '/api/ledger_accounts',
-  },
-  {
     clientCallName: 'client.ledgerAccounts.delete',
     fullyQualifiedName: 'ledgerAccounts.delete',
     httpMethod: 'delete',
@@ -494,6 +494,12 @@ export const sdkMethods: SdkMethod[] = [
     clientCallName: 'client.ledgerAccountBalanceMonitors.create',
     fullyQualifiedName: 'ledgerAccountBalanceMonitors.create',
     httpMethod: 'post',
+    httpPath: '/api/ledger_account_balance_monitors',
+  },
+  {
+    clientCallName: 'client.ledgerAccountBalanceMonitors.list',
+    fullyQualifiedName: 'ledgerAccountBalanceMonitors.list',
+    httpMethod: 'get',
     httpPath: '/api/ledger_account_balance_monitors',
   },
   {
@@ -507,12 +513,6 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'ledgerAccountBalanceMonitors.update',
     httpMethod: 'patch',
     httpPath: '/api/ledger_account_balance_monitors/{id}',
-  },
-  {
-    clientCallName: 'client.ledgerAccountBalanceMonitors.list',
-    fullyQualifiedName: 'ledgerAccountBalanceMonitors.list',
-    httpMethod: 'get',
-    httpPath: '/api/ledger_account_balance_monitors',
   },
   {
     clientCallName: 'client.ledgerAccountBalanceMonitors.delete',
@@ -533,6 +533,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledger_account_statements/{id}',
   },
   {
+    clientCallName: 'client.ledgerEntries.list',
+    fullyQualifiedName: 'ledgerEntries.list',
+    httpMethod: 'get',
+    httpPath: '/api/ledger_entries',
+  },
+  {
     clientCallName: 'client.ledgerEntries.retrieve',
     fullyQualifiedName: 'ledgerEntries.retrieve',
     httpMethod: 'get',
@@ -545,10 +551,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledger_entries/{id}',
   },
   {
-    clientCallName: 'client.ledgerEntries.list',
-    fullyQualifiedName: 'ledgerEntries.list',
+    clientCallName: 'client.ledgerTransactions.list',
+    fullyQualifiedName: 'ledgerTransactions.list',
     httpMethod: 'get',
-    httpPath: '/api/ledger_entries',
+    httpPath: '/api/ledger_transactions',
   },
   {
     clientCallName: 'client.ledgerTransactions.create',
@@ -569,10 +575,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledger_transactions/{id}',
   },
   {
-    clientCallName: 'client.ledgerTransactions.list',
-    fullyQualifiedName: 'ledgerTransactions.list',
-    httpMethod: 'get',
-    httpPath: '/api/ledger_transactions',
+    clientCallName: 'client.ledgerTransactions.createReversal',
+    fullyQualifiedName: 'ledgerTransactions.createReversal',
+    httpMethod: 'post',
+    httpPath: '/api/ledger_transactions/{id}/reversal',
   },
   {
     clientCallName: 'client.ledgerTransactions.createPartialPost',
@@ -581,16 +587,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledger_transactions/{id}/partial_post',
   },
   {
-    clientCallName: 'client.ledgerTransactions.createReversal',
-    fullyQualifiedName: 'ledgerTransactions.createReversal',
-    httpMethod: 'post',
-    httpPath: '/api/ledger_transactions/{id}/reversal',
-  },
-  {
     clientCallName: 'client.ledgerTransactions.versions.list',
     fullyQualifiedName: 'ledgerTransactions.versions.list',
     httpMethod: 'get',
     httpPath: '/api/ledger_transaction_versions',
+  },
+  {
+    clientCallName: 'client.lineItems.list',
+    fullyQualifiedName: 'lineItems.list',
+    httpMethod: 'get',
+    httpPath: '/api/{itemizable_type}/{itemizable_id}/line_items',
   },
   {
     clientCallName: 'client.lineItems.retrieve',
@@ -605,10 +611,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/{itemizable_type}/{itemizable_id}/line_items/{id}',
   },
   {
-    clientCallName: 'client.lineItems.list',
-    fullyQualifiedName: 'lineItems.list',
+    clientCallName: 'client.paymentFlows.list',
+    fullyQualifiedName: 'paymentFlows.list',
     httpMethod: 'get',
-    httpPath: '/api/{itemizable_type}/{itemizable_id}/line_items',
+    httpPath: '/api/payment_flows',
   },
   {
     clientCallName: 'client.paymentFlows.create',
@@ -629,15 +635,21 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/payment_flows/{id}',
   },
   {
-    clientCallName: 'client.paymentFlows.list',
-    fullyQualifiedName: 'paymentFlows.list',
-    httpMethod: 'get',
-    httpPath: '/api/payment_flows',
-  },
-  {
     clientCallName: 'client.paymentOrders.create',
     fullyQualifiedName: 'paymentOrders.create',
     httpMethod: 'post',
+    httpPath: '/api/payment_orders',
+  },
+  {
+    clientCallName: 'client.paymentOrders.createAsync',
+    fullyQualifiedName: 'paymentOrders.createAsync',
+    httpMethod: 'post',
+    httpPath: '/api/payment_orders/create_async',
+  },
+  {
+    clientCallName: 'client.paymentOrders.list',
+    fullyQualifiedName: 'paymentOrders.list',
+    httpMethod: 'get',
     httpPath: '/api/payment_orders',
   },
   {
@@ -653,16 +665,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/payment_orders/{id}',
   },
   {
-    clientCallName: 'client.paymentOrders.list',
-    fullyQualifiedName: 'paymentOrders.list',
+    clientCallName: 'client.paymentOrders.reversals.list',
+    fullyQualifiedName: 'paymentOrders.reversals.list',
     httpMethod: 'get',
-    httpPath: '/api/payment_orders',
-  },
-  {
-    clientCallName: 'client.paymentOrders.createAsync',
-    fullyQualifiedName: 'paymentOrders.createAsync',
-    httpMethod: 'post',
-    httpPath: '/api/payment_orders/create_async',
+    httpPath: '/api/payment_orders/{payment_order_id}/reversals',
   },
   {
     clientCallName: 'client.paymentOrders.reversals.create',
@@ -677,10 +683,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/payment_orders/{payment_order_id}/reversals/{reversal_id}',
   },
   {
-    clientCallName: 'client.paymentOrders.reversals.list',
-    fullyQualifiedName: 'paymentOrders.reversals.list',
+    clientCallName: 'client.paymentReferences.list',
+    fullyQualifiedName: 'paymentReferences.list',
     httpMethod: 'get',
-    httpPath: '/api/payment_orders/{payment_order_id}/reversals',
+    httpPath: '/api/payment_references',
   },
   {
     clientCallName: 'client.paymentReferences.retrieve',
@@ -688,13 +694,13 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/api/payment_references/{id}',
   },
-  {
-    clientCallName: 'client.paymentReferences.list',
-    fullyQualifiedName: 'paymentReferences.list',
-    httpMethod: 'get',
-    httpPath: '/api/payment_references',
-  },
   { clientCallName: 'client.paymentReferences.retireve', fullyQualifiedName: 'paymentReferences.retireve' },
+  {
+    clientCallName: 'client.returns.list',
+    fullyQualifiedName: 'returns.list',
+    httpMethod: 'get',
+    httpPath: '/api/returns',
+  },
   {
     clientCallName: 'client.returns.create',
     fullyQualifiedName: 'returns.create',
@@ -708,15 +714,9 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/returns/{id}',
   },
   {
-    clientCallName: 'client.returns.list',
-    fullyQualifiedName: 'returns.list',
+    clientCallName: 'client.transactions.list',
+    fullyQualifiedName: 'transactions.list',
     httpMethod: 'get',
-    httpPath: '/api/returns',
-  },
-  {
-    clientCallName: 'client.transactions.create',
-    fullyQualifiedName: 'transactions.create',
-    httpMethod: 'post',
     httpPath: '/api/transactions',
   },
   {
@@ -732,9 +732,9 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/transactions/{id}',
   },
   {
-    clientCallName: 'client.transactions.list',
-    fullyQualifiedName: 'transactions.list',
-    httpMethod: 'get',
+    clientCallName: 'client.transactions.create',
+    fullyQualifiedName: 'transactions.create',
+    httpMethod: 'post',
     httpPath: '/api/transactions',
   },
   {
@@ -744,9 +744,9 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/transactions/{id}',
   },
   {
-    clientCallName: 'client.transactions.lineItems.create',
-    fullyQualifiedName: 'transactions.lineItems.create',
-    httpMethod: 'post',
+    clientCallName: 'client.transactions.lineItems.list',
+    fullyQualifiedName: 'transactions.lineItems.list',
+    httpMethod: 'get',
     httpPath: '/api/transaction_line_items',
   },
   {
@@ -756,9 +756,9 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/transaction_line_items/{id}',
   },
   {
-    clientCallName: 'client.transactions.lineItems.list',
-    fullyQualifiedName: 'transactions.lineItems.list',
-    httpMethod: 'get',
+    clientCallName: 'client.transactions.lineItems.create',
+    fullyQualifiedName: 'transactions.lineItems.create',
+    httpMethod: 'post',
     httpPath: '/api/transaction_line_items',
   },
   {
@@ -772,6 +772,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'validations.validateRoutingNumber',
     httpMethod: 'get',
     httpPath: '/api/validations/routing_numbers',
+  },
+  {
+    clientCallName: 'client.virtualAccounts.list',
+    fullyQualifiedName: 'virtualAccounts.list',
+    httpMethod: 'get',
+    httpPath: '/api/virtual_accounts',
   },
   {
     clientCallName: 'client.virtualAccounts.create',
@@ -792,16 +798,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/virtual_accounts/{id}',
   },
   {
-    clientCallName: 'client.virtualAccounts.list',
-    fullyQualifiedName: 'virtualAccounts.list',
-    httpMethod: 'get',
-    httpPath: '/api/virtual_accounts',
-  },
-  {
     clientCallName: 'client.virtualAccounts.delete',
     fullyQualifiedName: 'virtualAccounts.delete',
     httpMethod: 'delete',
     httpPath: '/api/virtual_accounts/{id}',
+  },
+  {
+    clientCallName: 'client.bulkRequests.list',
+    fullyQualifiedName: 'bulkRequests.list',
+    httpMethod: 'get',
+    httpPath: '/api/bulk_requests',
   },
   {
     clientCallName: 'client.bulkRequests.create',
@@ -816,10 +822,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/bulk_requests/{id}',
   },
   {
-    clientCallName: 'client.bulkRequests.list',
-    fullyQualifiedName: 'bulkRequests.list',
+    clientCallName: 'client.bulkResults.list',
+    fullyQualifiedName: 'bulkResults.list',
     httpMethod: 'get',
-    httpPath: '/api/bulk_requests',
+    httpPath: '/api/bulk_results',
   },
   {
     clientCallName: 'client.bulkResults.retrieve',
@@ -828,15 +834,15 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/bulk_results/{id}',
   },
   {
-    clientCallName: 'client.bulkResults.list',
-    fullyQualifiedName: 'bulkResults.list',
-    httpMethod: 'get',
-    httpPath: '/api/bulk_results',
-  },
-  {
     clientCallName: 'client.ledgerAccountSettlements.create',
     fullyQualifiedName: 'ledgerAccountSettlements.create',
     httpMethod: 'post',
+    httpPath: '/api/ledger_account_settlements',
+  },
+  {
+    clientCallName: 'client.ledgerAccountSettlements.list',
+    fullyQualifiedName: 'ledgerAccountSettlements.list',
+    httpMethod: 'get',
     httpPath: '/api/ledger_account_settlements',
   },
   {
@@ -852,12 +858,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/ledger_account_settlements/{id}',
   },
   {
-    clientCallName: 'client.ledgerAccountSettlements.list',
-    fullyQualifiedName: 'ledgerAccountSettlements.list',
-    httpMethod: 'get',
-    httpPath: '/api/ledger_account_settlements',
-  },
-  {
     clientCallName: 'client.ledgerAccountSettlements.accountEntries.update',
     fullyQualifiedName: 'ledgerAccountSettlements.accountEntries.update',
     httpMethod: 'patch',
@@ -868,6 +868,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'ledgerAccountSettlements.accountEntries.delete',
     httpMethod: 'delete',
     httpPath: '/api/ledger_account_settlements/{id}/ledger_entries',
+  },
+  {
+    clientCallName: 'client.foreignExchangeQuotes.list',
+    fullyQualifiedName: 'foreignExchangeQuotes.list',
+    httpMethod: 'get',
+    httpPath: '/api/foreign_exchange_quotes',
   },
   {
     clientCallName: 'client.foreignExchangeQuotes.create',
@@ -882,10 +888,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/foreign_exchange_quotes/{id}',
   },
   {
-    clientCallName: 'client.foreignExchangeQuotes.list',
-    fullyQualifiedName: 'foreignExchangeQuotes.list',
+    clientCallName: 'client.connectionLegalEntities.list',
+    fullyQualifiedName: 'connectionLegalEntities.list',
     httpMethod: 'get',
-    httpPath: '/api/foreign_exchange_quotes',
+    httpPath: '/api/connection_legal_entities',
   },
   {
     clientCallName: 'client.connectionLegalEntities.create',
@@ -906,10 +912,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/connection_legal_entities/{id}',
   },
   {
-    clientCallName: 'client.connectionLegalEntities.list',
-    fullyQualifiedName: 'connectionLegalEntities.list',
+    clientCallName: 'client.legalEntities.list',
+    fullyQualifiedName: 'legalEntities.list',
     httpMethod: 'get',
-    httpPath: '/api/connection_legal_entities',
+    httpPath: '/api/legal_entities',
   },
   {
     clientCallName: 'client.legalEntities.create',
@@ -930,10 +936,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/legal_entities/{id}',
   },
   {
-    clientCallName: 'client.legalEntities.list',
-    fullyQualifiedName: 'legalEntities.list',
+    clientCallName: 'client.paymentActions.list',
+    fullyQualifiedName: 'paymentActions.list',
     httpMethod: 'get',
-    httpPath: '/api/legal_entities',
+    httpPath: '/api/payment_actions',
   },
   {
     clientCallName: 'client.paymentActions.create',
@@ -954,10 +960,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/payment_actions/{id}',
   },
   {
-    clientCallName: 'client.paymentActions.list',
-    fullyQualifiedName: 'paymentActions.list',
+    clientCallName: 'client.journalEntries.list',
+    fullyQualifiedName: 'journalEntries.list',
     httpMethod: 'get',
-    httpPath: '/api/payment_actions',
+    httpPath: '/api/journal_entries',
   },
   {
     clientCallName: 'client.journalEntries.retrieve',
@@ -966,10 +972,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/journal_entries/{id}',
   },
   {
-    clientCallName: 'client.journalEntries.list',
-    fullyQualifiedName: 'journalEntries.list',
+    clientCallName: 'client.journalReports.list',
+    fullyQualifiedName: 'journalReports.list',
     httpMethod: 'get',
-    httpPath: '/api/journal_entries',
+    httpPath: '/api/journal_reports',
   },
   {
     clientCallName: 'client.journalReports.retrieve',
@@ -984,10 +990,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/journal_reports/{id}',
   },
   {
-    clientCallName: 'client.journalReports.list',
-    fullyQualifiedName: 'journalReports.list',
+    clientCallName: 'client.holds.list',
+    fullyQualifiedName: 'holds.list',
     httpMethod: 'get',
-    httpPath: '/api/journal_reports',
+    httpPath: '/api/holds',
   },
   {
     clientCallName: 'client.holds.create',
@@ -1006,12 +1012,6 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'holds.update',
     httpMethod: 'patch',
     httpPath: '/api/holds/{id}',
-  },
-  {
-    clientCallName: 'client.holds.list',
-    fullyQualifiedName: 'holds.list',
-    httpMethod: 'get',
-    httpPath: '/api/holds',
   },
 ];
 

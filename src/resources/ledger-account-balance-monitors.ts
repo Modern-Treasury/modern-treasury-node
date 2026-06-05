@@ -32,6 +32,28 @@ export class LedgerAccountBalanceMonitors extends APIResource {
   }
 
   /**
+   * Get a list of ledger account balance monitors.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerAccountBalanceMonitor of client.ledgerAccountBalanceMonitors.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: LedgerAccountBalanceMonitorListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerAccountBalanceMonitorsPage, LedgerAccountBalanceMonitor> {
+    return this._client.getAPIList(
+      '/api/ledger_account_balance_monitors',
+      Page<LedgerAccountBalanceMonitor>,
+      { query, ...options },
+    );
+  }
+
+  /**
    * Get details on a single ledger account balance monitor.
    *
    * @example
@@ -59,28 +81,6 @@ export class LedgerAccountBalanceMonitors extends APIResource {
     options?: RequestOptions,
   ): APIPromise<LedgerAccountBalanceMonitor> {
     return this._client.patch(path`/api/ledger_account_balance_monitors/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of ledger account balance monitors.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const ledgerAccountBalanceMonitor of client.ledgerAccountBalanceMonitors.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: LedgerAccountBalanceMonitorListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerAccountBalanceMonitorsPage, LedgerAccountBalanceMonitor> {
-    return this._client.getAPIList(
-      '/api/ledger_account_balance_monitors',
-      Page<LedgerAccountBalanceMonitor>,
-      { query, ...options },
-    );
   }
 
   /**
@@ -240,19 +240,6 @@ export namespace LedgerAccountBalanceMonitorCreateParams {
   }
 }
 
-export interface LedgerAccountBalanceMonitorUpdateParams {
-  /**
-   * An optional, free-form description for internal use.
-   */
-  description?: string;
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
-}
-
 export interface LedgerAccountBalanceMonitorListParams extends PageParams {
   /**
    * If you have specific IDs to retrieve in bulk, you can pass them as query
@@ -273,12 +260,25 @@ export interface LedgerAccountBalanceMonitorListParams extends PageParams {
   metadata?: { [key: string]: string };
 }
 
+export interface LedgerAccountBalanceMonitorUpdateParams {
+  /**
+   * An optional, free-form description for internal use.
+   */
+  description?: string;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+}
+
 export declare namespace LedgerAccountBalanceMonitors {
   export {
     type LedgerAccountBalanceMonitor as LedgerAccountBalanceMonitor,
     type LedgerAccountBalanceMonitorsPage as LedgerAccountBalanceMonitorsPage,
     type LedgerAccountBalanceMonitorCreateParams as LedgerAccountBalanceMonitorCreateParams,
-    type LedgerAccountBalanceMonitorUpdateParams as LedgerAccountBalanceMonitorUpdateParams,
     type LedgerAccountBalanceMonitorListParams as LedgerAccountBalanceMonitorListParams,
+    type LedgerAccountBalanceMonitorUpdateParams as LedgerAccountBalanceMonitorUpdateParams,
   };
 }
