@@ -1,5 +1,1208 @@
 # Changelog
 
+## 4.15.0 (2026-04-22)
+
+Full Changelog: [v4.14.0...v4.15.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.14.0...v4.15.0)
+
+### Features
+
+* **api:** api update ([9c77617](https://github.com/Modern-Treasury/modern-treasury-node/commit/9c77617d9d2e0fcb4f85cc1318e274191ecc75fb))
+* **api:** api update ([ec856a2](https://github.com/Modern-Treasury/modern-treasury-node/commit/ec856a2a33a6885669408459ad53d153d274f3e7))
+* **api:** api update ([73cda49](https://github.com/Modern-Treasury/modern-treasury-node/commit/73cda499029d2f69cdd9dbff5789cfd7ae1b4e01))
+* **api:** api update ([7bf3477](https://github.com/Modern-Treasury/modern-treasury-node/commit/7bf34774b03a4f840777ae0cd5ee1e7c614ef1de))
+* **api:** api update ([4ab8248](https://github.com/Modern-Treasury/modern-treasury-node/commit/4ab824831573ae58db908285a58d97e60820257f))
+* **api:** api update ([7f7e77a](https://github.com/Modern-Treasury/modern-treasury-node/commit/7f7e77a803548ffcc5740eba4c9106858834013b))
+* **api:** api update ([aac4500](https://github.com/Modern-Treasury/modern-treasury-node/commit/aac450006214bef41fb5f5d41292a5c1ac752643))
+* **api:** api update ([2170dea](https://github.com/Modern-Treasury/modern-treasury-node/commit/2170dea05d4edd055a9e899861ec3129bcd317f2))
+* **api:** api update ([3b6b75d](https://github.com/Modern-Treasury/modern-treasury-node/commit/3b6b75dea5cc8c2b1ce0a3c92c72471cc1cae104))
+
+
+### Chores
+
+* fix example snippet imports ([8eafc54](https://github.com/Modern-Treasury/modern-treasury-node/commit/8eafc542749661500fef0036cea34e36c44dbab7))
+* **internal:** codegen related update ([34e49c4](https://github.com/Modern-Treasury/modern-treasury-node/commit/34e49c47f45bdde543e75e5675f65069ca4460b6))
+* **internal:** more robust bootstrap script ([84c2ad9](https://github.com/Modern-Treasury/modern-treasury-node/commit/84c2ad91cccf10965967affabb3121898a229d01))
+* **internal:** show error causes in MCP servers when running in local mode ([397a02b](https://github.com/Modern-Treasury/modern-treasury-node/commit/397a02b787806db4dfd9ea43aa611b74edc87d67))
+* **internal:** update docs ordering ([6055b9a](https://github.com/Modern-Treasury/modern-treasury-node/commit/6055b9a99eed8652ecad6c1acb3097bdb4888723))
+
+
+### Documentation
+
+* improve examples ([39b9ec6](https://github.com/Modern-Treasury/modern-treasury-node/commit/39b9ec62eb78e4db89b2d4e5f1206c74fbf6d207))
+
+## 4.14.0 (2026-04-08)
+
+Full Changelog: [v4.13.0...v4.14.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.13.0...v4.14.0)
+
+### Features
+
+* **api:** api update ([c6eb2f9](https://github.com/Modern-Treasury/modern-treasury-node/commit/c6eb2f945908a79c584441470156146458b4da83))
+
+
+### Chores
+
+* **internal:** codegen related update ([7755d97](https://github.com/Modern-Treasury/modern-treasury-node/commit/7755d9728aeb00ec35afb3849301d743c26133e0))
+* **internal:** fix MCP server import ordering ([9bf3f3f](https://github.com/Modern-Treasury/modern-treasury-node/commit/9bf3f3f2dfaac7c6422e9f6535d7985e096f7f00))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([4a23e61](https://github.com/Modern-Treasury/modern-treasury-node/commit/4a23e61202ae366e0f3ef2abbeb1b29007a20ef2))
+
+## 4.13.0 (2026-04-04)
+
+Full Changelog: [v4.12.0...v4.13.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.12.0...v4.13.0)
+
+### Features
+
+* **api:** add third_party_verification model ([86ecefc](https://github.com/Modern-Treasury/modern-treasury-node/commit/86ecefcd8ae694f1284285374606d2d8e2f574db))
+* **api:** api update ([712e9cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/712e9cdacf1aa4d601551d7713e4be944d2e1ab1))
+* **api:** api update ([a71e2b6](https://github.com/Modern-Treasury/modern-treasury-node/commit/a71e2b6258c59064fa9b2a275f53732514ae0be4))
+* **api:** api update ([3249a4e](https://github.com/Modern-Treasury/modern-treasury-node/commit/3249a4e6d672df1230de0631510884b5fb4d4805))
+* **api:** api update ([8264871](https://github.com/Modern-Treasury/modern-treasury-node/commit/82648719f8cc45924ca1a946386cad682b914615))
+* **api:** api update ([ffdf211](https://github.com/Modern-Treasury/modern-treasury-node/commit/ffdf2118bec7c08bb69449d8bb37e2942eed35b4))
+* **api:** api update ([8c90645](https://github.com/Modern-Treasury/modern-treasury-node/commit/8c9064509f25fb1df4576f0b517dbd3488ecea7d))
+* **api:** api update ([b6983a8](https://github.com/Modern-Treasury/modern-treasury-node/commit/b6983a867bdaaada1536630fbe03cf176917bc86))
+* **api:** api update ([53f403a](https://github.com/Modern-Treasury/modern-treasury-node/commit/53f403a9be945eb81021154856527926f37045e2))
+
+
+### Bug Fixes
+
+* **internal:** gitignore generated `oidc` dir ([71f5c2c](https://github.com/Modern-Treasury/modern-treasury-node/commit/71f5c2c98a61a54112e9bd4a629db4c8b8fcfc88))
+
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([b7bf532](https://github.com/Modern-Treasury/modern-treasury-node/commit/b7bf532e09479a1239ec738d93530f00eceece86))
+* **internal:** codegen related update ([44f8fc9](https://github.com/Modern-Treasury/modern-treasury-node/commit/44f8fc9baa6aa9f2682e37be6dddef0031d3848d))
+* **internal:** fix MCP docker image builds in yarn projects ([8afc1a1](https://github.com/Modern-Treasury/modern-treasury-node/commit/8afc1a10965e9192589621b52349f44acfcbc382))
+* **internal:** improve local docs search for MCP servers ([70717f9](https://github.com/Modern-Treasury/modern-treasury-node/commit/70717f9ab6a76818d37560bfe1ff55f92cbb7cad))
+* **internal:** improve local docs search for MCP servers ([90c7b1a](https://github.com/Modern-Treasury/modern-treasury-node/commit/90c7b1af6149b39583231785912853fa802fa7fa))
+* **internal:** support custom-instructions-path flag in MCP servers ([3a09f8f](https://github.com/Modern-Treasury/modern-treasury-node/commit/3a09f8f4408c92cb434bdb1427d55d8b39a55132))
+* **internal:** support local docs search in MCP servers ([0b9a098](https://github.com/Modern-Treasury/modern-treasury-node/commit/0b9a09816e36927203b369765be43ed6eb154da7))
+* **internal:** support type annotations when running MCP in local execution mode ([126b57e](https://github.com/Modern-Treasury/modern-treasury-node/commit/126b57e654b17096a41db78cbcb3725cffd12ae3))
+* **internal:** use link instead of file in MCP server package.json files ([f09920d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f09920dab32994b8e9acc108f1623b02629da3a3))
+* **mcp-server:** add support for session id, forward client info ([4052c7e](https://github.com/Modern-Treasury/modern-treasury-node/commit/4052c7e2866eedffdf16bfa09b1cfe9e0827d005))
+* **mcp-server:** log client info ([a0a9230](https://github.com/Modern-Treasury/modern-treasury-node/commit/a0a923085fb1fbde72835d79f0999004ee8ab5ae))
+
+## 4.12.0 (2026-03-25)
+
+Full Changelog: [v4.11.0...v4.12.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.11.0...v4.12.0)
+
+### Features
+
+* **api:** api update ([640d1ae](https://github.com/Modern-Treasury/modern-treasury-node/commit/640d1ae32a6cee0291305910d20347e410dbd866))
+* **api:** api update ([fb9fc39](https://github.com/Modern-Treasury/modern-treasury-node/commit/fb9fc39816a1132af5477284561b697bbc555593))
+* **api:** api update ([ee44a11](https://github.com/Modern-Treasury/modern-treasury-node/commit/ee44a114e5966252ee0d662d291ff83330479fe6))
+* **api:** api update ([a3f9b8f](https://github.com/Modern-Treasury/modern-treasury-node/commit/a3f9b8fd3901c4354d4bcf684de2e8de825b8068))
+* **api:** switch back to prism mock server ([afa7d8a](https://github.com/Modern-Treasury/modern-treasury-node/commit/afa7d8a31c3a9664b3c12b1d50acbfa2f992c0c5))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([1a74e52](https://github.com/Modern-Treasury/modern-treasury-node/commit/1a74e522d514402c82bd7548db0dbd70871be65c))
+* **internal:** fix MCP server TS errors that occur with required client options ([0918aab](https://github.com/Modern-Treasury/modern-treasury-node/commit/0918aabe7584de0ded43798c9931424c2bc95cf7))
+* **internal:** update gitignore ([8ac8051](https://github.com/Modern-Treasury/modern-treasury-node/commit/8ac80510c38ab6adac8848adfa7ee4266d450830))
+* **tests:** bump steady to v0.19.4 ([0840627](https://github.com/Modern-Treasury/modern-treasury-node/commit/084062734dde09538edd1a31c1a1e77101ac9b46))
+* **tests:** bump steady to v0.19.5 ([058bde3](https://github.com/Modern-Treasury/modern-treasury-node/commit/058bde3dc33b136553b4b50e2674c5c05b20b8e1))
+* **tests:** bump steady to v0.19.6 ([c47dc5f](https://github.com/Modern-Treasury/modern-treasury-node/commit/c47dc5fa8a3acc5152babb81f7088a9d8ce78a9c))
+* **tests:** bump steady to v0.19.7 ([f045622](https://github.com/Modern-Treasury/modern-treasury-node/commit/f045622680fe567fc833b2b4b569341f1079d3ed))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([d0f1d3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/d0f1d3cad641f98e09d82f5e620d588f4f8c8608))
+
+## 4.11.0 (2026-03-18)
+
+Full Changelog: [v4.10.0...v4.11.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.10.0...v4.11.0)
+
+### Features
+
+* **api:** api update ([9d410fc](https://github.com/Modern-Treasury/modern-treasury-node/commit/9d410fc7bb974171687a42a65613a97ad5450b79))
+
+## 4.10.0 (2026-03-17)
+
+Full Changelog: [v4.9.0...v4.10.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.9.0...v4.10.0)
+
+### Features
+
+* **api:** api update ([a752a2b](https://github.com/Modern-Treasury/modern-treasury-node/commit/a752a2bc45d0906be7d3c2960b8050186dfe4b44))
+* **api:** disable breaking change detection ([a898d65](https://github.com/Modern-Treasury/modern-treasury-node/commit/a898d65f94bf272db7b4a7436f07c8e9423f1b1d))
+* **tests:** enable breaking change detection ([761f8e7](https://github.com/Modern-Treasury/modern-treasury-node/commit/761f8e7b77b61532c504027cfc03d9e0c2751200))
+
+
+### Chores
+
+* **internal:** configure MCP Server hosting ([36044fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/36044fa3499af6e35d2d7a19ad9b7e79c275e5c9))
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([f45874d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f45874daaff418ce086189f6fbf088c2bfe26e89))
+
+## 4.9.0 (2026-03-16)
+
+Full Changelog: [v4.8.0...v4.9.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.8.0...v4.9.0)
+
+### Features
+
+* **api:** api update ([60a47ac](https://github.com/Modern-Treasury/modern-treasury-node/commit/60a47acf57739e88eacbc72dadf6a6e2362078fe))
+* **api:** api update ([a188bb6](https://github.com/Modern-Treasury/modern-treasury-node/commit/a188bb64b5c24bd533002967bdfa2778144ee839))
+* **api:** api update ([d581461](https://github.com/Modern-Treasury/modern-treasury-node/commit/d581461274d54f98b734683dbffb583acd4432ed))
+
+
+### Chores
+
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([7421120](https://github.com/Modern-Treasury/modern-treasury-node/commit/74211208195091bfae2e141a51bc402effde1a5e))
+* **internal:** support x-stainless-mcp-client-envs header in MCP servers ([2ee0aeb](https://github.com/Modern-Treasury/modern-treasury-node/commit/2ee0aebf0463ad6bdf2b2c08e07059b1fa63f727))
+* **internal:** tweak CI branches ([ebd4a75](https://github.com/Modern-Treasury/modern-treasury-node/commit/ebd4a75742e191bc411032d8659a2d5d9b8e8fc7))
+
+## 4.8.0 (2026-03-12)
+
+Full Changelog: [v4.7.0...v4.8.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.7.0...v4.8.0)
+
+### Features
+
+* **api:** api update ([9cfe2a6](https://github.com/Modern-Treasury/modern-treasury-node/commit/9cfe2a63147585ebcc5a4212f28d5879a84d37cf))
+* **api:** api update ([2478f85](https://github.com/Modern-Treasury/modern-treasury-node/commit/2478f85732396623bca77a4c7f97d648271ec52e))
+
+
+### Chores
+
+* **internal:** bump @modelcontextprotocol/sdk, @hono/node-server, and minimatch ([e378db7](https://github.com/Modern-Treasury/modern-treasury-node/commit/e378db76697079ceb535cebeb46c6958cab1c939))
+
+## 4.7.0 (2026-03-10)
+
+Full Changelog: [v4.6.0...v4.7.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.6.0...v4.7.0)
+
+### Features
+
+* **api:** api update ([adec45a](https://github.com/Modern-Treasury/modern-treasury-node/commit/adec45ab8116b4c4ca66ead82fc0a8c6df9a4d0a))
+
+## 4.6.0 (2026-03-09)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* **api:** api update ([7bb408f](https://github.com/Modern-Treasury/modern-treasury-node/commit/7bb408f938d66eb4660928213c74157e5b4d7d35))
+
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([670e345](https://github.com/Modern-Treasury/modern-treasury-node/commit/670e34513b3998bd2bbd555f054b4a08eeb3c6f8))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([3bfc281](https://github.com/Modern-Treasury/modern-treasury-node/commit/3bfc281bb508c1d05b5bac389e403c689b8dcb3b))
+* **internal:** update dependencies to address dependabot vulnerabilities ([27b8643](https://github.com/Modern-Treasury/modern-treasury-node/commit/27b864319e8f9d6dfb22b5c09c4bc307bc986783))
+* **mcp-server:** improve instructions ([acbcf00](https://github.com/Modern-Treasury/modern-treasury-node/commit/acbcf00c69260b480c0f22779a4ffd483973b334))
+* update placeholder string ([702796b](https://github.com/Modern-Treasury/modern-treasury-node/commit/702796b57a1dacace89035be7433749a11b4b42f))
+
+## 4.5.0 (2026-03-05)
+
+Full Changelog: [v4.4.2...v4.5.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.2...v4.5.0)
+
+### Features
+
+* **api:** api update ([81cc4ac](https://github.com/Modern-Treasury/modern-treasury-node/commit/81cc4accf08e87216d84da6b911756ac462df320))
+* **api:** api update ([97f9d30](https://github.com/Modern-Treasury/modern-treasury-node/commit/97f9d308ed9e8baff20cd85bac87fcc6d3504821))
+* **api:** api update ([ccc1d0d](https://github.com/Modern-Treasury/modern-treasury-node/commit/ccc1d0d362e0b199a648d5a4b82a67d7b9017823))
+* **api:** api update ([9d160fc](https://github.com/Modern-Treasury/modern-treasury-node/commit/9d160fca010370ef4bdfff9c25954005e4b3e7bd))
+* **mcp:** add an option to disable code tool ([a02efbf](https://github.com/Modern-Treasury/modern-treasury-node/commit/a02efbf02bf2e0063981daf89c00ad6fcd604d34))
+
+
+### Bug Fixes
+
+* fix request delays for retrying to be more respectful of high requested delays ([0b791d9](https://github.com/Modern-Treasury/modern-treasury-node/commit/0b791d975d715db92d3d12dcbef0f88afae0f931))
+* **mcp:** update prompt ([240e0b0](https://github.com/Modern-Treasury/modern-treasury-node/commit/240e0b0efe0dae82e6e4340204eb970111e119b7))
+
+
+### Chores
+
+* **api:** remove an obsolete reviewer ([795eb26](https://github.com/Modern-Treasury/modern-treasury-node/commit/795eb26125d22f959fb0190426e7ae5c6f03ac63))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([3b82655](https://github.com/Modern-Treasury/modern-treasury-node/commit/3b82655979273607b539ad421b9dda1f1e953867))
+* **internal:** move stringifyQuery implementation to internal function ([e906836](https://github.com/Modern-Treasury/modern-treasury-node/commit/e9068368034579f0196e50765b2340660362614d))
+* **internal:** switch MCP servers to use pino for logging ([853bf50](https://github.com/Modern-Treasury/modern-treasury-node/commit/853bf50b47788d1d490d4aa16b75f725fbecc2ad))
+* **internal:** use x-stainless-mcp-client-envs header for MCP remote code tool calls ([09ddb0d](https://github.com/Modern-Treasury/modern-treasury-node/commit/09ddb0db9e8250e68536286571e10e105ad9a29a))
+* **mcp-server:** return access instructions for 404 without API key ([62f5cdd](https://github.com/Modern-Treasury/modern-treasury-node/commit/62f5cdd05436909393d6feb0a9f5f368bb26ab5b))
+* **test:** do not count install time for mock server timeout ([6acf219](https://github.com/Modern-Treasury/modern-treasury-node/commit/6acf21919308887211d0e8f4eafeb36d225d2cbb))
+
+## 4.4.2 (2026-02-25)
+
+Full Changelog: [v4.4.1...v4.4.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.1...v4.4.2)
+
+### Chores
+
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([773c7b5](https://github.com/Modern-Treasury/modern-treasury-node/commit/773c7b5f7dfe6bf7a446fa7be976def5abb63ce1))
+
+## 4.4.1 (2026-02-24)
+
+Full Changelog: [v4.4.0...v4.4.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.4.0...v4.4.1)
+
+### Chores
+
+* **api:** publish to npm using oidc ([070d34f](https://github.com/Modern-Treasury/modern-treasury-node/commit/070d34f05817b74cda5585fd05615d9f36483bc0))
+* **internal:** make MCP code execution location configurable via a flag ([0b0c852](https://github.com/Modern-Treasury/modern-treasury-node/commit/0b0c852c500c574f68b681057d7e34b1b5113269))
+
+## 4.4.0 (2026-02-24)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* **api:** api update ([df8aa4d](https://github.com/Modern-Treasury/modern-treasury-node/commit/df8aa4dce4f31927217a03b3ac97f31445337c4e))
+
+## 4.3.0 (2026-02-24)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** api update ([97fbdb1](https://github.com/Modern-Treasury/modern-treasury-node/commit/97fbdb146650d99e7039adc9b3033f3f85ace514))
+* **api:** api update ([9f81f33](https://github.com/Modern-Treasury/modern-treasury-node/commit/9f81f33af83ab740ef01ef8424094cd3383f03d5))
+* **api:** api update ([fbd0999](https://github.com/Modern-Treasury/modern-treasury-node/commit/fbd099916d495afa30f9f020e7c2549f47363dff))
+
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([5e89f13](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e89f135fdf35797d546c6b9562f880b9c64adae))
+
+
+### Chores
+
+* **internal:** upgrade @modelcontextprotocol/sdk and hono ([3ea5f40](https://github.com/Modern-Treasury/modern-treasury-node/commit/3ea5f40969f70eb61bcd4a651c11e586c6e1780d))
+
+## 4.2.0 (2026-02-19)
+
+Full Changelog: [v4.1.0...v4.2.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.1.0...v4.2.0)
+
+### Features
+
+* **api:** api update ([70db72d](https://github.com/Modern-Treasury/modern-treasury-node/commit/70db72db0679ebac662855423244a0b87181b797))
+* **api:** api update ([ddf74ce](https://github.com/Modern-Treasury/modern-treasury-node/commit/ddf74cea458499669ca2863fa82ad658ba64f3a3))
+* **api:** api update ([20a1a28](https://github.com/Modern-Treasury/modern-treasury-node/commit/20a1a28a3ae9104ddecd7e8568a05bc450ed6572))
+* **api:** api update ([1b4eae2](https://github.com/Modern-Treasury/modern-treasury-node/commit/1b4eae2aeb58bbf8f34106235a5f5bee445ed214))
+* **api:** api update ([a7f726f](https://github.com/Modern-Treasury/modern-treasury-node/commit/a7f726f36bed1ecbe49639a316b5a63ef9e36ce0))
+* **api:** api update ([0ab5b3d](https://github.com/Modern-Treasury/modern-treasury-node/commit/0ab5b3d09a7b692552b9eb3d905d8955acef469f))
+* **api:** api update ([c639777](https://github.com/Modern-Treasury/modern-treasury-node/commit/c639777540b1cd4fc438ed3649e73192568b05d5))
+* **api:** api update ([af070cc](https://github.com/Modern-Treasury/modern-treasury-node/commit/af070cc4b32c097aed7d88c29a0a63191a3437fa))
+* **mcp:** add initial server instructions ([3d1775c](https://github.com/Modern-Treasury/modern-treasury-node/commit/3d1775c66fc3c57b75acbf54dd5bca4e33ceca93))
+
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([664de60](https://github.com/Modern-Treasury/modern-treasury-node/commit/664de60c92c73fe6a1e75eca6ec0cb064aed2eaf))
+* **client:** avoid removing abort listener too early ([b410567](https://github.com/Modern-Treasury/modern-treasury-node/commit/b4105678d7a8f2b3102dd170345f5e2ac57279ba))
+* **docs:** fix mcp installation instructions for remote servers ([53203d1](https://github.com/Modern-Treasury/modern-treasury-node/commit/53203d1c0f3b474296a4b674f10e86ba211a7f71))
+* **mcp:** allow falling back for required env variables ([9a728bc](https://github.com/Modern-Treasury/modern-treasury-node/commit/9a728bcf36336eb34f94dbdfd26c8828dc4d442a))
+* **mcp:** initialize SDK lazily to avoid failing the connection on init errors ([6f0ca2b](https://github.com/Modern-Treasury/modern-treasury-node/commit/6f0ca2bcd50d989f370fa3d283aea7b3b2e6d398))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([6bf0249](https://github.com/Modern-Treasury/modern-treasury-node/commit/6bf0249def5b8966e18436367aa27948f3b3c68c))
+* **client:** do not parse responses with empty content-length ([78ef863](https://github.com/Modern-Treasury/modern-treasury-node/commit/78ef863ac33e9994fa07e8dc2d51275c73c22d8f))
+* **client:** restructure abort controller binding ([258df0c](https://github.com/Modern-Treasury/modern-treasury-node/commit/258df0c5b1951a4228779680857d4f072f8a2e81))
+* **internal/client:** fix form-urlencoded requests ([bd91d1b](https://github.com/Modern-Treasury/modern-treasury-node/commit/bd91d1bfa5c37c3f76f7746cf4394557a8a9c2f5))
+* **internal:** add health check to MCP server when running in HTTP mode ([d89a2fe](https://github.com/Modern-Treasury/modern-treasury-node/commit/d89a2fe34d1c0fdffc49bb0717dce18115e63799))
+* **internal:** allow basic filtering of methods allowed for MCP code mode ([89d1a8d](https://github.com/Modern-Treasury/modern-treasury-node/commit/89d1a8deee479289ff442664e2a70442919754e1))
+* **internal:** allow setting x-stainless-api-key header on mcp server requests ([2c37c28](https://github.com/Modern-Treasury/modern-treasury-node/commit/2c37c28d5cfa65834632914587a8e66b501fbdef))
+* **internal:** always generate MCP server dockerfiles and upgrade associated dependencies ([dcf21a0](https://github.com/Modern-Treasury/modern-treasury-node/commit/dcf21a0740523ffa0e42461374160981a4e718c0))
+* **internal:** avoid type checking errors with ts-reset ([1bcd351](https://github.com/Modern-Treasury/modern-treasury-node/commit/1bcd351a035bab934168529ca77f4791f7feb3a8))
+* **internal:** cache fetch instruction calls in MCP server ([cc510b7](https://github.com/Modern-Treasury/modern-treasury-node/commit/cc510b7080434d57a416491f4d2e8c9ae13afd63))
+* **internal:** codegen related update ([433caa0](https://github.com/Modern-Treasury/modern-treasury-node/commit/433caa08b59a2467e377b694c4f72d8108397a35))
+* **internal:** codegen related update ([cb76de5](https://github.com/Modern-Treasury/modern-treasury-node/commit/cb76de526237b9e873add16ad87c9a5f67435ce9))
+* **internal:** codegen related update ([f47b96d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f47b96df64a04095549459ec56c5be743d69d8d3))
+* **internal:** codegen related update ([17fd655](https://github.com/Modern-Treasury/modern-treasury-node/commit/17fd65598ba9a2fc3fae58fa4df40e71c3472518))
+* **internal:** codegen related update ([c68e333](https://github.com/Modern-Treasury/modern-treasury-node/commit/c68e333620d6227e468129dd5ed0c96b7272dc0b))
+* **internal:** fix pagination internals not accepting option promises ([8d0383c](https://github.com/Modern-Treasury/modern-treasury-node/commit/8d0383c661845bebfc410b2ac7104af2cfb18dcb))
+* **internal:** improve layout of generated MCP server files ([6a86e76](https://github.com/Modern-Treasury/modern-treasury-node/commit/6a86e761295be0a4378420d4c25189b196baa971))
+* **internal:** refactor flag parsing for MCP servers and add debug flag ([57b38bc](https://github.com/Modern-Treasury/modern-treasury-node/commit/57b38bcb421a50f7a73f62b2a0a640c3fe948d00))
+* **internal:** support oauth authorization code flow for MCP servers ([17f9577](https://github.com/Modern-Treasury/modern-treasury-node/commit/17f9577185c3711828bdd9b4596e92f142f07826))
+* **internal:** update `actions/checkout` version ([3cbbbc2](https://github.com/Modern-Treasury/modern-treasury-node/commit/3cbbbc2bd5ef0038f632b02c36981a9981c706ee))
+* **internal:** update lock file ([ba7cdeb](https://github.com/Modern-Treasury/modern-treasury-node/commit/ba7cdeb032ef09872d7b3b8921a4d1bc76da295c))
+* **internal:** upgrade babel, qs, js-yaml ([10153a5](https://github.com/Modern-Treasury/modern-treasury-node/commit/10153a55c9c40ceffe04faf86b2746bade719530))
+* **mcp:** add intent param to execute tool ([a9bddfc](https://github.com/Modern-Treasury/modern-treasury-node/commit/a9bddfc3f2f39b519f3c3683d491b0fad8645114))
+* **mcp:** correctly update version in sync with sdk ([02ec67c](https://github.com/Modern-Treasury/modern-treasury-node/commit/02ec67ca94d56b310b5c56f8066621cb20085d30))
+* **mcp:** forward STAINLESS_API_KEY to docs search endpoint ([9fc0783](https://github.com/Modern-Treasury/modern-treasury-node/commit/9fc0783707139d1d0729d071f7f873cb2e7d5503))
+* **mcp:** pass intent param to execute handler ([e56af43](https://github.com/Modern-Treasury/modern-treasury-node/commit/e56af4300608f9de22d3eb7748d93e013de3a78d))
+* **mcp:** up tsconfig lib version to es2022 ([9e09179](https://github.com/Modern-Treasury/modern-treasury-node/commit/9e091798682af179a079349cbb48afb2e6a94404))
+* update mock server docs ([9d056e8](https://github.com/Modern-Treasury/modern-treasury-node/commit/9d056e87b19ff72c18f140b3ce08b5ca28698355))
+
+## 4.1.0 (2026-01-14)
+
+Full Changelog: [v4.0.0...v4.1.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.0.0...v4.1.0)
+
+### Features
+
+* **api:** api update ([9495fa9](https://github.com/Modern-Treasury/modern-treasury-node/commit/9495fa939b3a83d5d2d516558efc0fbebf14d125))
+* **api:** api update ([a7b7350](https://github.com/Modern-Treasury/modern-treasury-node/commit/a7b73501245835123254799111748a7637a5f252))
+* **api:** manual updates ([652db48](https://github.com/Modern-Treasury/modern-treasury-node/commit/652db489d0b1d64c928edf1616894e1f9a19f14b))
+* **api:** manual updates ([3a82c3f](https://github.com/Modern-Treasury/modern-treasury-node/commit/3a82c3f5cc63bbfe1f0e38c72d6bf8e7ac35eecd))
+* **api:** manual updates ([8e68f84](https://github.com/Modern-Treasury/modern-treasury-node/commit/8e68f8475e55b851c2a0d2aa90253498ae506623))
+
+
+### Bug Fixes
+
+* **mcp:** update code tool prompt ([784a008](https://github.com/Modern-Treasury/modern-treasury-node/commit/784a008ab4baf5d26247a261ae328180a8d3a754))
+
+
+### Chores
+
+* add splat as owner of SDK PRs ([9887d4b](https://github.com/Modern-Treasury/modern-treasury-node/commit/9887d4b3032bc02d69f1da204d1904d7442ac1b3))
+* fix typo in descriptions ([0ed9a0a](https://github.com/Modern-Treasury/modern-treasury-node/commit/0ed9a0a125c45693208ed87897d9685237f41a15))
+* **internal:** codegen related update ([04a6538](https://github.com/Modern-Treasury/modern-treasury-node/commit/04a6538411912c3d4ea5fa81573cd9f9643a69f5))
+* **internal:** codegen related update ([0ec82eb](https://github.com/Modern-Treasury/modern-treasury-node/commit/0ec82eb19275dd64c57fb4fb251f40e45461b239))
+* **internal:** codegen related update ([7b9fea5](https://github.com/Modern-Treasury/modern-treasury-node/commit/7b9fea522d08c10c7e7fc013c7e10a7c4d361ab5))
+* **internal:** codegen related update ([7689428](https://github.com/Modern-Treasury/modern-treasury-node/commit/768942828815436ef389e40978fde9bf7c1f32ff))
+* **mcp:** upgrade dependencies ([f0d4a8f](https://github.com/Modern-Treasury/modern-treasury-node/commit/f0d4a8f13a146ef8ef213a532b0708c2727da489))
+
+## 4.0.0 (2026-01-07)
+
+Full Changelog: [v3.3.0...v4.0.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.3.0...v4.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** remove deprecated tool schemes
+* **mcp:** **Migration:** To migrate, simply modify the command used to invoke the MCP server. Currently, the only supported tool scheme is code mode. Now, starting the server with just `node /path/to/mcp/server` or `npx package-name` will invoke code tools: changing your command to one of these is likely all you will need to do.
+
+### Features
+
+* **api:** api update ([1308732](https://github.com/Modern-Treasury/modern-treasury-node/commit/1308732f1398a346f1c60a0aec921c59a3019ff1))
+* **api:** api update ([74267ca](https://github.com/Modern-Treasury/modern-treasury-node/commit/74267ca526cbce9cdb73226f14276ed19f724671))
+* **api:** api update ([19beaf4](https://github.com/Modern-Treasury/modern-treasury-node/commit/19beaf45659b8b679cba10be67de41955d0ba357))
+* **api:** api update ([1f894b3](https://github.com/Modern-Treasury/modern-treasury-node/commit/1f894b3b2362e1f35fa7068a390d8a0f01da4715))
+* **api:** api update ([184c7cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/184c7cdc565975616d748b739273e01ee2466276))
+* **api:** api update ([7fe6b1c](https://github.com/Modern-Treasury/modern-treasury-node/commit/7fe6b1c15c4e9ae3ce697a3f83e2a3ebfb0f4683))
+* **api:** manual updates ([c7517a9](https://github.com/Modern-Treasury/modern-treasury-node/commit/c7517a9a0bd658f8317f66140bc127ecfeab1ed3))
+* **api:** manual updates ([53d89ec](https://github.com/Modern-Treasury/modern-treasury-node/commit/53d89ec385ee2bbc27dcfdca2e3172ba53737018))
+* **api:** manual updates ([7661fa1](https://github.com/Modern-Treasury/modern-treasury-node/commit/7661fa11acd3b16ecf08ace1775094d7b09ecfcf))
+* **api:** manual updates ([c2708fe](https://github.com/Modern-Treasury/modern-treasury-node/commit/c2708fe493fd42e8a8615bac6c7f0f1b6057e838))
+* **mcp:** add detail field to docs search tool ([5519e11](https://github.com/Modern-Treasury/modern-treasury-node/commit/5519e116a05401f49e4e51cd71b92ec415713e9f))
+* **mcp:** add typescript check to code execution tool ([491d6fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/491d6fa180f0aedd0c14bf588ed993008de036df))
+* **mcp:** handle code mode calls in the Stainless API ([72b1e17](https://github.com/Modern-Treasury/modern-treasury-node/commit/72b1e17bd4174e0e0c5de47ed4a91e60d485db17))
+* **mcp:** return logs on code tool errors ([ca196a5](https://github.com/Modern-Treasury/modern-treasury-node/commit/ca196a5ccca96400e34de77b009761c20d083b59))
+
+
+### Bug Fixes
+
+* **mcp:** add client instantiation options to code tool ([f3818fc](https://github.com/Modern-Treasury/modern-treasury-node/commit/f3818fc21990e2bfeafb22657e60607eb24c5f5d))
+* **mcp:** correct code tool API endpoint ([54373a0](https://github.com/Modern-Treasury/modern-treasury-node/commit/54373a0b53e215026fcf7d104a553f90f7295942))
+* **mcp:** correct code tool api output types ([49791fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/49791fa871c6704f5152e76609402701bbcb3168))
+* **mcp:** fix env parsing ([861b7b2](https://github.com/Modern-Treasury/modern-treasury-node/commit/861b7b2bec3401452d24738bf2e20aa4fff90df3))
+* **mcp:** fix options parsing ([591276e](https://github.com/Modern-Treasury/modern-treasury-node/commit/591276eb9c27634002d06f15aeba1b096d344782))
+* **mcp:** pass base url to code tool ([7029868](https://github.com/Modern-Treasury/modern-treasury-node/commit/7029868ad12e0b8c6269a3f6812af6ee04cecba1))
+* **mcp:** return correct lines on typescript errors ([1ba48f0](https://github.com/Modern-Treasury/modern-treasury-node/commit/1ba48f0e0389d277bf83e855a8cb0ceb158d00c4))
+* **mcp:** return tool execution error on api error ([34ce4f0](https://github.com/Modern-Treasury/modern-treasury-node/commit/34ce4f00bdc809c9673d7c1180c95e62bb9e4779))
+* **mcp:** return tool execution error on jq failure ([cdd503a](https://github.com/Modern-Treasury/modern-treasury-node/commit/cdd503a3ac25f893229dc68f48100252a27ba31f))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([5e56b8a](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e56b8a76bfd4a118973ee9e2066f48f6d83f0ac))
+* **client:** fix logger property type ([a8cabba](https://github.com/Modern-Treasury/modern-treasury-node/commit/a8cabbaae2848756c47e3b411bf0f252ce402415))
+* **internal:** codegen related update ([e1f0fcd](https://github.com/Modern-Treasury/modern-treasury-node/commit/e1f0fcd4113aaaf5c3c276df32e2683fe7585f29))
+* **internal:** codegen related update ([35caa89](https://github.com/Modern-Treasury/modern-treasury-node/commit/35caa8910f85d20384695c41d7e0d8a4bc701f53))
+* **internal:** codegen related update ([dd8b1db](https://github.com/Modern-Treasury/modern-treasury-node/commit/dd8b1dbba481c683daabe9ba142c1ad718e3843a))
+* **internal:** codegen related update ([a81ba50](https://github.com/Modern-Treasury/modern-treasury-node/commit/a81ba5083c6055f405fece571f02983bf8928a6e))
+* **internal:** codegen related update ([0dec104](https://github.com/Modern-Treasury/modern-treasury-node/commit/0dec1045ad37f543b010b1c664bf9a720964fd88))
+* **internal:** upgrade eslint ([2844c22](https://github.com/Modern-Treasury/modern-treasury-node/commit/2844c22f2c12aff8a6134e6648c2a138e547e49e))
+* **mcp:** clarify http auth error ([4ca24af](https://github.com/Modern-Treasury/modern-treasury-node/commit/4ca24af9b0fce578f51fbf792b0e2f5b65c618dc))
+* **mcp:** remove deprecated tool schemes ([926baca](https://github.com/Modern-Treasury/modern-treasury-node/commit/926baca28e75c0c9b044bf9b5cb9c7d49d3875c7))
+* **mcp:** update lockfile ([f3d7279](https://github.com/Modern-Treasury/modern-treasury-node/commit/f3d727993a23643be5edb583bbaaadc3bbadeccc))
+* **mcp:** upgrade jq-web ([f5111cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/f5111cd4e797cb0a5652d8dbae85a8352fdf8c58))
+* use latest @modelcontextprotocol/sdk ([73f2a3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/73f2a3cf0ef91d088d51a5a2c5b6db203bfbe1e9))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([eeb0d93](https://github.com/Modern-Treasury/modern-treasury-node/commit/eeb0d936f9bad1bfa00cd6ac60f430a75d5f00a1))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([9dfcc45](https://github.com/Modern-Treasury/modern-treasury-node/commit/9dfcc45720a28e04cf1520f10cb8eda64e293f1f))
+* prominently feature MCP server setup in root SDK readmes ([1eff7c0](https://github.com/Modern-Treasury/modern-treasury-node/commit/1eff7c0df913ec8cc05047247f2f069f4f410cb1))
+
+## 3.3.0 (2025-11-05)
+
+Full Changelog: [v3.2.1...v3.3.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.2.1...v3.3.0)
+
+### Features
+
+* **api:** api update ([0a15b50](https://github.com/Modern-Treasury/modern-treasury-node/commit/0a15b50106ab480864edcdce526cf0849b20c86b))
+* **api:** api update ([6ed4315](https://github.com/Modern-Treasury/modern-treasury-node/commit/6ed4315987bf41a973fe0ec0c2d873c3e2f0d979))
+* **mcp:** enable optional code execution tool on http mcp servers ([d5c5463](https://github.com/Modern-Treasury/modern-treasury-node/commit/d5c546399d4413cc04b1ddd5f80e373f9054bb7f))
+
+
+### Chores
+
+* **internal:** grammar fix (it's -&gt; its) ([b431bed](https://github.com/Modern-Treasury/modern-treasury-node/commit/b431bed3e8dc27b3e06eace29b4495f219208eb5))
+* mcp code tool explicit error message when missing a run function ([610cd24](https://github.com/Modern-Treasury/modern-treasury-node/commit/610cd246b3d096df5036bae9d0a383aed540d329))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([9bb9fd0](https://github.com/Modern-Treasury/modern-treasury-node/commit/9bb9fd058b16e74411814c48edea418d7c484b4d))
+* **mcp:** add line numbers to code tool errors ([f30b825](https://github.com/Modern-Treasury/modern-treasury-node/commit/f30b8255dd2cf59ce4fe4a61019d2e637cee3515))
+* use structured error when code execution tool errors ([06b20d9](https://github.com/Modern-Treasury/modern-treasury-node/commit/06b20d988b9cabcd21c35d8528ba3d012303f1f2))
+
+## 3.2.1 (2025-10-30)
+
+Full Changelog: [v3.2.0...v3.2.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.2.0...v3.2.1)
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([d61800f](https://github.com/Modern-Treasury/modern-treasury-node/commit/d61800fd6353d607dde0e2797b9d59dcab8a7992))
+
+
+### Chores
+
+* **internal:** codegen related update ([2cbfb9d](https://github.com/Modern-Treasury/modern-treasury-node/commit/2cbfb9dff458360335cc5d27f0f9031afdaede33))
+
+## 3.2.0 (2025-10-22)
+
+Full Changelog: [v3.1.0...v3.2.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.1.0...v3.2.0)
+
+### Features
+
+* **api:** api update ([235457d](https://github.com/Modern-Treasury/modern-treasury-node/commit/235457dddc0cd9d7d52858b0810b6d80b02f70c0))
+* **api:** api update ([79fd0fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/79fd0fafb2d96ee605a007d4b5bd390de55a1f7c))
+* **api:** manual updates ([ecafa0f](https://github.com/Modern-Treasury/modern-treasury-node/commit/ecafa0fed41f295c8184d811e80d08d26cc94657))
+
+## 3.1.0 (2025-10-09)
+
+Full Changelog: [v3.0.0...v3.1.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v3.0.0...v3.1.0)
+
+### Features
+
+* **api:** api update ([ca3e191](https://github.com/Modern-Treasury/modern-treasury-node/commit/ca3e1916884fe3efb3ea5807e6b5e783325aef72))
+* **api:** api update ([5a90f2f](https://github.com/Modern-Treasury/modern-treasury-node/commit/5a90f2fe8e7ef2084f4fa7d15cf2dd49b49047cb))
+* **api:** api update ([80cd7c2](https://github.com/Modern-Treasury/modern-treasury-node/commit/80cd7c2ed7eae9f086303b358a733c486a96e263))
+
+
+### Chores
+
+* extract some types in mcp docs ([3d1490d](https://github.com/Modern-Treasury/modern-treasury-node/commit/3d1490d86db03ffac784990bb069e0957416cfe1))
+* **internal:** use npm pack for build uploads ([2e60bc6](https://github.com/Modern-Treasury/modern-treasury-node/commit/2e60bc6ebe46b68dc473554d2dfc33d715c6cd55))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([7b580e0](https://github.com/Modern-Treasury/modern-treasury-node/commit/7b580e011e039e437fba88df1825e84e5e0d451d))
+* update lockfile ([aef5b33](https://github.com/Modern-Treasury/modern-treasury-node/commit/aef5b33f0071d59df6d9185d0ff6f056c10a47ba))
+
+## 3.0.0 (2025-09-29)
+
+Full Changelog: [v2.48.0...v3.0.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.48.0...v3.0.0)
+
+### Features
+
+* **api:** manual updates ([929997c](https://github.com/Modern-Treasury/modern-treasury-node/commit/929997c7e891dc98b07335fd803e1f48e234722d))
+* **api:** manual updates ([fdf325a](https://github.com/Modern-Treasury/modern-treasury-node/commit/fdf325add6b11c78b63532a4c3568b0c90dd4d48))
+
+
+### Bug Fixes
+
+* **mcp:** resolve a linting issue in server code ([97e09c1](https://github.com/Modern-Treasury/modern-treasury-node/commit/97e09c126784ce283d63faede1c50f5f484990a6))
+
+
+### Chores
+
+* sync repo ([97bdad3](https://github.com/Modern-Treasury/modern-treasury-node/commit/97bdad3cfb412750edbaf20c5b6479ae04e2ad1f))
+
+## 2.42.0 (2025-08-01)
+
+Full Changelog: [v2.41.0...v2.42.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.41.0...v2.42.0)
+
+### Features
+
+* **api:** api update ([87f942a](https://github.com/Modern-Treasury/modern-treasury-node/commit/87f942a725ce47ea4f6c839c06d1f0584ed0fa12))
+* **api:** api update ([ae93753](https://github.com/Modern-Treasury/modern-treasury-node/commit/ae9375321bced90d294bac3922eea84b7827b5ef))
+* **api:** api update ([5ce3f2e](https://github.com/Modern-Treasury/modern-treasury-node/commit/5ce3f2e568ef83f0ccba9347a99654da4b3b5d46))
+* **api:** api update ([14cda96](https://github.com/Modern-Treasury/modern-treasury-node/commit/14cda9651628bcd6022b2690c9ad4e213b407c52))
+* **api:** api update ([7ee8d4c](https://github.com/Modern-Treasury/modern-treasury-node/commit/7ee8d4c3d813df6080d72b631272e884f30a77ed))
+* **api:** api update ([d3d5fc2](https://github.com/Modern-Treasury/modern-treasury-node/commit/d3d5fc22727fefdca2c0e45fe3fe50cf326fdfdb))
+* **api:** api update ([1b729f7](https://github.com/Modern-Treasury/modern-treasury-node/commit/1b729f72f139cb96a2d6090824c4571ebc6f8a8d))
+* **mcp:** add logging when environment variable is set ([27c162a](https://github.com/Modern-Treasury/modern-treasury-node/commit/27c162a8ad9251d7e3cd9253973566f261cc1f2e))
+
+
+### Bug Fixes
+
+* **api:** make Legal Entity change backwards compatibile ([51a5c47](https://github.com/Modern-Treasury/modern-treasury-node/commit/51a5c475dfa05080b2c913603f2445e595030793))
+* **client:** remove circular imports ([41a2163](https://github.com/Modern-Treasury/modern-treasury-node/commit/41a216398b1d3cc8f2162f11f572cac8cbc37d43))
+* **client:** unique model names ([0ebc10f](https://github.com/Modern-Treasury/modern-treasury-node/commit/0ebc10f1ab3ae91f990e541024bb9d00ce35a99b))
+* **mcp:** avoid sending `jq_filter` to base API ([e10088a](https://github.com/Modern-Treasury/modern-treasury-node/commit/e10088a649b35a43a52284ca44cc78b10452ca37))
+* **mcp:** fix tool description of jq_filter ([21061a1](https://github.com/Modern-Treasury/modern-treasury-node/commit/21061a11a63a0c59953d51b252e9eb27b50ffe51))
+* **mcp:** include required section for top-level properties and support naming transformations ([0cc518f](https://github.com/Modern-Treasury/modern-treasury-node/commit/0cc518fae5c4be8559ede3dda2523781f60dca1d))
+* **mcp:** reverse validJson capability option and limit scope ([d0190f4](https://github.com/Modern-Treasury/modern-treasury-node/commit/d0190f4156a63475d1468178a08b0a54db198e08))
+
+
+### Chores
+
+* **internal:** codegen related update ([fa7400d](https://github.com/Modern-Treasury/modern-treasury-node/commit/fa7400dadd80d49eb39ce9a7b5fd007edf2067f9))
+* **internal:** remove redundant imports config ([47f39aa](https://github.com/Modern-Treasury/modern-treasury-node/commit/47f39aa0c573c2f198fb840f0676aba14125dfc5))
+* **mcp:** formatting ([d36e73d](https://github.com/Modern-Treasury/modern-treasury-node/commit/d36e73d10749938f990a47cf08f9203b3a4719a5))
+
+## 2.41.0 (2025-07-15)
+
+Full Changelog: [v2.40.0...v2.41.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.40.0...v2.41.0)
+
+### Features
+
+* **api:** api update ([ef86f63](https://github.com/Modern-Treasury/modern-treasury-node/commit/ef86f639f610c260ebfa6fce449f788cf2fb3dfd))
+* **api:** api update ([13cd5d3](https://github.com/Modern-Treasury/modern-treasury-node/commit/13cd5d3539bdc47cbfad4fb22ce0526ddfb20f34))
+* **api:** api update ([ce4ae4e](https://github.com/Modern-Treasury/modern-treasury-node/commit/ce4ae4e171c91e5ac8248990c6036ac18445f5fd))
+* **api:** api update ([f245a3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/f245a3cf4bd5d4db96d760003140298831539a0f))
+* **api:** manual updates ([9c36528](https://github.com/Modern-Treasury/modern-treasury-node/commit/9c36528ef92f42f614830d549d4ec5e60b3ab18c))
+* **api:** manual updates ([629ce85](https://github.com/Modern-Treasury/modern-treasury-node/commit/629ce8535082327ec0eaf4fb8ddeceecc5807c56))
+* **api:** manual updates ([cbcee0f](https://github.com/Modern-Treasury/modern-treasury-node/commit/cbcee0f040125e21228dfac3044d7c09e952df2c))
+* **api:** manual updates ([96bb5d7](https://github.com/Modern-Treasury/modern-treasury-node/commit/96bb5d7f67a456bc8562a4959310eddc2a3fbcaa))
+* **mcp:** support filtering tool results by a jq expression ([e8ad943](https://github.com/Modern-Treasury/modern-treasury-node/commit/e8ad9433c731fc9b7c2c4d1d8b98dd10234d38f7))
+
+
+### Bug Fixes
+
+* **mcp:** relax input type for asTextContextResult ([1aa607c](https://github.com/Modern-Treasury/modern-treasury-node/commit/1aa607c5ed6db33ae2df7458fa1dad795f8b2e84))
+* **mcp:** support jq filtering on cloudflare workers ([b7dc0b5](https://github.com/Modern-Treasury/modern-treasury-node/commit/b7dc0b5e008c9bb9bc7f7af329e09a6c978eb1ce))
+
+
+### Chores
+
+* make some internal functions async ([c02feb3](https://github.com/Modern-Treasury/modern-treasury-node/commit/c02feb30bf8b8ab80f752ac9e0f6ecdf532acf52))
+* **mcp:** rework imports in tools ([7aea750](https://github.com/Modern-Treasury/modern-treasury-node/commit/7aea75020691b370da551a888bea6a2ce2efae4f))
+
+## 2.40.0 (2025-07-07)
+
+Full Changelog: [v2.39.0...v2.40.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.39.0...v2.40.0)
+
+### Features
+
+* **api:** api update ([86919de](https://github.com/Modern-Treasury/modern-treasury-node/commit/86919de6b275deaec776317ef403fde97a0b9090))
+* **api:** api update ([cd5153d](https://github.com/Modern-Treasury/modern-treasury-node/commit/cd5153da1ebefd040e87860b7c279d83ef1126a6))
+* **api:** api update ([fd2bdeb](https://github.com/Modern-Treasury/modern-treasury-node/commit/fd2bdeb09c845ee216cf51777e2c4669c784849a))
+* **api:** api update ([84f3998](https://github.com/Modern-Treasury/modern-treasury-node/commit/84f3998a7d2051777c7849c0c82938137953b44d))
+* **api:** api update ([15ef1a3](https://github.com/Modern-Treasury/modern-treasury-node/commit/15ef1a3b295b2eb8c19750f0ebdd2d405fe32b91))
+* **api:** api update ([6d19984](https://github.com/Modern-Treasury/modern-treasury-node/commit/6d1998449cf1fc0737488811df32e4a1ea12f1ca))
+* **client:** add support for endpoint-specific base URLs ([c67e6b2](https://github.com/Modern-Treasury/modern-treasury-node/commit/c67e6b269b895d0620dd435135d0013e842cbfa0))
+* **mcp:** fallback for void-typed methods ([2c90387](https://github.com/Modern-Treasury/modern-treasury-node/commit/2c90387a39438cb49e4ced9268fe64cf185e0e53))
+* **mcp:** set X-Stainless-MCP header ([17c1804](https://github.com/Modern-Treasury/modern-treasury-node/commit/17c1804825ffbc8362ff81039fb7458fcf761d13))
+
+
+### Bug Fixes
+
+* **build:** bump node version in CI build to 20 to be compatible with MCP package ([d293ba2](https://github.com/Modern-Treasury/modern-treasury-node/commit/d293ba200764eb3e7a6ff8212c8b48799b6f1102))
+* **ci:** release-doctor — report correct token name ([56763be](https://github.com/Modern-Treasury/modern-treasury-node/commit/56763be2a8c96d78001f880ec35da3a8352dc4bc))
+* **client:** don't send `Content-Type` for bodyless methods ([b2b0396](https://github.com/Modern-Treasury/modern-treasury-node/commit/b2b0396bedefb22c14a113227bb7bc66f1e0ea15))
+* publish script — handle NPM errors correctly ([be1f857](https://github.com/Modern-Treasury/modern-treasury-node/commit/be1f8578f895f0145adae211f64419e4d28eaf0e))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([e46d01d](https://github.com/Modern-Treasury/modern-treasury-node/commit/e46d01d325d69ed036b221d26803eefa1ff2438d))
+* **ci:** only run for pushes and fork pull requests ([c6bdb8c](https://github.com/Modern-Treasury/modern-treasury-node/commit/c6bdb8c82780590b8577da02c02f520c7f874f15))
+* **internal:** make base APIResource abstract ([3e7036d](https://github.com/Modern-Treasury/modern-treasury-node/commit/3e7036d790d5eab1d02b6d7bc41bde3603bcd42a))
+* **mcp:** provides high-level initMcpServer function and exports known clients ([2cf7021](https://github.com/Modern-Treasury/modern-treasury-node/commit/2cf702160a90ccb2c2d40868cb182500f7363a61))
+* mention unit type in timeout docs ([b3f2be5](https://github.com/Modern-Treasury/modern-treasury-node/commit/b3f2be5570c98d85e13fb5ec365c8099ebb6f02d))
+
+
+### Refactors
+
+* **types:** replace Record with mapped types ([2dcadae](https://github.com/Modern-Treasury/modern-treasury-node/commit/2dcadae06cbd63ca78eda3de04209ce0542dc73e))
+
+## 2.39.0 (2025-06-05)
+
+Full Changelog: [v2.38.0...v2.39.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.38.0...v2.39.0)
+
+### Features
+
+* **mcp:** implement support for binary responses ([f1c15cd](https://github.com/Modern-Treasury/modern-treasury-node/commit/f1c15cdbb9ffc5761b959362a0c77881244c4d99))
+* **mcp:** include http information in tools ([9ccf1b0](https://github.com/Modern-Treasury/modern-treasury-node/commit/9ccf1b0c75d1c0dd05d98eb8176fef6af73dc85b))
+
+
+### Bug Fixes
+
+* **mcp:** fix cursor schema transformation issue with recursive references ([030ff10](https://github.com/Modern-Treasury/modern-treasury-node/commit/030ff10ba19d41e03245ef2ba30a7d6812c68fb9))
+* **mcp:** include description in dynamic tool search ([c51f428](https://github.com/Modern-Treasury/modern-treasury-node/commit/c51f428f121e35689b9698513fa51f8645da643a))
+
+
+### Chores
+
+* **docs:** use top-level-await in example snippets ([b4b6720](https://github.com/Modern-Treasury/modern-treasury-node/commit/b4b67204eb5978308894831bb053f7d9586aac95))
+* improve publish-npm script --latest tag logic ([f0bc5f8](https://github.com/Modern-Treasury/modern-treasury-node/commit/f0bc5f86dd19ddb997a40894ce6e7a29f4ad5cf3))
+* **mcp:** remove duplicate assignment ([dff869a](https://github.com/Modern-Treasury/modern-treasury-node/commit/dff869aaf053c9de0fabe30b96ea46f2c0e27f7f))
+
+## 2.38.0 (2025-05-23)
+
+Full Changelog: [v2.37.0...v2.38.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.37.0...v2.38.0)
+
+### Features
+
+* **api:** api update ([1866b44](https://github.com/Modern-Treasury/modern-treasury-node/commit/1866b44be8d2930e6aab4be878492403278587c7))
+* **api:** manual updates ([465ee29](https://github.com/Modern-Treasury/modern-treasury-node/commit/465ee29712ff18822753cebfc848d3df5fb681b7))
+
+
+### Chores
+
+* **docs:** grammar improvements ([7000cd2](https://github.com/Modern-Treasury/modern-treasury-node/commit/7000cd28b10337761b0ff3e6d99f13a6e2374bf0))
+
+## 2.37.0 (2025-05-12)
+
+Full Changelog: [v2.36.3...v2.37.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.3...v2.37.0)
+
+### Features
+
+* **api:** only send idempotency headers on PUT / POST requests ([1393e73](https://github.com/Modern-Treasury/modern-treasury-node/commit/1393e734d0f245bb475bfc0ad2676ebca4ef1629))
+* **mcp:** support dynamically discovering and invoking tools for APIs with many endpoints ([67e01ff](https://github.com/Modern-Treasury/modern-treasury-node/commit/67e01ff2765946cff06be8edf2fba6c051a9c6d1))
+* more gracefully handle $refs and work around schema limitations ([fa391ad](https://github.com/Modern-Treasury/modern-treasury-node/commit/fa391ad80865c627c9c753295df639bdc1db5537))
+
+
+### Bug Fixes
+
+* **mcp:** explicitly include zod and zod-to-json-schema in package.json ([afc2335](https://github.com/Modern-Treasury/modern-treasury-node/commit/afc233521f2fe0ce0f1876e43e7253458bc99d6d))
+* **mcp:** remove ajv dependency so MCP servers are more compatible with Cloudflare Workers ([b7b73b0](https://github.com/Modern-Treasury/modern-treasury-node/commit/b7b73b0c4cb90ea02d36a72b3969916cb801a925))
+
+
+### Chores
+
+* **build:** automatically build subpackages if present ([7f22ed9](https://github.com/Modern-Treasury/modern-treasury-node/commit/7f22ed9b94eb1914f222d84c7515c7747b74c555))
+* **ci:** add timeout thresholds for CI jobs ([2f4535e](https://github.com/Modern-Treasury/modern-treasury-node/commit/2f4535eb84a277220730f63fe74ba5395fa8c6ff))
+* **ci:** bump node version for release workflows ([92bdde8](https://github.com/Modern-Treasury/modern-treasury-node/commit/92bdde86a5b90f3f5f452fa17f36c66cf9301363))
+* **ci:** only use depot for staging repos ([8f4f810](https://github.com/Modern-Treasury/modern-treasury-node/commit/8f4f8104766aff1739a1d3a86e93a548e8e3cb0a))
+* **ci:** run on more branches and use depot runners ([e9cec01](https://github.com/Modern-Treasury/modern-treasury-node/commit/e9cec01dbe45cde7244a222af365714c9c0e2a44))
+* **docs:** add missing deprecation warnings ([1ca597c](https://github.com/Modern-Treasury/modern-treasury-node/commit/1ca597c5008c5932b0eb046965ba9a2e090f6342))
+* **internal:** codegen related update ([b269763](https://github.com/Modern-Treasury/modern-treasury-node/commit/b269763116e8c5865f176843cb80ec4c21afb689))
+* **internal:** update dependency ([e064fb5](https://github.com/Modern-Treasury/modern-treasury-node/commit/e064fb56a5f8d137886c6c81c474565d91acfca7))
+* **tests:** use node 22 for CI tests ([820e649](https://github.com/Modern-Treasury/modern-treasury-node/commit/820e649cd04cfae89d6f2cde2ed26df0f577df6a))
+
+
+### Documentation
+
+* add examples to tsdocs ([554c5ec](https://github.com/Modern-Treasury/modern-treasury-node/commit/554c5ecf86a5beed81bf814dfa51924bec3c0107))
+* **readme:** fix typo ([2084332](https://github.com/Modern-Treasury/modern-treasury-node/commit/2084332ce0ba9ef19dc8a3d9838af2864df602f5))
+
+## 2.36.3 (2025-04-16)
+
+Full Changelog: [v2.36.2...v2.36.3](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.2...v2.36.3)
+
+### Bug Fixes
+
+* **client:** correctly reuse idempotency key ([273267b](https://github.com/Modern-Treasury/modern-treasury-node/commit/273267b07736b93a75a904af98cd181b6601173e))
+* **mcp:** fix readEnv type error ([#557](https://github.com/Modern-Treasury/modern-treasury-node/issues/557)) ([bce1d7d](https://github.com/Modern-Treasury/modern-treasury-node/commit/bce1d7d84dcb5b4f2d9d142be6c2e99a5ae8bbdc))
+* **mcp:** include all necessary env vars in client instantiation ([#556](https://github.com/Modern-Treasury/modern-treasury-node/issues/556)) ([286a64f](https://github.com/Modern-Treasury/modern-treasury-node/commit/286a64f8c48155f9c5fa3681e3dbcad29fa8ddc8))
+* **mcp:** point homepage and repo for mcp package to the `packages/mcp-server` directory ([#554](https://github.com/Modern-Treasury/modern-treasury-node/issues/554)) ([d492092](https://github.com/Modern-Treasury/modern-treasury-node/commit/d492092fdf0df7a0a32525c2024104c7e126d89d))
+
+
+### Chores
+
+* **internal:** reduce CI branch coverage ([0dbe5c9](https://github.com/Modern-Treasury/modern-treasury-node/commit/0dbe5c9a4a0772cd35b69839c7d75c3b214bfe25))
+* **internal:** upload builds and expand CI branch coverage ([#558](https://github.com/Modern-Treasury/modern-treasury-node/issues/558)) ([7840cc3](https://github.com/Modern-Treasury/modern-treasury-node/commit/7840cc37fd6bfc9155656dc164b13690dc716250))
+
+## 2.36.2 (2025-04-04)
+
+Full Changelog: [v2.36.1...v2.36.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.1...v2.36.2)
+
+### Bug Fixes
+
+* **mcp:** remove debug logging ([#551](https://github.com/Modern-Treasury/modern-treasury-node/issues/551)) ([0cf7e5b](https://github.com/Modern-Treasury/modern-treasury-node/commit/0cf7e5b9bcc0e3de7ba519635f1467a59d2a0b32))
+
+
+### Chores
+
+* **internal:** codegen related update ([#548](https://github.com/Modern-Treasury/modern-treasury-node/issues/548)) ([b7a81e8](https://github.com/Modern-Treasury/modern-treasury-node/commit/b7a81e896b789759b53345f56e3d7dbd3ced7c46))
+* **internal:** improve index signature formatting ([#550](https://github.com/Modern-Treasury/modern-treasury-node/issues/550)) ([6047cd8](https://github.com/Modern-Treasury/modern-treasury-node/commit/6047cd8e2f5581f477cf41772f65a7485f032c86))
+
+
+### Documentation
+
+* **mcp:** update env vars in README ([#552](https://github.com/Modern-Treasury/modern-treasury-node/issues/552)) ([066cb40](https://github.com/Modern-Treasury/modern-treasury-node/commit/066cb4082375508543acc18ef05de532e25bf6d2))
+
+## 2.36.1 (2025-04-03)
+
+Full Changelog: [v2.36.0...v2.36.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.36.0...v2.36.1)
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#545](https://github.com/Modern-Treasury/modern-treasury-node/issues/545)) ([492c9ea](https://github.com/Modern-Treasury/modern-treasury-node/commit/492c9ea1617d06169192050fbec1cc891c61e956))
+* **client:** send `X-Stainless-Timeout` in seconds ([#542](https://github.com/Modern-Treasury/modern-treasury-node/issues/542)) ([f0e650d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f0e650d88b48d64023f2ade436bb02ad52702cf4))
+* **mcp:** normalize tool names ([#547](https://github.com/Modern-Treasury/modern-treasury-node/issues/547)) ([6419c37](https://github.com/Modern-Treasury/modern-treasury-node/commit/6419c377c5d160519643589ceb13fdcc85195e0b))
+
+
+### Chores
+
+* **internal:** add aliases for Record and Array ([#544](https://github.com/Modern-Treasury/modern-treasury-node/issues/544)) ([9bdb239](https://github.com/Modern-Treasury/modern-treasury-node/commit/9bdb2394b1587159a26cb37654f0731cb0ecc226))
+* **internal:** codegen related update ([#543](https://github.com/Modern-Treasury/modern-treasury-node/issues/543)) ([c382d66](https://github.com/Modern-Treasury/modern-treasury-node/commit/c382d66192c3306ca4e4b68776e13ceb6ebdc6c6))
+* **internal:** version bump ([#540](https://github.com/Modern-Treasury/modern-treasury-node/issues/540)) ([0562755](https://github.com/Modern-Treasury/modern-treasury-node/commit/05627559e5f9dd82bffda4ead76853f8c0cac3e7))
+* Remove deprecated/unused remote spec feature ([4719638](https://github.com/Modern-Treasury/modern-treasury-node/commit/4719638d89350d6d9539e66b7b8e68d4a89b98e0))
+
+
+### Documentation
+
+* **mcp:** improve MCP readme docs ([#546](https://github.com/Modern-Treasury/modern-treasury-node/issues/546)) ([d8f284a](https://github.com/Modern-Treasury/modern-treasury-node/commit/d8f284a09739ce03bdca2749c7b11eed9889c8b7))
+
+## 2.36.0 (2025-03-31)
+
+Full Changelog: [v2.35.0...v2.36.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.35.0...v2.36.0)
+
+### Features
+
+* add MCP server ([#538](https://github.com/Modern-Treasury/modern-treasury-node/issues/538)) ([e4076fc](https://github.com/Modern-Treasury/modern-treasury-node/commit/e4076fc55e73268f42ef78432ca128a4c7082ed7))
+* **mcp:** handle recursive schemas ([#539](https://github.com/Modern-Treasury/modern-treasury-node/issues/539)) ([35d524b](https://github.com/Modern-Treasury/modern-treasury-node/commit/35d524bed4174f22e61bd9b5d5c8800201e6be54))
+
+
+### Bug Fixes
+
+* **internal:** work around https://github.com/vercel/next.js/issues/76881 ([#535](https://github.com/Modern-Treasury/modern-treasury-node/issues/535)) ([7caa591](https://github.com/Modern-Treasury/modern-treasury-node/commit/7caa59144719ebe907a7b6748817e588d6ab7e66))
+
+
+### Chores
+
+* **api:** updates to bulk creation request, legal entity schemas and more ([#533](https://github.com/Modern-Treasury/modern-treasury-node/issues/533)) ([b34bb7b](https://github.com/Modern-Treasury/modern-treasury-node/commit/b34bb7ba96de6bbefec5548061ad2d2b08e4f245))
+* configure new SDK language ([0616ea3](https://github.com/Modern-Treasury/modern-treasury-node/commit/0616ea3c3c2ccb1e2676d7e9341de9b2f0b5d06f))
+* configure new SDK language ([aed71d6](https://github.com/Modern-Treasury/modern-treasury-node/commit/aed71d6ec8a5971dd52befd00c695585d590a40f))
+* internal codegen changes ([4d70adf](https://github.com/Modern-Treasury/modern-treasury-node/commit/4d70adf25f3abdbc926c2a5c82a92894232efe21))
+* **internal:** remove CI condition ([#537](https://github.com/Modern-Treasury/modern-treasury-node/issues/537)) ([ae65ae8](https://github.com/Modern-Treasury/modern-treasury-node/commit/ae65ae8859e1d18ac0530a6432c1dc0be9ac72d7))
+
+## 2.35.0 (2025-03-26)
+
+Full Changelog: [v2.34.0...v2.35.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.34.0...v2.35.0)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#525](https://github.com/Modern-Treasury/modern-treasury-node/issues/525)) ([5b22c1f](https://github.com/Modern-Treasury/modern-treasury-node/commit/5b22c1f0caf05d34c24137fe50d6c4b2b42d912b))
+* **client:** accept RFC6838 JSON content types ([#526](https://github.com/Modern-Treasury/modern-treasury-node/issues/526)) ([74a3c2a](https://github.com/Modern-Treasury/modern-treasury-node/commit/74a3c2a85c6b14881eeec03a101127d9ceb0d8f9))
+
+
+### Bug Fixes
+
+* avoid type error in certain environments ([#531](https://github.com/Modern-Treasury/modern-treasury-node/issues/531)) ([16eb71a](https://github.com/Modern-Treasury/modern-treasury-node/commit/16eb71a48d9f6df0759875316d70560a2596fe44))
+* **exports:** ensure resource imports don't require /index ([#528](https://github.com/Modern-Treasury/modern-treasury-node/issues/528)) ([0dcff87](https://github.com/Modern-Treasury/modern-treasury-node/commit/0dcff876cb9a01e2141ce9266028245b8f0a3df3))
+
+
+### Chores
+
+* add hash of OpenAPI spec/config inputs to .stats.yml ([#532](https://github.com/Modern-Treasury/modern-treasury-node/issues/532)) ([a2bac4e](https://github.com/Modern-Treasury/modern-treasury-node/commit/a2bac4e1c944963b500e0000a333e5f65ef6d555))
+* **exports:** cleaner resource index imports ([#529](https://github.com/Modern-Treasury/modern-treasury-node/issues/529)) ([812b9f4](https://github.com/Modern-Treasury/modern-treasury-node/commit/812b9f43dc3dbd7add7e2fedd0ad2060c73d9ad3))
+* **exports:** stop using path fallbacks ([#530](https://github.com/Modern-Treasury/modern-treasury-node/issues/530)) ([97ea752](https://github.com/Modern-Treasury/modern-treasury-node/commit/97ea7521130a495a63d16971792c6952d71bb427))
+* **internal:** fix devcontainers setup ([#522](https://github.com/Modern-Treasury/modern-treasury-node/issues/522)) ([06fbe95](https://github.com/Modern-Treasury/modern-treasury-node/commit/06fbe95eceb9bb6e84ad493fa4cedb29de53f590))
+* **internal:** remove extra empty newlines ([#527](https://github.com/Modern-Treasury/modern-treasury-node/issues/527)) ([bbfd36c](https://github.com/Modern-Treasury/modern-treasury-node/commit/bbfd36ca67b992df33a0a83ab8969f7dbc55f2da))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#524](https://github.com/Modern-Treasury/modern-treasury-node/issues/524)) ([2324f57](https://github.com/Modern-Treasury/modern-treasury-node/commit/2324f570ab8a620027019c5a76a0d06112923eac))
+
+## 2.34.0 (2025-02-13)
+
+Full Changelog: [v2.33.2...v2.34.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.2...v2.34.0)
+
+### Features
+
+* **client:** send `X-Stainless-Timeout` header ([#519](https://github.com/Modern-Treasury/modern-treasury-node/issues/519)) ([d102e21](https://github.com/Modern-Treasury/modern-treasury-node/commit/d102e21ee21d03707f8abe58281234cca61a66a1))
+
+
+### Bug Fixes
+
+* **client:** fix export map for index exports ([#521](https://github.com/Modern-Treasury/modern-treasury-node/issues/521)) ([f8b0caf](https://github.com/Modern-Treasury/modern-treasury-node/commit/f8b0caf94bc7a2f1af98e1943626acbf2d59cfad))
+
+## 2.33.2 (2025-01-22)
+
+Full Changelog: [v2.33.1...v2.33.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.1...v2.33.2)
+
+### Chores
+
+* **api:** adds new APIs for LedgerAccountSettlement LedgerEntries ([#518](https://github.com/Modern-Treasury/modern-treasury-node/issues/518)) ([a519519](https://github.com/Modern-Treasury/modern-treasury-node/commit/a51951958e4d05391aec25ecfc11bd22a0d86abf))
+* **internal:** add test ([#515](https://github.com/Modern-Treasury/modern-treasury-node/issues/515)) ([c8b598a](https://github.com/Modern-Treasury/modern-treasury-node/commit/c8b598a3dd5f37f157f437b51331a06cce42d525))
+* **types:** add `| undefined` to client options properties ([#513](https://github.com/Modern-Treasury/modern-treasury-node/issues/513)) ([17d306a](https://github.com/Modern-Treasury/modern-treasury-node/commit/17d306aa0c75b787ea899a84f1a70eb7654615c7))
+
+
+### Documentation
+
+* update deprecation messages ([#517](https://github.com/Modern-Treasury/modern-treasury-node/issues/517)) ([52f370e](https://github.com/Modern-Treasury/modern-treasury-node/commit/52f370e8e1b758a6372f5297f3be4fd25d49be1c))
+
+## 2.33.1 (2025-01-08)
+
+Full Changelog: [v2.33.0...v2.33.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.33.0...v2.33.1)
+
+### Bug Fixes
+
+* **client:** normalize method ([#508](https://github.com/Modern-Treasury/modern-treasury-node/issues/508)) ([581ec3c](https://github.com/Modern-Treasury/modern-treasury-node/commit/581ec3cea79ed4f60dbfc8e0088c576f027ceee7))
+
+
+### Chores
+
+* bump license year ([#511](https://github.com/Modern-Treasury/modern-treasury-node/issues/511)) ([f1eb70d](https://github.com/Modern-Treasury/modern-treasury-node/commit/f1eb70d73831561f1fdea7d602ac70e1e32a166e))
+
+
+### Documentation
+
+* minor formatting changes ([#510](https://github.com/Modern-Treasury/modern-treasury-node/issues/510)) ([ae2187e](https://github.com/Modern-Treasury/modern-treasury-node/commit/ae2187ec952e5c24feaf8a0fd2bd5f78ab09c8b3))
+* **readme:** fix misplaced period ([#512](https://github.com/Modern-Treasury/modern-treasury-node/issues/512)) ([338b1e0](https://github.com/Modern-Treasury/modern-treasury-node/commit/338b1e0c01ef3c67a661d23d5b9cc5f8717fb314))
+
+## 2.33.0 (2024-12-17)
+
+Full Changelog: [v2.32.2...v2.33.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.2...v2.33.0)
+
+### Features
+
+* **internal:** make git install file structure match npm ([#502](https://github.com/Modern-Treasury/modern-treasury-node/issues/502)) ([df8d552](https://github.com/Modern-Treasury/modern-treasury-node/commit/df8d55239b90b12e7aef94136ba1d1344bba5057))
+
+
+### Chores
+
+* **api:** additional fields for requests to get BalanceReports and create LegalEntities ([#498](https://github.com/Modern-Treasury/modern-treasury-node/issues/498)) ([5e2a769](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e2a769e6e2b553d87a148da28d7092f3fafcccf))
+* **internal:** bump cross-spawn to v7.0.6 ([#504](https://github.com/Modern-Treasury/modern-treasury-node/issues/504)) ([5e7b6b1](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e7b6b15374cbe1c2a27be82e79a59c5e2426774))
+* **internal:** fix some typos ([#507](https://github.com/Modern-Treasury/modern-treasury-node/issues/507)) ([f04847f](https://github.com/Modern-Treasury/modern-treasury-node/commit/f04847f2d6e6194b85bb75c04d8ffc025f1989fc))
+* **internal:** remove unnecessary getRequestClient function ([#503](https://github.com/Modern-Treasury/modern-treasury-node/issues/503)) ([94705eb](https://github.com/Modern-Treasury/modern-treasury-node/commit/94705ebd053bb97524b83121ee113127f3ef7018))
+* **internal:** update isAbsoluteURL ([#506](https://github.com/Modern-Treasury/modern-treasury-node/issues/506)) ([b1d583b](https://github.com/Modern-Treasury/modern-treasury-node/commit/b1d583bdb745840d885bce83038fadf1f89eb473))
+* remove redundant word in comment ([#500](https://github.com/Modern-Treasury/modern-treasury-node/issues/500)) ([b554302](https://github.com/Modern-Treasury/modern-treasury-node/commit/b5543028c73cff4c8a472b0cbb3c617f84f46347))
+* sync openapi spec ([#501](https://github.com/Modern-Treasury/modern-treasury-node/issues/501)) ([017ca2d](https://github.com/Modern-Treasury/modern-treasury-node/commit/017ca2db1cbbe3619d31fbddd54ff028f8e5d4a0))
+* **tests:** limit array example length ([#496](https://github.com/Modern-Treasury/modern-treasury-node/issues/496)) ([041f2be](https://github.com/Modern-Treasury/modern-treasury-node/commit/041f2be495c41cab13053850c167da73c0a5899f))
+* **types:** nicer error class types + jsdocs ([#505](https://github.com/Modern-Treasury/modern-treasury-node/issues/505)) ([7373590](https://github.com/Modern-Treasury/modern-treasury-node/commit/7373590667946d0b80907099eb6fa70eb2de8cd0))
+
+
+### Documentation
+
+* remove suggestion to use `npm` call out ([#499](https://github.com/Modern-Treasury/modern-treasury-node/issues/499)) ([5a54d76](https://github.com/Modern-Treasury/modern-treasury-node/commit/5a54d766c5e1e24fc6c1c55ee0bea3b6dd45a160))
+
+## 2.32.2 (2024-11-14)
+
+Full Changelog: [v2.32.1...v2.32.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.1...v2.32.2)
+
+### Bug Fixes
+
+* **docs:** add missing await to pagination example ([#494](https://github.com/Modern-Treasury/modern-treasury-node/issues/494)) ([e0f52fd](https://github.com/Modern-Treasury/modern-treasury-node/commit/e0f52fde3c0de0773d700f3218ef607229b9956a))
+* don't require deno to run build-deno ([#492](https://github.com/Modern-Treasury/modern-treasury-node/issues/492)) ([778e412](https://github.com/Modern-Treasury/modern-treasury-node/commit/778e412b955572c1065f8da5cccc85ae3dc29f47))
+* **internal:** support pnpm git installs ([#488](https://github.com/Modern-Treasury/modern-treasury-node/issues/488)) ([d7953f8](https://github.com/Modern-Treasury/modern-treasury-node/commit/d7953f8f12373907a18ae7938dca9be1e75bcddf))
+
+
+### Chores
+
+* **client:** drop unused devDependency ([#495](https://github.com/Modern-Treasury/modern-treasury-node/issues/495)) ([c9f0fe4](https://github.com/Modern-Treasury/modern-treasury-node/commit/c9f0fe4e6968637b1cec4974c3d4b0e4b748e7ad))
+* **internal:** use reexports not destructuring ([#493](https://github.com/Modern-Treasury/modern-treasury-node/issues/493)) ([75a32c9](https://github.com/Modern-Treasury/modern-treasury-node/commit/75a32c9971489b878635ec1e3603a81f7e450095))
+* remove unused build-deno condition ([#491](https://github.com/Modern-Treasury/modern-treasury-node/issues/491)) ([62b66c5](https://github.com/Modern-Treasury/modern-treasury-node/commit/62b66c563a858d42f5442d2d463b91789823fd6d))
+
+
+### Documentation
+
+* **readme:** minor typo fixes ([#486](https://github.com/Modern-Treasury/modern-treasury-node/issues/486)) ([9a95e8e](https://github.com/Modern-Treasury/modern-treasury-node/commit/9a95e8e20f99b56ce9736d02735a3e0d9e21c4b1))
+
+
+### Refactors
+
+* use type imports for type-only imports ([#489](https://github.com/Modern-Treasury/modern-treasury-node/issues/489)) ([a0281cc](https://github.com/Modern-Treasury/modern-treasury-node/commit/a0281ccded326fe776e1457f6c38e4f60bad734f))
+
+## 2.32.1 (2024-10-22)
+
+Full Changelog: [v2.32.0...v2.32.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.32.0...v2.32.1)
+
+### Bug Fixes
+
+* **client:** respect x-stainless-retry-count default headers ([#479](https://github.com/Modern-Treasury/modern-treasury-node/issues/479)) ([583a4f9](https://github.com/Modern-Treasury/modern-treasury-node/commit/583a4f9996339255506574f2bd918c621b94b22d))
+
+
+### Chores
+
+* **internal:** bumps eslint and related dependencies ([#481](https://github.com/Modern-Treasury/modern-treasury-node/issues/481)) ([dd28cff](https://github.com/Modern-Treasury/modern-treasury-node/commit/dd28cff5ad1e240e057c8d623661a05945309c57))
+
+## 2.32.0 (2024-10-16)
+
+Full Changelog: [v2.31.1...v2.32.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.31.1...v2.32.0)
+
+### Features
+
+* **api:** updates to required fields for ExpectedPayments ([#477](https://github.com/Modern-Treasury/modern-treasury-node/issues/477)) ([3ccc158](https://github.com/Modern-Treasury/modern-treasury-node/commit/3ccc15888ddaef7bc4c219ce0e6a883158f3bbba))
+
+## 2.31.1 (2024-10-08)
+
+Full Changelog: [v2.31.0...v2.31.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.31.0...v2.31.1)
+
+### Chores
+
+* **internal:** pass props through internal parser ([#476](https://github.com/Modern-Treasury/modern-treasury-node/issues/476)) ([6ad17b3](https://github.com/Modern-Treasury/modern-treasury-node/commit/6ad17b35a011da8544469fa2977faf462f414a78))
+
+
+### Documentation
+
+* improve and reference contributing documentation ([#474](https://github.com/Modern-Treasury/modern-treasury-node/issues/474)) ([0522f00](https://github.com/Modern-Treasury/modern-treasury-node/commit/0522f00a8a0539f08dccdd3614e115cc77c1c4d7))
+
+## 2.31.0 (2024-09-25)
+
+Full Changelog: [v2.30.0...v2.31.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.30.0...v2.31.0)
+
+### Features
+
+* **api:** add `usbank_payment_application_reference_id` to `reference_number_type` ([#464](https://github.com/Modern-Treasury/modern-treasury-node/issues/464)) ([7d8dfe7](https://github.com/Modern-Treasury/modern-treasury-node/commit/7d8dfe7f4b92e24da33e2dc9627dbff5c6cb7c30))
+* **client:** allow overriding retry count header ([#473](https://github.com/Modern-Treasury/modern-treasury-node/issues/473)) ([5199b52](https://github.com/Modern-Treasury/modern-treasury-node/commit/5199b5231d2d44bb660e5bee9ff6111a1cb27356))
+* **client:** send retry count header ([#471](https://github.com/Modern-Treasury/modern-treasury-node/issues/471)) ([a0f410f](https://github.com/Modern-Treasury/modern-treasury-node/commit/a0f410fe97ec34f1d6f994e13f6aca56bbee5235))
+
+
+### Bug Fixes
+
+* **types:** remove leftover polyfill usage ([#470](https://github.com/Modern-Treasury/modern-treasury-node/issues/470)) ([6f4195e](https://github.com/Modern-Treasury/modern-treasury-node/commit/6f4195ec4581d61789b33f0f7b38caffbdee87e1))
+
+
+### Chores
+
+* **api:** fields and parameters added to bulk actions, transactions and invoice creation ([#472](https://github.com/Modern-Treasury/modern-treasury-node/issues/472)) ([8aa42fb](https://github.com/Modern-Treasury/modern-treasury-node/commit/8aa42fb8437ff2dd92457a34f3719c28ed4d3b65))
+* **internal:** add query string encoder ([#468](https://github.com/Modern-Treasury/modern-treasury-node/issues/468)) ([318d3ff](https://github.com/Modern-Treasury/modern-treasury-node/commit/318d3ff14a52f5fbbf1c53fc7a1cd3da055775c8))
+* **internal:** fix some types ([#469](https://github.com/Modern-Treasury/modern-treasury-node/issues/469)) ([25501d5](https://github.com/Modern-Treasury/modern-treasury-node/commit/25501d545cd08a0b54b6f35f106fddd53c51bc43))
+
+
+### Documentation
+
+* update CONTRIBUTING.md ([#466](https://github.com/Modern-Treasury/modern-treasury-node/issues/466)) ([a7cc275](https://github.com/Modern-Treasury/modern-treasury-node/commit/a7cc27561c4482a177fa395342a7532544b4821f))
+
+## 2.30.0 (2024-09-09)
+
+Full Changelog: [v2.29.1...v2.30.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.29.1...v2.30.0)
+
+### Features
+
+* **api:** add us_bank RTP ID's as reference_number_type ([#460](https://github.com/Modern-Treasury/modern-treasury-node/issues/460)) ([cdcd92e](https://github.com/Modern-Treasury/modern-treasury-node/commit/cdcd92e5e17e2f7c0181c08a06d238a4a6675c8b))
+
+
+### Bug Fixes
+
+* **client:** correct File construction from node-fetch Responses ([#457](https://github.com/Modern-Treasury/modern-treasury-node/issues/457)) ([9466d1e](https://github.com/Modern-Treasury/modern-treasury-node/commit/9466d1e7c4686f79e35b95959c89e5794782dc91))
+* **errors:** pass message through to APIConnectionError ([#462](https://github.com/Modern-Treasury/modern-treasury-node/issues/462)) ([b536511](https://github.com/Modern-Treasury/modern-treasury-node/commit/b536511acf8a51c84eef08bdd36a89feeb5d3433))
+* **uploads:** avoid making redundant memory copies ([#461](https://github.com/Modern-Treasury/modern-treasury-node/issues/461)) ([0caef1b](https://github.com/Modern-Treasury/modern-treasury-node/commit/0caef1b1780ba3d95594baf6c0fb7610319937a8))
+
+
+### Chores
+
+* **ci:** update install step ([#456](https://github.com/Modern-Treasury/modern-treasury-node/issues/456)) ([c8d0c7e](https://github.com/Modern-Treasury/modern-treasury-node/commit/c8d0c7e80c00457e9d984fddb1566a62492b2b45))
+* **docs:** update description of `bankgirot` to `se_bankgirot` ([#463](https://github.com/Modern-Treasury/modern-treasury-node/issues/463)) ([9403940](https://github.com/Modern-Treasury/modern-treasury-node/commit/940394036e24daaecda2596491a51cc38e0880fa))
+* **internal:** dependency updates ([#458](https://github.com/Modern-Treasury/modern-treasury-node/issues/458)) ([996fa7f](https://github.com/Modern-Treasury/modern-treasury-node/commit/996fa7f45cf3ead2fdaf4e8fb171ed7b94c5e7f7))
+* **internal:** minor bump qs version ([#459](https://github.com/Modern-Treasury/modern-treasury-node/issues/459)) ([2dde661](https://github.com/Modern-Treasury/modern-treasury-node/commit/2dde661aea3e6a839adce9e44e4a2d5fa0475803))
+* run tsc as part of lint script ([#454](https://github.com/Modern-Treasury/modern-treasury-node/issues/454)) ([fe7e531](https://github.com/Modern-Treasury/modern-treasury-node/commit/fe7e5310d5cad7254ffccaf147a8087337cdb655))
+
+## 2.29.1 (2024-08-27)
+
+Full Changelog: [v2.29.0...v2.29.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.29.0...v2.29.1)
+
+### Chores
+
+* **ci:** check for build errors ([#452](https://github.com/Modern-Treasury/modern-treasury-node/issues/452)) ([e1f6469](https://github.com/Modern-Treasury/modern-treasury-node/commit/e1f6469bd77a2310422402deee5a15bf942253ce))
+
+## 2.29.0 (2024-08-21)
+
+Full Changelog: [v2.28.0...v2.29.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.28.0...v2.29.0)
+
+### Features
+
+* **api:** add wells fargo reference number types ([#447](https://github.com/Modern-Treasury/modern-treasury-node/issues/447)) ([9a582b6](https://github.com/Modern-Treasury/modern-treasury-node/commit/9a582b6ba1bc3c77fcc13d946bb6c75424a096ed))
+
+
+### Chores
+
+* minor dependency version bump ([#449](https://github.com/Modern-Treasury/modern-treasury-node/issues/449)) ([3c795bc](https://github.com/Modern-Treasury/modern-treasury-node/commit/3c795bc828f0fa6ffe27b06e9da34c1031b7edb4))
+
+## 2.28.0 (2024-08-13)
+
+Full Changelog: [v2.27.0...v2.28.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.27.0...v2.28.0)
+
+### Features
+
+* **api:** add pagination params 'created at' and 'updated at' ([#438](https://github.com/Modern-Treasury/modern-treasury-node/issues/438)) ([25416f1](https://github.com/Modern-Treasury/modern-treasury-node/commit/25416f1ce6304a3ac019ef7601241c7b5aac9e99))
+* **api:** updates ([#443](https://github.com/Modern-Treasury/modern-treasury-node/issues/443)) ([50c7364](https://github.com/Modern-Treasury/modern-treasury-node/commit/50c7364db8afca01346d8fee66a02aae53dd7dd2))
+
+
+### Bug Fixes
+
+* **compat:** remove ReadableStream polyfill redundant since node v16 ([#434](https://github.com/Modern-Treasury/modern-treasury-node/issues/434)) ([5e8d7ae](https://github.com/Modern-Treasury/modern-treasury-node/commit/5e8d7ae90ce17948c730ffa5af8fa220385b38d8))
+
+
+### Chores
+
+* **ci:** bump prism mock server version ([#441](https://github.com/Modern-Treasury/modern-treasury-node/issues/441)) ([2abf02a](https://github.com/Modern-Treasury/modern-treasury-node/commit/2abf02a391aa278d5242378fecaf9c7a046de233))
+* **ci:** correctly tag pre-release npm packages ([#437](https://github.com/Modern-Treasury/modern-treasury-node/issues/437)) ([e690557](https://github.com/Modern-Treasury/modern-treasury-node/commit/e69055710d43581aaf9e9f616976b39095e6a3d6))
+* **ci:** limit release doctor target branches ([#432](https://github.com/Modern-Treasury/modern-treasury-node/issues/432)) ([7316376](https://github.com/Modern-Treasury/modern-treasury-node/commit/73163761073d04997511544662f4c42b18f7e669))
+* **ci:** minor changes ([#440](https://github.com/Modern-Treasury/modern-treasury-node/issues/440)) ([4967a99](https://github.com/Modern-Treasury/modern-treasury-node/commit/4967a990f347758de2307766658a2a603f24e579))
+* **docs:** fix incorrect client var names ([#435](https://github.com/Modern-Treasury/modern-treasury-node/issues/435)) ([d4b6ee0](https://github.com/Modern-Treasury/modern-treasury-node/commit/d4b6ee0ef86611fa2d2e9b5ac3c5a1d71201cfb5))
+* **docs:** mention support of web browser runtimes ([#429](https://github.com/Modern-Treasury/modern-treasury-node/issues/429)) ([04b4c14](https://github.com/Modern-Treasury/modern-treasury-node/commit/04b4c1402b2f688817e64327eab9e4d8e07f3bdf))
+* **docs:** use client instead of package name in Node examples ([#431](https://github.com/Modern-Treasury/modern-treasury-node/issues/431)) ([0d6674b](https://github.com/Modern-Treasury/modern-treasury-node/commit/0d6674be9e012c9678cf9ae629b6445894e15422))
+* **examples:** minor formatting changes ([#442](https://github.com/Modern-Treasury/modern-treasury-node/issues/442)) ([f45df87](https://github.com/Modern-Treasury/modern-treasury-node/commit/f45df877556f9a84b99c63d4c7a55606596514fb))
+* **internal:** add constant for default timeout ([#436](https://github.com/Modern-Treasury/modern-treasury-node/issues/436)) ([134028c](https://github.com/Modern-Treasury/modern-treasury-node/commit/134028c9697c9975b0b503d6ebf6e11b31aede36))
+* **internal:** updates ([#439](https://github.com/Modern-Treasury/modern-treasury-node/issues/439)) ([961b11d](https://github.com/Modern-Treasury/modern-treasury-node/commit/961b11d56e991486d6a85ac948a94f34fe258ac4))
+* **tests:** update prism version ([#433](https://github.com/Modern-Treasury/modern-treasury-node/issues/433)) ([da43047](https://github.com/Modern-Treasury/modern-treasury-node/commit/da4304704976329485945907a3f45907fba79334))
+
+## 2.27.0 (2024-07-15)
+
+Full Changelog: [v2.26.0...v2.27.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.26.0...v2.27.0)
+
+### Features
+
+* **api:** updates ([#427](https://github.com/Modern-Treasury/modern-treasury-node/issues/427)) ([186bc9b](https://github.com/Modern-Treasury/modern-treasury-node/commit/186bc9bef1401925cc22bcece39af85762feac79))
+
+
+### Chores
+
+* **ci:** also run workflows for PRs targeting `next` ([#424](https://github.com/Modern-Treasury/modern-treasury-node/issues/424)) ([69f7671](https://github.com/Modern-Treasury/modern-treasury-node/commit/69f7671f1d5c0a3043a09684087a60f2618c1e46))
+* **docs:** minor update to formatting of API link in README ([#428](https://github.com/Modern-Treasury/modern-treasury-node/issues/428)) ([136c85d](https://github.com/Modern-Treasury/modern-treasury-node/commit/136c85d38fc50c5a52373e261cae007da7070527))
+
+
+### Documentation
+
+* **examples:** update example values ([#426](https://github.com/Modern-Treasury/modern-treasury-node/issues/426)) ([9f09355](https://github.com/Modern-Treasury/modern-treasury-node/commit/9f09355bd6a5415a110845f9512765417a631ae5))
+
+## 2.26.0 (2024-07-01)
+
+Full Changelog: [v2.25.0...v2.26.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.25.0...v2.26.0)
+
+### Features
+
+* **api:** updates ([#423](https://github.com/Modern-Treasury/modern-treasury-node/issues/423)) ([48e1b12](https://github.com/Modern-Treasury/modern-treasury-node/commit/48e1b122300382ac41461e6db123e77afa25f459))
+
+
+### Chores
+
+* gitignore test server logs ([#422](https://github.com/Modern-Treasury/modern-treasury-node/issues/422)) ([440ad64](https://github.com/Modern-Treasury/modern-treasury-node/commit/440ad648ffc01b0064dd786951880d6e9f8dcc4f))
+* **internal:** minor reformatting ([#419](https://github.com/Modern-Treasury/modern-treasury-node/issues/419)) ([ea5bfbf](https://github.com/Modern-Treasury/modern-treasury-node/commit/ea5bfbf11b512f9edcd02534b88763587f412c5f))
+
+## 2.25.0 (2024-06-10)
+
+Full Changelog: [v2.24.2...v2.25.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.2...v2.25.0)
+
+### Features
+
+* **api:** add kr_brn kr_crn kr_rrn enum values ([#412](https://github.com/Modern-Treasury/modern-treasury-node/issues/412)) ([fad181b](https://github.com/Modern-Treasury/modern-treasury-node/commit/fad181b96872a547ea53db3aaa1155b75ee283c1))
+* **api:** add risk rating field ([#415](https://github.com/Modern-Treasury/modern-treasury-node/issues/415)) ([8a56375](https://github.com/Modern-Treasury/modern-treasury-node/commit/8a56375dec73db405db07c461c26cfaa4e157258))
+* support `application/octet-stream` request bodies ([#418](https://github.com/Modern-Treasury/modern-treasury-node/issues/418)) ([2ae86c4](https://github.com/Modern-Treasury/modern-treasury-node/commit/2ae86c4ec57df29efb5242d3d2fbc40416c8776a))
+
+
+### Bug Fixes
+
+* allow git imports for pnpm ([#414](https://github.com/Modern-Treasury/modern-treasury-node/issues/414)) ([497c3b3](https://github.com/Modern-Treasury/modern-treasury-node/commit/497c3b33db6179ee805601636b36e80a6a17e2e9))
+* fix enum type to be non nullable ([#417](https://github.com/Modern-Treasury/modern-treasury-node/issues/417)) ([82b95e2](https://github.com/Modern-Treasury/modern-treasury-node/commit/82b95e2a1ab001a521efcdb27ce25dc76215e01d))
+
+
+### Chores
+
+* **internal:** sync urls ([#416](https://github.com/Modern-Treasury/modern-treasury-node/issues/416)) ([98e2fe0](https://github.com/Modern-Treasury/modern-treasury-node/commit/98e2fe0ba2cc619c96bfc54fd9fed244ef3d3a6c))
+
+## 2.24.2 (2024-05-30)
+
+Full Changelog: [v2.24.1...v2.24.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.1...v2.24.2)
+
+### Chores
+
+* **internal:** add code reviewer ([#410](https://github.com/Modern-Treasury/modern-treasury-node/issues/410)) ([238edc0](https://github.com/Modern-Treasury/modern-treasury-node/commit/238edc0695960c4a27c26d3b869341d4ceb72d35))
+
+## 2.24.1 (2024-05-28)
+
+Full Changelog: [v2.24.0...v2.24.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.24.0...v2.24.1)
+
+### Documentation
+
+* **readme:** add bundle size badge ([#408](https://github.com/Modern-Treasury/modern-treasury-node/issues/408)) ([e333590](https://github.com/Modern-Treasury/modern-treasury-node/commit/e33359077f8ce7d7931062ecf2b9d470c57d33b2))
+
+## 2.24.0 (2024-05-28)
+
+Full Changelog: [v2.23.0...v2.24.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.23.0...v2.24.0)
+
+### Features
+
+* **api:** add currency to ledger account categories ([#405](https://github.com/Modern-Treasury/modern-treasury-node/issues/405)) ([84bc4a0](https://github.com/Modern-Treasury/modern-treasury-node/commit/84bc4a0f89ba2abd4c232cd346a0978d9f437bda))
+* **api:** invoice overdue reminders ([59e3638](https://github.com/Modern-Treasury/modern-treasury-node/commit/59e36383759b57f7c30277a1bb4eda746720a8f7))
+* **api:** mark ConnectionLegalEntity response properties as required ([#407](https://github.com/Modern-Treasury/modern-treasury-node/issues/407)) ([843dd77](https://github.com/Modern-Treasury/modern-treasury-node/commit/843dd7759ae5eded8ac565816ea26c837885a69b))
+* **api:** remove deprecated ledger account payouts ([#406](https://github.com/Modern-Treasury/modern-treasury-node/issues/406)) ([59e3638](https://github.com/Modern-Treasury/modern-treasury-node/commit/59e36383759b57f7c30277a1bb4eda746720a8f7))
+* **api:** updates ([#395](https://github.com/Modern-Treasury/modern-treasury-node/issues/395)) ([d627950](https://github.com/Modern-Treasury/modern-treasury-node/commit/d6279508016f41e6c4e095ea555313508ff64314))
+
+
+### Bug Fixes
+
+* **package:** revert recent client file change ([#398](https://github.com/Modern-Treasury/modern-treasury-node/issues/398)) ([e25a0fa](https://github.com/Modern-Treasury/modern-treasury-node/commit/e25a0fab22a47c779aac58d14d87cec0a3768442))
+
+
+### Chores
+
+* **docs:** add SECURITY.md ([#401](https://github.com/Modern-Treasury/modern-treasury-node/issues/401)) ([7da6a83](https://github.com/Modern-Treasury/modern-treasury-node/commit/7da6a8304155395bc5c0d0984df76d665306350e))
+* **docs:** streamline payment purpose and vendor failure handling ([#402](https://github.com/Modern-Treasury/modern-treasury-node/issues/402)) ([d816b92](https://github.com/Modern-Treasury/modern-treasury-node/commit/d816b926e4891f4ff0a0da3c64742e87bd0c1348))
+* **internal:** add link to openapi spec ([#392](https://github.com/Modern-Treasury/modern-treasury-node/issues/392)) ([272d794](https://github.com/Modern-Treasury/modern-treasury-node/commit/272d79431c4901b9677b58b03b9ea04e828a15eb))
+* **internal:** add scripts/test, scripts/mock and add ci job ([#393](https://github.com/Modern-Treasury/modern-treasury-node/issues/393)) ([315be57](https://github.com/Modern-Treasury/modern-treasury-node/commit/315be57cb1f4206000e6986123a63789672ec8b4))
+* **internal:** add slightly better logging to scripts ([#404](https://github.com/Modern-Treasury/modern-treasury-node/issues/404)) ([27e0062](https://github.com/Modern-Treasury/modern-treasury-node/commit/27e0062215d71db39b8dd840e1e359487c19745d))
+* **internal:** forward arguments in scripts/test ([#394](https://github.com/Modern-Treasury/modern-treasury-node/issues/394)) ([f583eaf](https://github.com/Modern-Treasury/modern-treasury-node/commit/f583eafab9e417a1760ab077ee041c9b1d5bb237))
+* **internal:** move client class to separate file ([#396](https://github.com/Modern-Treasury/modern-treasury-node/issues/396)) ([8877013](https://github.com/Modern-Treasury/modern-treasury-node/commit/88770139e5265bfc08e7bf7bc142b54bfb9b21bd))
+* **internal:** refactor scripts ([#390](https://github.com/Modern-Treasury/modern-treasury-node/issues/390)) ([8f96c06](https://github.com/Modern-Treasury/modern-treasury-node/commit/8f96c069c19c50107d602b2051c48bf9b9f0a417))
+
+
+### Refactors
+
+* change import paths to be relative ([#403](https://github.com/Modern-Treasury/modern-treasury-node/issues/403)) ([00e1c3a](https://github.com/Modern-Treasury/modern-treasury-node/commit/00e1c3a68fac93d65ea7bfcf1293c79381f6ac46))
+
+## 2.23.0 (2024-04-26)
+
+Full Changelog: [v2.22.0...v2.23.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.22.0...v2.23.0)
+
+### Features
+
+* **api:** various API updates ([#388](https://github.com/Modern-Treasury/modern-treasury-node/issues/388)) ([a03403f](https://github.com/Modern-Treasury/modern-treasury-node/commit/a03403fb770e475473088208253e907edc43c3d4))
+
+
+### Chores
+
+* **internal:** add scripts/test and scripts/mock ([#389](https://github.com/Modern-Treasury/modern-treasury-node/issues/389)) ([cd3ac6d](https://github.com/Modern-Treasury/modern-treasury-node/commit/cd3ac6d441c6fce0417377cd973e9756c7cc5af8))
+* **internal:** use actions/checkout@v4 for codeflow ([#386](https://github.com/Modern-Treasury/modern-treasury-node/issues/386)) ([6d2a5d9](https://github.com/Modern-Treasury/modern-treasury-node/commit/6d2a5d913d73f33caacc181e668ab3d0797a0229))
+
+## 2.22.0 (2024-04-22)
+
+Full Changelog: [v2.21.0...v2.22.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.21.0...v2.22.0)
+
+### Features
+
+* **api:** add ledger_transaction_id field to reversal ([#383](https://github.com/Modern-Treasury/modern-treasury-node/issues/383)) ([538de7b](https://github.com/Modern-Treasury/modern-treasury-node/commit/538de7b6349aaac9a9825ba47970803aa7487d54))
+
+
+### Chores
+
+* **internal:** formatting ([#381](https://github.com/Modern-Treasury/modern-treasury-node/issues/381)) ([530915a](https://github.com/Modern-Treasury/modern-treasury-node/commit/530915a8a9f3db1452363561ddf89e741d8df393))
+* **internal:** update gitignore ([#380](https://github.com/Modern-Treasury/modern-treasury-node/issues/380)) ([a8519b7](https://github.com/Modern-Treasury/modern-treasury-node/commit/a8519b7b0363196407b316fdb43313fa16261e98))
+* **internal:** use @swc/jest for running tests ([#385](https://github.com/Modern-Treasury/modern-treasury-node/issues/385)) ([ca96e64](https://github.com/Modern-Treasury/modern-treasury-node/commit/ca96e643191c69d392960caaee78e5eb3ae82e19))
+
+
+### Documentation
+
+* **examples:** use counterparties in snippets ([#378](https://github.com/Modern-Treasury/modern-treasury-node/issues/378)) ([a24994c](https://github.com/Modern-Treasury/modern-treasury-node/commit/a24994cb220a7a423fff9178429dd35b13c4eb53))
+
+
+### Build System
+
+* configure UTF-8 locale in devcontainer ([#382](https://github.com/Modern-Treasury/modern-treasury-node/issues/382)) ([fd4aa7a](https://github.com/Modern-Treasury/modern-treasury-node/commit/fd4aa7a9cc400aff850e483795ebd579c90df295))
+
+## 2.21.0 (2024-04-04)
+
+Full Changelog: [v2.20.0...v2.21.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.20.0...v2.21.0)
+
+### Features
+
+* **api:** add id type in_lei ([#377](https://github.com/Modern-Treasury/modern-treasury-node/issues/377)) ([62a2b7b](https://github.com/Modern-Treasury/modern-treasury-node/commit/62a2b7b69706672bb35b562126f25a2d8b06a8ea))
+* **api:** update account number type enum ([#373](https://github.com/Modern-Treasury/modern-treasury-node/issues/373)) ([b178165](https://github.com/Modern-Treasury/modern-treasury-node/commit/b178165a0335b1d6dc36ffbf76a760cfe8d9df81))
+
+
+### Chores
+
+* **deps:** bump yarn to v1.22.22 ([#376](https://github.com/Modern-Treasury/modern-treasury-node/issues/376)) ([6e480ae](https://github.com/Modern-Treasury/modern-treasury-node/commit/6e480aee7249758e071bc185242adefa9249e6b1))
+* **deps:** remove unused dependency digest-fetch ([#375](https://github.com/Modern-Treasury/modern-treasury-node/issues/375)) ([f9b8060](https://github.com/Modern-Treasury/modern-treasury-node/commit/f9b806046ee671b78d1bbf99b871bc237dfbfa24))
+* **internal:** bump dependencies ([#371](https://github.com/Modern-Treasury/modern-treasury-node/issues/371)) ([913dfb4](https://github.com/Modern-Treasury/modern-treasury-node/commit/913dfb4844cdb7972d8d220c0faf3280a9b1ff09))
+
+## 2.20.0 (2024-03-26)
+
+Full Changelog: [v2.19.0...v2.20.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.19.0...v2.20.0)
+
+### Features
+
+* **api:** add citibank enums ([#369](https://github.com/Modern-Treasury/modern-treasury-node/issues/369)) ([4bf2db2](https://github.com/Modern-Treasury/modern-treasury-node/commit/4bf2db271494204a2e7854e6d7ff5c03aeb4afac))
+* **api:** add line item metadata ([1114cc5](https://github.com/Modern-Treasury/modern-treasury-node/commit/1114cc5653b10eedc834b136eb1c5683adc834d7))
+* **api:** introduce bulk transaction create ([#365](https://github.com/Modern-Treasury/modern-treasury-node/issues/365)) ([1114cc5](https://github.com/Modern-Treasury/modern-treasury-node/commit/1114cc5653b10eedc834b136eb1c5683adc834d7))
+* **api:** rename `associated_legal_entity` to `child_legal_entity` ([#361](https://github.com/Modern-Treasury/modern-treasury-node/issues/361)) ([5da0450](https://github.com/Modern-Treasury/modern-treasury-node/commit/5da0450d76fa88df0fce1fa427762830d2903f6c))
+* **api:** rename `id_type` enum from `cl_nut` to `cl_rut` ([5da0450](https://github.com/Modern-Treasury/modern-treasury-node/commit/5da0450d76fa88df0fce1fa427762830d2903f6c))
+* **api:** updates ([#367](https://github.com/Modern-Treasury/modern-treasury-node/issues/367)) ([9829324](https://github.com/Modern-Treasury/modern-treasury-node/commit/9829324c34b09c2f3407c55e598870602a7daba3))
+
+
+### Bug Fixes
+
+* **client:** correctly send deno version header ([#368](https://github.com/Modern-Treasury/modern-treasury-node/issues/368)) ([52436c1](https://github.com/Modern-Treasury/modern-treasury-node/commit/52436c1f87d906f6ef31f29785cd1e2cbdf4de91))
+* handle process.env being undefined in debug func ([#366](https://github.com/Modern-Treasury/modern-treasury-node/issues/366)) ([dab08f7](https://github.com/Modern-Treasury/modern-treasury-node/commit/dab08f7f47eb1afbb62217b3aad135c52f18d7ee))
+* **internal:** make toFile use input file's options ([#362](https://github.com/Modern-Treasury/modern-treasury-node/issues/362)) ([35f0b12](https://github.com/Modern-Treasury/modern-treasury-node/commit/35f0b12ffdb86602010a8a303f69ad9c31e2d9cc))
+
+
+### Chores
+
+* add back removed code ([0d813f2](https://github.com/Modern-Treasury/modern-treasury-node/commit/0d813f2af3cea7e7d79620021663fb8ce391322e))
+* **internal:** temporary commit ([#370](https://github.com/Modern-Treasury/modern-treasury-node/issues/370)) ([f8a9dd8](https://github.com/Modern-Treasury/modern-treasury-node/commit/f8a9dd8ef9edeb75e4e8fa1439a9ff86e81bddc5))
+* **internal:** update generated pragma comment ([#360](https://github.com/Modern-Treasury/modern-treasury-node/issues/360)) ([008af46](https://github.com/Modern-Treasury/modern-treasury-node/commit/008af4670416ea80ba63ceb46ceaa072ad8ab162))
+
+
+### Documentation
+
+* fix typo in CONTRIBUTING.md ([#358](https://github.com/Modern-Treasury/modern-treasury-node/issues/358)) ([06980b8](https://github.com/Modern-Treasury/modern-treasury-node/commit/06980b8405af9950940a4d4fc6317e11d2903315))
+* **readme:** consistent use of sentence case in headings ([#363](https://github.com/Modern-Treasury/modern-treasury-node/issues/363)) ([9c1e738](https://github.com/Modern-Treasury/modern-treasury-node/commit/9c1e7381d9f2c41b5d4c2ba128aea4a500dbb16a))
+* **readme:** document how to make undocumented requests ([#364](https://github.com/Modern-Treasury/modern-treasury-node/issues/364)) ([770f57a](https://github.com/Modern-Treasury/modern-treasury-node/commit/770f57acf6eb1b0baa7e797b0bbf1d9790601102))
+
 ## 2.19.0 (2024-03-14)
 
 Full Changelog: [v2.18.0...v2.19.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v2.18.0...v2.19.0)

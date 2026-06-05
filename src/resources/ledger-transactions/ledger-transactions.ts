@@ -19,6 +19,27 @@ export class LedgerTransactions extends APIResource {
   versions: VersionsAPI.Versions = new VersionsAPI.Versions(this._client);
 
   /**
+   * Get a list of ledger transactions.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerTransaction of client.ledgerTransactions.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: LedgerTransactionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerTransactionsPage, LedgerTransaction> {
+    return this._client.getAPIList('/api/ledger_transactions', Page<LedgerTransaction>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Create a ledger transaction.
    *
    * @example
@@ -27,7 +48,6 @@ export class LedgerTransactions extends APIResource {
    *   await client.ledgerTransactions.create({
    *     ledger_entries: [
    *       {
-   *         amount: 0,
    *         direction: 'credit',
    *         ledger_account_id:
    *           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -71,53 +91,6 @@ export class LedgerTransactions extends APIResource {
   }
 
   /**
-   * Get a list of ledger transactions.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const ledgerTransaction of client.ledgerTransactions.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: LedgerTransactionListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerTransactionsPage, LedgerTransaction> {
-    return this._client.getAPIList('/api/ledger_transactions', Page<LedgerTransaction>, {
-      query,
-      ...options,
-    });
-  }
-
-  /**
-   * Create a ledger transaction that partially posts another ledger transaction.
-   *
-   * @example
-   * ```ts
-   * const ledgerTransaction =
-   *   await client.ledgerTransactions.createPartialPost('id', {
-   *     posted_ledger_entries: [
-   *       {
-   *         amount: 0,
-   *         direction: 'credit',
-   *         ledger_account_id:
-   *           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *       },
-   *     ],
-   *   });
-   * ```
-   */
-  createPartialPost(
-    id: string,
-    body: LedgerTransactionCreatePartialPostParams,
-    options?: RequestOptions,
-  ): APIPromise<LedgerTransaction> {
-    return this._client.post(path`/api/ledger_transactions/${id}/partial_post`, { body, ...options });
-  }
-
-  /**
    * Create a ledger transaction reversal.
    *
    * @example
@@ -132,6 +105,31 @@ export class LedgerTransactions extends APIResource {
     options?: RequestOptions,
   ): APIPromise<LedgerTransaction> {
     return this._client.post(path`/api/ledger_transactions/${id}/reversal`, { body, ...options });
+  }
+
+  /**
+   * Create a ledger transaction that partially posts another ledger transaction.
+   *
+   * @example
+   * ```ts
+   * const ledgerTransaction =
+   *   await client.ledgerTransactions.createPartialPost('id', {
+   *     posted_ledger_entries: [
+   *       {
+   *         direction: 'credit',
+   *         ledger_account_id:
+   *           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *       },
+   *     ],
+   *   });
+   * ```
+   */
+  createPartialPost(
+    id: string,
+    body: LedgerTransactionCreatePartialPostParams,
+    options?: RequestOptions,
+  ): APIPromise<LedgerTransaction> {
+    return this._client.post(path`/api/ledger_transactions/${id}/partial_post`, { body, ...options });
   }
 }
 
@@ -245,108 +243,6 @@ export interface LedgerTransaction {
   updated_at: string;
 }
 
-export interface LedgerTransactionCreateParams {
-  /**
-   * An array of ledger entry objects.
-   */
-  ledger_entries: Array<Shared.LedgerEntryCreateRequest>;
-
-  /**
-   * An optional description for internal use.
-   */
-  description?: string | null;
-
-  /**
-   * The timestamp (ISO8601 format) at which the ledger transaction happened for
-   * reporting purposes.
-   */
-  effective_at?: string;
-
-  /**
-   * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-   * purposes.
-   */
-  effective_date?: string;
-
-  /**
-   * A unique string to represent the ledger transaction. Only one pending or posted
-   * ledger transaction may have this ID in the ledger.
-   */
-  external_id?: string;
-
-  /**
-   * If the ledger transaction can be reconciled to another object in Modern
-   * Treasury, the id will be populated here, otherwise null.
-   */
-  ledgerable_id?: string;
-
-  /**
-   * If the ledger transaction can be reconciled to another object in Modern
-   * Treasury, the type will be populated here, otherwise null. This can be one of
-   * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
-   */
-  ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * To post a ledger transaction at creation, use `posted`.
-   */
-  status?: 'archived' | 'pending' | 'posted';
-}
-
-export interface LedgerTransactionUpdateParams {
-  /**
-   * An optional description for internal use.
-   */
-  description?: string | null;
-
-  /**
-   * The timestamp (ISO8601 format) at which the ledger transaction happened for
-   * reporting purposes.
-   */
-  effective_at?: string;
-
-  /**
-   * A unique string to represent the ledger transaction. Only one pending or posted
-   * ledger transaction may have this ID in the ledger.
-   */
-  external_id?: string | null;
-
-  /**
-   * An array of ledger entry objects.
-   */
-  ledger_entries?: Array<Shared.LedgerEntryCreateRequest>;
-
-  /**
-   * If the ledger transaction can be reconciled to another object in Modern
-   * Treasury, the id will be populated here, otherwise null.
-   */
-  ledgerable_id?: string;
-
-  /**
-   * If the ledger transaction can be reconciled to another object in Modern
-   * Treasury, the type will be populated here, otherwise null. This can be one of
-   * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
-   */
-  ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * To post a ledger transaction at creation, use `posted`.
-   */
-  status?: 'archived' | 'pending' | 'posted';
-}
-
 export interface LedgerTransactionListParams extends PageParams {
   /**
    * If you have specific IDs to retrieve in bulk, you can pass them as query
@@ -450,60 +346,106 @@ export namespace LedgerTransactionListParams {
   }
 }
 
-export interface LedgerTransactionCreatePartialPostParams {
+export interface LedgerTransactionCreateParams {
   /**
-   * An array of ledger entry objects to be set on the posted ledger transaction.
-   * There must be one entry for each of the existing entries with a lesser amount
-   * than the existing entry.
+   * An array of ledger entry objects.
    */
-  posted_ledger_entries: Array<LedgerTransactionCreatePartialPostParams.PostedLedgerEntry>;
+  ledger_entries: Array<Shared.LedgerEntryCreateRequest>;
 
   /**
-   * An optional free-form description for the posted ledger transaction. Maximum of
-   * 1000 characters allowed.
+   * An optional description for internal use.
    */
-  description?: string;
+  description?: string | null;
 
   /**
-   * The timestamp (IS08601 format) at which the posted ledger transaction happened
-   * for reporting purposes.
+   * The timestamp (ISO8601 format) at which the ledger transaction happened for
+   * reporting purposes.
    */
   effective_at?: string;
+
+  /**
+   * The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
+   * purposes.
+   */
+  effective_date?: string;
+
+  /**
+   * A unique string to represent the ledger transaction. Only one pending or posted
+   * ledger transaction may have this ID in the ledger.
+   */
+  external_id?: string;
+
+  /**
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the id will be populated here, otherwise null.
+   */
+  ledgerable_id?: string;
+
+  /**
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the type will be populated here, otherwise null. This can be one of
+   * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+   */
+  ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
   metadata?: { [key: string]: string };
+
+  /**
+   * To post a ledger transaction at creation, use `posted`.
+   */
+  status?: 'archived' | 'pending' | 'posted';
 }
 
-export namespace LedgerTransactionCreatePartialPostParams {
-  export interface PostedLedgerEntry {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000. Can be any integer up to 36 digits.
-     */
-    amount: number;
+export interface LedgerTransactionUpdateParams {
+  /**
+   * An optional description for internal use.
+   */
+  description?: string | null;
 
-    /**
-     * One of `credit`, `debit`. Describes the direction money is flowing in the
-     * transaction. A `credit` moves money from your account to someone else's. A
-     * `debit` pulls money from someone else's account to your own. Note that wire,
-     * rtp, and check payments will always be `credit`.
-     */
-    direction: 'credit' | 'debit';
+  /**
+   * The timestamp (ISO8601 format) at which the ledger transaction happened for
+   * reporting purposes.
+   */
+  effective_at?: string;
 
-    /**
-     * The ledger account that this ledger entry is associated with.
-     */
-    ledger_account_id: string;
+  /**
+   * A unique string to represent the ledger transaction. Only one pending or posted
+   * ledger transaction may have this ID in the ledger.
+   */
+  external_id?: string | null;
 
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
-  }
+  /**
+   * An array of ledger entry objects.
+   */
+  ledger_entries?: Array<Shared.LedgerEntryCreateRequest>;
+
+  /**
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the id will be populated here, otherwise null.
+   */
+  ledgerable_id?: string;
+
+  /**
+   * If the ledger transaction can be reconciled to another object in Modern
+   * Treasury, the type will be populated here, otherwise null. This can be one of
+   * payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+   */
+  ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * To post a ledger transaction at creation, use `posted`.
+   */
+  status?: 'archived' | 'pending' | 'posted';
 }
 
 export interface LedgerTransactionCreateReversalParams {
@@ -550,17 +492,114 @@ export interface LedgerTransactionCreateReversalParams {
   status?: 'archived' | 'pending' | 'posted';
 }
 
+export interface LedgerTransactionCreatePartialPostParams {
+  /**
+   * An array of ledger entry objects to be set on the posted ledger transaction.
+   * There must be one entry for each of the existing entries with a lesser amount
+   * than the existing entry.
+   */
+  posted_ledger_entries: Array<LedgerTransactionCreatePartialPostParams.PostedLedgerEntry>;
+
+  /**
+   * An optional free-form description for the posted ledger transaction. Maximum of
+   * 1000 characters allowed.
+   */
+  description?: string;
+
+  /**
+   * The timestamp (IS08601 format) at which the posted ledger transaction happened
+   * for reporting purposes.
+   */
+  effective_at?: string;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+}
+
+export namespace LedgerTransactionCreatePartialPostParams {
+  export interface PostedLedgerEntry {
+    /**
+     * One of `credit`, `debit`. Describes the direction money is flowing in the
+     * transaction. A `credit` moves money from your account to someone else's. A
+     * `debit` pulls money from someone else's account to your own. Note that wire,
+     * rtp, and check payments will always be `credit`.
+     */
+    direction: 'credit' | 'debit';
+
+    /**
+     * The ledger account that this ledger entry is associated with.
+     */
+    ledger_account_id: string;
+
+    /**
+     * Value in specified currency's smallest unit. e.g. $10 would be represented
+     * as 1000. Can be any integer up to 36 digits.
+     */
+    amount?: number;
+
+    /**
+     * The amount of the ledger entry as a string, preserving full precision for values
+     * that may exceed safe integer limits in some languages.
+     */
+    amount_string?: string;
+
+    /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s available balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    available_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * Lock version of the ledger account. This can be passed when creating a ledger
+     * transaction to only succeed if no ledger transactions have posted since the
+     * given version. See our post about Designing the Ledgers API with Optimistic
+     * Locking for more details.
+     */
+    lock_version?: number | null;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: { [key: string]: string };
+
+    /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s pending balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    pending_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s posted balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    posted_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * If true, response will include the balance of the associated ledger account for
+     * the entry.
+     */
+    show_resulting_ledger_account_balances?: boolean | null;
+  }
+}
+
 LedgerTransactions.Versions = Versions;
 
 export declare namespace LedgerTransactions {
   export {
     type LedgerTransaction as LedgerTransaction,
     type LedgerTransactionsPage as LedgerTransactionsPage,
+    type LedgerTransactionListParams as LedgerTransactionListParams,
     type LedgerTransactionCreateParams as LedgerTransactionCreateParams,
     type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,
-    type LedgerTransactionListParams as LedgerTransactionListParams,
-    type LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
     type LedgerTransactionCreateReversalParams as LedgerTransactionCreateReversalParams,
+    type LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
   };
 
   export {

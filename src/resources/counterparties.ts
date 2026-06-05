@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as AccountDetailsAPI from './account-details';
 import * as ExternalAccountsAPI from './external-accounts';
+import * as LegalEntitiesAPI from './legal-entities';
 import * as RoutingDetailsAPI from './routing-details';
 import * as Shared from './shared';
 import * as PaymentOrdersAPI from './payment-orders/payment-orders';
@@ -13,6 +14,43 @@ import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
 export class Counterparties extends APIResource {
+  /**
+   * Send an email requesting account details.
+   *
+   * @example
+   * ```ts
+   * const counterpartyCollectAccountResponse =
+   *   await client.counterparties.collectAccount('id', {
+   *     direction: 'credit',
+   *   });
+   * ```
+   */
+  collectAccount(
+    id: string,
+    body: CounterpartyCollectAccountParams,
+    options?: RequestOptions,
+  ): APIPromise<CounterpartyCollectAccountResponse> {
+    return this._client.post(path`/api/counterparties/${id}/collect_account`, { body, ...options });
+  }
+
+  /**
+   * Get a paginated list of all counterparties.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const counterparty of client.counterparties.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: CounterpartyListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CounterpartiesPage, Counterparty> {
+    return this._client.getAPIList('/api/counterparties', Page<Counterparty>, { query, ...options });
+  }
+
   /**
    * Create a new counterparty.
    *
@@ -60,24 +98,6 @@ export class Counterparties extends APIResource {
   }
 
   /**
-   * Get a paginated list of all counterparties.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const counterparty of client.counterparties.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: CounterpartyListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CounterpartiesPage, Counterparty> {
-    return this._client.getAPIList('/api/counterparties', Page<Counterparty>, { query, ...options });
-  }
-
-  /**
    * Deletes a given counterparty.
    *
    * @example
@@ -90,25 +110,6 @@ export class Counterparties extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-
-  /**
-   * Send an email requesting account details.
-   *
-   * @example
-   * ```ts
-   * const counterpartyCollectAccountResponse =
-   *   await client.counterparties.collectAccount('id', {
-   *     direction: 'credit',
-   *   });
-   * ```
-   */
-  collectAccount(
-    id: string,
-    body: CounterpartyCollectAccountParams,
-    options?: RequestOptions,
-  ): APIPromise<CounterpartyCollectAccountResponse> {
-    return this._client.post(path`/api/counterparties/${id}/collect_account`, { body, ...options });
   }
 }
 
@@ -266,6 +267,110 @@ export interface CounterpartyCollectAccountResponse {
    * been sent to this counterparty.
    */
   is_resend: boolean;
+}
+
+export interface CounterpartyCollectAccountParams {
+  /**
+   * One of `credit` or `debit`. Use `credit` when you want to pay a counterparty.
+   * Use `debit` when you need to charge a counterparty. This field helps us send a
+   * more tailored email to your counterparties."
+   */
+  direction: Shared.TransactionDirection;
+
+  /**
+   * The URL you want your customer to visit upon filling out the form. By default,
+   * they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
+   * URL if set.
+   */
+  custom_redirect?: string;
+
+  /**
+   * The list of fields you want on the form. This field is optional and if it is not
+   * set, will default to [\"nameOnAccount\", \"accountType\", \"accountNumber\",
+   * \"routingNumber\", \"address\"]. The full list of options is [\"name\",
+   * \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
+   * \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
+   */
+  fields?: Array<
+    | 'name'
+    | 'nameOnAccount'
+    | 'taxpayerIdentifier'
+    | 'accountType'
+    | 'accountNumber'
+    | 'ibanNumber'
+    | 'clabeNumber'
+    | 'walletAddress'
+    | 'panNumber'
+    | 'routingNumber'
+    | 'abaWireRoutingNumber'
+    | 'swiftCode'
+    | 'auBsb'
+    | 'caCpa'
+    | 'cnaps'
+    | 'gbSortCode'
+    | 'inIfsc'
+    | 'myBranchCode'
+    | 'brCodigo'
+    | 'routingNumberType'
+    | 'address'
+    | 'jpZenginCode'
+    | 'seBankgiroClearingCode'
+    | 'nzNationalClearingCode'
+    | 'hkInterbankClearingCode'
+    | 'huInterbankClearingCode'
+    | 'dkInterbankClearingCode'
+    | 'idSknbiCode'
+    | 'zaNationalClearingCode'
+  >;
+
+  /**
+   * By default, Modern Treasury will send an email to your counterparty that
+   * includes a link to the form they must fill out. However, if you would like to
+   * send the counterparty the link, you can set this parameter to `false`. The JSON
+   * body will include the link to the secure Modern Treasury form.
+   */
+  send_email?: boolean;
+}
+
+export interface CounterpartyListParams extends PageParams {
+  /**
+   * Used to return counterparties created after some datetime.
+   */
+  created_at_lower_bound?: string;
+
+  /**
+   * Used to return counterparties created before some datetime.
+   */
+  created_at_upper_bound?: string;
+
+  /**
+   * Performs a partial string match of the email field. This is also case
+   * insensitive.
+   */
+  email?: string;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
+
+  /**
+   * Filters for counterparties with the given legal entity ID.
+   */
+  legal_entity_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * Performs a partial string match of the name field. This is also case
+   * insensitive.
+   */
+  name?: string;
 }
 
 export interface CounterpartyCreateParams {
@@ -500,7 +605,7 @@ export namespace CounterpartyCreateParams {
      */
     addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-    bank_settings?: LegalEntity.BankSettings | null;
+    bank_settings?: LegalEntitiesAPI.BankSettings | null;
 
     /**
      * A description of the business.
@@ -691,7 +796,7 @@ export namespace CounterpartyCreateParams {
      */
     ticker_symbol?: string | null;
 
-    wealth_and_employment_details?: LegalEntity.WealthAndEmploymentDetails | null;
+    wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
 
     /**
      * The entity's primary website URL.
@@ -700,48 +805,6 @@ export namespace CounterpartyCreateParams {
   }
 
   export namespace LegalEntity {
-    export interface BankSettings {
-      id: string;
-
-      /**
-       * The percentage of backup withholding to apply to the legal entity.
-       */
-      backup_withholding_percentage: number | null;
-
-      created_at: string;
-
-      discarded_at: string | null;
-
-      /**
-       * Whether backup withholding is enabled. See more here -
-       * https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
-       */
-      enable_backup_withholding: boolean | null;
-
-      /**
-       * This field will be true if this object exists in the live environment or false
-       * if it exists in the test environment.
-       */
-      live_mode: boolean;
-
-      object: string;
-
-      /**
-       * Cross River Bank specific setting to opt out of privacy policy.
-       */
-      privacy_opt_out: boolean | null;
-
-      /**
-       * It covers, among other types of insider loans, extensions of credit by a member
-       * bank to an executive officer, director, or principal shareholder of the member
-       * bank; a bank holding company of which the member bank is a subsidiary; and any
-       * other subsidiary of that bank holding company.
-       */
-      regulation_o: boolean | null;
-
-      updated_at: string;
-    }
-
     export interface Document {
       /**
        * A category given to the document, can be `null`.
@@ -790,176 +853,6 @@ export namespace CounterpartyCreateParams {
        */
       registration_number: string;
     }
-
-    export interface WealthAndEmploymentDetails {
-      id: string;
-
-      /**
-       * The annual income of the individual in USD.
-       */
-      annual_income: number | null;
-
-      created_at: string;
-
-      discarded_at: string | null;
-
-      /**
-       * The country in which the employer is located.
-       */
-      employer_country: string | null;
-
-      /**
-       * The name of the employer.
-       */
-      employer_name: string | null;
-
-      /**
-       * The state in which the employer is located.
-       */
-      employer_state: string | null;
-
-      /**
-       * The employment status of the individual.
-       */
-      employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed' | null;
-
-      /**
-       * The country in which the individual's income is earned.
-       */
-      income_country: string | null;
-
-      /**
-       * The source of the individual's income.
-       */
-      income_source:
-        | 'family_support'
-        | 'government_benefits'
-        | 'inheritance'
-        | 'investments'
-        | 'rental_income'
-        | 'retirement'
-        | 'salary'
-        | 'self_employed'
-        | null;
-
-      /**
-       * The state in which the individual's income is earned.
-       */
-      income_state: string | null;
-
-      /**
-       * The industry of the individual.
-       */
-      industry:
-        | 'accounting'
-        | 'agriculture'
-        | 'automotive'
-        | 'chemical_manufacturing'
-        | 'construction'
-        | 'educational_medical'
-        | 'food_service'
-        | 'finance'
-        | 'gasoline'
-        | 'health_stores'
-        | 'laundry'
-        | 'maintenance'
-        | 'manufacturing'
-        | 'merchant_wholesale'
-        | 'mining'
-        | 'performing_arts'
-        | 'professional_non_legal'
-        | 'public_administration'
-        | 'publishing'
-        | 'real_estate'
-        | 'recreation_gambling'
-        | 'religious_charity'
-        | 'rental_services'
-        | 'retail_clothing'
-        | 'retail_electronics'
-        | 'retail_food'
-        | 'retail_furnishing'
-        | 'retail_home'
-        | 'retail_non_store'
-        | 'retail_sporting'
-        | 'transportation'
-        | 'travel'
-        | 'utilities'
-        | null;
-
-      /**
-       * This field will be true if this object exists in the live environment or false
-       * if it exists in the test environment.
-       */
-      live_mode: boolean;
-
-      object: string;
-
-      /**
-       * The occupation of the individual.
-       */
-      occupation:
-        | 'consulting'
-        | 'executive'
-        | 'finance_accounting'
-        | 'food_services'
-        | 'government'
-        | 'healthcare'
-        | 'legal_services'
-        | 'manufacturing'
-        | 'other'
-        | 'sales'
-        | 'science_engineering'
-        | 'technology'
-        | null;
-
-      /**
-       * The source of the individual's funds.
-       */
-      source_of_funds:
-        | 'alimony'
-        | 'annuity'
-        | 'business_owner'
-        | 'business_revenue'
-        | 'debt_financing'
-        | 'general_employee'
-        | 'government_benefits'
-        | 'homemaker'
-        | 'inheritance_gift'
-        | 'intercompany_loan'
-        | 'investment'
-        | 'investor_funding'
-        | 'legal_settlement'
-        | 'lottery'
-        | 'real_estate'
-        | 'retained_earnings_or_savings'
-        | 'retired'
-        | 'retirement'
-        | 'salary'
-        | 'sale_of_business_assets'
-        | 'sale_of_real_estate'
-        | 'self_employed'
-        | 'senior_executive'
-        | 'trust_income'
-        | null;
-
-      updated_at: string;
-
-      /**
-       * The source of the individual's wealth.
-       */
-      wealth_source:
-        | 'business_sale'
-        | 'family_support'
-        | 'government_benefits'
-        | 'inheritance'
-        | 'investments'
-        | 'other'
-        | 'rental_income'
-        | 'retirement'
-        | 'salary'
-        | 'self_employed'
-        | null;
-    }
   }
 }
 
@@ -1002,118 +895,14 @@ export interface CounterpartyUpdateParams {
   taxpayer_identifier?: string;
 }
 
-export interface CounterpartyListParams extends PageParams {
-  /**
-   * Used to return counterparties created after some datetime.
-   */
-  created_at_lower_bound?: string;
-
-  /**
-   * Used to return counterparties created before some datetime.
-   */
-  created_at_upper_bound?: string;
-
-  /**
-   * Performs a partial string match of the email field. This is also case
-   * insensitive.
-   */
-  email?: string;
-
-  /**
-   * An optional user-defined 180 character unique identifier.
-   */
-  external_id?: string;
-
-  /**
-   * Filters for counterparties with the given legal entity ID.
-   */
-  legal_entity_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * Performs a partial string match of the name field. This is also case
-   * insensitive.
-   */
-  name?: string;
-}
-
-export interface CounterpartyCollectAccountParams {
-  /**
-   * One of `credit` or `debit`. Use `credit` when you want to pay a counterparty.
-   * Use `debit` when you need to charge a counterparty. This field helps us send a
-   * more tailored email to your counterparties."
-   */
-  direction: Shared.TransactionDirection;
-
-  /**
-   * The URL you want your customer to visit upon filling out the form. By default,
-   * they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
-   * URL if set.
-   */
-  custom_redirect?: string;
-
-  /**
-   * The list of fields you want on the form. This field is optional and if it is not
-   * set, will default to [\"nameOnAccount\", \"accountType\", \"accountNumber\",
-   * \"routingNumber\", \"address\"]. The full list of options is [\"name\",
-   * \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
-   * \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
-   */
-  fields?: Array<
-    | 'name'
-    | 'nameOnAccount'
-    | 'taxpayerIdentifier'
-    | 'accountType'
-    | 'accountNumber'
-    | 'ibanNumber'
-    | 'clabeNumber'
-    | 'walletAddress'
-    | 'panNumber'
-    | 'routingNumber'
-    | 'abaWireRoutingNumber'
-    | 'swiftCode'
-    | 'auBsb'
-    | 'caCpa'
-    | 'cnaps'
-    | 'gbSortCode'
-    | 'inIfsc'
-    | 'myBranchCode'
-    | 'brCodigo'
-    | 'routingNumberType'
-    | 'address'
-    | 'jpZenginCode'
-    | 'seBankgiroClearingCode'
-    | 'nzNationalClearingCode'
-    | 'hkInterbankClearingCode'
-    | 'huInterbankClearingCode'
-    | 'dkInterbankClearingCode'
-    | 'idSknbiCode'
-    | 'zaNationalClearingCode'
-  >;
-
-  /**
-   * By default, Modern Treasury will send an email to your counterparty that
-   * includes a link to the form they must fill out. However, if you would like to
-   * send the counterparty the link, you can set this parameter to `false`. The JSON
-   * body will include the link to the secure Modern Treasury form.
-   */
-  send_email?: boolean;
-}
-
 export declare namespace Counterparties {
   export {
     type Counterparty as Counterparty,
     type CounterpartyCollectAccountResponse as CounterpartyCollectAccountResponse,
     type CounterpartiesPage as CounterpartiesPage,
+    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams,
+    type CounterpartyListParams as CounterpartyListParams,
     type CounterpartyCreateParams as CounterpartyCreateParams,
     type CounterpartyUpdateParams as CounterpartyUpdateParams,
-    type CounterpartyListParams as CounterpartyListParams,
-    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams,
   };
 }

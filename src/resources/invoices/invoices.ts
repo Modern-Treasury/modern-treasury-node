@@ -25,6 +25,24 @@ export class Invoices extends APIResource {
   lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this._client);
 
   /**
+   * list invoices
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const invoice of client.invoices.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: InvoiceListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InvoicesPage, Invoice> {
+    return this._client.getAPIList('/api/invoices', Page<Invoice>, { query, ...options });
+  }
+
+  /**
    * create invoice
    *
    * @example
@@ -66,24 +84,6 @@ export class Invoices extends APIResource {
     options?: RequestOptions,
   ): APIPromise<Invoice> {
     return this._client.patch(path`/api/invoices/${id}`, { body, ...options });
-  }
-
-  /**
-   * list invoices
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const invoice of client.invoices.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: InvoiceListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<InvoicesPage, Invoice> {
-    return this._client.getAPIList('/api/invoices', Page<Invoice>, { query, ...options });
   }
 
   /**
@@ -410,6 +410,50 @@ export namespace Invoice {
 
     line2?: string;
   }
+}
+
+export interface InvoiceListParams extends PageParams {
+  counterparty_id?: string;
+
+  /**
+   * An inclusive upper bound for searching created_at
+   */
+  created_at_end?: string;
+
+  /**
+   * An inclusive lower bound for searching created_at
+   */
+  created_at_start?: string;
+
+  /**
+   * An inclusive upper bound for searching due_date
+   */
+  due_date_end?: string;
+
+  /**
+   * An inclusive lower bound for searching due_date
+   */
+  due_date_start?: string;
+
+  expected_payment_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * A unique record number assigned to each invoice that is issued.
+   */
+  number?: string;
+
+  originating_account_id?: string;
+
+  payment_order_id?: string;
+
+  status?: 'draft' | 'paid' | 'partially_paid' | 'payment_pending' | 'unpaid' | 'voided';
 }
 
 export interface InvoiceCreateParams {
@@ -966,50 +1010,6 @@ export namespace InvoiceUpdateParams {
   }
 }
 
-export interface InvoiceListParams extends PageParams {
-  counterparty_id?: string;
-
-  /**
-   * An inclusive upper bound for searching created_at
-   */
-  created_at_end?: string;
-
-  /**
-   * An inclusive lower bound for searching created_at
-   */
-  created_at_start?: string;
-
-  /**
-   * An inclusive upper bound for searching due_date
-   */
-  due_date_end?: string;
-
-  /**
-   * An inclusive lower bound for searching due_date
-   */
-  due_date_start?: string;
-
-  expected_payment_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * A unique record number assigned to each invoice that is issued.
-   */
-  number?: string;
-
-  originating_account_id?: string;
-
-  payment_order_id?: string;
-
-  status?: 'draft' | 'paid' | 'partially_paid' | 'payment_pending' | 'unpaid' | 'voided';
-}
-
 export interface InvoiceAddPaymentOrderParams {
   /**
    * id
@@ -1023,9 +1023,9 @@ export declare namespace Invoices {
   export {
     type Invoice as Invoice,
     type InvoicesPage as InvoicesPage,
+    type InvoiceListParams as InvoiceListParams,
     type InvoiceCreateParams as InvoiceCreateParams,
     type InvoiceUpdateParams as InvoiceUpdateParams,
-    type InvoiceListParams as InvoiceListParams,
     type InvoiceAddPaymentOrderParams as InvoiceAddPaymentOrderParams,
   };
 
@@ -1033,10 +1033,10 @@ export declare namespace Invoices {
     LineItems as LineItems,
     type LineItemsAPIInvoiceLineItem as InvoiceLineItem,
     type InvoiceLineItemsPage as InvoiceLineItemsPage,
+    type LineItemListParams as LineItemListParams,
     type LineItemCreateParams as LineItemCreateParams,
     type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
-    type LineItemListParams as LineItemListParams,
     type LineItemDeleteParams as LineItemDeleteParams,
   };
 }

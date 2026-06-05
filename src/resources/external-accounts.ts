@@ -28,6 +28,79 @@ export class ExternalAccounts extends APIResource {
   }
 
   /**
+   * delete external account
+   *
+   * @example
+   * ```ts
+   * await client.externalAccounts.delete('id');
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/api/external_accounts/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
+   * verify external account
+   *
+   * @example
+   * ```ts
+   * const response = await client.externalAccounts.verify(
+   *   'id',
+   *   {
+   *     originating_account_id:
+   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *     payment_type: 'ach',
+   *   },
+   * );
+   * ```
+   */
+  verify(
+    id: string,
+    body: ExternalAccountVerifyParams,
+    options?: RequestOptions,
+  ): APIPromise<ExternalAccountVerifyResponse> {
+    return this._client.post(path`/api/external_accounts/${id}/verify`, { body, ...options });
+  }
+
+  /**
+   * complete verification of external account
+   *
+   * @example
+   * ```ts
+   * const externalAccount =
+   *   await client.externalAccounts.completeVerification('id');
+   * ```
+   */
+  completeVerification(
+    id: string,
+    body: ExternalAccountCompleteVerificationParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ExternalAccount> {
+    return this._client.post(path`/api/external_accounts/${id}/complete_verification`, { body, ...options });
+  }
+
+  /**
+   * list external accounts
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const externalAccount of client.externalAccounts.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: ExternalAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ExternalAccountsPage, ExternalAccount> {
+    return this._client.getAPIList('/api/external_accounts', Page<ExternalAccount>, { query, ...options });
+  }
+
+  /**
    * show external account
    *
    * @example
@@ -55,79 +128,6 @@ export class ExternalAccounts extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ExternalAccount> {
     return this._client.patch(path`/api/external_accounts/${id}`, { body, ...options });
-  }
-
-  /**
-   * list external accounts
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const externalAccount of client.externalAccounts.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: ExternalAccountListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ExternalAccountsPage, ExternalAccount> {
-    return this._client.getAPIList('/api/external_accounts', Page<ExternalAccount>, { query, ...options });
-  }
-
-  /**
-   * delete external account
-   *
-   * @example
-   * ```ts
-   * await client.externalAccounts.delete('id');
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/external_accounts/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
-
-  /**
-   * complete verification of external account
-   *
-   * @example
-   * ```ts
-   * const externalAccount =
-   *   await client.externalAccounts.completeVerification('id');
-   * ```
-   */
-  completeVerification(
-    id: string,
-    body: ExternalAccountCompleteVerificationParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ExternalAccount> {
-    return this._client.post(path`/api/external_accounts/${id}/complete_verification`, { body, ...options });
-  }
-
-  /**
-   * verify external account
-   *
-   * @example
-   * ```ts
-   * const response = await client.externalAccounts.verify(
-   *   'id',
-   *   {
-   *     originating_account_id:
-   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     payment_type: 'ach',
-   *   },
-   * );
-   * ```
-   */
-  verify(
-    id: string,
-    body: ExternalAccountVerifyParams,
-    options?: RequestOptions,
-  ): APIPromise<ExternalAccountVerifyResponse> {
-    return this._client.post(path`/api/external_accounts/${id}/verify`, { body, ...options });
   }
 }
 
@@ -454,64 +454,6 @@ export namespace ExternalAccountCreateParams {
   }
 }
 
-export interface ExternalAccountUpdateParams {
-  /**
-   * Can be `checking`, `savings` or `other`.
-   */
-  account_type?: ExternalAccountType;
-
-  counterparty_id?: string | null;
-
-  /**
-   * Additional data in the form of key-value pairs. Pairs can be removed by passing
-   * an empty string or `null` as the value.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * A nickname for the external account. This is only for internal usage and won't
-   * affect any payments
-   */
-  name?: string | null;
-
-  party_address?: Shared.AddressRequest;
-
-  /**
-   * If this value isn't provided, it will be inherited from the counterparty's name.
-   */
-  party_name?: string;
-
-  /**
-   * Either `individual` or `business`.
-   */
-  party_type?: 'business' | 'individual' | null;
-}
-
-export interface ExternalAccountListParams extends PageParams {
-  counterparty_id?: string;
-
-  /**
-   * An optional user-defined 180 character unique identifier.
-   */
-  external_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * Searches the ExternalAccount's party_name AND the Counterparty's party_name
-   */
-  party_name?: string;
-}
-
-export interface ExternalAccountCompleteVerificationParams {
-  amounts?: Array<number>;
-}
-
 export interface ExternalAccountVerifyParams {
   /**
    * The ID of the internal account where the micro-deposits originate from. Both
@@ -575,6 +517,64 @@ export interface ExternalAccountVerifyParams {
   priority?: 'high' | 'normal';
 }
 
+export interface ExternalAccountCompleteVerificationParams {
+  amounts?: Array<number>;
+}
+
+export interface ExternalAccountListParams extends PageParams {
+  counterparty_id?: string;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * Searches the ExternalAccount's party_name AND the Counterparty's party_name
+   */
+  party_name?: string;
+}
+
+export interface ExternalAccountUpdateParams {
+  /**
+   * Can be `checking`, `savings` or `other`.
+   */
+  account_type?: ExternalAccountType;
+
+  counterparty_id?: string | null;
+
+  /**
+   * Additional data in the form of key-value pairs. Pairs can be removed by passing
+   * an empty string or `null` as the value.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * A nickname for the external account. This is only for internal usage and won't
+   * affect any payments
+   */
+  name?: string | null;
+
+  party_address?: Shared.AddressRequest;
+
+  /**
+   * If this value isn't provided, it will be inherited from the counterparty's name.
+   */
+  party_name?: string;
+
+  /**
+   * Either `individual` or `business`.
+   */
+  party_type?: 'business' | 'individual' | null;
+}
+
 export declare namespace ExternalAccounts {
   export {
     type ExternalAccount as ExternalAccount,
@@ -582,9 +582,9 @@ export declare namespace ExternalAccounts {
     type ExternalAccountVerifyResponse as ExternalAccountVerifyResponse,
     type ExternalAccountsPage as ExternalAccountsPage,
     type ExternalAccountCreateParams as ExternalAccountCreateParams,
-    type ExternalAccountUpdateParams as ExternalAccountUpdateParams,
-    type ExternalAccountListParams as ExternalAccountListParams,
-    type ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
     type ExternalAccountVerifyParams as ExternalAccountVerifyParams,
+    type ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
+    type ExternalAccountListParams as ExternalAccountListParams,
+    type ExternalAccountUpdateParams as ExternalAccountUpdateParams,
   };
 }
