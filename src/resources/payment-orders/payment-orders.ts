@@ -373,9 +373,8 @@ export interface PaymentOrder {
   transaction_ids: Array<string>;
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -644,7 +643,6 @@ export type PaymentOrderSubtype =
   | 'dk_nets'
   | 'eft'
   | 'ethereum'
-  | 'hu_ics'
   | 'masav'
   | 'mx_ccen'
   | 'neft'
@@ -652,20 +650,17 @@ export type PaymentOrderSubtype =
   | 'nz_becs'
   | 'pl_elixir'
   | 'polygon'
-  | 'ro_sent'
   | 'se_bankgirot'
   | 'sepa'
   | 'sg_giro'
   | 'sic'
-  | 'sknbi'
   | 'solana'
   | 'zengin'
   | null;
 
 /**
- * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
- * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
- * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+ * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+ * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
  */
 export type PaymentOrderType =
   | 'ach'
@@ -679,24 +674,17 @@ export type PaymentOrderType =
   | 'dk_nets'
   | 'eft'
   | 'gb_fps'
-  | 'hu_ics'
-  | 'interac'
   | 'masav'
   | 'mx_ccen'
   | 'neft'
   | 'nics'
   | 'nz_becs'
   | 'pl_elixir'
-  | 'provxchange'
-  | 'ro_sent'
   | 'rtp'
   | 'se_bankgirot'
-  | 'sen'
   | 'sepa'
   | 'sg_giro'
   | 'sic'
-  | 'signet'
-  | 'sknbi'
   | 'stablecoin'
   | 'wire'
   | 'zengin';
@@ -722,9 +710,8 @@ export interface PaymentOrderCreateParams {
   originating_account_id: string;
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -1136,8 +1123,6 @@ export namespace PaymentOrderCreateParams {
         | 'dk_interbank_clearing_code'
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
-        | 'hu_interbank_clearing_code'
-        | 'id_sknbi_code'
         | 'il_bank_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
@@ -1162,24 +1147,17 @@ export namespace PaymentOrderCreateParams {
         | 'dk_nets'
         | 'eft'
         | 'gb_fps'
-        | 'hu_ics'
-        | 'interac'
         | 'masav'
         | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
-        | 'provxchange'
-        | 'ro_sent'
         | 'rtp'
         | 'se_bankgirot'
-        | 'sen'
         | 'sepa'
         | 'sg_giro'
         | 'sic'
-        | 'signet'
-        | 'sknbi'
         | 'stablecoin'
         | 'wire'
         | 'zengin';
@@ -1237,9 +1215,8 @@ export interface PaymentOrderCreateAsyncParams {
   originating_account_id: string;
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -1618,8 +1595,6 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'dk_interbank_clearing_code'
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
-        | 'hu_interbank_clearing_code'
-        | 'id_sknbi_code'
         | 'il_bank_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
@@ -1644,24 +1619,17 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'dk_nets'
         | 'eft'
         | 'gb_fps'
-        | 'hu_ics'
-        | 'interac'
         | 'masav'
         | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
-        | 'provxchange'
-        | 'ro_sent'
         | 'rtp'
         | 'se_bankgirot'
-        | 'sen'
         | 'sepa'
         | 'sg_giro'
         | 'sic'
-        | 'signet'
-        | 'sknbi'
         | 'stablecoin'
         | 'wire'
         | 'zengin';
@@ -1788,24 +1756,17 @@ export interface PaymentOrderListParams extends PageParams {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -2026,9 +1987,8 @@ export interface PaymentOrderUpdateParams {
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   type?: PaymentOrderType;
 
@@ -2207,8 +2167,6 @@ export namespace PaymentOrderUpdateParams {
         | 'dk_interbank_clearing_code'
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
-        | 'hu_interbank_clearing_code'
-        | 'id_sknbi_code'
         | 'il_bank_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
@@ -2233,24 +2191,17 @@ export namespace PaymentOrderUpdateParams {
         | 'dk_nets'
         | 'eft'
         | 'gb_fps'
-        | 'hu_ics'
-        | 'interac'
         | 'masav'
         | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
-        | 'provxchange'
-        | 'ro_sent'
         | 'rtp'
         | 'se_bankgirot'
-        | 'sen'
         | 'sepa'
         | 'sg_giro'
         | 'sic'
-        | 'signet'
-        | 'sknbi'
         | 'stablecoin'
         | 'wire'
         | 'zengin';
