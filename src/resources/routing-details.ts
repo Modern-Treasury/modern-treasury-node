@@ -10,6 +10,22 @@ import { path } from '../internal/utils/path';
 
 export class RoutingDetails extends APIResource {
   /**
+   * Get a list of routing details for a single internal or external account.
+   */
+  list(
+    accountID: string,
+    params: RoutingDetailListParams,
+    options?: RequestOptions,
+  ): PagePromise<RoutingDetailsPage, RoutingDetail> {
+    const { accounts_type, ...query } = params;
+    return this._client.getAPIList(
+      path`/api/${accounts_type}/${accountID}/routing_details`,
+      Page<RoutingDetail>,
+      { query, ...options },
+    );
+  }
+
+  /**
    * Create a routing detail for a single external account.
    */
   create(
@@ -31,22 +47,6 @@ export class RoutingDetails extends APIResource {
   ): APIPromise<RoutingDetail> {
     const { accounts_type, account_id } = params;
     return this._client.get(path`/api/${accounts_type}/${account_id}/routing_details/${id}`, options);
-  }
-
-  /**
-   * Get a list of routing details for a single internal or external account.
-   */
-  list(
-    accountID: string,
-    params: RoutingDetailListParams,
-    options?: RequestOptions,
-  ): PagePromise<RoutingDetailsPage, RoutingDetail> {
-    const { accounts_type, ...query } = params;
-    return this._client.getAPIList(
-      path`/api/${accounts_type}/${accountID}/routing_details`,
-      Page<RoutingDetail>,
-      { query, ...options },
-    );
   }
 
   /**
@@ -161,6 +161,13 @@ export interface RoutingDetail {
   updated_at: string;
 }
 
+export interface RoutingDetailListParams extends PageParams {
+  /**
+   * Path param
+   */
+  accounts_type: Shared.AccountsType;
+}
+
 export interface RoutingDetailCreateParams {
   /**
    * Path param
@@ -250,13 +257,6 @@ export interface RoutingDetailRetrieveParams {
   account_id: string;
 }
 
-export interface RoutingDetailListParams extends PageParams {
-  /**
-   * Path param
-   */
-  accounts_type: Shared.AccountsType;
-}
-
 export interface RoutingDetailDeleteParams {
   accounts_type: 'external_accounts';
 
@@ -270,9 +270,9 @@ export declare namespace RoutingDetails {
   export {
     type RoutingDetail as RoutingDetail,
     type RoutingDetailsPage as RoutingDetailsPage,
+    type RoutingDetailListParams as RoutingDetailListParams,
     type RoutingDetailCreateParams as RoutingDetailCreateParams,
     type RoutingDetailRetrieveParams as RoutingDetailRetrieveParams,
-    type RoutingDetailListParams as RoutingDetailListParams,
     type RoutingDetailDeleteParams as RoutingDetailDeleteParams,
   };
 }

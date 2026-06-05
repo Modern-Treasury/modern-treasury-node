@@ -8,6 +8,19 @@ import { path } from '../internal/utils/path';
 
 export class AccountCollectionFlows extends APIResource {
   /**
+   * list account_collection_flows
+   */
+  list(
+    query: AccountCollectionFlowListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow> {
+    return this._client.getAPIList('/api/account_collection_flows', Page<AccountCollectionFlow>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * create account_collection_flow
    */
   create(
@@ -33,19 +46,6 @@ export class AccountCollectionFlows extends APIResource {
     options?: RequestOptions,
   ): APIPromise<AccountCollectionFlow> {
     return this._client.patch(path`/api/account_collection_flows/${id}`, { body, ...options });
-  }
-
-  /**
-   * list account_collection_flows
-   */
-  list(
-    query: AccountCollectionFlowListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AccountCollectionFlowsPage, AccountCollectionFlow> {
-    return this._client.getAPIList('/api/account_collection_flows', Page<AccountCollectionFlow>, {
-      query,
-      ...options,
-    });
   }
 }
 
@@ -113,6 +113,16 @@ export interface AccountCollectionFlow {
   updated_at?: string;
 }
 
+export interface AccountCollectionFlowListParams extends PageParams {
+  client_token?: string;
+
+  counterparty_id?: string;
+
+  external_account_id?: string;
+
+  status?: string;
+}
+
 export interface AccountCollectionFlowCreateParams {
   /**
    * Required.
@@ -151,22 +161,12 @@ export interface AccountCollectionFlowUpdateParams {
   status: 'cancelled';
 }
 
-export interface AccountCollectionFlowListParams extends PageParams {
-  client_token?: string;
-
-  counterparty_id?: string;
-
-  external_account_id?: string;
-
-  status?: string;
-}
-
 export declare namespace AccountCollectionFlows {
   export {
     type AccountCollectionFlow as AccountCollectionFlow,
     type AccountCollectionFlowsPage as AccountCollectionFlowsPage,
+    type AccountCollectionFlowListParams as AccountCollectionFlowListParams,
     type AccountCollectionFlowCreateParams as AccountCollectionFlowCreateParams,
     type AccountCollectionFlowUpdateParams as AccountCollectionFlowUpdateParams,
-    type AccountCollectionFlowListParams as AccountCollectionFlowListParams,
   };
 }

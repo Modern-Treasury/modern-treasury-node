@@ -8,6 +8,31 @@ import { path } from '../../internal/utils/path';
 
 export class LineItems extends APIResource {
   /**
+   * list invoice_line_items
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const invoiceLineItem of client.invoices.lineItems.list(
+   *   'invoice_id',
+   * )) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    invoiceID: string,
+    query: LineItemListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InvoiceLineItemsPage, InvoiceLineItem> {
+    return this._client.getAPIList(
+      path`/api/invoices/${invoiceID}/invoice_line_items`,
+      Page<InvoiceLineItem>,
+      { query, ...options },
+    );
+  }
+
+  /**
    * create invoice_line_item
    *
    * @example
@@ -64,31 +89,6 @@ export class LineItems extends APIResource {
       body,
       ...options,
     });
-  }
-
-  /**
-   * list invoice_line_items
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const invoiceLineItem of client.invoices.lineItems.list(
-   *   'invoice_id',
-   * )) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    invoiceID: string,
-    query: LineItemListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<InvoiceLineItemsPage, InvoiceLineItem> {
-    return this._client.getAPIList(
-      path`/api/invoices/${invoiceID}/invoice_line_items`,
-      Page<InvoiceLineItem>,
-      { query, ...options },
-    );
   }
 
   /**
@@ -178,6 +178,8 @@ export interface InvoiceLineItem {
 
   updated_at: string;
 }
+
+export interface LineItemListParams extends PageParams {}
 
 export interface LineItemCreateParams {
   /**
@@ -279,8 +281,6 @@ export interface LineItemUpdateParams {
   unit_amount_decimal?: string;
 }
 
-export interface LineItemListParams extends PageParams {}
-
 export interface LineItemDeleteParams {
   /**
    * invoice_id
@@ -292,10 +292,10 @@ export declare namespace LineItems {
   export {
     type InvoiceLineItem as InvoiceLineItem,
     type InvoiceLineItemsPage as InvoiceLineItemsPage,
+    type LineItemListParams as LineItemListParams,
     type LineItemCreateParams as LineItemCreateParams,
     type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
-    type LineItemListParams as LineItemListParams,
     type LineItemDeleteParams as LineItemDeleteParams,
   };
 }

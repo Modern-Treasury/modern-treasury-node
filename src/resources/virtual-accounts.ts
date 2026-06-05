@@ -11,6 +11,16 @@ import { path } from '../internal/utils/path';
 
 export class VirtualAccounts extends APIResource {
   /**
+   * Get a list of virtual accounts.
+   */
+  list(
+    query: VirtualAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<VirtualAccountsPage, VirtualAccount> {
+    return this._client.getAPIList('/api/virtual_accounts', Page<VirtualAccount>, { query, ...options });
+  }
+
+  /**
    * create virtual_account
    */
   create(body: VirtualAccountCreateParams, options?: RequestOptions): APIPromise<VirtualAccount> {
@@ -33,16 +43,6 @@ export class VirtualAccounts extends APIResource {
     options?: RequestOptions,
   ): APIPromise<VirtualAccount> {
     return this._client.patch(path`/api/virtual_accounts/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of virtual accounts.
-   */
-  list(
-    query: VirtualAccountListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<VirtualAccountsPage, VirtualAccount> {
-    return this._client.getAPIList('/api/virtual_accounts', Page<VirtualAccount>, { query, ...options });
   }
 
   /**
@@ -128,6 +128,19 @@ export interface VirtualAccount {
   routing_details: Array<RoutingDetailsAPI.RoutingDetail>;
 
   updated_at: string;
+}
+
+export interface VirtualAccountListParams extends PageParams {
+  counterparty_id?: string;
+
+  internal_account_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
 }
 
 export interface VirtualAccountCreateParams {
@@ -307,25 +320,12 @@ export interface VirtualAccountUpdateParams {
   name?: string | null;
 }
 
-export interface VirtualAccountListParams extends PageParams {
-  counterparty_id?: string;
-
-  internal_account_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-}
-
 export declare namespace VirtualAccounts {
   export {
     type VirtualAccount as VirtualAccount,
     type VirtualAccountsPage as VirtualAccountsPage,
+    type VirtualAccountListParams as VirtualAccountListParams,
     type VirtualAccountCreateParams as VirtualAccountCreateParams,
     type VirtualAccountUpdateParams as VirtualAccountUpdateParams,
-    type VirtualAccountListParams as VirtualAccountListParams,
   };
 }
