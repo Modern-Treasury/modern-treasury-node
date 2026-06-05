@@ -9,6 +9,35 @@ const client = new ModernTreasury({
 });
 
 describe('resource legalEntities', () => {
+  test('list', async () => {
+    const responsePromise = client.legalEntities.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.legalEntities.list(
+        {
+          after_cursor: 'after_cursor',
+          external_id: 'external_id',
+          legal_entity_type: 'business',
+          metadata: { foo: 'string' },
+          per_page: 0,
+          show_deleted: 'show_deleted',
+          status: 'pending',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.legalEntities.create({ legal_entity_type: 'business' });
     const rawResponse = await responsePromise.asResponse();
@@ -474,35 +503,6 @@ describe('resource legalEntities', () => {
             wealth_source: 'business_sale',
           },
           website: 'website',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('list', async () => {
-    const responsePromise = client.legalEntities.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.legalEntities.list(
-        {
-          after_cursor: 'after_cursor',
-          external_id: 'external_id',
-          legal_entity_type: 'business',
-          metadata: { foo: 'string' },
-          per_page: 0,
-          show_deleted: 'show_deleted',
-          status: 'pending',
         },
         { path: '/_stainless_unknown_path' },
       ),

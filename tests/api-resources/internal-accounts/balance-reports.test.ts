@@ -9,6 +9,52 @@ const client = new ModernTreasury({
 });
 
 describe('resource balanceReports', () => {
+  test('list', async () => {
+    const responsePromise = client.internalAccounts.balanceReports.list('internal_account_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.internalAccounts.balanceReports.list(
+        'internal_account_id',
+        {
+          after_cursor: 'after_cursor',
+          as_of_date: '2019-12-27',
+          balance_report_type: 'intraday',
+          per_page: 0,
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('retrieve: only required params', async () => {
+    const responsePromise = client.internalAccounts.balanceReports.retrieve('latest', {
+      internal_account_id: 'internal_account_id',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('retrieve: required and optional params', async () => {
+    const response = await client.internalAccounts.balanceReports.retrieve('latest', {
+      internal_account_id: 'internal_account_id',
+    });
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.internalAccounts.balanceReports.create('internal_account_id', {
       as_of_date: '2019-12-27',
@@ -46,52 +92,6 @@ describe('resource balanceReports', () => {
         },
       ],
     });
-  });
-
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.internalAccounts.balanceReports.retrieve('latest', {
-      internal_account_id: 'internal_account_id',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('retrieve: required and optional params', async () => {
-    const response = await client.internalAccounts.balanceReports.retrieve('latest', {
-      internal_account_id: 'internal_account_id',
-    });
-  });
-
-  test('list', async () => {
-    const responsePromise = client.internalAccounts.balanceReports.list('internal_account_id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.internalAccounts.balanceReports.list(
-        'internal_account_id',
-        {
-          after_cursor: 'after_cursor',
-          as_of_date: '2019-12-27',
-          balance_report_type: 'intraday',
-          per_page: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
   test('delete: only required params', async () => {

@@ -183,181 +183,6 @@ describe('resource paymentOrders', () => {
     });
   });
 
-  test('retrieve', async () => {
-    const responsePromise = client.paymentOrders.retrieve('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('update', async () => {
-    const responsePromise = client.paymentOrders.update('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('update: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.paymentOrders.update(
-        'id',
-        {
-          accounting: {
-            account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          },
-          accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          amount: 0,
-          charge_bearer: 'shared',
-          counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          currency: 'AED',
-          description: 'description',
-          direction: 'credit',
-          effective_date: '2019-12-27',
-          expires_at: '2019-12-27T18:11:19.117Z',
-          external_id: 'external_id',
-          fallback_type: 'ach',
-          foreign_exchange_contract: 'foreign_exchange_contract',
-          foreign_exchange_indicator: 'fixed_to_variable',
-          line_items: [
-            {
-              amount: 0,
-              accounting_category_id: 'accounting_category_id',
-              description: 'description',
-              metadata: {
-                key: 'value',
-                foo: 'bar',
-                modern: 'treasury',
-              },
-            },
-          ],
-          metadata: {
-            key: 'value',
-            foo: 'bar',
-            modern: 'treasury',
-          },
-          nsf_protected: true,
-          originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          originating_party_name: 'originating_party_name',
-          priority: 'high',
-          process_after: '2019-12-27T18:11:19.117Z',
-          purpose: 'purpose',
-          receiving_account: {
-            account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
-            account_type: 'base_wallet',
-            contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
-            external_id: 'external_id',
-            ledger_account: {
-              currency: 'currency',
-              ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-              name: 'name',
-              normal_balance: 'credit',
-              currency_exponent: 0,
-              description: 'description',
-              external_id: 'external_id',
-              ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-              ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-              ledgerable_type: 'counterparty',
-              metadata: {
-                key: 'value',
-                foo: 'bar',
-                modern: 'treasury',
-              },
-            },
-            metadata: {
-              key: 'value',
-              foo: 'bar',
-              modern: 'treasury',
-            },
-            name: 'name',
-            party_address: {
-              country: 'country',
-              line1: 'line1',
-              line2: 'line2',
-              locality: 'locality',
-              postal_code: 'postal_code',
-              region: 'region',
-            },
-            party_identifier: 'party_identifier',
-            party_name: 'party_name',
-            party_type: 'business',
-            plaid_processor_token: 'plaid_processor_token',
-            routing_details: [
-              {
-                routing_number: 'routing_number',
-                routing_number_type: 'aba',
-                payment_type: 'ach',
-              },
-            ],
-          },
-          receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          reconciliation_status: 'unreconciled',
-          remittance_information: 'remittance_information',
-          send_remittance_advice: true,
-          statement_descriptor: 'statement_descriptor',
-          status: 'approved',
-          subtype: '0C',
-          type: 'ach',
-          ultimate_originating_party_identifier: 'ultimate_originating_party_identifier',
-          ultimate_originating_party_name: 'ultimate_originating_party_name',
-          ultimate_receiving_party_identifier: 'ultimate_receiving_party_identifier',
-          ultimate_receiving_party_name: 'ultimate_receiving_party_name',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('list', async () => {
-    const responsePromise = client.paymentOrders.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.paymentOrders.list(
-        {
-          after_cursor: 'after_cursor',
-          counterparty_id: 'counterparty_id',
-          created_at_end: '2019-12-27',
-          created_at_start: '2019-12-27',
-          direction: 'credit',
-          effective_date_end: '2019-12-27',
-          effective_date_start: '2019-12-27',
-          external_id: 'external_id',
-          metadata: { foo: 'string' },
-          originating_account_id: 'originating_account_id',
-          per_page: 0,
-          priority: 'high',
-          process_after_end: '2019-12-27T18:11:19.117Z',
-          process_after_start: '2019-12-27T18:11:19.117Z',
-          reference_number: 'reference_number',
-          status: 'approved',
-          transaction_id: 'transaction_id',
-          type: 'ach',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
   test('createAsync: only required params', async () => {
     const responsePromise = client.paymentOrders.createAsync({
       amount: 0,
@@ -520,5 +345,180 @@ describe('resource paymentOrders', () => {
       ultimate_receiving_party_name: 'ultimate_receiving_party_name',
       vendor_attributes: {},
     });
+  });
+
+  test('list', async () => {
+    const responsePromise = client.paymentOrders.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.paymentOrders.list(
+        {
+          after_cursor: 'after_cursor',
+          counterparty_id: 'counterparty_id',
+          created_at_end: '2019-12-27',
+          created_at_start: '2019-12-27',
+          direction: 'credit',
+          effective_date_end: '2019-12-27',
+          effective_date_start: '2019-12-27',
+          external_id: 'external_id',
+          metadata: { foo: 'string' },
+          originating_account_id: 'originating_account_id',
+          per_page: 0,
+          priority: 'high',
+          process_after_end: '2019-12-27T18:11:19.117Z',
+          process_after_start: '2019-12-27T18:11:19.117Z',
+          reference_number: 'reference_number',
+          status: 'approved',
+          transaction_id: 'transaction_id',
+          type: 'ach',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('retrieve', async () => {
+    const responsePromise = client.paymentOrders.retrieve('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('update', async () => {
+    const responsePromise = client.paymentOrders.update('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('update: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.paymentOrders.update(
+        'id',
+        {
+          accounting: {
+            account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          },
+          accounting_category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          accounting_ledger_class_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          amount: 0,
+          charge_bearer: 'shared',
+          counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          currency: 'AED',
+          description: 'description',
+          direction: 'credit',
+          effective_date: '2019-12-27',
+          expires_at: '2019-12-27T18:11:19.117Z',
+          external_id: 'external_id',
+          fallback_type: 'ach',
+          foreign_exchange_contract: 'foreign_exchange_contract',
+          foreign_exchange_indicator: 'fixed_to_variable',
+          line_items: [
+            {
+              amount: 0,
+              accounting_category_id: 'accounting_category_id',
+              description: 'description',
+              metadata: {
+                key: 'value',
+                foo: 'bar',
+                modern: 'treasury',
+              },
+            },
+          ],
+          metadata: {
+            key: 'value',
+            foo: 'bar',
+            modern: 'treasury',
+          },
+          nsf_protected: true,
+          originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          originating_party_name: 'originating_party_name',
+          priority: 'high',
+          process_after: '2019-12-27T18:11:19.117Z',
+          purpose: 'purpose',
+          receiving_account: {
+            account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
+            account_type: 'base_wallet',
+            contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
+            external_id: 'external_id',
+            ledger_account: {
+              currency: 'currency',
+              ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              name: 'name',
+              normal_balance: 'credit',
+              currency_exponent: 0,
+              description: 'description',
+              external_id: 'external_id',
+              ledger_account_category_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+              ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+              ledgerable_type: 'counterparty',
+              metadata: {
+                key: 'value',
+                foo: 'bar',
+                modern: 'treasury',
+              },
+            },
+            metadata: {
+              key: 'value',
+              foo: 'bar',
+              modern: 'treasury',
+            },
+            name: 'name',
+            party_address: {
+              country: 'country',
+              line1: 'line1',
+              line2: 'line2',
+              locality: 'locality',
+              postal_code: 'postal_code',
+              region: 'region',
+            },
+            party_identifier: 'party_identifier',
+            party_name: 'party_name',
+            party_type: 'business',
+            plaid_processor_token: 'plaid_processor_token',
+            routing_details: [
+              {
+                routing_number: 'routing_number',
+                routing_number_type: 'aba',
+                payment_type: 'ach',
+              },
+            ],
+          },
+          receiving_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          reconciliation_status: 'unreconciled',
+          remittance_information: 'remittance_information',
+          send_remittance_advice: true,
+          statement_descriptor: 'statement_descriptor',
+          status: 'approved',
+          subtype: '0C',
+          type: 'ach',
+          ultimate_originating_party_identifier: 'ultimate_originating_party_identifier',
+          ultimate_originating_party_name: 'ultimate_originating_party_name',
+          ultimate_receiving_party_identifier: 'ultimate_receiving_party_identifier',
+          ultimate_receiving_party_name: 'ultimate_receiving_party_name',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });

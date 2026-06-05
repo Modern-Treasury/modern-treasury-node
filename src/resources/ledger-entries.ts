@@ -9,6 +9,24 @@ import { path } from '../internal/utils/path';
 
 export class LedgerEntries extends APIResource {
   /**
+   * Get a list of all ledger entries.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerEntry of client.ledgerEntries.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: LedgerEntryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerEntriesPage, LedgerEntry> {
+    return this._client.getAPIList('/api/ledger_entries', Page<LedgerEntry>, { query, ...options });
+  }
+
+  /**
    * Get details on a single ledger entry.
    *
    * @example
@@ -40,24 +58,6 @@ export class LedgerEntries extends APIResource {
     options?: RequestOptions,
   ): APIPromise<LedgerEntry> {
     return this._client.patch(path`/api/ledger_entries/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of all ledger entries.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const ledgerEntry of client.ledgerEntries.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: LedgerEntryListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerEntriesPage, LedgerEntry> {
-    return this._client.getAPIList('/api/ledger_entries', Page<LedgerEntry>, { query, ...options });
   }
 }
 
@@ -150,22 +150,6 @@ export interface LedgerEntry {
   status: 'archived' | 'pending' | 'posted';
 
   updated_at: string;
-}
-
-export interface LedgerEntryRetrieveParams {
-  /**
-   * If true, response will include the balances attached to the ledger entry. If
-   * there is no balance available, null will be returned instead.
-   */
-  show_balances?: boolean;
-}
-
-export interface LedgerEntryUpdateParams {
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
 }
 
 export interface LedgerEntryListParams extends PageParams {
@@ -302,12 +286,28 @@ export namespace LedgerEntryListParams {
   }
 }
 
+export interface LedgerEntryRetrieveParams {
+  /**
+   * If true, response will include the balances attached to the ledger entry. If
+   * there is no balance available, null will be returned instead.
+   */
+  show_balances?: boolean;
+}
+
+export interface LedgerEntryUpdateParams {
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+}
+
 export declare namespace LedgerEntries {
   export {
     type LedgerEntry as LedgerEntry,
     type LedgerEntriesPage as LedgerEntriesPage,
+    type LedgerEntryListParams as LedgerEntryListParams,
     type LedgerEntryRetrieveParams as LedgerEntryRetrieveParams,
     type LedgerEntryUpdateParams as LedgerEntryUpdateParams,
-    type LedgerEntryListParams as LedgerEntryListParams,
   };
 }

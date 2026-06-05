@@ -12,6 +12,24 @@ import { path } from '../internal/utils/path';
 
 export class BulkRequests extends APIResource {
   /**
+   * list bulk_requests
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const bulkRequest of client.bulkRequests.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: BulkRequestListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BulkRequestsPage, BulkRequest> {
+    return this._client.getAPIList('/api/bulk_requests', Page<BulkRequest>, { query, ...options });
+  }
+
+  /**
    * create bulk_request
    *
    * @example
@@ -47,24 +65,6 @@ export class BulkRequests extends APIResource {
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<BulkRequest> {
     return this._client.get(path`/api/bulk_requests/${id}`, options);
-  }
-
-  /**
-   * list bulk_requests
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const bulkRequest of client.bulkRequests.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: BulkRequestListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BulkRequestsPage, BulkRequest> {
-    return this._client.getAPIList('/api/bulk_requests', Page<BulkRequest>, { query, ...options });
   }
 }
 
@@ -129,6 +129,37 @@ export interface BulkRequest {
   total_resource_count: number;
 
   updated_at: string;
+}
+
+export interface BulkRequestListParams extends PageParams {
+  /**
+   * One of create, or update.
+   */
+  action_type?: 'create' | 'update' | 'delete';
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * One of payment_order, expected_payment, or ledger_transaction.
+   */
+  resource_type?:
+    | 'payment_order'
+    | 'ledger_account'
+    | 'ledger_transaction'
+    | 'expected_payment'
+    | 'transaction'
+    | 'transaction_line_item'
+    | 'entity_link';
+
+  /**
+   * One of pending, processing, or completed.
+   */
+  status?: 'pending' | 'processing' | 'completed';
 }
 
 export interface BulkRequestCreateParams {
@@ -1569,42 +1600,11 @@ export namespace BulkRequestCreateParams {
   }
 }
 
-export interface BulkRequestListParams extends PageParams {
-  /**
-   * One of create, or update.
-   */
-  action_type?: 'create' | 'update' | 'delete';
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * One of payment_order, expected_payment, or ledger_transaction.
-   */
-  resource_type?:
-    | 'payment_order'
-    | 'ledger_account'
-    | 'ledger_transaction'
-    | 'expected_payment'
-    | 'transaction'
-    | 'transaction_line_item'
-    | 'entity_link';
-
-  /**
-   * One of pending, processing, or completed.
-   */
-  status?: 'pending' | 'processing' | 'completed';
-}
-
 export declare namespace BulkRequests {
   export {
     type BulkRequest as BulkRequest,
     type BulkRequestsPage as BulkRequestsPage,
-    type BulkRequestCreateParams as BulkRequestCreateParams,
     type BulkRequestListParams as BulkRequestListParams,
+    type BulkRequestCreateParams as BulkRequestCreateParams,
   };
 }
