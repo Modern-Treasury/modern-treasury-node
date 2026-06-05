@@ -72,12 +72,6 @@ export interface LedgerEntry {
    */
   amount: number;
 
-  /**
-   * The amount of the ledger entry as a string, preserving full precision for values
-   * that may exceed safe integer limits in some languages.
-   */
-  amount_string: string;
-
   created_at: string;
 
   /**

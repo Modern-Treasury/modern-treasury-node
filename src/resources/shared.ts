@@ -528,8 +528,10 @@ export type Currency =
   | 'UAH'
   | 'UGX'
   | 'USD'
+  | 'USDB'
   | 'USDC'
   | 'USDG'
+  | 'USDP'
   | 'USDT'
   | 'UYU'
   | 'UZS'
@@ -617,100 +619,27 @@ export interface IdentificationCreateRequest {
   id_type:
     | 'ar_cuil'
     | 'ar_cuit'
-    | 'at_atin'
-    | 'at_vat'
-    | 'au_abn'
-    | 'au_tfn'
-    | 'be_ent'
-    | 'be_nrn'
     | 'br_cnpj'
     | 'br_cpf'
-    | 'ca_bn'
     | 'ca_sin'
-    | 'ch_ahv'
-    | 'ch_uid'
     | 'cl_run'
     | 'cl_rut'
     | 'co_cedulas'
     | 'co_nit'
-    | 'cy_tin'
-    | 'cz_ico'
-    | 'cz_rc'
-    | 'de_stid'
-    | 'de_stnr'
-    | 'de_vat'
-    | 'dk_cpr'
-    | 'dk_cvr'
     | 'drivers_license'
-    | 'ee_ik'
-    | 'ee_rk'
-    | 'es_nie'
-    | 'es_nif'
-    | 'fi_hetu'
-    | 'fi_ytj'
-    | 'fr_nif'
-    | 'fr_siren'
-    | 'fr_vat'
-    | 'gb_nino'
-    | 'gb_utr'
-    | 'gb_vat'
-    | 'gr_vat'
     | 'hn_id'
     | 'hn_rtn'
-    | 'hr_oib'
-    | 'hu_adj'
-    | 'hu_anum'
     | 'ie_pps'
-    | 'ie_trn'
     | 'in_lei'
-    | 'is_knt'
-    | 'it_cf'
-    | 'it_piva'
-    | 'jp_hb'
-    | 'jp_mn'
     | 'kr_brn'
     | 'kr_crn'
     | 'kr_rrn'
-    | 'li_peid'
-    | 'lt_ak'
-    | 'lt_jak'
-    | 'lu_mtc'
-    | 'lu_vat'
-    | 'lv_pk'
-    | 'lv_rn'
-    | 'mt_tin'
-    | 'mt_vat'
-    | 'mx_curp'
-    | 'mx_ine'
-    | 'mx_rfc'
-    | 'nl_bsn'
-    | 'nl_btw'
-    | 'nl_rsin'
-    | 'no_fdn'
-    | 'no_mva'
-    | 'no_orgnr'
-    | 'nz_ird'
     | 'passport'
-    | 'pl_nip'
-    | 'pl_pesel'
-    | 'pt_nif'
-    | 'ro_cnp'
-    | 'ro_cui'
     | 'sa_tin'
     | 'sa_vat'
-    | 'se_orgnr'
-    | 'se_pnmr'
-    | 'sg_fin'
-    | 'sg_nric'
-    | 'sg_uen'
-    | 'si_dav'
-    | 'si_tin'
-    | 'sk_ico'
-    | 'sk_rc'
     | 'us_ein'
     | 'us_itin'
     | 'us_ssn'
-    | 'uy_rut'
     | 'vn_tin';
 
   /**
@@ -827,11 +756,7 @@ export interface LedgerAccountCreateRequest {
 export interface LedgerBalance {
   amount: number;
 
-  amount_string: string;
-
   credits: number;
-
-  credits_string: string;
 
   /**
    * The currency of the ledger account.
@@ -844,8 +769,6 @@ export interface LedgerBalance {
   currency_exponent: number;
 
   debits: number;
-
-  debits_string: string;
 }
 
 export interface LedgerBalances {
@@ -870,6 +793,12 @@ export interface LedgerBalances {
 
 export interface LedgerEntryCreateRequest {
   /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000. Can be any integer up to 36 digits.
+   */
+  amount: number;
+
+  /**
    * One of `credit`, `debit`. Describes the direction money is flowing in the
    * transaction. A `credit` moves money from your account to someone else's. A
    * `debit` pulls money from someone else's account to your own. Note that wire,
@@ -881,18 +810,6 @@ export interface LedgerEntryCreateRequest {
    * The ledger account that this ledger entry is associated with.
    */
   ledger_account_id: string;
-
-  /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000. Can be any integer up to 36 digits.
-   */
-  amount?: number;
-
-  /**
-   * The amount of the ledger entry as a string, preserving full precision for values
-   * that may exceed safe integer limits in some languages.
-   */
-  amount_string?: string;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
@@ -1025,11 +942,6 @@ export interface LegalEntityAddressCreateRequest {
   address_types?: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
   line2?: string | null;
-
-  /**
-   * Whether this address is the primary address for the legal entity.
-   */
-  primary?: boolean | null;
 }
 
 export interface LegalEntityAssociationInlineCreate {

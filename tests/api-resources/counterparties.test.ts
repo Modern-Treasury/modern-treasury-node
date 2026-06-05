@@ -139,7 +139,6 @@ describe('resource counterparties', () => {
             region: 'region',
             address_types: ['business'],
             line2: 'line2',
-            primary: true,
           },
         ],
         bank_settings: {
@@ -217,7 +216,6 @@ describe('resource counterparties', () => {
                   region: 'region',
                   address_types: ['business'],
                   line2: 'line2',
-                  primary: true,
                 },
               ],
               bank_settings: {

@@ -61,7 +61,6 @@ describe('resource legalEntities', () => {
           region: 'region',
           address_types: ['business'],
           line2: 'line2',
-          primary: true,
         },
       ],
       bank_settings: {
@@ -139,7 +138,6 @@ describe('resource legalEntities', () => {
                 region: 'region',
                 address_types: ['business'],
                 line2: 'line2',
-                primary: true,
               },
             ],
             bank_settings: {
@@ -384,7 +382,6 @@ describe('resource legalEntities', () => {
               region: 'region',
               address_types: ['business'],
               line2: 'line2',
-              primary: true,
             },
           ],
           bank_settings: {

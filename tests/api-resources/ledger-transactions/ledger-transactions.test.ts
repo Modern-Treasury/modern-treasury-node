@@ -59,7 +59,13 @@ describe('resource ledgerTransactions', () => {
 
   test('create: only required params', async () => {
     const responsePromise = client.ledgerTransactions.create({
-      ledger_entries: [{ direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }],
+      ledger_entries: [
+        {
+          amount: 0,
+          direction: 'credit',
+          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -74,10 +80,9 @@ describe('resource ledgerTransactions', () => {
     const response = await client.ledgerTransactions.create({
       ledger_entries: [
         {
+          amount: 0,
           direction: 'credit',
           ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          amount: 0,
-          amount_string: 'amount_string',
           available_balance_amount: { foo: 0 },
           effective_at: '2019-12-27T18:11:19.117Z',
           lock_version: 0,
@@ -139,10 +144,9 @@ describe('resource ledgerTransactions', () => {
           external_id: 'external_id',
           ledger_entries: [
             {
+              amount: 0,
               direction: 'credit',
               ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-              amount: 0,
-              amount_string: 'amount_string',
               available_balance_amount: { foo: 0 },
               effective_at: '2019-12-27T18:11:19.117Z',
               lock_version: 0,
@@ -207,7 +211,11 @@ describe('resource ledgerTransactions', () => {
   test('createPartialPost: only required params', async () => {
     const responsePromise = client.ledgerTransactions.createPartialPost('id', {
       posted_ledger_entries: [
-        { direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        {
+          amount: 0,
+          direction: 'credit',
+          ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
       ],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -223,20 +231,14 @@ describe('resource ledgerTransactions', () => {
     const response = await client.ledgerTransactions.createPartialPost('id', {
       posted_ledger_entries: [
         {
+          amount: 0,
           direction: 'credit',
           ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          amount: 0,
-          amount_string: 'amount_string',
-          available_balance_amount: { foo: 0 },
-          lock_version: 0,
           metadata: {
             key: 'value',
             foo: 'bar',
             modern: 'treasury',
           },
-          pending_balance_amount: { foo: 0 },
-          posted_balance_amount: { foo: 0 },
-          show_resulting_ledger_account_balances: true,
         },
       ],
       description: 'description',

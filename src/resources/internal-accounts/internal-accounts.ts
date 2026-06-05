@@ -189,14 +189,6 @@ export interface InternalAccount {
   currency: Shared.Currency;
 
   /**
-   * Whether this account can receive ACH debits. Only applicable to accounts created
-   * under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
-   * accounts. Defaults to `false`. Configurable only on creation. Please reach out
-   * to your customer success manager to enable this capability for your connection.
-   */
-  debitable: boolean | null;
-
-  /**
    * An optional user-defined 180 character unique identifier.
    */
   external_id: string | null;
@@ -494,9 +486,10 @@ export interface InternalAccountCreateParams {
   connection_id: string;
 
   /**
-   * The currency of the internal account. Supports fiat and stablecoin currencies.
+   * The currency of the internal account. Supports "USD" and "CAD" for fiat, and
+   * "USDC", "USDG", and "PYUSD" for stablecoin accounts.
    */
-  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'USDT' | 'PYUSD';
+  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'PYUSD';
 
   /**
    * The nickname of the account.
@@ -537,14 +530,6 @@ export interface InternalAccountCreateParams {
    * The Counterparty associated to this account.
    */
   counterparty_id?: string;
-
-  /**
-   * Whether this account can receive ACH debits. Only applicable to accounts created
-   * under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
-   * accounts. Defaults to `false`. Configurable only on creation. Please reach out
-   * to your customer success manager to enable this capability for your connection.
-   */
-  debitable?: boolean | null;
 
   /**
    * An optional user-defined 180 character unique identifier.
