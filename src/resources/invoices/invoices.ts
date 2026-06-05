@@ -565,9 +565,8 @@ export interface InvoiceCreateParams {
   payment_method?: 'ui' | 'manual' | 'automatic';
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   payment_type?: PaymentOrdersAPI.PaymentOrderType;
 
@@ -835,9 +834,8 @@ export interface InvoiceUpdateParams {
   payment_method?: 'ui' | 'manual' | 'automatic';
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   payment_type?: PaymentOrdersAPI.PaymentOrderType;
 

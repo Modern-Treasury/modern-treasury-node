@@ -189,7 +189,7 @@ export interface Transaction {
 
   /**
    * The type of the transaction. Examples could be
-   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+   * `card, `ach`, `wire`, `check`, `rtp`, or `book`.
    */
   type:
     | 'ach'
@@ -203,24 +203,17 @@ export interface Transaction {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin'
@@ -237,8 +230,8 @@ export interface Transaction {
   /**
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
    * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-   * `swift`, `us_bank`, or others.
+   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
+   * `us_bank`, or others.
    */
   vendor_code_type:
     | 'bai2'
@@ -262,7 +255,6 @@ export interface Transaction {
     | 'paxos'
     | 'paypal'
     | 'pnc'
-    | 'signet'
     | 'silvergate'
     | 'swift'
     | 'us_bank'
@@ -390,8 +382,8 @@ export interface TransactionCreateParams {
   /**
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
    * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-   * `swift`, `us_bank`, or others.
+   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
+   * `us_bank`, or others.
    */
   vendor_code_type: string | null;
 
@@ -408,7 +400,7 @@ export interface TransactionCreateParams {
 
   /**
    * The type of the transaction. Examples could be
-   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+   * `card, `ach`, `wire`, `check`, `rtp`, or `book`.
    */
   type?:
     | 'ach'
@@ -422,24 +414,17 @@ export interface TransactionCreateParams {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin'

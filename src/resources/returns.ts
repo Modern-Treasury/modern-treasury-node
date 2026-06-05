@@ -243,7 +243,7 @@ export interface ReturnObject {
 
   /**
    * The type of return. Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`,
-   * `interac`, `manual`, `paper_item`, `wire`.
+   * `manual`, `paper_item`, `wire`.
    */
   type:
     | 'ach'
@@ -255,13 +255,11 @@ export interface ReturnObject {
     | 'cross_border'
     | 'eft'
     | 'gb_fps'
-    | 'interac'
     | 'manual'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
-    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
