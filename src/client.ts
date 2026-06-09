@@ -304,7 +304,6 @@ import {
   PaymentOrderUpdateParams,
   PaymentOrders,
   PaymentOrdersPage,
-  VendorAttributes,
 } from './resources/payment-orders/payment-orders';
 import {
   Transaction,
@@ -1392,7 +1391,6 @@ export declare namespace ModernTreasury {
     type PaymentOrder as PaymentOrder,
     type PaymentOrderSubtype as PaymentOrderSubtype,
     type PaymentOrderType as PaymentOrderType,
-    type VendorAttributes as VendorAttributes,
     type PaymentOrdersPage as PaymentOrdersPage,
     type PaymentOrderCreateParams as PaymentOrderCreateParams,
     type PaymentOrderCreateAsyncParams as PaymentOrderCreateAsyncParams,
