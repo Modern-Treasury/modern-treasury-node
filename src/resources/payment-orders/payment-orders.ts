@@ -701,12 +701,6 @@ export type PaymentOrderType =
   | 'wire'
   | 'zengin';
 
-/**
- * Additional vendor specific fields for this payment. Data must be represented as
- * key-value pairs.
- */
-export type VendorAttributes = unknown;
-
 export interface PaymentOrderCreateParams {
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
@@ -966,7 +960,7 @@ export interface PaymentOrderCreateParams {
    * Additional vendor specific fields for this payment. Data must be represented as
    * key-value pairs.
    */
-  vendor_attributes?: VendorAttributes;
+  vendor_attributes?: unknown;
 }
 
 export namespace PaymentOrderCreateParams {
@@ -2272,7 +2266,6 @@ export declare namespace PaymentOrders {
     type PaymentOrder as PaymentOrder,
     type PaymentOrderSubtype as PaymentOrderSubtype,
     type PaymentOrderType as PaymentOrderType,
-    type VendorAttributes as VendorAttributes,
     type PaymentOrdersPage as PaymentOrdersPage,
     type PaymentOrderCreateParams as PaymentOrderCreateParams,
     type PaymentOrderCreateAsyncParams as PaymentOrderCreateAsyncParams,

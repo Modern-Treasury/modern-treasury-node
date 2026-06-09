@@ -6,7 +6,6 @@ export {
   type PaymentOrder,
   type PaymentOrderSubtype,
   type PaymentOrderType,
-  type VendorAttributes,
   type PaymentOrderCreateParams,
   type PaymentOrderCreateAsyncParams,
   type PaymentOrderListParams,
