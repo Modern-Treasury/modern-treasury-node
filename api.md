@@ -366,6 +366,7 @@ Types:
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrder</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderSubtype</a></code>
 - <code><a href="./src/resources/payment-orders/payment-orders.ts">PaymentOrderType</a></code>
+- <code><a href="./src/resources/payment-orders/payment-orders.ts">VendorAttributes</a></code>
 
 Methods:
 
