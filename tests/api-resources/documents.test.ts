@@ -27,7 +27,7 @@ describe('resource documents', () => {
       file: await toFile(Buffer.from('Example data'), 'README.md'),
       document_type: 'document_type',
       documentable_id: 'documentable_id',
-      documentable_type: 'connections',
+      documentable_type: 'connection',
     });
   });
 
@@ -60,7 +60,7 @@ describe('resource documents', () => {
         {
           after_cursor: 'after_cursor',
           documentable_id: 'documentable_id',
-          documentable_type: 'connections',
+          documentable_type: 'connection',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },
