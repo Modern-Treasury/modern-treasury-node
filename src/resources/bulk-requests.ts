@@ -164,6 +164,7 @@ export interface BulkRequestCreateParams {
     | BulkRequestCreateParams.ExpectedPaymentUpdateRequestWithID
     | BulkRequestCreateParams.TransactionUpdateRequestWithID
     | BulkRequestCreateParams.LedgerTransactionUpdateRequestWithID
+    | BulkRequestCreateParams.LedgerAccountUpdateRequestWithID
   >;
 
   /**
@@ -177,7 +178,7 @@ export namespace BulkRequestCreateParams {
   export interface PaymentOrderAsyncCreateRequest {
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented as
-     * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+     * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
      */
     amount: number;
 
@@ -195,9 +196,8 @@ export namespace BulkRequestCreateParams {
     originating_account_id: string;
 
     /**
-     * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-     * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-     * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+     * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+     * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
      */
     type: PaymentOrdersAPI.PaymentOrderType;
 
@@ -576,8 +576,6 @@ export namespace BulkRequestCreateParams {
           | 'dk_interbank_clearing_code'
           | 'gb_sort_code'
           | 'hk_interbank_clearing_code'
-          | 'hu_interbank_clearing_code'
-          | 'id_sknbi_code'
           | 'il_bank_code'
           | 'in_ifsc'
           | 'jp_zengin_code'
@@ -602,24 +600,17 @@ export namespace BulkRequestCreateParams {
           | 'dk_nets'
           | 'eft'
           | 'gb_fps'
-          | 'hu_ics'
-          | 'interac'
           | 'masav'
           | 'mx_ccen'
           | 'neft'
           | 'nics'
           | 'nz_becs'
           | 'pl_elixir'
-          | 'provxchange'
-          | 'ro_sent'
           | 'rtp'
           | 'se_bankgirot'
-          | 'sen'
           | 'sepa'
           | 'sg_giro'
           | 'sic'
-          | 'signet'
-          | 'sknbi'
           | 'stablecoin'
           | 'wire'
           | 'zengin';
@@ -789,8 +780,7 @@ export namespace BulkRequestCreateParams {
     statement_descriptor?: string | null;
 
     /**
-     * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-     * sepa, signet, wire.
+     * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
      */
     type?: ExpectedPaymentsAPI.ExpectedPaymentType | null;
   }
@@ -853,8 +843,8 @@ export namespace BulkRequestCreateParams {
     /**
      * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
      * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-     * `swift`, `us_bank`, or others.
+     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
+     * `us_bank`, or others.
      */
     vendor_code_type: string | null;
 
@@ -871,7 +861,7 @@ export namespace BulkRequestCreateParams {
 
     /**
      * The type of the transaction. Examples could be
-     * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+     * `card, `ach`, `wire`, `check`, `rtp`, or `book`.
      */
     type?:
       | 'ach'
@@ -885,24 +875,17 @@ export namespace BulkRequestCreateParams {
       | 'dk_nets'
       | 'eft'
       | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
       | 'masav'
       | 'mx_ccen'
       | 'neft'
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
-      | 'provxchange'
-      | 'ro_sent'
       | 'rtp'
       | 'se_bankgirot'
-      | 'sen'
       | 'sepa'
       | 'sg_giro'
       | 'sic'
-      | 'signet'
-      | 'sknbi'
       | 'stablecoin'
       | 'wire'
       | 'zengin'
@@ -947,7 +930,7 @@ export namespace BulkRequestCreateParams {
 
     /**
      * Value in specified currency's smallest unit. e.g. $10 would be represented as
-     * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+     * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
      */
     amount?: number;
 
@@ -1142,9 +1125,8 @@ export namespace BulkRequestCreateParams {
     subtype?: PaymentOrdersAPI.PaymentOrderSubtype | null;
 
     /**
-     * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-     * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-     * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+     * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+     * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
      */
     type?: PaymentOrdersAPI.PaymentOrderType;
 
@@ -1323,8 +1305,6 @@ export namespace BulkRequestCreateParams {
           | 'dk_interbank_clearing_code'
           | 'gb_sort_code'
           | 'hk_interbank_clearing_code'
-          | 'hu_interbank_clearing_code'
-          | 'id_sknbi_code'
           | 'il_bank_code'
           | 'in_ifsc'
           | 'jp_zengin_code'
@@ -1349,24 +1329,17 @@ export namespace BulkRequestCreateParams {
           | 'dk_nets'
           | 'eft'
           | 'gb_fps'
-          | 'hu_ics'
-          | 'interac'
           | 'masav'
           | 'mx_ccen'
           | 'neft'
           | 'nics'
           | 'nz_becs'
           | 'pl_elixir'
-          | 'provxchange'
-          | 'ro_sent'
           | 'rtp'
           | 'se_bankgirot'
-          | 'sen'
           | 'sepa'
           | 'sg_giro'
           | 'sic'
-          | 'signet'
-          | 'sknbi'
           | 'stablecoin'
           | 'wire'
           | 'zengin';
@@ -1497,8 +1470,7 @@ export namespace BulkRequestCreateParams {
     status?: 'reconciled' | null;
 
     /**
-     * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-     * sepa, signet, wire.
+     * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
      */
     type?: ExpectedPaymentsAPI.ExpectedPaymentType | null;
   }
@@ -1566,6 +1538,31 @@ export namespace BulkRequestCreateParams {
      * To post a ledger transaction at creation, use `posted`.
      */
     status?: 'archived' | 'pending' | 'posted';
+  }
+
+  export interface LedgerAccountUpdateRequestWithID {
+    id?: string;
+
+    /**
+     * The description of the ledger account.
+     */
+    description?: string | null;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: { [key: string]: string };
+
+    /**
+     * The name of the ledger account.
+     */
+    name?: string;
   }
 }
 

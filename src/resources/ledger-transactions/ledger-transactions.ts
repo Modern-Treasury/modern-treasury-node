@@ -27,7 +27,6 @@ export class LedgerTransactions extends APIResource {
    *   await client.ledgerTransactions.create({
    *     ledger_entries: [
    *       {
-   *         amount: 0,
    *         direction: 'credit',
    *         ledger_account_id:
    *           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -100,7 +99,6 @@ export class LedgerTransactions extends APIResource {
    *   await client.ledgerTransactions.createPartialPost('id', {
    *     posted_ledger_entries: [
    *       {
-   *         amount: 0,
    *         direction: 'credit',
    *         ledger_account_id:
    *           '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -480,12 +478,6 @@ export interface LedgerTransactionCreatePartialPostParams {
 export namespace LedgerTransactionCreatePartialPostParams {
   export interface PostedLedgerEntry {
     /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000. Can be any integer up to 36 digits.
-     */
-    amount: number;
-
-    /**
      * One of `credit`, `debit`. Describes the direction money is flowing in the
      * transaction. A `credit` moves money from your account to someone else's. A
      * `debit` pulls money from someone else's account to your own. Note that wire,
@@ -499,10 +491,57 @@ export namespace LedgerTransactionCreatePartialPostParams {
     ledger_account_id: string;
 
     /**
+     * Value in specified currency's smallest unit. e.g. $10 would be represented
+     * as 1000. Can be any integer up to 36 digits.
+     */
+    amount?: number;
+
+    /**
+     * The amount of the ledger entry as a string, preserving full precision for values
+     * that may exceed safe integer limits in some languages.
+     */
+    amount_string?: string;
+
+    /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s available balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    available_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * Lock version of the ledger account. This can be passed when creating a ledger
+     * transaction to only succeed if no ledger transactions have posted since the
+     * given version. See our post about Designing the Ledgers API with Optimistic
+     * Locking for more details.
+     */
+    lock_version?: number | null;
+
+    /**
      * Additional data represented as key-value pairs. Both the key and value must be
      * strings.
      */
     metadata?: { [key: string]: string };
+
+    /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s pending balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    pending_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+     * account’s posted balance. If any of these conditions would be false after the
+     * transaction is created, the entire call will fail with error code 422.
+     */
+    posted_balance_amount?: { [key: string]: number } | null;
+
+    /**
+     * If true, response will include the balance of the associated ledger account for
+     * the entry.
+     */
+    show_resulting_ledger_account_balances?: boolean | null;
   }
 }
 

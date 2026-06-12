@@ -1,5 +1,58 @@
 # Changelog
 
+## 4.17.0 (2026-06-12)
+
+Full Changelog: [v4.16.0...v4.17.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.16.0...v4.17.0)
+
+### Features
+
+* **api:** api update ([2c063f9](https://github.com/Modern-Treasury/modern-treasury-node/commit/2c063f9f89923b06a67a334532766250ffc7bb90))
+* **api:** api update ([b76e172](https://github.com/Modern-Treasury/modern-treasury-node/commit/b76e172de0a06a92950b32590a2f26b247bf0932))
+* **api:** api update ([647bf49](https://github.com/Modern-Treasury/modern-treasury-node/commit/647bf49cf03ea7aadbb0ec05e890dca34a815dcd))
+* **api:** api update ([62dde3e](https://github.com/Modern-Treasury/modern-treasury-node/commit/62dde3e88dac63da044b13f30ed1c8abf9c00161))
+* **api:** api update ([767409f](https://github.com/Modern-Treasury/modern-treasury-node/commit/767409fa7eeb9dd11676da341ed2d2a4112634c4))
+* **api:** api update ([bb06a51](https://github.com/Modern-Treasury/modern-treasury-node/commit/bb06a51af65e15bee3f5b93436821b7047c691e8))
+* **api:** api update ([5c5cf04](https://github.com/Modern-Treasury/modern-treasury-node/commit/5c5cf046150be12e2ab3fb69e2b0e303212f99dc))
+* **api:** api update ([5b67f0a](https://github.com/Modern-Treasury/modern-treasury-node/commit/5b67f0a71afc7a4ee3fae6974529b1421f112ee1))
+* **api:** api update ([6622db0](https://github.com/Modern-Treasury/modern-treasury-node/commit/6622db0975985ffe847f120dba5315c4912960c9))
+* **api:** api update ([0055fe6](https://github.com/Modern-Treasury/modern-treasury-node/commit/0055fe603bfcfec450c0cb573dd0d90d8c95051e))
+* **api:** api update ([28e9e00](https://github.com/Modern-Treasury/modern-treasury-node/commit/28e9e00f894ebdf6af497c105bbb108a3fd4d254))
+* **api:** api update ([ff508f0](https://github.com/Modern-Treasury/modern-treasury-node/commit/ff508f04cb901ba888a7272cd095708244b99170))
+* **api:** api update ([0578d24](https://github.com/Modern-Treasury/modern-treasury-node/commit/0578d243da97052cc123e5b49207ec6d564f91db))
+* **api:** api update ([7be6f76](https://github.com/Modern-Treasury/modern-treasury-node/commit/7be6f761210f4f16f92d531b22952fcf6099e233))
+* **api:** api update ([0fc1c73](https://github.com/Modern-Treasury/modern-treasury-node/commit/0fc1c73cd101cf906b9f80b2454d5303a9098391))
+* **api:** api update ([4b074b9](https://github.com/Modern-Treasury/modern-treasury-node/commit/4b074b9d2babeeca5961af2a0e18814da4e6f4d7))
+* **api:** api update ([4e2ba3e](https://github.com/Modern-Treasury/modern-treasury-node/commit/4e2ba3e111385e827eda4a7b7803f8b053aafd86))
+* **api:** api update ([89bd290](https://github.com/Modern-Treasury/modern-treasury-node/commit/89bd29018852451f25a3f4c84fcad786ab9e19db))
+* **api:** api update ([df1578f](https://github.com/Modern-Treasury/modern-treasury-node/commit/df1578ff04701ba24a580c2cfd52174a8afc5b6b))
+* support setting headers via env ([c03e912](https://github.com/Modern-Treasury/modern-treasury-node/commit/c03e91217eccbfd506d08de2d75843fed0e4c923))
+
+
+### Bug Fixes
+
+* **client:** add back Webhooks export ([618c25b](https://github.com/Modern-Treasury/modern-treasury-node/commit/618c25bf8747c128942e9ca202c137eb3a665670))
+* **mcp:** use `pure-lockfile` when building mcp server ([96269b0](https://github.com/Modern-Treasury/modern-treasury-node/commit/96269b029a4ff356c1eee18e9d64ef22375bdbd8))
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([76a218b](https://github.com/Modern-Treasury/modern-treasury-node/commit/76a218b6a91bdef5ebdf6cadbddddd07258b5266))
+
+
+### Chores
+
+* avoid formatting file that gets changed during releases ([94a9f62](https://github.com/Modern-Treasury/modern-treasury-node/commit/94a9f628ef08f8a5e6caf6a300b46c194d35e6da))
+* **format:** run eslint and prettier separately ([a9bbee2](https://github.com/Modern-Treasury/modern-treasury-node/commit/a9bbee276567618278c288e7461d23cd83a00688))
+* **formatter:** run prettier and eslint separately ([2e136d9](https://github.com/Modern-Treasury/modern-treasury-node/commit/2e136d9ed9d70b0bc97fb413890dd4e07e992935))
+* **internal:** codegen related update ([aa37222](https://github.com/Modern-Treasury/modern-treasury-node/commit/aa372228476be3e29260483c95ca814966e00ee6))
+* **internal:** codegen related update ([a309d16](https://github.com/Modern-Treasury/modern-treasury-node/commit/a309d168e3577174e2d0bfba55308442088b6edd))
+* **internal:** codegen related update ([a68debb](https://github.com/Modern-Treasury/modern-treasury-node/commit/a68debb66cb67953f931a5b2f678f5c0e38430e2))
+* redact api-key headers in debug logs ([8e21660](https://github.com/Modern-Treasury/modern-treasury-node/commit/8e2166017b40c9599494673e4925964e9441a3cf))
+* **tests:** remove redundant File import ([3ceca37](https://github.com/Modern-Treasury/modern-treasury-node/commit/3ceca378087465389990031bd8dc9680eb3a3884))
+
+
+### Documentation
+
+* clarify forwards compat behavior ([4c45446](https://github.com/Modern-Treasury/modern-treasury-node/commit/4c4544644bced94ca94bc275e0d1cffc166dbb67))
+* update logging docs ([54c4357](https://github.com/Modern-Treasury/modern-treasury-node/commit/54c4357180430e70067a878012a0b3ff40039296))
+* update with proxy auth info ([5c34ef2](https://github.com/Modern-Treasury/modern-treasury-node/commit/5c34ef2e92edf5ed4a54853b682923b136a338b7))
+
 ## 4.16.0 (2026-04-24)
 
 Full Changelog: [v4.15.0...v4.16.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.15.0...v4.16.0)

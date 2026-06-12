@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import * as LegalEntitiesAPI from './legal-entities';
+
 export type AccountsType = 'external_accounts' | 'internal_accounts';
 
 export interface Address {
@@ -80,7 +82,7 @@ export interface ChildLegalEntityCreate {
    */
   addresses?: Array<LegalEntityAddressCreateRequest>;
 
-  bank_settings?: ChildLegalEntityCreate.BankSettings | null;
+  bank_settings?: LegalEntitiesAPI.BankSettings | null;
 
   /**
    * A description of the business.
@@ -276,7 +278,7 @@ export interface ChildLegalEntityCreate {
    */
   ticker_symbol?: string | null;
 
-  wealth_and_employment_details?: ChildLegalEntityCreate.WealthAndEmploymentDetails | null;
+  wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
 
   /**
    * The entity's primary website URL.
@@ -285,48 +287,6 @@ export interface ChildLegalEntityCreate {
 }
 
 export namespace ChildLegalEntityCreate {
-  export interface BankSettings {
-    id: string;
-
-    /**
-     * The percentage of backup withholding to apply to the legal entity.
-     */
-    backup_withholding_percentage: number | null;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * Whether backup withholding is enabled. See more here -
-     * https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
-     */
-    enable_backup_withholding: boolean | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * Cross River Bank specific setting to opt out of privacy policy.
-     */
-    privacy_opt_out: boolean | null;
-
-    /**
-     * It covers, among other types of insider loans, extensions of credit by a member
-     * bank to an executive officer, director, or principal shareholder of the member
-     * bank; a bank holding company of which the member bank is a subsidiary; and any
-     * other subsidiary of that bank holding company.
-     */
-    regulation_o: boolean | null;
-
-    updated_at: string;
-  }
-
   export interface Document {
     /**
      * A category given to the document, can be `null`.
@@ -374,176 +334,6 @@ export namespace ChildLegalEntityCreate {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
-  }
-
-  export interface WealthAndEmploymentDetails {
-    id: string;
-
-    /**
-     * The annual income of the individual in USD.
-     */
-    annual_income: number | null;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    /**
-     * The country in which the employer is located.
-     */
-    employer_country: string | null;
-
-    /**
-     * The name of the employer.
-     */
-    employer_name: string | null;
-
-    /**
-     * The state in which the employer is located.
-     */
-    employer_state: string | null;
-
-    /**
-     * The employment status of the individual.
-     */
-    employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed' | null;
-
-    /**
-     * The country in which the individual's income is earned.
-     */
-    income_country: string | null;
-
-    /**
-     * The source of the individual's income.
-     */
-    income_source:
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
-
-    /**
-     * The state in which the individual's income is earned.
-     */
-    income_state: string | null;
-
-    /**
-     * The industry of the individual.
-     */
-    industry:
-      | 'accounting'
-      | 'agriculture'
-      | 'automotive'
-      | 'chemical_manufacturing'
-      | 'construction'
-      | 'educational_medical'
-      | 'food_service'
-      | 'finance'
-      | 'gasoline'
-      | 'health_stores'
-      | 'laundry'
-      | 'maintenance'
-      | 'manufacturing'
-      | 'merchant_wholesale'
-      | 'mining'
-      | 'performing_arts'
-      | 'professional_non_legal'
-      | 'public_administration'
-      | 'publishing'
-      | 'real_estate'
-      | 'recreation_gambling'
-      | 'religious_charity'
-      | 'rental_services'
-      | 'retail_clothing'
-      | 'retail_electronics'
-      | 'retail_food'
-      | 'retail_furnishing'
-      | 'retail_home'
-      | 'retail_non_store'
-      | 'retail_sporting'
-      | 'transportation'
-      | 'travel'
-      | 'utilities'
-      | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * The occupation of the individual.
-     */
-    occupation:
-      | 'consulting'
-      | 'executive'
-      | 'finance_accounting'
-      | 'food_services'
-      | 'government'
-      | 'healthcare'
-      | 'legal_services'
-      | 'manufacturing'
-      | 'other'
-      | 'sales'
-      | 'science_engineering'
-      | 'technology'
-      | null;
-
-    /**
-     * The source of the individual's funds.
-     */
-    source_of_funds:
-      | 'alimony'
-      | 'annuity'
-      | 'business_owner'
-      | 'business_revenue'
-      | 'debt_financing'
-      | 'general_employee'
-      | 'government_benefits'
-      | 'homemaker'
-      | 'inheritance_gift'
-      | 'intercompany_loan'
-      | 'investment'
-      | 'investor_funding'
-      | 'legal_settlement'
-      | 'lottery'
-      | 'real_estate'
-      | 'retained_earnings_or_savings'
-      | 'retired'
-      | 'retirement'
-      | 'salary'
-      | 'sale_of_business_assets'
-      | 'sale_of_real_estate'
-      | 'self_employed'
-      | 'senior_executive'
-      | 'trust_income'
-      | null;
-
-    updated_at: string;
-
-    /**
-     * The source of the individual's wealth.
-     */
-    wealth_source:
-      | 'business_sale'
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'other'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
   }
 }
 
@@ -738,10 +528,8 @@ export type Currency =
   | 'UAH'
   | 'UGX'
   | 'USD'
-  | 'USDB'
   | 'USDC'
   | 'USDG'
-  | 'USDP'
   | 'USDT'
   | 'UYU'
   | 'UZS'
@@ -829,27 +617,97 @@ export interface IdentificationCreateRequest {
   id_type:
     | 'ar_cuil'
     | 'ar_cuit'
+    | 'at_atin'
+    | 'at_vat'
+    | 'au_abn'
+    | 'au_tfn'
+    | 'be_ent'
+    | 'be_nrn'
     | 'br_cnpj'
     | 'br_cpf'
+    | 'ca_bn'
     | 'ca_sin'
+    | 'ch_ahv'
+    | 'ch_uid'
     | 'cl_run'
     | 'cl_rut'
     | 'co_cedulas'
     | 'co_nit'
+    | 'cy_tin'
+    | 'cz_ico'
+    | 'cz_rc'
+    | 'de_stid'
+    | 'de_stnr'
+    | 'de_vat'
+    | 'dk_cpr'
+    | 'dk_cvr'
     | 'drivers_license'
+    | 'ee_ik'
+    | 'ee_rk'
+    | 'es_nie'
+    | 'es_nif'
+    | 'fi_hetu'
+    | 'fi_ytj'
+    | 'fr_nif'
+    | 'fr_siren'
+    | 'fr_vat'
+    | 'gb_nino'
+    | 'gb_utr'
+    | 'gb_vat'
+    | 'gr_vat'
     | 'hn_id'
     | 'hn_rtn'
+    | 'hr_oib'
+    | 'hu_adj'
+    | 'hu_anum'
     | 'ie_pps'
+    | 'ie_trn'
     | 'in_lei'
+    | 'is_knt'
+    | 'it_cf'
+    | 'it_piva'
+    | 'jp_hb'
+    | 'jp_mn'
     | 'kr_brn'
     | 'kr_crn'
     | 'kr_rrn'
+    | 'li_peid'
+    | 'lt_ak'
+    | 'lt_jak'
+    | 'lu_mtc'
+    | 'lu_vat'
+    | 'lv_pk'
+    | 'lv_rn'
+    | 'mt_tin'
+    | 'mt_vat'
     | 'mx_curp'
     | 'mx_ine'
     | 'mx_rfc'
+    | 'national_id'
+    | 'nl_bsn'
+    | 'nl_btw'
+    | 'nl_rsin'
+    | 'no_fdn'
+    | 'no_mva'
+    | 'no_orgnr'
+    | 'nz_ird'
     | 'passport'
+    | 'pl_nip'
+    | 'pl_pesel'
+    | 'pt_nif'
+    | 'ro_cnp'
+    | 'ro_cui'
     | 'sa_tin'
     | 'sa_vat'
+    | 'se_orgnr'
+    | 'se_pnmr'
+    | 'sg_fin'
+    | 'sg_nric'
+    | 'sg_uen'
+    | 'si_dav'
+    | 'si_tin'
+    | 'sk_ico'
+    | 'sk_rc'
     | 'us_ein'
     | 'us_itin'
     | 'us_ssn'
@@ -970,7 +828,11 @@ export interface LedgerAccountCreateRequest {
 export interface LedgerBalance {
   amount: number;
 
+  amount_string: string;
+
   credits: number;
+
+  credits_string: string;
 
   /**
    * The currency of the ledger account.
@@ -983,6 +845,8 @@ export interface LedgerBalance {
   currency_exponent: number;
 
   debits: number;
+
+  debits_string: string;
 }
 
 export interface LedgerBalances {
@@ -1007,12 +871,6 @@ export interface LedgerBalances {
 
 export interface LedgerEntryCreateRequest {
   /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000. Can be any integer up to 36 digits.
-   */
-  amount: number;
-
-  /**
    * One of `credit`, `debit`. Describes the direction money is flowing in the
    * transaction. A `credit` moves money from your account to someone else's. A
    * `debit` pulls money from someone else's account to your own. Note that wire,
@@ -1024,6 +882,18 @@ export interface LedgerEntryCreateRequest {
    * The ledger account that this ledger entry is associated with.
    */
   ledger_account_id: string;
+
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000. Can be any integer up to 36 digits.
+   */
+  amount?: number;
+
+  /**
+   * The amount of the ledger entry as a string, preserving full precision for values
+   * that may exceed safe integer limits in some languages.
+   */
+  amount_string?: string;
 
   /**
    * Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
@@ -1156,6 +1026,11 @@ export interface LegalEntityAddressCreateRequest {
   address_types?: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
   line2?: string | null;
+
+  /**
+   * Whether this address is the primary address for the legal entity.
+   */
+  primary?: boolean | null;
 }
 
 export interface LegalEntityAssociationInlineCreate {

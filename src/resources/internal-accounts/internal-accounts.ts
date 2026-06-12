@@ -33,7 +33,6 @@ export class InternalAccounts extends APIResource {
    *     connection_id: 'connection_id',
    *     currency: 'USD',
    *     name: 'name',
-   *     party_name: 'party_name',
    *   });
    * ```
    */
@@ -189,6 +188,14 @@ export interface InternalAccount {
   currency: Shared.Currency;
 
   /**
+   * Whether this account can receive ACH debits. Only applicable to accounts created
+   * under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
+   * accounts. Defaults to `false`. Configurable only on creation. Please reach out
+   * to your customer success manager to enable this capability for your connection.
+   */
+  debitable: boolean | null;
+
+  /**
    * An optional user-defined 180 character unique identifier.
    */
   external_id: string | null;
@@ -305,24 +312,17 @@ export namespace InternalAccount {
       | 'dk_nets'
       | 'eft'
       | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
       | 'masav'
       | 'mx_ccen'
       | 'neft'
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
-      | 'provxchange'
-      | 'ro_sent'
       | 'rtp'
       | 'se_bankgirot'
-      | 'sen'
       | 'sepa'
       | 'sg_giro'
       | 'sic'
-      | 'signet'
-      | 'sknbi'
       | 'stablecoin'
       | 'wire'
       | 'zengin';
@@ -376,24 +376,17 @@ export interface InternalAccountUpdateAccountCapabilityResponse {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -410,20 +403,14 @@ export interface InternalAccountCreateParams {
   connection_id: string;
 
   /**
-   * The currency of the internal account. Supports "USD" and "CAD" for fiat, and
-   * "USDC", "USDG", and "PYUSD" for stablecoin accounts.
+   * The currency of the internal account. Supports fiat and stablecoin currencies.
    */
-  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'PYUSD';
+  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'USDT' | 'PYUSD';
 
   /**
    * The nickname of the account.
    */
   name: string;
-
-  /**
-   * The legal name of the entity which owns the account.
-   */
-  party_name: string;
 
   /**
    * An array of AccountCapability objects that list the originating abilities of the
@@ -456,6 +443,14 @@ export interface InternalAccountCreateParams {
   counterparty_id?: string;
 
   /**
+   * Whether this account can receive ACH debits. Only applicable to accounts created
+   * under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
+   * accounts. Defaults to `false`. Configurable only on creation. Please reach out
+   * to your customer success manager to enable this capability for your connection.
+   */
+  debitable?: boolean | null;
+
+  /**
    * An optional user-defined 180 character unique identifier.
    */
   external_id?: string | null;
@@ -480,6 +475,11 @@ export interface InternalAccountCreateParams {
    * The address associated with the owner or null.
    */
   party_address?: InternalAccountCreateParams.PartyAddress;
+
+  /**
+   * The legal name of the entity which owns the account.
+   */
+  party_name?: string | null;
 
   /**
    * A hash of vendor specific attributes that will be used when creating the account
@@ -532,24 +532,17 @@ export namespace InternalAccountCreateParams {
       | 'dk_nets'
       | 'eft'
       | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
       | 'masav'
       | 'mx_ccen'
       | 'neft'
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
-      | 'provxchange'
-      | 'ro_sent'
       | 'rtp'
       | 'se_bankgirot'
-      | 'sen'
       | 'sepa'
       | 'sg_giro'
       | 'sic'
-      | 'signet'
-      | 'sknbi'
       | 'stablecoin'
       | 'wire'
       | 'zengin';
@@ -675,24 +668,17 @@ export interface InternalAccountListParams extends PageParams {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin';

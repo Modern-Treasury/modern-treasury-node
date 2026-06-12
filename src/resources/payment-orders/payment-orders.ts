@@ -150,7 +150,7 @@ export interface PaymentOrder {
 
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
-   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
    */
   amount: number;
 
@@ -373,9 +373,8 @@ export interface PaymentOrder {
   transaction_ids: Array<string>;
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -567,7 +566,6 @@ export namespace PaymentOrder {
       | 'goldman_sachs_payment_request_id'
       | 'goldman_sachs_request_id'
       | 'goldman_sachs_unique_payment_id'
-      | 'interac_message_id'
       | 'jpmc_ccn'
       | 'jpmc_clearing_system_reference'
       | 'jpmc_customer_reference_id'
@@ -595,9 +593,6 @@ export namespace PaymentOrder {
       | 'pnc_transaction_reference_number'
       | 'rbc_wire_reference_id'
       | 'rtp_instruction_id'
-      | 'signet_api_reference_id'
-      | 'signet_confirmation_id'
-      | 'signet_request_id'
       | 'silvergate_payment_id'
       | 'svb_end_to_end_id'
       | 'svb_payment_id'
@@ -644,7 +639,6 @@ export type PaymentOrderSubtype =
   | 'dk_nets'
   | 'eft'
   | 'ethereum'
-  | 'hu_ics'
   | 'masav'
   | 'mx_ccen'
   | 'neft'
@@ -652,20 +646,17 @@ export type PaymentOrderSubtype =
   | 'nz_becs'
   | 'pl_elixir'
   | 'polygon'
-  | 'ro_sent'
   | 'se_bankgirot'
   | 'sepa'
   | 'sg_giro'
   | 'sic'
-  | 'sknbi'
   | 'solana'
   | 'zengin'
   | null;
 
 /**
- * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
- * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
- * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+ * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+ * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
  */
 export type PaymentOrderType =
   | 'ach'
@@ -679,24 +670,17 @@ export type PaymentOrderType =
   | 'dk_nets'
   | 'eft'
   | 'gb_fps'
-  | 'hu_ics'
-  | 'interac'
   | 'masav'
   | 'mx_ccen'
   | 'neft'
   | 'nics'
   | 'nz_becs'
   | 'pl_elixir'
-  | 'provxchange'
-  | 'ro_sent'
   | 'rtp'
   | 'se_bankgirot'
-  | 'sen'
   | 'sepa'
   | 'sg_giro'
   | 'sic'
-  | 'signet'
-  | 'sknbi'
   | 'stablecoin'
   | 'wire'
   | 'zengin';
@@ -704,7 +688,7 @@ export type PaymentOrderType =
 export interface PaymentOrderCreateParams {
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
-   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
    */
   amount: number;
 
@@ -722,9 +706,8 @@ export interface PaymentOrderCreateParams {
   originating_account_id: string;
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -996,17 +979,17 @@ export namespace PaymentOrderCreateParams {
     documentable_id?: string;
 
     documentable_type?:
-      | 'connections'
-      | 'counterparties'
-      | 'expected_payments'
-      | 'external_accounts'
-      | 'identifications'
-      | 'incoming_payment_details'
-      | 'internal_accounts'
-      | 'legal_entities'
-      | 'organizations'
-      | 'payment_orders'
-      | 'transactions';
+      | 'connection'
+      | 'counterparty'
+      | 'expected_payment'
+      | 'external_account'
+      | 'identification'
+      | 'incoming_payment_detail'
+      | 'internal_account'
+      | 'legal_entity'
+      | 'organization'
+      | 'payment_order'
+      | 'transaction';
   }
 
   export interface LineItem {
@@ -1136,8 +1119,6 @@ export namespace PaymentOrderCreateParams {
         | 'dk_interbank_clearing_code'
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
-        | 'hu_interbank_clearing_code'
-        | 'id_sknbi_code'
         | 'il_bank_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
@@ -1162,24 +1143,17 @@ export namespace PaymentOrderCreateParams {
         | 'dk_nets'
         | 'eft'
         | 'gb_fps'
-        | 'hu_ics'
-        | 'interac'
         | 'masav'
         | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
-        | 'provxchange'
-        | 'ro_sent'
         | 'rtp'
         | 'se_bankgirot'
-        | 'sen'
         | 'sepa'
         | 'sg_giro'
         | 'sic'
-        | 'signet'
-        | 'sknbi'
         | 'stablecoin'
         | 'wire'
         | 'zengin';
@@ -1236,7 +1210,7 @@ export interface PaymentOrderUpdateParams {
 
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
-   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
    */
   amount?: number;
 
@@ -1431,9 +1405,8 @@ export interface PaymentOrderUpdateParams {
   subtype?: PaymentOrderSubtype | null;
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   type?: PaymentOrderType;
 
@@ -1612,8 +1585,6 @@ export namespace PaymentOrderUpdateParams {
         | 'dk_interbank_clearing_code'
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
-        | 'hu_interbank_clearing_code'
-        | 'id_sknbi_code'
         | 'il_bank_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
@@ -1638,24 +1609,17 @@ export namespace PaymentOrderUpdateParams {
         | 'dk_nets'
         | 'eft'
         | 'gb_fps'
-        | 'hu_ics'
-        | 'interac'
         | 'masav'
         | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
-        | 'provxchange'
-        | 'ro_sent'
         | 'rtp'
         | 'se_bankgirot'
-        | 'sen'
         | 'sepa'
         | 'sg_giro'
         | 'sic'
-        | 'signet'
-        | 'sknbi'
         | 'stablecoin'
         | 'wire'
         | 'zengin';
@@ -1753,24 +1717,17 @@ export interface PaymentOrderListParams extends PageParams {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -1779,7 +1736,7 @@ export interface PaymentOrderListParams extends PageParams {
 export interface PaymentOrderCreateAsyncParams {
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
-   * 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
    */
   amount: number;
 
@@ -1797,9 +1754,8 @@ export interface PaymentOrderCreateAsyncParams {
   originating_account_id: string;
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   type: PaymentOrderType;
 
@@ -2178,8 +2134,6 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'dk_interbank_clearing_code'
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
-        | 'hu_interbank_clearing_code'
-        | 'id_sknbi_code'
         | 'il_bank_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
@@ -2204,24 +2158,17 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'dk_nets'
         | 'eft'
         | 'gb_fps'
-        | 'hu_ics'
-        | 'interac'
         | 'masav'
         | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
-        | 'provxchange'
-        | 'ro_sent'
         | 'rtp'
         | 'se_bankgirot'
-        | 'sen'
         | 'sepa'
         | 'sg_giro'
         | 'sic'
-        | 'signet'
-        | 'sknbi'
         | 'stablecoin'
         | 'wire'
         | 'zengin';
