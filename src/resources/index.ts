@@ -209,6 +209,7 @@ export {
   type LegalEntityCreateParams,
   type LegalEntityUpdateParams,
   type LegalEntityListParams,
+  type LegalEntityUpdateStatusParams,
   type LegalEntitiesPage,
 } from './legal-entities';
 export {

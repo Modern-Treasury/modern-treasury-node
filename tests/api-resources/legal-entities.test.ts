@@ -511,4 +511,19 @@ describe('resource legalEntities', () => {
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
+
+  test('updateStatus: only required params', async () => {
+    const responsePromise = client.legalEntities.updateStatus('id', { status: 'active' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateStatus: required and optional params', async () => {
+    const response = await client.legalEntities.updateStatus('id', { status: 'active' });
+  });
 });
