@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.18.0 (2026-06-12)
+
+Full Changelog: [v4.17.0...v4.18.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.17.0...v4.18.0)
+
+### Features
+
+* **api:** add legal entity simulation endpoint ([0c7d9ee](https://github.com/Modern-Treasury/modern-treasury-node/commit/0c7d9eefe74d5ecdcbdb31c251939c5c861fd300))
+
 ## 4.17.0 (2026-06-12)
 
 Full Changelog: [v4.16.0...v4.17.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.16.0...v4.17.0)
