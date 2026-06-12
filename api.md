@@ -550,6 +550,7 @@ Methods:
 - <code title="get /api/legal_entities/{id}">client.legalEntities.<a href="./src/resources/legal-entities.ts">retrieve</a>(id) -> LegalEntity</code>
 - <code title="patch /api/legal_entities/{id}">client.legalEntities.<a href="./src/resources/legal-entities.ts">update</a>(id, { ...params }) -> LegalEntity</code>
 - <code title="get /api/legal_entities">client.legalEntities.<a href="./src/resources/legal-entities.ts">list</a>({ ...params }) -> LegalEntitiesPage</code>
+- <code title="patch /api/simulations/legal_entities/{id}/update_status">client.legalEntities.<a href="./src/resources/legal-entities.ts">updateStatus</a>(id, { ...params }) -> LegalEntity</code>
 
 # LegalEntityAssociations
 

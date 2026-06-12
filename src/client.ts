@@ -187,6 +187,7 @@ import {
   LegalEntityCreateParams,
   LegalEntityListParams,
   LegalEntityUpdateParams,
+  LegalEntityUpdateStatusParams,
   WealthAndEmploymentDetails,
 } from './resources/legal-entities';
 import {
@@ -1487,6 +1488,7 @@ export declare namespace ModernTreasury {
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
     type LegalEntityListParams as LegalEntityListParams,
+    type LegalEntityUpdateStatusParams as LegalEntityUpdateStatusParams,
   };
 
   export {
