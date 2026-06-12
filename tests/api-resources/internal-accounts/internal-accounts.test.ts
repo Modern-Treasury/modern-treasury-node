@@ -14,7 +14,6 @@ describe('resource internalAccounts', () => {
       connection_id: 'connection_id',
       currency: 'USD',
       name: 'name',
-      party_name: 'party_name',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -30,7 +29,6 @@ describe('resource internalAccounts', () => {
       connection_id: 'connection_id',
       currency: 'USD',
       name: 'name',
-      party_name: 'party_name',
       account_capabilities: [
         {
           id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -59,6 +57,7 @@ describe('resource internalAccounts', () => {
         region: 'region',
         line2: 'line2',
       },
+      party_name: 'party_name',
       vendor_attributes: {
         key: 'value',
         foo: 'bar',

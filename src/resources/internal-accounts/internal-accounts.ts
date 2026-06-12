@@ -33,7 +33,6 @@ export class InternalAccounts extends APIResource {
    *     connection_id: 'connection_id',
    *     currency: 'USD',
    *     name: 'name',
-   *     party_name: 'party_name',
    *   });
    * ```
    */
@@ -414,11 +413,6 @@ export interface InternalAccountCreateParams {
   name: string;
 
   /**
-   * The legal name of the entity which owns the account.
-   */
-  party_name: string;
-
-  /**
    * An array of AccountCapability objects that list the originating abilities of the
    * internal account and any relevant information for them.
    */
@@ -481,6 +475,11 @@ export interface InternalAccountCreateParams {
    * The address associated with the owner or null.
    */
   party_address?: InternalAccountCreateParams.PartyAddress;
+
+  /**
+   * The legal name of the entity which owns the account.
+   */
+  party_name?: string | null;
 
   /**
    * A hash of vendor specific attributes that will be used when creating the account
