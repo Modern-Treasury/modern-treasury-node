@@ -936,6 +936,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/legal_entities',
   },
   {
+    clientCallName: 'client.legalEntities.updateStatus',
+    fullyQualifiedName: 'legalEntities.updateStatus',
+    httpMethod: 'patch',
+    httpPath: '/api/simulations/legal_entities/{id}/update_status',
+  },
+  {
     clientCallName: 'client.paymentActions.create',
     fullyQualifiedName: 'paymentActions.create',
     httpMethod: 'post',

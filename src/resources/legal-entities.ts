@@ -71,6 +71,28 @@ export class LegalEntities extends APIResource {
   ): PagePromise<LegalEntitiesPage, LegalEntity> {
     return this._client.getAPIList('/api/legal_entities', Page<LegalEntity>, { query, ...options });
   }
+
+  /**
+   * Update Legal Entity Status (sandbox only)
+   *
+   * @example
+   * ```ts
+   * const legalEntity = await client.legalEntities.updateStatus(
+   *   'id',
+   *   { status: 'active' },
+   * );
+   * ```
+   */
+  updateStatus(
+    id: string,
+    body: LegalEntityUpdateStatusParams,
+    options?: RequestOptions,
+  ): APIPromise<LegalEntity> {
+    return this._client.patch(path`/api/simulations/legal_entities/${id}/update_status`, {
+      body,
+      ...options,
+    });
+  }
 }
 
 export type LegalEntitiesPage = Page<LegalEntity>;
@@ -1213,6 +1235,14 @@ export interface LegalEntityListParams extends PageParams {
   status?: 'pending' | 'active' | 'suspended' | 'denied';
 }
 
+export interface LegalEntityUpdateStatusParams {
+  /**
+   * The target status for the legal entity. One of `active`, `suspended`, or
+   * `denied`. Valid transitions depend on the current status.
+   */
+  status: 'active' | 'suspended' | 'denied';
+}
+
 export declare namespace LegalEntities {
   export {
     type BankSettings as BankSettings,
@@ -1222,5 +1252,6 @@ export declare namespace LegalEntities {
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
     type LegalEntityListParams as LegalEntityListParams,
+    type LegalEntityUpdateStatusParams as LegalEntityUpdateStatusParams,
   };
 }
