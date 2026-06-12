@@ -31,15 +31,12 @@ export class Holds extends APIResource {
   /**
    * Get a list of holds.
    */
-  list(
-    query: HoldListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<HoldListResponsesPage, HoldListResponse> {
+  list(query: HoldListParams | null | undefined = {}, options?: RequestOptions): PagePromise<HoldListResponsesPage, HoldListResponse> {
     return this._client.getAPIList('/api/holds', Page<HoldListResponse>, { query, ...options });
   }
 }
 
-export type HoldListResponsesPage = Page<HoldListResponse>;
+export type HoldListResponsesPage = Page<HoldListResponse>
 
 export interface HoldCreateResponse {
   id: string;
@@ -331,6 +328,6 @@ export declare namespace Holds {
     type HoldListResponsesPage as HoldListResponsesPage,
     type HoldCreateParams as HoldCreateParams,
     type HoldUpdateParams as HoldUpdateParams,
-    type HoldListParams as HoldListParams,
+    type HoldListParams as HoldListParams
   };
 }

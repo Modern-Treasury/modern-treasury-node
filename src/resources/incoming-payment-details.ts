@@ -19,39 +19,26 @@ export class IncomingPaymentDetails extends APIResource {
   /**
    * Update an existing Incoming Payment Detail.
    */
-  update(
-    id: string,
-    body: IncomingPaymentDetailUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<IncomingPaymentDetail> {
+  update(id: string, body: IncomingPaymentDetailUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<IncomingPaymentDetail> {
     return this._client.patch(path`/api/incoming_payment_details/${id}`, { body, ...options });
   }
 
   /**
    * Get a list of Incoming Payment Details.
    */
-  list(
-    query: IncomingPaymentDetailListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail> {
-    return this._client.getAPIList('/api/incoming_payment_details', Page<IncomingPaymentDetail>, {
-      query,
-      ...options,
-    });
+  list(query: IncomingPaymentDetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail> {
+    return this._client.getAPIList('/api/incoming_payment_details', Page<IncomingPaymentDetail>, { query, ...options });
   }
 
   /**
    * Simulate Incoming Payment Detail
    */
-  createAsync(
-    body: IncomingPaymentDetailCreateAsyncParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<IncomingPaymentDetail> {
+  createAsync(body: IncomingPaymentDetailCreateAsyncParams | null | undefined = {}, options?: RequestOptions): APIPromise<IncomingPaymentDetail> {
     return this._client.post('/api/simulations/incoming_payment_details/create_async', { body, ...options });
   }
 }
 
-export type IncomingPaymentDetailsPage = Page<IncomingPaymentDetail>;
+export type IncomingPaymentDetailsPage = Page<IncomingPaymentDetail>
 
 export interface IncomingPaymentDetail {
   id: string;
@@ -119,23 +106,7 @@ export interface IncomingPaymentDetail {
   /**
    * The type of the originating account number for the incoming payment detail.
    */
-  originating_account_number_type:
-    | 'au_number'
-    | 'base_address'
-    | 'card_token'
-    | 'clabe'
-    | 'ethereum_address'
-    | 'hk_number'
-    | 'iban'
-    | 'id_number'
-    | 'nz_number'
-    | 'other'
-    | 'pan'
-    | 'polygon_address'
-    | 'sg_number'
-    | 'solana_address'
-    | 'wallet_address'
-    | null;
+  originating_account_number_type: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address' | null;
 
   /**
    * The routing number of the originating account for the incoming payment detail.
@@ -145,30 +116,7 @@ export interface IncomingPaymentDetail {
   /**
    * The type of the originating routing number for the incoming payment detail.
    */
-  originating_routing_number_type:
-    | 'aba'
-    | 'au_bsb'
-    | 'br_codigo'
-    | 'ca_cpa'
-    | 'chips'
-    | 'cnaps'
-    | 'dk_interbank_clearing_code'
-    | 'gb_sort_code'
-    | 'hk_interbank_clearing_code'
-    | 'hu_interbank_clearing_code'
-    | 'id_sknbi_code'
-    | 'il_bank_code'
-    | 'in_ifsc'
-    | 'jp_zengin_code'
-    | 'mx_bank_identifier'
-    | 'my_branch_code'
-    | 'nz_national_clearing_code'
-    | 'pl_national_clearing_code'
-    | 'se_bankgiro_clearing_code'
-    | 'sg_interbank_clearing_code'
-    | 'swift'
-    | 'za_national_clearing_code'
-    | null;
+  originating_routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'mx_bank_identifier' | 'my_branch_code' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code' | null;
 
   /**
    * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
@@ -202,22 +150,7 @@ export interface IncomingPaymentDetail {
    * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
    * `wire`.
    */
-  type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'check'
-    | 'eft'
-    | 'interac'
-    | 'neft'
-    | 'nz_becs'
-    | 'rtp'
-    | 'sepa'
-    | 'signet'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
+  type: 'ach' | 'au_becs' | 'bacs' | 'book' | 'check' | 'eft' | 'interac' | 'neft' | 'nz_becs' | 'rtp' | 'sepa' | 'signet' | 'stablecoin' | 'wire' | 'zengin';
 
   updated_at: string;
 
@@ -322,22 +255,7 @@ export interface IncomingPaymentDetailListParams extends PageParams {
    * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
    * `wire`.
    */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'check'
-    | 'eft'
-    | 'interac'
-    | 'neft'
-    | 'nz_becs'
-    | 'rtp'
-    | 'sepa'
-    | 'signet'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
+  type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'check' | 'eft' | 'interac' | 'neft' | 'nz_becs' | 'rtp' | 'sepa' | 'signet' | 'stablecoin' | 'wire' | 'zengin';
 
   /**
    * If the incoming payment detail is in a virtual account, the ID of the Virtual
@@ -393,22 +311,7 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   /**
    * One of `ach`, `wire`, `check`.
    */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'check'
-    | 'eft'
-    | 'interac'
-    | 'neft'
-    | 'nz_becs'
-    | 'rtp'
-    | 'sepa'
-    | 'signet'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
+  type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'check' | 'eft' | 'interac' | 'neft' | 'nz_becs' | 'rtp' | 'sepa' | 'signet' | 'stablecoin' | 'wire' | 'zengin';
 
   /**
    * An optional parameter to associate the incoming payment detail to a virtual
@@ -423,6 +326,6 @@ export declare namespace IncomingPaymentDetails {
     type IncomingPaymentDetailsPage as IncomingPaymentDetailsPage,
     type IncomingPaymentDetailUpdateParams as IncomingPaymentDetailUpdateParams,
     type IncomingPaymentDetailListParams as IncomingPaymentDetailListParams,
-    type IncomingPaymentDetailCreateAsyncParams as IncomingPaymentDetailCreateAsyncParams,
+    type IncomingPaymentDetailCreateAsyncParams as IncomingPaymentDetailCreateAsyncParams
   };
 }

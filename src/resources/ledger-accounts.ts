@@ -35,11 +35,7 @@ export class LedgerAccounts extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    query: LedgerAccountRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<LedgerAccount> {
+  retrieve(id: string, query: LedgerAccountRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerAccount> {
     return this._client.get(path`/api/ledger_accounts/${id}`, { query, ...options });
   }
 
@@ -53,11 +49,7 @@ export class LedgerAccounts extends APIResource {
    * );
    * ```
    */
-  update(
-    id: string,
-    body: LedgerAccountUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<LedgerAccount> {
+  update(id: string, body: LedgerAccountUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerAccount> {
     return this._client.patch(path`/api/ledger_accounts/${id}`, { body, ...options });
   }
 
@@ -72,10 +64,7 @@ export class LedgerAccounts extends APIResource {
    * }
    * ```
    */
-  list(
-    query: LedgerAccountListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerAccountsPage, LedgerAccount> {
+  list(query: LedgerAccountListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LedgerAccountsPage, LedgerAccount> {
     return this._client.getAPIList('/api/ledger_accounts', Page<LedgerAccount>, { query, ...options });
   }
 
@@ -94,7 +83,7 @@ export class LedgerAccounts extends APIResource {
   }
 }
 
-export type LedgerAccountsPage = Page<LedgerAccount>;
+export type LedgerAccountsPage = Page<LedgerAccount>
 
 export interface LedgerAccount {
   id: string;
@@ -484,6 +473,6 @@ export declare namespace LedgerAccounts {
     type LedgerAccountCreateParams as LedgerAccountCreateParams,
     type LedgerAccountRetrieveParams as LedgerAccountRetrieveParams,
     type LedgerAccountUpdateParams as LedgerAccountUpdateParams,
-    type LedgerAccountListParams as LedgerAccountListParams,
+    type LedgerAccountListParams as LedgerAccountListParams
   };
 }

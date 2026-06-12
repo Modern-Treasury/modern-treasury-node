@@ -5,14 +5,12 @@ import ModernTreasury, { toFile } from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource documents', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.documents.create({
-      file: await toFile(Buffer.from('Example data'), 'README.md'),
-    });
+    const responsePromise = client.documents.create({ file: await toFile(Buffer.from('Example data'), 'README.md') });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,11 +22,11 @@ describe('resource documents', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.documents.create({
-      file: await toFile(Buffer.from('Example data'), 'README.md'),
-      document_type: 'document_type',
-      documentable_id: 'documentable_id',
-      documentable_type: 'connections',
-    });
+    file: await toFile(Buffer.from('Example data'), 'README.md'),
+    document_type: 'document_type',
+    documentable_id: 'documentable_id',
+    documentable_type: 'connections',
+  });
   });
 
   test('retrieve', async () => {
@@ -55,16 +53,13 @@ describe('resource documents', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.documents.list(
-        {
-          after_cursor: 'after_cursor',
-          documentable_id: 'documentable_id',
-          documentable_type: 'connections',
-          per_page: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.documents.list({
+    after_cursor: 'after_cursor',
+    documentable_id: 'documentable_id',
+    documentable_type: 'connections',
+    per_page: 0,
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(ModernTreasury.NotFoundError);
   });
 });

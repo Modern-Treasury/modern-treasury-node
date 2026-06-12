@@ -17,10 +17,7 @@ export class ExpectedPayments extends APIResource {
    *   await client.expectedPayments.create();
    * ```
    */
-  create(
-    body: ExpectedPaymentCreateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ExpectedPayment> {
+  create(body: ExpectedPaymentCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<ExpectedPayment> {
     return this._client.post('/api/expected_payments', { body, ...options });
   }
 
@@ -46,11 +43,7 @@ export class ExpectedPayments extends APIResource {
    *   await client.expectedPayments.update('id');
    * ```
    */
-  update(
-    id: string,
-    body: ExpectedPaymentUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ExpectedPayment> {
+  update(id: string, body: ExpectedPaymentUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<ExpectedPayment> {
     return this._client.patch(path`/api/expected_payments/${id}`, { body, ...options });
   }
 
@@ -65,10 +58,7 @@ export class ExpectedPayments extends APIResource {
    * }
    * ```
    */
-  list(
-    query: ExpectedPaymentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ExpectedPaymentsPage, ExpectedPayment> {
+  list(query: ExpectedPaymentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ExpectedPaymentsPage, ExpectedPayment> {
     return this._client.getAPIList('/api/expected_payments', Page<ExpectedPayment>, { query, ...options });
   }
 
@@ -86,7 +76,7 @@ export class ExpectedPayments extends APIResource {
   }
 }
 
-export type ExpectedPaymentsPage = Page<ExpectedPayment>;
+export type ExpectedPaymentsPage = Page<ExpectedPayment>
 
 export interface ExpectedPayment {
   id: string;
@@ -254,40 +244,7 @@ export interface ExpectedPayment {
  * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
  * sepa, signet, wire.
  */
-export type ExpectedPaymentType =
-  | 'ach'
-  | 'au_becs'
-  | 'bacs'
-  | 'book'
-  | 'card'
-  | 'chats'
-  | 'check'
-  | 'cross_border'
-  | 'dk_nets'
-  | 'eft'
-  | 'gb_fps'
-  | 'hu_ics'
-  | 'interac'
-  | 'masav'
-  | 'mx_ccen'
-  | 'neft'
-  | 'nics'
-  | 'nz_becs'
-  | 'pl_elixir'
-  | 'provxchange'
-  | 'ro_sent'
-  | 'rtp'
-  | 'se_bankgirot'
-  | 'sen'
-  | 'sepa'
-  | 'sg_giro'
-  | 'sic'
-  | 'signet'
-  | 'sknbi'
-  | 'stablecoin'
-  | 'wire'
-  | 'zengin'
-  | null;
+export type ExpectedPaymentType = 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin' | null
 
 export interface ReconciliationRule {
   /**
@@ -342,40 +299,7 @@ export interface ReconciliationRule {
    * One of ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
    * sepa, signet wire
    */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin'
-    | null;
+  type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin' | null;
 }
 
 export interface ExpectedPaymentCreateParams {
@@ -715,39 +639,7 @@ export interface ExpectedPaymentListParams extends PageParams {
    * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
    * sepa, signet, wire
    */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
+  type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
 
   /**
    * Used to return expected payments updated after some datetime
@@ -768,6 +660,6 @@ export declare namespace ExpectedPayments {
     type ExpectedPaymentsPage as ExpectedPaymentsPage,
     type ExpectedPaymentCreateParams as ExpectedPaymentCreateParams,
     type ExpectedPaymentUpdateParams as ExpectedPaymentUpdateParams,
-    type ExpectedPaymentListParams as ExpectedPaymentListParams,
+    type ExpectedPaymentListParams as ExpectedPaymentListParams
   };
 }

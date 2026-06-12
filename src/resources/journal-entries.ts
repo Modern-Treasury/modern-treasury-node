@@ -11,21 +11,14 @@ export class JournalEntries extends APIResource {
    * Retrieve a specific journal entry
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.get(path`/api/journal_entries/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get(path`/api/journal_entries/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
    * Retrieve a list of journal entries
    */
   list(query: JournalEntryListParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/api/journal_entries', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/api/journal_entries', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
@@ -47,5 +40,7 @@ export interface JournalEntryListParams {
 }
 
 export declare namespace JournalEntries {
-  export { type JournalEntryListParams as JournalEntryListParams };
+  export {
+    type JournalEntryListParams as JournalEntryListParams
+  };
 }

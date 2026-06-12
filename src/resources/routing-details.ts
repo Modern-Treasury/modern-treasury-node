@@ -12,56 +12,37 @@ export class RoutingDetails extends APIResource {
   /**
    * Create a routing detail for a single external account.
    */
-  create(
-    accountID: string,
-    params: RoutingDetailCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<RoutingDetail> {
-    const { accounts_type, ...body } = params;
+  create(accountID: string, params: RoutingDetailCreateParams, options?: RequestOptions): APIPromise<RoutingDetail> {
+    const { accounts_type, ...body } = params
     return this._client.post(path`/api/${accounts_type}/${accountID}/routing_details`, { body, ...options });
   }
 
   /**
    * Get a single routing detail for a single internal or external account.
    */
-  retrieve(
-    id: string,
-    params: RoutingDetailRetrieveParams,
-    options?: RequestOptions,
-  ): APIPromise<RoutingDetail> {
-    const { accounts_type, account_id } = params;
+  retrieve(id: string, params: RoutingDetailRetrieveParams, options?: RequestOptions): APIPromise<RoutingDetail> {
+    const { accounts_type, account_id } = params
     return this._client.get(path`/api/${accounts_type}/${account_id}/routing_details/${id}`, options);
   }
 
   /**
    * Get a list of routing details for a single internal or external account.
    */
-  list(
-    accountID: string,
-    params: RoutingDetailListParams,
-    options?: RequestOptions,
-  ): PagePromise<RoutingDetailsPage, RoutingDetail> {
-    const { accounts_type, ...query } = params;
-    return this._client.getAPIList(
-      path`/api/${accounts_type}/${accountID}/routing_details`,
-      Page<RoutingDetail>,
-      { query, ...options },
-    );
+  list(accountID: string, params: RoutingDetailListParams, options?: RequestOptions): PagePromise<RoutingDetailsPage, RoutingDetail> {
+    const { accounts_type, ...query } = params
+    return this._client.getAPIList(path`/api/${accounts_type}/${accountID}/routing_details`, Page<RoutingDetail>, { query, ...options });
   }
 
   /**
    * Delete a routing detail for a single external account.
    */
   delete(id: string, params: RoutingDetailDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { accounts_type, account_id } = params;
-    return this._client.delete(path`/api/${accounts_type}/${account_id}/routing_details/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { accounts_type, account_id } = params
+    return this._client.delete(path`/api/${accounts_type}/${account_id}/routing_details/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type RoutingDetailsPage = Page<RoutingDetail>;
+export type RoutingDetailsPage = Page<RoutingDetail>
 
 export interface RoutingDetail {
   id: string;
@@ -89,40 +70,7 @@ export interface RoutingDetail {
    * If the routing detail is to be used for a specific payment type this field will
    * be populated, otherwise null.
    */
-  payment_type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin'
-    | null;
+  payment_type: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin' | null;
 
   /**
    * The routing number of the bank.
@@ -134,29 +82,7 @@ export interface RoutingDetail {
    * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
    * more details.
    */
-  routing_number_type:
-    | 'aba'
-    | 'au_bsb'
-    | 'br_codigo'
-    | 'ca_cpa'
-    | 'chips'
-    | 'cnaps'
-    | 'dk_interbank_clearing_code'
-    | 'gb_sort_code'
-    | 'hk_interbank_clearing_code'
-    | 'hu_interbank_clearing_code'
-    | 'id_sknbi_code'
-    | 'il_bank_code'
-    | 'in_ifsc'
-    | 'jp_zengin_code'
-    | 'mx_bank_identifier'
-    | 'my_branch_code'
-    | 'nz_national_clearing_code'
-    | 'pl_national_clearing_code'
-    | 'se_bankgiro_clearing_code'
-    | 'sg_interbank_clearing_code'
-    | 'swift'
-    | 'za_national_clearing_code';
+  routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'mx_bank_identifier' | 'my_branch_code' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
 
   updated_at: string;
 }
@@ -177,68 +103,13 @@ export interface RoutingDetailCreateParams {
    * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
    * more details.
    */
-  routing_number_type:
-    | 'aba'
-    | 'au_bsb'
-    | 'br_codigo'
-    | 'ca_cpa'
-    | 'chips'
-    | 'cnaps'
-    | 'dk_interbank_clearing_code'
-    | 'gb_sort_code'
-    | 'hk_interbank_clearing_code'
-    | 'hu_interbank_clearing_code'
-    | 'id_sknbi_code'
-    | 'il_bank_code'
-    | 'in_ifsc'
-    | 'jp_zengin_code'
-    | 'mx_bank_identifier'
-    | 'my_branch_code'
-    | 'nz_national_clearing_code'
-    | 'pl_national_clearing_code'
-    | 'se_bankgiro_clearing_code'
-    | 'sg_interbank_clearing_code'
-    | 'swift'
-    | 'za_national_clearing_code';
+  routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'mx_bank_identifier' | 'my_branch_code' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
 
   /**
    * Body param: If the routing detail is to be used for a specific payment type this
    * field will be populated, otherwise null.
    */
-  payment_type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sen'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'signet'
-    | 'sknbi'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin'
-    | null;
+  payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin' | null;
 }
 
 export interface RoutingDetailRetrieveParams {
@@ -273,6 +144,6 @@ export declare namespace RoutingDetails {
     type RoutingDetailCreateParams as RoutingDetailCreateParams,
     type RoutingDetailRetrieveParams as RoutingDetailRetrieveParams,
     type RoutingDetailListParams as RoutingDetailListParams,
-    type RoutingDetailDeleteParams as RoutingDetailDeleteParams,
+    type RoutingDetailDeleteParams as RoutingDetailDeleteParams
   };
 }

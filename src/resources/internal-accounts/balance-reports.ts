@@ -33,15 +33,8 @@ export class BalanceReports extends APIResource {
    *   );
    * ```
    */
-  create(
-    internalAccountID: string,
-    body: BalanceReportCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<BalanceReport> {
-    return this._client.post(path`/api/internal_accounts/${internalAccountID}/balance_reports`, {
-      body,
-      ...options,
-    });
+  create(internalAccountID: string, body: BalanceReportCreateParams, options?: RequestOptions): APIPromise<BalanceReport> {
+    return this._client.post(path`/api/internal_accounts/${internalAccountID}/balance_reports`, { body, ...options });
   }
 
   /**
@@ -56,16 +49,9 @@ export class BalanceReports extends APIResource {
    *   );
    * ```
    */
-  retrieve(
-    id: (string & {}) | 'latest',
-    params: BalanceReportRetrieveParams,
-    options?: RequestOptions,
-  ): APIPromise<BalanceReport> {
-    const { internal_account_id } = params;
-    return this._client.get(
-      path`/api/internal_accounts/${internal_account_id}/balance_reports/${id}`,
-      options,
-    );
+  retrieve(id: (string & {}) | 'latest', params: BalanceReportRetrieveParams, options?: RequestOptions): APIPromise<BalanceReport> {
+    const { internal_account_id } = params
+    return this._client.get(path`/api/internal_accounts/${internal_account_id}/balance_reports/${id}`, options);
   }
 
   /**
@@ -81,16 +67,8 @@ export class BalanceReports extends APIResource {
    * }
    * ```
    */
-  list(
-    internalAccountID: string,
-    query: BalanceReportListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BalanceReportsPage, BalanceReport> {
-    return this._client.getAPIList(
-      path`/api/internal_accounts/${internalAccountID}/balance_reports`,
-      Page<BalanceReport>,
-      { query, ...options },
-    );
+  list(internalAccountID: string, query: BalanceReportListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BalanceReportsPage, BalanceReport> {
+    return this._client.getAPIList(path`/api/internal_accounts/${internalAccountID}/balance_reports`, Page<BalanceReport>, { query, ...options });
   }
 
   /**
@@ -104,15 +82,12 @@ export class BalanceReports extends APIResource {
    * ```
    */
   delete(id: string, params: BalanceReportDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { internal_account_id } = params;
-    return this._client.delete(path`/api/internal_accounts/${internal_account_id}/balance_reports/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { internal_account_id } = params
+    return this._client.delete(path`/api/internal_accounts/${internal_account_id}/balance_reports/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type BalanceReportsPage = Page<BalanceReport>;
+export type BalanceReportsPage = Page<BalanceReport>
 
 export interface BalanceReport {
   id: string;
@@ -181,16 +156,7 @@ export namespace BalanceReport {
      * `opening_available_next_business_day`, `closing_available`, `current_available`,
      * 'previously_closed_book', or `other`.
      */
-    balance_type:
-      | 'closing_available'
-      | 'closing_ledger'
-      | 'current_available'
-      | 'current_ledger'
-      | 'opening_available'
-      | 'opening_available_next_business_day'
-      | 'opening_ledger'
-      | 'other'
-      | 'previously_closed_book';
+    balance_type: 'closing_available' | 'closing_ledger' | 'current_available' | 'current_ledger' | 'opening_available' | 'opening_available_next_business_day' | 'opening_ledger' | 'other' | 'previously_closed_book';
 
     created_at: string;
 
@@ -265,16 +231,7 @@ export namespace BalanceReportCreateParams {
      * `opening_available_next_business_day`, `closing_available`, `current_available`,
      * 'previously_closed_book', or `other`.
      */
-    balance_type:
-      | 'closing_available'
-      | 'closing_ledger'
-      | 'current_available'
-      | 'current_ledger'
-      | 'opening_available'
-      | 'opening_available_next_business_day'
-      | 'opening_ledger'
-      | 'other'
-      | 'previously_closed_book';
+    balance_type: 'closing_available' | 'closing_ledger' | 'current_available' | 'current_ledger' | 'opening_available' | 'opening_available_next_business_day' | 'opening_ledger' | 'other' | 'previously_closed_book';
 
     /**
      * The code used by the bank when reporting this specific balance.
@@ -319,6 +276,6 @@ export declare namespace BalanceReports {
     type BalanceReportCreateParams as BalanceReportCreateParams,
     type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
     type BalanceReportListParams as BalanceReportListParams,
-    type BalanceReportDeleteParams as BalanceReportDeleteParams,
+    type BalanceReportDeleteParams as BalanceReportDeleteParams
   };
 }

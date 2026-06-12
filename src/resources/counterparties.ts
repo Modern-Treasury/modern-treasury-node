@@ -51,11 +51,7 @@ export class Counterparties extends APIResource {
    * );
    * ```
    */
-  update(
-    id: string,
-    body: CounterpartyUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Counterparty> {
+  update(id: string, body: CounterpartyUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Counterparty> {
     return this._client.patch(path`/api/counterparties/${id}`, { body, ...options });
   }
 
@@ -70,10 +66,7 @@ export class Counterparties extends APIResource {
    * }
    * ```
    */
-  list(
-    query: CounterpartyListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CounterpartiesPage, Counterparty> {
+  list(query: CounterpartyListParams | null | undefined = {}, options?: RequestOptions): PagePromise<CounterpartiesPage, Counterparty> {
     return this._client.getAPIList('/api/counterparties', Page<Counterparty>, { query, ...options });
   }
 
@@ -86,10 +79,7 @@ export class Counterparties extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/counterparties/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/api/counterparties/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -103,16 +93,12 @@ export class Counterparties extends APIResource {
    *   });
    * ```
    */
-  collectAccount(
-    id: string,
-    body: CounterpartyCollectAccountParams,
-    options?: RequestOptions,
-  ): APIPromise<CounterpartyCollectAccountResponse> {
+  collectAccount(id: string, body: CounterpartyCollectAccountParams, options?: RequestOptions): APIPromise<CounterpartyCollectAccountResponse> {
     return this._client.post(path`/api/counterparties/${id}/collect_account`, { body, ...options });
   }
 }
 
-export type CounterpartiesPage = Page<Counterparty>;
+export type CounterpartiesPage = Page<Counterparty>
 
 export interface Counterparty {
   id: string;
@@ -408,84 +394,15 @@ export namespace CounterpartyCreateParams {
     export interface AccountDetail {
       account_number: string;
 
-      account_number_type?:
-        | 'au_number'
-        | 'base_address'
-        | 'card_token'
-        | 'clabe'
-        | 'ethereum_address'
-        | 'hk_number'
-        | 'iban'
-        | 'id_number'
-        | 'nz_number'
-        | 'other'
-        | 'pan'
-        | 'polygon_address'
-        | 'sg_number'
-        | 'solana_address'
-        | 'wallet_address';
+      account_number_type?: 'au_number' | 'base_address' | 'card_token' | 'clabe' | 'ethereum_address' | 'hk_number' | 'iban' | 'id_number' | 'nz_number' | 'other' | 'pan' | 'polygon_address' | 'sg_number' | 'solana_address' | 'wallet_address';
     }
 
     export interface RoutingDetail {
       routing_number: string;
 
-      routing_number_type:
-        | 'aba'
-        | 'au_bsb'
-        | 'br_codigo'
-        | 'ca_cpa'
-        | 'chips'
-        | 'cnaps'
-        | 'dk_interbank_clearing_code'
-        | 'gb_sort_code'
-        | 'hk_interbank_clearing_code'
-        | 'hu_interbank_clearing_code'
-        | 'id_sknbi_code'
-        | 'il_bank_code'
-        | 'in_ifsc'
-        | 'jp_zengin_code'
-        | 'my_branch_code'
-        | 'mx_bank_identifier'
-        | 'nz_national_clearing_code'
-        | 'pl_national_clearing_code'
-        | 'se_bankgiro_clearing_code'
-        | 'sg_interbank_clearing_code'
-        | 'swift'
-        | 'za_national_clearing_code';
+      routing_number_type: 'aba' | 'au_bsb' | 'br_codigo' | 'ca_cpa' | 'chips' | 'cnaps' | 'dk_interbank_clearing_code' | 'gb_sort_code' | 'hk_interbank_clearing_code' | 'hu_interbank_clearing_code' | 'id_sknbi_code' | 'il_bank_code' | 'in_ifsc' | 'jp_zengin_code' | 'my_branch_code' | 'mx_bank_identifier' | 'nz_national_clearing_code' | 'pl_national_clearing_code' | 'se_bankgiro_clearing_code' | 'sg_interbank_clearing_code' | 'swift' | 'za_national_clearing_code';
 
-      payment_type?:
-        | 'ach'
-        | 'au_becs'
-        | 'bacs'
-        | 'book'
-        | 'card'
-        | 'chats'
-        | 'check'
-        | 'cross_border'
-        | 'dk_nets'
-        | 'eft'
-        | 'gb_fps'
-        | 'hu_ics'
-        | 'interac'
-        | 'masav'
-        | 'mx_ccen'
-        | 'neft'
-        | 'nics'
-        | 'nz_becs'
-        | 'pl_elixir'
-        | 'provxchange'
-        | 'ro_sent'
-        | 'rtp'
-        | 'se_bankgirot'
-        | 'sen'
-        | 'sepa'
-        | 'sg_giro'
-        | 'sic'
-        | 'signet'
-        | 'sknbi'
-        | 'stablecoin'
-        | 'wire'
-        | 'zengin';
+      payment_type?: 'ach' | 'au_becs' | 'bacs' | 'book' | 'card' | 'chats' | 'check' | 'cross_border' | 'dk_nets' | 'eft' | 'gb_fps' | 'hu_ics' | 'interac' | 'masav' | 'mx_ccen' | 'neft' | 'nics' | 'nz_becs' | 'pl_elixir' | 'provxchange' | 'ro_sent' | 'rtp' | 'se_bankgirot' | 'sen' | 'sepa' | 'sg_giro' | 'sic' | 'signet' | 'sknbi' | 'stablecoin' | 'wire' | 'zengin';
     }
   }
 
@@ -603,14 +520,7 @@ export namespace CounterpartyCreateParams {
     /**
      * The business's legal structure.
      */
-    legal_structure?:
-      | 'corporation'
-      | 'llc'
-      | 'non_profit'
-      | 'partnership'
-      | 'sole_proprietorship'
-      | 'trust'
-      | null;
+    legal_structure?: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust' | null;
 
     /**
      * ISO 10383 market identifier code.
@@ -746,14 +656,7 @@ export namespace CounterpartyCreateParams {
       /**
        * A category given to the document, can be `null`.
        */
-      document_type:
-        | 'articles_of_incorporation'
-        | 'certificate_of_good_standing'
-        | 'ein_letter'
-        | 'generic'
-        | 'identification_back'
-        | 'identification_front'
-        | 'proof_of_address';
+      document_type: 'articles_of_incorporation' | 'certificate_of_good_standing' | 'ein_letter' | 'generic' | 'identification_back' | 'identification_front' | 'proof_of_address';
 
       /**
        * Base64-encoded file content for the document.
@@ -831,16 +734,7 @@ export namespace CounterpartyCreateParams {
       /**
        * The source of the individual's income.
        */
-      income_source:
-        | 'family_support'
-        | 'government_benefits'
-        | 'inheritance'
-        | 'investments'
-        | 'rental_income'
-        | 'retirement'
-        | 'salary'
-        | 'self_employed'
-        | null;
+      income_source: 'family_support' | 'government_benefits' | 'inheritance' | 'investments' | 'rental_income' | 'retirement' | 'salary' | 'self_employed' | null;
 
       /**
        * The state in which the individual's income is earned.
@@ -850,41 +744,7 @@ export namespace CounterpartyCreateParams {
       /**
        * The industry of the individual.
        */
-      industry:
-        | 'accounting'
-        | 'agriculture'
-        | 'automotive'
-        | 'chemical_manufacturing'
-        | 'construction'
-        | 'educational_medical'
-        | 'food_service'
-        | 'finance'
-        | 'gasoline'
-        | 'health_stores'
-        | 'laundry'
-        | 'maintenance'
-        | 'manufacturing'
-        | 'merchant_wholesale'
-        | 'mining'
-        | 'performing_arts'
-        | 'professional_non_legal'
-        | 'public_administration'
-        | 'publishing'
-        | 'real_estate'
-        | 'recreation_gambling'
-        | 'religious_charity'
-        | 'rental_services'
-        | 'retail_clothing'
-        | 'retail_electronics'
-        | 'retail_food'
-        | 'retail_furnishing'
-        | 'retail_home'
-        | 'retail_non_store'
-        | 'retail_sporting'
-        | 'transportation'
-        | 'travel'
-        | 'utilities'
-        | null;
+      industry: 'accounting' | 'agriculture' | 'automotive' | 'chemical_manufacturing' | 'construction' | 'educational_medical' | 'food_service' | 'finance' | 'gasoline' | 'health_stores' | 'laundry' | 'maintenance' | 'manufacturing' | 'merchant_wholesale' | 'mining' | 'performing_arts' | 'professional_non_legal' | 'public_administration' | 'publishing' | 'real_estate' | 'recreation_gambling' | 'religious_charity' | 'rental_services' | 'retail_clothing' | 'retail_electronics' | 'retail_food' | 'retail_furnishing' | 'retail_home' | 'retail_non_store' | 'retail_sporting' | 'transportation' | 'travel' | 'utilities' | null;
 
       /**
        * This field will be true if this object exists in the live environment or false
@@ -897,68 +757,19 @@ export namespace CounterpartyCreateParams {
       /**
        * The occupation of the individual.
        */
-      occupation:
-        | 'consulting'
-        | 'executive'
-        | 'finance_accounting'
-        | 'food_services'
-        | 'government'
-        | 'healthcare'
-        | 'legal_services'
-        | 'manufacturing'
-        | 'other'
-        | 'sales'
-        | 'science_engineering'
-        | 'technology'
-        | null;
+      occupation: 'consulting' | 'executive' | 'finance_accounting' | 'food_services' | 'government' | 'healthcare' | 'legal_services' | 'manufacturing' | 'other' | 'sales' | 'science_engineering' | 'technology' | null;
 
       /**
        * The source of the individual's funds.
        */
-      source_of_funds:
-        | 'alimony'
-        | 'annuity'
-        | 'business_owner'
-        | 'business_revenue'
-        | 'debt_financing'
-        | 'general_employee'
-        | 'government_benefits'
-        | 'homemaker'
-        | 'inheritance_gift'
-        | 'intercompany_loan'
-        | 'investment'
-        | 'investor_funding'
-        | 'legal_settlement'
-        | 'lottery'
-        | 'real_estate'
-        | 'retained_earnings_or_savings'
-        | 'retired'
-        | 'retirement'
-        | 'salary'
-        | 'sale_of_business_assets'
-        | 'sale_of_real_estate'
-        | 'self_employed'
-        | 'senior_executive'
-        | 'trust_income'
-        | null;
+      source_of_funds: 'alimony' | 'annuity' | 'business_owner' | 'business_revenue' | 'debt_financing' | 'general_employee' | 'government_benefits' | 'homemaker' | 'inheritance_gift' | 'intercompany_loan' | 'investment' | 'investor_funding' | 'legal_settlement' | 'lottery' | 'real_estate' | 'retained_earnings_or_savings' | 'retired' | 'retirement' | 'salary' | 'sale_of_business_assets' | 'sale_of_real_estate' | 'self_employed' | 'senior_executive' | 'trust_income' | null;
 
       updated_at: string;
 
       /**
        * The source of the individual's wealth.
        */
-      wealth_source:
-        | 'business_sale'
-        | 'family_support'
-        | 'government_benefits'
-        | 'inheritance'
-        | 'investments'
-        | 'other'
-        | 'rental_income'
-        | 'retirement'
-        | 'salary'
-        | 'self_employed'
-        | null;
+      wealth_source: 'business_sale' | 'family_support' | 'government_benefits' | 'inheritance' | 'investments' | 'other' | 'rental_income' | 'retirement' | 'salary' | 'self_employed' | null;
     }
   }
 }
@@ -1065,37 +876,7 @@ export interface CounterpartyCollectAccountParams {
    * \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
    * \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
    */
-  fields?: Array<
-    | 'name'
-    | 'nameOnAccount'
-    | 'taxpayerIdentifier'
-    | 'accountType'
-    | 'accountNumber'
-    | 'ibanNumber'
-    | 'clabeNumber'
-    | 'walletAddress'
-    | 'panNumber'
-    | 'routingNumber'
-    | 'abaWireRoutingNumber'
-    | 'swiftCode'
-    | 'auBsb'
-    | 'caCpa'
-    | 'cnaps'
-    | 'gbSortCode'
-    | 'inIfsc'
-    | 'myBranchCode'
-    | 'brCodigo'
-    | 'routingNumberType'
-    | 'address'
-    | 'jpZenginCode'
-    | 'seBankgiroClearingCode'
-    | 'nzNationalClearingCode'
-    | 'hkInterbankClearingCode'
-    | 'huInterbankClearingCode'
-    | 'dkInterbankClearingCode'
-    | 'idSknbiCode'
-    | 'zaNationalClearingCode'
-  >;
+  fields?: Array<'name' | 'nameOnAccount' | 'taxpayerIdentifier' | 'accountType' | 'accountNumber' | 'ibanNumber' | 'clabeNumber' | 'walletAddress' | 'panNumber' | 'routingNumber' | 'abaWireRoutingNumber' | 'swiftCode' | 'auBsb' | 'caCpa' | 'cnaps' | 'gbSortCode' | 'inIfsc' | 'myBranchCode' | 'brCodigo' | 'routingNumberType' | 'address' | 'jpZenginCode' | 'seBankgiroClearingCode' | 'nzNationalClearingCode' | 'hkInterbankClearingCode' | 'huInterbankClearingCode' | 'dkInterbankClearingCode' | 'idSknbiCode' | 'zaNationalClearingCode'>;
 
   /**
    * By default, Modern Treasury will send an email to your counterparty that
@@ -1114,6 +895,6 @@ export declare namespace Counterparties {
     type CounterpartyCreateParams as CounterpartyCreateParams,
     type CounterpartyUpdateParams as CounterpartyUpdateParams,
     type CounterpartyListParams as CounterpartyListParams,
-    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams,
+    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams
   };
 }

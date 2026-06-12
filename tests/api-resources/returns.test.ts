@@ -5,15 +5,12 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource returns', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.returns.create({
-      returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      returnable_type: 'incoming_payment_detail',
-    });
+    const responsePromise = client.returns.create({ returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', returnable_type: 'incoming_payment_detail' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -25,55 +22,53 @@ describe('resource returns', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.returns.create({
-      returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      returnable_type: 'incoming_payment_detail',
-      additional_information: 'additional_information',
-      code: '901',
-      corrections: {
-        account_number: 'account_number',
-        company_id: 'company_id',
-        company_name: 'company_name',
-        individual_identification_number: 'individual_identification_number',
-        routing_number: 'routing_number',
-        transaction_code: 'transaction_code',
-      },
-      data: {},
-      date_of_death: '2019-12-27',
-      ledger_transaction: {
-        ledger_entries: [
-          {
-            amount: 0,
-            direction: 'credit',
-            ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            available_balance_amount: { foo: 0 },
-            effective_at: '2019-12-27T18:11:19.117Z',
-            lock_version: 0,
-            metadata: {
-              key: 'value',
-              foo: 'bar',
-              modern: 'treasury',
-            },
-            pending_balance_amount: { foo: 0 },
-            posted_balance_amount: { foo: 0 },
-            show_resulting_ledger_account_balances: true,
-          },
-        ],
-        description: 'description',
-        effective_at: '2019-12-27T18:11:19.117Z',
-        effective_date: '2019-12-27',
-        external_id: 'external_id',
-        ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        ledgerable_type: 'expected_payment',
-        metadata: {
-          key: 'value',
-          foo: 'bar',
-          modern: 'treasury',
-        },
-        status: 'archived',
-      },
-      reason: 'reason',
-      reconciliation_status: 'unreconciled',
-    });
+    returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    returnable_type: 'incoming_payment_detail',
+    additional_information: 'additional_information',
+    code: '901',
+    corrections: {
+    account_number: 'account_number',
+    company_id: 'company_id',
+    company_name: 'company_name',
+    individual_identification_number: 'individual_identification_number',
+    routing_number: 'routing_number',
+    transaction_code: 'transaction_code',
+  },
+    data: {},
+    date_of_death: '2019-12-27',
+    ledger_transaction: {
+    ledger_entries: [{
+    amount: 0,
+    direction: 'credit',
+    ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    available_balance_amount: { foo: 0 },
+    effective_at: '2019-12-27T18:11:19.117Z',
+    lock_version: 0,
+    metadata: {
+    key: 'value',
+    foo: 'bar',
+    modern: 'treasury',
+  },
+    pending_balance_amount: { foo: 0 },
+    posted_balance_amount: { foo: 0 },
+    show_resulting_ledger_account_balances: true,
+  }],
+    description: 'description',
+    effective_at: '2019-12-27T18:11:19.117Z',
+    effective_date: '2019-12-27',
+    external_id: 'external_id',
+    ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    ledgerable_type: 'expected_payment',
+    metadata: {
+    key: 'value',
+    foo: 'bar',
+    modern: 'treasury',
+  },
+    status: 'archived',
+  },
+    reason: 'reason',
+    reconciliation_status: 'unreconciled',
+  });
   });
 
   test('retrieve', async () => {
@@ -100,18 +95,15 @@ describe('resource returns', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.returns.list(
-        {
-          after_cursor: 'after_cursor',
-          counterparty_id: 'counterparty_id',
-          internal_account_id: 'internal_account_id',
-          per_page: 0,
-          returnable_id: 'returnable_id',
-          returnable_type: 'incoming_payment_detail',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+    await expect(client.returns.list({
+    after_cursor: 'after_cursor',
+    counterparty_id: 'counterparty_id',
+    internal_account_id: 'internal_account_id',
+    per_page: 0,
+    returnable_id: 'returnable_id',
+    returnable_type: 'incoming_payment_detail',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(ModernTreasury.NotFoundError);
   });
 });

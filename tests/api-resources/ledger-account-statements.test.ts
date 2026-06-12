@@ -5,17 +5,17 @@ import ModernTreasury from 'modern-treasury';
 const client = new ModernTreasury({
   apiKey: 'My API Key',
   organizationID: 'my-organization-ID',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource ledgerAccountStatements', () => {
   // Prism is broken in this case
   test.skip('create: only required params', async () => {
     const responsePromise = client.ledgerAccountStatements.create({
-      effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
-      effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
-      ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
+    effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
+    ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,16 +28,16 @@ describe('resource ledgerAccountStatements', () => {
   // Prism is broken in this case
   test.skip('create: required and optional params', async () => {
     const response = await client.ledgerAccountStatements.create({
-      effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
-      effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
-      ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      description: 'description',
-      metadata: {
-        key: 'value',
-        foo: 'bar',
-        modern: 'treasury',
-      },
-    });
+    effective_at_lower_bound: '2019-12-27T18:11:19.117Z',
+    effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
+    ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    description: 'description',
+    metadata: {
+    key: 'value',
+    foo: 'bar',
+    modern: 'treasury',
+  },
+  });
   });
 
   test('retrieve', async () => {

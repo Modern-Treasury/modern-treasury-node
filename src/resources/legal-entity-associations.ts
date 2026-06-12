@@ -4,7 +4,9 @@ import { APIResource } from '../core/resource';
 import * as DocumentsAPI from './documents';
 import * as Shared from './shared';
 
-export class LegalEntityAssociations extends APIResource {}
+export class LegalEntityAssociations extends APIResource {
+
+}
 
 export interface ChildLegalEntity {
   id: string;
@@ -113,14 +115,7 @@ export interface ChildLegalEntity {
   /**
    * The business's legal structure.
    */
-  legal_structure:
-    | 'corporation'
-    | 'llc'
-    | 'non_profit'
-    | 'partnership'
-    | 'sole_proprietorship'
-    | 'trust'
-    | null;
+  legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust' | null;
 
   /**
    * ISO 10383 market identifier code.
@@ -333,35 +328,7 @@ export namespace ChildLegalEntity {
     /**
      * The type of ID number.
      */
-    id_type:
-      | 'ar_cuil'
-      | 'ar_cuit'
-      | 'br_cnpj'
-      | 'br_cpf'
-      | 'ca_sin'
-      | 'cl_run'
-      | 'cl_rut'
-      | 'co_cedulas'
-      | 'co_nit'
-      | 'drivers_license'
-      | 'hn_id'
-      | 'hn_rtn'
-      | 'ie_pps'
-      | 'in_lei'
-      | 'kr_brn'
-      | 'kr_crn'
-      | 'kr_rrn'
-      | 'mx_curp'
-      | 'mx_ine'
-      | 'mx_rfc'
-      | 'passport'
-      | 'sa_tin'
-      | 'sa_vat'
-      | 'us_ein'
-      | 'us_itin'
-      | 'us_ssn'
-      | 'uy_rut'
-      | 'vn_tin';
+    id_type: 'ar_cuil' | 'ar_cuit' | 'br_cnpj' | 'br_cpf' | 'ca_sin' | 'cl_run' | 'cl_rut' | 'co_cedulas' | 'co_nit' | 'drivers_license' | 'hn_id' | 'hn_rtn' | 'ie_pps' | 'in_lei' | 'kr_brn' | 'kr_crn' | 'kr_rrn' | 'mx_curp' | 'mx_ine' | 'mx_rfc' | 'passport' | 'sa_tin' | 'sa_vat' | 'us_ein' | 'us_itin' | 'us_ssn' | 'uy_rut' | 'vn_tin';
 
     /**
      * The ISO 3166-1 alpha-2 country code of the country that issued the
@@ -450,16 +417,7 @@ export namespace ChildLegalEntity {
     /**
      * The source of the individual's income.
      */
-    income_source:
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
+    income_source: 'family_support' | 'government_benefits' | 'inheritance' | 'investments' | 'rental_income' | 'retirement' | 'salary' | 'self_employed' | null;
 
     /**
      * The state in which the individual's income is earned.
@@ -469,41 +427,7 @@ export namespace ChildLegalEntity {
     /**
      * The industry of the individual.
      */
-    industry:
-      | 'accounting'
-      | 'agriculture'
-      | 'automotive'
-      | 'chemical_manufacturing'
-      | 'construction'
-      | 'educational_medical'
-      | 'food_service'
-      | 'finance'
-      | 'gasoline'
-      | 'health_stores'
-      | 'laundry'
-      | 'maintenance'
-      | 'manufacturing'
-      | 'merchant_wholesale'
-      | 'mining'
-      | 'performing_arts'
-      | 'professional_non_legal'
-      | 'public_administration'
-      | 'publishing'
-      | 'real_estate'
-      | 'recreation_gambling'
-      | 'religious_charity'
-      | 'rental_services'
-      | 'retail_clothing'
-      | 'retail_electronics'
-      | 'retail_food'
-      | 'retail_furnishing'
-      | 'retail_home'
-      | 'retail_non_store'
-      | 'retail_sporting'
-      | 'transportation'
-      | 'travel'
-      | 'utilities'
-      | null;
+    industry: 'accounting' | 'agriculture' | 'automotive' | 'chemical_manufacturing' | 'construction' | 'educational_medical' | 'food_service' | 'finance' | 'gasoline' | 'health_stores' | 'laundry' | 'maintenance' | 'manufacturing' | 'merchant_wholesale' | 'mining' | 'performing_arts' | 'professional_non_legal' | 'public_administration' | 'publishing' | 'real_estate' | 'recreation_gambling' | 'religious_charity' | 'rental_services' | 'retail_clothing' | 'retail_electronics' | 'retail_food' | 'retail_furnishing' | 'retail_home' | 'retail_non_store' | 'retail_sporting' | 'transportation' | 'travel' | 'utilities' | null;
 
     /**
      * This field will be true if this object exists in the live environment or false
@@ -516,68 +440,19 @@ export namespace ChildLegalEntity {
     /**
      * The occupation of the individual.
      */
-    occupation:
-      | 'consulting'
-      | 'executive'
-      | 'finance_accounting'
-      | 'food_services'
-      | 'government'
-      | 'healthcare'
-      | 'legal_services'
-      | 'manufacturing'
-      | 'other'
-      | 'sales'
-      | 'science_engineering'
-      | 'technology'
-      | null;
+    occupation: 'consulting' | 'executive' | 'finance_accounting' | 'food_services' | 'government' | 'healthcare' | 'legal_services' | 'manufacturing' | 'other' | 'sales' | 'science_engineering' | 'technology' | null;
 
     /**
      * The source of the individual's funds.
      */
-    source_of_funds:
-      | 'alimony'
-      | 'annuity'
-      | 'business_owner'
-      | 'business_revenue'
-      | 'debt_financing'
-      | 'general_employee'
-      | 'government_benefits'
-      | 'homemaker'
-      | 'inheritance_gift'
-      | 'intercompany_loan'
-      | 'investment'
-      | 'investor_funding'
-      | 'legal_settlement'
-      | 'lottery'
-      | 'real_estate'
-      | 'retained_earnings_or_savings'
-      | 'retired'
-      | 'retirement'
-      | 'salary'
-      | 'sale_of_business_assets'
-      | 'sale_of_real_estate'
-      | 'self_employed'
-      | 'senior_executive'
-      | 'trust_income'
-      | null;
+    source_of_funds: 'alimony' | 'annuity' | 'business_owner' | 'business_revenue' | 'debt_financing' | 'general_employee' | 'government_benefits' | 'homemaker' | 'inheritance_gift' | 'intercompany_loan' | 'investment' | 'investor_funding' | 'legal_settlement' | 'lottery' | 'real_estate' | 'retained_earnings_or_savings' | 'retired' | 'retirement' | 'salary' | 'sale_of_business_assets' | 'sale_of_real_estate' | 'self_employed' | 'senior_executive' | 'trust_income' | null;
 
     updated_at: string;
 
     /**
      * The source of the individual's wealth.
      */
-    wealth_source:
-      | 'business_sale'
-      | 'family_support'
-      | 'government_benefits'
-      | 'inheritance'
-      | 'investments'
-      | 'other'
-      | 'rental_income'
-      | 'retirement'
-      | 'salary'
-      | 'self_employed'
-      | null;
+    wealth_source: 'business_sale' | 'family_support' | 'government_benefits' | 'inheritance' | 'investments' | 'other' | 'rental_income' | 'retirement' | 'salary' | 'self_employed' | null;
   }
 }
 
@@ -623,5 +498,8 @@ export interface LegalEntityAssociation {
 }
 
 export declare namespace LegalEntityAssociations {
-  export { type ChildLegalEntity as ChildLegalEntity, type LegalEntityAssociation as LegalEntityAssociation };
+  export {
+    type ChildLegalEntity as ChildLegalEntity,
+    type LegalEntityAssociation as LegalEntityAssociation
+  };
 }

@@ -25,10 +25,7 @@ export class LedgerAccountSettlements extends APIResource {
    *   });
    * ```
    */
-  create(
-    body: LedgerAccountSettlementCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<LedgerAccountSettlement> {
+  create(body: LedgerAccountSettlementCreateParams, options?: RequestOptions): APIPromise<LedgerAccountSettlement> {
     return this._client.post('/api/ledger_account_settlements', { body, ...options });
   }
 
@@ -54,11 +51,7 @@ export class LedgerAccountSettlements extends APIResource {
    *   await client.ledgerAccountSettlements.update('id');
    * ```
    */
-  update(
-    id: string,
-    body: LedgerAccountSettlementUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<LedgerAccountSettlement> {
+  update(id: string, body: LedgerAccountSettlementUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<LedgerAccountSettlement> {
     return this._client.patch(path`/api/ledger_account_settlements/${id}`, { body, ...options });
   }
 
@@ -73,18 +66,12 @@ export class LedgerAccountSettlements extends APIResource {
    * }
    * ```
    */
-  list(
-    query: LedgerAccountSettlementListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerAccountSettlementsPage, LedgerAccountSettlement> {
-    return this._client.getAPIList('/api/ledger_account_settlements', Page<LedgerAccountSettlement>, {
-      query,
-      ...options,
-    });
+  list(query: LedgerAccountSettlementListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LedgerAccountSettlementsPage, LedgerAccountSettlement> {
+    return this._client.getAPIList('/api/ledger_account_settlements', Page<LedgerAccountSettlement>, { query, ...options });
   }
 }
 
-export type LedgerAccountSettlementsPage = Page<LedgerAccountSettlement>;
+export type LedgerAccountSettlementsPage = Page<LedgerAccountSettlement>
 
 export interface LedgerAccountSettlement {
   id: string;
@@ -289,12 +276,12 @@ export declare namespace LedgerAccountSettlements {
     type LedgerAccountSettlementsPage as LedgerAccountSettlementsPage,
     type LedgerAccountSettlementCreateParams as LedgerAccountSettlementCreateParams,
     type LedgerAccountSettlementUpdateParams as LedgerAccountSettlementUpdateParams,
-    type LedgerAccountSettlementListParams as LedgerAccountSettlementListParams,
+    type LedgerAccountSettlementListParams as LedgerAccountSettlementListParams
   };
 
   export {
     AccountEntries as AccountEntries,
     type AccountEntryUpdateParams as AccountEntryUpdateParams,
-    type AccountEntryDeleteParams as AccountEntryDeleteParams,
+    type AccountEntryDeleteParams as AccountEntryDeleteParams
   };
 }
