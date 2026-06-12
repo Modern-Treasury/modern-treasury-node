@@ -298,4 +298,5 @@ export {
   type VirtualAccountListParams,
   type VirtualAccountsPage,
 } from './virtual-accounts';
+export { Webhooks } from './webhooks';
 export { type PingResponse } from './top-level';
