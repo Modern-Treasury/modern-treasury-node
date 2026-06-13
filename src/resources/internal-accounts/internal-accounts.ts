@@ -405,7 +405,7 @@ export interface InternalAccountCreateParams {
   /**
    * The currency of the internal account. Supports fiat and stablecoin currencies.
    */
-  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'USDT' | 'PYUSD';
+  currency: 'USD' | 'CAD' | 'USDC' | 'USDT' | 'PYUSD' | 'USDG';
 
   /**
    * The nickname of the account.
