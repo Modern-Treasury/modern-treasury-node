@@ -305,19 +305,17 @@ export interface HoldListParams extends PageParams {
   metadata?: { [key: string]: string };
 
   /**
-   * Translation missing: en.openapi.descriptions.payment_order.query_params.status
+   * Only return holds for a specific status.
    */
   status?: 'active' | 'resolved' | null;
 
   /**
-   * Translation missing:
-   * en.openapi.descriptions.payment_order.query_params.target_id
+   * Only return holds for a specific target ID.
    */
   target_id?: string | null;
 
   /**
-   * Translation missing:
-   * en.openapi.descriptions.payment_order.query_params.target_type
+   * Only return holds for a specific target type.
    */
   target_type?: 'payment_order' | null;
 }

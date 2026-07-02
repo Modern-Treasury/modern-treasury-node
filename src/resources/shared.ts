@@ -264,6 +264,11 @@ export interface ChildLegalEntityCreate {
   suffix?: string | null;
 
   /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use?: ChildLegalEntityCreate.TermsOfUse | null;
+
+  /**
    * @deprecated Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification?: ThirdPartyVerification | null;
@@ -334,6 +339,22 @@ export namespace ChildLegalEntityCreate {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
+  }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
   }
 }
 
@@ -654,6 +675,7 @@ export interface IdentificationCreateRequest {
     | 'gb_nino'
     | 'gb_utr'
     | 'gb_vat'
+    | 'generic_international'
     | 'gr_vat'
     | 'hn_id'
     | 'hn_rtn'
@@ -1109,7 +1131,7 @@ export interface ThirdPartyVerification {
   /**
    * The vendor that performed the verification, e.g. `persona`.
    */
-  vendor: 'persona' | 'middesk' | 'alloy' | 'sumsub' | 'veriff';
+  vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff';
 
   /**
    * The identification of the third party verification in `vendor`'s system.

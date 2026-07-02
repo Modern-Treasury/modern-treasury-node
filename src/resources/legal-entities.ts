@@ -236,7 +236,7 @@ export interface LegalEntity {
   /**
    * The type of legal entity.
    */
-  legal_entity_type: 'business' | 'individual' | 'joint';
+  legal_entity_type: 'business' | 'individual';
 
   /**
    * The business's legal structure.
@@ -327,6 +327,11 @@ export interface LegalEntity {
    * An individual's suffix.
    */
   suffix: string | null;
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use: LegalEntity.TermsOfUse | null;
 
   /**
    * @deprecated Deprecated. Use `third_party_verifications` instead.
@@ -469,6 +474,7 @@ export namespace LegalEntity {
       | 'gb_nino'
       | 'gb_utr'
       | 'gb_vat'
+      | 'generic_international'
       | 'gr_vat'
       | 'hn_id'
       | 'hn_rtn'
@@ -574,6 +580,22 @@ export namespace LegalEntity {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
+  }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
   }
 }
 
@@ -935,6 +957,11 @@ export interface LegalEntityCreateParams {
   suffix?: string | null;
 
   /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use?: LegalEntityCreateParams.TermsOfUse | null;
+
+  /**
    * Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification?: Shared.ThirdPartyVerification | null;
@@ -1005,6 +1032,22 @@ export namespace LegalEntityCreateParams {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
+  }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
   }
 }
 
@@ -1166,6 +1209,11 @@ export interface LegalEntityUpdateParams {
   suffix?: string | null;
 
   /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use?: LegalEntityUpdateParams.TermsOfUse | null;
+
+  /**
    * Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification?: Shared.ThirdPartyVerification | null;
@@ -1212,6 +1260,22 @@ export namespace LegalEntityUpdateParams {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
+  }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
   }
 }
 

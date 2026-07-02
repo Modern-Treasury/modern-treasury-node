@@ -669,6 +669,11 @@ export namespace CounterpartyCreateParams {
     suffix?: string | null;
 
     /**
+     * Acceptance of terms of use by the legal entity.
+     */
+    terms_of_use?: LegalEntity.TermsOfUse | null;
+
+    /**
      * @deprecated Deprecated. Use `third_party_verifications` instead.
      */
     third_party_verification?: Shared.ThirdPartyVerification | null;
@@ -739,6 +744,22 @@ export namespace CounterpartyCreateParams {
        * Registration or identification number with the regulator.
        */
       registration_number: string;
+    }
+
+    /**
+     * Acceptance of terms of use by the legal entity.
+     */
+    export interface TermsOfUse {
+      /**
+       * The ISO 8601 timestamp indicating when the terms of use were accepted.
+       */
+      accepted_at?: string;
+
+      /**
+       * The IP address from which the terms of use were accepted. Supports both IPv4 and
+       * IPv6 formats.
+       */
+      ip_address?: string;
     }
   }
 }

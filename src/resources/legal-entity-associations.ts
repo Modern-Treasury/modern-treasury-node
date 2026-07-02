@@ -109,7 +109,7 @@ export interface ChildLegalEntity {
   /**
    * The type of legal entity.
    */
-  legal_entity_type: 'business' | 'individual' | 'joint';
+  legal_entity_type: 'business' | 'individual';
 
   /**
    * The business's legal structure.
@@ -200,6 +200,11 @@ export interface ChildLegalEntity {
    * An individual's suffix.
    */
   suffix: string | null;
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use: ChildLegalEntity.TermsOfUse | null;
 
   /**
    * @deprecated Deprecated. Use `third_party_verifications` instead.
@@ -337,6 +342,7 @@ export namespace ChildLegalEntity {
       | 'gb_nino'
       | 'gb_utr'
       | 'gb_vat'
+      | 'generic_international'
       | 'gr_vat'
       | 'hn_id'
       | 'hn_rtn'
@@ -443,6 +449,22 @@ export namespace ChildLegalEntity {
      */
     registration_number: string;
   }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
+  }
 }
 
 export interface LegalEntityAssociation {
@@ -471,8 +493,7 @@ export interface LegalEntityAssociation {
   ownership_percentage: number | null;
 
   /**
-   * The ID of the parent legal entity. This must be a business or joint legal
-   * entity.
+   * The ID of the parent legal entity. This must be a business legal entity.
    */
   parent_legal_entity_id: string;
 
