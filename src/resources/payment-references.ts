@@ -129,6 +129,8 @@ export interface PaymentReference {
     | 'svb_payment_id'
     | 'swift_mir'
     | 'swift_uetr'
+    | 'turnkey_activity_id'
+    | 'turnkey_send_transaction_status_id'
     | 'umb_product_partner_account_number'
     | 'usbank_payment_application_reference_id'
     | 'usbank_payment_id'

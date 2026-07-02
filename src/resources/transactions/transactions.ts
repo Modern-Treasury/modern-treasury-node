@@ -25,7 +25,6 @@ export class Transactions extends APIResource {
    * @example
    * ```ts
    * const transaction = await client.transactions.create({
-   *   amount: 0,
    *   as_of_date: '2019-12-27',
    *   direction: 'direction',
    *   internal_account_id:
@@ -113,6 +112,12 @@ export interface Transaction {
    * as 1000.
    */
   amount: number;
+
+  /**
+   * The amount of the transaction as a string, preserving full precision for values
+   * that may exceed safe integer limits in some languages.
+   */
+  amount_string: string;
 
   /**
    * The date on which the transaction occurred.
@@ -257,6 +262,7 @@ export interface Transaction {
     | 'pnc'
     | 'silvergate'
     | 'swift'
+    | 'turnkey'
     | 'us_bank'
     | 'user'
     | 'western_alliance'
@@ -292,12 +298,6 @@ export interface Transaction {
 
 export interface TransactionCreateParams {
   /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000.
-   */
-  amount: number;
-
-  /**
    * The date on which the transaction occurred.
    */
   as_of_date: string | null;
@@ -325,6 +325,18 @@ export interface TransactionCreateParams {
    * `us_bank`, or others.
    */
   vendor_code_type: string | null;
+
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
+   */
+  amount?: number;
+
+  /**
+   * The transaction amount as a string, preserving full precision for values that
+   * may exceed safe integer limits in some languages.
+   */
+  amount_string?: string;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be

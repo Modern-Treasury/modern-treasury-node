@@ -46,8 +46,6 @@ export interface Document {
 
   discarded_at: string | null;
 
-  document_details: Array<Document.DocumentDetail>;
-
   /**
    * A category given to the document, can be `null`.
    */
@@ -96,28 +94,6 @@ export interface Document {
 }
 
 export namespace Document {
-  export interface DocumentDetail {
-    id: string;
-
-    created_at: string;
-
-    discarded_at: string | null;
-
-    document_identifier: string;
-
-    document_identifier_type: string;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    updated_at: string;
-  }
-
   export interface File {
     /**
      * The MIME content type of the document.
