@@ -238,7 +238,15 @@ export namespace ChildLegalEntity {
     /**
      * The types of this address.
      */
-    address_types: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
+    address_types: Array<
+      | 'business'
+      | 'business_physical'
+      | 'business_registered'
+      | 'mailing'
+      | 'other'
+      | 'po_box'
+      | 'residential'
+    >;
 
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -272,7 +280,8 @@ export namespace ChildLegalEntity {
     postal_code: string | null;
 
     /**
-     * Whether this address is the primary address for the legal entity.
+     * Whether this address is the primary address for the legal entity. Optional; when
+     * omitted it is inferred from the address types.
      */
     primary: boolean | null;
 
