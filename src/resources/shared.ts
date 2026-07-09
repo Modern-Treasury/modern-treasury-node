@@ -1045,12 +1045,15 @@ export interface LegalEntityAddressCreateRequest {
   /**
    * The types of this address.
    */
-  address_types?: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
+  address_types?: Array<
+    'business' | 'business_physical' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'
+  >;
 
   line2?: string | null;
 
   /**
-   * Whether this address is the primary address for the legal entity.
+   * Whether this address is the primary address for the legal entity. Optional; when
+   * omitted it is inferred from the address types.
    */
   primary?: boolean | null;
 }
