@@ -1,5 +1,22 @@
 # Changelog
 
+## 4.19.0 (2026-07-11)
+
+Full Changelog: [v4.18.0...v4.19.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.18.0...v4.19.0)
+
+### Features
+
+* **api:** api update ([7ba37c9](https://github.com/Modern-Treasury/modern-treasury-node/commit/7ba37c9445852a1089153a51fc16e68131487497))
+* **api:** api update ([df7d511](https://github.com/Modern-Treasury/modern-treasury-node/commit/df7d5119d80b2ba38a87538d1aa9ae29aa07b51b))
+* **api:** api update ([0b2cba4](https://github.com/Modern-Treasury/modern-treasury-node/commit/0b2cba4832bc54928b6872aed9a4fe48a24ced98))
+* **api:** api update ([51e1602](https://github.com/Modern-Treasury/modern-treasury-node/commit/51e1602bff00159bc839c16f0d33e111ee594ba4))
+
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([66008c1](https://github.com/Modern-Treasury/modern-treasury-node/commit/66008c1e76327576baf26b36c03fd694fef2e462))
+* **client:** send content-type header for requests with an omitted optional body ([8479aa6](https://github.com/Modern-Treasury/modern-treasury-node/commit/8479aa6cbfefd39c35dac08b2fbebc7814778029))
+
 ## 4.18.0 (2026-06-12)
 
 Full Changelog: [v4.17.0...v4.18.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.17.0...v4.18.0)
