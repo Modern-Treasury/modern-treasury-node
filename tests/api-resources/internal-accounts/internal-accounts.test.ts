@@ -10,11 +10,7 @@ const client = new ModernTreasury({
 
 describe('resource internalAccounts', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.internalAccounts.create({
-      connection_id: 'connection_id',
-      currency: 'USD',
-      name: 'name',
-    });
+    const responsePromise = client.internalAccounts.create({ currency: 'USD', name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -26,7 +22,6 @@ describe('resource internalAccounts', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.internalAccounts.create({
-      connection_id: 'connection_id',
       currency: 'USD',
       name: 'name',
       account_capabilities: [
@@ -43,6 +38,7 @@ describe('resource internalAccounts', () => {
         },
       ],
       account_type: 'checking',
+      connection_id: 'connection_id',
       counterparty_id: 'counterparty_id',
       debitable: true,
       external_id: 'external_id',
