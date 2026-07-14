@@ -8,6 +8,19 @@ import { path } from '../internal/utils/path';
 
 export class PaymentActions extends APIResource {
   /**
+   * Get a list of all payment actions.
+   */
+  list(
+    query: PaymentActionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse> {
+    return this._client.getAPIList('/api/payment_actions', Page<PaymentActionListResponse>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Create a payment action.
    */
   create(body: PaymentActionCreateParams, options?: RequestOptions): APIPromise<PaymentActionCreateResponse> {
@@ -30,19 +43,6 @@ export class PaymentActions extends APIResource {
     options?: RequestOptions,
   ): APIPromise<PaymentActionUpdateResponse> {
     return this._client.patch(path`/api/payment_actions/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of all payment actions.
-   */
-  list(
-    query: PaymentActionListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<PaymentActionListResponsesPage, PaymentActionListResponse> {
-    return this._client.getAPIList('/api/payment_actions', Page<PaymentActionListResponse>, {
-      query,
-      ...options,
-    });
   }
 }
 
@@ -240,44 +240,6 @@ export interface PaymentActionListResponse {
   updated_at: string;
 }
 
-export interface PaymentActionCreateParams {
-  /**
-   * Required. The type of the payment action. Determines the action to be taken.
-   */
-  type: string;
-
-  /**
-   * Optional. The ID of the associated actionable object.
-   */
-  actionable_id?: string;
-
-  /**
-   * Optional. The type of the associated actionable object. One of `payment_order`,
-   * `expected_payment`. Required if `actionable_id` is passed.
-   */
-  actionable_type?: string;
-
-  /**
-   * Optional. The specifc details of the payment action based on type.
-   */
-  details?: unknown;
-
-  /**
-   * Optional. The ID of one of your organization's internal accounts. Required if
-   * `actionable_id` is not passed.
-   */
-  internal_account_id?: string;
-}
-
-export interface PaymentActionUpdateParams {
-  /**
-   * Optional. Set the status of the payment action to `cancelled` to cancel the
-   * payment action. This will only work if the payment action is in a `pending`
-   * state.
-   */
-  status: 'pending' | 'processable' | 'processing' | 'sent' | 'acknowledged' | 'failed' | 'cancelled';
-}
-
 export interface PaymentActionListParams extends PageParams {
   /**
    * The ID of the associated actionable object.
@@ -339,6 +301,44 @@ export namespace PaymentActionListParams {
   }
 }
 
+export interface PaymentActionCreateParams {
+  /**
+   * Required. The type of the payment action. Determines the action to be taken.
+   */
+  type: string;
+
+  /**
+   * Optional. The ID of the associated actionable object.
+   */
+  actionable_id?: string;
+
+  /**
+   * Optional. The type of the associated actionable object. One of `payment_order`,
+   * `expected_payment`. Required if `actionable_id` is passed.
+   */
+  actionable_type?: string;
+
+  /**
+   * Optional. The specifc details of the payment action based on type.
+   */
+  details?: unknown;
+
+  /**
+   * Optional. The ID of one of your organization's internal accounts. Required if
+   * `actionable_id` is not passed.
+   */
+  internal_account_id?: string;
+}
+
+export interface PaymentActionUpdateParams {
+  /**
+   * Optional. Set the status of the payment action to `cancelled` to cancel the
+   * payment action. This will only work if the payment action is in a `pending`
+   * state.
+   */
+  status: 'pending' | 'processable' | 'processing' | 'sent' | 'acknowledged' | 'failed' | 'cancelled';
+}
+
 export declare namespace PaymentActions {
   export {
     type PaymentActionCreateResponse as PaymentActionCreateResponse,
@@ -346,8 +346,8 @@ export declare namespace PaymentActions {
     type PaymentActionUpdateResponse as PaymentActionUpdateResponse,
     type PaymentActionListResponse as PaymentActionListResponse,
     type PaymentActionListResponsesPage as PaymentActionListResponsesPage,
+    type PaymentActionListParams as PaymentActionListParams,
     type PaymentActionCreateParams as PaymentActionCreateParams,
     type PaymentActionUpdateParams as PaymentActionUpdateParams,
-    type PaymentActionListParams as PaymentActionListParams,
   };
 }

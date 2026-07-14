@@ -9,6 +9,16 @@ import { path } from '../internal/utils/path';
 
 export class Returns extends APIResource {
   /**
+   * Get a list of returns.
+   */
+  list(
+    query: ReturnListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ReturnObjectsPage, ReturnObject> {
+    return this._client.getAPIList('/api/returns', Page<ReturnObject>, { query, ...options });
+  }
+
+  /**
    * Create a return.
    */
   create(body: ReturnCreateParams, options?: RequestOptions): APIPromise<ReturnObject> {
@@ -20,16 +30,6 @@ export class Returns extends APIResource {
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<ReturnObject> {
     return this._client.get(path`/api/returns/${id}`, options);
-  }
-
-  /**
-   * Get a list of returns.
-   */
-  list(
-    query: ReturnListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ReturnObjectsPage, ReturnObject> {
-    return this._client.getAPIList('/api/returns', Page<ReturnObject>, { query, ...options });
   }
 }
 
@@ -243,7 +243,7 @@ export interface ReturnObject {
 
   /**
    * The type of return. Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`,
-   * `manual`, `paper_item`, `wire`.
+   * `interac`, `manual`, `paper_item`, `wire`.
    */
   type:
     | 'ach'
@@ -255,11 +255,13 @@ export interface ReturnObject {
     | 'cross_border'
     | 'eft'
     | 'gb_fps'
+    | 'interac'
     | 'manual'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
+    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -387,6 +389,7 @@ export namespace ReturnObject {
       | 'goldman_sachs_payment_request_id'
       | 'goldman_sachs_request_id'
       | 'goldman_sachs_unique_payment_id'
+      | 'interac_message_id'
       | 'jpmc_ccn'
       | 'jpmc_clearing_system_reference'
       | 'jpmc_customer_reference_id'
@@ -414,6 +417,9 @@ export namespace ReturnObject {
       | 'pnc_transaction_reference_number'
       | 'rbc_wire_reference_id'
       | 'rtp_instruction_id'
+      | 'signet_api_reference_id'
+      | 'signet_confirmation_id'
+      | 'signet_request_id'
       | 'silvergate_payment_id'
       | 'svb_end_to_end_id'
       | 'svb_payment_id'
@@ -434,6 +440,31 @@ export namespace ReturnObject {
 
     updated_at: string;
   }
+}
+
+export interface ReturnListParams extends PageParams {
+  /**
+   * Specify `counterparty_id` if you wish to see returns that occurred with a
+   * specific counterparty.
+   */
+  counterparty_id?: string;
+
+  /**
+   * Specify `internal_account_id` if you wish to see returns to/from a specific
+   * account.
+   */
+  internal_account_id?: string;
+
+  /**
+   * The ID of a valid returnable. Must be accompanied by `returnable_type`.
+   */
+  returnable_id?: string;
+
+  /**
+   * One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
+   * accompanied by `returnable_id`.
+   */
+  returnable_type?: 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
 }
 
 export interface ReturnCreateParams {
@@ -635,36 +666,11 @@ export namespace ReturnCreateParams {
   }
 }
 
-export interface ReturnListParams extends PageParams {
-  /**
-   * Specify `counterparty_id` if you wish to see returns that occurred with a
-   * specific counterparty.
-   */
-  counterparty_id?: string;
-
-  /**
-   * Specify `internal_account_id` if you wish to see returns to/from a specific
-   * account.
-   */
-  internal_account_id?: string;
-
-  /**
-   * The ID of a valid returnable. Must be accompanied by `returnable_type`.
-   */
-  returnable_id?: string;
-
-  /**
-   * One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
-   * accompanied by `returnable_id`.
-   */
-  returnable_type?: 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
-}
-
 export declare namespace Returns {
   export {
     type ReturnObject as ReturnObject,
     type ReturnObjectsPage as ReturnObjectsPage,
-    type ReturnCreateParams as ReturnCreateParams,
     type ReturnListParams as ReturnListParams,
+    type ReturnCreateParams as ReturnCreateParams,
   };
 }
