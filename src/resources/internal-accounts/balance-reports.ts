@@ -10,6 +10,55 @@ import { path } from '../../internal/utils/path';
 
 export class BalanceReports extends APIResource {
   /**
+   * Get all balance reports for a given internal account.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const balanceReport of client.internalAccounts.balanceReports.list(
+   *   'internal_account_id',
+   * )) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    internalAccountID: string,
+    query: BalanceReportListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BalanceReportsPage, BalanceReport> {
+    return this._client.getAPIList(
+      path`/api/internal_accounts/${internalAccountID}/balance_reports`,
+      Page<BalanceReport>,
+      { query, ...options },
+    );
+  }
+
+  /**
+   * Get a single balance report for a given internal account.
+   *
+   * @example
+   * ```ts
+   * const balanceReport =
+   *   await client.internalAccounts.balanceReports.retrieve(
+   *     'latest',
+   *     { internal_account_id: 'internal_account_id' },
+   *   );
+   * ```
+   */
+  retrieve(
+    id: (string & {}) | 'latest',
+    params: BalanceReportRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<BalanceReport> {
+    const { internal_account_id } = params;
+    return this._client.get(
+      path`/api/internal_accounts/${internal_account_id}/balance_reports/${id}`,
+      options,
+    );
+  }
+
+  /**
    * create balance reports
    *
    * @example
@@ -42,55 +91,6 @@ export class BalanceReports extends APIResource {
       body,
       ...options,
     });
-  }
-
-  /**
-   * Get a single balance report for a given internal account.
-   *
-   * @example
-   * ```ts
-   * const balanceReport =
-   *   await client.internalAccounts.balanceReports.retrieve(
-   *     'latest',
-   *     { internal_account_id: 'internal_account_id' },
-   *   );
-   * ```
-   */
-  retrieve(
-    id: (string & {}) | 'latest',
-    params: BalanceReportRetrieveParams,
-    options?: RequestOptions,
-  ): APIPromise<BalanceReport> {
-    const { internal_account_id } = params;
-    return this._client.get(
-      path`/api/internal_accounts/${internal_account_id}/balance_reports/${id}`,
-      options,
-    );
-  }
-
-  /**
-   * Get all balance reports for a given internal account.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const balanceReport of client.internalAccounts.balanceReports.list(
-   *   'internal_account_id',
-   * )) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    internalAccountID: string,
-    query: BalanceReportListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BalanceReportsPage, BalanceReport> {
-    return this._client.getAPIList(
-      path`/api/internal_accounts/${internalAccountID}/balance_reports`,
-      Page<BalanceReport>,
-      { query, ...options },
-    );
   }
 
   /**
@@ -222,11 +222,28 @@ export namespace BalanceReport {
     /**
      * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
      * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`, or
-     * `us_bank`.
+     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+     * `swift`, or `us_bank`.
      */
     vendor_code_type: string | null;
   }
+}
+
+export interface BalanceReportListParams extends PageParams {
+  /**
+   * The date of the balance report in local time.
+   */
+  as_of_date?: string;
+
+  /**
+   * The specific type of balance report. One of `intraday`, `previous_day`,
+   * `real_time`, or `other`.
+   */
+  balance_report_type?: 'intraday' | 'other' | 'previous_day' | 'real_time';
+}
+
+export interface BalanceReportRetrieveParams {
+  internal_account_id: string;
 }
 
 export interface BalanceReportCreateParams {
@@ -284,28 +301,11 @@ export namespace BalanceReportCreateParams {
     /**
      * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
      * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`, or
-     * `us_bank`.
+     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+     * `swift`, or `us_bank`.
      */
     vendor_code_type: string | null;
   }
-}
-
-export interface BalanceReportRetrieveParams {
-  internal_account_id: string;
-}
-
-export interface BalanceReportListParams extends PageParams {
-  /**
-   * The date of the balance report in local time.
-   */
-  as_of_date?: string;
-
-  /**
-   * The specific type of balance report. One of `intraday`, `previous_day`,
-   * `real_time`, or `other`.
-   */
-  balance_report_type?: 'intraday' | 'other' | 'previous_day' | 'real_time';
 }
 
 export interface BalanceReportDeleteParams {
@@ -316,9 +316,9 @@ export declare namespace BalanceReports {
   export {
     type BalanceReport as BalanceReport,
     type BalanceReportsPage as BalanceReportsPage,
-    type BalanceReportCreateParams as BalanceReportCreateParams,
-    type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
     type BalanceReportListParams as BalanceReportListParams,
+    type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
+    type BalanceReportCreateParams as BalanceReportCreateParams,
     type BalanceReportDeleteParams as BalanceReportDeleteParams,
   };
 }

@@ -8,6 +8,17 @@ import { path } from '../internal/utils/path';
 
 export class JournalReports extends APIResource {
   /**
+   * Retrieve a list of journal reports
+   */
+  list(query: JournalReportListParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+    return this._client.get('/api/journal_reports', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
    * Retrieve a specific journal report
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<void> {
@@ -31,17 +42,10 @@ export class JournalReports extends APIResource {
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
+}
 
-  /**
-   * Retrieve a list of journal reports
-   */
-  list(query: JournalReportListParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/api/journal_reports', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
+export interface JournalReportListParams {
+  status?: 'draft' | 'published' | 'ready';
 }
 
 export interface JournalReportUpdateParams {
@@ -50,13 +54,9 @@ export interface JournalReportUpdateParams {
   status?: string;
 }
 
-export interface JournalReportListParams {
-  status?: 'draft' | 'published' | 'ready';
-}
-
 export declare namespace JournalReports {
   export {
-    type JournalReportUpdateParams as JournalReportUpdateParams,
     type JournalReportListParams as JournalReportListParams,
+    type JournalReportUpdateParams as JournalReportUpdateParams,
   };
 }
