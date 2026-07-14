@@ -8,13 +8,6 @@ import { path } from '../internal/utils/path';
 
 export class Events extends APIResource {
   /**
-   * get event
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Event> {
-    return this._client.get(path`/api/events/${id}`, options);
-  }
-
-  /**
    * list events
    */
   list(
@@ -22,6 +15,13 @@ export class Events extends APIResource {
     options?: RequestOptions,
   ): PagePromise<EventsPage, Event> {
     return this._client.getAPIList('/api/events', Page<Event>, { query, ...options });
+  }
+
+  /**
+   * get event
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<Event> {
+    return this._client.get(path`/api/events/${id}`, options);
   }
 }
 

@@ -40,6 +40,38 @@ describe('resource ledgerAccountSettlements', () => {
     });
   });
 
+  test('list', async () => {
+    const responsePromise = client.ledgerAccountSettlements.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.ledgerAccountSettlements.list(
+        {
+          id: ['string'],
+          after_cursor: 'after_cursor',
+          created_at: { foo: '2019-12-27T18:11:19.117Z' },
+          ledger_id: 'ledger_id',
+          ledger_transaction_id: 'ledger_transaction_id',
+          metadata: { foo: 'string' },
+          per_page: 0,
+          settled_ledger_account_id: 'settled_ledger_account_id',
+          settlement_entry_direction: 'settlement_entry_direction',
+          updated_at: { foo: '2019-12-27T18:11:19.117Z' },
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('retrieve', async () => {
     const responsePromise = client.ledgerAccountSettlements.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
@@ -76,38 +108,6 @@ describe('resource ledgerAccountSettlements', () => {
           },
           skip_settlement_ledger_transaction: true,
           status: 'posted',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('list', async () => {
-    const responsePromise = client.ledgerAccountSettlements.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountSettlements.list(
-        {
-          id: ['string'],
-          after_cursor: 'after_cursor',
-          created_at: { foo: '2019-12-27T18:11:19.117Z' },
-          ledger_id: 'ledger_id',
-          ledger_transaction_id: 'ledger_transaction_id',
-          metadata: { foo: 'string' },
-          per_page: 0,
-          settled_ledger_account_id: 'settled_ledger_account_id',
-          settlement_entry_direction: 'settlement_entry_direction',
-          updated_at: { foo: '2019-12-27T18:11:19.117Z' },
         },
         { path: '/_stainless_unknown_path' },
       ),
