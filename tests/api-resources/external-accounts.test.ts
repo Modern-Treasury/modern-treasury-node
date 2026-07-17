@@ -74,6 +74,91 @@ describe('resource externalAccounts', () => {
     });
   });
 
+  test('delete', async () => {
+    const responsePromise = client.externalAccounts.delete('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('verify: only required params', async () => {
+    const responsePromise = client.externalAccounts.verify('id', {
+      originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      payment_type: 'ach',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('verify: required and optional params', async () => {
+    const response = await client.externalAccounts.verify('id', {
+      originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      payment_type: 'ach',
+      currency: 'AED',
+      fallback_type: 'ach',
+      priority: 'high',
+    });
+  });
+
+  test('completeVerification', async () => {
+    const responsePromise = client.externalAccounts.completeVerification('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('completeVerification: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.externalAccounts.completeVerification(
+        'id',
+        { amounts: [2, 4] },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('list', async () => {
+    const responsePromise = client.externalAccounts.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.externalAccounts.list(
+        {
+          after_cursor: 'after_cursor',
+          counterparty_id: 'counterparty_id',
+          external_id: 'external_id',
+          metadata: { foo: 'string' },
+          party_name: 'party_name',
+          per_page: 0,
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('retrieve', async () => {
     const responsePromise = client.externalAccounts.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
@@ -120,90 +205,5 @@ describe('resource externalAccounts', () => {
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('list', async () => {
-    const responsePromise = client.externalAccounts.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.externalAccounts.list(
-        {
-          after_cursor: 'after_cursor',
-          counterparty_id: 'counterparty_id',
-          external_id: 'external_id',
-          metadata: { foo: 'string' },
-          party_name: 'party_name',
-          per_page: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('delete', async () => {
-    const responsePromise = client.externalAccounts.delete('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('completeVerification', async () => {
-    const responsePromise = client.externalAccounts.completeVerification('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('completeVerification: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.externalAccounts.completeVerification(
-        'id',
-        { amounts: [2, 4] },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('verify: only required params', async () => {
-    const responsePromise = client.externalAccounts.verify('id', {
-      originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      payment_type: 'ach',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('verify: required and optional params', async () => {
-    const response = await client.externalAccounts.verify('id', {
-      originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      payment_type: 'ach',
-      currency: 'AED',
-      fallback_type: 'ach',
-      priority: 'high',
-    });
   });
 });
