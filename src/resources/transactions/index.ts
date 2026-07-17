@@ -3,15 +3,15 @@
 export {
   LineItems,
   type TransactionLineItem,
-  type LineItemCreateParams,
   type LineItemListParams,
+  type LineItemCreateParams,
   type TransactionLineItemsPage,
 } from './line-items';
 export {
   Transactions,
   type Transaction,
-  type TransactionCreateParams,
-  type TransactionUpdateParams,
   type TransactionListParams,
+  type TransactionUpdateParams,
+  type TransactionCreateParams,
   type TransactionsPage,
 } from './transactions';

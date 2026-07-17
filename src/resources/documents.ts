@@ -20,13 +20,6 @@ export class Documents extends APIResource {
   }
 
   /**
-   * Get an existing document.
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Document> {
-    return this._client.get(path`/api/documents/${id}`, options);
-  }
-
-  /**
    * Get a list of documents.
    */
   list(
@@ -34,6 +27,13 @@ export class Documents extends APIResource {
     options?: RequestOptions,
   ): PagePromise<DocumentsPage, Document> {
     return this._client.getAPIList('/api/documents', Page<Document>, { query, ...options });
+  }
+
+  /**
+   * Get an existing document.
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<Document> {
+    return this._client.get(path`/api/documents/${id}`, options);
   }
 }
 
@@ -45,6 +45,8 @@ export interface Document {
   created_at: string;
 
   discarded_at: string | null;
+
+  document_details: Array<Document.DocumentDetail>;
 
   /**
    * A category given to the document, can be `null`.
@@ -94,6 +96,28 @@ export interface Document {
 }
 
 export namespace Document {
+  export interface DocumentDetail {
+    id: string;
+
+    created_at: string;
+
+    discarded_at: string | null;
+
+    document_identifier: string;
+
+    document_identifier_type: string;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode: boolean;
+
+    object: string;
+
+    updated_at: string;
+  }
+
   export interface File {
     /**
      * The MIME content type of the document.
@@ -126,17 +150,17 @@ export interface DocumentCreateParams {
   documentable_id?: string;
 
   documentable_type?:
-    | 'connection'
-    | 'counterparty'
-    | 'expected_payment'
-    | 'external_account'
-    | 'identification'
-    | 'incoming_payment_detail'
-    | 'internal_account'
-    | 'legal_entity'
-    | 'organization'
-    | 'payment_order'
-    | 'transaction';
+    | 'connections'
+    | 'counterparties'
+    | 'expected_payments'
+    | 'external_accounts'
+    | 'identifications'
+    | 'incoming_payment_details'
+    | 'internal_accounts'
+    | 'legal_entities'
+    | 'organizations'
+    | 'payment_orders'
+    | 'transactions';
 }
 
 export interface DocumentListParams extends PageParams {
@@ -151,17 +175,17 @@ export interface DocumentListParams extends PageParams {
    * `internal_account`, `decision`, or `external_account`.
    */
   documentable_type?:
-    | 'connection'
-    | 'counterparty'
-    | 'expected_payment'
-    | 'external_account'
-    | 'identification'
-    | 'incoming_payment_detail'
-    | 'internal_account'
-    | 'legal_entity'
-    | 'organization'
-    | 'payment_order'
-    | 'transaction';
+    | 'connections'
+    | 'counterparties'
+    | 'expected_payments'
+    | 'external_accounts'
+    | 'identifications'
+    | 'incoming_payment_details'
+    | 'internal_accounts'
+    | 'legal_entities'
+    | 'organizations'
+    | 'payment_orders'
+    | 'transactions';
 }
 
 export declare namespace Documents {

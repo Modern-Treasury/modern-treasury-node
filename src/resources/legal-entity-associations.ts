@@ -109,7 +109,7 @@ export interface ChildLegalEntity {
   /**
    * The type of legal entity.
    */
-  legal_entity_type: 'business' | 'individual';
+  legal_entity_type: 'business' | 'individual' | 'joint';
 
   /**
    * The business's legal structure.
@@ -202,11 +202,6 @@ export interface ChildLegalEntity {
   suffix: string | null;
 
   /**
-   * Acceptance of terms of use by the legal entity.
-   */
-  terms_of_use: ChildLegalEntity.TermsOfUse | null;
-
-  /**
    * @deprecated Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification: Shared.ThirdPartyVerification | null;
@@ -238,15 +233,7 @@ export namespace ChildLegalEntity {
     /**
      * The types of this address.
      */
-    address_types: Array<
-      | 'business'
-      | 'business_physical'
-      | 'business_registered'
-      | 'mailing'
-      | 'other'
-      | 'po_box'
-      | 'residential'
-    >;
+    address_types: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -280,8 +267,7 @@ export namespace ChildLegalEntity {
     postal_code: string | null;
 
     /**
-     * Whether this address is the primary address for the legal entity. Optional; when
-     * omitted it is inferred from the address types.
+     * Whether this address is the primary address for the legal entity.
      */
     primary: boolean | null;
 
@@ -351,7 +337,6 @@ export namespace ChildLegalEntity {
       | 'gb_nino'
       | 'gb_utr'
       | 'gb_vat'
-      | 'generic_international'
       | 'gr_vat'
       | 'hn_id'
       | 'hn_rtn'
@@ -381,7 +366,6 @@ export namespace ChildLegalEntity {
       | 'mx_curp'
       | 'mx_ine'
       | 'mx_rfc'
-      | 'national_id'
       | 'nl_bsn'
       | 'nl_btw'
       | 'nl_rsin'
@@ -458,22 +442,6 @@ export namespace ChildLegalEntity {
      */
     registration_number: string;
   }
-
-  /**
-   * Acceptance of terms of use by the legal entity.
-   */
-  export interface TermsOfUse {
-    /**
-     * The ISO 8601 timestamp indicating when the terms of use were accepted.
-     */
-    accepted_at?: string;
-
-    /**
-     * The IP address from which the terms of use were accepted. Supports both IPv4 and
-     * IPv6 formats.
-     */
-    ip_address?: string;
-  }
 }
 
 export interface LegalEntityAssociation {
@@ -502,7 +470,8 @@ export interface LegalEntityAssociation {
   ownership_percentage: number | null;
 
   /**
-   * The ID of the parent legal entity. This must be a business legal entity.
+   * The ID of the parent legal entity. This must be a business or joint legal
+   * entity.
    */
   parent_legal_entity_id: string;
 

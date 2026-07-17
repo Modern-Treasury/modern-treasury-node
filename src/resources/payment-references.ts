@@ -8,13 +8,6 @@ import { path } from '../internal/utils/path';
 
 export class PaymentReferences extends APIResource {
   /**
-   * get payment_reference
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentReference> {
-    return this._client.get(path`/api/payment_references/${id}`, options);
-  }
-
-  /**
    * list payment_references
    */
   list(
@@ -22,6 +15,13 @@ export class PaymentReferences extends APIResource {
     options?: RequestOptions,
   ): PagePromise<PaymentReferencesPage, PaymentReference> {
     return this._client.getAPIList('/api/payment_references', Page<PaymentReference>, { query, ...options });
+  }
+
+  /**
+   * get payment_reference
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentReference> {
+    return this._client.get(path`/api/payment_references/${id}`, options);
   }
 
   /**
@@ -97,6 +97,7 @@ export interface PaymentReference {
     | 'goldman_sachs_payment_request_id'
     | 'goldman_sachs_request_id'
     | 'goldman_sachs_unique_payment_id'
+    | 'interac_message_id'
     | 'jpmc_ccn'
     | 'jpmc_clearing_system_reference'
     | 'jpmc_customer_reference_id'
@@ -124,13 +125,14 @@ export interface PaymentReference {
     | 'pnc_transaction_reference_number'
     | 'rbc_wire_reference_id'
     | 'rtp_instruction_id'
+    | 'signet_api_reference_id'
+    | 'signet_confirmation_id'
+    | 'signet_request_id'
     | 'silvergate_payment_id'
     | 'svb_end_to_end_id'
     | 'svb_payment_id'
     | 'swift_mir'
     | 'swift_uetr'
-    | 'turnkey_activity_id'
-    | 'turnkey_send_transaction_status_id'
     | 'umb_product_partner_account_number'
     | 'usbank_payment_application_reference_id'
     | 'usbank_payment_id'

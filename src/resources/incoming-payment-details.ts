@@ -10,6 +10,19 @@ import { path } from '../internal/utils/path';
 
 export class IncomingPaymentDetails extends APIResource {
   /**
+   * Get a list of Incoming Payment Details.
+   */
+  list(
+    query: IncomingPaymentDetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail> {
+    return this._client.getAPIList('/api/incoming_payment_details', Page<IncomingPaymentDetail>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Get an existing Incoming Payment Detail.
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<IncomingPaymentDetail> {
@@ -25,19 +38,6 @@ export class IncomingPaymentDetails extends APIResource {
     options?: RequestOptions,
   ): APIPromise<IncomingPaymentDetail> {
     return this._client.patch(path`/api/incoming_payment_details/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of Incoming Payment Details.
-   */
-  list(
-    query: IncomingPaymentDetailListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<IncomingPaymentDetailsPage, IncomingPaymentDetail> {
-    return this._client.getAPIList('/api/incoming_payment_details', Page<IncomingPaymentDetail>, {
-      query,
-      ...options,
-    });
   }
 
   /**
@@ -155,6 +155,8 @@ export interface IncomingPaymentDetail {
     | 'dk_interbank_clearing_code'
     | 'gb_sort_code'
     | 'hk_interbank_clearing_code'
+    | 'hu_interbank_clearing_code'
+    | 'id_sknbi_code'
     | 'il_bank_code'
     | 'in_ifsc'
     | 'jp_zengin_code'
@@ -197,7 +199,8 @@ export interface IncomingPaymentDetail {
   transaction_line_item_id: string | null;
 
   /**
-   * One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`.
+   * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+   * `wire`.
    */
   type:
     | 'ach'
@@ -206,10 +209,12 @@ export interface IncomingPaymentDetail {
     | 'book'
     | 'check'
     | 'eft'
+    | 'interac'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
+    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -267,14 +272,6 @@ export interface IncomingPaymentDetail {
   receiving_account_number_safe?: string | null;
 }
 
-export interface IncomingPaymentDetailUpdateParams {
-  /**
-   * Additional data in the form of key-value pairs. Pairs can be removed by passing
-   * an empty string or `null` as the value.
-   */
-  metadata?: { [key: string]: string };
-}
-
 export interface IncomingPaymentDetailListParams extends PageParams {
   /**
    * Filters incoming payment details with an as_of_date starting on or before the
@@ -314,7 +311,8 @@ export interface IncomingPaymentDetailListParams extends PageParams {
   subtype?: string;
 
   /**
-   * One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`.
+   * One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+   * `wire`.
    */
   type?:
     | 'ach'
@@ -323,10 +321,12 @@ export interface IncomingPaymentDetailListParams extends PageParams {
     | 'book'
     | 'check'
     | 'eft'
+    | 'interac'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
+    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -336,6 +336,14 @@ export interface IncomingPaymentDetailListParams extends PageParams {
    * Account.
    */
   virtual_account_id?: string;
+}
+
+export interface IncomingPaymentDetailUpdateParams {
+  /**
+   * Additional data in the form of key-value pairs. Pairs can be removed by passing
+   * an empty string or `null` as the value.
+   */
+  metadata?: { [key: string]: string };
 }
 
 export interface IncomingPaymentDetailCreateAsyncParams {
@@ -392,10 +400,12 @@ export interface IncomingPaymentDetailCreateAsyncParams {
     | 'book'
     | 'check'
     | 'eft'
+    | 'interac'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
+    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -411,8 +421,8 @@ export declare namespace IncomingPaymentDetails {
   export {
     type IncomingPaymentDetail as IncomingPaymentDetail,
     type IncomingPaymentDetailsPage as IncomingPaymentDetailsPage,
-    type IncomingPaymentDetailUpdateParams as IncomingPaymentDetailUpdateParams,
     type IncomingPaymentDetailListParams as IncomingPaymentDetailListParams,
+    type IncomingPaymentDetailUpdateParams as IncomingPaymentDetailUpdateParams,
     type IncomingPaymentDetailCreateAsyncParams as IncomingPaymentDetailCreateAsyncParams,
   };
 }

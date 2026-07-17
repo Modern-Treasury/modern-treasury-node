@@ -12,6 +12,24 @@ import { path } from '../internal/utils/path';
 
 export class BulkRequests extends APIResource {
   /**
+   * list bulk_requests
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const bulkRequest of client.bulkRequests.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: BulkRequestListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BulkRequestsPage, BulkRequest> {
+    return this._client.getAPIList('/api/bulk_requests', Page<BulkRequest>, { query, ...options });
+  }
+
+  /**
    * create bulk_request
    *
    * @example
@@ -47,24 +65,6 @@ export class BulkRequests extends APIResource {
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<BulkRequest> {
     return this._client.get(path`/api/bulk_requests/${id}`, options);
-  }
-
-  /**
-   * list bulk_requests
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const bulkRequest of client.bulkRequests.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: BulkRequestListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BulkRequestsPage, BulkRequest> {
-    return this._client.getAPIList('/api/bulk_requests', Page<BulkRequest>, { query, ...options });
   }
 }
 
@@ -131,6 +131,37 @@ export interface BulkRequest {
   updated_at: string;
 }
 
+export interface BulkRequestListParams extends PageParams {
+  /**
+   * One of create, or update.
+   */
+  action_type?: 'create' | 'update' | 'delete';
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * One of payment_order, expected_payment, or ledger_transaction.
+   */
+  resource_type?:
+    | 'payment_order'
+    | 'ledger_account'
+    | 'ledger_transaction'
+    | 'expected_payment'
+    | 'transaction'
+    | 'transaction_line_item'
+    | 'entity_link';
+
+  /**
+   * One of pending, processing, or completed.
+   */
+  status?: 'pending' | 'processing' | 'completed';
+}
+
 export interface BulkRequestCreateParams {
   /**
    * One of create, or update.
@@ -158,8 +189,7 @@ export interface BulkRequestCreateParams {
     | BulkRequestCreateParams.ExpectedPaymentCreateRequest
     | Shared.LedgerTransactionCreateRequest
     | Shared.LedgerAccountCreateRequest
-    | unknown
-    | unknown
+    | BulkRequestCreateParams.TransactionCreateRequest
     | BulkRequestCreateParams.ID
     | BulkRequestCreateParams.PaymentOrderUpdateRequestWithID
     | BulkRequestCreateParams.ExpectedPaymentUpdateRequestWithID
@@ -197,8 +227,9 @@ export namespace BulkRequestCreateParams {
     originating_account_id: string;
 
     /**
-     * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
-     * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
+     * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+     * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+     * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
      */
     type: PaymentOrdersAPI.PaymentOrderType;
 
@@ -577,6 +608,8 @@ export namespace BulkRequestCreateParams {
           | 'dk_interbank_clearing_code'
           | 'gb_sort_code'
           | 'hk_interbank_clearing_code'
+          | 'hu_interbank_clearing_code'
+          | 'id_sknbi_code'
           | 'il_bank_code'
           | 'in_ifsc'
           | 'jp_zengin_code'
@@ -601,17 +634,24 @@ export namespace BulkRequestCreateParams {
           | 'dk_nets'
           | 'eft'
           | 'gb_fps'
+          | 'hu_ics'
+          | 'interac'
           | 'masav'
           | 'mx_ccen'
           | 'neft'
           | 'nics'
           | 'nz_becs'
           | 'pl_elixir'
+          | 'provxchange'
+          | 'ro_sent'
           | 'rtp'
           | 'se_bankgirot'
+          | 'sen'
           | 'sepa'
           | 'sg_giro'
           | 'sic'
+          | 'signet'
+          | 'sknbi'
           | 'stablecoin'
           | 'wire'
           | 'zengin';
@@ -781,7 +821,8 @@ export namespace BulkRequestCreateParams {
     statement_descriptor?: string | null;
 
     /**
-     * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
+     * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+     * sepa, signet, wire.
      */
     type?: ExpectedPaymentsAPI.ExpectedPaymentType | null;
   }
@@ -811,6 +852,105 @@ export namespace BulkRequestCreateParams {
        */
       metadata?: { [key: string]: string };
     }
+  }
+
+  export interface TransactionCreateRequest {
+    /**
+     * Value in specified currency's smallest unit. e.g. $10 would be represented
+     * as 1000.
+     */
+    amount: number;
+
+    /**
+     * The date on which the transaction occurred.
+     */
+    as_of_date: string | null;
+
+    /**
+     * Either `credit` or `debit`.
+     */
+    direction: string;
+
+    /**
+     * The ID of the relevant Internal Account.
+     */
+    internal_account_id: string;
+
+    /**
+     * When applicable, the bank-given code that determines the transaction's category.
+     * For most banks this is the BAI2/BTRS transaction code.
+     */
+    vendor_code: string | null;
+
+    /**
+     * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
+     * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
+     * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+     * `swift`, `us_bank`, or others.
+     */
+    vendor_code_type: string | null;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: { [key: string]: string };
+
+    /**
+     * This field will be `true` if the transaction has posted to the account.
+     */
+    posted?: boolean;
+
+    /**
+     * The type of the transaction. Examples could be
+     * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+     */
+    type?:
+      | 'ach'
+      | 'au_becs'
+      | 'bacs'
+      | 'book'
+      | 'card'
+      | 'chats'
+      | 'check'
+      | 'cross_border'
+      | 'dk_nets'
+      | 'eft'
+      | 'gb_fps'
+      | 'hu_ics'
+      | 'interac'
+      | 'masav'
+      | 'mx_ccen'
+      | 'neft'
+      | 'nics'
+      | 'nz_becs'
+      | 'pl_elixir'
+      | 'provxchange'
+      | 'ro_sent'
+      | 'rtp'
+      | 'se_bankgirot'
+      | 'sen'
+      | 'sepa'
+      | 'sg_giro'
+      | 'sic'
+      | 'signet'
+      | 'sknbi'
+      | 'stablecoin'
+      | 'wire'
+      | 'zengin'
+      | 'other'
+      | null;
+
+    /**
+     * An identifier given to this transaction by the bank, often `null`.
+     */
+    vendor_customer_id?: string | null;
+
+    /**
+     * The transaction detail text that often appears in on your bank statement and in
+     * your banking portal.
+     */
+    vendor_description?: string | null;
   }
 
   export interface ID {
@@ -1034,8 +1174,9 @@ export namespace BulkRequestCreateParams {
     subtype?: PaymentOrdersAPI.PaymentOrderSubtype | null;
 
     /**
-     * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
-     * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
+     * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+     * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+     * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
      */
     type?: PaymentOrdersAPI.PaymentOrderType;
 
@@ -1214,6 +1355,8 @@ export namespace BulkRequestCreateParams {
           | 'dk_interbank_clearing_code'
           | 'gb_sort_code'
           | 'hk_interbank_clearing_code'
+          | 'hu_interbank_clearing_code'
+          | 'id_sknbi_code'
           | 'il_bank_code'
           | 'in_ifsc'
           | 'jp_zengin_code'
@@ -1238,17 +1381,24 @@ export namespace BulkRequestCreateParams {
           | 'dk_nets'
           | 'eft'
           | 'gb_fps'
+          | 'hu_ics'
+          | 'interac'
           | 'masav'
           | 'mx_ccen'
           | 'neft'
           | 'nics'
           | 'nz_becs'
           | 'pl_elixir'
+          | 'provxchange'
+          | 'ro_sent'
           | 'rtp'
           | 'se_bankgirot'
+          | 'sen'
           | 'sepa'
           | 'sg_giro'
           | 'sic'
+          | 'signet'
+          | 'sknbi'
           | 'stablecoin'
           | 'wire'
           | 'zengin';
@@ -1379,7 +1529,8 @@ export namespace BulkRequestCreateParams {
     status?: 'reconciled' | null;
 
     /**
-     * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
+     * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+     * sepa, signet, wire.
      */
     type?: ExpectedPaymentsAPI.ExpectedPaymentType | null;
   }
@@ -1475,42 +1626,11 @@ export namespace BulkRequestCreateParams {
   }
 }
 
-export interface BulkRequestListParams extends PageParams {
-  /**
-   * One of create, or update.
-   */
-  action_type?: 'create' | 'update' | 'delete';
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * One of payment_order, expected_payment, or ledger_transaction.
-   */
-  resource_type?:
-    | 'payment_order'
-    | 'ledger_account'
-    | 'ledger_transaction'
-    | 'expected_payment'
-    | 'transaction'
-    | 'transaction_line_item'
-    | 'entity_link';
-
-  /**
-   * One of pending, processing, or completed.
-   */
-  status?: 'pending' | 'processing' | 'completed';
-}
-
 export declare namespace BulkRequests {
   export {
     type BulkRequest as BulkRequest,
     type BulkRequestsPage as BulkRequestsPage,
-    type BulkRequestCreateParams as BulkRequestCreateParams,
     type BulkRequestListParams as BulkRequestListParams,
+    type BulkRequestCreateParams as BulkRequestCreateParams,
   };
 }

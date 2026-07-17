@@ -20,22 +20,21 @@ export class Transactions extends APIResource {
   lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this._client);
 
   /**
-   * create transaction
+   * Get a list of all transactions.
    *
    * @example
    * ```ts
-   * const transaction = await client.transactions.create({
-   *   as_of_date: '2019-12-27',
-   *   direction: 'direction',
-   *   internal_account_id:
-   *     '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *   vendor_code: 'vendor_code',
-   *   vendor_code_type: 'vendor_code_type',
-   * });
+   * // Automatically fetches more pages as needed.
+   * for await (const transaction of client.transactions.list()) {
+   *   // ...
+   * }
    * ```
    */
-  create(body: TransactionCreateParams, options?: RequestOptions): APIPromise<Transaction> {
-    return this._client.post('/api/transactions', { body, ...options });
+  list(
+    query: TransactionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TransactionsPage, Transaction> {
+    return this._client.getAPIList('/api/transactions', Page<Transaction>, { query, ...options });
   }
 
   /**
@@ -69,21 +68,23 @@ export class Transactions extends APIResource {
   }
 
   /**
-   * Get a list of all transactions.
+   * create transaction
    *
    * @example
    * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const transaction of client.transactions.list()) {
-   *   // ...
-   * }
+   * const transaction = await client.transactions.create({
+   *   amount: 0,
+   *   as_of_date: '2019-12-27',
+   *   direction: 'direction',
+   *   internal_account_id:
+   *     '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   vendor_code: 'vendor_code',
+   *   vendor_code_type: 'vendor_code_type',
+   * });
    * ```
    */
-  list(
-    query: TransactionListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TransactionsPage, Transaction> {
-    return this._client.getAPIList('/api/transactions', Page<Transaction>, { query, ...options });
+  create(body: TransactionCreateParams, options?: RequestOptions): APIPromise<Transaction> {
+    return this._client.post('/api/transactions', { body, ...options });
   }
 
   /**
@@ -112,12 +113,6 @@ export interface Transaction {
    * as 1000.
    */
   amount: number;
-
-  /**
-   * The amount of the transaction as a string, preserving full precision for values
-   * that may exceed safe integer limits in some languages.
-   */
-  amount_string: string;
 
   /**
    * The date on which the transaction occurred.
@@ -194,7 +189,7 @@ export interface Transaction {
 
   /**
    * The type of the transaction. Examples could be
-   * `card, `ach`, `wire`, `check`, `rtp`, or `book`.
+   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
    */
   type:
     | 'ach'
@@ -208,17 +203,24 @@ export interface Transaction {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
+    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
+    | 'signet'
+    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin'
@@ -235,8 +237,8 @@ export interface Transaction {
   /**
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
    * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
-   * `us_bank`, or others.
+   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+   * `swift`, `us_bank`, or others.
    */
   vendor_code_type:
     | 'bai2'
@@ -260,9 +262,9 @@ export interface Transaction {
     | 'paxos'
     | 'paypal'
     | 'pnc'
+    | 'signet'
     | 'silvergate'
     | 'swift'
-    | 'turnkey'
     | 'us_bank'
     | 'user'
     | 'western_alliance'
@@ -294,112 +296,6 @@ export interface Transaction {
    * your banking portal.
    */
   vendor_description?: string | null;
-}
-
-export interface TransactionCreateParams {
-  /**
-   * The date on which the transaction occurred.
-   */
-  as_of_date: string | null;
-
-  /**
-   * Either `credit` or `debit`.
-   */
-  direction: string;
-
-  /**
-   * The ID of the relevant Internal Account.
-   */
-  internal_account_id: string;
-
-  /**
-   * When applicable, the bank-given code that determines the transaction's category.
-   * For most banks this is the BAI2/BTRS transaction code.
-   */
-  vendor_code: string | null;
-
-  /**
-   * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
-   * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
-   * `us_bank`, or others.
-   */
-  vendor_code_type: string | null;
-
-  /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000.
-   */
-  amount?: number;
-
-  /**
-   * The transaction amount as a string, preserving full precision for values that
-   * may exceed safe integer limits in some languages.
-   */
-  amount_string?: string;
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * This field will be `true` if the transaction has posted to the account.
-   */
-  posted?: boolean;
-
-  /**
-   * The type of the transaction. Examples could be
-   * `card, `ach`, `wire`, `check`, `rtp`, or `book`.
-   */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin'
-    | 'other'
-    | null;
-
-  /**
-   * An identifier given to this transaction by the bank, often `null`.
-   */
-  vendor_customer_id?: string | null;
-
-  /**
-   * The transaction detail text that often appears in on your bank statement and in
-   * your banking portal.
-   */
-  vendor_description?: string | null;
-}
-
-export interface TransactionUpdateParams {
-  /**
-   * Additional data in the form of key-value pairs. Pairs can be removed by passing
-   * an empty string or `null` as the value.
-   */
-  metadata?: { [key: string]: string };
 }
 
 export interface TransactionListParams extends PageParams {
@@ -455,22 +351,129 @@ export interface TransactionListParams extends PageParams {
   virtual_account_id?: string;
 }
 
+export interface TransactionUpdateParams {
+  /**
+   * Additional data in the form of key-value pairs. Pairs can be removed by passing
+   * an empty string or `null` as the value.
+   */
+  metadata?: { [key: string]: string };
+}
+
+export interface TransactionCreateParams {
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
+   */
+  amount: number;
+
+  /**
+   * The date on which the transaction occurred.
+   */
+  as_of_date: string | null;
+
+  /**
+   * Either `credit` or `debit`.
+   */
+  direction: string;
+
+  /**
+   * The ID of the relevant Internal Account.
+   */
+  internal_account_id: string;
+
+  /**
+   * When applicable, the bank-given code that determines the transaction's category.
+   * For most banks this is the BAI2/BTRS transaction code.
+   */
+  vendor_code: string | null;
+
+  /**
+   * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
+   * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
+   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+   * `swift`, `us_bank`, or others.
+   */
+  vendor_code_type: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * This field will be `true` if the transaction has posted to the account.
+   */
+  posted?: boolean;
+
+  /**
+   * The type of the transaction. Examples could be
+   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+   */
+  type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'hu_ics'
+    | 'interac'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'provxchange'
+    | 'ro_sent'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sen'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'signet'
+    | 'sknbi'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin'
+    | 'other'
+    | null;
+
+  /**
+   * An identifier given to this transaction by the bank, often `null`.
+   */
+  vendor_customer_id?: string | null;
+
+  /**
+   * The transaction detail text that often appears in on your bank statement and in
+   * your banking portal.
+   */
+  vendor_description?: string | null;
+}
+
 Transactions.LineItems = LineItems;
 
 export declare namespace Transactions {
   export {
     type Transaction as Transaction,
     type TransactionsPage as TransactionsPage,
-    type TransactionCreateParams as TransactionCreateParams,
-    type TransactionUpdateParams as TransactionUpdateParams,
     type TransactionListParams as TransactionListParams,
+    type TransactionUpdateParams as TransactionUpdateParams,
+    type TransactionCreateParams as TransactionCreateParams,
   };
 
   export {
     LineItems as LineItems,
     type TransactionLineItem as TransactionLineItem,
     type TransactionLineItemsPage as TransactionLineItemsPage,
-    type LineItemCreateParams as LineItemCreateParams,
     type LineItemListParams as LineItemListParams,
+    type LineItemCreateParams as LineItemCreateParams,
   };
 }

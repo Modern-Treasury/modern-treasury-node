@@ -141,6 +141,43 @@
     },
     {
       "base": "accountDetails",
+      "name": "list",
+      "params": [
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": true
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "accountDetails",
       "name": "create",
       "params": [
         {
@@ -208,43 +245,6 @@
           "type": "param",
           "key": "id",
           "location": "path"
-        },
-        {
-          "type": "options"
-        }
-      ]
-    },
-    {
-      "base": "accountDetails",
-      "name": "list",
-      "params": [
-        {
-          "type": "param",
-          "key": "account_id",
-          "location": "path"
-        },
-        {
-          "type": "params",
-          "maybeOverload": false
-        },
-        {
-          "type": "options"
-        }
-      ],
-      "oldParams": [
-        {
-          "type": "param",
-          "key": "accounts_type",
-          "location": "path"
-        },
-        {
-          "type": "param",
-          "key": "account_id",
-          "location": "path"
-        },
-        {
-          "type": "params",
-          "maybeOverload": true
         },
         {
           "type": "options"
@@ -291,6 +291,43 @@
     },
     {
       "base": "routingDetails",
+      "name": "list",
+      "params": [
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "accounts_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "account_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": true
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "routingDetails",
       "name": "create",
       "params": [
         {
@@ -358,43 +395,6 @@
           "type": "param",
           "key": "id",
           "location": "path"
-        },
-        {
-          "type": "options"
-        }
-      ]
-    },
-    {
-      "base": "routingDetails",
-      "name": "list",
-      "params": [
-        {
-          "type": "param",
-          "key": "account_id",
-          "location": "path"
-        },
-        {
-          "type": "params",
-          "maybeOverload": false
-        },
-        {
-          "type": "options"
-        }
-      ],
-      "oldParams": [
-        {
-          "type": "param",
-          "key": "accounts_type",
-          "location": "path"
-        },
-        {
-          "type": "param",
-          "key": "account_id",
-          "location": "path"
-        },
-        {
-          "type": "params",
-          "maybeOverload": true
         },
         {
           "type": "options"
@@ -577,39 +577,6 @@
     },
     {
       "base": "ledgerAccountCategories",
-      "name": "addNestedCategory",
-      "params": [
-        {
-          "type": "param",
-          "key": "sub_category_id",
-          "location": "path"
-        },
-        {
-          "type": "params",
-          "maybeOverload": false
-        },
-        {
-          "type": "options"
-        }
-      ],
-      "oldParams": [
-        {
-          "type": "param",
-          "key": "id",
-          "location": "path"
-        },
-        {
-          "type": "param",
-          "key": "sub_category_id",
-          "location": "path"
-        },
-        {
-          "type": "options"
-        }
-      ]
-    },
-    {
-      "base": "ledgerAccountCategories",
       "name": "removeLedgerAccount",
       "params": [
         {
@@ -634,6 +601,39 @@
         {
           "type": "param",
           "key": "ledger_account_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "ledgerAccountCategories",
+      "name": "addNestedCategory",
+      "params": [
+        {
+          "type": "param",
+          "key": "sub_category_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "sub_category_id",
           "location": "path"
         },
         {
@@ -668,6 +668,43 @@
           "type": "param",
           "key": "sub_category_id",
           "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "lineItems",
+      "name": "list",
+      "params": [
+        {
+          "type": "param",
+          "key": "itemizable_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "itemizable_type",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "itemizable_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": true
         },
         {
           "type": "options"
@@ -743,43 +780,6 @@
         {
           "type": "param",
           "key": "id",
-          "location": "path"
-        },
-        {
-          "type": "params",
-          "maybeOverload": true
-        },
-        {
-          "type": "options"
-        }
-      ]
-    },
-    {
-      "base": "lineItems",
-      "name": "list",
-      "params": [
-        {
-          "type": "param",
-          "key": "itemizable_id",
-          "location": "path"
-        },
-        {
-          "type": "params",
-          "maybeOverload": false
-        },
-        {
-          "type": "options"
-        }
-      ],
-      "oldParams": [
-        {
-          "type": "param",
-          "key": "itemizable_type",
-          "location": "path"
-        },
-        {
-          "type": "param",
-          "key": "itemizable_id",
           "location": "path"
         },
         {
