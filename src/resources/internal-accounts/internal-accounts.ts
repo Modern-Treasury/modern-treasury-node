@@ -30,7 +30,6 @@ export class InternalAccounts extends APIResource {
    * ```ts
    * const internalAccount =
    *   await client.internalAccounts.create({
-   *     connection_id: 'connection_id',
    *     currency: 'USD',
    *     name: 'name',
    *   });
@@ -398,14 +397,9 @@ export interface InternalAccountUpdateAccountCapabilityResponse {
 
 export interface InternalAccountCreateParams {
   /**
-   * The identifier of the financial institution the account belongs to.
-   */
-  connection_id: string;
-
-  /**
    * The currency of the internal account. Supports fiat and stablecoin currencies.
    */
-  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'USDT' | 'PYUSD';
+  currency: 'USD' | 'CAD' | 'USDC' | 'USDT' | 'PYUSD' | 'USDG';
 
   /**
    * The nickname of the account.
@@ -436,6 +430,13 @@ export interface InternalAccountCreateParams {
     | 'polygon_wallet'
     | 'savings'
     | 'solana_wallet';
+
+  /**
+   * The identifier of the financial institution the account belongs to. If not
+   * provided, defaults to the default connection, or the sole connection if only one
+   * exists.
+   */
+  connection_id?: string;
 
   /**
    * The Counterparty associated to this account.

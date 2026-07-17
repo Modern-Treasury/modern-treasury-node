@@ -16,7 +16,6 @@ describe('resource balanceReports', () => {
       balance_report_type: 'intraday',
       balances: [
         {
-          amount: 0,
           balance_type: 'closing_available',
           vendor_code: 'vendor_code',
           vendor_code_type: 'vendor_code_type',
@@ -39,10 +38,11 @@ describe('resource balanceReports', () => {
       balance_report_type: 'intraday',
       balances: [
         {
-          amount: 0,
           balance_type: 'closing_available',
           vendor_code: 'vendor_code',
           vendor_code_type: 'vendor_code_type',
+          amount: 0,
+          amount_string: 'amount_string',
         },
       ],
     });

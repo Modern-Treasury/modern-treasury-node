@@ -191,7 +191,7 @@ export interface Invoice {
   invoicer_name: string | null;
 
   /**
-   * Translation missing: en.openapi.descriptions.invoice.schema.issued_at
+   * The time at which the invoice was issued.
    */
   issued_at: string | null;
 
@@ -238,7 +238,7 @@ export interface Invoice {
   originating_account_id: string;
 
   /**
-   * Translation missing: en.openapi.descriptions.invoice.schema.paid_at
+   * The time at which the invoice was paid.
    */
   paid_at: string | null;
 
@@ -318,7 +318,7 @@ export interface Invoice {
   virtual_account_id: string | null;
 
   /**
-   * Translation missing: en.openapi.descriptions.invoice.schema.voided_at
+   * The time at which the invoice was voided.
    */
   voided_at: string | null;
 }

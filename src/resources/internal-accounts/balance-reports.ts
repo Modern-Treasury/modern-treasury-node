@@ -23,7 +23,6 @@ export class BalanceReports extends APIResource {
    *       balance_report_type: 'intraday',
    *       balances: [
    *         {
-   *           amount: 0,
    *           balance_type: 'closing_available',
    *           vendor_code: 'vendor_code',
    *           vendor_code_type: 'vendor_code_type',
@@ -125,7 +124,7 @@ export interface BalanceReport {
   /**
    * The time (24-hour clock) of the balance report in local time.
    */
-  as_of_time: string | null;
+  as_of_time: string;
 
   /**
    * The specific type of balance report. One of `intraday`, `previous_day`,
@@ -164,6 +163,12 @@ export namespace BalanceReport {
      * The balance amount.
      */
     amount: number;
+
+    /**
+     * The amount of the balance as a string, preserving full precision for values that
+     * may exceed safe integer limits in some languages.
+     */
+    amount_string: string;
 
     /**
      * The date on which the balance became true for the account.
@@ -255,11 +260,6 @@ export interface BalanceReportCreateParams {
 export namespace BalanceReportCreateParams {
   export interface Balance {
     /**
-     * The balance amount.
-     */
-    amount: number;
-
-    /**
      * The specific type of balance reported. One of `opening_ledger`,
      * `closing_ledger`, `current_ledger`, `opening_available`,
      * `opening_available_next_business_day`, `closing_available`, `current_available`,
@@ -288,6 +288,17 @@ export namespace BalanceReportCreateParams {
      * `us_bank`.
      */
     vendor_code_type: string | null;
+
+    /**
+     * The balance amount.
+     */
+    amount?: number;
+
+    /**
+     * The amount of the balance as a string, preserving full precision for values that
+     * may exceed safe integer limits in some languages.
+     */
+    amount_string?: string;
   }
 }
 
