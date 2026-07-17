@@ -8,6 +8,16 @@ import { path } from '../internal/utils/path';
 
 export class Holds extends APIResource {
   /**
+   * Get a list of holds.
+   */
+  list(
+    query: HoldListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<HoldListResponsesPage, HoldListResponse> {
+    return this._client.getAPIList('/api/holds', Page<HoldListResponse>, { query, ...options });
+  }
+
+  /**
    * Create a new hold
    */
   create(body: HoldCreateParams, options?: RequestOptions): APIPromise<HoldCreateResponse> {
@@ -26,16 +36,6 @@ export class Holds extends APIResource {
    */
   update(id: string, body: HoldUpdateParams, options?: RequestOptions): APIPromise<HoldUpdateResponse> {
     return this._client.patch(path`/api/holds/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of holds.
-   */
-  list(
-    query: HoldListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<HoldListResponsesPage, HoldListResponse> {
-    return this._client.getAPIList('/api/holds', Page<HoldListResponse>, { query, ...options });
   }
 }
 
@@ -257,6 +257,32 @@ export interface HoldListResponse {
   resolved_at?: string | null;
 }
 
+export interface HoldListParams extends PageParams {
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * Translation missing: en.openapi.descriptions.payment_order.query_params.status
+   */
+  status?: 'active' | 'resolved' | null;
+
+  /**
+   * Translation missing:
+   * en.openapi.descriptions.payment_order.query_params.target_id
+   */
+  target_id?: string | null;
+
+  /**
+   * Translation missing:
+   * en.openapi.descriptions.payment_order.query_params.target_type
+   */
+  target_type?: 'payment_order' | null;
+}
+
 export interface HoldCreateParams {
   /**
    * The status of the hold
@@ -296,30 +322,6 @@ export interface HoldUpdateParams {
   resolution?: string | null;
 }
 
-export interface HoldListParams extends PageParams {
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * Only return holds for a specific status.
-   */
-  status?: 'active' | 'resolved' | null;
-
-  /**
-   * Only return holds for a specific target ID.
-   */
-  target_id?: string | null;
-
-  /**
-   * Only return holds for a specific target type.
-   */
-  target_type?: 'payment_order' | null;
-}
-
 export declare namespace Holds {
   export {
     type HoldCreateResponse as HoldCreateResponse,
@@ -327,8 +329,8 @@ export declare namespace Holds {
     type HoldUpdateResponse as HoldUpdateResponse,
     type HoldListResponse as HoldListResponse,
     type HoldListResponsesPage as HoldListResponsesPage,
+    type HoldListParams as HoldListParams,
     type HoldCreateParams as HoldCreateParams,
     type HoldUpdateParams as HoldUpdateParams,
-    type HoldListParams as HoldListParams,
   };
 }
