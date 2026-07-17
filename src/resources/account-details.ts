@@ -10,6 +10,22 @@ import { path } from '../internal/utils/path';
 
 export class AccountDetails extends APIResource {
   /**
+   * Get a list of account details for a single internal or external account.
+   */
+  list(
+    accountID: string,
+    params: AccountDetailListParams,
+    options?: RequestOptions,
+  ): PagePromise<AccountDetailsPage, AccountDetail> {
+    const { accounts_type, ...query } = params;
+    return this._client.getAPIList(
+      path`/api/${accounts_type}/${accountID}/account_details`,
+      Page<AccountDetail>,
+      { query, ...options },
+    );
+  }
+
+  /**
    * Create an account detail for an external account.
    */
   create(
@@ -31,22 +47,6 @@ export class AccountDetails extends APIResource {
   ): APIPromise<AccountDetail> {
     const { accounts_type, account_id } = params;
     return this._client.get(path`/api/${accounts_type}/${account_id}/account_details/${id}`, options);
-  }
-
-  /**
-   * Get a list of account details for a single internal or external account.
-   */
-  list(
-    accountID: string,
-    params: AccountDetailListParams,
-    options?: RequestOptions,
-  ): PagePromise<AccountDetailsPage, AccountDetail> {
-    const { accounts_type, ...query } = params;
-    return this._client.getAPIList(
-      path`/api/${accounts_type}/${accountID}/account_details`,
-      Page<AccountDetail>,
-      { query, ...options },
-    );
   }
 
   /**
@@ -112,6 +112,13 @@ export interface AccountDetail {
   account_number?: string;
 }
 
+export interface AccountDetailListParams extends PageParams {
+  /**
+   * Path param
+   */
+  accounts_type: Shared.AccountsType;
+}
+
 export interface AccountDetailCreateParams {
   /**
    * Path param
@@ -154,13 +161,6 @@ export interface AccountDetailRetrieveParams {
   account_id: string;
 }
 
-export interface AccountDetailListParams extends PageParams {
-  /**
-   * Path param
-   */
-  accounts_type: Shared.AccountsType;
-}
-
 export interface AccountDetailDeleteParams {
   accounts_type: 'external_accounts';
 
@@ -174,9 +174,9 @@ export declare namespace AccountDetails {
   export {
     type AccountDetail as AccountDetail,
     type AccountDetailsPage as AccountDetailsPage,
+    type AccountDetailListParams as AccountDetailListParams,
     type AccountDetailCreateParams as AccountDetailCreateParams,
     type AccountDetailRetrieveParams as AccountDetailRetrieveParams,
-    type AccountDetailListParams as AccountDetailListParams,
     type AccountDetailDeleteParams as AccountDetailDeleteParams,
   };
 }

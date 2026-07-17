@@ -11,6 +11,24 @@ import { path } from '../internal/utils/path';
 
 export class LegalEntities extends APIResource {
   /**
+   * Get a list of all legal entities.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const legalEntity of client.legalEntities.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: LegalEntityListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LegalEntitiesPage, LegalEntity> {
+    return this._client.getAPIList('/api/legal_entities', Page<LegalEntity>, { query, ...options });
+  }
+
+  /**
    * create legal_entity
    *
    * @example
@@ -52,46 +70,6 @@ export class LegalEntities extends APIResource {
     options?: RequestOptions,
   ): APIPromise<LegalEntity> {
     return this._client.patch(path`/api/legal_entities/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of all legal entities.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const legalEntity of client.legalEntities.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: LegalEntityListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LegalEntitiesPage, LegalEntity> {
-    return this._client.getAPIList('/api/legal_entities', Page<LegalEntity>, { query, ...options });
-  }
-
-  /**
-   * Update Legal Entity Status (sandbox only)
-   *
-   * @example
-   * ```ts
-   * const legalEntity = await client.legalEntities.updateStatus(
-   *   'id',
-   *   { status: 'active' },
-   * );
-   * ```
-   */
-  updateStatus(
-    id: string,
-    body: LegalEntityUpdateStatusParams,
-    options?: RequestOptions,
-  ): APIPromise<LegalEntity> {
-    return this._client.patch(path`/api/simulations/legal_entities/${id}/update_status`, {
-      body,
-      ...options,
-    });
   }
 }
 
@@ -236,7 +214,7 @@ export interface LegalEntity {
   /**
    * The type of legal entity.
    */
-  legal_entity_type: 'business' | 'individual';
+  legal_entity_type: 'business' | 'individual' | 'joint';
 
   /**
    * The business's legal structure.
@@ -329,11 +307,6 @@ export interface LegalEntity {
   suffix: string | null;
 
   /**
-   * Acceptance of terms of use by the legal entity.
-   */
-  terms_of_use: LegalEntity.TermsOfUse | null;
-
-  /**
    * @deprecated Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification: Shared.ThirdPartyVerification | null;
@@ -370,15 +343,7 @@ export namespace LegalEntity {
     /**
      * The types of this address.
      */
-    address_types: Array<
-      | 'business'
-      | 'business_physical'
-      | 'business_registered'
-      | 'mailing'
-      | 'other'
-      | 'po_box'
-      | 'residential'
-    >;
+    address_types: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
 
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -412,8 +377,7 @@ export namespace LegalEntity {
     postal_code: string | null;
 
     /**
-     * Whether this address is the primary address for the legal entity. Optional; when
-     * omitted it is inferred from the address types.
+     * Whether this address is the primary address for the legal entity.
      */
     primary: boolean | null;
 
@@ -483,7 +447,6 @@ export namespace LegalEntity {
       | 'gb_nino'
       | 'gb_utr'
       | 'gb_vat'
-      | 'generic_international'
       | 'gr_vat'
       | 'hn_id'
       | 'hn_rtn'
@@ -513,7 +476,6 @@ export namespace LegalEntity {
       | 'mx_curp'
       | 'mx_ine'
       | 'mx_rfc'
-      | 'national_id'
       | 'nl_bsn'
       | 'nl_btw'
       | 'nl_rsin'
@@ -589,22 +551,6 @@ export namespace LegalEntity {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
-  }
-
-  /**
-   * Acceptance of terms of use by the legal entity.
-   */
-  export interface TermsOfUse {
-    /**
-     * The ISO 8601 timestamp indicating when the terms of use were accepted.
-     */
-    accepted_at?: string;
-
-    /**
-     * The IP address from which the terms of use were accepted. Supports both IPv4 and
-     * IPv6 formats.
-     */
-    ip_address?: string;
   }
 }
 
@@ -776,6 +722,26 @@ export interface WealthAndEmploymentDetails {
     | 'salary'
     | 'self_employed'
     | null;
+}
+
+export interface LegalEntityListParams extends PageParams {
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
+
+  legal_entity_type?: 'business' | 'individual';
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  show_deleted?: string;
+
+  status?: 'pending' | 'active' | 'suspended' | 'denied';
 }
 
 export interface LegalEntityCreateParams {
@@ -966,11 +932,6 @@ export interface LegalEntityCreateParams {
   suffix?: string | null;
 
   /**
-   * Acceptance of terms of use by the legal entity.
-   */
-  terms_of_use?: LegalEntityCreateParams.TermsOfUse | null;
-
-  /**
    * Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification?: Shared.ThirdPartyVerification | null;
@@ -1041,22 +1002,6 @@ export namespace LegalEntityCreateParams {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
-  }
-
-  /**
-   * Acceptance of terms of use by the legal entity.
-   */
-  export interface TermsOfUse {
-    /**
-     * The ISO 8601 timestamp indicating when the terms of use were accepted.
-     */
-    accepted_at?: string;
-
-    /**
-     * The IP address from which the terms of use were accepted. Supports both IPv4 and
-     * IPv6 formats.
-     */
-    ip_address?: string;
   }
 }
 
@@ -1218,11 +1163,6 @@ export interface LegalEntityUpdateParams {
   suffix?: string | null;
 
   /**
-   * Acceptance of terms of use by the legal entity.
-   */
-  terms_of_use?: LegalEntityUpdateParams.TermsOfUse | null;
-
-  /**
    * Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification?: Shared.ThirdPartyVerification | null;
@@ -1270,50 +1210,6 @@ export namespace LegalEntityUpdateParams {
      */
     registration_number: string;
   }
-
-  /**
-   * Acceptance of terms of use by the legal entity.
-   */
-  export interface TermsOfUse {
-    /**
-     * The ISO 8601 timestamp indicating when the terms of use were accepted.
-     */
-    accepted_at?: string;
-
-    /**
-     * The IP address from which the terms of use were accepted. Supports both IPv4 and
-     * IPv6 formats.
-     */
-    ip_address?: string;
-  }
-}
-
-export interface LegalEntityListParams extends PageParams {
-  /**
-   * An optional user-defined 180 character unique identifier.
-   */
-  external_id?: string;
-
-  legal_entity_type?: 'business' | 'individual';
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  show_deleted?: string;
-
-  status?: 'pending' | 'active' | 'suspended' | 'denied';
-}
-
-export interface LegalEntityUpdateStatusParams {
-  /**
-   * The target status for the legal entity. One of `active`, `suspended`, or
-   * `denied`. Valid transitions depend on the current status.
-   */
-  status: 'active' | 'suspended' | 'denied';
 }
 
 export declare namespace LegalEntities {
@@ -1322,9 +1218,8 @@ export declare namespace LegalEntities {
     type LegalEntity as LegalEntity,
     type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
     type LegalEntitiesPage as LegalEntitiesPage,
+    type LegalEntityListParams as LegalEntityListParams,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
-    type LegalEntityListParams as LegalEntityListParams,
-    type LegalEntityUpdateStatusParams as LegalEntityUpdateStatusParams,
   };
 }

@@ -27,19 +27,8 @@ describe('resource documents', () => {
       file: await toFile(Buffer.from('Example data'), 'README.md'),
       document_type: 'document_type',
       documentable_id: 'documentable_id',
-      documentable_type: 'connection',
+      documentable_type: 'connections',
     });
-  });
-
-  test('retrieve', async () => {
-    const responsePromise = client.documents.retrieve('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list', async () => {
@@ -60,11 +49,22 @@ describe('resource documents', () => {
         {
           after_cursor: 'after_cursor',
           documentable_id: 'documentable_id',
-          documentable_type: 'connection',
+          documentable_type: 'connections',
           per_page: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('retrieve', async () => {
+    const responsePromise = client.documents.retrieve('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });
