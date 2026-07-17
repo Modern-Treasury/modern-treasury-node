@@ -10,38 +10,28 @@ import { path } from '../../internal/utils/path';
 
 export class BalanceReports extends APIResource {
   /**
-   * create balance reports
+   * Get all balance reports for a given internal account.
    *
    * @example
    * ```ts
-   * const balanceReport =
-   *   await client.internalAccounts.balanceReports.create(
-   *     'internal_account_id',
-   *     {
-   *       as_of_date: '2019-12-27',
-   *       as_of_time: 'as_of_time',
-   *       balance_report_type: 'intraday',
-   *       balances: [
-   *         {
-   *           amount: 0,
-   *           balance_type: 'closing_available',
-   *           vendor_code: 'vendor_code',
-   *           vendor_code_type: 'vendor_code_type',
-   *         },
-   *       ],
-   *     },
-   *   );
+   * // Automatically fetches more pages as needed.
+   * for await (const balanceReport of client.internalAccounts.balanceReports.list(
+   *   'internal_account_id',
+   * )) {
+   *   // ...
+   * }
    * ```
    */
-  create(
+  list(
     internalAccountID: string,
-    body: BalanceReportCreateParams,
+    query: BalanceReportListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<BalanceReport> {
-    return this._client.post(path`/api/internal_accounts/${internalAccountID}/balance_reports`, {
-      body,
-      ...options,
-    });
+  ): PagePromise<BalanceReportsPage, BalanceReport> {
+    return this._client.getAPIList(
+      path`/api/internal_accounts/${internalAccountID}/balance_reports`,
+      Page<BalanceReport>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -69,28 +59,37 @@ export class BalanceReports extends APIResource {
   }
 
   /**
-   * Get all balance reports for a given internal account.
+   * create balance reports
    *
    * @example
    * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const balanceReport of client.internalAccounts.balanceReports.list(
-   *   'internal_account_id',
-   * )) {
-   *   // ...
-   * }
+   * const balanceReport =
+   *   await client.internalAccounts.balanceReports.create(
+   *     'internal_account_id',
+   *     {
+   *       as_of_date: '2019-12-27',
+   *       as_of_time: 'as_of_time',
+   *       balance_report_type: 'intraday',
+   *       balances: [
+   *         {
+   *           balance_type: 'closing_available',
+   *           vendor_code: 'vendor_code',
+   *           vendor_code_type: 'vendor_code_type',
+   *         },
+   *       ],
+   *     },
+   *   );
    * ```
    */
-  list(
+  create(
     internalAccountID: string,
-    query: BalanceReportListParams | null | undefined = {},
+    body: BalanceReportCreateParams,
     options?: RequestOptions,
-  ): PagePromise<BalanceReportsPage, BalanceReport> {
-    return this._client.getAPIList(
-      path`/api/internal_accounts/${internalAccountID}/balance_reports`,
-      Page<BalanceReport>,
-      { query, ...options },
-    );
+  ): APIPromise<BalanceReport> {
+    return this._client.post(path`/api/internal_accounts/${internalAccountID}/balance_reports`, {
+      body,
+      ...options,
+    });
   }
 
   /**
@@ -125,7 +124,7 @@ export interface BalanceReport {
   /**
    * The time (24-hour clock) of the balance report in local time.
    */
-  as_of_time: string | null;
+  as_of_time: string;
 
   /**
    * The specific type of balance report. One of `intraday`, `previous_day`,
@@ -164,6 +163,12 @@ export namespace BalanceReport {
      * The balance amount.
      */
     amount: number;
+
+    /**
+     * The amount of the balance as a string, preserving full precision for values that
+     * may exceed safe integer limits in some languages.
+     */
+    amount_string: string;
 
     /**
      * The date on which the balance became true for the account.
@@ -229,6 +234,23 @@ export namespace BalanceReport {
   }
 }
 
+export interface BalanceReportListParams extends PageParams {
+  /**
+   * The date of the balance report in local time.
+   */
+  as_of_date?: string;
+
+  /**
+   * The specific type of balance report. One of `intraday`, `previous_day`,
+   * `real_time`, or `other`.
+   */
+  balance_report_type?: 'intraday' | 'other' | 'previous_day' | 'real_time';
+}
+
+export interface BalanceReportRetrieveParams {
+  internal_account_id: string;
+}
+
 export interface BalanceReportCreateParams {
   /**
    * The date of the balance report in local time.
@@ -254,11 +276,6 @@ export interface BalanceReportCreateParams {
 
 export namespace BalanceReportCreateParams {
   export interface Balance {
-    /**
-     * The balance amount.
-     */
-    amount: number;
-
     /**
      * The specific type of balance reported. One of `opening_ledger`,
      * `closing_ledger`, `current_ledger`, `opening_available`,
@@ -288,24 +305,18 @@ export namespace BalanceReportCreateParams {
      * `us_bank`.
      */
     vendor_code_type: string | null;
+
+    /**
+     * The balance amount.
+     */
+    amount?: number;
+
+    /**
+     * The amount of the balance as a string, preserving full precision for values that
+     * may exceed safe integer limits in some languages.
+     */
+    amount_string?: string;
   }
-}
-
-export interface BalanceReportRetrieveParams {
-  internal_account_id: string;
-}
-
-export interface BalanceReportListParams extends PageParams {
-  /**
-   * The date of the balance report in local time.
-   */
-  as_of_date?: string;
-
-  /**
-   * The specific type of balance report. One of `intraday`, `previous_day`,
-   * `real_time`, or `other`.
-   */
-  balance_report_type?: 'intraday' | 'other' | 'previous_day' | 'real_time';
 }
 
 export interface BalanceReportDeleteParams {
@@ -316,9 +327,9 @@ export declare namespace BalanceReports {
   export {
     type BalanceReport as BalanceReport,
     type BalanceReportsPage as BalanceReportsPage,
-    type BalanceReportCreateParams as BalanceReportCreateParams,
-    type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
     type BalanceReportListParams as BalanceReportListParams,
+    type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
+    type BalanceReportCreateParams as BalanceReportCreateParams,
     type BalanceReportDeleteParams as BalanceReportDeleteParams,
   };
 }

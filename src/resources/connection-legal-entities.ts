@@ -10,6 +10,19 @@ import { path } from '../internal/utils/path';
 
 export class ConnectionLegalEntities extends APIResource {
   /**
+   * Get a list of all connection legal entities.
+   */
+  list(
+    query: ConnectionLegalEntityListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ConnectionLegalEntitiesPage, ConnectionLegalEntity> {
+    return this._client.getAPIList('/api/connection_legal_entities', Page<ConnectionLegalEntity>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Create a connection legal entity.
    */
   create(
@@ -35,19 +48,6 @@ export class ConnectionLegalEntities extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ConnectionLegalEntity> {
     return this._client.patch(path`/api/connection_legal_entities/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of all connection legal entities.
-   */
-  list(
-    query: ConnectionLegalEntityListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ConnectionLegalEntitiesPage, ConnectionLegalEntity> {
-    return this._client.getAPIList('/api/connection_legal_entities', Page<ConnectionLegalEntity>, {
-      query,
-      ...options,
-    });
   }
 }
 
@@ -89,6 +89,14 @@ export interface ConnectionLegalEntity {
    * The ID of the legal entity at the vendor.
    */
   vendor_id: string;
+}
+
+export interface ConnectionLegalEntityListParams extends PageParams {
+  connection_id?: string;
+
+  legal_entity_id?: string;
+
+  status?: 'completed' | 'denied' | 'failed' | 'processing' | 'suspended';
 }
 
 export interface ConnectionLegalEntityCreateParams {
@@ -300,6 +308,11 @@ export namespace ConnectionLegalEntityCreateParams {
     suffix?: string | null;
 
     /**
+     * Acceptance of terms of use by the legal entity.
+     */
+    terms_of_use?: LegalEntity.TermsOfUse | null;
+
+    /**
      * @deprecated Deprecated. Use `third_party_verifications` instead.
      */
     third_party_verification?: Shared.ThirdPartyVerification | null;
@@ -371,6 +384,22 @@ export namespace ConnectionLegalEntityCreateParams {
        */
       registration_number: string;
     }
+
+    /**
+     * Acceptance of terms of use by the legal entity.
+     */
+    export interface TermsOfUse {
+      /**
+       * The ISO 8601 timestamp indicating when the terms of use were accepted.
+       */
+      accepted_at?: string;
+
+      /**
+       * The IP address from which the terms of use were accepted. Supports both IPv4 and
+       * IPv6 formats.
+       */
+      ip_address?: string;
+    }
   }
 }
 
@@ -381,20 +410,12 @@ export interface ConnectionLegalEntityUpdateParams {
   status?: 'processing';
 }
 
-export interface ConnectionLegalEntityListParams extends PageParams {
-  connection_id?: string;
-
-  legal_entity_id?: string;
-
-  status?: 'completed' | 'denied' | 'failed' | 'processing' | 'suspended';
-}
-
 export declare namespace ConnectionLegalEntities {
   export {
     type ConnectionLegalEntity as ConnectionLegalEntity,
     type ConnectionLegalEntitiesPage as ConnectionLegalEntitiesPage,
+    type ConnectionLegalEntityListParams as ConnectionLegalEntityListParams,
     type ConnectionLegalEntityCreateParams as ConnectionLegalEntityCreateParams,
     type ConnectionLegalEntityUpdateParams as ConnectionLegalEntityUpdateParams,
-    type ConnectionLegalEntityListParams as ConnectionLegalEntityListParams,
   };
 }

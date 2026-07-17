@@ -24,13 +24,30 @@ export class InternalAccounts extends APIResource {
   balanceReports: BalanceReportsAPI.BalanceReports = new BalanceReportsAPI.BalanceReports(this._client);
 
   /**
+   * list internal accounts
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const internalAccount of client.internalAccounts.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: InternalAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InternalAccountsPage, InternalAccount> {
+    return this._client.getAPIList('/api/internal_accounts', Page<InternalAccount>, { query, ...options });
+  }
+
+  /**
    * create internal account
    *
    * @example
    * ```ts
    * const internalAccount =
    *   await client.internalAccounts.create({
-   *     connection_id: 'connection_id',
    *     currency: 'USD',
    *     name: 'name',
    *   });
@@ -71,37 +88,6 @@ export class InternalAccounts extends APIResource {
   }
 
   /**
-   * list internal accounts
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const internalAccount of client.internalAccounts.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: InternalAccountListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<InternalAccountsPage, InternalAccount> {
-    return this._client.getAPIList('/api/internal_accounts', Page<InternalAccount>, { query, ...options });
-  }
-
-  /**
-   * request closure of internal account
-   *
-   * @example
-   * ```ts
-   * const internalAccount =
-   *   await client.internalAccounts.requestClosure('id');
-   * ```
-   */
-  requestClosure(id: string, options?: RequestOptions): APIPromise<InternalAccount> {
-    return this._client.post(path`/api/internal_accounts/${id}/request_closure`, options);
-  }
-
-  /**
    * update account_capability
    *
    * @example
@@ -126,6 +112,19 @@ export class InternalAccounts extends APIResource {
       path`/api/internal_accounts/${internal_account_id}/account_capabilities/${id}`,
       { body, ...options },
     );
+  }
+
+  /**
+   * request closure of internal account
+   *
+   * @example
+   * ```ts
+   * const internalAccount =
+   *   await client.internalAccounts.requestClosure('id');
+   * ```
+   */
+  requestClosure(id: string, options?: RequestOptions): APIPromise<InternalAccount> {
+    return this._client.post(path`/api/internal_accounts/${id}/request_closure`, options);
   }
 }
 
@@ -396,16 +395,80 @@ export interface InternalAccountUpdateAccountCapabilityResponse {
   [k: string]: unknown;
 }
 
-export interface InternalAccountCreateParams {
+export interface InternalAccountListParams extends PageParams {
   /**
-   * The identifier of the financial institution the account belongs to.
+   * Only return internal accounts associated with this counterparty.
    */
-  connection_id: string;
+  counterparty_id?: string;
 
+  /**
+   * Only return internal accounts with this currency.
+   */
+  currency?: Shared.Currency;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
+
+  /**
+   * Only return internal accounts associated with this legal entity.
+   */
+  legal_entity_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * Only return internal accounts that can originate payments with this direction.
+   */
+  payment_direction?: Shared.TransactionDirection;
+
+  /**
+   * Only return internal accounts that can make this type of payment.
+   */
+  payment_type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin';
+
+  /**
+   * Only return internal accounts with this status.
+   */
+  status?: 'active' | 'pending_activation' | 'suspended' | 'pending_closure' | 'closed';
+}
+
+export interface InternalAccountCreateParams {
   /**
    * The currency of the internal account. Supports fiat and stablecoin currencies.
    */
-  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'USDT' | 'PYUSD';
+  currency: 'USD' | 'CAD' | 'USDC' | 'USDT' | 'PYUSD' | 'USDG';
 
   /**
    * The nickname of the account.
@@ -436,6 +499,13 @@ export interface InternalAccountCreateParams {
     | 'polygon_wallet'
     | 'savings'
     | 'solana_wallet';
+
+  /**
+   * The identifier of the financial institution the account belongs to. If not
+   * provided, defaults to the default connection, or the sole connection if only one
+   * exists.
+   */
+  connection_id?: string;
 
   /**
    * The Counterparty associated to this account.
@@ -620,75 +690,6 @@ export interface InternalAccountUpdateParams {
   parent_account_id?: string;
 }
 
-export interface InternalAccountListParams extends PageParams {
-  /**
-   * Only return internal accounts associated with this counterparty.
-   */
-  counterparty_id?: string;
-
-  /**
-   * Only return internal accounts with this currency.
-   */
-  currency?: Shared.Currency;
-
-  /**
-   * An optional user-defined 180 character unique identifier.
-   */
-  external_id?: string;
-
-  /**
-   * Only return internal accounts associated with this legal entity.
-   */
-  legal_entity_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * Only return internal accounts that can originate payments with this direction.
-   */
-  payment_direction?: Shared.TransactionDirection;
-
-  /**
-   * Only return internal accounts that can make this type of payment.
-   */
-  payment_type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
-
-  /**
-   * Only return internal accounts with this status.
-   */
-  status?: 'active' | 'pending_activation' | 'suspended' | 'pending_closure' | 'closed';
-}
-
 export interface InternalAccountUpdateAccountCapabilityParams {
   /**
    * Path param: Unique identifier for the internal account.
@@ -710,9 +711,9 @@ export declare namespace InternalAccounts {
     type InternalAccount as InternalAccount,
     type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
     type InternalAccountsPage as InternalAccountsPage,
+    type InternalAccountListParams as InternalAccountListParams,
     type InternalAccountCreateParams as InternalAccountCreateParams,
     type InternalAccountUpdateParams as InternalAccountUpdateParams,
-    type InternalAccountListParams as InternalAccountListParams,
     type InternalAccountUpdateAccountCapabilityParams as InternalAccountUpdateAccountCapabilityParams,
   };
 
@@ -720,9 +721,9 @@ export declare namespace InternalAccounts {
     BalanceReports as BalanceReports,
     type BalanceReport as BalanceReport,
     type BalanceReportsPage as BalanceReportsPage,
-    type BalanceReportCreateParams as BalanceReportCreateParams,
-    type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
     type BalanceReportListParams as BalanceReportListParams,
+    type BalanceReportRetrieveParams as BalanceReportRetrieveParams,
+    type BalanceReportCreateParams as BalanceReportCreateParams,
     type BalanceReportDeleteParams as BalanceReportDeleteParams,
   };
 }
