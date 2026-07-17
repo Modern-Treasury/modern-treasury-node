@@ -243,7 +243,7 @@ export interface ReturnObject {
 
   /**
    * The type of return. Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`,
-   * `interac`, `manual`, `paper_item`, `wire`.
+   * `manual`, `paper_item`, `wire`.
    */
   type:
     | 'ach'
@@ -255,13 +255,11 @@ export interface ReturnObject {
     | 'cross_border'
     | 'eft'
     | 'gb_fps'
-    | 'interac'
     | 'manual'
     | 'neft'
     | 'nz_becs'
     | 'rtp'
     | 'sepa'
-    | 'signet'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -389,7 +387,6 @@ export namespace ReturnObject {
       | 'goldman_sachs_payment_request_id'
       | 'goldman_sachs_request_id'
       | 'goldman_sachs_unique_payment_id'
-      | 'interac_message_id'
       | 'jpmc_ccn'
       | 'jpmc_clearing_system_reference'
       | 'jpmc_customer_reference_id'
@@ -417,14 +414,13 @@ export namespace ReturnObject {
       | 'pnc_transaction_reference_number'
       | 'rbc_wire_reference_id'
       | 'rtp_instruction_id'
-      | 'signet_api_reference_id'
-      | 'signet_confirmation_id'
-      | 'signet_request_id'
       | 'silvergate_payment_id'
       | 'svb_end_to_end_id'
       | 'svb_payment_id'
       | 'swift_mir'
       | 'swift_uetr'
+      | 'turnkey_activity_id'
+      | 'turnkey_send_transaction_status_id'
       | 'umb_product_partner_account_number'
       | 'usbank_payment_application_reference_id'
       | 'usbank_payment_id'
