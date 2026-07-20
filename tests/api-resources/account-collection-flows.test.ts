@@ -9,6 +9,34 @@ const client = new ModernTreasury({
 });
 
 describe('resource accountCollectionFlows', () => {
+  test('list', async () => {
+    const responsePromise = client.accountCollectionFlows.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.accountCollectionFlows.list(
+        {
+          after_cursor: 'after_cursor',
+          client_token: 'client_token',
+          counterparty_id: 'counterparty_id',
+          external_account_id: 'external_account_id',
+          per_page: 0,
+          status: 'status',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.accountCollectionFlows.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -55,33 +83,5 @@ describe('resource accountCollectionFlows', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.accountCollectionFlows.update('id', { status: 'cancelled' });
-  });
-
-  test('list', async () => {
-    const responsePromise = client.accountCollectionFlows.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.accountCollectionFlows.list(
-        {
-          after_cursor: 'after_cursor',
-          client_token: 'client_token',
-          counterparty_id: 'counterparty_id',
-          external_account_id: 'external_account_id',
-          per_page: 0,
-          status: 'status',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 });
