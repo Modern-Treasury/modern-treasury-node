@@ -17,5 +17,3 @@ jobs:
       - name: Check release environment
         run: |
           bash ./bin/check-release-environment
-        env:
-          RELEASE_PLEASE_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
