@@ -9,6 +9,39 @@ const client = new ModernTreasury({
 });
 
 describe('resource ledgerAccountCategories', () => {
+  test('list', async () => {
+    const responsePromise = client.ledgerAccountCategories.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.ledgerAccountCategories.list(
+        {
+          id: ['string'],
+          after_cursor: 'after_cursor',
+          balances: { effective_at: '2019-12-27T18:11:19.117Z' },
+          currency: 'currency',
+          external_id: 'external_id',
+          ledger_account_id: 'ledger_account_id',
+          ledger_id: 'ledger_id',
+          metadata: { foo: 'string' },
+          name: 'name',
+          parent_ledger_account_category_id: 'parent_ledger_account_category_id',
+          per_page: 0,
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.ledgerAccountCategories.create({
       currency: 'currency',
@@ -96,39 +129,6 @@ describe('resource ledgerAccountCategories', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
-    const responsePromise = client.ledgerAccountCategories.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgerAccountCategories.list(
-        {
-          id: ['string'],
-          after_cursor: 'after_cursor',
-          balances: { effective_at: '2019-12-27T18:11:19.117Z' },
-          currency: 'currency',
-          external_id: 'external_id',
-          ledger_account_id: 'ledger_account_id',
-          ledger_id: 'ledger_id',
-          metadata: { foo: 'string' },
-          name: 'name',
-          parent_ledger_account_category_id: 'parent_ledger_account_category_id',
-          per_page: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
   test('delete', async () => {
     const responsePromise = client.ledgerAccountCategories.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -157,21 +157,6 @@ describe('resource ledgerAccountCategories', () => {
     const response = await client.ledgerAccountCategories.addLedgerAccount('ledger_account_id', { id: 'id' });
   });
 
-  test('addNestedCategory: only required params', async () => {
-    const responsePromise = client.ledgerAccountCategories.addNestedCategory('sub_category_id', { id: 'id' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('addNestedCategory: required and optional params', async () => {
-    const response = await client.ledgerAccountCategories.addNestedCategory('sub_category_id', { id: 'id' });
-  });
-
   test('removeLedgerAccount: only required params', async () => {
     const responsePromise = client.ledgerAccountCategories.removeLedgerAccount('ledger_account_id', {
       id: 'id',
@@ -189,6 +174,21 @@ describe('resource ledgerAccountCategories', () => {
     const response = await client.ledgerAccountCategories.removeLedgerAccount('ledger_account_id', {
       id: 'id',
     });
+  });
+
+  test('addNestedCategory: only required params', async () => {
+    const responsePromise = client.ledgerAccountCategories.addNestedCategory('sub_category_id', { id: 'id' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('addNestedCategory: required and optional params', async () => {
+    const response = await client.ledgerAccountCategories.addNestedCategory('sub_category_id', { id: 'id' });
   });
 
   test('removeNestedCategory: only required params', async () => {
