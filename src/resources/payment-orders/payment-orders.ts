@@ -1178,7 +1178,8 @@ export namespace PaymentOrderCreateParams {
     line2?: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality?: string;
 
@@ -1188,7 +1189,8 @@ export namespace PaymentOrderCreateParams {
     postal_code?: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region?: string;
   }
@@ -2193,7 +2195,8 @@ export namespace PaymentOrderCreateAsyncParams {
     line2?: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality?: string;
 
@@ -2203,7 +2206,8 @@ export namespace PaymentOrderCreateAsyncParams {
     postal_code?: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region?: string;
   }
