@@ -317,9 +317,7 @@ export interface CounterpartyCollectAccountParams {
     | 'seBankgiroClearingCode'
     | 'nzNationalClearingCode'
     | 'hkInterbankClearingCode'
-    | 'huInterbankClearingCode'
     | 'dkInterbankClearingCode'
-    | 'idSknbiCode'
     | 'zaNationalClearingCode'
   >;
 
@@ -544,8 +542,6 @@ export namespace CounterpartyCreateParams {
         | 'dk_interbank_clearing_code'
         | 'gb_sort_code'
         | 'hk_interbank_clearing_code'
-        | 'hu_interbank_clearing_code'
-        | 'id_sknbi_code'
         | 'il_bank_code'
         | 'in_ifsc'
         | 'jp_zengin_code'
@@ -570,24 +566,17 @@ export namespace CounterpartyCreateParams {
         | 'dk_nets'
         | 'eft'
         | 'gb_fps'
-        | 'hu_ics'
-        | 'interac'
         | 'masav'
         | 'mx_ccen'
         | 'neft'
         | 'nics'
         | 'nz_becs'
         | 'pl_elixir'
-        | 'provxchange'
-        | 'ro_sent'
         | 'rtp'
         | 'se_bankgirot'
-        | 'sen'
         | 'sepa'
         | 'sg_giro'
         | 'sic'
-        | 'signet'
-        | 'sknbi'
         | 'stablecoin'
         | 'wire'
         | 'zengin';
@@ -637,8 +626,8 @@ export namespace CounterpartyCreateParams {
     connection_id?: string | null;
 
     /**
-     * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-     * alpha-3 formats.
+     * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+     * code (e.g. US).
      */
     country_of_incorporation?: string | null;
 
@@ -734,8 +723,8 @@ export namespace CounterpartyCreateParams {
     middle_name?: string | null;
 
     /**
-     * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-     * codes).
+     * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+     * codes (e.g. ["US", "CA"]).
      */
     operating_jurisdictions?: Array<string>;
 
@@ -780,6 +769,11 @@ export namespace CounterpartyCreateParams {
      * An individual's suffix.
      */
     suffix?: string | null;
+
+    /**
+     * Acceptance of terms of use by the legal entity.
+     */
+    terms_of_use?: LegalEntity.TermsOfUse | null;
 
     /**
      * @deprecated Deprecated. Use `third_party_verifications` instead.
@@ -852,6 +846,22 @@ export namespace CounterpartyCreateParams {
        * Registration or identification number with the regulator.
        */
       registration_number: string;
+    }
+
+    /**
+     * Acceptance of terms of use by the legal entity.
+     */
+    export interface TermsOfUse {
+      /**
+       * The ISO 8601 timestamp indicating when the terms of use were accepted.
+       */
+      accepted_at?: string;
+
+      /**
+       * The IP address from which the terms of use were accepted. Supports both IPv4 and
+       * IPv6 formats.
+       */
+      ip_address?: string;
     }
   }
 }

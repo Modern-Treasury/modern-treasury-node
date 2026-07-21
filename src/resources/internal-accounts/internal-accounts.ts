@@ -48,10 +48,8 @@ export class InternalAccounts extends APIResource {
    * ```ts
    * const internalAccount =
    *   await client.internalAccounts.create({
-   *     connection_id: 'connection_id',
    *     currency: 'USD',
    *     name: 'name',
-   *     party_name: 'party_name',
    *   });
    * ```
    */
@@ -313,24 +311,17 @@ export namespace InternalAccount {
       | 'dk_nets'
       | 'eft'
       | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
       | 'masav'
       | 'mx_ccen'
       | 'neft'
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
-      | 'provxchange'
-      | 'ro_sent'
       | 'rtp'
       | 'se_bankgirot'
-      | 'sen'
       | 'sepa'
       | 'sg_giro'
       | 'sic'
-      | 'signet'
-      | 'sknbi'
       | 'stablecoin'
       | 'wire'
       | 'zengin';
@@ -384,24 +375,17 @@ export interface InternalAccountUpdateAccountCapabilityResponse {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -459,24 +443,17 @@ export interface InternalAccountListParams extends PageParams {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -489,24 +466,14 @@ export interface InternalAccountListParams extends PageParams {
 
 export interface InternalAccountCreateParams {
   /**
-   * The identifier of the financial institution the account belongs to.
-   */
-  connection_id: string;
-
-  /**
    * The currency of the internal account. Supports fiat and stablecoin currencies.
    */
-  currency: 'USD' | 'CAD' | 'USDC' | 'USDG' | 'USDT' | 'PYUSD';
+  currency: 'USD' | 'CAD' | 'USDC' | 'USDT' | 'PYUSD' | 'USDG';
 
   /**
    * The nickname of the account.
    */
   name: string;
-
-  /**
-   * The legal name of the entity which owns the account.
-   */
-  party_name: string;
 
   /**
    * An array of AccountCapability objects that list the originating abilities of the
@@ -532,6 +499,13 @@ export interface InternalAccountCreateParams {
     | 'polygon_wallet'
     | 'savings'
     | 'solana_wallet';
+
+  /**
+   * The identifier of the financial institution the account belongs to. If not
+   * provided, defaults to the default connection, or the sole connection if only one
+   * exists.
+   */
+  connection_id?: string;
 
   /**
    * The Counterparty associated to this account.
@@ -571,6 +545,18 @@ export interface InternalAccountCreateParams {
    * The address associated with the owner or null.
    */
   party_address?: InternalAccountCreateParams.PartyAddress;
+
+  /**
+   * The legal name of the entity which owns the account.
+   */
+  party_name?: string | null;
+
+  /**
+   * An array of account number types requested for provisioning.
+   */
+  requested_account_number_types?: Array<
+    'ethereum_address' | 'solana_address' | 'polygon_address' | 'base_address'
+  >;
 
   /**
    * A hash of vendor specific attributes that will be used when creating the account
@@ -623,24 +609,17 @@ export namespace InternalAccountCreateParams {
       | 'dk_nets'
       | 'eft'
       | 'gb_fps'
-      | 'hu_ics'
-      | 'interac'
       | 'masav'
       | 'mx_ccen'
       | 'neft'
       | 'nics'
       | 'nz_becs'
       | 'pl_elixir'
-      | 'provxchange'
-      | 'ro_sent'
       | 'rtp'
       | 'se_bankgirot'
-      | 'sen'
       | 'sepa'
       | 'sg_giro'
       | 'sic'
-      | 'signet'
-      | 'sknbi'
       | 'stablecoin'
       | 'wire'
       | 'zengin';
