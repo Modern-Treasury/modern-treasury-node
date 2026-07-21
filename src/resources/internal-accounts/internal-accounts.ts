@@ -483,6 +483,13 @@ export interface InternalAccountCreateParams {
   party_name?: string | null;
 
   /**
+   * An array of account number types requested for provisioning.
+   */
+  requested_account_number_types?: Array<
+    'ethereum_address' | 'solana_address' | 'polygon_address' | 'base_address'
+  >;
+
+  /**
    * A hash of vendor specific attributes that will be used when creating the account
    * at the vendor specified by the given connection.
    */
