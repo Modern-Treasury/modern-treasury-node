@@ -25,7 +25,8 @@ export interface Address {
   live_mode: boolean;
 
   /**
-   * Locality or City.
+   * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+   * Francisco).
    */
   locality: string | null;
 
@@ -37,7 +38,8 @@ export interface Address {
   postal_code: string | null;
 
   /**
-   * Region or State.
+   * Region or State. This field is free-form; for US states, we recommend a
+   * two-letter code (e.g. CA). Full state names are also accepted.
    */
   region: string | null;
 
@@ -55,7 +57,8 @@ export interface AddressRequest {
   line2?: string | null;
 
   /**
-   * Locality or City.
+   * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+   * Francisco).
    */
   locality?: string | null;
 
@@ -65,7 +68,8 @@ export interface AddressRequest {
   postal_code?: string | null;
 
   /**
-   * Region or State.
+   * Region or State. This field is free-form; for US states, we recommend a
+   * two-letter code (e.g. CA). Full state names are also accepted.
    */
   region?: string | null;
 }
@@ -320,6 +324,11 @@ export namespace ChildLegalEntityCreate {
    * A list of phone numbers in E.164 format.
    */
   export interface PhoneNumber {
+    /**
+     * A phone number in E.164 format. This format is strictly validated: include a
+     * leading + and country code, followed by digits only (no spaces or dashes), e.g.
+     * +12025551234.
+     */
     phone_number?: string;
   }
 
@@ -1028,7 +1037,8 @@ export interface LegalEntityAddressCreateRequest {
   line1: string | null;
 
   /**
-   * Locality or City.
+   * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+   * Francisco).
    */
   locality: string | null;
 
@@ -1038,7 +1048,8 @@ export interface LegalEntityAddressCreateRequest {
   postal_code: string | null;
 
   /**
-   * Region or State.
+   * Region or State. This field is free-form; for US states, we recommend a
+   * two-letter code (e.g. CA). Full state names are also accepted.
    */
   region: string | null;
 
