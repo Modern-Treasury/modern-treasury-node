@@ -11,6 +11,24 @@ import { path } from '../internal/utils/path';
 
 export class LegalEntities extends APIResource {
   /**
+   * Get a list of all legal entities.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const legalEntity of client.legalEntities.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: LegalEntityListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LegalEntitiesPage, LegalEntity> {
+    return this._client.getAPIList('/api/legal_entities', Page<LegalEntity>, { query, ...options });
+  }
+
+  /**
    * create legal_entity
    *
    * @example
@@ -52,46 +70,6 @@ export class LegalEntities extends APIResource {
     options?: RequestOptions,
   ): APIPromise<LegalEntity> {
     return this._client.patch(path`/api/legal_entities/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of all legal entities.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const legalEntity of client.legalEntities.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: LegalEntityListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LegalEntitiesPage, LegalEntity> {
-    return this._client.getAPIList('/api/legal_entities', Page<LegalEntity>, { query, ...options });
-  }
-
-  /**
-   * Update Legal Entity Status (sandbox only)
-   *
-   * @example
-   * ```ts
-   * const legalEntity = await client.legalEntities.updateStatus(
-   *   'id',
-   *   { status: 'active' },
-   * );
-   * ```
-   */
-  updateStatus(
-    id: string,
-    body: LegalEntityUpdateStatusParams,
-    options?: RequestOptions,
-  ): APIPromise<LegalEntity> {
-    return this._client.patch(path`/api/simulations/legal_entities/${id}/update_status`, {
-      body,
-      ...options,
-    });
   }
 }
 
@@ -170,8 +148,8 @@ export interface LegalEntity {
   compliance_details: unknown | null;
 
   /**
-   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-   * alpha-3 formats.
+   * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+   * code (e.g. US).
    */
   country_of_incorporation: string | null;
 
@@ -275,8 +253,8 @@ export interface LegalEntity {
   object: string;
 
   /**
-   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-   * codes).
+   * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+   * codes (e.g. ["US", "CA"]).
    */
   operating_jurisdictions: Array<string>;
 
@@ -778,6 +756,26 @@ export interface WealthAndEmploymentDetails {
     | null;
 }
 
+export interface LegalEntityListParams extends PageParams {
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
+
+  legal_entity_type?: 'business' | 'individual';
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  show_deleted?: string;
+
+  status?: 'pending' | 'active' | 'suspended' | 'denied';
+}
+
 export interface LegalEntityCreateParams {
   /**
    * The type of legal entity.
@@ -821,8 +819,8 @@ export interface LegalEntityCreateParams {
   connection_id?: string | null;
 
   /**
-   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-   * alpha-3 formats.
+   * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+   * code (e.g. US).
    */
   country_of_incorporation?: string | null;
 
@@ -918,8 +916,8 @@ export interface LegalEntityCreateParams {
   middle_name?: string | null;
 
   /**
-   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-   * codes).
+   * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+   * codes (e.g. ["US", "CA"]).
    */
   operating_jurisdictions?: Array<string>;
 
@@ -1084,8 +1082,8 @@ export interface LegalEntityUpdateParams {
   citizenship_country?: string | null;
 
   /**
-   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-   * alpha-3 formats.
+   * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+   * code (e.g. US).
    */
   country_of_incorporation?: string | null;
 
@@ -1170,8 +1168,8 @@ export interface LegalEntityUpdateParams {
   middle_name?: string | null;
 
   /**
-   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-   * codes).
+   * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+   * codes (e.g. ["US", "CA"]).
    */
   operating_jurisdictions?: Array<string>;
 
@@ -1288,43 +1286,14 @@ export namespace LegalEntityUpdateParams {
   }
 }
 
-export interface LegalEntityListParams extends PageParams {
-  /**
-   * An optional user-defined 180 character unique identifier.
-   */
-  external_id?: string;
-
-  legal_entity_type?: 'business' | 'individual';
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  show_deleted?: string;
-
-  status?: 'pending' | 'active' | 'suspended' | 'denied';
-}
-
-export interface LegalEntityUpdateStatusParams {
-  /**
-   * The target status for the legal entity. One of `active`, `suspended`, or
-   * `denied`. Valid transitions depend on the current status.
-   */
-  status: 'active' | 'suspended' | 'denied';
-}
-
 export declare namespace LegalEntities {
   export {
     type BankSettings as BankSettings,
     type LegalEntity as LegalEntity,
     type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
     type LegalEntitiesPage as LegalEntitiesPage,
+    type LegalEntityListParams as LegalEntityListParams,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
-    type LegalEntityListParams as LegalEntityListParams,
-    type LegalEntityUpdateStatusParams as LegalEntityUpdateStatusParams,
   };
 }

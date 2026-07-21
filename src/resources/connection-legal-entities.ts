@@ -10,6 +10,19 @@ import { path } from '../internal/utils/path';
 
 export class ConnectionLegalEntities extends APIResource {
   /**
+   * Get a list of all connection legal entities.
+   */
+  list(
+    query: ConnectionLegalEntityListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ConnectionLegalEntitiesPage, ConnectionLegalEntity> {
+    return this._client.getAPIList('/api/connection_legal_entities', Page<ConnectionLegalEntity>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Create a connection legal entity.
    */
   create(
@@ -35,19 +48,6 @@ export class ConnectionLegalEntities extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ConnectionLegalEntity> {
     return this._client.patch(path`/api/connection_legal_entities/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of all connection legal entities.
-   */
-  list(
-    query: ConnectionLegalEntityListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ConnectionLegalEntitiesPage, ConnectionLegalEntity> {
-    return this._client.getAPIList('/api/connection_legal_entities', Page<ConnectionLegalEntity>, {
-      query,
-      ...options,
-    });
   }
 }
 
@@ -89,6 +89,14 @@ export interface ConnectionLegalEntity {
    * The ID of the legal entity at the vendor.
    */
   vendor_id: string;
+}
+
+export interface ConnectionLegalEntityListParams extends PageParams {
+  connection_id?: string;
+
+  legal_entity_id?: string;
+
+  status?: 'completed' | 'denied' | 'failed' | 'processing' | 'suspended';
 }
 
 export interface ConnectionLegalEntityCreateParams {
@@ -150,8 +158,8 @@ export namespace ConnectionLegalEntityCreateParams {
     connection_id?: string | null;
 
     /**
-     * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-     * alpha-3 formats.
+     * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+     * code (e.g. US).
      */
     country_of_incorporation?: string | null;
 
@@ -252,8 +260,8 @@ export namespace ConnectionLegalEntityCreateParams {
     middle_name?: string | null;
 
     /**
-     * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-     * codes).
+     * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+     * codes (e.g. ["US", "CA"]).
      */
     operating_jurisdictions?: Array<string>;
 
@@ -402,20 +410,12 @@ export interface ConnectionLegalEntityUpdateParams {
   status?: 'processing';
 }
 
-export interface ConnectionLegalEntityListParams extends PageParams {
-  connection_id?: string;
-
-  legal_entity_id?: string;
-
-  status?: 'completed' | 'denied' | 'failed' | 'processing' | 'suspended';
-}
-
 export declare namespace ConnectionLegalEntities {
   export {
     type ConnectionLegalEntity as ConnectionLegalEntity,
     type ConnectionLegalEntitiesPage as ConnectionLegalEntitiesPage,
+    type ConnectionLegalEntityListParams as ConnectionLegalEntityListParams,
     type ConnectionLegalEntityCreateParams as ConnectionLegalEntityCreateParams,
     type ConnectionLegalEntityUpdateParams as ConnectionLegalEntityUpdateParams,
-    type ConnectionLegalEntityListParams as ConnectionLegalEntityListParams,
   };
 }
