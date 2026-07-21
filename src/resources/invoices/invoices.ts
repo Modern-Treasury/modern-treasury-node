@@ -191,7 +191,7 @@ export interface Invoice {
   invoicer_name: string | null;
 
   /**
-   * Translation missing: en.openapi.descriptions.invoice.schema.issued_at
+   * The time at which the invoice was issued.
    */
   issued_at: string | null;
 
@@ -238,7 +238,7 @@ export interface Invoice {
   originating_account_id: string;
 
   /**
-   * Translation missing: en.openapi.descriptions.invoice.schema.paid_at
+   * The time at which the invoice was paid.
    */
   paid_at: string | null;
 
@@ -318,7 +318,7 @@ export interface Invoice {
   virtual_account_id: string | null;
 
   /**
-   * Translation missing: en.openapi.descriptions.invoice.schema.voided_at
+   * The time at which the invoice was voided.
    */
   voided_at: string | null;
 }
@@ -336,7 +336,8 @@ export namespace Invoice {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -346,7 +347,8 @@ export namespace Invoice {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 
@@ -365,7 +367,8 @@ export namespace Invoice {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -375,7 +378,8 @@ export namespace Invoice {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 
@@ -394,7 +398,8 @@ export namespace Invoice {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -404,7 +409,8 @@ export namespace Invoice {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 
@@ -565,9 +571,8 @@ export interface InvoiceCreateParams {
   payment_method?: 'ui' | 'manual' | 'automatic';
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   payment_type?: PaymentOrdersAPI.PaymentOrderType;
 
@@ -613,7 +618,8 @@ export namespace InvoiceCreateParams {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -623,7 +629,8 @@ export namespace InvoiceCreateParams {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 
@@ -642,7 +649,8 @@ export namespace InvoiceCreateParams {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -652,7 +660,8 @@ export namespace InvoiceCreateParams {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 
@@ -715,7 +724,8 @@ export namespace InvoiceCreateParams {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -725,7 +735,8 @@ export namespace InvoiceCreateParams {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 
@@ -835,9 +846,8 @@ export interface InvoiceUpdateParams {
   payment_method?: 'ui' | 'manual' | 'automatic';
 
   /**
-   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-   * `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-   * `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
    */
   payment_type?: PaymentOrdersAPI.PaymentOrderType;
 
@@ -890,7 +900,8 @@ export namespace InvoiceUpdateParams {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -900,7 +911,8 @@ export namespace InvoiceUpdateParams {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 
@@ -919,7 +931,8 @@ export namespace InvoiceUpdateParams {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -929,7 +942,8 @@ export namespace InvoiceUpdateParams {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 
@@ -992,7 +1006,8 @@ export namespace InvoiceUpdateParams {
     line1: string;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string;
 
@@ -1002,7 +1017,8 @@ export namespace InvoiceUpdateParams {
     postal_code: string;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string;
 

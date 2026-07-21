@@ -29,7 +29,7 @@ export class LegalEntities extends APIResource {
   }
 
   /**
-   * create legal_entity
+   * Create a legal entity. All country fields use ISO 3166-1 alpha-2 (e.g. US).
    *
    * @example
    * ```ts
@@ -148,8 +148,8 @@ export interface LegalEntity {
   compliance_details: unknown | null;
 
   /**
-   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-   * alpha-3 formats.
+   * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+   * code (e.g. US).
    */
   country_of_incorporation: string | null;
 
@@ -214,7 +214,7 @@ export interface LegalEntity {
   /**
    * The type of legal entity.
    */
-  legal_entity_type: 'business' | 'individual' | 'joint';
+  legal_entity_type: 'business' | 'individual';
 
   /**
    * The business's legal structure.
@@ -253,8 +253,8 @@ export interface LegalEntity {
   object: string;
 
   /**
-   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-   * codes).
+   * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+   * codes (e.g. ["US", "CA"]).
    */
   operating_jurisdictions: Array<string>;
 
@@ -307,6 +307,11 @@ export interface LegalEntity {
   suffix: string | null;
 
   /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use: LegalEntity.TermsOfUse | null;
+
+  /**
    * @deprecated Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification: Shared.ThirdPartyVerification | null;
@@ -343,7 +348,15 @@ export namespace LegalEntity {
     /**
      * The types of this address.
      */
-    address_types: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
+    address_types: Array<
+      | 'business'
+      | 'business_physical'
+      | 'business_registered'
+      | 'mailing'
+      | 'other'
+      | 'po_box'
+      | 'residential'
+    >;
 
     /**
      * Country code conforms to [ISO 3166-1 alpha-2]
@@ -365,7 +378,8 @@ export namespace LegalEntity {
     live_mode: boolean;
 
     /**
-     * Locality or City.
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
      */
     locality: string | null;
 
@@ -377,12 +391,14 @@ export namespace LegalEntity {
     postal_code: string | null;
 
     /**
-     * Whether this address is the primary address for the legal entity.
+     * Whether this address is the primary address for the legal entity. Optional; when
+     * omitted it is inferred from the address types.
      */
     primary: boolean | null;
 
     /**
-     * Region or State.
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
      */
     region: string | null;
 
@@ -447,7 +463,10 @@ export namespace LegalEntity {
       | 'gb_nino'
       | 'gb_utr'
       | 'gb_vat'
+      | 'generic_international'
       | 'gr_vat'
+      | 'hk_brn'
+      | 'hk_hkid'
       | 'hn_id'
       | 'hn_rtn'
       | 'hr_oib'
@@ -476,6 +495,7 @@ export namespace LegalEntity {
       | 'mx_curp'
       | 'mx_ine'
       | 'mx_rfc'
+      | 'national_id'
       | 'nl_bsn'
       | 'nl_btw'
       | 'nl_rsin'
@@ -532,6 +552,11 @@ export namespace LegalEntity {
    * A list of phone numbers in E.164 format.
    */
   export interface PhoneNumber {
+    /**
+     * A phone number in E.164 format. This format is strictly validated: include a
+     * leading + and country code, followed by digits only (no spaces or dashes), e.g.
+     * +12025551234.
+     */
     phone_number?: string;
   }
 
@@ -551,6 +576,22 @@ export namespace LegalEntity {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
+  }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
   }
 }
 
@@ -577,7 +618,8 @@ export interface WealthAndEmploymentDetails {
   employer_name: string | null;
 
   /**
-   * The state in which the employer is located.
+   * The state in which the employer is located. This field is free-form text; for US
+   * states, we recommend a two-letter abbreviation (e.g. CA).
    */
   employer_state: string | null;
 
@@ -787,8 +829,8 @@ export interface LegalEntityCreateParams {
   connection_id?: string | null;
 
   /**
-   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-   * alpha-3 formats.
+   * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+   * code (e.g. US).
    */
   country_of_incorporation?: string | null;
 
@@ -884,8 +926,8 @@ export interface LegalEntityCreateParams {
   middle_name?: string | null;
 
   /**
-   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-   * codes).
+   * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+   * codes (e.g. ["US", "CA"]).
    */
   operating_jurisdictions?: Array<string>;
 
@@ -930,6 +972,11 @@ export interface LegalEntityCreateParams {
    * An individual's suffix.
    */
   suffix?: string | null;
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use?: LegalEntityCreateParams.TermsOfUse | null;
 
   /**
    * Deprecated. Use `third_party_verifications` instead.
@@ -983,6 +1030,11 @@ export namespace LegalEntityCreateParams {
    * A list of phone numbers in E.164 format.
    */
   export interface PhoneNumber {
+    /**
+     * A phone number in E.164 format. This format is strictly validated: include a
+     * leading + and country code, followed by digits only (no spaces or dashes), e.g.
+     * +12025551234.
+     */
     phone_number?: string;
   }
 
@@ -1002,6 +1054,22 @@ export namespace LegalEntityCreateParams {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
+  }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
   }
 }
 
@@ -1029,8 +1097,8 @@ export interface LegalEntityUpdateParams {
   citizenship_country?: string | null;
 
   /**
-   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-   * alpha-3 formats.
+   * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+   * code (e.g. US).
    */
   country_of_incorporation?: string | null;
 
@@ -1115,8 +1183,8 @@ export interface LegalEntityUpdateParams {
   middle_name?: string | null;
 
   /**
-   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-   * codes).
+   * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+   * codes (e.g. ["US", "CA"]).
    */
   operating_jurisdictions?: Array<string>;
 
@@ -1163,6 +1231,11 @@ export interface LegalEntityUpdateParams {
   suffix?: string | null;
 
   /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use?: LegalEntityUpdateParams.TermsOfUse | null;
+
+  /**
    * Deprecated. Use `third_party_verifications` instead.
    */
   third_party_verification?: Shared.ThirdPartyVerification | null;
@@ -1190,6 +1263,11 @@ export namespace LegalEntityUpdateParams {
    * A list of phone numbers in E.164 format.
    */
   export interface PhoneNumber {
+    /**
+     * A phone number in E.164 format. This format is strictly validated: include a
+     * leading + and country code, followed by digits only (no spaces or dashes), e.g.
+     * +12025551234.
+     */
     phone_number?: string;
   }
 
@@ -1209,6 +1287,22 @@ export namespace LegalEntityUpdateParams {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
+  }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
   }
 }
 

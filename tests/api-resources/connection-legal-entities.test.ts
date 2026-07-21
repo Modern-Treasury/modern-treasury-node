@@ -80,7 +80,7 @@ describe('resource connectionLegalEntities', () => {
         citizenship_country: 'citizenship_country',
         compliance_details: {},
         connection_id: 'connection_id',
-        country_of_incorporation: 'country_of_incorporation',
+        country_of_incorporation: 'US',
         date_formed: '2019-12-27',
         date_of_birth: '2019-12-27',
         documents: [
@@ -158,7 +158,7 @@ describe('resource connectionLegalEntities', () => {
               citizenship_country: 'citizenship_country',
               compliance_details: {},
               connection_id: 'connection_id',
-              country_of_incorporation: 'country_of_incorporation',
+              country_of_incorporation: 'US',
               date_formed: '2019-12-27',
               date_of_birth: '2019-12-27',
               documents: [
@@ -213,7 +213,7 @@ describe('resource connectionLegalEntities', () => {
                 modern: 'treasury',
               },
               middle_name: 'middle_name',
-              operating_jurisdictions: ['string'],
+              operating_jurisdictions: ['US', 'CA'],
               phone_numbers: [{ phone_number: 'phone_number' }],
               politically_exposed_person: true,
               preferred_name: 'preferred_name',
@@ -229,6 +229,7 @@ describe('resource connectionLegalEntities', () => {
               risk_rating: 'low',
               service_provider_legal_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
               suffix: 'suffix',
+              terms_of_use: { accepted_at: '2019-12-27T18:11:19.117Z', ip_address: 'ip_address' },
               third_party_verification: {
                 outcome: 'passed',
                 vendor: 'persona',
@@ -286,7 +287,7 @@ describe('resource connectionLegalEntities', () => {
           modern: 'treasury',
         },
         middle_name: 'middle_name',
-        operating_jurisdictions: ['string'],
+        operating_jurisdictions: ['US', 'CA'],
         phone_numbers: [{ phone_number: 'phone_number' }],
         politically_exposed_person: true,
         preferred_name: 'preferred_name',
@@ -302,6 +303,7 @@ describe('resource connectionLegalEntities', () => {
         risk_rating: 'low',
         service_provider_legal_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         suffix: 'suffix',
+        terms_of_use: { accepted_at: '2019-12-27T18:11:19.117Z', ip_address: 'ip_address' },
         third_party_verification: {
           outcome: 'passed',
           vendor: 'persona',
