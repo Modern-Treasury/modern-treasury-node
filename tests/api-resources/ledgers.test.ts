@@ -9,6 +9,33 @@ const client = new ModernTreasury({
 });
 
 describe('resource ledgers', () => {
+  test('list', async () => {
+    const responsePromise = client.ledgers.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.ledgers.list(
+        {
+          id: ['string'],
+          after_cursor: 'after_cursor',
+          metadata: { foo: 'string' },
+          per_page: 0,
+          updated_at: { foo: '2019-12-27T18:11:19.117Z' },
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.ledgers.create({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
@@ -67,33 +94,6 @@ describe('resource ledgers', () => {
             modern: 'treasury',
           },
           name: 'name',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('list', async () => {
-    const responsePromise = client.ledgers.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.ledgers.list(
-        {
-          id: ['string'],
-          after_cursor: 'after_cursor',
-          metadata: { foo: 'string' },
-          per_page: 0,
-          updated_at: { foo: '2019-12-27T18:11:19.117Z' },
         },
         { path: '/_stainless_unknown_path' },
       ),

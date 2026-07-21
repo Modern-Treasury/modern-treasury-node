@@ -9,6 +9,35 @@ const client = new ModernTreasury({
 });
 
 describe('resource legalEntities', () => {
+  test('list', async () => {
+    const responsePromise = client.legalEntities.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.legalEntities.list(
+        {
+          after_cursor: 'after_cursor',
+          external_id: 'external_id',
+          legal_entity_type: 'business',
+          metadata: { foo: 'string' },
+          per_page: 0,
+          show_deleted: 'show_deleted',
+          status: 'pending',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.legalEntities.create({ legal_entity_type: 'business' });
     const rawResponse = await responsePromise.asResponse();
@@ -52,7 +81,7 @@ describe('resource legalEntities', () => {
       citizenship_country: 'citizenship_country',
       compliance_details: {},
       connection_id: 'connection_id',
-      country_of_incorporation: 'country_of_incorporation',
+      country_of_incorporation: 'US',
       date_formed: '2019-12-27',
       date_of_birth: '2019-12-27',
       documents: [
@@ -130,7 +159,7 @@ describe('resource legalEntities', () => {
             citizenship_country: 'citizenship_country',
             compliance_details: {},
             connection_id: 'connection_id',
-            country_of_incorporation: 'country_of_incorporation',
+            country_of_incorporation: 'US',
             date_formed: '2019-12-27',
             date_of_birth: '2019-12-27',
             documents: [
@@ -185,7 +214,7 @@ describe('resource legalEntities', () => {
               modern: 'treasury',
             },
             middle_name: 'middle_name',
-            operating_jurisdictions: ['string'],
+            operating_jurisdictions: ['US', 'CA'],
             phone_numbers: [{ phone_number: 'phone_number' }],
             politically_exposed_person: true,
             preferred_name: 'preferred_name',
@@ -258,7 +287,7 @@ describe('resource legalEntities', () => {
         modern: 'treasury',
       },
       middle_name: 'middle_name',
-      operating_jurisdictions: ['string'],
+      operating_jurisdictions: ['US', 'CA'],
       phone_numbers: [{ phone_number: 'phone_number' }],
       politically_exposed_person: true,
       preferred_name: 'preferred_name',
@@ -375,7 +404,7 @@ describe('resource legalEntities', () => {
           business_description: 'business_description',
           business_name: 'business_name',
           citizenship_country: 'citizenship_country',
-          country_of_incorporation: 'country_of_incorporation',
+          country_of_incorporation: 'US',
           date_formed: '2019-12-27',
           date_of_birth: '2019-12-27',
           doing_business_as_names: ['string'],
@@ -421,7 +450,7 @@ describe('resource legalEntities', () => {
             modern: 'treasury',
           },
           middle_name: 'middle_name',
-          operating_jurisdictions: ['string'],
+          operating_jurisdictions: ['US', 'CA'],
           phone_numbers: [{ phone_number: 'phone_number' }],
           politically_exposed_person: true,
           preferred_name: 'preferred_name',
@@ -484,49 +513,5 @@ describe('resource legalEntities', () => {
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('list', async () => {
-    const responsePromise = client.legalEntities.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.legalEntities.list(
-        {
-          after_cursor: 'after_cursor',
-          external_id: 'external_id',
-          legal_entity_type: 'business',
-          metadata: { foo: 'string' },
-          per_page: 0,
-          show_deleted: 'show_deleted',
-          status: 'pending',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('updateStatus: only required params', async () => {
-    const responsePromise = client.legalEntities.updateStatus('id', { status: 'active' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('updateStatus: required and optional params', async () => {
-    const response = await client.legalEntities.updateStatus('id', { status: 'active' });
   });
 });

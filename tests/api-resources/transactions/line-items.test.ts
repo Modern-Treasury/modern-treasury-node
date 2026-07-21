@@ -9,40 +9,6 @@ const client = new ModernTreasury({
 });
 
 describe('resource lineItems', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.transactions.lineItems.create({
-      amount: 0,
-      expected_payment_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('create: required and optional params', async () => {
-    const response = await client.transactions.lineItems.create({
-      amount: 0,
-      expected_payment_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-  });
-
-  test('retrieve', async () => {
-    const responsePromise = client.transactions.lineItems.retrieve('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
   test('list', async () => {
     const responsePromise = client.transactions.lineItems.list();
     const rawResponse = await responsePromise.asResponse();
@@ -68,6 +34,40 @@ describe('resource lineItems', () => {
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
+  test('retrieve', async () => {
+    const responsePromise = client.transactions.lineItems.retrieve('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('create: only required params', async () => {
+    const responsePromise = client.transactions.lineItems.create({
+      amount: 0,
+      expected_payment_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('create: required and optional params', async () => {
+    const response = await client.transactions.lineItems.create({
+      amount: 0,
+      expected_payment_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('delete', async () => {

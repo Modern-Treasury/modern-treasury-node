@@ -9,17 +9,6 @@ const client = new ModernTreasury({
 });
 
 describe('resource journalEntries', () => {
-  test('retrieve', async () => {
-    const responsePromise = client.journalEntries.retrieve('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
   test('list: only required params', async () => {
     const responsePromise = client.journalEntries.list({ journal_report_id: 'journal_report_id' });
     const rawResponse = await responsePromise.asResponse();
@@ -37,5 +26,16 @@ describe('resource journalEntries', () => {
       page: 0,
       per_page: 0,
     });
+  });
+
+  test('retrieve', async () => {
+    const responsePromise = client.journalEntries.retrieve('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });
