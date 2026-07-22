@@ -9,6 +9,57 @@ const client = new ModernTreasury({
 });
 
 describe('resource counterparties', () => {
+  test('collectAccount: only required params', async () => {
+    const responsePromise = client.counterparties.collectAccount('id', { direction: 'credit' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('collectAccount: required and optional params', async () => {
+    const response = await client.counterparties.collectAccount('id', {
+      direction: 'credit',
+      custom_redirect: 'https://example.com',
+      fields: ['name'],
+      send_email: true,
+    });
+  });
+
+  test('list', async () => {
+    const responsePromise = client.counterparties.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.counterparties.list(
+        {
+          after_cursor: 'after_cursor',
+          created_at_lower_bound: '2019-12-27T18:11:19.117Z',
+          created_at_upper_bound: '2019-12-27T18:11:19.117Z',
+          email: 'dev@stainless.com',
+          external_id: 'external_id',
+          legal_entity_id: 'legal_entity_id',
+          metadata: { foo: 'string' },
+          name: 'name',
+          per_page: 0,
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.counterparties.create({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
@@ -108,7 +159,7 @@ describe('resource counterparties', () => {
         citizenship_country: 'citizenship_country',
         compliance_details: {},
         connection_id: 'connection_id',
-        country_of_incorporation: 'country_of_incorporation',
+        country_of_incorporation: 'US',
         date_formed: '2019-12-27',
         date_of_birth: '2019-12-27',
         documents: [
@@ -186,7 +237,7 @@ describe('resource counterparties', () => {
               citizenship_country: 'citizenship_country',
               compliance_details: {},
               connection_id: 'connection_id',
-              country_of_incorporation: 'country_of_incorporation',
+              country_of_incorporation: 'US',
               date_formed: '2019-12-27',
               date_of_birth: '2019-12-27',
               documents: [
@@ -241,7 +292,7 @@ describe('resource counterparties', () => {
                 modern: 'treasury',
               },
               middle_name: 'middle_name',
-              operating_jurisdictions: ['string'],
+              operating_jurisdictions: ['US', 'CA'],
               phone_numbers: [{ phone_number: 'phone_number' }],
               politically_exposed_person: true,
               preferred_name: 'preferred_name',
@@ -314,7 +365,7 @@ describe('resource counterparties', () => {
           modern: 'treasury',
         },
         middle_name: 'middle_name',
-        operating_jurisdictions: ['string'],
+        operating_jurisdictions: ['US', 'CA'],
         phone_numbers: [{ phone_number: 'phone_number' }],
         politically_exposed_person: true,
         preferred_name: 'preferred_name',
@@ -427,37 +478,6 @@ describe('resource counterparties', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
-    const responsePromise = client.counterparties.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.counterparties.list(
-        {
-          after_cursor: 'after_cursor',
-          created_at_lower_bound: '2019-12-27T18:11:19.117Z',
-          created_at_upper_bound: '2019-12-27T18:11:19.117Z',
-          email: 'dev@stainless.com',
-          external_id: 'external_id',
-          legal_entity_id: 'legal_entity_id',
-          metadata: { foo: 'string' },
-          name: 'name',
-          per_page: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
   test('delete', async () => {
     const responsePromise = client.counterparties.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -467,25 +487,5 @@ describe('resource counterparties', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('collectAccount: only required params', async () => {
-    const responsePromise = client.counterparties.collectAccount('id', { direction: 'credit' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('collectAccount: required and optional params', async () => {
-    const response = await client.counterparties.collectAccount('id', {
-      direction: 'credit',
-      custom_redirect: 'https://example.com',
-      fields: ['name'],
-      send_email: true,
-    });
   });
 });
