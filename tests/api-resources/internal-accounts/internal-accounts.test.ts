@@ -9,6 +9,38 @@ const client = new ModernTreasury({
 });
 
 describe('resource internalAccounts', () => {
+  test('list', async () => {
+    const responsePromise = client.internalAccounts.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.internalAccounts.list(
+        {
+          after_cursor: 'after_cursor',
+          counterparty_id: 'counterparty_id',
+          currency: 'AED',
+          external_id: 'external_id',
+          legal_entity_id: 'legal_entity_id',
+          metadata: { foo: 'string' },
+          payment_direction: 'credit',
+          payment_type: 'ach',
+          per_page: 0,
+          status: 'active',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.internalAccounts.create({ currency: 'USD', name: 'name' });
     const rawResponse = await responsePromise.asResponse();
@@ -103,49 +135,6 @@ describe('resource internalAccounts', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('list', async () => {
-    const responsePromise = client.internalAccounts.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.internalAccounts.list(
-        {
-          after_cursor: 'after_cursor',
-          counterparty_id: 'counterparty_id',
-          currency: 'AED',
-          external_id: 'external_id',
-          legal_entity_id: 'legal_entity_id',
-          metadata: { foo: 'string' },
-          payment_direction: 'credit',
-          payment_type: 'ach',
-          per_page: 0,
-          status: 'active',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('requestClosure', async () => {
-    const responsePromise = client.internalAccounts.requestClosure('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
   test('updateAccountCapability: only required params', async () => {
     const responsePromise = client.internalAccounts.updateAccountCapability('id', {
       internal_account_id: 'internal_account_id',
@@ -165,5 +154,16 @@ describe('resource internalAccounts', () => {
       internal_account_id: 'internal_account_id',
       identifier: 'identifier',
     });
+  });
+
+  test('requestClosure', async () => {
+    const responsePromise = client.internalAccounts.requestClosure('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });
