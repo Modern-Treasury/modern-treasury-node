@@ -9,7 +9,7 @@ export {
   LedgerAccountSettlements,
   type LedgerAccountSettlement,
   type LedgerAccountSettlementCreateParams,
-  type LedgerAccountSettlementUpdateParams,
   type LedgerAccountSettlementListParams,
+  type LedgerAccountSettlementUpdateParams,
   type LedgerAccountSettlementsPage,
 } from './ledger-account-settlements';

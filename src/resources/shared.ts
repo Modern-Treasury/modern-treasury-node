@@ -891,6 +891,9 @@ export interface LedgerBalances {
   posted_balance: LedgerBalance;
 }
 
+/**
+ * At least one of "amount" or "amount_string" is required.
+ */
 export interface LedgerEntryCreateRequest {
   /**
    * One of `credit`, `debit`. Describes the direction money is flowing in the
