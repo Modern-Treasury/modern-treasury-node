@@ -73,7 +73,6 @@ export class Transactions extends APIResource {
    * @example
    * ```ts
    * const transaction = await client.transactions.create({
-   *   amount: 0,
    *   as_of_date: '2019-12-27',
    *   direction: 'direction',
    *   internal_account_id:
@@ -113,6 +112,12 @@ export interface Transaction {
    * as 1000.
    */
   amount: number;
+
+  /**
+   * The amount of the transaction as a string, preserving full precision for values
+   * that may exceed safe integer limits in some languages.
+   */
+  amount_string: string;
 
   /**
    * The date on which the transaction occurred.
@@ -189,7 +194,7 @@ export interface Transaction {
 
   /**
    * The type of the transaction. Examples could be
-   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+   * `card, `ach`, `wire`, `check`, `rtp`, or `book`.
    */
   type:
     | 'ach'
@@ -203,24 +208,17 @@ export interface Transaction {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin'
@@ -237,8 +235,8 @@ export interface Transaction {
   /**
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
    * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-   * `swift`, `us_bank`, or others.
+   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
+   * `us_bank`, or others.
    */
   vendor_code_type:
     | 'bai2'
@@ -262,9 +260,9 @@ export interface Transaction {
     | 'paxos'
     | 'paypal'
     | 'pnc'
-    | 'signet'
     | 'silvergate'
     | 'swift'
+    | 'turnkey'
     | 'us_bank'
     | 'user'
     | 'western_alliance'
@@ -361,12 +359,6 @@ export interface TransactionUpdateParams {
 
 export interface TransactionCreateParams {
   /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000.
-   */
-  amount: number;
-
-  /**
    * The date on which the transaction occurred.
    */
   as_of_date: string | null;
@@ -390,10 +382,22 @@ export interface TransactionCreateParams {
   /**
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
    * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-   * `swift`, `us_bank`, or others.
+   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
+   * `us_bank`, or others.
    */
   vendor_code_type: string | null;
+
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
+   */
+  amount?: number;
+
+  /**
+   * The transaction amount as a string, preserving full precision for values that
+   * may exceed safe integer limits in some languages.
+   */
+  amount_string?: string;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -408,7 +412,7 @@ export interface TransactionCreateParams {
 
   /**
    * The type of the transaction. Examples could be
-   * `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+   * `card, `ach`, `wire`, `check`, `rtp`, or `book`.
    */
   type?:
     | 'ach'
@@ -422,24 +426,17 @@ export interface TransactionCreateParams {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin'
