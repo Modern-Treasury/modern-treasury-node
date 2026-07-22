@@ -38,8 +38,8 @@ export interface ChildLegalEntity {
   compliance_details: unknown | null;
 
   /**
-   * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
-   * code (e.g. US).
+   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+   * alpha-3 formats.
    */
   country_of_incorporation: string | null;
 
@@ -148,8 +148,8 @@ export interface ChildLegalEntity {
   object: string;
 
   /**
-   * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
-   * codes (e.g. ["US", "CA"]).
+   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+   * codes).
    */
   operating_jurisdictions: Array<string>;
 
@@ -268,8 +268,7 @@ export namespace ChildLegalEntity {
     live_mode: boolean;
 
     /**
-     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
-     * Francisco).
+     * Locality or City.
      */
     locality: string | null;
 
@@ -287,8 +286,7 @@ export namespace ChildLegalEntity {
     primary: boolean | null;
 
     /**
-     * Region or State. This field is free-form; for US states, we recommend a
-     * two-letter code (e.g. CA). Full state names are also accepted.
+     * Region or State.
      */
     region: string | null;
 
@@ -355,8 +353,6 @@ export namespace ChildLegalEntity {
       | 'gb_vat'
       | 'generic_international'
       | 'gr_vat'
-      | 'hk_brn'
-      | 'hk_hkid'
       | 'hn_id'
       | 'hn_rtn'
       | 'hr_oib'
@@ -442,11 +438,6 @@ export namespace ChildLegalEntity {
    * A list of phone numbers in E.164 format.
    */
   export interface PhoneNumber {
-    /**
-     * A phone number in E.164 format. This format is strictly validated: include a
-     * leading + and country code, followed by digits only (no spaces or dashes), e.g.
-     * +12025551234.
-     */
     phone_number?: string;
   }
 
