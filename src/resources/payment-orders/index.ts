@@ -7,16 +7,16 @@ export {
   type PaymentOrderSubtype,
   type PaymentOrderType,
   type PaymentOrderCreateParams,
-  type PaymentOrderUpdateParams,
-  type PaymentOrderListParams,
   type PaymentOrderCreateAsyncParams,
+  type PaymentOrderListParams,
+  type PaymentOrderUpdateParams,
   type PaymentOrdersPage,
 } from './payment-orders';
 export {
   Reversals,
   type Reversal,
+  type ReversalListParams,
   type ReversalCreateParams,
   type ReversalRetrieveParams,
-  type ReversalListParams,
   type ReversalsPage,
 } from './reversals';
