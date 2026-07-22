@@ -33,6 +33,27 @@ export class LedgerAccountSettlements extends APIResource {
   }
 
   /**
+   * Get a list of ledger account settlements.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerAccountSettlement of client.ledgerAccountSettlements.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: LedgerAccountSettlementListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerAccountSettlementsPage, LedgerAccountSettlement> {
+    return this._client.getAPIList('/api/ledger_account_settlements', Page<LedgerAccountSettlement>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Get details on a single ledger account settlement.
    *
    * @example
@@ -60,27 +81,6 @@ export class LedgerAccountSettlements extends APIResource {
     options?: RequestOptions,
   ): APIPromise<LedgerAccountSettlement> {
     return this._client.patch(path`/api/ledger_account_settlements/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of ledger account settlements.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const ledgerAccountSettlement of client.ledgerAccountSettlements.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: LedgerAccountSettlementListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerAccountSettlementsPage, LedgerAccountSettlement> {
-    return this._client.getAPIList('/api/ledger_account_settlements', Page<LedgerAccountSettlement>, {
-      query,
-      ...options,
-    });
   }
 }
 
@@ -219,31 +219,6 @@ export interface LedgerAccountSettlementCreateParams {
   status?: 'pending' | 'posted' | 'drafting' | null;
 }
 
-export interface LedgerAccountSettlementUpdateParams {
-  /**
-   * The description of the ledger account settlement.
-   */
-  description?: string | null;
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * It is set to `false` by default. It should be set to `true` when migrating
-   * existing settlements.
-   */
-  skip_settlement_ledger_transaction?: boolean | null;
-
-  /**
-   * To post a pending ledger account settlement, use `posted`. To archive a pending
-   * ledger transaction, use `archived`.
-   */
-  status?: 'posted' | 'archived';
-}
-
 export interface LedgerAccountSettlementListParams extends PageParams {
   /**
    * If you have specific IDs to retrieve in bulk, you can pass them as query
@@ -281,6 +256,31 @@ export interface LedgerAccountSettlementListParams extends PageParams {
   updated_at?: { [key: string]: string };
 }
 
+export interface LedgerAccountSettlementUpdateParams {
+  /**
+   * The description of the ledger account settlement.
+   */
+  description?: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * It is set to `false` by default. It should be set to `true` when migrating
+   * existing settlements.
+   */
+  skip_settlement_ledger_transaction?: boolean | null;
+
+  /**
+   * To post a pending ledger account settlement, use `posted`. To archive a pending
+   * ledger transaction, use `archived`.
+   */
+  status?: 'posted' | 'archived';
+}
+
 LedgerAccountSettlements.AccountEntries = AccountEntries;
 
 export declare namespace LedgerAccountSettlements {
@@ -288,8 +288,8 @@ export declare namespace LedgerAccountSettlements {
     type LedgerAccountSettlement as LedgerAccountSettlement,
     type LedgerAccountSettlementsPage as LedgerAccountSettlementsPage,
     type LedgerAccountSettlementCreateParams as LedgerAccountSettlementCreateParams,
-    type LedgerAccountSettlementUpdateParams as LedgerAccountSettlementUpdateParams,
     type LedgerAccountSettlementListParams as LedgerAccountSettlementListParams,
+    type LedgerAccountSettlementUpdateParams as LedgerAccountSettlementUpdateParams,
   };
 
   export {
