@@ -9,6 +9,19 @@ import { path } from '../internal/utils/path';
 
 export class ForeignExchangeQuotes extends APIResource {
   /**
+   * list foreign_exchange_quotes
+   */
+  list(
+    query: ForeignExchangeQuoteListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ForeignExchangeQuotesPage, ForeignExchangeQuote> {
+    return this._client.getAPIList('/api/foreign_exchange_quotes', Page<ForeignExchangeQuote>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * create foreign_exchange_quote
    */
   create(body: ForeignExchangeQuoteCreateParams, options?: RequestOptions): APIPromise<ForeignExchangeQuote> {
@@ -20,19 +33,6 @@ export class ForeignExchangeQuotes extends APIResource {
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<ForeignExchangeQuote> {
     return this._client.get(path`/api/foreign_exchange_quotes/${id}`, options);
-  }
-
-  /**
-   * list foreign_exchange_quotes
-   */
-  list(
-    query: ForeignExchangeQuoteListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ForeignExchangeQuotesPage, ForeignExchangeQuote> {
-    return this._client.getAPIList('/api/foreign_exchange_quotes', Page<ForeignExchangeQuote>, {
-      query,
-      ...options,
-    });
   }
 }
 
@@ -92,40 +92,6 @@ export interface ForeignExchangeQuote {
   vendor_id?: string;
 }
 
-export interface ForeignExchangeQuoteCreateParams {
-  /**
-   * The ID for the `InternalAccount` this quote is associated with.
-   */
-  internal_account_id: string;
-
-  /**
-   * Currency to convert the `base_currency` to, often called the "buy" currency.
-   */
-  target_currency: Shared.Currency;
-
-  /**
-   * Amount in the lowest denomination of the `base_currency` to convert, often
-   * called the "sell" amount.
-   */
-  base_amount?: number;
-
-  /**
-   * Currency to convert, often called the "sell" currency.
-   */
-  base_currency?: Shared.Currency;
-
-  /**
-   * The timestamp until when the quoted rate is valid.
-   */
-  effective_at?: string;
-
-  /**
-   * Amount in the lowest denomination of the `target_currency`, often called the
-   * "buy" amount.
-   */
-  target_amount?: number;
-}
-
 export interface ForeignExchangeQuoteListParams extends PageParams {
   /**
    * Currency to convert, often called the "sell" currency.
@@ -165,11 +131,45 @@ export interface ForeignExchangeQuoteListParams extends PageParams {
   target_currency?: string;
 }
 
+export interface ForeignExchangeQuoteCreateParams {
+  /**
+   * The ID for the `InternalAccount` this quote is associated with.
+   */
+  internal_account_id: string;
+
+  /**
+   * Currency to convert the `base_currency` to, often called the "buy" currency.
+   */
+  target_currency: Shared.Currency;
+
+  /**
+   * Amount in the lowest denomination of the `base_currency` to convert, often
+   * called the "sell" amount.
+   */
+  base_amount?: number;
+
+  /**
+   * Currency to convert, often called the "sell" currency.
+   */
+  base_currency?: Shared.Currency;
+
+  /**
+   * The timestamp until when the quoted rate is valid.
+   */
+  effective_at?: string;
+
+  /**
+   * Amount in the lowest denomination of the `target_currency`, often called the
+   * "buy" amount.
+   */
+  target_amount?: number;
+}
+
 export declare namespace ForeignExchangeQuotes {
   export {
     type ForeignExchangeQuote as ForeignExchangeQuote,
     type ForeignExchangeQuotesPage as ForeignExchangeQuotesPage,
-    type ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams,
     type ForeignExchangeQuoteListParams as ForeignExchangeQuoteListParams,
+    type ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams,
   };
 }
