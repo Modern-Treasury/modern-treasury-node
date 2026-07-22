@@ -9,6 +9,27 @@ const client = new ModernTreasury({
 });
 
 describe('resource lineItems', () => {
+  // Prism is broken in this case
+  test.skip('list: only required params', async () => {
+    const responsePromise = client.lineItems.list('itemizable_id', { itemizable_type: 'expected_payments' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Prism is broken in this case
+  test.skip('list: required and optional params', async () => {
+    const response = await client.lineItems.list('itemizable_id', {
+      itemizable_type: 'expected_payments',
+      after_cursor: 'after_cursor',
+      per_page: 0,
+    });
+  });
+
   test('retrieve: only required params', async () => {
     const responsePromise = client.lineItems.retrieve('id', {
       itemizable_type: 'expected_payments',
@@ -53,27 +74,6 @@ describe('resource lineItems', () => {
         foo: 'bar',
         modern: 'treasury',
       },
-    });
-  });
-
-  // Prism is broken in this case
-  test.skip('list: only required params', async () => {
-    const responsePromise = client.lineItems.list('itemizable_id', { itemizable_type: 'expected_payments' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Prism is broken in this case
-  test.skip('list: required and optional params', async () => {
-    const response = await client.lineItems.list('itemizable_id', {
-      itemizable_type: 'expected_payments',
-      after_cursor: 'after_cursor',
-      per_page: 0,
     });
   });
 });
