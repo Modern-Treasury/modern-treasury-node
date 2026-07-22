@@ -520,6 +520,9 @@ export interface LedgerTransactionCreatePartialPostParams {
 }
 
 export namespace LedgerTransactionCreatePartialPostParams {
+  /**
+   * At least one of "amount" or "amount_string" is required.
+   */
   export interface PostedLedgerEntry {
     /**
      * One of `credit`, `debit`. Describes the direction money is flowing in the

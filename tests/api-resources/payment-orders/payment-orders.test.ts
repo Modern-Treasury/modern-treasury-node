@@ -47,7 +47,7 @@ describe('resource paymentOrders', () => {
           file: await toFile(Buffer.from('Example data'), 'README.md'),
           document_type: 'document_type',
           documentable_id: 'documentable_id',
-          documentable_type: 'connections',
+          documentable_type: 'connection',
         },
       ],
       effective_date: '2019-12-27',

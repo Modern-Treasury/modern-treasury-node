@@ -25,7 +25,8 @@ export interface Address {
   live_mode: boolean;
 
   /**
-   * Locality or City.
+   * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+   * Francisco).
    */
   locality: string | null;
 
@@ -37,7 +38,8 @@ export interface Address {
   postal_code: string | null;
 
   /**
-   * Region or State.
+   * Region or State. This field is free-form; for US states, we recommend a
+   * two-letter code (e.g. CA). Full state names are also accepted.
    */
   region: string | null;
 
@@ -55,7 +57,8 @@ export interface AddressRequest {
   line2?: string | null;
 
   /**
-   * Locality or City.
+   * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+   * Francisco).
    */
   locality?: string | null;
 
@@ -65,7 +68,8 @@ export interface AddressRequest {
   postal_code?: string | null;
 
   /**
-   * Region or State.
+   * Region or State. This field is free-form; for US states, we recommend a
+   * two-letter code (e.g. CA). Full state names are also accepted.
    */
   region?: string | null;
 }
@@ -114,8 +118,8 @@ export interface ChildLegalEntityCreate {
   connection_id?: string | null;
 
   /**
-   * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-   * alpha-3 formats.
+   * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+   * code (e.g. US).
    */
   country_of_incorporation?: string | null;
 
@@ -216,8 +220,8 @@ export interface ChildLegalEntityCreate {
   middle_name?: string | null;
 
   /**
-   * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-   * codes).
+   * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+   * codes (e.g. ["US", "CA"]).
    */
   operating_jurisdictions?: Array<string>;
 
@@ -262,6 +266,11 @@ export interface ChildLegalEntityCreate {
    * An individual's suffix.
    */
   suffix?: string | null;
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  terms_of_use?: ChildLegalEntityCreate.TermsOfUse | null;
 
   /**
    * @deprecated Deprecated. Use `third_party_verifications` instead.
@@ -315,6 +324,11 @@ export namespace ChildLegalEntityCreate {
    * A list of phone numbers in E.164 format.
    */
   export interface PhoneNumber {
+    /**
+     * A phone number in E.164 format. This format is strictly validated: include a
+     * leading + and country code, followed by digits only (no spaces or dashes), e.g.
+     * +12025551234.
+     */
     phone_number?: string;
   }
 
@@ -334,6 +348,22 @@ export namespace ChildLegalEntityCreate {
      * Registration or identification number with the regulator.
      */
     registration_number: string;
+  }
+
+  /**
+   * Acceptance of terms of use by the legal entity.
+   */
+  export interface TermsOfUse {
+    /**
+     * The ISO 8601 timestamp indicating when the terms of use were accepted.
+     */
+    accepted_at?: string;
+
+    /**
+     * The IP address from which the terms of use were accepted. Supports both IPv4 and
+     * IPv6 formats.
+     */
+    ip_address?: string;
   }
 }
 
@@ -654,7 +684,10 @@ export interface IdentificationCreateRequest {
     | 'gb_nino'
     | 'gb_utr'
     | 'gb_vat'
+    | 'generic_international'
     | 'gr_vat'
+    | 'hk_brn'
+    | 'hk_hkid'
     | 'hn_id'
     | 'hn_rtn'
     | 'hr_oib'
@@ -683,6 +716,7 @@ export interface IdentificationCreateRequest {
     | 'mx_curp'
     | 'mx_ine'
     | 'mx_rfc'
+    | 'national_id'
     | 'nl_bsn'
     | 'nl_btw'
     | 'nl_rsin'
@@ -868,6 +902,9 @@ export interface LedgerBalances {
   posted_balance: LedgerBalance;
 }
 
+/**
+ * At least one of "amount" or "amount_string" is required.
+ */
 export interface LedgerEntryCreateRequest {
   /**
    * One of `credit`, `debit`. Describes the direction money is flowing in the
@@ -1005,7 +1042,8 @@ export interface LegalEntityAddressCreateRequest {
   line1: string | null;
 
   /**
-   * Locality or City.
+   * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+   * Francisco).
    */
   locality: string | null;
 
@@ -1015,19 +1053,23 @@ export interface LegalEntityAddressCreateRequest {
   postal_code: string | null;
 
   /**
-   * Region or State.
+   * Region or State. This field is free-form; for US states, we recommend a
+   * two-letter code (e.g. CA). Full state names are also accepted.
    */
   region: string | null;
 
   /**
    * The types of this address.
    */
-  address_types?: Array<'business' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'>;
+  address_types?: Array<
+    'business' | 'business_physical' | 'business_registered' | 'mailing' | 'other' | 'po_box' | 'residential'
+  >;
 
   line2?: string | null;
 
   /**
-   * Whether this address is the primary address for the legal entity.
+   * Whether this address is the primary address for the legal entity. Optional; when
+   * omitted it is inferred from the address types.
    */
   primary?: boolean | null;
 }
@@ -1108,7 +1150,7 @@ export interface ThirdPartyVerification {
   /**
    * The vendor that performed the verification, e.g. `persona`.
    */
-  vendor: 'persona' | 'middesk' | 'alloy' | 'sumsub' | 'veriff';
+  vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff';
 
   /**
    * The identification of the third party verification in `vendor`'s system.
