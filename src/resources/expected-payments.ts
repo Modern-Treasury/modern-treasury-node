@@ -242,8 +242,7 @@ export interface ExpectedPayment {
   transaction_line_item_id: string | null;
 
   /**
-   * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-   * sepa, signet, wire.
+   * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
    */
   type: ExpectedPaymentType | null;
 
@@ -251,8 +250,7 @@ export interface ExpectedPayment {
 }
 
 /**
- * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
- * sepa, signet, wire.
+ * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
  */
 export type ExpectedPaymentType =
   | 'ach'
@@ -266,24 +264,17 @@ export type ExpectedPaymentType =
   | 'dk_nets'
   | 'eft'
   | 'gb_fps'
-  | 'hu_ics'
-  | 'interac'
   | 'masav'
   | 'mx_ccen'
   | 'neft'
   | 'nics'
   | 'nz_becs'
   | 'pl_elixir'
-  | 'provxchange'
-  | 'ro_sent'
   | 'rtp'
   | 'se_bankgirot'
-  | 'sen'
   | 'sepa'
   | 'sg_giro'
   | 'sic'
-  | 'signet'
-  | 'sknbi'
   | 'stablecoin'
   | 'wire'
   | 'zengin'
@@ -339,8 +330,7 @@ export interface ReconciliationRule {
   date_upper_bound?: string | null;
 
   /**
-   * One of ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-   * sepa, signet wire
+   * One of ach, au_becs, bacs, book, check, eft, rtp, sepa, wire
    */
   type?:
     | 'ach'
@@ -354,24 +344,17 @@ export interface ReconciliationRule {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin'
@@ -419,8 +402,7 @@ export interface ExpectedPaymentListParams extends PageParams {
   status?: 'archived' | 'partially_reconciled' | 'reconciled' | 'unreconciled';
 
   /**
-   * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
-   * sepa, signet, wire
+   * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire
    */
   type?:
     | 'ach'
@@ -434,24 +416,17 @@ export interface ExpectedPaymentListParams extends PageParams {
     | 'dk_nets'
     | 'eft'
     | 'gb_fps'
-    | 'hu_ics'
-    | 'interac'
     | 'masav'
     | 'mx_ccen'
     | 'neft'
     | 'nics'
     | 'nz_becs'
     | 'pl_elixir'
-    | 'provxchange'
-    | 'ro_sent'
     | 'rtp'
     | 'se_bankgirot'
-    | 'sen'
     | 'sepa'
     | 'sg_giro'
     | 'sic'
-    | 'signet'
-    | 'sknbi'
     | 'stablecoin'
     | 'wire'
     | 'zengin';
@@ -600,8 +575,7 @@ export interface ExpectedPaymentCreateParams {
   statement_descriptor?: string | null;
 
   /**
-   * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-   * sepa, signet, wire.
+   * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
    */
   type?: ExpectedPaymentType | null;
 }
@@ -754,8 +728,7 @@ export interface ExpectedPaymentUpdateParams {
   status?: 'reconciled' | null;
 
   /**
-   * One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-   * sepa, signet, wire.
+   * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
    */
   type?: ExpectedPaymentType | null;
 }
