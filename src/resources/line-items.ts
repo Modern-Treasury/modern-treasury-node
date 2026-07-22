@@ -8,6 +8,32 @@ import { path } from '../internal/utils/path';
 
 export class LineItems extends APIResource {
   /**
+   * Get a list of line items
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const lineItem of client.lineItems.list(
+   *   'itemizable_id',
+   *   { itemizable_type: 'expected_payments' },
+   * )) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    itemizableID: string,
+    params: LineItemListParams,
+    options?: RequestOptions,
+  ): PagePromise<LineItemsPage, LineItem> {
+    const { itemizable_type, ...query } = params;
+    return this._client.getAPIList(path`/api/${itemizable_type}/${itemizableID}/line_items`, Page<LineItem>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Get a single line item
    *
    * @example
@@ -38,32 +64,6 @@ export class LineItems extends APIResource {
     const { itemizable_type, itemizable_id, ...body } = params;
     return this._client.patch(path`/api/${itemizable_type}/${itemizable_id}/line_items/${id}`, {
       body,
-      ...options,
-    });
-  }
-
-  /**
-   * Get a list of line items
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const lineItem of client.lineItems.list(
-   *   'itemizable_id',
-   *   { itemizable_type: 'expected_payments' },
-   * )) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    itemizableID: string,
-    params: LineItemListParams,
-    options?: RequestOptions,
-  ): PagePromise<LineItemsPage, LineItem> {
-    const { itemizable_type, ...query } = params;
-    return this._client.getAPIList(path`/api/${itemizable_type}/${itemizableID}/line_items`, Page<LineItem>, {
-      query,
       ...options,
     });
   }
@@ -152,6 +152,13 @@ export namespace LineItem {
   }
 }
 
+export interface LineItemListParams extends PageParams {
+  /**
+   * Path param: One of `payment_orders` or `expected_payments`.
+   */
+  itemizable_type: 'expected_payments' | 'payment_orders';
+}
+
 export interface LineItemRetrieveParams {
   /**
    * One of `payment_orders` or `expected_payments`.
@@ -182,19 +189,12 @@ export interface LineItemUpdateParams {
   metadata?: { [key: string]: string };
 }
 
-export interface LineItemListParams extends PageParams {
-  /**
-   * Path param: One of `payment_orders` or `expected_payments`.
-   */
-  itemizable_type: 'expected_payments' | 'payment_orders';
-}
-
 export declare namespace LineItems {
   export {
     type LineItem as LineItem,
     type LineItemsPage as LineItemsPage,
+    type LineItemListParams as LineItemListParams,
     type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
-    type LineItemListParams as LineItemListParams,
   };
 }
