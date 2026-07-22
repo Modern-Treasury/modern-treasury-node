@@ -42,12 +42,7 @@ describe('resource internalAccounts', () => {
   });
 
   test('create: only required params', async () => {
-    const responsePromise = client.internalAccounts.create({
-      connection_id: 'connection_id',
-      currency: 'USD',
-      name: 'name',
-      party_name: 'party_name',
-    });
+    const responsePromise = client.internalAccounts.create({ currency: 'USD', name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -59,10 +54,8 @@ describe('resource internalAccounts', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.internalAccounts.create({
-      connection_id: 'connection_id',
       currency: 'USD',
       name: 'name',
-      party_name: 'party_name',
       account_capabilities: [
         {
           id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -77,6 +70,7 @@ describe('resource internalAccounts', () => {
         },
       ],
       account_type: 'checking',
+      connection_id: 'connection_id',
       counterparty_id: 'counterparty_id',
       debitable: true,
       external_id: 'external_id',
@@ -91,6 +85,8 @@ describe('resource internalAccounts', () => {
         region: 'region',
         line2: 'line2',
       },
+      party_name: 'party_name',
+      requested_account_number_types: ['ethereum_address'],
       vendor_attributes: {
         key: 'value',
         foo: 'bar',
