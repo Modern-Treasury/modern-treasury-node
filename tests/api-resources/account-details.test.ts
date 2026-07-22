@@ -9,6 +9,25 @@ const client = new ModernTreasury({
 });
 
 describe('resource accountDetails', () => {
+  test('list: only required params', async () => {
+    const responsePromise = client.accountDetails.list('account_id', { accounts_type: 'external_accounts' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await client.accountDetails.list('account_id', {
+      accounts_type: 'external_accounts',
+      after_cursor: 'after_cursor',
+      per_page: 0,
+    });
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.accountDetails.create('account_id', {
       accounts_type: 'external_accounts',
@@ -49,25 +68,6 @@ describe('resource accountDetails', () => {
     const response = await client.accountDetails.retrieve('id', {
       accounts_type: 'external_accounts',
       account_id: 'account_id',
-    });
-  });
-
-  test('list: only required params', async () => {
-    const responsePromise = client.accountDetails.list('account_id', { accounts_type: 'external_accounts' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await client.accountDetails.list('account_id', {
-      accounts_type: 'external_accounts',
-      after_cursor: 'after_cursor',
-      per_page: 0,
     });
   });
 

@@ -8,21 +8,21 @@ import { path } from '../internal/utils/path';
 
 export class JournalEntries extends APIResource {
   /**
-   * Retrieve a specific journal entry
+   * Retrieve a list of journal entries
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.get(path`/api/journal_entries/${id}`, {
+  list(query: JournalEntryListParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.get('/api/journal_entries', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
   /**
-   * Retrieve a list of journal entries
+   * Retrieve a specific journal entry
    */
-  list(query: JournalEntryListParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/api/journal_entries', {
-      query,
+  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.get(path`/api/journal_entries/${id}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
