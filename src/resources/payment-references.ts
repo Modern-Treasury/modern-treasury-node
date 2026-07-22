@@ -8,13 +8,6 @@ import { path } from '../internal/utils/path';
 
 export class PaymentReferences extends APIResource {
   /**
-   * get payment_reference
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentReference> {
-    return this._client.get(path`/api/payment_references/${id}`, options);
-  }
-
-  /**
    * list payment_references
    */
   list(
@@ -22,6 +15,13 @@ export class PaymentReferences extends APIResource {
     options?: RequestOptions,
   ): PagePromise<PaymentReferencesPage, PaymentReference> {
     return this._client.getAPIList('/api/payment_references', Page<PaymentReference>, { query, ...options });
+  }
+
+  /**
+   * get payment_reference
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<PaymentReference> {
+    return this._client.get(path`/api/payment_references/${id}`, options);
   }
 
   /**
@@ -129,6 +129,8 @@ export interface PaymentReference {
     | 'svb_payment_id'
     | 'swift_mir'
     | 'swift_uetr'
+    | 'turnkey_activity_id'
+    | 'turnkey_send_transaction_status_id'
     | 'umb_product_partner_account_number'
     | 'usbank_payment_application_reference_id'
     | 'usbank_payment_id'

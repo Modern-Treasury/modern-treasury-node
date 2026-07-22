@@ -9,37 +9,6 @@ import { path } from '../../internal/utils/path';
 
 export class LineItems extends APIResource {
   /**
-   * create transaction line items
-   *
-   * @example
-   * ```ts
-   * const transactionLineItem =
-   *   await client.transactions.lineItems.create({
-   *     amount: 0,
-   *     expected_payment_id:
-   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *   });
-   * ```
-   */
-  create(body: LineItemCreateParams, options?: RequestOptions): APIPromise<TransactionLineItem> {
-    return this._client.post('/api/transaction_line_items', { body, ...options });
-  }
-
-  /**
-   * get transaction line item
-   *
-   * @example
-   * ```ts
-   * const transactionLineItem =
-   *   await client.transactions.lineItems.retrieve('id');
-   * ```
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<TransactionLineItem> {
-    return this._client.get(path`/api/transaction_line_items/${id}`, options);
-  }
-
-  /**
    * list transaction_line_items
    *
    * @example
@@ -58,6 +27,37 @@ export class LineItems extends APIResource {
       query,
       ...options,
     });
+  }
+
+  /**
+   * get transaction line item
+   *
+   * @example
+   * ```ts
+   * const transactionLineItem =
+   *   await client.transactions.lineItems.retrieve('id');
+   * ```
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<TransactionLineItem> {
+    return this._client.get(path`/api/transaction_line_items/${id}`, options);
+  }
+
+  /**
+   * create transaction line items
+   *
+   * @example
+   * ```ts
+   * const transactionLineItem =
+   *   await client.transactions.lineItems.create({
+   *     amount: 0,
+   *     expected_payment_id:
+   *       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *     transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   });
+   * ```
+   */
+  create(body: LineItemCreateParams, options?: RequestOptions): APIPromise<TransactionLineItem> {
+    return this._client.post('/api/transaction_line_items', { body, ...options });
   }
 
   /**
@@ -161,6 +161,14 @@ export interface TransactionLineItem {
   updated_at: string;
 }
 
+export interface LineItemListParams extends PageParams {
+  id?: { [key: string]: string };
+
+  transaction_id?: string;
+
+  type?: 'originating' | 'receiving' | null;
+}
+
 export interface LineItemCreateParams {
   /**
    * If a matching object exists in Modern Treasury, `amount` will be populated.
@@ -179,19 +187,11 @@ export interface LineItemCreateParams {
   transaction_id: string;
 }
 
-export interface LineItemListParams extends PageParams {
-  id?: { [key: string]: string };
-
-  transaction_id?: string;
-
-  type?: 'originating' | 'receiving' | null;
-}
-
 export declare namespace LineItems {
   export {
     type TransactionLineItem as TransactionLineItem,
     type TransactionLineItemsPage as TransactionLineItemsPage,
-    type LineItemCreateParams as LineItemCreateParams,
     type LineItemListParams as LineItemListParams,
+    type LineItemCreateParams as LineItemCreateParams,
   };
 }

@@ -20,23 +20,21 @@ export class Transactions extends APIResource {
   lineItems: LineItemsAPI.LineItems = new LineItemsAPI.LineItems(this._client);
 
   /**
-   * create transaction
+   * Get a list of all transactions.
    *
    * @example
    * ```ts
-   * const transaction = await client.transactions.create({
-   *   amount: 0,
-   *   as_of_date: '2019-12-27',
-   *   direction: 'direction',
-   *   internal_account_id:
-   *     '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *   vendor_code: 'vendor_code',
-   *   vendor_code_type: 'vendor_code_type',
-   * });
+   * // Automatically fetches more pages as needed.
+   * for await (const transaction of client.transactions.list()) {
+   *   // ...
+   * }
    * ```
    */
-  create(body: TransactionCreateParams, options?: RequestOptions): APIPromise<Transaction> {
-    return this._client.post('/api/transactions', { body, ...options });
+  list(
+    query: TransactionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TransactionsPage, Transaction> {
+    return this._client.getAPIList('/api/transactions', Page<Transaction>, { query, ...options });
   }
 
   /**
@@ -70,21 +68,22 @@ export class Transactions extends APIResource {
   }
 
   /**
-   * Get a list of all transactions.
+   * create transaction
    *
    * @example
    * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const transaction of client.transactions.list()) {
-   *   // ...
-   * }
+   * const transaction = await client.transactions.create({
+   *   as_of_date: '2019-12-27',
+   *   direction: 'direction',
+   *   internal_account_id:
+   *     '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   vendor_code: 'vendor_code',
+   *   vendor_code_type: 'vendor_code_type',
+   * });
    * ```
    */
-  list(
-    query: TransactionListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TransactionsPage, Transaction> {
-    return this._client.getAPIList('/api/transactions', Page<Transaction>, { query, ...options });
+  create(body: TransactionCreateParams, options?: RequestOptions): APIPromise<Transaction> {
+    return this._client.post('/api/transactions', { body, ...options });
   }
 
   /**
@@ -113,6 +112,12 @@ export interface Transaction {
    * as 1000.
    */
   amount: number;
+
+  /**
+   * The amount of the transaction as a string, preserving full precision for values
+   * that may exceed safe integer limits in some languages.
+   */
+  amount_string: string;
 
   /**
    * The date on which the transaction occurred.
@@ -257,6 +262,7 @@ export interface Transaction {
     | 'pnc'
     | 'silvergate'
     | 'swift'
+    | 'turnkey'
     | 'us_bank'
     | 'user'
     | 'western_alliance'
@@ -290,13 +296,68 @@ export interface Transaction {
   vendor_description?: string | null;
 }
 
-export interface TransactionCreateParams {
+export interface TransactionListParams extends PageParams {
   /**
-   * Value in specified currency's smallest unit. e.g. $10 would be represented
-   * as 1000.
+   * Filters transactions with an `as_of_date` starting on or before the specified
+   * date (YYYY-MM-DD).
    */
-  amount: number;
+  as_of_date_end?: string;
 
+  /**
+   * Filters transactions with an `as_of_date` starting on or after the specified
+   * date (YYYY-MM-DD).
+   */
+  as_of_date_start?: string;
+
+  counterparty_id?: string;
+
+  /**
+   * Filters for transactions including the queried string in the description.
+   */
+  description?: string;
+
+  direction?: string;
+
+  /**
+   * Specify `internal_account_id` if you wish to see transactions to/from a specific
+   * account.
+   */
+  internal_account_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  payment_type?: string;
+
+  /**
+   * Either `true` or `false`.
+   */
+  posted?: boolean;
+
+  transactable_type?: string;
+
+  /**
+   * Filters for transactions including the queried vendor id (an identifier given to
+   * transactions by the bank).
+   */
+  vendor_id?: string;
+
+  virtual_account_id?: string;
+}
+
+export interface TransactionUpdateParams {
+  /**
+   * Additional data in the form of key-value pairs. Pairs can be removed by passing
+   * an empty string or `null` as the value.
+   */
+  metadata?: { [key: string]: string };
+}
+
+export interface TransactionCreateParams {
   /**
    * The date on which the transaction occurred.
    */
@@ -325,6 +386,18 @@ export interface TransactionCreateParams {
    * `us_bank`, or others.
    */
   vendor_code_type: string | null;
+
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented
+   * as 1000.
+   */
+  amount?: number;
+
+  /**
+   * The transaction amount as a string, preserving full precision for values that
+   * may exceed safe integer limits in some languages.
+   */
+  amount_string?: string;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -382,83 +455,22 @@ export interface TransactionCreateParams {
   vendor_description?: string | null;
 }
 
-export interface TransactionUpdateParams {
-  /**
-   * Additional data in the form of key-value pairs. Pairs can be removed by passing
-   * an empty string or `null` as the value.
-   */
-  metadata?: { [key: string]: string };
-}
-
-export interface TransactionListParams extends PageParams {
-  /**
-   * Filters transactions with an `as_of_date` starting on or before the specified
-   * date (YYYY-MM-DD).
-   */
-  as_of_date_end?: string;
-
-  /**
-   * Filters transactions with an `as_of_date` starting on or after the specified
-   * date (YYYY-MM-DD).
-   */
-  as_of_date_start?: string;
-
-  counterparty_id?: string;
-
-  /**
-   * Filters for transactions including the queried string in the description.
-   */
-  description?: string;
-
-  direction?: string;
-
-  /**
-   * Specify `internal_account_id` if you wish to see transactions to/from a specific
-   * account.
-   */
-  internal_account_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  payment_type?: string;
-
-  /**
-   * Either `true` or `false`.
-   */
-  posted?: boolean;
-
-  transactable_type?: string;
-
-  /**
-   * Filters for transactions including the queried vendor id (an identifier given to
-   * transactions by the bank).
-   */
-  vendor_id?: string;
-
-  virtual_account_id?: string;
-}
-
 Transactions.LineItems = LineItems;
 
 export declare namespace Transactions {
   export {
     type Transaction as Transaction,
     type TransactionsPage as TransactionsPage,
-    type TransactionCreateParams as TransactionCreateParams,
-    type TransactionUpdateParams as TransactionUpdateParams,
     type TransactionListParams as TransactionListParams,
+    type TransactionUpdateParams as TransactionUpdateParams,
+    type TransactionCreateParams as TransactionCreateParams,
   };
 
   export {
     LineItems as LineItems,
     type TransactionLineItem as TransactionLineItem,
     type TransactionLineItemsPage as TransactionLineItemsPage,
-    type LineItemCreateParams as LineItemCreateParams,
     type LineItemListParams as LineItemListParams,
+    type LineItemCreateParams as LineItemCreateParams,
   };
 }

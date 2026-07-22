@@ -187,7 +187,6 @@ import {
   LegalEntityCreateParams,
   LegalEntityListParams,
   LegalEntityUpdateParams,
-  LegalEntityUpdateStatusParams,
   WealthAndEmploymentDetails,
 } from './resources/legal-entities';
 import {
@@ -1195,10 +1194,10 @@ export declare namespace ModernTreasury {
     type Counterparty as Counterparty,
     type CounterpartyCollectAccountResponse as CounterpartyCollectAccountResponse,
     type CounterpartiesPage as CounterpartiesPage,
+    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams,
+    type CounterpartyListParams as CounterpartyListParams,
     type CounterpartyCreateParams as CounterpartyCreateParams,
     type CounterpartyUpdateParams as CounterpartyUpdateParams,
-    type CounterpartyListParams as CounterpartyListParams,
-    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams,
   };
 
   export {
@@ -1214,9 +1213,9 @@ export declare namespace ModernTreasury {
     type ExpectedPaymentType as ExpectedPaymentType,
     type ReconciliationRule as ReconciliationRule,
     type ExpectedPaymentsPage as ExpectedPaymentsPage,
+    type ExpectedPaymentListParams as ExpectedPaymentListParams,
     type ExpectedPaymentCreateParams as ExpectedPaymentCreateParams,
     type ExpectedPaymentUpdateParams as ExpectedPaymentUpdateParams,
-    type ExpectedPaymentListParams as ExpectedPaymentListParams,
   };
 
   export {
@@ -1226,18 +1225,18 @@ export declare namespace ModernTreasury {
     type ExternalAccountVerifyResponse as ExternalAccountVerifyResponse,
     type ExternalAccountsPage as ExternalAccountsPage,
     type ExternalAccountCreateParams as ExternalAccountCreateParams,
-    type ExternalAccountUpdateParams as ExternalAccountUpdateParams,
-    type ExternalAccountListParams as ExternalAccountListParams,
-    type ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
     type ExternalAccountVerifyParams as ExternalAccountVerifyParams,
+    type ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
+    type ExternalAccountListParams as ExternalAccountListParams,
+    type ExternalAccountUpdateParams as ExternalAccountUpdateParams,
   };
 
   export {
     IncomingPaymentDetails as IncomingPaymentDetails,
     type IncomingPaymentDetail as IncomingPaymentDetail,
     type IncomingPaymentDetailsPage as IncomingPaymentDetailsPage,
-    type IncomingPaymentDetailUpdateParams as IncomingPaymentDetailUpdateParams,
     type IncomingPaymentDetailListParams as IncomingPaymentDetailListParams,
+    type IncomingPaymentDetailUpdateParams as IncomingPaymentDetailUpdateParams,
     type IncomingPaymentDetailCreateAsyncParams as IncomingPaymentDetailCreateAsyncParams,
   };
 
@@ -1245,9 +1244,9 @@ export declare namespace ModernTreasury {
     Invoices as Invoices,
     type Invoice as Invoice,
     type InvoicesPage as InvoicesPage,
+    type InvoiceListParams as InvoiceListParams,
     type InvoiceCreateParams as InvoiceCreateParams,
     type InvoiceUpdateParams as InvoiceUpdateParams,
-    type InvoiceListParams as InvoiceListParams,
     type InvoiceAddPaymentOrderParams as InvoiceAddPaymentOrderParams,
   };
 
@@ -1263,18 +1262,18 @@ export declare namespace ModernTreasury {
     AccountCollectionFlows as AccountCollectionFlows,
     type AccountCollectionFlow as AccountCollectionFlow,
     type AccountCollectionFlowsPage as AccountCollectionFlowsPage,
+    type AccountCollectionFlowListParams as AccountCollectionFlowListParams,
     type AccountCollectionFlowCreateParams as AccountCollectionFlowCreateParams,
     type AccountCollectionFlowUpdateParams as AccountCollectionFlowUpdateParams,
-    type AccountCollectionFlowListParams as AccountCollectionFlowListParams,
   };
 
   export {
     AccountDetails as AccountDetails,
     type AccountDetail as AccountDetail,
     type AccountDetailsPage as AccountDetailsPage,
+    type AccountDetailListParams as AccountDetailListParams,
     type AccountDetailCreateParams as AccountDetailCreateParams,
     type AccountDetailRetrieveParams as AccountDetailRetrieveParams,
-    type AccountDetailListParams as AccountDetailListParams,
     type AccountDetailDeleteParams as AccountDetailDeleteParams,
   };
 
@@ -1282,9 +1281,9 @@ export declare namespace ModernTreasury {
     RoutingDetails as RoutingDetails,
     type RoutingDetail as RoutingDetail,
     type RoutingDetailsPage as RoutingDetailsPage,
+    type RoutingDetailListParams as RoutingDetailListParams,
     type RoutingDetailCreateParams as RoutingDetailCreateParams,
     type RoutingDetailRetrieveParams as RoutingDetailRetrieveParams,
-    type RoutingDetailListParams as RoutingDetailListParams,
     type RoutingDetailDeleteParams as RoutingDetailDeleteParams,
   };
 
@@ -1293,9 +1292,9 @@ export declare namespace ModernTreasury {
     type InternalAccount as InternalAccount,
     type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
     type InternalAccountsPage as InternalAccountsPage,
+    type InternalAccountListParams as InternalAccountListParams,
     type InternalAccountCreateParams as InternalAccountCreateParams,
     type InternalAccountUpdateParams as InternalAccountUpdateParams,
-    type InternalAccountListParams as InternalAccountListParams,
     type InternalAccountUpdateAccountCapabilityParams as InternalAccountUpdateAccountCapabilityParams,
   };
 
@@ -1303,22 +1302,22 @@ export declare namespace ModernTreasury {
     Ledgers as Ledgers,
     type Ledger as Ledger,
     type LedgersPage as LedgersPage,
+    type LedgerListParams as LedgerListParams,
     type LedgerCreateParams as LedgerCreateParams,
     type LedgerUpdateParams as LedgerUpdateParams,
-    type LedgerListParams as LedgerListParams,
   };
 
   export {
     LedgerAccountCategories as LedgerAccountCategories,
     type LedgerAccountCategory as LedgerAccountCategory,
     type LedgerAccountCategoriesPage as LedgerAccountCategoriesPage,
+    type LedgerAccountCategoryListParams as LedgerAccountCategoryListParams,
     type LedgerAccountCategoryCreateParams as LedgerAccountCategoryCreateParams,
     type LedgerAccountCategoryRetrieveParams as LedgerAccountCategoryRetrieveParams,
     type LedgerAccountCategoryUpdateParams as LedgerAccountCategoryUpdateParams,
-    type LedgerAccountCategoryListParams as LedgerAccountCategoryListParams,
     type LedgerAccountCategoryAddLedgerAccountParams as LedgerAccountCategoryAddLedgerAccountParams,
-    type LedgerAccountCategoryAddNestedCategoryParams as LedgerAccountCategoryAddNestedCategoryParams,
     type LedgerAccountCategoryRemoveLedgerAccountParams as LedgerAccountCategoryRemoveLedgerAccountParams,
+    type LedgerAccountCategoryAddNestedCategoryParams as LedgerAccountCategoryAddNestedCategoryParams,
     type LedgerAccountCategoryRemoveNestedCategoryParams as LedgerAccountCategoryRemoveNestedCategoryParams,
   };
 
@@ -1326,10 +1325,10 @@ export declare namespace ModernTreasury {
     LedgerAccounts as LedgerAccounts,
     type LedgerAccount as LedgerAccount,
     type LedgerAccountsPage as LedgerAccountsPage,
+    type LedgerAccountListParams as LedgerAccountListParams,
     type LedgerAccountCreateParams as LedgerAccountCreateParams,
     type LedgerAccountRetrieveParams as LedgerAccountRetrieveParams,
     type LedgerAccountUpdateParams as LedgerAccountUpdateParams,
-    type LedgerAccountListParams as LedgerAccountListParams,
   };
 
   export {
@@ -1337,8 +1336,8 @@ export declare namespace ModernTreasury {
     type LedgerAccountBalanceMonitor as LedgerAccountBalanceMonitor,
     type LedgerAccountBalanceMonitorsPage as LedgerAccountBalanceMonitorsPage,
     type LedgerAccountBalanceMonitorCreateParams as LedgerAccountBalanceMonitorCreateParams,
-    type LedgerAccountBalanceMonitorUpdateParams as LedgerAccountBalanceMonitorUpdateParams,
     type LedgerAccountBalanceMonitorListParams as LedgerAccountBalanceMonitorListParams,
+    type LedgerAccountBalanceMonitorUpdateParams as LedgerAccountBalanceMonitorUpdateParams,
   };
 
   export {
@@ -1352,38 +1351,38 @@ export declare namespace ModernTreasury {
     LedgerEntries as LedgerEntries,
     type LedgerEntry as LedgerEntry,
     type LedgerEntriesPage as LedgerEntriesPage,
+    type LedgerEntryListParams as LedgerEntryListParams,
     type LedgerEntryRetrieveParams as LedgerEntryRetrieveParams,
     type LedgerEntryUpdateParams as LedgerEntryUpdateParams,
-    type LedgerEntryListParams as LedgerEntryListParams,
   };
 
   export {
     LedgerTransactions as LedgerTransactions,
     type LedgerTransaction as LedgerTransaction,
     type LedgerTransactionsPage as LedgerTransactionsPage,
+    type LedgerTransactionListParams as LedgerTransactionListParams,
     type LedgerTransactionCreateParams as LedgerTransactionCreateParams,
     type LedgerTransactionUpdateParams as LedgerTransactionUpdateParams,
-    type LedgerTransactionListParams as LedgerTransactionListParams,
-    type LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
     type LedgerTransactionCreateReversalParams as LedgerTransactionCreateReversalParams,
+    type LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
   };
 
   export {
     LineItems as LineItems,
     type LineItem as LineItem,
     type LineItemsPage as LineItemsPage,
+    type LineItemListParams as LineItemListParams,
     type LineItemRetrieveParams as LineItemRetrieveParams,
     type LineItemUpdateParams as LineItemUpdateParams,
-    type LineItemListParams as LineItemListParams,
   };
 
   export {
     PaymentFlows as PaymentFlows,
     type PaymentFlow as PaymentFlow,
     type PaymentFlowsPage as PaymentFlowsPage,
+    type PaymentFlowListParams as PaymentFlowListParams,
     type PaymentFlowCreateParams as PaymentFlowCreateParams,
     type PaymentFlowUpdateParams as PaymentFlowUpdateParams,
-    type PaymentFlowListParams as PaymentFlowListParams,
   };
 
   export {
@@ -1394,9 +1393,9 @@ export declare namespace ModernTreasury {
     type PaymentOrderType as PaymentOrderType,
     type PaymentOrdersPage as PaymentOrdersPage,
     type PaymentOrderCreateParams as PaymentOrderCreateParams,
-    type PaymentOrderUpdateParams as PaymentOrderUpdateParams,
-    type PaymentOrderListParams as PaymentOrderListParams,
     type PaymentOrderCreateAsyncParams as PaymentOrderCreateAsyncParams,
+    type PaymentOrderListParams as PaymentOrderListParams,
+    type PaymentOrderUpdateParams as PaymentOrderUpdateParams,
   };
 
   export {
@@ -1410,17 +1409,17 @@ export declare namespace ModernTreasury {
     Returns as Returns,
     type ReturnObject as ReturnObject,
     type ReturnObjectsPage as ReturnObjectsPage,
-    type ReturnCreateParams as ReturnCreateParams,
     type ReturnListParams as ReturnListParams,
+    type ReturnCreateParams as ReturnCreateParams,
   };
 
   export {
     Transactions as Transactions,
     type Transaction as Transaction,
     type TransactionsPage as TransactionsPage,
-    type TransactionCreateParams as TransactionCreateParams,
-    type TransactionUpdateParams as TransactionUpdateParams,
     type TransactionListParams as TransactionListParams,
+    type TransactionUpdateParams as TransactionUpdateParams,
+    type TransactionCreateParams as TransactionCreateParams,
   };
 
   export {
@@ -1433,17 +1432,17 @@ export declare namespace ModernTreasury {
     VirtualAccounts as VirtualAccounts,
     type VirtualAccount as VirtualAccount,
     type VirtualAccountsPage as VirtualAccountsPage,
+    type VirtualAccountListParams as VirtualAccountListParams,
     type VirtualAccountCreateParams as VirtualAccountCreateParams,
     type VirtualAccountUpdateParams as VirtualAccountUpdateParams,
-    type VirtualAccountListParams as VirtualAccountListParams,
   };
 
   export {
     BulkRequests as BulkRequests,
     type BulkRequest as BulkRequest,
     type BulkRequestsPage as BulkRequestsPage,
-    type BulkRequestCreateParams as BulkRequestCreateParams,
     type BulkRequestListParams as BulkRequestListParams,
+    type BulkRequestCreateParams as BulkRequestCreateParams,
   };
 
   export {
@@ -1458,25 +1457,25 @@ export declare namespace ModernTreasury {
     type LedgerAccountSettlement as LedgerAccountSettlement,
     type LedgerAccountSettlementsPage as LedgerAccountSettlementsPage,
     type LedgerAccountSettlementCreateParams as LedgerAccountSettlementCreateParams,
-    type LedgerAccountSettlementUpdateParams as LedgerAccountSettlementUpdateParams,
     type LedgerAccountSettlementListParams as LedgerAccountSettlementListParams,
+    type LedgerAccountSettlementUpdateParams as LedgerAccountSettlementUpdateParams,
   };
 
   export {
     ForeignExchangeQuotes as ForeignExchangeQuotes,
     type ForeignExchangeQuote as ForeignExchangeQuote,
     type ForeignExchangeQuotesPage as ForeignExchangeQuotesPage,
-    type ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams,
     type ForeignExchangeQuoteListParams as ForeignExchangeQuoteListParams,
+    type ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams,
   };
 
   export {
     ConnectionLegalEntities as ConnectionLegalEntities,
     type ConnectionLegalEntity as ConnectionLegalEntity,
     type ConnectionLegalEntitiesPage as ConnectionLegalEntitiesPage,
+    type ConnectionLegalEntityListParams as ConnectionLegalEntityListParams,
     type ConnectionLegalEntityCreateParams as ConnectionLegalEntityCreateParams,
     type ConnectionLegalEntityUpdateParams as ConnectionLegalEntityUpdateParams,
-    type ConnectionLegalEntityListParams as ConnectionLegalEntityListParams,
   };
 
   export {
@@ -1485,10 +1484,9 @@ export declare namespace ModernTreasury {
     type LegalEntity as LegalEntity,
     type WealthAndEmploymentDetails as WealthAndEmploymentDetails,
     type LegalEntitiesPage as LegalEntitiesPage,
+    type LegalEntityListParams as LegalEntityListParams,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
-    type LegalEntityListParams as LegalEntityListParams,
-    type LegalEntityUpdateStatusParams as LegalEntityUpdateStatusParams,
   };
 
   export {
@@ -1504,17 +1502,17 @@ export declare namespace ModernTreasury {
     type PaymentActionUpdateResponse as PaymentActionUpdateResponse,
     type PaymentActionListResponse as PaymentActionListResponse,
     type PaymentActionListResponsesPage as PaymentActionListResponsesPage,
+    type PaymentActionListParams as PaymentActionListParams,
     type PaymentActionCreateParams as PaymentActionCreateParams,
     type PaymentActionUpdateParams as PaymentActionUpdateParams,
-    type PaymentActionListParams as PaymentActionListParams,
   };
 
   export { JournalEntries as JournalEntries, type JournalEntryListParams as JournalEntryListParams };
 
   export {
     JournalReports as JournalReports,
-    type JournalReportUpdateParams as JournalReportUpdateParams,
     type JournalReportListParams as JournalReportListParams,
+    type JournalReportUpdateParams as JournalReportUpdateParams,
   };
 
   export {
@@ -1524,9 +1522,9 @@ export declare namespace ModernTreasury {
     type HoldUpdateResponse as HoldUpdateResponse,
     type HoldListResponse as HoldListResponse,
     type HoldListResponsesPage as HoldListResponsesPage,
+    type HoldListParams as HoldListParams,
     type HoldCreateParams as HoldCreateParams,
     type HoldUpdateParams as HoldUpdateParams,
-    type HoldListParams as HoldListParams,
   };
 
   export type AccountsType = API.AccountsType;

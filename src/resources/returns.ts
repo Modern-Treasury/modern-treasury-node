@@ -9,6 +9,16 @@ import { path } from '../internal/utils/path';
 
 export class Returns extends APIResource {
   /**
+   * Get a list of returns.
+   */
+  list(
+    query: ReturnListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ReturnObjectsPage, ReturnObject> {
+    return this._client.getAPIList('/api/returns', Page<ReturnObject>, { query, ...options });
+  }
+
+  /**
    * Create a return.
    */
   create(body: ReturnCreateParams, options?: RequestOptions): APIPromise<ReturnObject> {
@@ -20,16 +30,6 @@ export class Returns extends APIResource {
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<ReturnObject> {
     return this._client.get(path`/api/returns/${id}`, options);
-  }
-
-  /**
-   * Get a list of returns.
-   */
-  list(
-    query: ReturnListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ReturnObjectsPage, ReturnObject> {
-    return this._client.getAPIList('/api/returns', Page<ReturnObject>, { query, ...options });
   }
 }
 
@@ -419,6 +419,8 @@ export namespace ReturnObject {
       | 'svb_payment_id'
       | 'swift_mir'
       | 'swift_uetr'
+      | 'turnkey_activity_id'
+      | 'turnkey_send_transaction_status_id'
       | 'umb_product_partner_account_number'
       | 'usbank_payment_application_reference_id'
       | 'usbank_payment_id'
@@ -434,6 +436,31 @@ export namespace ReturnObject {
 
     updated_at: string;
   }
+}
+
+export interface ReturnListParams extends PageParams {
+  /**
+   * Specify `counterparty_id` if you wish to see returns that occurred with a
+   * specific counterparty.
+   */
+  counterparty_id?: string;
+
+  /**
+   * Specify `internal_account_id` if you wish to see returns to/from a specific
+   * account.
+   */
+  internal_account_id?: string;
+
+  /**
+   * The ID of a valid returnable. Must be accompanied by `returnable_type`.
+   */
+  returnable_id?: string;
+
+  /**
+   * One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
+   * accompanied by `returnable_id`.
+   */
+  returnable_type?: 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
 }
 
 export interface ReturnCreateParams {
@@ -635,36 +662,11 @@ export namespace ReturnCreateParams {
   }
 }
 
-export interface ReturnListParams extends PageParams {
-  /**
-   * Specify `counterparty_id` if you wish to see returns that occurred with a
-   * specific counterparty.
-   */
-  counterparty_id?: string;
-
-  /**
-   * Specify `internal_account_id` if you wish to see returns to/from a specific
-   * account.
-   */
-  internal_account_id?: string;
-
-  /**
-   * The ID of a valid returnable. Must be accompanied by `returnable_type`.
-   */
-  returnable_id?: string;
-
-  /**
-   * One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
-   * accompanied by `returnable_id`.
-   */
-  returnable_type?: 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal';
-}
-
 export declare namespace Returns {
   export {
     type ReturnObject as ReturnObject,
     type ReturnObjectsPage as ReturnObjectsPage,
-    type ReturnCreateParams as ReturnCreateParams,
     type ReturnListParams as ReturnListParams,
+    type ReturnCreateParams as ReturnCreateParams,
   };
 }
