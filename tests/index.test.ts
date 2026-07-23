@@ -508,7 +508,11 @@ describe('idempotency', () => {
       apiKey: 'My API Key',
       organizationID: 'my-organization-ID',
     });
-    await client.counterparties.create({ name: 'name' }, { idempotencyKey: 'my-idempotency-key' });
+    await client.counterparties.collectAccount(
+      'id',
+      { direction: 'credit' },
+      { idempotencyKey: 'my-idempotency-key' },
+    );
   });
 });
 

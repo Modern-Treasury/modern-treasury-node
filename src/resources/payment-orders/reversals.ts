@@ -9,6 +9,30 @@ import { path } from '../../internal/utils/path';
 
 export class Reversals extends APIResource {
   /**
+   * Get a list of all reversals of a payment order.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const reversal of client.paymentOrders.reversals.list(
+   *   'payment_order_id',
+   * )) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    paymentOrderID: string,
+    query: ReversalListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ReversalsPage, Reversal> {
+    return this._client.getAPIList(path`/api/payment_orders/${paymentOrderID}/reversals`, Page<Reversal>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Create a reversal for a payment order.
    *
    * @example
@@ -43,30 +67,6 @@ export class Reversals extends APIResource {
   ): APIPromise<Reversal> {
     const { payment_order_id } = params;
     return this._client.get(path`/api/payment_orders/${payment_order_id}/reversals/${reversalID}`, options);
-  }
-
-  /**
-   * Get a list of all reversals of a payment order.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const reversal of client.paymentOrders.reversals.list(
-   *   'payment_order_id',
-   * )) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    paymentOrderID: string,
-    query: ReversalListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ReversalsPage, Reversal> {
-    return this._client.getAPIList(path`/api/payment_orders/${paymentOrderID}/reversals`, Page<Reversal>, {
-      query,
-      ...options,
-    });
   }
 }
 
@@ -131,6 +131,8 @@ export interface Reversal {
   updated_at: string;
 }
 
+export interface ReversalListParams extends PageParams {}
+
 export interface ReversalCreateParams {
   /**
    * The reason for the reversal. Must be one of `duplicate`, `incorrect_amount`,
@@ -165,14 +167,12 @@ export interface ReversalRetrieveParams {
   payment_order_id: string;
 }
 
-export interface ReversalListParams extends PageParams {}
-
 export declare namespace Reversals {
   export {
     type Reversal as Reversal,
     type ReversalsPage as ReversalsPage,
+    type ReversalListParams as ReversalListParams,
     type ReversalCreateParams as ReversalCreateParams,
     type ReversalRetrieveParams as ReversalRetrieveParams,
-    type ReversalListParams as ReversalListParams,
   };
 }
