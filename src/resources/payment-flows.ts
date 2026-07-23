@@ -8,6 +8,16 @@ import { path } from '../internal/utils/path';
 
 export class PaymentFlows extends APIResource {
   /**
+   * list payment_flows
+   */
+  list(
+    query: PaymentFlowListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PaymentFlowsPage, PaymentFlow> {
+    return this._client.getAPIList('/api/payment_flows', Page<PaymentFlow>, { query, ...options });
+  }
+
+  /**
    * create payment_flow
    */
   create(body: PaymentFlowCreateParams, options?: RequestOptions): APIPromise<PaymentFlow> {
@@ -26,16 +36,6 @@ export class PaymentFlows extends APIResource {
    */
   update(id: string, body: PaymentFlowUpdateParams, options?: RequestOptions): APIPromise<PaymentFlow> {
     return this._client.patch(path`/api/payment_flows/${id}`, { body, ...options });
-  }
-
-  /**
-   * list payment_flows
-   */
-  list(
-    query: PaymentFlowListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<PaymentFlowsPage, PaymentFlow> {
-    return this._client.getAPIList('/api/payment_flows', Page<PaymentFlow>, { query, ...options });
   }
 }
 
@@ -140,6 +140,20 @@ export interface PaymentFlow {
   updated_at?: string;
 }
 
+export interface PaymentFlowListParams extends PageParams {
+  client_token?: string;
+
+  counterparty_id?: string;
+
+  originating_account_id?: string;
+
+  payment_order_id?: string;
+
+  receiving_account_id?: string;
+
+  status?: string;
+}
+
 export interface PaymentFlowCreateParams {
   /**
    * Required. Value in specified currency's smallest unit. e.g. $10 would be
@@ -185,26 +199,12 @@ export interface PaymentFlowUpdateParams {
   status: 'cancelled';
 }
 
-export interface PaymentFlowListParams extends PageParams {
-  client_token?: string;
-
-  counterparty_id?: string;
-
-  originating_account_id?: string;
-
-  payment_order_id?: string;
-
-  receiving_account_id?: string;
-
-  status?: string;
-}
-
 export declare namespace PaymentFlows {
   export {
     type PaymentFlow as PaymentFlow,
     type PaymentFlowsPage as PaymentFlowsPage,
+    type PaymentFlowListParams as PaymentFlowListParams,
     type PaymentFlowCreateParams as PaymentFlowCreateParams,
     type PaymentFlowUpdateParams as PaymentFlowUpdateParams,
-    type PaymentFlowListParams as PaymentFlowListParams,
   };
 }

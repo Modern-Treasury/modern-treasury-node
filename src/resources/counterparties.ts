@@ -15,6 +15,43 @@ import { path } from '../internal/utils/path';
 
 export class Counterparties extends APIResource {
   /**
+   * Send an email requesting account details.
+   *
+   * @example
+   * ```ts
+   * const counterpartyCollectAccountResponse =
+   *   await client.counterparties.collectAccount('id', {
+   *     direction: 'credit',
+   *   });
+   * ```
+   */
+  collectAccount(
+    id: string,
+    body: CounterpartyCollectAccountParams,
+    options?: RequestOptions,
+  ): APIPromise<CounterpartyCollectAccountResponse> {
+    return this._client.post(path`/api/counterparties/${id}/collect_account`, { body, ...options });
+  }
+
+  /**
+   * Get a paginated list of all counterparties.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const counterparty of client.counterparties.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: CounterpartyListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CounterpartiesPage, Counterparty> {
+    return this._client.getAPIList('/api/counterparties', Page<Counterparty>, { query, ...options });
+  }
+
+  /**
    * Create a new counterparty.
    *
    * @example
@@ -61,24 +98,6 @@ export class Counterparties extends APIResource {
   }
 
   /**
-   * Get a paginated list of all counterparties.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const counterparty of client.counterparties.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: CounterpartyListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CounterpartiesPage, Counterparty> {
-    return this._client.getAPIList('/api/counterparties', Page<Counterparty>, { query, ...options });
-  }
-
-  /**
    * Deletes a given counterparty.
    *
    * @example
@@ -91,25 +110,6 @@ export class Counterparties extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-
-  /**
-   * Send an email requesting account details.
-   *
-   * @example
-   * ```ts
-   * const counterpartyCollectAccountResponse =
-   *   await client.counterparties.collectAccount('id', {
-   *     direction: 'credit',
-   *   });
-   * ```
-   */
-  collectAccount(
-    id: string,
-    body: CounterpartyCollectAccountParams,
-    options?: RequestOptions,
-  ): APIPromise<CounterpartyCollectAccountResponse> {
-    return this._client.post(path`/api/counterparties/${id}/collect_account`, { body, ...options });
   }
 }
 
@@ -267,6 +267,108 @@ export interface CounterpartyCollectAccountResponse {
    * been sent to this counterparty.
    */
   is_resend: boolean;
+}
+
+export interface CounterpartyCollectAccountParams {
+  /**
+   * One of `credit` or `debit`. Use `credit` when you want to pay a counterparty.
+   * Use `debit` when you need to charge a counterparty. This field helps us send a
+   * more tailored email to your counterparties."
+   */
+  direction: Shared.TransactionDirection;
+
+  /**
+   * The URL you want your customer to visit upon filling out the form. By default,
+   * they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
+   * URL if set.
+   */
+  custom_redirect?: string;
+
+  /**
+   * The list of fields you want on the form. This field is optional and if it is not
+   * set, will default to [\"nameOnAccount\", \"accountType\", \"accountNumber\",
+   * \"routingNumber\", \"address\"]. The full list of options is [\"name\",
+   * \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
+   * \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
+   */
+  fields?: Array<
+    | 'name'
+    | 'nameOnAccount'
+    | 'taxpayerIdentifier'
+    | 'accountType'
+    | 'accountNumber'
+    | 'ibanNumber'
+    | 'clabeNumber'
+    | 'walletAddress'
+    | 'panNumber'
+    | 'routingNumber'
+    | 'abaWireRoutingNumber'
+    | 'swiftCode'
+    | 'auBsb'
+    | 'caCpa'
+    | 'cnaps'
+    | 'gbSortCode'
+    | 'inIfsc'
+    | 'myBranchCode'
+    | 'brCodigo'
+    | 'routingNumberType'
+    | 'address'
+    | 'jpZenginCode'
+    | 'seBankgiroClearingCode'
+    | 'nzNationalClearingCode'
+    | 'hkInterbankClearingCode'
+    | 'dkInterbankClearingCode'
+    | 'zaNationalClearingCode'
+  >;
+
+  /**
+   * By default, Modern Treasury will send an email to your counterparty that
+   * includes a link to the form they must fill out. However, if you would like to
+   * send the counterparty the link, you can set this parameter to `false`. The JSON
+   * body will include the link to the secure Modern Treasury form.
+   */
+  send_email?: boolean;
+}
+
+export interface CounterpartyListParams extends PageParams {
+  /**
+   * Used to return counterparties created after some datetime.
+   */
+  created_at_lower_bound?: string;
+
+  /**
+   * Used to return counterparties created before some datetime.
+   */
+  created_at_upper_bound?: string;
+
+  /**
+   * Performs a partial string match of the email field. This is also case
+   * insensitive.
+   */
+  email?: string;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string;
+
+  /**
+   * Filters for counterparties with the given legal entity ID.
+   */
+  legal_entity_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * Performs a partial string match of the name field. This is also case
+   * insensitive.
+   */
+  name?: string;
 }
 
 export interface CounterpartyCreateParams {
@@ -524,8 +626,8 @@ export namespace CounterpartyCreateParams {
     connection_id?: string | null;
 
     /**
-     * The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-     * alpha-3 formats.
+     * The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+     * code (e.g. US).
      */
     country_of_incorporation?: string | null;
 
@@ -621,8 +723,8 @@ export namespace CounterpartyCreateParams {
     middle_name?: string | null;
 
     /**
-     * A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-     * codes).
+     * A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+     * codes (e.g. ["US", "CA"]).
      */
     operating_jurisdictions?: Array<string>;
 
@@ -725,6 +827,11 @@ export namespace CounterpartyCreateParams {
      * A list of phone numbers in E.164 format.
      */
     export interface PhoneNumber {
+      /**
+       * A phone number in E.164 format. This format is strictly validated: include a
+       * leading + and country code, followed by digits only (no spaces or dashes), e.g.
+       * +12025551234.
+       */
       phone_number?: string;
     }
 
@@ -803,116 +910,14 @@ export interface CounterpartyUpdateParams {
   taxpayer_identifier?: string;
 }
 
-export interface CounterpartyListParams extends PageParams {
-  /**
-   * Used to return counterparties created after some datetime.
-   */
-  created_at_lower_bound?: string;
-
-  /**
-   * Used to return counterparties created before some datetime.
-   */
-  created_at_upper_bound?: string;
-
-  /**
-   * Performs a partial string match of the email field. This is also case
-   * insensitive.
-   */
-  email?: string;
-
-  /**
-   * An optional user-defined 180 character unique identifier.
-   */
-  external_id?: string;
-
-  /**
-   * Filters for counterparties with the given legal entity ID.
-   */
-  legal_entity_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * Performs a partial string match of the name field. This is also case
-   * insensitive.
-   */
-  name?: string;
-}
-
-export interface CounterpartyCollectAccountParams {
-  /**
-   * One of `credit` or `debit`. Use `credit` when you want to pay a counterparty.
-   * Use `debit` when you need to charge a counterparty. This field helps us send a
-   * more tailored email to your counterparties."
-   */
-  direction: Shared.TransactionDirection;
-
-  /**
-   * The URL you want your customer to visit upon filling out the form. By default,
-   * they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
-   * URL if set.
-   */
-  custom_redirect?: string;
-
-  /**
-   * The list of fields you want on the form. This field is optional and if it is not
-   * set, will default to [\"nameOnAccount\", \"accountType\", \"accountNumber\",
-   * \"routingNumber\", \"address\"]. The full list of options is [\"name\",
-   * \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
-   * \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
-   */
-  fields?: Array<
-    | 'name'
-    | 'nameOnAccount'
-    | 'taxpayerIdentifier'
-    | 'accountType'
-    | 'accountNumber'
-    | 'ibanNumber'
-    | 'clabeNumber'
-    | 'walletAddress'
-    | 'panNumber'
-    | 'routingNumber'
-    | 'abaWireRoutingNumber'
-    | 'swiftCode'
-    | 'auBsb'
-    | 'caCpa'
-    | 'cnaps'
-    | 'gbSortCode'
-    | 'inIfsc'
-    | 'myBranchCode'
-    | 'brCodigo'
-    | 'routingNumberType'
-    | 'address'
-    | 'jpZenginCode'
-    | 'seBankgiroClearingCode'
-    | 'nzNationalClearingCode'
-    | 'hkInterbankClearingCode'
-    | 'dkInterbankClearingCode'
-    | 'zaNationalClearingCode'
-  >;
-
-  /**
-   * By default, Modern Treasury will send an email to your counterparty that
-   * includes a link to the form they must fill out. However, if you would like to
-   * send the counterparty the link, you can set this parameter to `false`. The JSON
-   * body will include the link to the secure Modern Treasury form.
-   */
-  send_email?: boolean;
-}
-
 export declare namespace Counterparties {
   export {
     type Counterparty as Counterparty,
     type CounterpartyCollectAccountResponse as CounterpartyCollectAccountResponse,
     type CounterpartiesPage as CounterpartiesPage,
+    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams,
+    type CounterpartyListParams as CounterpartyListParams,
     type CounterpartyCreateParams as CounterpartyCreateParams,
     type CounterpartyUpdateParams as CounterpartyUpdateParams,
-    type CounterpartyListParams as CounterpartyListParams,
-    type CounterpartyCollectAccountParams as CounterpartyCollectAccountParams,
   };
 }

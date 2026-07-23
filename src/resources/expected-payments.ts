@@ -9,6 +9,24 @@ import { path } from '../internal/utils/path';
 
 export class ExpectedPayments extends APIResource {
   /**
+   * list expected_payments
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const expectedPayment of client.expectedPayments.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: ExpectedPaymentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ExpectedPaymentsPage, ExpectedPayment> {
+    return this._client.getAPIList('/api/expected_payments', Page<ExpectedPayment>, { query, ...options });
+  }
+
+  /**
    * create expected payment
    *
    * @example
@@ -52,24 +70,6 @@ export class ExpectedPayments extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ExpectedPayment> {
     return this._client.patch(path`/api/expected_payments/${id}`, { body, ...options });
-  }
-
-  /**
-   * list expected_payments
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const expectedPayment of client.expectedPayments.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: ExpectedPaymentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ExpectedPaymentsPage, ExpectedPayment> {
-    return this._client.getAPIList('/api/expected_payments', Page<ExpectedPayment>, { query, ...options });
   }
 
   /**
@@ -359,6 +359,87 @@ export interface ReconciliationRule {
     | 'wire'
     | 'zengin'
     | null;
+}
+
+export interface ExpectedPaymentListParams extends PageParams {
+  /**
+   * Specify counterparty_id to see expected_payments for a specific account.
+   */
+  counterparty_id?: string;
+
+  /**
+   * Used to return expected payments created after some datetime
+   */
+  created_at_lower_bound?: string;
+
+  /**
+   * Used to return expected payments created before some datetime
+   */
+  created_at_upper_bound?: string;
+
+  /**
+   * One of credit, debit
+   */
+  direction?: Shared.TransactionDirection;
+
+  external_id?: string;
+
+  /**
+   * Specify internal_account_id to see expected_payments for a specific account.
+   */
+  internal_account_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * One of unreconciled, reconciled, or archived.
+   */
+  status?: 'archived' | 'partially_reconciled' | 'reconciled' | 'unreconciled';
+
+  /**
+   * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire
+   */
+  type?:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin';
+
+  /**
+   * Used to return expected payments updated after some datetime
+   */
+  updated_at_lower_bound?: string;
+
+  /**
+   * Used to return expected payments updated before some datetime
+   */
+  updated_at_upper_bound?: string;
 }
 
 export interface ExpectedPaymentCreateParams {
@@ -652,95 +733,14 @@ export interface ExpectedPaymentUpdateParams {
   type?: ExpectedPaymentType | null;
 }
 
-export interface ExpectedPaymentListParams extends PageParams {
-  /**
-   * Specify counterparty_id to see expected_payments for a specific account.
-   */
-  counterparty_id?: string;
-
-  /**
-   * Used to return expected payments created after some datetime
-   */
-  created_at_lower_bound?: string;
-
-  /**
-   * Used to return expected payments created before some datetime
-   */
-  created_at_upper_bound?: string;
-
-  /**
-   * One of credit, debit
-   */
-  direction?: Shared.TransactionDirection;
-
-  external_id?: string;
-
-  /**
-   * Specify internal_account_id to see expected_payments for a specific account.
-   */
-  internal_account_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * One of unreconciled, reconciled, or archived.
-   */
-  status?: 'archived' | 'partially_reconciled' | 'reconciled' | 'unreconciled';
-
-  /**
-   * One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire
-   */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
-
-  /**
-   * Used to return expected payments updated after some datetime
-   */
-  updated_at_lower_bound?: string;
-
-  /**
-   * Used to return expected payments updated before some datetime
-   */
-  updated_at_upper_bound?: string;
-}
-
 export declare namespace ExpectedPayments {
   export {
     type ExpectedPayment as ExpectedPayment,
     type ExpectedPaymentType as ExpectedPaymentType,
     type ReconciliationRule as ReconciliationRule,
     type ExpectedPaymentsPage as ExpectedPaymentsPage,
+    type ExpectedPaymentListParams as ExpectedPaymentListParams,
     type ExpectedPaymentCreateParams as ExpectedPaymentCreateParams,
     type ExpectedPaymentUpdateParams as ExpectedPaymentUpdateParams,
-    type ExpectedPaymentListParams as ExpectedPaymentListParams,
   };
 }
