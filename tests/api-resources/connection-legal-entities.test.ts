@@ -9,6 +9,33 @@ const client = new ModernTreasury({
 });
 
 describe('resource connectionLegalEntities', () => {
+  test('list', async () => {
+    const responsePromise = client.connectionLegalEntities.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectionLegalEntities.list(
+        {
+          after_cursor: 'after_cursor',
+          connection_id: 'connection_id',
+          legal_entity_id: 'legal_entity_id',
+          per_page: 0,
+          status: 'completed',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create: only required params', async () => {
     const responsePromise = client.connectionLegalEntities.create({ connection_id: 'connection_id' });
     const rawResponse = await responsePromise.asResponse();
@@ -53,7 +80,7 @@ describe('resource connectionLegalEntities', () => {
         citizenship_country: 'citizenship_country',
         compliance_details: {},
         connection_id: 'connection_id',
-        country_of_incorporation: 'country_of_incorporation',
+        country_of_incorporation: 'US',
         date_formed: '2019-12-27',
         date_of_birth: '2019-12-27',
         documents: [
@@ -131,7 +158,7 @@ describe('resource connectionLegalEntities', () => {
               citizenship_country: 'citizenship_country',
               compliance_details: {},
               connection_id: 'connection_id',
-              country_of_incorporation: 'country_of_incorporation',
+              country_of_incorporation: 'US',
               date_formed: '2019-12-27',
               date_of_birth: '2019-12-27',
               documents: [
@@ -186,7 +213,7 @@ describe('resource connectionLegalEntities', () => {
                 modern: 'treasury',
               },
               middle_name: 'middle_name',
-              operating_jurisdictions: ['string'],
+              operating_jurisdictions: ['US', 'CA'],
               phone_numbers: [{ phone_number: 'phone_number' }],
               politically_exposed_person: true,
               preferred_name: 'preferred_name',
@@ -260,7 +287,7 @@ describe('resource connectionLegalEntities', () => {
           modern: 'treasury',
         },
         middle_name: 'middle_name',
-        operating_jurisdictions: ['string'],
+        operating_jurisdictions: ['US', 'CA'],
         phone_numbers: [{ phone_number: 'phone_number' }],
         politically_exposed_person: true,
         preferred_name: 'preferred_name',
@@ -352,33 +379,6 @@ describe('resource connectionLegalEntities', () => {
       client.connectionLegalEntities.update(
         'id',
         { status: 'processing' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('list', async () => {
-    const responsePromise = client.connectionLegalEntities.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.connectionLegalEntities.list(
-        {
-          after_cursor: 'after_cursor',
-          connection_id: 'connection_id',
-          legal_entity_id: 'legal_entity_id',
-          per_page: 0,
-          status: 'completed',
-        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ModernTreasury.NotFoundError);
