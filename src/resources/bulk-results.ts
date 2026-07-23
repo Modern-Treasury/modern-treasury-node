@@ -13,13 +13,6 @@ import { path } from '../internal/utils/path';
 
 export class BulkResults extends APIResource {
   /**
-   * get bulk_result
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<BulkResult> {
-    return this._client.get(path`/api/bulk_results/${id}`, options);
-  }
-
-  /**
    * list bulk_results
    */
   list(
@@ -27,6 +20,13 @@ export class BulkResults extends APIResource {
     options?: RequestOptions,
   ): PagePromise<BulkResultsPage, BulkResult> {
     return this._client.getAPIList('/api/bulk_results', Page<BulkResult>, { query, ...options });
+  }
+
+  /**
+   * get bulk_result
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<BulkResult> {
+    return this._client.get(path`/api/bulk_results/${id}`, options);
   }
 }
 

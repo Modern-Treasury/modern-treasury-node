@@ -9,6 +9,24 @@ import { path } from '../internal/utils/path';
 
 export class LedgerAccounts extends APIResource {
   /**
+   * Get a list of ledger accounts.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerAccount of client.ledgerAccounts.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: LedgerAccountListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerAccountsPage, LedgerAccount> {
+    return this._client.getAPIList('/api/ledger_accounts', Page<LedgerAccount>, { query, ...options });
+  }
+
+  /**
    * Create a ledger account.
    *
    * @example
@@ -59,24 +77,6 @@ export class LedgerAccounts extends APIResource {
     options?: RequestOptions,
   ): APIPromise<LedgerAccount> {
     return this._client.patch(path`/api/ledger_accounts/${id}`, { body, ...options });
-  }
-
-  /**
-   * Get a list of ledger accounts.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const ledgerAccount of client.ledgerAccounts.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: LedgerAccountListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerAccountsPage, LedgerAccount> {
-    return this._client.getAPIList('/api/ledger_accounts', Page<LedgerAccount>, { query, ...options });
   }
 
   /**
@@ -211,125 +211,6 @@ export namespace LedgerAccount {
      */
     posted_balance: Shared.LedgerBalance;
   }
-}
-
-export interface LedgerAccountCreateParams {
-  /**
-   * The currency of the ledger account.
-   */
-  currency: string;
-
-  /**
-   * The id of the ledger that this account belongs to.
-   */
-  ledger_id: string;
-
-  /**
-   * The name of the ledger account.
-   */
-  name: string;
-
-  /**
-   * The normal balance of the ledger account.
-   */
-  normal_balance: Shared.TransactionDirection;
-
-  /**
-   * The currency exponent of the ledger account.
-   */
-  currency_exponent?: number | null;
-
-  /**
-   * The description of the ledger account.
-   */
-  description?: string | null;
-
-  /**
-   * An optional user-defined 180 character unique identifier.
-   */
-  external_id?: string | null;
-
-  /**
-   * The array of ledger account category ids that this ledger account should be a
-   * child of.
-   */
-  ledger_account_category_ids?: Array<string>;
-
-  /**
-   * If the ledger account links to another object in Modern Treasury, the id will be
-   * populated here, otherwise null.
-   */
-  ledgerable_id?: string;
-
-  /**
-   * If the ledger account links to another object in Modern Treasury, the type will
-   * be populated here, otherwise null. The value is one of internal_account or
-   * external_account.
-   */
-  ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
-}
-
-export interface LedgerAccountRetrieveParams {
-  /**
-   * Use `balances[effective_at_lower_bound]` and
-   * `balances[effective_at_upper_bound]` to get the balances change between the two
-   * timestamps. The lower bound is inclusive while the upper bound is exclusive of
-   * the provided timestamps. If no value is supplied the balances will be retrieved
-   * not including that bound. Use `balances[as_of_lock_version]` to retrieve a
-   * balance as of a specific Ledger Account `lock_version`.
-   */
-  balances?: LedgerAccountRetrieveParams.Balances;
-}
-
-export namespace LedgerAccountRetrieveParams {
-  /**
-   * Use `balances[effective_at_lower_bound]` and
-   * `balances[effective_at_upper_bound]` to get the balances change between the two
-   * timestamps. The lower bound is inclusive while the upper bound is exclusive of
-   * the provided timestamps. If no value is supplied the balances will be retrieved
-   * not including that bound. Use `balances[as_of_lock_version]` to retrieve a
-   * balance as of a specific Ledger Account `lock_version`.
-   */
-  export interface Balances {
-    as_of_date?: string;
-
-    as_of_lock_version?: number;
-
-    effective_at?: string;
-
-    effective_at_lower_bound?: string;
-
-    effective_at_upper_bound?: string;
-  }
-}
-
-export interface LedgerAccountUpdateParams {
-  /**
-   * The description of the ledger account.
-   */
-  description?: string | null;
-
-  /**
-   * An optional user-defined 180 character unique identifier.
-   */
-  external_id?: string | null;
-
-  /**
-   * Additional data represented as key-value pairs. Both the key and value must be
-   * strings.
-   */
-  metadata?: { [key: string]: string };
-
-  /**
-   * The name of the ledger account.
-   */
-  name?: string;
 }
 
 export interface LedgerAccountListParams extends PageParams {
@@ -477,13 +358,132 @@ export namespace LedgerAccountListParams {
   }
 }
 
+export interface LedgerAccountCreateParams {
+  /**
+   * The currency of the ledger account.
+   */
+  currency: string;
+
+  /**
+   * The id of the ledger that this account belongs to.
+   */
+  ledger_id: string;
+
+  /**
+   * The name of the ledger account.
+   */
+  name: string;
+
+  /**
+   * The normal balance of the ledger account.
+   */
+  normal_balance: Shared.TransactionDirection;
+
+  /**
+   * The currency exponent of the ledger account.
+   */
+  currency_exponent?: number | null;
+
+  /**
+   * The description of the ledger account.
+   */
+  description?: string | null;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
+   * The array of ledger account category ids that this ledger account should be a
+   * child of.
+   */
+  ledger_account_category_ids?: Array<string>;
+
+  /**
+   * If the ledger account links to another object in Modern Treasury, the id will be
+   * populated here, otherwise null.
+   */
+  ledgerable_id?: string;
+
+  /**
+   * If the ledger account links to another object in Modern Treasury, the type will
+   * be populated here, otherwise null. The value is one of internal_account or
+   * external_account.
+   */
+  ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account';
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+}
+
+export interface LedgerAccountRetrieveParams {
+  /**
+   * Use `balances[effective_at_lower_bound]` and
+   * `balances[effective_at_upper_bound]` to get the balances change between the two
+   * timestamps. The lower bound is inclusive while the upper bound is exclusive of
+   * the provided timestamps. If no value is supplied the balances will be retrieved
+   * not including that bound. Use `balances[as_of_lock_version]` to retrieve a
+   * balance as of a specific Ledger Account `lock_version`.
+   */
+  balances?: LedgerAccountRetrieveParams.Balances;
+}
+
+export namespace LedgerAccountRetrieveParams {
+  /**
+   * Use `balances[effective_at_lower_bound]` and
+   * `balances[effective_at_upper_bound]` to get the balances change between the two
+   * timestamps. The lower bound is inclusive while the upper bound is exclusive of
+   * the provided timestamps. If no value is supplied the balances will be retrieved
+   * not including that bound. Use `balances[as_of_lock_version]` to retrieve a
+   * balance as of a specific Ledger Account `lock_version`.
+   */
+  export interface Balances {
+    as_of_date?: string;
+
+    as_of_lock_version?: number;
+
+    effective_at?: string;
+
+    effective_at_lower_bound?: string;
+
+    effective_at_upper_bound?: string;
+  }
+}
+
+export interface LedgerAccountUpdateParams {
+  /**
+   * The description of the ledger account.
+   */
+  description?: string | null;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * The name of the ledger account.
+   */
+  name?: string;
+}
+
 export declare namespace LedgerAccounts {
   export {
     type LedgerAccount as LedgerAccount,
     type LedgerAccountsPage as LedgerAccountsPage,
+    type LedgerAccountListParams as LedgerAccountListParams,
     type LedgerAccountCreateParams as LedgerAccountCreateParams,
     type LedgerAccountRetrieveParams as LedgerAccountRetrieveParams,
     type LedgerAccountUpdateParams as LedgerAccountUpdateParams,
-    type LedgerAccountListParams as LedgerAccountListParams,
   };
 }
