@@ -68,6 +68,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst pingResponse = await client.ping();\n\nconsole.log(pingResponse.ping);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ping \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ping',
         example:
@@ -86,16 +90,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ping',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpingResponse, err := client.Ping(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pingResponse.Ping)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpingResponse, err := client.Ping(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pingResponse.Ping)\n}\n',
       },
       ruby: {
         method: 'ping',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nping_response = modern_treasury.ping\n\nputs(ping_response)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ping \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -123,6 +123,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const connection of client.connections.list()) {\n  console.log(connection.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/connections \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'connections.list',
         example:
@@ -141,16 +145,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Connections.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Connections.List(context.TODO(), moderntreasury.ConnectionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Connections.List(context.TODO(), moderntreasury.ConnectionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'connections.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.connections.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/connections \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -178,6 +178,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst counterpartyCollectAccountResponse = await client.counterparties.collectAccount('id', {\n  direction: 'credit',\n});\n\nconsole.log(counterpartyCollectAccountResponse.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/counterparties/$ID/collect_account \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "direction": "credit"\n        }\'',
+      },
       python: {
         method: 'counterparties.collect_account',
         example:
@@ -196,16 +200,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.CollectAccount',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterpartyCollectAccountResponse, err := client.Counterparties.CollectAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.CounterpartyCollectAccountParams{\n\t\t\tDirection: moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterpartyCollectAccountResponse.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterpartyCollectAccountResponse, err := client.Counterparties.CollectAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.CounterpartyCollectAccountParams{\n\t\t\tDirection: moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterpartyCollectAccountResponse.ID)\n}\n',
       },
       ruby: {
         method: 'counterparties.collect_account',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ncounterparty_collect_account_response = modern_treasury.counterparties.collect_account("id", direction: :credit)\n\nputs(counterparty_collect_account_response)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/counterparties/$ID/collect_account \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "direction": "credit"\n        }\'',
       },
     },
   },
@@ -238,6 +238,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const counterparty of client.counterparties.list()) {\n  console.log(counterparty.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/counterparties \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'counterparties.list',
         example:
@@ -256,16 +260,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Counterparties.List(context.TODO(), moderntreasury.CounterpartyListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Counterparties.List(context.TODO(), moderntreasury.CounterpartyListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'counterparties.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.counterparties.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/counterparties \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -301,6 +301,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst counterparty = await client.counterparties.create({ name: 'name' });\n\nconsole.log(counterparty.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/counterparties \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'counterparties.create',
         example:
@@ -319,16 +323,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.New(context.TODO(), moderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.New(context.TODO(), moderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
       },
       ruby: {
         method: 'counterparties.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ncounterparty = modern_treasury.counterparties.create(name: "name")\n\nputs(counterparty)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/counterparties \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -351,6 +351,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst counterparty = await client.counterparties.retrieve('id');\n\nconsole.log(counterparty.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/counterparties/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'counterparties.retrieve',
         example:
@@ -369,16 +373,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
       },
       ruby: {
         method: 'counterparties.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ncounterparty = modern_treasury.counterparties.retrieve("id")\n\nputs(counterparty)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/counterparties/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -410,6 +410,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst counterparty = await client.counterparties.update('id');\n\nconsole.log(counterparty.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/counterparties/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'counterparties.update',
         example:
@@ -428,16 +432,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.CounterpartyUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.CounterpartyUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
       },
       ruby: {
         method: 'counterparties.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ncounterparty = modern_treasury.counterparties.update("id")\n\nputs(counterparty)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/counterparties/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -458,6 +458,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.counterparties.delete('id');",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/counterparties/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'counterparties.delete',
         example:
@@ -476,16 +480,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Counterparties.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Counterparties.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'counterparties.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.counterparties.delete("id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/counterparties/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -516,6 +516,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const event of client.events.list()) {\n  console.log(event.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/events \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'events.list',
         example:
@@ -534,16 +538,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Events.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Events.List(context.TODO(), moderntreasury.EventListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Events.List(context.TODO(), moderntreasury.EventListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'events.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.events.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/events \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -566,6 +566,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst event = await client.events.retrieve('id');\n\nconsole.log(event.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/events/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'events.retrieve',
         example:
@@ -584,16 +588,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Events.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tevent, err := client.Events.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", event.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tevent, err := client.Events.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", event.ID)\n}\n',
       },
       ruby: {
         method: 'events.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nevent = modern_treasury.events.retrieve("id")\n\nputs(event)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/events/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -630,6 +630,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const expectedPayment of client.expectedPayments.list()) {\n  console.log(expectedPayment.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/expected_payments \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'expected_payments.list',
         example:
@@ -648,16 +652,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ExpectedPayments.List(context.TODO(), moderntreasury.ExpectedPaymentListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ExpectedPayments.List(context.TODO(), moderntreasury.ExpectedPaymentListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'expected_payments.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.expected_payments.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/expected_payments \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -705,6 +705,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst expectedPayment = await client.expectedPayments.create();\n\nconsole.log(expectedPayment.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/expected_payments \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'expected_payments.create',
         example:
@@ -723,16 +727,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.New(context.TODO(), moderntreasury.ExpectedPaymentNewParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.New(context.TODO(), moderntreasury.ExpectedPaymentNewParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
       },
       ruby: {
         method: 'expected_payments.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nexpected_payment = modern_treasury.expected_payments.create\n\nputs(expected_payment)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/expected_payments \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -755,6 +755,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst expectedPayment = await client.expectedPayments.retrieve('id');\n\nconsole.log(expectedPayment.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/expected_payments/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'expected_payments.retrieve',
         example:
@@ -773,16 +777,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
       },
       ruby: {
         method: 'expected_payments.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nexpected_payment = modern_treasury.expected_payments.retrieve("id")\n\nputs(expected_payment)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/expected_payments/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -829,6 +829,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst expectedPayment = await client.expectedPayments.update('id');\n\nconsole.log(expectedPayment.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/expected_payments/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'expected_payments.update',
         example:
@@ -847,16 +851,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExpectedPaymentUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExpectedPaymentUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
       },
       ruby: {
         method: 'expected_payments.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nexpected_payment = modern_treasury.expected_payments.update("id")\n\nputs(expected_payment)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/expected_payments/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -879,6 +879,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst expectedPayment = await client.expectedPayments.delete('id');\n\nconsole.log(expectedPayment.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/expected_payments/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'expected_payments.delete',
         example:
@@ -897,16 +901,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
       },
       ruby: {
         method: 'expected_payments.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nexpected_payment = modern_treasury.expected_payments.delete("id")\n\nputs(expected_payment)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/expected_payments/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -944,6 +944,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst externalAccount = await client.externalAccounts.create({\n  counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(externalAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/external_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'external_accounts.create',
         example:
@@ -962,16 +966,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.New(context.TODO(), moderntreasury.ExternalAccountNewParams{\n\t\tCounterpartyID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.New(context.TODO(), moderntreasury.ExternalAccountNewParams{\n\t\tCounterpartyID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'external_accounts.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nexternal_account = modern_treasury.external_accounts.create(counterparty_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n\nputs(external_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/external_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -992,6 +992,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.externalAccounts.delete('id');",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/external_accounts/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'external_accounts.delete',
         example:
@@ -1010,16 +1014,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.ExternalAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.ExternalAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'external_accounts.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.external_accounts.delete("id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/external_accounts/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1049,6 +1049,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.externalAccounts.verify('id', {\n  originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  payment_type: 'ach',\n});\n\nconsole.log(response);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/external_accounts/$ID/verify \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "payment_type": "ach"\n        }\'',
+      },
       python: {
         method: 'external_accounts.verify',
         example:
@@ -1067,16 +1071,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.Verify',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tresponse, err := client.ExternalAccounts.Verify(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountVerifyParams{\n\t\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tPaymentType:          moderntreasury.F(moderntreasury.ExternalAccountVerifyParamsPaymentTypeACH),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tresponse, err := client.ExternalAccounts.Verify(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountVerifyParams{\n\t\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tPaymentType:          moderntreasury.F(moderntreasury.ExternalAccountVerifyParamsPaymentTypeACH),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'external_accounts.verify',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresponse = modern_treasury.external_accounts.verify(\n  "id",\n  originating_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  payment_type: :ach\n)\n\nputs(response)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/external_accounts/$ID/verify \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "payment_type": "ach"\n        }\'',
       },
     },
   },
@@ -1099,6 +1099,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst externalAccount = await client.externalAccounts.completeVerification('id');\n\nconsole.log(externalAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/external_accounts/$ID/complete_verification \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'external_accounts.complete_verification',
         example:
@@ -1117,16 +1121,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.CompleteVerification',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.CompleteVerification(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountCompleteVerificationParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.CompleteVerification(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountCompleteVerificationParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'external_accounts.complete_verification',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nexternal_account = modern_treasury.external_accounts.complete_verification("id")\n\nputs(external_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/external_accounts/$ID/complete_verification \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1156,6 +1156,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const externalAccount of client.externalAccounts.list()) {\n  console.log(externalAccount.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/external_accounts \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'external_accounts.list',
         example:
@@ -1174,16 +1178,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ExternalAccounts.List(context.TODO(), moderntreasury.ExternalAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ExternalAccounts.List(context.TODO(), moderntreasury.ExternalAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'external_accounts.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.external_accounts.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/external_accounts \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1206,6 +1206,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst externalAccount = await client.externalAccounts.retrieve('id');\n\nconsole.log(externalAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/external_accounts/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'external_accounts.retrieve',
         example:
@@ -1224,16 +1228,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'external_accounts.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nexternal_account = modern_treasury.external_accounts.retrieve("id")\n\nputs(external_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/external_accounts/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1265,6 +1265,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst externalAccount = await client.externalAccounts.update('id');\n\nconsole.log(externalAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/external_accounts/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'external_accounts.update',
         example:
@@ -1283,16 +1287,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'external_accounts.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nexternal_account = modern_treasury.external_accounts.update("id")\n\nputs(external_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/external_accounts/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1326,6 +1326,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const incomingPaymentDetail of client.incomingPaymentDetails.list()) {\n  console.log(incomingPaymentDetail.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/incoming_payment_details \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'incoming_payment_details.list',
         example:
@@ -1344,16 +1348,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.IncomingPaymentDetails.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.IncomingPaymentDetails.List(context.TODO(), moderntreasury.IncomingPaymentDetailListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.IncomingPaymentDetails.List(context.TODO(), moderntreasury.IncomingPaymentDetailListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'incoming_payment_details.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.incoming_payment_details.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/incoming_payment_details \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1376,6 +1376,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst incomingPaymentDetail = await client.incomingPaymentDetails.retrieve('id');\n\nconsole.log(incomingPaymentDetail.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/incoming_payment_details/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'incoming_payment_details.retrieve',
         example:
@@ -1394,16 +1398,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.IncomingPaymentDetails.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
       },
       ruby: {
         method: 'incoming_payment_details.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nincoming_payment_detail = modern_treasury.incoming_payment_details.retrieve("id")\n\nputs(incoming_payment_detail)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/incoming_payment_details/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1426,6 +1426,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst incomingPaymentDetail = await client.incomingPaymentDetails.update('id');\n\nconsole.log(incomingPaymentDetail.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/incoming_payment_details/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'incoming_payment_details.update',
         example:
@@ -1444,16 +1448,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.IncomingPaymentDetails.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.IncomingPaymentDetailUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.IncomingPaymentDetailUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
       },
       ruby: {
         method: 'incoming_payment_details.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nincoming_payment_detail = modern_treasury.incoming_payment_details.update("id")\n\nputs(incoming_payment_detail)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/incoming_payment_details/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1487,6 +1487,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst incomingPaymentDetail = await client.incomingPaymentDetails.createAsync();\n\nconsole.log(incomingPaymentDetail.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/simulations/incoming_payment_details/create_async \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'incoming_payment_details.create_async',
         example:
@@ -1505,16 +1509,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.IncomingPaymentDetails.NewAsync',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.NewAsync(context.TODO(), moderntreasury.IncomingPaymentDetailNewAsyncParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.NewAsync(context.TODO(), moderntreasury.IncomingPaymentDetailNewAsyncParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
       },
       ruby: {
         method: 'incoming_payment_details.create_async',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nincoming_payment_detail = modern_treasury.incoming_payment_details.create_async\n\nputs(incoming_payment_detail)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/simulations/incoming_payment_details/create_async \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1551,6 +1551,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const invoice of client.invoices.list()) {\n  console.log(invoice.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'invoices.list',
         example:
@@ -1569,16 +1573,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Invoices.List(context.TODO(), moderntreasury.InvoiceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Invoices.List(context.TODO(), moderntreasury.InvoiceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'invoices.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.invoices.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1626,6 +1626,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst invoice = await client.invoices.create({\n  counterparty_id: 'counterparty_id',\n  due_date: '2019-12-27T18:11:19.117Z',\n  originating_account_id: 'originating_account_id',\n});\n\nconsole.log(invoice.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "counterparty_id",\n          "due_date": "2019-12-27T18:11:19.117Z",\n          "originating_account_id": "originating_account_id",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'invoices.create',
         example:
@@ -1644,16 +1648,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.New(context.TODO(), moderntreasury.InvoiceNewParams{\n\t\tCounterpartyID:       moderntreasury.F("counterparty_id"),\n\t\tDueDate:              moderntreasury.F(time.Now()),\n\t\tOriginatingAccountID: moderntreasury.F("originating_account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.New(context.TODO(), moderntreasury.InvoiceNewParams{\n\t\tCounterpartyID:       moderntreasury.F("counterparty_id"),\n\t\tDueDate:              moderntreasury.F(time.Now()),\n\t\tOriginatingAccountID: moderntreasury.F("originating_account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninvoice = modern_treasury.invoices.create(\n  counterparty_id: "counterparty_id",\n  due_date: "2019-12-27T18:11:19.117Z",\n  originating_account_id: "originating_account_id"\n)\n\nputs(invoice)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "counterparty_id",\n          "due_date": "2019-12-27T18:11:19.117Z",\n          "originating_account_id": "originating_account_id",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -1676,6 +1676,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst invoice = await client.invoices.retrieve('id');\n\nconsole.log(invoice.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'invoices.retrieve',
         example:
@@ -1694,16 +1698,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninvoice = modern_treasury.invoices.retrieve("id")\n\nputs(invoice)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1752,6 +1752,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst invoice = await client.invoices.update('id');\n\nconsole.log(invoice.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'invoices.update',
         example:
@@ -1770,16 +1774,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.InvoiceUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.InvoiceUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninvoice = modern_treasury.invoices.update("id")\n\nputs(invoice)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1800,6 +1800,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.invoices.addPaymentOrder('payment_order_id', { id: 'id' });",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices/$ID/payment_orders/$PAYMENT_ORDER_ID \\\n    -X PUT \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'invoices.add_payment_order',
         example:
@@ -1818,16 +1822,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.AddPaymentOrder',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Invoices.AddPaymentOrder(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"payment_order_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Invoices.AddPaymentOrder(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"payment_order_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'invoices.add_payment_order',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.invoices.add_payment_order("payment_order_id", id: "id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices/$ID/payment_orders/$PAYMENT_ORDER_ID \\\n    -X PUT \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1850,6 +1850,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const invoiceLineItem of client.invoices.lineItems.list('invoice_id')) {\n  console.log(invoiceLineItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'invoices.line_items.list',
         example:
@@ -1868,16 +1872,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Invoices.LineItems.List(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\tmoderntreasury.InvoiceLineItemListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Invoices.LineItems.List(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\tmoderntreasury.InvoiceLineItemListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.invoices.line_items.list("invoice_id")\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -1909,6 +1909,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst invoiceLineItem = await client.invoices.lineItems.create('invoice_id', {\n  name: 'name',\n  unit_amount: 0,\n});\n\nconsole.log(invoiceLineItem.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "unit_amount": 0,\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'invoices.line_items.create',
         example:
@@ -1927,16 +1931,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.New(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\tmoderntreasury.InvoiceLineItemNewParams{\n\t\t\tName:       moderntreasury.F("name"),\n\t\t\tUnitAmount: moderntreasury.F(int64(0)),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.New(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\tmoderntreasury.InvoiceLineItemNewParams{\n\t\t\tName:       moderntreasury.F("name"),\n\t\t\tUnitAmount: moderntreasury.F(int64(0)),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninvoice_line_item = modern_treasury.invoices.line_items.create("invoice_id", name: "name", unit_amount: 0)\n\nputs(invoice_line_item)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "unit_amount": 0,\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -1959,6 +1959,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst invoiceLineItem = await client.invoices.lineItems.retrieve('id', {\n  invoice_id: 'invoice_id',\n});\n\nconsole.log(invoiceLineItem.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'invoices.line_items.retrieve',
         example:
@@ -1977,16 +1981,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Get(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Get(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninvoice_line_item = modern_treasury.invoices.line_items.retrieve("id", invoice_id: "invoice_id")\n\nputs(invoice_line_item)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2019,6 +2019,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst invoiceLineItem = await client.invoices.lineItems.update('id', { invoice_id: 'invoice_id' });\n\nconsole.log(invoiceLineItem.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'invoices.line_items.update',
         example:
@@ -2037,16 +2041,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Update(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t\tmoderntreasury.InvoiceLineItemUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Update(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t\tmoderntreasury.InvoiceLineItemUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninvoice_line_item = modern_treasury.invoices.line_items.update("id", invoice_id: "invoice_id")\n\nputs(invoice_line_item)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2069,6 +2069,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst invoiceLineItem = await client.invoices.lineItems.delete('id', { invoice_id: 'invoice_id' });\n\nconsole.log(invoiceLineItem.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'invoices.line_items.delete',
         example:
@@ -2087,16 +2091,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Delete(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Delete(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninvoice_line_item = modern_treasury.invoices.line_items.delete("id", invoice_id: "invoice_id")\n\nputs(invoice_line_item)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2124,6 +2124,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import fs from 'fs';\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.documents.create({ file: fs.createReadStream('path/to/file') });\n\nconsole.log(document.id);",
       },
+      http: {
+        example:
+          "curl https://app.moderntreasury.com/api/documents \\\n    -H 'Content-Type: multipart/form-data' \\\n    -u \"$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY\" \\\n    -F 'file=@/path/to/file'",
+      },
       python: {
         method: 'documents.create',
         example:
@@ -2142,16 +2146,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Documents.New',
         example:
-          'package main\n\nimport (\n\t"bytes"\n\t"context"\n\t"fmt"\n\t"io"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tdocument, err := client.Documents.New(context.TODO(), moderntreasury.DocumentNewParams{\n\t\tFile: moderntreasury.F(io.Reader(bytes.NewBuffer([]byte("Example data")))),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", document.ID)\n}\n',
+          'package main\n\nimport (\n\t"bytes"\n\t"context"\n\t"fmt"\n\t"io"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tdocument, err := client.Documents.New(context.TODO(), moderntreasury.DocumentNewParams{\n\t\tFile: moderntreasury.F(io.Reader(bytes.NewBuffer([]byte("Example data")))),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", document.ID)\n}\n',
       },
       ruby: {
         method: 'documents.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ndocument = modern_treasury.documents.create(file: StringIO.new("Example data"))\n\nputs(document)',
-      },
-      http: {
-        example:
-          "curl https://app.moderntreasury.com/api/documents \\\n    -H 'Content-Type: multipart/form-data' \\\n    -u \"$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY\" \\\n    -F 'file=@/path/to/file'",
       },
     },
   },
@@ -2179,6 +2179,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const document of client.documents.list()) {\n  console.log(document.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/documents \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'documents.list',
         example:
@@ -2197,16 +2201,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Documents.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Documents.List(context.TODO(), moderntreasury.DocumentListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Documents.List(context.TODO(), moderntreasury.DocumentListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'documents.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.documents.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/documents \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2229,6 +2229,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.documents.retrieve('id');\n\nconsole.log(document.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/documents/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'documents.retrieve',
         example:
@@ -2247,16 +2251,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Documents.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tdocument, err := client.Documents.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", document.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tdocument, err := client.Documents.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", document.ID)\n}\n',
       },
       ruby: {
         method: 'documents.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ndocument = modern_treasury.documents.retrieve("id")\n\nputs(document)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/documents/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2286,6 +2286,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const accountCollectionFlow of client.accountCollectionFlows.list()) {\n  console.log(accountCollectionFlow.counterparty_id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/account_collection_flows \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'account_collection_flows.list',
         example:
@@ -2304,16 +2308,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountCollectionFlows.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.AccountCollectionFlows.List(context.TODO(), moderntreasury.AccountCollectionFlowListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.AccountCollectionFlows.List(context.TODO(), moderntreasury.AccountCollectionFlowListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'account_collection_flows.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.account_collection_flows.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/account_collection_flows \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2336,6 +2336,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst accountCollectionFlow = await client.accountCollectionFlows.create({\n  counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  payment_types: ['string'],\n});\n\nconsole.log(accountCollectionFlow.counterparty_id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/account_collection_flows \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "payment_types": [\n            "string"\n          ]\n        }\'',
+      },
       python: {
         method: 'account_collection_flows.create',
         example:
@@ -2354,16 +2358,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountCollectionFlows.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.New(context.TODO(), moderntreasury.AccountCollectionFlowNewParams{\n\t\tCounterpartyID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tPaymentTypes:   moderntreasury.F([]string{"string"}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.New(context.TODO(), moderntreasury.AccountCollectionFlowNewParams{\n\t\tCounterpartyID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tPaymentTypes:   moderntreasury.F([]string{"string"}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
       },
       ruby: {
         method: 'account_collection_flows.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\naccount_collection_flow = modern_treasury.account_collection_flows.create(\n  counterparty_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  payment_types: ["string"]\n)\n\nputs(account_collection_flow)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/account_collection_flows \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "payment_types": [\n            "string"\n          ]\n        }\'',
       },
     },
   },
@@ -2386,6 +2386,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst accountCollectionFlow = await client.accountCollectionFlows.retrieve('id');\n\nconsole.log(accountCollectionFlow.counterparty_id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/account_collection_flows/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'account_collection_flows.retrieve',
         example:
@@ -2404,16 +2408,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountCollectionFlows.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
       },
       ruby: {
         method: 'account_collection_flows.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\naccount_collection_flow = modern_treasury.account_collection_flows.retrieve("id")\n\nputs(account_collection_flow)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/account_collection_flows/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2436,6 +2436,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst accountCollectionFlow = await client.accountCollectionFlows.update('id', {\n  status: 'cancelled',\n});\n\nconsole.log(accountCollectionFlow.counterparty_id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/account_collection_flows/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "cancelled"\n        }\'',
+      },
       python: {
         method: 'account_collection_flows.update',
         example:
@@ -2454,16 +2458,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountCollectionFlows.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.AccountCollectionFlowUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.AccountCollectionFlowUpdateParamsStatusCancelled),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.AccountCollectionFlowUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.AccountCollectionFlowUpdateParamsStatusCancelled),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
       },
       ruby: {
         method: 'account_collection_flows.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\naccount_collection_flow = modern_treasury.account_collection_flows.update("id", status: :cancelled)\n\nputs(account_collection_flow)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/account_collection_flows/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "cancelled"\n        }\'',
       },
     },
   },
@@ -2491,6 +2491,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const accountDetail of client.accountDetails.list('account_id', {\n  accounts_type: 'external_accounts',\n})) {\n  console.log(accountDetail.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/account_details \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'account_details.list',
         example:
@@ -2509,16 +2513,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountDetails.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.AccountDetails.List(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.AccountDetailListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.AccountDetails.List(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.AccountDetailListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'account_details.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.account_details.list("account_id", accounts_type: :external_accounts)\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/account_details \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2546,6 +2546,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst accountDetail = await client.accountDetails.create('account_id', {\n  accounts_type: 'external_accounts',\n  account_number: 'account_number',\n});\n\nconsole.log(accountDetail.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/account_details \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "account_number": "account_number"\n        }\'',
+      },
       python: {
         method: 'account_details.create',
         example:
@@ -2564,16 +2568,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountDetails.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountDetail, err := client.AccountDetails.New(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.AccountDetailNewParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.AccountDetailNewParams{\n\t\t\tAccountNumber: moderntreasury.F("account_number"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountDetail, err := client.AccountDetails.New(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.AccountDetailNewParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.AccountDetailNewParams{\n\t\t\tAccountNumber: moderntreasury.F("account_number"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountDetail.ID)\n}\n',
       },
       ruby: {
         method: 'account_details.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\naccount_detail = modern_treasury.account_details.create(\n  "account_id",\n  accounts_type: :external_accounts,\n  account_number: "account_number"\n)\n\nputs(account_detail)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/account_details \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "account_number": "account_number"\n        }\'',
       },
     },
   },
@@ -2600,6 +2600,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst accountDetail = await client.accountDetails.retrieve('id', {\n  accounts_type: 'external_accounts',\n  account_id: 'account_id',\n});\n\nconsole.log(accountDetail.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/account_details/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'account_details.retrieve',
         example:
@@ -2618,16 +2622,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountDetails.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountDetail, err := client.AccountDetails.Get(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountDetail, err := client.AccountDetails.Get(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountDetail.ID)\n}\n',
       },
       ruby: {
         method: 'account_details.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\naccount_detail = modern_treasury.account_details.retrieve(\n  "id",\n  accounts_type: :external_accounts,\n  account_id: "account_id"\n)\n\nputs(account_detail)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/account_details/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2648,6 +2648,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.accountDetails.delete('id', {\n  accounts_type: 'external_accounts',\n  account_id: 'account_id',\n});",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/account_details/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'account_details.delete',
         example:
@@ -2666,16 +2670,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountDetails.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.AccountDetails.Delete(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.AccountDetailDeleteParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.AccountDetails.Delete(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.AccountDetailDeleteParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'account_details.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.account_details.delete("id", accounts_type: :external_accounts, account_id: "account_id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/account_details/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2703,6 +2703,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const routingDetail of client.routingDetails.list('account_id', {\n  accounts_type: 'external_accounts',\n})) {\n  console.log(routingDetail.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/routing_details \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'routing_details.list',
         example:
@@ -2721,16 +2725,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.RoutingDetails.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.RoutingDetails.List(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.RoutingDetailListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.RoutingDetails.List(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.RoutingDetailListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'routing_details.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.routing_details.list("account_id", accounts_type: :external_accounts)\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/routing_details \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2759,6 +2759,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst routingDetail = await client.routingDetails.create('account_id', {\n  accounts_type: 'external_accounts',\n  routing_number: 'routing_number',\n  routing_number_type: 'aba',\n});\n\nconsole.log(routingDetail.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/routing_details \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "routing_number": "routing_number",\n          "routing_number_type": "aba"\n        }\'',
+      },
       python: {
         method: 'routing_details.create',
         example:
@@ -2777,16 +2781,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.RoutingDetails.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingDetail, err := client.RoutingDetails.New(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.RoutingDetailNewParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.RoutingDetailNewParams{\n\t\t\tRoutingNumber:     moderntreasury.F("routing_number"),\n\t\t\tRoutingNumberType: moderntreasury.F(moderntreasury.RoutingDetailNewParamsRoutingNumberTypeAba),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingDetail, err := client.RoutingDetails.New(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.RoutingDetailNewParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.RoutingDetailNewParams{\n\t\t\tRoutingNumber:     moderntreasury.F("routing_number"),\n\t\t\tRoutingNumberType: moderntreasury.F(moderntreasury.RoutingDetailNewParamsRoutingNumberTypeAba),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingDetail.ID)\n}\n',
       },
       ruby: {
         method: 'routing_details.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nrouting_detail = modern_treasury.routing_details.create(\n  "account_id",\n  accounts_type: :external_accounts,\n  routing_number: "routing_number",\n  routing_number_type: :aba\n)\n\nputs(routing_detail)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/routing_details \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "routing_number": "routing_number",\n          "routing_number_type": "aba"\n        }\'',
       },
     },
   },
@@ -2813,6 +2813,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst routingDetail = await client.routingDetails.retrieve('id', {\n  accounts_type: 'external_accounts',\n  account_id: 'account_id',\n});\n\nconsole.log(routingDetail.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/routing_details/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'routing_details.retrieve',
         example:
@@ -2831,16 +2835,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.RoutingDetails.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingDetail, err := client.RoutingDetails.Get(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingDetail, err := client.RoutingDetails.Get(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingDetail.ID)\n}\n',
       },
       ruby: {
         method: 'routing_details.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nrouting_detail = modern_treasury.routing_details.retrieve(\n  "id",\n  accounts_type: :external_accounts,\n  account_id: "account_id"\n)\n\nputs(routing_detail)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/routing_details/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2861,6 +2861,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.routingDetails.delete('id', {\n  accounts_type: 'external_accounts',\n  account_id: 'account_id',\n});",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/routing_details/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'routing_details.delete',
         example:
@@ -2879,16 +2883,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.RoutingDetails.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.RoutingDetails.Delete(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.RoutingDetailDeleteParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.RoutingDetails.Delete(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.RoutingDetailDeleteParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'routing_details.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.routing_details.delete("id", accounts_type: :external_accounts, account_id: "account_id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ACCOUNTS_TYPE/$ACCOUNT_ID/routing_details/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2922,6 +2922,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const internalAccount of client.internalAccounts.list()) {\n  console.log(internalAccount.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'internal_accounts.list',
         example:
@@ -2940,16 +2944,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.InternalAccounts.List(context.TODO(), moderntreasury.InternalAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.InternalAccounts.List(context.TODO(), moderntreasury.InternalAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.internal_accounts.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -2988,6 +2988,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst internalAccount = await client.internalAccounts.create({ currency: 'USD', name: 'name' });\n\nconsole.log(internalAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "USD",\n          "name": "name",\n          "account_type": "checking",\n          "vendor_attributes": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'internal_accounts.create',
         example:
@@ -3006,16 +3010,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.New(context.TODO(), moderntreasury.InternalAccountNewParams{\n\t\tCurrency: moderntreasury.F(moderntreasury.InternalAccountNewParamsCurrencyUsd),\n\t\tName:     moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.New(context.TODO(), moderntreasury.InternalAccountNewParams{\n\t\tCurrency: moderntreasury.F(moderntreasury.InternalAccountNewParamsCurrencyUsd),\n\t\tName:     moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninternal_account = modern_treasury.internal_accounts.create(currency: :USD, name: "name")\n\nputs(internal_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "USD",\n          "name": "name",\n          "account_type": "checking",\n          "vendor_attributes": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -3038,6 +3038,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst internalAccount = await client.internalAccounts.retrieve('id');\n\nconsole.log(internalAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'internal_accounts.retrieve',
         example:
@@ -3056,16 +3060,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninternal_account = modern_treasury.internal_accounts.retrieve("id")\n\nputs(internal_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3097,6 +3097,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst internalAccount = await client.internalAccounts.update('id');\n\nconsole.log(internalAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'internal_accounts.update',
         example:
@@ -3115,16 +3119,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.InternalAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.InternalAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninternal_account = modern_treasury.internal_accounts.update("id")\n\nputs(internal_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3147,6 +3147,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.internalAccounts.updateAccountCapability('id', {\n  internal_account_id: 'internal_account_id',\n  identifier: 'identifier',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/account_capabilities/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "identifier": "identifier"\n        }\'',
+      },
       python: {
         method: 'internal_accounts.update_account_capability',
         example:
@@ -3165,16 +3169,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.UpdateAccountCapability',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tresponse, err := client.InternalAccounts.UpdateAccountCapability(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\t"id",\n\t\tmoderntreasury.InternalAccountUpdateAccountCapabilityParams{\n\t\t\tIdentifier: moderntreasury.F("identifier"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tresponse, err := client.InternalAccounts.UpdateAccountCapability(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\t"id",\n\t\tmoderntreasury.InternalAccountUpdateAccountCapabilityParams{\n\t\t\tIdentifier: moderntreasury.F("identifier"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.update_account_capability',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresponse = modern_treasury.internal_accounts.update_account_capability(\n  "id",\n  internal_account_id: "internal_account_id",\n  identifier: "identifier"\n)\n\nputs(response)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/account_capabilities/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "identifier": "identifier"\n        }\'',
       },
     },
   },
@@ -3197,6 +3197,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst internalAccount = await client.internalAccounts.requestClosure('id');\n\nconsole.log(internalAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts/$ID/request_closure \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'internal_accounts.request_closure',
         example:
@@ -3215,16 +3219,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.RequestClosure',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.RequestClosure(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.RequestClosure(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.request_closure',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ninternal_account = modern_treasury.internal_accounts.request_closure("id")\n\nputs(internal_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts/$ID/request_closure \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3253,6 +3253,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const balanceReport of client.internalAccounts.balanceReports.list(\n  'internal_account_id',\n)) {\n  console.log(balanceReport.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/balance_reports \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'internal_accounts.balance_reports.list',
         example:
@@ -3271,16 +3275,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.BalanceReports.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.InternalAccounts.BalanceReports.List(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.InternalAccounts.BalanceReports.List(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.balance_reports.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.internal_accounts.balance_reports.list("internal_account_id")\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/balance_reports \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3303,6 +3303,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst balanceReport = await client.internalAccounts.balanceReports.retrieve('latest', {\n  internal_account_id: 'internal_account_id',\n});\n\nconsole.log(balanceReport.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/balance_reports/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'internal_accounts.balance_reports.retrieve',
         example:
@@ -3321,16 +3325,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.BalanceReports.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbalanceReport, err := client.InternalAccounts.BalanceReports.Get(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportGetParamsIDLatest,\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", balanceReport.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbalanceReport, err := client.InternalAccounts.BalanceReports.Get(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportGetParamsIDLatest,\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", balanceReport.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.balance_reports.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nbalance_report = modern_treasury.internal_accounts.balance_reports.retrieve(\n  :latest,\n  internal_account_id: "internal_account_id"\n)\n\nputs(balance_report)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/balance_reports/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3359,6 +3359,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst balanceReport = await client.internalAccounts.balanceReports.create('internal_account_id', {\n  as_of_date: '2019-12-27',\n  as_of_time: 'as_of_time',\n  balance_report_type: 'intraday',\n  balances: [\n    {\n      balance_type: 'closing_available',\n      vendor_code: 'vendor_code',\n      vendor_code_type: 'vendor_code_type',\n    },\n  ],\n});\n\nconsole.log(balanceReport.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/balance_reports \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "as_of_date": "2019-12-27",\n          "as_of_time": "as_of_time",\n          "balance_report_type": "intraday",\n          "balances": [\n            {\n              "balance_type": "closing_available",\n              "vendor_code": "vendor_code",\n              "vendor_code_type": "vendor_code_type"\n            }\n          ]\n        }\'',
+      },
       python: {
         method: 'internal_accounts.balance_reports.create',
         example:
@@ -3377,16 +3381,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.BalanceReports.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbalanceReport, err := client.InternalAccounts.BalanceReports.New(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportNewParams{\n\t\t\tAsOfDate:          moderntreasury.F(time.Now()),\n\t\t\tAsOfTime:          moderntreasury.F("as_of_time"),\n\t\t\tBalanceReportType: moderntreasury.F(moderntreasury.BalanceReportNewParamsBalanceReportTypeIntraday),\n\t\t\tBalances: moderntreasury.F([]moderntreasury.BalanceReportNewParamsBalance{{\n\t\t\t\tBalanceType:    moderntreasury.F(moderntreasury.BalanceReportNewParamsBalancesBalanceTypeClosingAvailable),\n\t\t\t\tVendorCode:     moderntreasury.F("vendor_code"),\n\t\t\t\tVendorCodeType: moderntreasury.F("vendor_code_type"),\n\t\t\t}}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", balanceReport.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbalanceReport, err := client.InternalAccounts.BalanceReports.New(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportNewParams{\n\t\t\tAsOfDate:          moderntreasury.F(time.Now()),\n\t\t\tAsOfTime:          moderntreasury.F("as_of_time"),\n\t\t\tBalanceReportType: moderntreasury.F(moderntreasury.BalanceReportNewParamsBalanceReportTypeIntraday),\n\t\t\tBalances: moderntreasury.F([]moderntreasury.BalanceReportNewParamsBalance{{\n\t\t\t\tBalanceType:    moderntreasury.F(moderntreasury.BalanceReportNewParamsBalancesBalanceTypeClosingAvailable),\n\t\t\t\tVendorCode:     moderntreasury.F("vendor_code"),\n\t\t\t\tVendorCodeType: moderntreasury.F("vendor_code_type"),\n\t\t\t}}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", balanceReport.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.balance_reports.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nbalance_report = modern_treasury.internal_accounts.balance_reports.create(\n  "internal_account_id",\n  as_of_date: "2019-12-27",\n  as_of_time: "as_of_time",\n  balance_report_type: :intraday,\n  balances: [{balance_type: :closing_available, vendor_code: "vendor_code", vendor_code_type: "vendor_code_type"}]\n)\n\nputs(balance_report)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/balance_reports \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "as_of_date": "2019-12-27",\n          "as_of_time": "as_of_time",\n          "balance_report_type": "intraday",\n          "balances": [\n            {\n              "balance_type": "closing_available",\n              "vendor_code": "vendor_code",\n              "vendor_code_type": "vendor_code_type"\n            }\n          ]\n        }\'',
       },
     },
   },
@@ -3407,6 +3407,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.internalAccounts.balanceReports.delete('id', {\n  internal_account_id: 'internal_account_id',\n});",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/balance_reports/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'internal_accounts.balance_reports.delete',
         example:
@@ -3425,16 +3429,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.BalanceReports.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.InternalAccounts.BalanceReports.Delete(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.InternalAccounts.BalanceReports.Delete(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'internal_accounts.balance_reports.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.internal_accounts.balance_reports.delete("id", internal_account_id: "internal_account_id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/internal_accounts/$INTERNAL_ACCOUNT_ID/balance_reports/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3463,6 +3463,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ledger of client.ledgers.list()) {\n  console.log(ledger.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledgers \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledgers.list',
         example:
@@ -3481,16 +3485,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Ledgers.List(context.TODO(), moderntreasury.LedgerListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Ledgers.List(context.TODO(), moderntreasury.LedgerListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledgers.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.ledgers.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledgers \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3513,6 +3513,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledger = await client.ledgers.create({ name: 'name' });\n\nconsole.log(ledger.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledgers \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'ledgers.create',
         example:
@@ -3531,16 +3535,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.New(context.TODO(), moderntreasury.LedgerNewParams{\n\t\tName: moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.New(context.TODO(), moderntreasury.LedgerNewParams{\n\t\tName: moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
       },
       ruby: {
         method: 'ledgers.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger = modern_treasury.ledgers.create(name: "name")\n\nputs(ledger)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledgers \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -3563,6 +3563,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledger = await client.ledgers.retrieve('id');\n\nconsole.log(ledger.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledgers/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledgers.retrieve',
         example:
@@ -3581,16 +3585,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
       },
       ruby: {
         method: 'ledgers.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger = modern_treasury.ledgers.retrieve("id")\n\nputs(ledger)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledgers/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3613,6 +3613,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledger = await client.ledgers.update('id');\n\nconsole.log(ledger.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledgers/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledgers.update',
         example:
@@ -3631,16 +3635,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
       },
       ruby: {
         method: 'ledgers.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger = modern_treasury.ledgers.update("id")\n\nputs(ledger)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledgers/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3663,6 +3663,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledger = await client.ledgers.delete('id');\n\nconsole.log(ledger.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledgers/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledgers.delete',
         example:
@@ -3681,16 +3685,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
       },
       ruby: {
         method: 'ledgers.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger = modern_treasury.ledgers.delete("id")\n\nputs(ledger)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledgers/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3725,6 +3725,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ledgerAccountCategory of client.ledgerAccountCategories.list()) {\n  console.log(ledgerAccountCategory.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_categories.list',
         example:
@@ -3743,16 +3747,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountCategories.List(context.TODO(), moderntreasury.LedgerAccountCategoryListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountCategories.List(context.TODO(), moderntreasury.LedgerAccountCategoryListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.ledger_account_categories.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3785,6 +3785,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountCategory = await client.ledgerAccountCategories.create({\n  currency: 'currency',\n  ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  name: 'name',\n  normal_balance: 'credit',\n});\n\nconsole.log(ledgerAccountCategory.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "currency",\n          "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name",\n          "normal_balance": "credit",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'ledger_account_categories.create',
         example:
@@ -3803,16 +3807,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.New(context.TODO(), moderntreasury.LedgerAccountCategoryNewParams{\n\t\tCurrency:      moderntreasury.F("currency"),\n\t\tLedgerID:      moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tName:          moderntreasury.F("name"),\n\t\tNormalBalance: moderntreasury.F(shared.TransactionDirectionCredit),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.New(context.TODO(), moderntreasury.LedgerAccountCategoryNewParams{\n\t\tCurrency:      moderntreasury.F("currency"),\n\t\tLedgerID:      moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tName:          moderntreasury.F("name"),\n\t\tNormalBalance: moderntreasury.F(shared.TransactionDirectionCredit),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_category = modern_treasury.ledger_account_categories.create(\n  currency: "currency",\n  ledger_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  name: "name",\n  normal_balance: :credit\n)\n\nputs(ledger_account_category)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "currency",\n          "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name",\n          "normal_balance": "credit",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -3835,6 +3835,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountCategory = await client.ledgerAccountCategories.retrieve('id');\n\nconsole.log(ledgerAccountCategory.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_categories.retrieve',
         example:
@@ -3853,16 +3857,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountCategoryGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountCategoryGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_category = modern_treasury.ledger_account_categories.retrieve("id")\n\nputs(ledger_account_category)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3891,6 +3891,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountCategory = await client.ledgerAccountCategories.update('id');\n\nconsole.log(ledgerAccountCategory.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_categories.update',
         example:
@@ -3909,16 +3913,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountCategoryUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountCategoryUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_category = modern_treasury.ledger_account_categories.update("id")\n\nputs(ledger_account_category)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3941,6 +3941,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountCategory = await client.ledgerAccountCategories.delete('id');\n\nconsole.log(ledgerAccountCategory.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_categories.delete',
         example:
@@ -3959,16 +3963,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_category = modern_treasury.ledger_account_categories.delete("id")\n\nputs(ledger_account_category)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -3989,6 +3989,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ledgerAccountCategories.addLedgerAccount('ledger_account_id', { id: 'id' });",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID/ledger_accounts/$LEDGER_ACCOUNT_ID \\\n    -X PUT \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_categories.add_ledger_account',
         example:
@@ -4007,16 +4011,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.AddLedgerAccount',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.AddLedgerAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"ledger_account_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.AddLedgerAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"ledger_account_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.add_ledger_account',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.ledger_account_categories.add_ledger_account("ledger_account_id", id: "id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID/ledger_accounts/$LEDGER_ACCOUNT_ID \\\n    -X PUT \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4037,6 +4037,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ledgerAccountCategories.removeLedgerAccount('ledger_account_id', { id: 'id' });",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID/ledger_accounts/$LEDGER_ACCOUNT_ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_categories.remove_ledger_account',
         example:
@@ -4055,16 +4059,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.RemoveLedgerAccount',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.RemoveLedgerAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"ledger_account_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.RemoveLedgerAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"ledger_account_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.remove_ledger_account',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.ledger_account_categories.remove_ledger_account("ledger_account_id", id: "id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID/ledger_accounts/$LEDGER_ACCOUNT_ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4085,6 +4085,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ledgerAccountCategories.addNestedCategory('sub_category_id', { id: 'id' });",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID/ledger_account_categories/$SUB_CATEGORY_ID \\\n    -X PUT \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_categories.add_nested_category',
         example:
@@ -4103,16 +4107,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.AddNestedCategory',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.AddNestedCategory(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"sub_category_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.AddNestedCategory(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"sub_category_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.add_nested_category',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.ledger_account_categories.add_nested_category("sub_category_id", id: "id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID/ledger_account_categories/$SUB_CATEGORY_ID \\\n    -X PUT \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4133,6 +4133,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ledgerAccountCategories.removeNestedCategory('sub_category_id', { id: 'id' });",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID/ledger_account_categories/$SUB_CATEGORY_ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_categories.remove_nested_category',
         example:
@@ -4151,16 +4155,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.RemoveNestedCategory',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.RemoveNestedCategory(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"sub_category_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.RemoveNestedCategory(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"sub_category_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.remove_nested_category',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.ledger_account_categories.remove_nested_category("sub_category_id", id: "id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories/$ID/ledger_account_categories/$SUB_CATEGORY_ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4200,6 +4200,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ledgerAccount of client.ledgerAccounts.list()) {\n  console.log(ledgerAccount.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_accounts \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_accounts.list',
         example:
@@ -4218,16 +4222,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccounts.List(context.TODO(), moderntreasury.LedgerAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccounts.List(context.TODO(), moderntreasury.LedgerAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.ledger_accounts.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_accounts \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4262,6 +4262,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccount = await client.ledgerAccounts.create({\n  currency: 'currency',\n  ledger_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  name: 'name',\n  normal_balance: 'credit',\n});\n\nconsole.log(ledgerAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "currency",\n          "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name",\n          "normal_balance": "credit",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'ledger_accounts.create',
         example:
@@ -4280,16 +4284,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.New(context.TODO(), moderntreasury.LedgerAccountNewParams{\n\t\tLedgerAccountCreateRequest: shared.LedgerAccountCreateRequestParam{\n\t\t\tCurrency:      moderntreasury.F("currency"),\n\t\t\tLedgerID:      moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tName:          moderntreasury.F("name"),\n\t\t\tNormalBalance: moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.New(context.TODO(), moderntreasury.LedgerAccountNewParams{\n\t\tLedgerAccountCreateRequest: shared.LedgerAccountCreateRequestParam{\n\t\t\tCurrency:      moderntreasury.F("currency"),\n\t\t\tLedgerID:      moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tName:          moderntreasury.F("name"),\n\t\t\tNormalBalance: moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account = modern_treasury.ledger_accounts.create(\n  currency: "currency",\n  ledger_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  name: "name",\n  normal_balance: :credit\n)\n\nputs(ledger_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "currency",\n          "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name",\n          "normal_balance": "credit",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -4315,6 +4315,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccount = await client.ledgerAccounts.retrieve('id');\n\nconsole.log(ledgerAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_accounts/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_accounts.retrieve',
         example:
@@ -4333,16 +4337,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account = modern_treasury.ledger_accounts.retrieve("id")\n\nputs(ledger_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_accounts/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4371,6 +4371,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccount = await client.ledgerAccounts.update('id');\n\nconsole.log(ledgerAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_accounts/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_accounts.update',
         example:
@@ -4389,16 +4393,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account = modern_treasury.ledger_accounts.update("id")\n\nputs(ledger_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_accounts/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4421,6 +4421,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccount = await client.ledgerAccounts.delete('id');\n\nconsole.log(ledgerAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_accounts/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_accounts.delete',
         example:
@@ -4439,16 +4443,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account = modern_treasury.ledger_accounts.delete("id")\n\nputs(ledger_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_accounts/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4476,6 +4476,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountBalanceMonitor = await client.ledgerAccountBalanceMonitors.create({\n  alert_condition: {\n    field: 'field',\n    operator: 'operator',\n    value: 0,\n  },\n  ledger_account_id: 'ledger_account_id',\n});\n\nconsole.log(ledgerAccountBalanceMonitor.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "alert_condition": {\n            "field": "field",\n            "operator": "operator",\n            "value": 0\n          },\n          "ledger_account_id": "ledger_account_id",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'ledger_account_balance_monitors.create',
         example:
@@ -4494,16 +4498,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.New(context.TODO(), moderntreasury.LedgerAccountBalanceMonitorNewParams{\n\t\tAlertCondition: moderntreasury.F(moderntreasury.LedgerAccountBalanceMonitorNewParamsAlertCondition{\n\t\t\tField:    moderntreasury.F("field"),\n\t\t\tOperator: moderntreasury.F("operator"),\n\t\t\tValue:    moderntreasury.F(int64(0)),\n\t\t}),\n\t\tLedgerAccountID: moderntreasury.F("ledger_account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.New(context.TODO(), moderntreasury.LedgerAccountBalanceMonitorNewParams{\n\t\tAlertCondition: moderntreasury.F(moderntreasury.LedgerAccountBalanceMonitorNewParamsAlertCondition{\n\t\t\tField:    moderntreasury.F("field"),\n\t\t\tOperator: moderntreasury.F("operator"),\n\t\t\tValue:    moderntreasury.F(int64(0)),\n\t\t}),\n\t\tLedgerAccountID: moderntreasury.F("ledger_account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_balance_monitor = modern_treasury.ledger_account_balance_monitors.create(\n  alert_condition: {field: "field", operator: "operator", value: 0},\n  ledger_account_id: "ledger_account_id"\n)\n\nputs(ledger_account_balance_monitor)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "alert_condition": {\n            "field": "field",\n            "operator": "operator",\n            "value": 0\n          },\n          "ledger_account_id": "ledger_account_id",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -4532,6 +4532,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ledgerAccountBalanceMonitor of client.ledgerAccountBalanceMonitors.list()) {\n  console.log(ledgerAccountBalanceMonitor.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_balance_monitors.list',
         example:
@@ -4550,16 +4554,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountBalanceMonitors.List(context.TODO(), moderntreasury.LedgerAccountBalanceMonitorListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountBalanceMonitors.List(context.TODO(), moderntreasury.LedgerAccountBalanceMonitorListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.ledger_account_balance_monitors.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4582,6 +4582,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountBalanceMonitor = await client.ledgerAccountBalanceMonitors.retrieve('id');\n\nconsole.log(ledgerAccountBalanceMonitor.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_balance_monitors.retrieve',
         example:
@@ -4600,16 +4604,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_balance_monitor = modern_treasury.ledger_account_balance_monitors.retrieve("id")\n\nputs(ledger_account_balance_monitor)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4632,6 +4632,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountBalanceMonitor = await client.ledgerAccountBalanceMonitors.update('id');\n\nconsole.log(ledgerAccountBalanceMonitor.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_balance_monitors.update',
         example:
@@ -4650,16 +4654,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountBalanceMonitorUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountBalanceMonitorUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_balance_monitor = modern_treasury.ledger_account_balance_monitors.update("id")\n\nputs(ledger_account_balance_monitor)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4682,6 +4682,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountBalanceMonitor = await client.ledgerAccountBalanceMonitors.delete('id');\n\nconsole.log(ledgerAccountBalanceMonitor.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_balance_monitors.delete',
         example:
@@ -4700,16 +4704,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_balance_monitor = modern_treasury.ledger_account_balance_monitors.delete("id")\n\nputs(ledger_account_balance_monitor)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4738,6 +4738,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountStatement = await client.ledgerAccountStatements.create({\n  effective_at_lower_bound: '2019-12-27T18:11:19.117Z',\n  effective_at_upper_bound: '2019-12-27T18:11:19.117Z',\n  ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(ledgerAccountStatement.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_statements \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "effective_at_lower_bound": "2019-12-27T18:11:19.117Z",\n          "effective_at_upper_bound": "2019-12-27T18:11:19.117Z",\n          "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'ledger_account_statements.create',
         example:
@@ -4756,16 +4760,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountStatements.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountStatement, err := client.LedgerAccountStatements.New(context.TODO(), moderntreasury.LedgerAccountStatementNewParams{\n\t\tEffectiveAtLowerBound: moderntreasury.F(time.Now()),\n\t\tEffectiveAtUpperBound: moderntreasury.F(time.Now()),\n\t\tLedgerAccountID:       moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountStatement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountStatement, err := client.LedgerAccountStatements.New(context.TODO(), moderntreasury.LedgerAccountStatementNewParams{\n\t\tEffectiveAtLowerBound: moderntreasury.F(time.Now()),\n\t\tEffectiveAtUpperBound: moderntreasury.F(time.Now()),\n\t\tLedgerAccountID:       moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountStatement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_statements.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_statement = modern_treasury.ledger_account_statements.create(\n  effective_at_lower_bound: "2019-12-27T18:11:19.117Z",\n  effective_at_upper_bound: "2019-12-27T18:11:19.117Z",\n  ledger_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n)\n\nputs(ledger_account_statement)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_statements \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "effective_at_lower_bound": "2019-12-27T18:11:19.117Z",\n          "effective_at_upper_bound": "2019-12-27T18:11:19.117Z",\n          "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -4788,6 +4788,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountStatement = await client.ledgerAccountStatements.retrieve('id');\n\nconsole.log(ledgerAccountStatement.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_statements/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_statements.retrieve',
         example:
@@ -4806,16 +4810,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountStatements.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountStatement, err := client.LedgerAccountStatements.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountStatement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountStatement, err := client.LedgerAccountStatements.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountStatement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_statements.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_statement = modern_treasury.ledger_account_statements.retrieve("id")\n\nputs(ledger_account_statement)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_statements/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4860,6 +4860,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ledgerEntry of client.ledgerEntries.list()) {\n  console.log(ledgerEntry.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_entries \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_entries.list',
         example:
@@ -4878,16 +4882,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerEntries.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerEntries.List(context.TODO(), moderntreasury.LedgerEntryListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerEntries.List(context.TODO(), moderntreasury.LedgerEntryListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_entries.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.ledger_entries.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_entries \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4910,6 +4910,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerEntry = await client.ledgerEntries.retrieve('id');\n\nconsole.log(ledgerEntry.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_entries/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_entries.retrieve',
         example:
@@ -4928,16 +4932,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerEntries.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerEntry, err := client.LedgerEntries.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerEntryGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerEntry.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerEntry, err := client.LedgerEntries.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerEntryGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerEntry.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_entries.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_entry = modern_treasury.ledger_entries.retrieve("id")\n\nputs(ledger_entry)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_entries/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -4960,6 +4960,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerEntry = await client.ledgerEntries.update('id');\n\nconsole.log(ledgerEntry.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_entries/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_entries.update',
         example:
@@ -4978,16 +4982,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerEntries.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerEntry, err := client.LedgerEntries.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerEntryUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerEntry.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerEntry, err := client.LedgerEntries.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerEntryUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerEntry.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_entries.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_entry = modern_treasury.ledger_entries.update("id")\n\nputs(ledger_entry)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_entries/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5031,6 +5031,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ledgerTransaction of client.ledgerTransactions.list()) {\n  console.log(ledgerTransaction.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_transactions \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_transactions.list',
         example:
@@ -5049,16 +5053,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerTransactions.List(context.TODO(), moderntreasury.LedgerTransactionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerTransactions.List(context.TODO(), moderntreasury.LedgerTransactionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.ledger_transactions.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_transactions \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5091,6 +5091,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerTransaction = await client.ledgerTransactions.create({\n  ledger_entries: [\n    { direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },\n  ],\n});\n\nconsole.log(ledgerTransaction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_transactions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "ledger_entries": [\n            {\n              "direction": "credit",\n              "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'ledger_transactions.create',
         example:
@@ -5109,16 +5113,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.New(context.TODO(), moderntreasury.LedgerTransactionNewParams{\n\t\tLedgerTransactionCreateRequest: shared.LedgerTransactionCreateRequestParam{\n\t\t\tLedgerEntries: moderntreasury.F([]shared.LedgerEntryCreateRequestParam{{\n\t\t\t\tDirection:       moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t\t\tLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\t}}),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.New(context.TODO(), moderntreasury.LedgerTransactionNewParams{\n\t\tLedgerTransactionCreateRequest: shared.LedgerTransactionCreateRequestParam{\n\t\t\tLedgerEntries: moderntreasury.F([]shared.LedgerEntryCreateRequestParam{{\n\t\t\t\tDirection:       moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t\t\tLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\t}}),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_transaction = modern_treasury.ledger_transactions.create(\n  ledger_entries: [{direction: :credit, ledger_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}]\n)\n\nputs(ledger_transaction)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_transactions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "ledger_entries": [\n            {\n              "direction": "credit",\n              "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -5141,6 +5141,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerTransaction = await client.ledgerTransactions.retrieve('id');\n\nconsole.log(ledgerTransaction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_transactions.retrieve',
         example:
@@ -5159,16 +5163,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_transaction = modern_treasury.ledger_transactions.retrieve("id")\n\nputs(ledger_transaction)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5201,6 +5201,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerTransaction = await client.ledgerTransactions.update('id');\n\nconsole.log(ledgerTransaction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_transactions.update',
         example:
@@ -5219,16 +5223,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_transaction = modern_treasury.ledger_transactions.update("id")\n\nputs(ledger_transaction)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5260,6 +5260,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerTransaction = await client.ledgerTransactions.createReversal('id');\n\nconsole.log(ledgerTransaction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID/reversal \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_transactions.create_reversal',
         example:
@@ -5278,16 +5282,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.NewReversal',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.NewReversal(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionNewReversalParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.NewReversal(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionNewReversalParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.create_reversal',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_transaction = modern_treasury.ledger_transactions.create_reversal("id")\n\nputs(ledger_transaction)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID/reversal \\\n    -X POST \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5316,6 +5316,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerTransaction = await client.ledgerTransactions.createPartialPost('id', {\n  posted_ledger_entries: [\n    { direction: 'credit', ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },\n  ],\n});\n\nconsole.log(ledgerTransaction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID/partial_post \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "posted_ledger_entries": [\n            {\n              "direction": "credit",\n              "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'ledger_transactions.create_partial_post',
         example:
@@ -5334,16 +5338,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.NewPartialPost',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.NewPartialPost(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionNewPartialPostParams{\n\t\t\tPostedLedgerEntries: moderntreasury.F([]moderntreasury.LedgerTransactionNewPartialPostParamsPostedLedgerEntry{{\n\t\t\t\tDirection:       moderntreasury.F(moderntreasury.LedgerTransactionNewPartialPostParamsPostedLedgerEntriesDirectionCredit),\n\t\t\t\tLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\t}}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.NewPartialPost(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionNewPartialPostParams{\n\t\t\tPostedLedgerEntries: moderntreasury.F([]moderntreasury.LedgerTransactionNewPartialPostParamsPostedLedgerEntry{{\n\t\t\t\tDirection:       moderntreasury.F(moderntreasury.LedgerTransactionNewPartialPostParamsPostedLedgerEntriesDirectionCredit),\n\t\t\t\tLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\t}}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.create_partial_post',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_transaction = modern_treasury.ledger_transactions.create_partial_post(\n  "id",\n  posted_ledger_entries: [{direction: :credit, ledger_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}]\n)\n\nputs(ledger_transaction)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID/partial_post \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "posted_ledger_entries": [\n            {\n              "direction": "credit",\n              "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -5373,6 +5373,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ledgerTransactionVersion of client.ledgerTransactions.versions.list()) {\n  console.log(ledgerTransactionVersion.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_transaction_versions \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_transactions.versions.list',
         example:
@@ -5391,16 +5395,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.Versions.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerTransactions.Versions.List(context.TODO(), moderntreasury.LedgerTransactionVersionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerTransactions.Versions.List(context.TODO(), moderntreasury.LedgerTransactionVersionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.versions.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.ledger_transactions.versions.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_transaction_versions \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5428,6 +5428,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const lineItem of client.lineItems.list('itemizable_id', {\n  itemizable_type: 'expected_payments',\n})) {\n  console.log(lineItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ITEMIZABLE_TYPE/$ITEMIZABLE_ID/line_items \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'line_items.list',
         example:
@@ -5446,16 +5450,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LineItems.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LineItems.List(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemListParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\tmoderntreasury.LineItemListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LineItems.List(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemListParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\tmoderntreasury.LineItemListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'line_items.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.line_items.list("itemizable_id", itemizable_type: :expected_payments)\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ITEMIZABLE_TYPE/$ITEMIZABLE_ID/line_items \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5482,6 +5482,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst lineItem = await client.lineItems.retrieve('id', {\n  itemizable_type: 'expected_payments',\n  itemizable_id: 'itemizable_id',\n});\n\nconsole.log(lineItem.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ITEMIZABLE_TYPE/$ITEMIZABLE_ID/line_items/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'line_items.retrieve',
         example:
@@ -5500,16 +5504,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LineItems.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlineItem, err := client.LineItems.Get(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemGetParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", lineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlineItem, err := client.LineItems.Get(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemGetParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", lineItem.ID)\n}\n',
       },
       ruby: {
         method: 'line_items.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nline_item = modern_treasury.line_items.retrieve(\n  "id",\n  itemizable_type: :expected_payments,\n  itemizable_id: "itemizable_id"\n)\n\nputs(line_item)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ITEMIZABLE_TYPE/$ITEMIZABLE_ID/line_items/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5537,6 +5537,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst lineItem = await client.lineItems.update('id', {\n  itemizable_type: 'expected_payments',\n  itemizable_id: 'itemizable_id',\n});\n\nconsole.log(lineItem.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/$ITEMIZABLE_TYPE/$ITEMIZABLE_ID/line_items/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'line_items.update',
         example:
@@ -5555,16 +5559,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LineItems.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlineItem, err := client.LineItems.Update(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemUpdateParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\t"id",\n\t\tmoderntreasury.LineItemUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", lineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlineItem, err := client.LineItems.Update(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemUpdateParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\t"id",\n\t\tmoderntreasury.LineItemUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", lineItem.ID)\n}\n',
       },
       ruby: {
         method: 'line_items.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nline_item = modern_treasury.line_items.update(\n  "id",\n  itemizable_type: :expected_payments,\n  itemizable_id: "itemizable_id"\n)\n\nputs(line_item)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/$ITEMIZABLE_TYPE/$ITEMIZABLE_ID/line_items/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5596,6 +5596,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const paymentFlow of client.paymentFlows.list()) {\n  console.log(paymentFlow.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_flows \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_flows.list',
         example:
@@ -5614,16 +5618,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentFlows.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentFlows.List(context.TODO(), moderntreasury.PaymentFlowListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentFlows.List(context.TODO(), moderntreasury.PaymentFlowListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_flows.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.payment_flows.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_flows \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5653,6 +5653,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentFlow = await client.paymentFlows.create({\n  amount: 0,\n  counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  currency: 'currency',\n  direction: 'credit',\n  originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(paymentFlow.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_flows \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "amount": 0,\n          "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "currency": "currency",\n          "direction": "credit",\n          "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
       python: {
         method: 'payment_flows.create',
         example:
@@ -5671,16 +5675,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentFlows.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.New(context.TODO(), moderntreasury.PaymentFlowNewParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tCounterpartyID:       moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tCurrency:             moderntreasury.F("currency"),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentFlowNewParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.New(context.TODO(), moderntreasury.PaymentFlowNewParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tCounterpartyID:       moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tCurrency:             moderntreasury.F("currency"),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentFlowNewParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
       },
       ruby: {
         method: 'payment_flows.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_flow = modern_treasury.payment_flows.create(\n  amount: 0,\n  counterparty_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  currency: "currency",\n  direction: :credit,\n  originating_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n)\n\nputs(payment_flow)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_flows \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "amount": 0,\n          "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "currency": "currency",\n          "direction": "credit",\n          "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
       },
     },
   },
@@ -5703,6 +5703,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentFlow = await client.paymentFlows.retrieve('id');\n\nconsole.log(paymentFlow.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_flows/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_flows.retrieve',
         example:
@@ -5721,16 +5725,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentFlows.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
       },
       ruby: {
         method: 'payment_flows.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_flow = modern_treasury.payment_flows.retrieve("id")\n\nputs(payment_flow)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_flows/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -5753,6 +5753,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentFlow = await client.paymentFlows.update('id', { status: 'cancelled' });\n\nconsole.log(paymentFlow.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_flows/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "cancelled"\n        }\'',
+      },
       python: {
         method: 'payment_flows.update',
         example:
@@ -5771,16 +5775,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentFlows.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentFlowUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.PaymentFlowUpdateParamsStatusCancelled),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentFlowUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.PaymentFlowUpdateParamsStatusCancelled),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
       },
       ruby: {
         method: 'payment_flows.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_flow = modern_treasury.payment_flows.update("id", status: :cancelled)\n\nputs(payment_flow)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_flows/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "cancelled"\n        }\'',
       },
     },
   },
@@ -5844,6 +5844,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentOrder = await client.paymentOrders.create({\n  amount: 0,\n  direction: 'credit',\n  originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  type: 'ach',\n});\n\nconsole.log(paymentOrder.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_orders \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -F amount=0 \\\n    -F direction=credit \\\n    -F originating_account_id=182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e \\\n    -F type=ach \\\n    -F metadata=\'{"key":"value","foo":"bar","modern":"treasury"}\'',
+      },
       python: {
         method: 'payment_orders.create',
         example:
@@ -5862,16 +5866,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.New(context.TODO(), moderntreasury.PaymentOrderNewParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentOrderNewParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.New(context.TODO(), moderntreasury.PaymentOrderNewParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentOrderNewParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_order = modern_treasury.payment_orders.create(\n  amount: 0,\n  direction: :credit,\n  originating_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  type: :ach\n)\n\nputs(payment_order)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_orders \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -F amount=0 \\\n    -F direction=credit \\\n    -F originating_account_id=182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e \\\n    -F type=ach \\\n    -F metadata=\'{"key":"value","foo":"bar","modern":"treasury"}\'',
       },
     },
   },
@@ -5934,6 +5934,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst asyncResponse = await client.paymentOrders.createAsync({\n  amount: 0,\n  direction: 'credit',\n  originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  type: 'ach',\n});\n\nconsole.log(asyncResponse.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_orders/create_async \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "amount": 0,\n          "direction": "credit",\n          "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "type": "ach",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'payment_orders.create_async',
         example:
@@ -5952,16 +5956,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.NewAsync',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tasyncResponse, err := client.PaymentOrders.NewAsync(context.TODO(), moderntreasury.PaymentOrderNewAsyncParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentOrderNewAsyncParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", asyncResponse.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tasyncResponse, err := client.PaymentOrders.NewAsync(context.TODO(), moderntreasury.PaymentOrderNewAsyncParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentOrderNewAsyncParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", asyncResponse.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.create_async',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nasync_response = modern_treasury.payment_orders.create_async(\n  amount: 0,\n  direction: :credit,\n  originating_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  type: :ach\n)\n\nputs(async_response)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_orders/create_async \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "amount": 0,\n          "direction": "credit",\n          "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "type": "ach",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -6002,6 +6002,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const paymentOrder of client.paymentOrders.list()) {\n  console.log(paymentOrder.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_orders \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_orders.list',
         example:
@@ -6020,16 +6024,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentOrders.List(context.TODO(), moderntreasury.PaymentOrderListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentOrders.List(context.TODO(), moderntreasury.PaymentOrderListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_orders.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.payment_orders.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_orders \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6051,6 +6051,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentOrder = await client.paymentOrders.retrieve('id');\n\nconsole.log(paymentOrder.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_orders/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_orders.retrieve',
         example:
@@ -6069,16 +6073,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_order = modern_treasury.payment_orders.retrieve("id")\n\nputs(payment_order)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_orders/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6138,6 +6138,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentOrder = await client.paymentOrders.update('id');\n\nconsole.log(paymentOrder.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_orders/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_orders.update',
         example:
@@ -6156,16 +6160,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentOrderUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentOrderUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_order = modern_treasury.payment_orders.update("id")\n\nputs(payment_order)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_orders/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6188,6 +6188,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const reversal of client.paymentOrders.reversals.list('payment_order_id')) {\n  console.log(reversal.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_orders/$PAYMENT_ORDER_ID/reversals \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_orders.reversals.list',
         example:
@@ -6206,16 +6210,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Reversals.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentOrders.Reversals.List(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\tmoderntreasury.PaymentOrderReversalListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentOrders.Reversals.List(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\tmoderntreasury.PaymentOrderReversalListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_orders.reversals.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.payment_orders.reversals.list("payment_order_id")\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_orders/$PAYMENT_ORDER_ID/reversals \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6243,6 +6243,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst reversal = await client.paymentOrders.reversals.create('payment_order_id', {\n  reason: 'duplicate',\n});\n\nconsole.log(reversal.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_orders/$PAYMENT_ORDER_ID/reversals \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "reason": "duplicate",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'payment_orders.reversals.create',
         example:
@@ -6261,16 +6265,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Reversals.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treversal, err := client.PaymentOrders.Reversals.New(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\tmoderntreasury.PaymentOrderReversalNewParams{\n\t\t\tReason: moderntreasury.F(moderntreasury.PaymentOrderReversalNewParamsReasonDuplicate),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", reversal.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treversal, err := client.PaymentOrders.Reversals.New(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\tmoderntreasury.PaymentOrderReversalNewParams{\n\t\t\tReason: moderntreasury.F(moderntreasury.PaymentOrderReversalNewParamsReasonDuplicate),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", reversal.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.reversals.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nreversal = modern_treasury.payment_orders.reversals.create("payment_order_id", reason: :duplicate)\n\nputs(reversal)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_orders/$PAYMENT_ORDER_ID/reversals \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "reason": "duplicate",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -6293,6 +6293,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst reversal = await client.paymentOrders.reversals.retrieve('reversal_id', {\n  payment_order_id: 'payment_order_id',\n});\n\nconsole.log(reversal.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_orders/$PAYMENT_ORDER_ID/reversals/$REVERSAL_ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_orders.reversals.retrieve',
         example:
@@ -6311,16 +6315,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Reversals.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treversal, err := client.PaymentOrders.Reversals.Get(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\t"reversal_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", reversal.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treversal, err := client.PaymentOrders.Reversals.Get(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\t"reversal_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", reversal.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.reversals.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nreversal = modern_treasury.payment_orders.reversals.retrieve("reversal_id", payment_order_id: "payment_order_id")\n\nputs(reversal)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_orders/$PAYMENT_ORDER_ID/reversals/$REVERSAL_ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6349,6 +6349,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const paymentReference of client.paymentReferences.list()) {\n  console.log(paymentReference.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_references \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_references.list',
         example:
@@ -6367,16 +6371,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentReferences.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentReferences.List(context.TODO(), moderntreasury.PaymentReferenceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentReferences.List(context.TODO(), moderntreasury.PaymentReferenceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_references.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.payment_references.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_references \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6399,6 +6399,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentReference = await client.paymentReferences.retrieve('id');\n\nconsole.log(paymentReference.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_references/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_references.retrieve',
         example:
@@ -6417,16 +6421,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentReferences.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentReference, err := client.PaymentReferences.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentReference.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentReference, err := client.PaymentReferences.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentReference.ID)\n}\n',
       },
       ruby: {
         method: 'payment_references.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_reference = modern_treasury.payment_references.retrieve("id")\n\nputs(payment_reference)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_references/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6462,7 +6462,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentReferences.Retireve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentReference, err := client.PaymentReferences.Retireve(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentReference.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentReference, err := client.PaymentReferences.Retireve(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentReference.ID)\n}\n',
       },
       ruby: {
         method: 'payment_references.retireve',
@@ -6497,6 +6497,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const returnObject of client.returns.list()) {\n  console.log(returnObject.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/returns \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'returns.list',
         example:
@@ -6515,16 +6519,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Returns.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Returns.List(context.TODO(), moderntreasury.ReturnListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Returns.List(context.TODO(), moderntreasury.ReturnListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'returns.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.returns.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/returns \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6558,6 +6558,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst returnObject = await client.returns.create({\n  returnable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  returnable_type: 'incoming_payment_detail',\n});\n\nconsole.log(returnObject.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/returns \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "returnable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "returnable_type": "incoming_payment_detail"\n        }\'',
+      },
       python: {
         method: 'returns.create',
         example:
@@ -6576,16 +6580,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Returns.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treturnObject, err := client.Returns.New(context.TODO(), moderntreasury.ReturnNewParams{\n\t\tReturnableID:   moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tReturnableType: moderntreasury.F(moderntreasury.ReturnNewParamsReturnableTypeIncomingPaymentDetail),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", returnObject.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treturnObject, err := client.Returns.New(context.TODO(), moderntreasury.ReturnNewParams{\n\t\tReturnableID:   moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tReturnableType: moderntreasury.F(moderntreasury.ReturnNewParamsReturnableTypeIncomingPaymentDetail),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", returnObject.ID)\n}\n',
       },
       ruby: {
         method: 'returns.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nreturn_object = modern_treasury.returns.create(\n  returnable_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  returnable_type: :incoming_payment_detail\n)\n\nputs(return_object)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/returns \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "returnable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "returnable_type": "incoming_payment_detail"\n        }\'',
       },
     },
   },
@@ -6608,6 +6608,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst returnObject = await client.returns.retrieve('id');\n\nconsole.log(returnObject.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/returns/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'returns.retrieve',
         example:
@@ -6626,16 +6630,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Returns.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treturnObject, err := client.Returns.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", returnObject.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treturnObject, err := client.Returns.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", returnObject.ID)\n}\n',
       },
       ruby: {
         method: 'returns.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nreturn_object = modern_treasury.returns.retrieve("id")\n\nputs(return_object)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/returns/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6673,6 +6673,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const transaction of client.transactions.list()) {\n  console.log(transaction.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transactions \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'transactions.list',
         example:
@@ -6691,16 +6695,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Transactions.List(context.TODO(), moderntreasury.TransactionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Transactions.List(context.TODO(), moderntreasury.TransactionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'transactions.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.transactions.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transactions \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6723,6 +6723,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst transaction = await client.transactions.retrieve('id');\n\nconsole.log(transaction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transactions/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'transactions.retrieve',
         example:
@@ -6741,16 +6745,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ntransaction = modern_treasury.transactions.retrieve("id")\n\nputs(transaction)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transactions/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6773,6 +6773,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst transaction = await client.transactions.update('id');\n\nconsole.log(transaction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transactions/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'transactions.update',
         example:
@@ -6791,16 +6795,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.TransactionUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.TransactionUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ntransaction = modern_treasury.transactions.update("id")\n\nputs(transaction)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transactions/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6836,6 +6836,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst transaction = await client.transactions.create({\n  as_of_date: '2019-12-27',\n  direction: 'direction',\n  internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  vendor_code: 'vendor_code',\n  vendor_code_type: 'vendor_code_type',\n});\n\nconsole.log(transaction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transactions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "as_of_date": "2019-12-27",\n          "direction": "direction",\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "vendor_code": "vendor_code",\n          "vendor_code_type": "vendor_code_type",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'transactions.create',
         example:
@@ -6854,16 +6858,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.New(context.TODO(), moderntreasury.TransactionNewParams{\n\t\tAsOfDate:          moderntreasury.F(time.Now()),\n\t\tDirection:         moderntreasury.F("direction"),\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tVendorCode:        moderntreasury.F("vendor_code"),\n\t\tVendorCodeType:    moderntreasury.F("vendor_code_type"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.New(context.TODO(), moderntreasury.TransactionNewParams{\n\t\tAsOfDate:          moderntreasury.F(time.Now()),\n\t\tDirection:         moderntreasury.F("direction"),\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tVendorCode:        moderntreasury.F("vendor_code"),\n\t\tVendorCodeType:    moderntreasury.F("vendor_code_type"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ntransaction = modern_treasury.transactions.create(\n  as_of_date: "2019-12-27",\n  direction: "direction",\n  internal_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  vendor_code: "vendor_code",\n  vendor_code_type: "vendor_code_type"\n)\n\nputs(transaction)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transactions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "as_of_date": "2019-12-27",\n          "direction": "direction",\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "vendor_code": "vendor_code",\n          "vendor_code_type": "vendor_code_type",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -6884,6 +6884,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.transactions.delete('id');",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transactions/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'transactions.delete',
         example:
@@ -6902,16 +6906,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Transactions.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Transactions.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'transactions.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.transactions.delete("id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transactions/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6940,6 +6940,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const transactionLineItem of client.transactions.lineItems.list()) {\n  console.log(transactionLineItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transaction_line_items \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'transactions.line_items.list',
         example:
@@ -6958,16 +6962,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.LineItems.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Transactions.LineItems.List(context.TODO(), moderntreasury.TransactionLineItemListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Transactions.LineItems.List(context.TODO(), moderntreasury.TransactionLineItemListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'transactions.line_items.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.transactions.line_items.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transaction_line_items \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -6990,6 +6990,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst transactionLineItem = await client.transactions.lineItems.retrieve('id');\n\nconsole.log(transactionLineItem.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transaction_line_items/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'transactions.line_items.retrieve',
         example:
@@ -7008,16 +7012,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.LineItems.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransactionLineItem, err := client.Transactions.LineItems.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transactionLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransactionLineItem, err := client.Transactions.LineItems.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transactionLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.line_items.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ntransaction_line_item = modern_treasury.transactions.line_items.retrieve("id")\n\nputs(transaction_line_item)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transaction_line_items/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7040,6 +7040,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst transactionLineItem = await client.transactions.lineItems.create({\n  amount: 0,\n  expected_payment_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  transaction_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(transactionLineItem.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transaction_line_items \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "amount": 0,\n          "expected_payment_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "transaction_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
       python: {
         method: 'transactions.line_items.create',
         example:
@@ -7058,16 +7062,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.LineItems.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransactionLineItem, err := client.Transactions.LineItems.New(context.TODO(), moderntreasury.TransactionLineItemNewParams{\n\t\tAmount:            moderntreasury.F(int64(0)),\n\t\tExpectedPaymentID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTransactionID:     moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transactionLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransactionLineItem, err := client.Transactions.LineItems.New(context.TODO(), moderntreasury.TransactionLineItemNewParams{\n\t\tAmount:            moderntreasury.F(int64(0)),\n\t\tExpectedPaymentID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTransactionID:     moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transactionLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.line_items.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ntransaction_line_item = modern_treasury.transactions.line_items.create(\n  amount: 0,\n  expected_payment_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  transaction_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n)\n\nputs(transaction_line_item)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transaction_line_items \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "amount": 0,\n          "expected_payment_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "transaction_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
       },
     },
   },
@@ -7088,6 +7088,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.transactions.lineItems.delete('id');",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/transaction_line_items/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'transactions.line_items.delete',
         example:
@@ -7106,16 +7110,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.LineItems.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Transactions.LineItems.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Transactions.LineItems.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'transactions.line_items.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.transactions.line_items.delete("id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/transaction_line_items/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7138,6 +7138,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst routingNumberLookupRequest = await client.validations.validateRoutingNumber({\n  routing_number: 'routing_number',\n  routing_number_type: 'aba',\n});\n\nconsole.log(routingNumberLookupRequest.bank_address);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/validations/routing_numbers \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'validations.validate_routing_number',
         example:
@@ -7156,16 +7160,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Validations.ValidateRoutingNumber',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingNumberLookupRequest, err := client.Validations.ValidateRoutingNumber(context.TODO(), moderntreasury.ValidationValidateRoutingNumberParams{\n\t\tRoutingNumber:     moderntreasury.F("routing_number"),\n\t\tRoutingNumberType: moderntreasury.F(moderntreasury.ValidationValidateRoutingNumberParamsRoutingNumberTypeAba),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingNumberLookupRequest.BankAddress)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingNumberLookupRequest, err := client.Validations.ValidateRoutingNumber(context.TODO(), moderntreasury.ValidationValidateRoutingNumberParams{\n\t\tRoutingNumber:     moderntreasury.F("routing_number"),\n\t\tRoutingNumberType: moderntreasury.F(moderntreasury.ValidationValidateRoutingNumberParamsRoutingNumberTypeAba),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingNumberLookupRequest.BankAddress)\n}\n',
       },
       ruby: {
         method: 'validations.validate_routing_number',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nrouting_number_lookup_request = modern_treasury.validations.validate_routing_number(\n  routing_number: "routing_number",\n  routing_number_type: :aba\n)\n\nputs(routing_number_lookup_request)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/validations/routing_numbers \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7194,6 +7194,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const virtualAccount of client.virtualAccounts.list()) {\n  console.log(virtualAccount.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/virtual_accounts \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'virtual_accounts.list',
         example:
@@ -7212,16 +7216,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.VirtualAccounts.List(context.TODO(), moderntreasury.VirtualAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.VirtualAccounts.List(context.TODO(), moderntreasury.VirtualAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.virtual_accounts.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/virtual_accounts \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7255,6 +7255,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst virtualAccount = await client.virtualAccounts.create({\n  internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  name: 'name',\n});\n\nconsole.log(virtualAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/virtual_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name"\n        }\'',
+      },
       python: {
         method: 'virtual_accounts.create',
         example:
@@ -7273,16 +7277,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.New(context.TODO(), moderntreasury.VirtualAccountNewParams{\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tName:              moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.New(context.TODO(), moderntreasury.VirtualAccountNewParams{\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tName:              moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nvirtual_account = modern_treasury.virtual_accounts.create(\n  internal_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  name: "name"\n)\n\nputs(virtual_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/virtual_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name"\n        }\'',
       },
     },
   },
@@ -7305,6 +7305,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst virtualAccount = await client.virtualAccounts.retrieve('id');\n\nconsole.log(virtualAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/virtual_accounts/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'virtual_accounts.retrieve',
         example:
@@ -7323,16 +7327,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nvirtual_account = modern_treasury.virtual_accounts.retrieve("id")\n\nputs(virtual_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/virtual_accounts/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7361,6 +7361,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst virtualAccount = await client.virtualAccounts.update('id');\n\nconsole.log(virtualAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/virtual_accounts/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'virtual_accounts.update',
         example:
@@ -7379,16 +7383,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.VirtualAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.VirtualAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nvirtual_account = modern_treasury.virtual_accounts.update("id")\n\nputs(virtual_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/virtual_accounts/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7411,6 +7411,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst virtualAccount = await client.virtualAccounts.delete('id');\n\nconsole.log(virtualAccount.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/virtual_accounts/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'virtual_accounts.delete',
         example:
@@ -7429,16 +7433,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nvirtual_account = modern_treasury.virtual_accounts.delete("id")\n\nputs(virtual_account)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/virtual_accounts/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7468,6 +7468,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const bulkRequest of client.bulkRequests.list()) {\n  console.log(bulkRequest.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/bulk_requests \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'bulk_requests.list',
         example:
@@ -7486,16 +7490,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkRequests.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.BulkRequests.List(context.TODO(), moderntreasury.BulkRequestListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.BulkRequests.List(context.TODO(), moderntreasury.BulkRequestListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'bulk_requests.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.bulk_requests.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/bulk_requests \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7510,18 +7510,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     params: [
       "action_type: 'create' | 'update' | 'delete';",
       'resource_type: string;',
-      "resources: { amount: number; direction: 'credit' | 'debit'; originating_account_id: string; type: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; charge_bearer?: 'shared' | 'sender' | 'receiver'; currency?: string; description?: string; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; ledger_transaction?: { ledger_entries: object[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; }; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: { account_number: string; account_number_type?: string; }[]; account_type?: string; contact_details?: { contact_identifier?: string; contact_identifier_type?: 'email' | 'phone_number' | 'website'; }[]; external_id?: string; ledger_account?: { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; }; metadata?: object; name?: string; party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: { routing_number: string; routing_number_type: string; payment_type?: string; }[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; subtype?: string; transaction_monitoring_enabled?: boolean; ultimate_originating_account_id?: string; ultimate_originating_party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; vendor_attributes?: object; } | { amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; ledger_transaction?: { ledger_entries: object[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; }; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: { amount_lower_bound: number; amount_upper_bound: number; direction: 'credit' | 'debit'; internal_account_id: string; counterparty_id?: string; currency?: string; custom_identifiers?: object; date_lower_bound?: string; date_upper_bound?: string; type?: string; }[]; remittance_information?: string; statement_descriptor?: string; type?: string; } | { ledger_entries: { direction: transaction_direction; ledger_account_id: string; amount?: number; amount_string?: string; available_balance_amount?: object; effective_at?: string; lock_version?: number; metadata?: object; pending_balance_amount?: object; posted_balance_amount?: object; show_resulting_ledger_account_balances?: boolean; }[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { currency: string; ledger_id: string; name: string; normal_balance: 'credit' | 'debit'; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; } | object | object | { id?: string; } | { id?: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; amount?: number; charge_bearer?: 'shared' | 'sender' | 'receiver'; counterparty_id?: string; currency?: string; description?: string; direction?: 'credit' | 'debit'; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_account_id?: string; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: { account_number: string; account_number_type?: string; }[]; account_type?: string; contact_details?: { contact_identifier?: string; contact_identifier_type?: 'email' | 'phone_number' | 'website'; }[]; external_id?: string; ledger_account?: { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; }; metadata?: object; name?: string; party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: { routing_number: string; routing_number_type: string; payment_type?: string; }[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; status?: string; subtype?: string; type?: string; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; } | { id?: string; amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: { amount_lower_bound: number; amount_upper_bound: number; direction: 'credit' | 'debit'; internal_account_id: string; counterparty_id?: string; currency?: string; custom_identifiers?: object; date_lower_bound?: string; date_upper_bound?: string; type?: string; }[]; remittance_information?: string; statement_descriptor?: string; status?: 'reconciled'; type?: string; } | { id?: string; metadata?: object; } | { id?: string; description?: string; effective_at?: string; external_id?: string; ledger_entries?: { direction: 'credit' | 'debit'; ledger_account_id: string; amount?: number; amount_string?: string; available_balance_amount?: object; effective_at?: string; lock_version?: number; metadata?: object; pending_balance_amount?: object; posted_balance_amount?: object; show_resulting_ledger_account_balances?: boolean; }[]; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { id?: string; description?: string; external_id?: string; metadata?: object; name?: string; }[];",
+      "resources: { amount: number; direction: 'credit' | 'debit'; originating_account_id: string; type: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; charge_bearer?: 'shared' | 'sender' | 'receiver'; currency?: string; description?: string; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; ledger_transaction?: { ledger_entries: object[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; }; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: { account_number: string; account_number_type?: string; }[]; account_type?: string; contact_details?: { contact_identifier?: string; contact_identifier_type?: 'email' | 'phone_number' | 'website'; }[]; external_id?: string; ledger_account?: { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; }; metadata?: object; name?: string; party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: { routing_number: string; routing_number_type: string; payment_type?: string; }[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; subtype?: string; transaction_monitoring_enabled?: boolean; ultimate_originating_account_id?: string; ultimate_originating_party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; vendor_attributes?: object; } | { amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; ledger_transaction?: { ledger_entries: object[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; }; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: { amount_lower_bound: number; amount_upper_bound: number; direction: 'credit' | 'debit'; internal_account_id: string; counterparty_id?: string; currency?: string; custom_identifiers?: object; date_lower_bound?: string; date_upper_bound?: string; type?: string; }[]; remittance_information?: string; statement_descriptor?: string; type?: string; } | { ledger_entries: { direction: transaction_direction; ledger_account_id: string; amount?: number; amount_string?: string; available_balance_amount?: object; effective_at?: string; lock_version?: number; metadata?: object; pending_balance_amount?: object; posted_balance_amount?: object; show_resulting_ledger_account_balances?: boolean; }[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { currency: string; ledger_id: string; name: string; normal_balance: 'credit' | 'debit'; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; } | { as_of_date: string; direction: string; internal_account_id: string; vendor_code: string; vendor_code_type: string; amount?: number; amount_string?: string; metadata?: object; posted?: boolean; type?: string; vendor_customer_id?: string; vendor_description?: string; } | { id?: string; } | { id?: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; amount?: number; charge_bearer?: 'shared' | 'sender' | 'receiver'; counterparty_id?: string; currency?: string; description?: string; direction?: 'credit' | 'debit'; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_account_id?: string; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: { account_number: string; account_number_type?: string; }[]; account_type?: string; contact_details?: { contact_identifier?: string; contact_identifier_type?: 'email' | 'phone_number' | 'website'; }[]; external_id?: string; ledger_account?: { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; }; metadata?: object; name?: string; party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: { routing_number: string; routing_number_type: string; payment_type?: string; }[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; status?: string; subtype?: string; type?: string; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; } | { id?: string; amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: { amount_lower_bound: number; amount_upper_bound: number; direction: 'credit' | 'debit'; internal_account_id: string; counterparty_id?: string; currency?: string; custom_identifiers?: object; date_lower_bound?: string; date_upper_bound?: string; type?: string; }[]; remittance_information?: string; statement_descriptor?: string; status?: 'reconciled'; type?: string; } | { id?: string; metadata?: object; } | { id?: string; description?: string; effective_at?: string; external_id?: string; ledger_entries?: { direction: 'credit' | 'debit'; ledger_account_id: string; amount?: number; amount_string?: string; available_balance_amount?: object; effective_at?: string; lock_version?: number; metadata?: object; pending_balance_amount?: object; posted_balance_amount?: object; show_resulting_ledger_account_balances?: boolean; }[]; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { id?: string; description?: string; external_id?: string; metadata?: object; name?: string; }[];",
       'metadata?: object;',
     ],
     response:
       "{ id: string; action_type: 'create' | 'update' | 'delete'; created_at: string; failed_result_count: number; live_mode: boolean; metadata: object; object: string; resource_type: string; status: 'pending' | 'processing' | 'completed'; success_result_count: number; total_resource_count: number; updated_at: string; }",
     markdown:
-      "## create\n\n`client.bulkRequests.create(action_type: 'create' | 'update' | 'delete', resource_type: string, resources: { amount: number; direction: 'credit' | 'debit'; originating_account_id: string; type: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; charge_bearer?: 'shared' | 'sender' | 'receiver'; currency?: string; description?: string; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; ledger_transaction?: object; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: object[]; account_type?: external_account_type; contact_details?: contact_detail_create_request[]; external_id?: string; ledger_account?: ledger_account_create_request; metadata?: object; name?: string; party_address?: address_request; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: object[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; subtype?: string; transaction_monitoring_enabled?: boolean; ultimate_originating_account_id?: string; ultimate_originating_party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; vendor_attributes?: object; } | { amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; ledger_transaction?: object; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: object[]; remittance_information?: string; statement_descriptor?: string; type?: string; } | { ledger_entries: ledger_entry_create_request[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; } | object | object | { id?: string; } | { id?: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; amount?: number; charge_bearer?: 'shared' | 'sender' | 'receiver'; counterparty_id?: string; currency?: string; description?: string; direction?: 'credit' | 'debit'; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_account_id?: string; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: object[]; account_type?: external_account_type; contact_details?: contact_detail_create_request[]; external_id?: string; ledger_account?: ledger_account_create_request; metadata?: object; name?: string; party_address?: address_request; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: object[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; status?: string; subtype?: string; type?: string; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; } | { id?: string; amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: object[]; remittance_information?: string; statement_descriptor?: string; status?: 'reconciled'; type?: string; } | { id?: string; metadata?: object; } | { id?: string; description?: string; effective_at?: string; external_id?: string; ledger_entries?: object[]; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { id?: string; description?: string; external_id?: string; metadata?: object; name?: string; }[], metadata?: object): { id: string; action_type: 'create' | 'update' | 'delete'; created_at: string; failed_result_count: number; live_mode: boolean; metadata: object; object: string; resource_type: string; status: 'pending' | 'processing' | 'completed'; success_result_count: number; total_resource_count: number; updated_at: string; }`\n\n**post** `/api/bulk_requests`\n\ncreate bulk_request\n\n### Parameters\n\n- `action_type: 'create' | 'update' | 'delete'`\n  One of create, or update.\n\n- `resource_type: string`\n  One of payment_order, expected_payment, or ledger_transaction.\n\n- `resources: { amount: number; direction: 'credit' | 'debit'; originating_account_id: string; type: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; charge_bearer?: 'shared' | 'sender' | 'receiver'; currency?: string; description?: string; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; ledger_transaction?: { ledger_entries: object[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; }; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: { account_number: string; account_number_type?: string; }[]; account_type?: string; contact_details?: { contact_identifier?: string; contact_identifier_type?: 'email' | 'phone_number' | 'website'; }[]; external_id?: string; ledger_account?: { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; }; metadata?: object; name?: string; party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: { routing_number: string; routing_number_type: string; payment_type?: string; }[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; subtype?: string; transaction_monitoring_enabled?: boolean; ultimate_originating_account_id?: string; ultimate_originating_party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; vendor_attributes?: object; } | { amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; ledger_transaction?: { ledger_entries: object[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; }; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: { amount_lower_bound: number; amount_upper_bound: number; direction: 'credit' | 'debit'; internal_account_id: string; counterparty_id?: string; currency?: string; custom_identifiers?: object; date_lower_bound?: string; date_upper_bound?: string; type?: string; }[]; remittance_information?: string; statement_descriptor?: string; type?: string; } | { ledger_entries: { direction: transaction_direction; ledger_account_id: string; amount?: number; amount_string?: string; available_balance_amount?: object; effective_at?: string; lock_version?: number; metadata?: object; pending_balance_amount?: object; posted_balance_amount?: object; show_resulting_ledger_account_balances?: boolean; }[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { currency: string; ledger_id: string; name: string; normal_balance: 'credit' | 'debit'; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; } | object | object | { id?: string; } | { id?: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; amount?: number; charge_bearer?: 'shared' | 'sender' | 'receiver'; counterparty_id?: string; currency?: string; description?: string; direction?: 'credit' | 'debit'; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_account_id?: string; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: { account_number: string; account_number_type?: string; }[]; account_type?: string; contact_details?: { contact_identifier?: string; contact_identifier_type?: 'email' | 'phone_number' | 'website'; }[]; external_id?: string; ledger_account?: { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; }; metadata?: object; name?: string; party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: { routing_number: string; routing_number_type: string; payment_type?: string; }[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; status?: string; subtype?: string; type?: string; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; } | { id?: string; amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: { amount_lower_bound: number; amount_upper_bound: number; direction: 'credit' | 'debit'; internal_account_id: string; counterparty_id?: string; currency?: string; custom_identifiers?: object; date_lower_bound?: string; date_upper_bound?: string; type?: string; }[]; remittance_information?: string; statement_descriptor?: string; status?: 'reconciled'; type?: string; } | { id?: string; metadata?: object; } | { id?: string; description?: string; effective_at?: string; external_id?: string; ledger_entries?: { direction: 'credit' | 'debit'; ledger_account_id: string; amount?: number; amount_string?: string; available_balance_amount?: object; effective_at?: string; lock_version?: number; metadata?: object; pending_balance_amount?: object; posted_balance_amount?: object; show_resulting_ledger_account_balances?: boolean; }[]; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { id?: string; description?: string; external_id?: string; metadata?: object; name?: string; }[]`\n  An array of objects where each object contains the input params for a single `action_type` request on a `resource_type` resource\n\n- `metadata?: object`\n  Additional data represented as key-value pairs. Both the key and value must be strings.\n\n### Returns\n\n- `{ id: string; action_type: 'create' | 'update' | 'delete'; created_at: string; failed_result_count: number; live_mode: boolean; metadata: object; object: string; resource_type: string; status: 'pending' | 'processing' | 'completed'; success_result_count: number; total_resource_count: number; updated_at: string; }`\n\n  - `id: string`\n  - `action_type: 'create' | 'update' | 'delete'`\n  - `created_at: string`\n  - `failed_result_count: number`\n  - `live_mode: boolean`\n  - `metadata: object`\n  - `object: string`\n  - `resource_type: string`\n  - `status: 'pending' | 'processing' | 'completed'`\n  - `success_result_count: number`\n  - `total_resource_count: number`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nconst bulkRequest = await client.bulkRequests.create({\n  action_type: 'create',\n  resource_type: 'payment_order',\n  resources: [{\n  amount: 0,\n  direction: 'credit',\n  originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  type: 'ach',\n}],\n});\n\nconsole.log(bulkRequest);\n```",
+      "## create\n\n`client.bulkRequests.create(action_type: 'create' | 'update' | 'delete', resource_type: string, resources: { amount: number; direction: 'credit' | 'debit'; originating_account_id: string; type: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; charge_bearer?: 'shared' | 'sender' | 'receiver'; currency?: string; description?: string; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; ledger_transaction?: object; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: object[]; account_type?: external_account_type; contact_details?: contact_detail_create_request[]; external_id?: string; ledger_account?: ledger_account_create_request; metadata?: object; name?: string; party_address?: address_request; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: object[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; subtype?: string; transaction_monitoring_enabled?: boolean; ultimate_originating_account_id?: string; ultimate_originating_party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; vendor_attributes?: object; } | { amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; ledger_transaction?: object; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: object[]; remittance_information?: string; statement_descriptor?: string; type?: string; } | { ledger_entries: ledger_entry_create_request[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; } | { as_of_date: string; direction: string; internal_account_id: string; vendor_code: string; vendor_code_type: string; amount?: number; amount_string?: string; metadata?: object; posted?: boolean; type?: string; vendor_customer_id?: string; vendor_description?: string; } | { id?: string; } | { id?: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; amount?: number; charge_bearer?: 'shared' | 'sender' | 'receiver'; counterparty_id?: string; currency?: string; description?: string; direction?: 'credit' | 'debit'; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_account_id?: string; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: object[]; account_type?: external_account_type; contact_details?: contact_detail_create_request[]; external_id?: string; ledger_account?: ledger_account_create_request; metadata?: object; name?: string; party_address?: address_request; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: object[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; status?: string; subtype?: string; type?: string; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; } | { id?: string; amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: object[]; remittance_information?: string; statement_descriptor?: string; status?: 'reconciled'; type?: string; } | { id?: string; metadata?: object; } | { id?: string; description?: string; effective_at?: string; external_id?: string; ledger_entries?: object[]; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { id?: string; description?: string; external_id?: string; metadata?: object; name?: string; }[], metadata?: object): { id: string; action_type: 'create' | 'update' | 'delete'; created_at: string; failed_result_count: number; live_mode: boolean; metadata: object; object: string; resource_type: string; status: 'pending' | 'processing' | 'completed'; success_result_count: number; total_resource_count: number; updated_at: string; }`\n\n**post** `/api/bulk_requests`\n\ncreate bulk_request\n\n### Parameters\n\n- `action_type: 'create' | 'update' | 'delete'`\n  One of create, or update.\n\n- `resource_type: string`\n  One of payment_order, expected_payment, or ledger_transaction.\n\n- `resources: { amount: number; direction: 'credit' | 'debit'; originating_account_id: string; type: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; charge_bearer?: 'shared' | 'sender' | 'receiver'; currency?: string; description?: string; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; ledger_transaction?: { ledger_entries: object[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; }; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: { account_number: string; account_number_type?: string; }[]; account_type?: string; contact_details?: { contact_identifier?: string; contact_identifier_type?: 'email' | 'phone_number' | 'website'; }[]; external_id?: string; ledger_account?: { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; }; metadata?: object; name?: string; party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: { routing_number: string; routing_number_type: string; payment_type?: string; }[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; subtype?: string; transaction_monitoring_enabled?: boolean; ultimate_originating_account_id?: string; ultimate_originating_party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; vendor_attributes?: object; } | { amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; ledger_transaction?: { ledger_entries: object[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; }; ledger_transaction_id?: string; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: { amount_lower_bound: number; amount_upper_bound: number; direction: 'credit' | 'debit'; internal_account_id: string; counterparty_id?: string; currency?: string; custom_identifiers?: object; date_lower_bound?: string; date_upper_bound?: string; type?: string; }[]; remittance_information?: string; statement_descriptor?: string; type?: string; } | { ledger_entries: { direction: transaction_direction; ledger_account_id: string; amount?: number; amount_string?: string; available_balance_amount?: object; effective_at?: string; lock_version?: number; metadata?: object; pending_balance_amount?: object; posted_balance_amount?: object; show_resulting_ledger_account_balances?: boolean; }[]; description?: string; effective_at?: string; effective_date?: string; external_id?: string; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { currency: string; ledger_id: string; name: string; normal_balance: 'credit' | 'debit'; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; } | { as_of_date: string; direction: string; internal_account_id: string; vendor_code: string; vendor_code_type: string; amount?: number; amount_string?: string; metadata?: object; posted?: boolean; type?: string; vendor_customer_id?: string; vendor_description?: string; } | { id?: string; } | { id?: string; accounting?: { account_id?: string; class_id?: string; }; accounting_category_id?: string; accounting_ledger_class_id?: string; amount?: number; charge_bearer?: 'shared' | 'sender' | 'receiver'; counterparty_id?: string; currency?: string; description?: string; direction?: 'credit' | 'debit'; effective_date?: string; expires_at?: string; external_id?: string; fallback_type?: 'ach'; foreign_exchange_contract?: string; foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed'; line_items?: { amount: number; accounting_category_id?: string; description?: string; metadata?: object; }[]; metadata?: object; nsf_protected?: boolean; originating_account_id?: string; originating_party_name?: string; priority?: 'high' | 'normal'; process_after?: string; purpose?: string; receiving_account?: { account_details?: { account_number: string; account_number_type?: string; }[]; account_type?: string; contact_details?: { contact_identifier?: string; contact_identifier_type?: 'email' | 'phone_number' | 'website'; }[]; external_id?: string; ledger_account?: { currency: string; ledger_id: string; name: string; normal_balance: transaction_direction; currency_exponent?: number; description?: string; external_id?: string; ledger_account_category_ids?: string[]; ledgerable_id?: string; ledgerable_type?: 'counterparty' | 'external_account' | 'internal_account' | 'virtual_account'; metadata?: object; }; metadata?: object; name?: string; party_address?: { country?: string; line1?: string; line2?: string; locality?: string; postal_code?: string; region?: string; }; party_identifier?: string; party_name?: string; party_type?: 'business' | 'individual'; plaid_processor_token?: string; routing_details?: { routing_number: string; routing_number_type: string; payment_type?: string; }[]; }; receiving_account_id?: string; reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled'; remittance_information?: string; send_remittance_advice?: boolean; statement_descriptor?: string; status?: string; subtype?: string; type?: string; ultimate_originating_party_identifier?: string; ultimate_originating_party_name?: string; ultimate_receiving_party_identifier?: string; ultimate_receiving_party_name?: string; } | { id?: string; amount_lower_bound?: number; amount_reconciled?: number; amount_reconciled_direction?: 'credit' | 'debit'; amount_unreconciled?: number; amount_unreconciled_direction?: 'credit' | 'debit'; amount_upper_bound?: number; counterparty_id?: string; currency?: string; date_lower_bound?: string; date_upper_bound?: string; description?: string; direction?: 'credit' | 'debit'; external_id?: string; internal_account_id?: string; metadata?: object; reconciliation_filters?: object; reconciliation_groups?: object; reconciliation_rule_variables?: { amount_lower_bound: number; amount_upper_bound: number; direction: 'credit' | 'debit'; internal_account_id: string; counterparty_id?: string; currency?: string; custom_identifiers?: object; date_lower_bound?: string; date_upper_bound?: string; type?: string; }[]; remittance_information?: string; statement_descriptor?: string; status?: 'reconciled'; type?: string; } | { id?: string; metadata?: object; } | { id?: string; description?: string; effective_at?: string; external_id?: string; ledger_entries?: { direction: 'credit' | 'debit'; ledger_account_id: string; amount?: number; amount_string?: string; available_balance_amount?: object; effective_at?: string; lock_version?: number; metadata?: object; pending_balance_amount?: object; posted_balance_amount?: object; show_resulting_ledger_account_balances?: boolean; }[]; ledgerable_id?: string; ledgerable_type?: 'expected_payment' | 'incoming_payment_detail' | 'payment_order' | 'return' | 'reversal'; metadata?: object; status?: 'archived' | 'pending' | 'posted'; } | { id?: string; description?: string; external_id?: string; metadata?: object; name?: string; }[]`\n  An array of objects where each object contains the input params for a single `action_type` request on a `resource_type` resource\n\n- `metadata?: object`\n  Additional data represented as key-value pairs. Both the key and value must be strings.\n\n### Returns\n\n- `{ id: string; action_type: 'create' | 'update' | 'delete'; created_at: string; failed_result_count: number; live_mode: boolean; metadata: object; object: string; resource_type: string; status: 'pending' | 'processing' | 'completed'; success_result_count: number; total_resource_count: number; updated_at: string; }`\n\n  - `id: string`\n  - `action_type: 'create' | 'update' | 'delete'`\n  - `created_at: string`\n  - `failed_result_count: number`\n  - `live_mode: boolean`\n  - `metadata: object`\n  - `object: string`\n  - `resource_type: string`\n  - `status: 'pending' | 'processing' | 'completed'`\n  - `success_result_count: number`\n  - `total_resource_count: number`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nconst bulkRequest = await client.bulkRequests.create({\n  action_type: 'create',\n  resource_type: 'payment_order',\n  resources: [{\n  amount: 0,\n  direction: 'credit',\n  originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  type: 'ach',\n}],\n});\n\nconsole.log(bulkRequest);\n```",
     perLanguage: {
       typescript: {
         method: 'client.bulkRequests.create',
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst bulkRequest = await client.bulkRequests.create({\n  action_type: 'create',\n  resource_type: 'payment_order',\n  resources: [\n    {\n      amount: 0,\n      direction: 'credit',\n      originating_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n      type: 'ach',\n    },\n  ],\n});\n\nconsole.log(bulkRequest.id);",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/bulk_requests \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "action_type": "create",\n          "resource_type": "payment_order",\n          "resources": [\n            {\n              "amount": 0,\n              "direction": "credit",\n              "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n              "type": "ach"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
       python: {
         method: 'bulk_requests.create',
@@ -7541,16 +7545,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkRequests.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkRequest, err := client.BulkRequests.New(context.TODO(), moderntreasury.BulkRequestNewParams{\n\t\tActionType:   moderntreasury.F(moderntreasury.BulkRequestNewParamsActionTypeCreate),\n\t\tResourceType: moderntreasury.F(moderntreasury.BulkRequestNewParamsResourceTypePaymentOrder),\n\t\tResources: moderntreasury.F([]moderntreasury.BulkRequestNewParamsResourceUnion{moderntreasury.BulkRequestNewParamsResourcesPaymentOrderAsyncCreateRequest{\n\t\t\tAmount:               moderntreasury.F(int64(0)),\n\t\t\tDirection:            moderntreasury.F(moderntreasury.BulkRequestNewParamsResourcesPaymentOrderAsyncCreateRequestDirectionCredit),\n\t\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t\t}}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkRequest.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkRequest, err := client.BulkRequests.New(context.TODO(), moderntreasury.BulkRequestNewParams{\n\t\tActionType:   moderntreasury.F(moderntreasury.BulkRequestNewParamsActionTypeCreate),\n\t\tResourceType: moderntreasury.F(moderntreasury.BulkRequestNewParamsResourceTypePaymentOrder),\n\t\tResources: moderntreasury.F([]moderntreasury.BulkRequestNewParamsResourceUnion{moderntreasury.BulkRequestNewParamsResourcesPaymentOrderAsyncCreateRequest{\n\t\t\tAmount:               moderntreasury.F(int64(0)),\n\t\t\tDirection:            moderntreasury.F(moderntreasury.BulkRequestNewParamsResourcesPaymentOrderAsyncCreateRequestDirectionCredit),\n\t\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t\t}}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkRequest.ID)\n}\n',
       },
       ruby: {
         method: 'bulk_requests.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nbulk_request = modern_treasury.bulk_requests.create(\n  action_type: :create,\n  resource_type: :payment_order,\n  resources: [\n    {amount: 0, direction: :credit, originating_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e", type: :ach}\n  ]\n)\n\nputs(bulk_request)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/bulk_requests \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "action_type": "create",\n          "resource_type": "payment_order",\n          "resources": [\n            {\n              "amount": 0,\n              "direction": "credit",\n              "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n              "type": "ach"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -7573,6 +7573,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst bulkRequest = await client.bulkRequests.retrieve('id');\n\nconsole.log(bulkRequest.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/bulk_requests/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'bulk_requests.retrieve',
         example:
@@ -7591,16 +7595,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkRequests.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkRequest, err := client.BulkRequests.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkRequest.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkRequest, err := client.BulkRequests.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkRequest.ID)\n}\n',
       },
       ruby: {
         method: 'bulk_requests.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nbulk_request = modern_treasury.bulk_requests.retrieve("id")\n\nputs(bulk_request)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/bulk_requests/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7631,6 +7631,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const bulkResult of client.bulkResults.list()) {\n  console.log(bulkResult.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/bulk_results \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'bulk_results.list',
         example:
@@ -7649,16 +7653,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkResults.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.BulkResults.List(context.TODO(), moderntreasury.BulkResultListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.BulkResults.List(context.TODO(), moderntreasury.BulkResultListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'bulk_results.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.bulk_results.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/bulk_results \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7681,6 +7681,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst bulkResult = await client.bulkResults.retrieve('id');\n\nconsole.log(bulkResult.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/bulk_results/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'bulk_results.retrieve',
         example:
@@ -7699,16 +7703,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkResults.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkResult, err := client.BulkResults.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkResult.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkResult, err := client.BulkResults.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkResult.ID)\n}\n',
       },
       ruby: {
         method: 'bulk_results.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nbulk_result = modern_treasury.bulk_results.retrieve("id")\n\nputs(bulk_result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/bulk_results/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7740,6 +7740,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountSettlement = await client.ledgerAccountSettlements.create({\n  contra_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  settled_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(ledgerAccountSettlement.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_settlements \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "contra_ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "settled_ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+      },
       python: {
         method: 'ledger_account_settlements.create',
         example:
@@ -7758,16 +7762,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.New(context.TODO(), moderntreasury.LedgerAccountSettlementNewParams{\n\t\tContraLedgerAccountID:  moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tSettledLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.New(context.TODO(), moderntreasury.LedgerAccountSettlementNewParams{\n\t\tContraLedgerAccountID:  moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tSettledLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_settlement = modern_treasury.ledger_account_settlements.create(\n  contra_ledger_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  settled_ledger_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n)\n\nputs(ledger_account_settlement)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_settlements \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "contra_ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "settled_ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -7801,6 +7801,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ledgerAccountSettlement of client.ledgerAccountSettlements.list()) {\n  console.log(ledgerAccountSettlement.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_settlements \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_settlements.list',
         example:
@@ -7819,16 +7823,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountSettlements.List(context.TODO(), moderntreasury.LedgerAccountSettlementListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountSettlements.List(context.TODO(), moderntreasury.LedgerAccountSettlementListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.ledger_account_settlements.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_settlements \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7851,6 +7851,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountSettlement = await client.ledgerAccountSettlements.retrieve('id');\n\nconsole.log(ledgerAccountSettlement.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_settlements/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_settlements.retrieve',
         example:
@@ -7869,16 +7873,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_settlement = modern_treasury.ledger_account_settlements.retrieve("id")\n\nputs(ledger_account_settlement)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_settlements/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7907,6 +7907,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst ledgerAccountSettlement = await client.ledgerAccountSettlements.update('id');\n\nconsole.log(ledgerAccountSettlement.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_settlements/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_settlements.update',
         example:
@@ -7925,16 +7929,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nledger_account_settlement = modern_treasury.ledger_account_settlements.update("id")\n\nputs(ledger_account_settlement)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_settlements/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -7955,6 +7955,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ledgerAccountSettlements.accountEntries.update('id', {\n  ledger_entry_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],\n});",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_settlements/$ID/ledger_entries \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "ledger_entry_ids": [\n            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n          ]\n        }\'',
+      },
       python: {
         method: 'ledger_account_settlements.account_entries.update',
         example:
@@ -7973,16 +7977,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.AccountEntries.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountSettlements.AccountEntries.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementAccountEntryUpdateParams{\n\t\t\tLedgerEntryIDs: moderntreasury.F([]string{"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountSettlements.AccountEntries.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementAccountEntryUpdateParams{\n\t\t\tLedgerEntryIDs: moderntreasury.F([]string{"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.account_entries.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.ledger_account_settlements.account_entries.update(\n  "id",\n  ledger_entry_ids: ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]\n)\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_settlements/$ID/ledger_entries \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "ledger_entry_ids": [\n            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n          ]\n        }\'',
       },
     },
   },
@@ -8003,6 +8003,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ledgerAccountSettlements.accountEntries.delete('id', {\n  ledger_entry_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],\n});",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/ledger_account_settlements/$ID/ledger_entries \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'ledger_account_settlements.account_entries.delete',
         example:
@@ -8021,16 +8025,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.AccountEntries.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountSettlements.AccountEntries.Delete(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementAccountEntryDeleteParams{\n\t\t\tLedgerEntryIDs: moderntreasury.F([]string{"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountSettlements.AccountEntries.Delete(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementAccountEntryDeleteParams{\n\t\t\tLedgerEntryIDs: moderntreasury.F([]string{"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.account_entries.delete',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.ledger_account_settlements.account_entries.delete(\n  "id",\n  ledger_entry_ids: ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]\n)\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/ledger_account_settlements/$ID/ledger_entries \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8063,6 +8063,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const foreignExchangeQuote of client.foreignExchangeQuotes.list()) {\n  console.log(foreignExchangeQuote.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/foreign_exchange_quotes \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'foreign_exchange_quotes.list',
         example:
@@ -8081,16 +8085,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ForeignExchangeQuotes.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ForeignExchangeQuotes.List(context.TODO(), moderntreasury.ForeignExchangeQuoteListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ForeignExchangeQuotes.List(context.TODO(), moderntreasury.ForeignExchangeQuoteListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'foreign_exchange_quotes.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.foreign_exchange_quotes.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/foreign_exchange_quotes \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8120,6 +8120,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst foreignExchangeQuote = await client.foreignExchangeQuotes.create({\n  internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  target_currency: 'AED',\n});\n\nconsole.log(foreignExchangeQuote.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/foreign_exchange_quotes \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "target_currency": "AED"\n        }\'',
+      },
       python: {
         method: 'foreign_exchange_quotes.create',
         example:
@@ -8138,16 +8142,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ForeignExchangeQuotes.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tforeignExchangeQuote, err := client.ForeignExchangeQuotes.New(context.TODO(), moderntreasury.ForeignExchangeQuoteNewParams{\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTargetCurrency:    moderntreasury.F(shared.CurrencyAed),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", foreignExchangeQuote.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tforeignExchangeQuote, err := client.ForeignExchangeQuotes.New(context.TODO(), moderntreasury.ForeignExchangeQuoteNewParams{\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTargetCurrency:    moderntreasury.F(shared.CurrencyAed),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", foreignExchangeQuote.ID)\n}\n',
       },
       ruby: {
         method: 'foreign_exchange_quotes.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nforeign_exchange_quote = modern_treasury.foreign_exchange_quotes.create(\n  internal_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  target_currency: :AED\n)\n\nputs(foreign_exchange_quote)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/foreign_exchange_quotes \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "target_currency": "AED"\n        }\'',
       },
     },
   },
@@ -8170,6 +8170,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst foreignExchangeQuote = await client.foreignExchangeQuotes.retrieve('id');\n\nconsole.log(foreignExchangeQuote.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/foreign_exchange_quotes/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'foreign_exchange_quotes.retrieve',
         example:
@@ -8188,16 +8192,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ForeignExchangeQuotes.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tforeignExchangeQuote, err := client.ForeignExchangeQuotes.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", foreignExchangeQuote.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tforeignExchangeQuote, err := client.ForeignExchangeQuotes.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", foreignExchangeQuote.ID)\n}\n',
       },
       ruby: {
         method: 'foreign_exchange_quotes.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nforeign_exchange_quote = modern_treasury.foreign_exchange_quotes.retrieve("id")\n\nputs(foreign_exchange_quote)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/foreign_exchange_quotes/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8226,6 +8226,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const connectionLegalEntity of client.connectionLegalEntities.list()) {\n  console.log(connectionLegalEntity.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/connection_legal_entities \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'connection_legal_entities.list',
         example:
@@ -8244,16 +8248,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ConnectionLegalEntities.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ConnectionLegalEntities.List(context.TODO(), moderntreasury.ConnectionLegalEntityListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ConnectionLegalEntities.List(context.TODO(), moderntreasury.ConnectionLegalEntityListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'connection_legal_entities.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.connection_legal_entities.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/connection_legal_entities \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8280,6 +8280,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst connectionLegalEntity = await client.connectionLegalEntities.create({\n  connection_id: 'connection_id',\n});\n\nconsole.log(connectionLegalEntity.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/connection_legal_entities \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "connection_id": "connection_id"\n        }\'',
+      },
       python: {
         method: 'connection_legal_entities.create',
         example:
@@ -8298,16 +8302,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ConnectionLegalEntities.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.New(context.TODO(), moderntreasury.ConnectionLegalEntityNewParams{\n\t\tConnectionID: moderntreasury.F("connection_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.New(context.TODO(), moderntreasury.ConnectionLegalEntityNewParams{\n\t\tConnectionID: moderntreasury.F("connection_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'connection_legal_entities.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nconnection_legal_entity = modern_treasury.connection_legal_entities.create(connection_id: "connection_id")\n\nputs(connection_legal_entity)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/connection_legal_entities \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "connection_id": "connection_id"\n        }\'',
       },
     },
   },
@@ -8330,6 +8330,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst connectionLegalEntity = await client.connectionLegalEntities.retrieve('id');\n\nconsole.log(connectionLegalEntity.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/connection_legal_entities/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'connection_legal_entities.retrieve',
         example:
@@ -8348,16 +8352,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ConnectionLegalEntities.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'connection_legal_entities.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nconnection_legal_entity = modern_treasury.connection_legal_entities.retrieve("id")\n\nputs(connection_legal_entity)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/connection_legal_entities/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8380,6 +8380,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst connectionLegalEntity = await client.connectionLegalEntities.update('id');\n\nconsole.log(connectionLegalEntity.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/connection_legal_entities/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'connection_legal_entities.update',
         example:
@@ -8398,16 +8402,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ConnectionLegalEntities.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ConnectionLegalEntityUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ConnectionLegalEntityUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'connection_legal_entities.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nconnection_legal_entity = modern_treasury.connection_legal_entities.update("id")\n\nputs(connection_legal_entity)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/connection_legal_entities/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8437,6 +8437,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const legalEntity of client.legalEntities.list()) {\n  console.log(legalEntity.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/legal_entities \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'legal_entities.list',
         example:
@@ -8455,16 +8459,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LegalEntities.List(context.TODO(), moderntreasury.LegalEntityListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LegalEntities.List(context.TODO(), moderntreasury.LegalEntityListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'legal_entities.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.legal_entities.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/legal_entities \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8529,6 +8529,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst legalEntity = await client.legalEntities.create({ legal_entity_type: 'business' });\n\nconsole.log(legalEntity.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/legal_entities \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "legal_entity_type": "business",\n          "country_of_incorporation": "US",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          },\n          "operating_jurisdictions": [\n            "US",\n            "CA"\n          ]\n        }\'',
+      },
       python: {
         method: 'legal_entities.create',
         example:
@@ -8547,16 +8551,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.New(context.TODO(), moderntreasury.LegalEntityNewParams{\n\t\tLegalEntityType: moderntreasury.F(moderntreasury.LegalEntityNewParamsLegalEntityTypeBusiness),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.New(context.TODO(), moderntreasury.LegalEntityNewParams{\n\t\tLegalEntityType: moderntreasury.F(moderntreasury.LegalEntityNewParamsLegalEntityTypeBusiness),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entities.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nlegal_entity = modern_treasury.legal_entities.create(legal_entity_type: :business)\n\nputs(legal_entity)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/legal_entities \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "legal_entity_type": "business",\n          "country_of_incorporation": "US",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          },\n          "operating_jurisdictions": [\n            "US",\n            "CA"\n          ]\n        }\'',
       },
     },
   },
@@ -8578,6 +8578,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst legalEntity = await client.legalEntities.retrieve('id');\n\nconsole.log(legalEntity.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/legal_entities/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'legal_entities.retrieve',
         example:
@@ -8596,16 +8600,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entities.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nlegal_entity = modern_treasury.legal_entities.retrieve("id")\n\nputs(legal_entity)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/legal_entities/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8666,6 +8666,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst legalEntity = await client.legalEntities.update('id');\n\nconsole.log(legalEntity.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/legal_entities/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'legal_entities.update',
         example:
@@ -8684,65 +8688,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LegalEntityUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LegalEntityUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entities.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nlegal_entity = modern_treasury.legal_entities.update("id")\n\nputs(legal_entity)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/legal_entities/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
-      },
-    },
-  },
-  {
-    name: 'update_status',
-    endpoint: '/api/simulations/legal_entities/{id}/update_status',
-    httpMethod: 'patch',
-    summary: 'update legal entity status',
-    description: 'Update Legal Entity Status (sandbox only)',
-    stainlessPath: '(resource) legal_entities > (method) update_status',
-    qualified: 'client.legalEntities.updateStatus',
-    params: ['id: string;', "status: 'active' | 'suspended' | 'denied';"],
-    response: 'object',
-    markdown:
-      "## update_status\n\n`client.legalEntities.updateStatus(id: string, status: 'active' | 'suspended' | 'denied'): { id: string; addresses: object[]; bank_settings: bank_settings; business_description: string; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: document[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: object[]; industry_classifications: legal_entity_industry_classification[]; intended_use: string; last_name: string; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: object[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: object[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: object; third_party_verification: third_party_verification; third_party_verifications: third_party_verification[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: wealth_and_employment_details; website: string; legal_entity_associations?: legal_entity_association[]; }`\n\n**patch** `/api/simulations/legal_entities/{id}/update_status`\n\nUpdate Legal Entity Status (sandbox only)\n\n### Parameters\n\n- `id: string`\n\n- `status: 'active' | 'suspended' | 'denied'`\n  The target status for the legal entity. One of `active`, `suspended`, or `denied`. Valid transitions depend on the current status.\n\n### Returns\n\n- `{ id: string; addresses: { id: string; address_types: string[]; country: string; created_at: string; discarded_at: string; line1: string; line2: string; live_mode: boolean; locality: string; object: string; postal_code: string; primary: boolean; region: string; updated_at: string; }[]; bank_settings: { id: string; backup_withholding_percentage: number; created_at: string; discarded_at: string; enable_backup_withholding: boolean; live_mode: boolean; object: string; privacy_opt_out: boolean; regulation_o: boolean; updated_at: string; }; business_description: string; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: { id: string; created_at: string; discarded_at: string; document_type: string; documentable_id: string; documentable_type: string; file: object; live_mode: boolean; object: string; source: string; updated_at: string; }[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: { id: string; created_at: string; discarded_at: string; documents: object[]; expiration_date: string; id_type: string; issuing_country: string; issuing_region: string; live_mode: boolean; object: string; updated_at: string; }[]; industry_classifications: { id: string; classification_codes: string[]; classification_type: string; created_at: string; discarded_at: string; live_mode: boolean; object: string; updated_at: string; }[]; intended_use: string; last_name: string; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: { phone_number?: string; }[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: { jurisdiction: string; name: string; registration_number: string; }[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: { accepted_at?: string; ip_address?: string; }; third_party_verification: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }; third_party_verifications: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: { id: string; annual_income: number; created_at: string; discarded_at: string; employer_country: string; employer_name: string; employer_state: string; employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed'; income_country: string; income_source: string; income_state: string; industry: string; live_mode: boolean; object: string; occupation: string; source_of_funds: string; updated_at: string; wealth_source: string; }; website: string; legal_entity_associations?: { id: string; child_legal_entity: child_legal_entity; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }[]; }`\n\n  - `id: string`\n  - `addresses: { id: string; address_types: string[]; country: string; created_at: string; discarded_at: string; line1: string; line2: string; live_mode: boolean; locality: string; object: string; postal_code: string; primary: boolean; region: string; updated_at: string; }[]`\n  - `bank_settings: { id: string; backup_withholding_percentage: number; created_at: string; discarded_at: string; enable_backup_withholding: boolean; live_mode: boolean; object: string; privacy_opt_out: boolean; regulation_o: boolean; updated_at: string; }`\n  - `business_description: string`\n  - `business_name: string`\n  - `citizenship_country: string`\n  - `compliance_details: object`\n  - `country_of_incorporation: string`\n  - `created_at: string`\n  - `date_formed: string`\n  - `date_of_birth: string`\n  - `discarded_at: string`\n  - `documents: { id: string; created_at: string; discarded_at: string; document_type: string; documentable_id: string; documentable_type: string; file: { content_type?: string; filename?: string; size?: number; }; live_mode: boolean; object: string; source: string; updated_at: string; }[]`\n  - `doing_business_as_names: string[]`\n  - `email: string`\n  - `expected_activity_volume: number`\n  - `external_id: string`\n  - `first_name: string`\n  - `identifications: { id: string; created_at: string; discarded_at: string; documents: { id: string; created_at: string; discarded_at: string; document_type: string; documentable_id: string; documentable_type: string; file: { content_type?: string; filename?: string; size?: number; }; live_mode: boolean; object: string; source: string; updated_at: string; }[]; expiration_date: string; id_type: string; issuing_country: string; issuing_region: string; live_mode: boolean; object: string; updated_at: string; }[]`\n  - `industry_classifications: { id: string; classification_codes: string[]; classification_type: string; created_at: string; discarded_at: string; live_mode: boolean; object: string; updated_at: string; }[]`\n  - `intended_use: string`\n  - `last_name: string`\n  - `legal_entity_type: 'business' | 'individual'`\n  - `legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'`\n  - `listed_exchange: string`\n  - `live_mode: boolean`\n  - `metadata: object`\n  - `middle_name: string`\n  - `object: string`\n  - `operating_jurisdictions: string[]`\n  - `phone_numbers: { phone_number?: string; }[]`\n  - `politically_exposed_person: boolean`\n  - `preferred_name: string`\n  - `prefix: string`\n  - `primary_social_media_sites: string[]`\n  - `regulators: { jurisdiction: string; name: string; registration_number: string; }[]`\n  - `risk_rating: 'low' | 'medium' | 'high'`\n  - `service_provider_legal_entity_id: string`\n  - `status: 'active' | 'denied' | 'pending' | 'suspended'`\n  - `suffix: string`\n  - `terms_of_use: { accepted_at?: string; ip_address?: string; }`\n  - `third_party_verification: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }`\n  - `third_party_verifications: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }[]`\n  - `ticker_symbol: string`\n  - `updated_at: string`\n  - `wealth_and_employment_details: { id: string; annual_income: number; created_at: string; discarded_at: string; employer_country: string; employer_name: string; employer_state: string; employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed'; income_country: string; income_source: string; income_state: string; industry: string; live_mode: boolean; object: string; occupation: string; source_of_funds: string; updated_at: string; wealth_source: string; }`\n  - `website: string`\n  - `legal_entity_associations?: { id: string; child_legal_entity: { id: string; addresses: object[]; bank_settings: bank_settings; business_description: string; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: document[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: object[]; industry_classifications: legal_entity_industry_classification[]; intended_use: string; last_name: string; legal_entity_associations: legal_entity_association[]; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: object[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: object[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: object; third_party_verification: third_party_verification; third_party_verifications: third_party_verification[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: wealth_and_employment_details; website: string; }; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }[]`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nconst legalEntity = await client.legalEntities.updateStatus('id', { status: 'active' });\n\nconsole.log(legalEntity);\n```",
-    perLanguage: {
-      typescript: {
-        method: 'client.legalEntities.updateStatus',
-        example:
-          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst legalEntity = await client.legalEntities.updateStatus('id', { status: 'active' });\n\nconsole.log(legalEntity.id);",
-      },
-      python: {
-        method: 'legal_entities.update_status',
-        example:
-          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\nlegal_entity = client.legal_entities.update_status(\n    id="id",\n    status="active",\n)\nprint(legal_entity.id)',
-      },
-      java: {
-        method: 'legalEntities().updateStatus',
-        example:
-          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.LegalEntity;\nimport com.moderntreasury.api.models.LegalEntityUpdateStatusParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        LegalEntityUpdateStatusParams params = LegalEntityUpdateStatusParams.builder()\n            .id("id")\n            .status(LegalEntityUpdateStatusParams.Status.ACTIVE)\n            .build();\n        LegalEntity legalEntity = client.legalEntities().updateStatus(params);\n    }\n}',
-      },
-      kotlin: {
-        method: 'legalEntities().updateStatus',
-        example:
-          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.LegalEntity\nimport com.moderntreasury.api.models.LegalEntityUpdateStatusParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    val params: LegalEntityUpdateStatusParams = LegalEntityUpdateStatusParams.builder()\n        .id("id")\n        .status(LegalEntityUpdateStatusParams.Status.ACTIVE)\n        .build()\n    val legalEntity: LegalEntity = client.legalEntities().updateStatus(params)\n}',
-      },
-      go: {
-        method: 'client.LegalEntities.UpdateStatus',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.UpdateStatus(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LegalEntityUpdateStatusParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.LegalEntityUpdateStatusParamsStatusActive),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
-      },
-      ruby: {
-        method: 'legal_entities.update_status',
-        example:
-          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nlegal_entity = modern_treasury.legal_entities.update_status("id", status: :active)\n\nputs(legal_entity)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/simulations/legal_entities/$ID/update_status \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "active"\n        }\'',
       },
     },
   },
@@ -8775,6 +8726,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const paymentActionListResponse of client.paymentActions.list()) {\n  console.log(paymentActionListResponse.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_actions \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_actions.list',
         example:
@@ -8793,16 +8748,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentActions.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentActions.List(context.TODO(), moderntreasury.PaymentActionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentActions.List(context.TODO(), moderntreasury.PaymentActionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_actions.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.payment_actions.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_actions \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8831,6 +8782,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentAction = await client.paymentActions.create({ type: 'type' });\n\nconsole.log(paymentAction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_actions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "type": "type"\n        }\'',
+      },
       python: {
         method: 'payment_actions.create',
         example:
@@ -8849,16 +8804,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentActions.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.New(context.TODO(), moderntreasury.PaymentActionNewParams{\n\t\tType: moderntreasury.F("type"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.New(context.TODO(), moderntreasury.PaymentActionNewParams{\n\t\tType: moderntreasury.F("type"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
       },
       ruby: {
         method: 'payment_actions.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_action = modern_treasury.payment_actions.create(type: "type")\n\nputs(payment_action)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_actions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "type": "type"\n        }\'',
       },
     },
   },
@@ -8881,6 +8832,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentAction = await client.paymentActions.retrieve('id');\n\nconsole.log(paymentAction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_actions/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'payment_actions.retrieve',
         example:
@@ -8899,16 +8854,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentActions.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
       },
       ruby: {
         method: 'payment_actions.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_action = modern_treasury.payment_actions.retrieve("id")\n\nputs(payment_action)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_actions/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -8934,6 +8885,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst paymentAction = await client.paymentActions.update('id', { status: 'pending' });\n\nconsole.log(paymentAction.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/payment_actions/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "pending"\n        }\'',
+      },
       python: {
         method: 'payment_actions.update',
         example:
@@ -8952,16 +8907,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentActions.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentActionUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.PaymentActionUpdateParamsStatusPending),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentActionUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.PaymentActionUpdateParamsStatusPending),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
       },
       ruby: {
         method: 'payment_actions.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npayment_action = modern_treasury.payment_actions.update("id", status: :pending)\n\nputs(payment_action)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/payment_actions/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "pending"\n        }\'',
       },
     },
   },
@@ -8982,6 +8933,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.journalEntries.list({ journal_report_id: 'journal_report_id' });",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/journal_entries \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'journal_entries.list',
         example:
@@ -9000,16 +8955,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalEntries.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalEntries.List(context.TODO(), moderntreasury.JournalEntryListParams{\n\t\tJournalReportID: moderntreasury.F("journal_report_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalEntries.List(context.TODO(), moderntreasury.JournalEntryListParams{\n\t\tJournalReportID: moderntreasury.F("journal_report_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_entries.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.journal_entries.list(journal_report_id: "journal_report_id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/journal_entries \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -9030,6 +8981,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.journalEntries.retrieve('id');",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/journal_entries/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'journal_entries.retrieve',
         example:
@@ -9048,16 +9003,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalEntries.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalEntries.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalEntries.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_entries.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.journal_entries.retrieve("id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/journal_entries/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -9078,6 +9029,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.journalReports.list();",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/journal_reports \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'journal_reports.list',
         example:
@@ -9096,16 +9051,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalReports.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.List(context.TODO(), moderntreasury.JournalReportListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.List(context.TODO(), moderntreasury.JournalReportListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_reports.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.journal_reports.list\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/journal_reports \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -9126,6 +9077,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.journalReports.retrieve('id');",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/journal_reports/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'journal_reports.retrieve',
         example:
@@ -9144,16 +9099,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalReports.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_reports.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.journal_reports.retrieve("id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/journal_reports/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -9174,6 +9125,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.journalReports.update('id');",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/journal_reports/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'journal_reports.update',
         example:
@@ -9192,16 +9147,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalReports.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.JournalReportUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.JournalReportUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_reports.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.journal_reports.update("id")\n\nputs(result)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/journal_reports/$ID \\\n    -X PATCH \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -9231,6 +9182,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const holdListResponse of client.holds.list()) {\n  console.log(holdListResponse.id);\n}",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/holds \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'holds.list',
         example:
@@ -9249,16 +9204,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Holds.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Holds.List(context.TODO(), moderntreasury.HoldListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Holds.List(context.TODO(), moderntreasury.HoldListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'holds.list',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.holds.list\n\nputs(page)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/holds \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -9287,6 +9238,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst hold = await client.holds.create({\n  status: 'active',\n  target_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  target_type: 'payment_order',\n});\n\nconsole.log(hold.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/holds \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "active",\n          "target_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "target_type": "payment_order"\n        }\'',
+      },
       python: {
         method: 'holds.create',
         example:
@@ -9305,16 +9260,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Holds.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.New(context.TODO(), moderntreasury.HoldNewParams{\n\t\tStatus:     moderntreasury.F(moderntreasury.HoldNewParamsStatusActive),\n\t\tTargetID:   moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTargetType: moderntreasury.F(moderntreasury.HoldNewParamsTargetTypePaymentOrder),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.New(context.TODO(), moderntreasury.HoldNewParams{\n\t\tStatus:     moderntreasury.F(moderntreasury.HoldNewParamsStatusActive),\n\t\tTargetID:   moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTargetType: moderntreasury.F(moderntreasury.HoldNewParamsTargetTypePaymentOrder),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
       },
       ruby: {
         method: 'holds.create',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nhold = modern_treasury.holds.create(\n  status: :active,\n  target_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  target_type: :payment_order\n)\n\nputs(hold)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/holds \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "active",\n          "target_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "target_type": "payment_order"\n        }\'',
       },
     },
   },
@@ -9337,6 +9288,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst hold = await client.holds.retrieve('id');\n\nconsole.log(hold.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/holds/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
       python: {
         method: 'holds.retrieve',
         example:
@@ -9355,16 +9310,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Holds.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
       },
       ruby: {
         method: 'holds.retrieve',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nhold = modern_treasury.holds.retrieve("id")\n\nputs(hold)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/holds/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -9387,6 +9338,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst hold = await client.holds.update('id', { status: 'resolved' });\n\nconsole.log(hold.id);",
       },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/holds/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "resolved"\n        }\'',
+      },
       python: {
         method: 'holds.update',
         example:
@@ -9405,16 +9360,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Holds.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.HoldUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.HoldUpdateParamsStatusResolved),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.HoldUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.HoldUpdateParamsStatusResolved),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
       },
       ruby: {
         method: 'holds.update',
         example:
           'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nhold = modern_treasury.holds.update("id", status: :resolved)\n\nputs(hold)',
-      },
-      http: {
-        example:
-          'curl https://app.moderntreasury.com/api/holds/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "resolved"\n        }\'',
       },
     },
   },
@@ -9422,39 +9373,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
 
 const EMBEDDED_READMES: { language: string; content: string }[] = [
   {
-    language: 'go',
+    language: 'typescript',
     content:
-      '# Modern Treasury Go API Library\n\n<a href="https://pkg.go.dev/github.com/Modern-Treasury/modern-treasury-go"><img src="https://pkg.go.dev/badge/github.com/Modern-Treasury/modern-treasury-go.svg" alt="Go Reference"></a>\n\nThe Modern Treasury Go library provides convenient access to the [Modern Treasury REST API](https://docs.moderntreasury.com)\nfrom applications written in Go.\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJuYW1lIjoibW9kZXJuLXRyZWFzdXJ5LW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL21vZGVybi10cmVhc3VyeS5zdGxtY3AuY29tIiwiaGVhZGVycyI6eyJ4LW1vZGVybi10cmVhc3VyeS1vcmdhbml6YXRpb24taWQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJ4LW1vZGVybi10cmVhc3VyeS1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmodern-treasury.stlmcp.com%22%2C%22headers%22%3A%7B%22x-modern-treasury-organization-id%22%3A%22my-organization-ID%22%2C%22x-modern-treasury-api-key%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n```go\nimport (\n\t"github.com/Modern-Treasury/modern-treasury-go" // imported as SDK_PackageName\n)\n```\n\n<!-- x-release-please-end -->\n\nOr to pin the version:\n\n<!-- x-release-please-start-version -->\n\n```sh\ngo get -u \'github.com/Modern-Treasury/modern-treasury-go@v0.0.1\'\n```\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Go 1.22+.\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```go\npackage main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),                 // defaults to os.LookupEnv("MODERN_TREASURY_API_KEY")\n\t\toption.WithOrganizationID("my-organization-ID"), // defaults to os.LookupEnv("MODERN_TREASURY_ORGANIZATION_ID")\n\t)\n\tcounterparty, err := client.Counterparties.New(context.TODO(), moderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n\n```\n\n### Request fields\n\nAll request parameters are wrapped in a generic `Field` type,\nwhich we use to distinguish zero values from null or omitted fields.\n\nThis prevents accidentally sending a zero value if you forget a required parameter,\nand enables explicitly sending `null`, `false`, `\'\'`, or `0` on optional parameters.\nAny field not specified is not sent.\n\nTo construct fields with values, use the helpers `String()`, `Int()`, `Float()`, or most commonly, the generic `F[T]()`.\nTo send a null, use `Null[T]()`, and to send a nonconforming value, use `Raw[T](any)`. For example:\n\n```go\nparams := FooParams{\n\tName: SDK_PackageName.F("hello"),\n\n\t// Explicitly send `"description": null`\n\tDescription: SDK_PackageName.Null[string](),\n\n\tPoint: SDK_PackageName.F(SDK_PackageName.Point{\n\t\tX: SDK_PackageName.Int(0),\n\t\tY: SDK_PackageName.Int(1),\n\n\t\t// In cases where the API specifies a given type,\n\t\t// but you want to send something else, use `Raw`:\n\t\tZ: SDK_PackageName.Raw[int64](0.01), // sends a float\n\t}),\n}\n```\n\n### Response objects\n\nAll fields in response structs are value types (not pointers or wrappers).\n\nIf a given field is `null`, not present, or invalid, the corresponding field\nwill simply be its zero value.\n\nAll response structs also include a special `JSON` field, containing more detailed\ninformation about each property, which you can use like so:\n\n```go\nif res.Name == "" {\n\t// true if `"name"` is either not present or explicitly null\n\tres.JSON.Name.IsNull()\n\n\t// true if the `"name"` key was not present in the response JSON at all\n\tres.JSON.Name.IsMissing()\n\n\t// When the API returns data that cannot be coerced to the expected type:\n\tif res.JSON.Name.IsInvalid() {\n\t\traw := res.JSON.Name.Raw()\n\n\t\tlegacyName := struct{\n\t\t\tFirst string `json:"first"`\n\t\t\tLast  string `json:"last"`\n\t\t}{}\n\t\tjson.Unmarshal([]byte(raw), &legacyName)\n\t\tname = legacyName.First + " " + legacyName.Last\n\t}\n}\n```\n\nThese `.JSON` structs also include an `Extras` map containing\nany properties in the json response that were not specified\nin the struct. This can be useful for API features not yet\npresent in the SDK.\n\n```go\nbody := res.JSON.ExtraFields["my_unexpected_field"].Raw()\n```\n\n### RequestOptions\n\nThis library uses the functional options pattern. Functions defined in the\n`SDK_PackageOptionName` package return a `RequestOption`, which is a closure that mutates a\n`RequestConfig`. These options can be supplied to the client or at individual\nrequests. For example:\n\n```go\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\t// Adds a header to every request made by the client\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "custom_header_info"),\n)\n\nclient.Counterparties.New(context.TODO(), ...,\n\t// Override the header\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "some_other_custom_header_info"),\n\t// Add an undocumented field to the request body, using sjson syntax\n\tSDK_PackageOptionName.WithJSONSet("some.json.path", map[string]string{"my": "object"}),\n)\n```\n\nSee the [full list of request options](https://pkg.go.dev/github.com/Modern-Treasury/modern-treasury-go/SDK_PackageOptionName).\n\n### Pagination\n\nThis library provides some conveniences for working with paginated list endpoints.\n\nYou can use `.ListAutoPaging()` methods to iterate through items across all pages:\n\n```go\niter := client.Counterparties.ListAutoPaging(context.TODO(), moderntreasury.CounterpartyListParams{})\n// Automatically fetches more pages as needed.\nfor iter.Next() {\n\tcounterparty := iter.Current()\n\tfmt.Printf("%+v\\n", counterparty)\n}\nif err := iter.Err(); err != nil {\n\tpanic(err.Error())\n}\n```\n\nOr you can use simple `.List()` methods to fetch a single page and receive a standard response object\nwith additional helper methods like `.GetNextPage()`, e.g.:\n\n```go\npage, err := client.Counterparties.List(context.TODO(), moderntreasury.CounterpartyListParams{})\nfor page != nil {\n\tfor _, counterparty := range page.Items {\n\t\tfmt.Printf("%+v\\n", counterparty)\n\t}\n\tpage, err = page.GetNextPage()\n}\nif err != nil {\n\tpanic(err.Error())\n}\n```\n\n### Errors\n\nWhen the API returns a non-success status code, we return an error with type\n`*SDK_PackageName.Error`. This contains the `StatusCode`, `*http.Request`, and\n`*http.Response` values of the request, as well as the JSON of the error body\n(much like other response objects in the SDK).\n\nTo handle errors, we recommend that you use the `errors.As` pattern:\n\n```go\n_, err := client.ExternalAccounts.New(context.TODO(), moderntreasury.ExternalAccountNewParams{\n\tCounterpartyID: moderntreasury.F("missing"),\n})\nif err != nil {\n\tvar apierr *moderntreasury.Error\n\tif errors.As(err, &apierr) {\n\t\tprintln(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request\n\t\tprintln(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response\n\t}\n\tpanic(err.Error()) // GET "/api/external_accounts": 400 Bad Request { ... }\n}\n```\n\nWhen other errors occur, they are returned unwrapped; for example,\nif HTTP transport fails, you might receive `*url.Error` wrapping `*net.OpError`.\n\n### Timeouts\n\nRequests do not time out by default; use context to configure a timeout for a request lifecycle.\n\nNote that if a request is [retried](#retries), the context timeout does not start over.\nTo set a per-retry timeout, use `SDK_PackageOptionName.WithRequestTimeout()`.\n\n```go\n// This sets the timeout for the request, including all the retries.\nctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)\ndefer cancel()\nclient.Counterparties.New(\n\tctx,\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\t// This sets the per-retry timeout\n\toption.WithRequestTimeout(20*time.Second),\n)\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads in multipart requests are typed as\n`param.Field[io.Reader]`. The contents of the `io.Reader` will by default be sent as a multipart form\npart with the file name of "anonymous_file" and content-type of "application/octet-stream".\n\nThe file name and content-type can be customized by implementing `Name() string` or `ContentType()\nstring` on the run-time type of `io.Reader`. Note that `os.File` implements `Name() string`, so a\nfile returned by `os.Open` will be sent with the file name on disk.\n\nWe also provide a helper `SDK_PackageName.FileParam(reader io.Reader, filename string, contentType string)`\nwhich can be used to wrap any `io.Reader` with the appropriate file name and content type.\n\n```go\n// A file from the file system\nfile, err := os.Open("my/file.txt")\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.F[io.Reader](file),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n\n// A file from a string\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.F[io.Reader](strings.NewReader("my file contents")),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n\n// With a custom filename and contentType\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.FileParam(strings.NewReader(`{"hello": "foo"}`), "file.go", "application/json"),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n```\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nWe retry by default all connection errors, 408 Request Timeout, 409 Conflict, 429 Rate Limit,\nand >=500 Internal errors.\n\nYou can use the `WithMaxRetries` option to configure or disable this:\n\n```go\n// Configure the default for all requests:\nclient := moderntreasury.NewClient(\n\toption.WithMaxRetries(0), // default is 2\n)\n\n// Override per-request:\nclient.Counterparties.New(\n\tcontext.TODO(),\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\toption.WithMaxRetries(5),\n)\n```\n\n\n### Accessing raw response data (e.g. response headers)\n\nYou can access the raw HTTP response data by using the `option.WithResponseInto()` request option. This is useful when\nyou need to examine response headers, status codes, or other details.\n\n```go\n// Create a variable to store the HTTP response\nvar response *http.Response\ncounterparty, err := client.Counterparties.New(\n\tcontext.TODO(),\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\toption.WithResponseInto(&response),\n)\nif err != nil {\n\t// handle error\n}\nfmt.Printf("%+v\\n", counterparty)\n\nfmt.Printf("Status Code: %d\\n", response.StatusCode)\nfmt.Printf("Headers: %+#v\\n", response.Header)\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.Get`, `client.Post`, and other HTTP verbs.\n`RequestOptions` on the client, such as retries, will be respected when making these requests.\n\n```go\nvar (\n    // params can be an io.Reader, a []byte, an encoding/json serializable object,\n    // or a "…Params" struct defined in this library.\n    params map[string]interface{}\n\n    // result can be an []byte, *http.Response, a encoding/json deserializable object,\n    // or a model defined in this library.\n    result *http.Response\n)\nerr := client.Post(context.Background(), "/unspecified", params, &result)\nif err != nil {\n    …\n}\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use either the `SDK_PackageOptionName.WithQuerySet()`\nor the `SDK_PackageOptionName.WithJSONSet()` methods.\n\n```go\nparams := FooNewParams{\n    ID:   SDK_PackageName.F("id_xxxx"),\n    Data: SDK_PackageName.F(FooNewParamsData{\n        FirstName: SDK_PackageName.F("John"),\n    }),\n}\nclient.Foo.New(context.Background(), params, SDK_PackageOptionName.WithJSONSet("data.last_name", "Doe"))\n```\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may either access the raw JSON of the response as a string\nwith `result.JSON.RawJSON()`, or get the raw JSON of a particular field on the result with\n`result.JSON.Foo.Raw()`.\n\nAny fields that are not present on the response struct will be saved and can be accessed by `result.JSON.ExtraFields()` which returns the extra fields as a `map[string]Field`.\n\n### Middleware\n\nWe provide `SDK_PackageOptionName.WithMiddleware` which applies the given\nmiddleware to requests.\n\n```go\nfunc Logger(req *http.Request, next SDK_PackageOptionName.MiddlewareNext) (res *http.Response, err error) {\n\t// Before the request\n\tstart := time.Now()\n\tLogReq(req)\n\n\t// Forward the request to the next handler\n\tres, err = next(req)\n\n\t// Handle stuff after the request\n\tend := time.Now()\n\tLogRes(res, err, start - end)\n\n    return res, err\n}\n\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\tSDK_PackageOptionName.WithMiddleware(Logger),\n)\n```\n\nWhen multiple middlewares are provided as variadic arguments, the middlewares\nare applied left to right. If `SDK_PackageOptionName.WithMiddleware` is given\nmultiple times, for example first in the client then the method, the\nmiddleware in the client will run first and the middleware given in the method\nwill run next.\n\nYou may also replace the default `http.Client` with\n`SDK_PackageOptionName.WithHTTPClient(client)`. Only one http client is\naccepted (this overwrites any previous client) and receives requests after any\nmiddleware has been applied.\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-go/issues) with questions, bugs, or suggestions.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
-  },
-  {
-    language: 'java',
-    content:
-      '# Modern Treasury Java API Library\n\n<!-- x-release-please-start-version -->\n[![Maven Central](https://img.shields.io/maven-central/v/com.moderntreasury.api/modern-treasury-java)](https://central.sonatype.com/artifact/com.moderntreasury.api/modern-treasury-java/0.0.1)\n[![javadoc](https://javadoc.io/badge2/com.moderntreasury.api/modern-treasury-java/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.moderntreasury.api/modern-treasury-java/0.0.1)\n<!-- x-release-please-end -->\n\nThe Modern Treasury Java SDK provides convenient access to the [Modern Treasury REST API](https://docs.moderntreasury.com)   from applications written in Java.\n\nThe Modern Treasury Java SDK is similar to the Modern Treasury Kotlin SDK but with minor differences that       make it more ergonomic for use in Java, such as `Optional` instead of nullable values, `Stream`       instead of `Sequence`, and `CompletableFuture` instead of suspend functions.\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJuYW1lIjoibW9kZXJuLXRyZWFzdXJ5LW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL21vZGVybi10cmVhc3VyeS5zdGxtY3AuY29tIiwiaGVhZGVycyI6eyJ4LW1vZGVybi10cmVhc3VyeS1vcmdhbml6YXRpb24taWQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJ4LW1vZGVybi10cmVhc3VyeS1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmodern-treasury.stlmcp.com%22%2C%22headers%22%3A%7B%22x-modern-treasury-organization-id%22%3A%22my-organization-ID%22%2C%22x-modern-treasury-api-key%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n<!-- x-release-please-start-version -->\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com). Javadocs are available on [javadoc.io](https://javadoc.io/doc/com.moderntreasury.api/modern-treasury-java/0.0.1).\n\n<!-- x-release-please-end -->\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n### Gradle\n\n~~~kotlin\nimplementation("com.moderntreasury:modern-treasury-java:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.moderntreasury</groupId>\n  <artifactId>modern-treasury-java</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build();\nCounterparty counterparty = client.counterparties().create(params);\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n```\n\nOr manually:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .apiKey("My API Key")\n    .organizationId("my-organization-ID")\n    .build();\n```\n\nOr using a combination of the two approaches:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    // Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n    // Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\n    .fromEnv()\n    .apiKey("My API Key")\n    .build();\n```\n\nSee this table for the available options:\n\n| Setter           | System property                 | Environment variable              | Required | Default value                      |\n| ---------------- | ------------------------------- | --------------------------------- | -------- | ---------------------------------- |\n| `apiKey`         | `moderntreasury.apiKey`         | `MODERN_TREASURY_API_KEY`         | true     | -                                  |\n| `organizationId` | `moderntreasury.organizationId` | `MODERN_TREASURY_ORGANIZATION_ID` | true     | -                                  |\n| `webhookKey`     | `moderntreasury.webhookKey`     | `MODERN_TREASURY_WEBHOOK_KEY`     | false    | -                                  |\n| `baseUrl`        | `moderntreasury.baseUrl`        | `MODERN_TREASURY_BASE_URL`        | true     | `"https://app.moderntreasury.com"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\n\nModernTreasuryClient clientWithOptions = client.withOptions(optionsBuilder -> {\n    optionsBuilder.baseUrl("https://example.com");\n    optionsBuilder.maxRetries(42);\n});\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Modern Treasury API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Java class.\n\nFor example, `client.counterparties().create(...)` should be called with an instance of `CounterpartyCreateParams`, and it     will return an instance of `Counterparty`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\nimport java.util.concurrent.CompletableFuture;\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build();\nCompletableFuture<Counterparty> counterparty = client.async().counterparties().create(params);\n```\n\nOr create an asynchronous client from the beginning:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClientAsync;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClientAsync;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\nimport java.util.concurrent.CompletableFuture;\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nModernTreasuryClientAsync client = ModernTreasuryOkHttpClientAsync.fromEnv();\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build();\nCompletableFuture<Counterparty> counterparty = client.counterparties().create(params);\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods return `CompletableFuture`s.\n\n\n\n## File uploads\n\nThe SDK defines methods that accept files.\n\nTo upload a file, pass a [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html):\n\n```java\nimport com.moderntreasury.api.models.Document;\nimport com.moderntreasury.api.models.DocumentCreateParams;\nimport java.nio.file.Paths;\n\nDocumentCreateParams params = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(Paths.get("my/file.txt"))\n    .build();\nDocument document = client.documents().create(params);\n```\n\nOr an arbitrary [`InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html):\n\n```java\nimport com.moderntreasury.api.models.Document;\nimport com.moderntreasury.api.models.DocumentCreateParams;\nimport java.net.URL;\n\nDocumentCreateParams params = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(new URL("https://example.com/my/file.txt").openStream())\n    .build();\nDocument document = client.documents().create(params);\n```\n\nOr a `byte[]` array:\n\n```java\nimport com.moderntreasury.api.models.Document;\nimport com.moderntreasury.api.models.DocumentCreateParams;\n\nDocumentCreateParams params = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file("content".getBytes())\n    .build();\nDocument document = client.documents().create(params);\n```\n\nNote that when passing a non-`Path` its filename is unknown so it will not be included in the request.     To manually set a filename, pass a [`MultipartField`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt):\n\n```java\nimport com.moderntreasury.api.core.MultipartField;\nimport com.moderntreasury.api.models.Document;\nimport com.moderntreasury.api.models.DocumentCreateParams;\nimport java.io.InputStream;\nimport java.net.URL;\n\nDocumentCreateParams params = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(MultipartField.<InputStream>builder()\n        .value(new URL("https://example.com/my/file.txt").openStream())\n        .filename("my/file.txt")\n        .build())\n    .build();\nDocument document = client.documents().create(params);\n```\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Java classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```java\nimport com.moderntreasury.api.core.http.Headers;\nimport com.moderntreasury.api.core.http.HttpResponseFor;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build();\nHttpResponseFor<Counterparty> counterparty = client.counterparties().withRawResponse().create(params);\n\nint statusCode = counterparty.statusCode();\nHeaders headers = counterparty.headers();\n```\n\nYou can still deserialize the response into an instance of a Java class if needed:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\n\nCounterparty parsedCounterparty = counterparty.parse();\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`ModernTreasuryServiceException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`ModernTreasuryIoException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryIoException.kt): I/O networking errors.\n\n- [`ModernTreasuryRetryableException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`ModernTreasuryInvalidDataException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`ModernTreasuryException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns an [`Iterable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyListPage;\n\nCounterpartyListPage page = client.counterparties().list();\n\n// Process as an Iterable\nfor (Counterparty counterparty : page.autoPager()) {\n    System.out.println(counterparty);\n}\n\n// Process as a Stream\npage.autoPager()\n    .stream()\n    .limit(50)\n    .forEach(counterparty -> System.out.println(counterparty));\n```\n\nWhen using the asynchronous client, the method returns an [`AsyncStreamResponse`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/http/AsyncStreamResponse.kt):\n\n```java\nimport com.moderntreasury.api.core.http.AsyncStreamResponse;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyListPageAsync;\nimport java.util.Optional;\nimport java.util.concurrent.CompletableFuture;\n\nCompletableFuture<CounterpartyListPageAsync> pageFuture = client.async().counterparties().list();\n\npageFuture.thenRun(page -> page.autoPager().subscribe(counterparty -> {\n    System.out.println(counterparty);\n}));\n\n// If you need to handle errors or completion of the stream\npageFuture.thenRun(page -> page.autoPager().subscribe(new AsyncStreamResponse.Handler<>() {\n    @Override\n    public void onNext(Counterparty counterparty) {\n        System.out.println(counterparty);\n    }\n\n    @Override\n    public void onComplete(Optional<Throwable> error) {\n        if (error.isPresent()) {\n            System.out.println("Something went wrong!");\n            throw new RuntimeException(error.get());\n        } else {\n            System.out.println("No more!");\n        }\n    }\n}));\n\n// Or use futures\npageFuture.thenRun(page -> page.autoPager()\n    .subscribe(counterparty -> {\n        System.out.println(counterparty);\n    })\n    .onCompleteFuture()\n    .whenComplete((unused, error) -> {\n        if (error != null) {\n            System.out.println("Something went wrong!");\n            throw new RuntimeException(error);\n        } else {\n            System.out.println("No more!");\n        }\n    }));\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyListPage;\n\nCounterpartyListPage page = client.counterparties().list();\nwhile (true) {\n    for (Counterparty counterparty : page.items()) {\n        System.out.println(counterparty);\n    }\n\n    if (!page.hasNextPage()) {\n        break;\n    }\n\n    page = page.nextPage();\n}\n```\n\n## Logging\n\nEnable logging by setting the `MODERN_TREASURY_LOG` environment variable to   `info`:\n\n```sh\nexport MODERN_TREASURY_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport MODERN_TREASURY_LOG=debug\n```\n\nOr configure the client manually using the `logLevel` method:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.core.LogLevel;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .logLevel(LogLevel.INFO)\n    .build();\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `modern-treasury-java-core` is published with a     [configuration file](modern-treasury-java-core/src/main/resources/META-INF/proguard/modern-treasury-java-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`ModernTreasuryOkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or     [`ModernTreasuryOkHttpClientAsync`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build();\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\n\nCounterparty counterparty = client.counterparties().create(\n  params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build()\n);\n```\n\nOr configure the default for all method calls at the client level:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport java.time.Duration;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build();\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport java.net.InetSocketAddress;\nimport java.net.Proxy;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .proxy(new Proxy(\n      Proxy.Type.HTTP, new InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build();\n```\n\nIf the proxy responds with `407 Proxy Authentication Required`, supply credentials by also   configuring `proxyAuthenticator`:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.core.http.ProxyAuthenticator;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .proxy(...)\n    // Or a custom implementation of `ProxyAuthenticator`.\n    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))\n    .build();\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport java.time.Duration;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build();\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build();\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `modern-treasury-java-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`ModernTreasuryClient`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClient.kt), [`ModernTreasuryClientAsync`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsync.kt),             [`ModernTreasuryClientImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt), and [`ModernTreasuryClientAsyncImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `modern-treasury-java-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`ModernTreasuryOkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) and [`ModernTreasuryOkHttpClientAsync`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), which             provide a way to construct [`ModernTreasuryClientImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) and             [`ModernTreasuryClientAsyncImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), respectively, using OkHttp\n- `modern-treasury-java`\n  - Depends on and exposes the APIs of both `modern-treasury-java-core` and `modern-treasury-java-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`modern-treasury-java` dependency](#installation) with `modern-treasury-java-core`\n2. Copy `modern-treasury-java-client-okhttp`\'s [`OkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`ModernTreasuryClientImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) or [`ModernTreasuryClientAsyncImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), similarly to        [`ModernTreasuryOkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or [`ModernTreasuryOkHttpClientAsync`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`modern-treasury-java` dependency](#installation) with `modern-treasury-java-core`\n2. Write a class that implements the [`HttpClient`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/http/HttpClient.kt) interface\n3. Construct [`ModernTreasuryClientImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) or [`ModernTreasuryClientAsyncImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), similarly to        [`ModernTreasuryOkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or [`ModernTreasuryOkHttpClientAsync`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```java\nimport com.moderntreasury.api.core.JsonValue;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build();\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt) object to its setter:\n\n```java\nimport com.moderntreasury.api.core.JsonValue;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name(JsonValue.from(42))\n    .build();\n```\n\nThe most straightforward way to create a [`JsonValue`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt) is using its       `from(...)` method:\n\n```java\nimport com.moderntreasury.api.core.JsonValue;\nimport java.util.List;\nimport java.util.Map;\n\n// Create primitive JSON values\nJsonValue nullValue = JsonValue.from(null);\nJsonValue booleanValue = JsonValue.from(true);\nJsonValue numberValue = JsonValue.from(42);\nJsonValue stringValue = JsonValue.from("Hello World!");\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nJsonValue arrayValue = JsonValue.from(List.of(\n  "Hello", "World"\n));\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nJsonValue objectValue = JsonValue.from(Map.of(\n  "a", 1,\n  "b", 2\n));\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nJsonValue complexValue = JsonValue.from(Map.of(\n  "a", List.of(\n    1, 2\n  ),\n  "b", List.of(\n    3, 4\n  )\n));\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt):\n\n```java\nimport com.moderntreasury.api.core.JsonMissing;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name(JsonMissing.of())\n    .build();\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```java\nimport com.moderntreasury.api.core.JsonValue;\nimport java.util.Map;\n\nMap<String, JsonValue> additionalProperties = client.counterparties().create(params)._additionalProperties();\nJsonValue secretPropertyValue = additionalProperties.get("secretProperty");\n\nString result = secretPropertyValue.accept(new JsonValue.Visitor<>() {\n    @Override\n    public String visitNull() {\n        return "It\'s null!";\n    }\n\n    @Override\n    public String visitBoolean(boolean value) {\n        return "It\'s a boolean!";\n    }\n\n    @Override\n    public String visitNumber(Number value) {\n        return "It\'s a number!";\n    }\n\n    // Other methods include `visitMissing`, `visitString`, `visitArray`, and `visitObject`\n    // The default implementation of each unimplemented method delegates to `visitDefault`, which throws by default, but can also be overridden\n});\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```java\nimport com.moderntreasury.api.core.JsonField;\nimport java.util.Optional;\n\nJsonField<String> name = client.counterparties().create(params)._name();\n\nif (name.isMissing()) {\n  // The property is absent from the JSON response\n} else if (name.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  Optional<String> jsonString = name.asString();\n\n  // Try to deserialize into a custom type\n  MyClass myObject = name.asUnknown().orElseThrow().convert(MyClass.class);\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`ModernTreasuryInvalidDataException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryInvalidDataException.kt) only if you directly access the property.\n\nValidating the response is _not_ forwards compatible with new types from the API for existing fields.\n\nIf you would still prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\n\nCounterparty counterparty = client.counterparties().create(params).validate();\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\n\nCounterparty counterparty = client.counterparties().create(\n  params, RequestOptions.builder().responseValidation(true).build()\n);\n```\n\nOr configure the default for all method calls at the client level:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build();\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nJava `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-java/issues) with questions, bugs, or suggestions.\n',
-  },
-  {
-    language: 'kotlin',
-    content:
-      '# Modern Treasury Kotlin API Library\n\n<!-- x-release-please-start-version -->\n[![Maven Central](https://img.shields.io/maven-central/v/com.moderntreasury.api/modern-treasury-kotlin)](https://central.sonatype.com/artifact/com.moderntreasury.api/modern-treasury-kotlin/0.0.1)\n[![javadoc](https://javadoc.io/badge2/com.moderntreasury.api/modern-treasury-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.moderntreasury.api/modern-treasury-kotlin/0.0.1)\n<!-- x-release-please-end -->\n\nThe Modern Treasury Kotlin SDK provides convenient access to the [Modern Treasury REST API](https://docs.moderntreasury.com)   from applications written in Kotlin.\n\nThe Modern Treasury Kotlin SDK is similar to the Modern Treasury Java SDK but with minor differences that       make it more ergonomic for use in Kotlin, such as nullable values instead of `Optional`,       `Sequence` instead of `Stream`, and suspend functions instead of `CompletableFuture`.\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJuYW1lIjoibW9kZXJuLXRyZWFzdXJ5LW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL21vZGVybi10cmVhc3VyeS5zdGxtY3AuY29tIiwiaGVhZGVycyI6eyJ4LW1vZGVybi10cmVhc3VyeS1vcmdhbml6YXRpb24taWQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJ4LW1vZGVybi10cmVhc3VyeS1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmodern-treasury.stlmcp.com%22%2C%22headers%22%3A%7B%22x-modern-treasury-organization-id%22%3A%22my-organization-ID%22%2C%22x-modern-treasury-api-key%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n<!-- x-release-please-start-version -->\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.moderntreasury.api/modern-treasury-kotlin/0.0.1).\n\n<!-- x-release-please-end -->\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n### Gradle\n\n~~~kotlin\nimplementation("com.moderntreasury:modern-treasury-kotlin:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.moderntreasury</groupId>\n  <artifactId>modern-treasury-kotlin</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build()\nval counterparty: Counterparty = client.counterparties().create(params)\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n```\n\nOr manually:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .apiKey("My API Key")\n    .organizationId("my-organization-ID")\n    .build()\n```\n\nOr using a combination of the two approaches:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    // Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n    // Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\n    .fromEnv()\n    .apiKey("My API Key")\n    .build()\n```\n\nSee this table for the available options:\n\n| Setter           | System property                 | Environment variable              | Required | Default value                      |\n| ---------------- | ------------------------------- | --------------------------------- | -------- | ---------------------------------- |\n| `apiKey`         | `moderntreasury.apiKey`         | `MODERN_TREASURY_API_KEY`         | true     | -                                  |\n| `organizationId` | `moderntreasury.organizationId` | `MODERN_TREASURY_ORGANIZATION_ID` | true     | -                                  |\n| `webhookKey`     | `moderntreasury.webhookKey`     | `MODERN_TREASURY_WEBHOOK_KEY`     | false    | -                                  |\n| `baseUrl`        | `moderntreasury.baseUrl`        | `MODERN_TREASURY_BASE_URL`        | true     | `"https://app.moderntreasury.com"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\n\nval clientWithOptions: ModernTreasuryClient = client.withOptions {\n    it.baseUrl("https://example.com")\n    it.maxRetries(42)\n}\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Modern Treasury API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Kotlin class.\n\nFor example, `client.counterparties().create(...)` should be called with an instance of `CounterpartyCreateParams`, and it     will return an instance of `Counterparty`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build()\nval counterparty: Counterparty = client.async().counterparties().create(params)\n```\n\nOr create an asynchronous client from the beginning:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClientAsync\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClientAsync\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nval client: ModernTreasuryClientAsync = ModernTreasuryOkHttpClientAsync.fromEnv()\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build()\nval counterparty: Counterparty = client.counterparties().create(params)\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).\n\n\n\n## File uploads\n\nThe SDK defines methods that accept files.\n\nTo upload a file, pass a [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html):\n\n```kotlin\nimport com.moderntreasury.api.models.Document\nimport com.moderntreasury.api.models.DocumentCreateParams\nimport java.nio.file.Paths\n\nval params: DocumentCreateParams = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(Paths.get("my/file.txt"))\n    .build()\nval document: Document = client.documents().create(params)\n```\n\nOr an arbitrary [`InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html):\n\n```kotlin\nimport com.moderntreasury.api.models.Document\nimport com.moderntreasury.api.models.DocumentCreateParams\nimport java.net.URL\n\nval params: DocumentCreateParams = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(URL("https://example.com/my/file.txt").openStream())\n    .build()\nval document: Document = client.documents().create(params)\n```\n\nOr a `ByteArray`:\n\n```kotlin\nimport com.moderntreasury.api.models.Document\nimport com.moderntreasury.api.models.DocumentCreateParams\n\nval params: DocumentCreateParams = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file("content".toByteArray())\n    .build()\nval document: Document = client.documents().create(params)\n```\n\nNote that when passing a non-`Path` its filename is unknown so it will not be included in the request.     To manually set a filename, pass a [`MultipartField`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt):\n\n```kotlin\nimport com.moderntreasury.api.core.MultipartField\nimport com.moderntreasury.api.models.Document\nimport com.moderntreasury.api.models.DocumentCreateParams\nimport java.io.InputStream\nimport java.net.URL\n\nval params: DocumentCreateParams = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(MultipartField.builder<InputStream>()\n        .value(URL("https://example.com/my/file.txt").openStream())\n        .filename("my/file.txt")\n        .build())\n    .build()\nval document: Document = client.documents().create(params)\n```\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Kotlin classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```kotlin\nimport com.moderntreasury.api.core.http.Headers\nimport com.moderntreasury.api.core.http.HttpResponseFor\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build()\nval counterparty: HttpResponseFor<Counterparty> = client.counterparties().withRawResponse().create(params)\n\nval statusCode: Int = counterparty.statusCode()\nval headers: Headers = counterparty.headers()\n```\n\nYou can still deserialize the response into an instance of a Kotlin class if needed:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\n\nval parsedCounterparty: Counterparty = counterparty.parse()\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`ModernTreasuryServiceException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`ModernTreasuryIoException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryIoException.kt): I/O networking errors.\n\n- [`ModernTreasuryRetryableException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`ModernTreasuryInvalidDataException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`ModernTreasuryException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns a [`Sequence`](https://kotlinlang.org/docs/sequences.html)\n\n```kotlin\nimport com.moderntreasury.api.models.CounterpartyListPage\n\nval page: CounterpartyListPage = client.counterparties().list()\npage.autoPager()\n    .take(50)\n    .forEach { counterparty -> println(counterparty) }\n```\n\nWhen using the asynchronous client, the method returns a [`Flow`](https://kotlinlang.org/docs/flow.html):\n\n```kotlin\nimport com.moderntreasury.api.models.CounterpartyListPageAsync\n\nval page: CounterpartyListPageAsync = client.async().counterparties().list()\npage.autoPager()\n    .take(50)\n    .forEach { counterparty -> println(counterparty) }\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyListPage\n\nval page: CounterpartyListPage = client.counterparties().list()\nwhile (true) {\n    for (counterparty in page.items()) {\n        println(counterparty)\n    }\n\n    if (!page.hasNextPage()) {\n        break\n    }\n\n    page = page.nextPage()\n}\n```\n\n## Logging\n\nEnable logging by setting the `MODERN_TREASURY_LOG` environment variable to   `info`:\n\n```sh\nexport MODERN_TREASURY_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport MODERN_TREASURY_LOG=debug\n```\n\nOr configure the client manually using the `logLevel` method:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.core.LogLevel\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .logLevel(LogLevel.INFO)\n    .build()\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `modern-treasury-kotlin-core` is published with a     [configuration file](modern-treasury-kotlin-core/src/main/resources/META-INF/proguard/modern-treasury-kotlin-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`ModernTreasuryOkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or     [`ModernTreasuryOkHttpClientAsync`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build()\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\n\nval counterparty: Counterparty = client.counterparties().create(\n  params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build()\n)\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport java.time.Duration\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build()\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport java.net.InetSocketAddress\nimport java.net.Proxy\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .proxy(Proxy(\n      Proxy.Type.HTTP, InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build()\n```\n\nIf the proxy responds with `407 Proxy Authentication Required`, supply credentials by also   configuring `proxyAuthenticator`:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.core.http.ProxyAuthenticator\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .proxy(...)\n    // Or a custom implementation of `ProxyAuthenticator`.\n    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))\n    .build()\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport java.time.Duration\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build()\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build()\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `modern-treasury-kotlin-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`ModernTreasuryClient`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClient.kt), [`ModernTreasuryClientAsync`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsync.kt),             [`ModernTreasuryClientImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt), and [`ModernTreasuryClientAsyncImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `modern-treasury-kotlin-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`ModernTreasuryOkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) and [`ModernTreasuryOkHttpClientAsync`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), which             provide a way to construct [`ModernTreasuryClientImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) and             [`ModernTreasuryClientAsyncImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), respectively, using OkHttp\n- `modern-treasury-kotlin`\n  - Depends on and exposes the APIs of both `modern-treasury-kotlin-core` and `modern-treasury-kotlin-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`modern-treasury-kotlin` dependency](#installation) with `modern-treasury-kotlin-core`\n2. Copy `modern-treasury-kotlin-client-okhttp`\'s [`OkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`ModernTreasuryClientImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) or [`ModernTreasuryClientAsyncImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), similarly to        [`ModernTreasuryOkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or [`ModernTreasuryOkHttpClientAsync`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`modern-treasury-kotlin` dependency](#installation) with `modern-treasury-kotlin-core`\n2. Write a class that implements the [`HttpClient`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/http/HttpClient.kt) interface\n3. Construct [`ModernTreasuryClientImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) or [`ModernTreasuryClientAsyncImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), similarly to        [`ModernTreasuryOkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or [`ModernTreasuryOkHttpClientAsync`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonValue\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build()\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt) object to its setter:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonValue\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name(JsonValue.from(42))\n    .build()\n```\n\nThe most straightforward way to create a [`JsonValue`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt) is using its       `from(...)` method:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonValue\n\n// Create primitive JSON values\nval nullValue: JsonValue = JsonValue.from(null)\nval booleanValue: JsonValue = JsonValue.from(true)\nval numberValue: JsonValue = JsonValue.from(42)\nval stringValue: JsonValue = JsonValue.from("Hello World!")\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nval arrayValue: JsonValue = JsonValue.from(listOf(\n  "Hello", "World"\n))\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nval objectValue: JsonValue = JsonValue.from(mapOf(\n  "a" to 1, "b" to 2\n))\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nval complexValue: JsonValue = JsonValue.from(mapOf(\n  "a" to listOf(\n    1, 2\n  ), "b" to listOf(\n    3, 4\n  )\n))\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt):\n\n```kotlin\nimport com.moderntreasury.api.core.JsonMissing\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name(JsonMissing.of())\n    .build()\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonBoolean\nimport com.moderntreasury.api.core.JsonNull\nimport com.moderntreasury.api.core.JsonNumber\nimport com.moderntreasury.api.core.JsonValue\n\nval additionalProperties: Map<String, JsonValue> = client.counterparties().create(params)._additionalProperties()\nval secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")\n\nval result = when (secretPropertyValue) {\n    is JsonNull -> "It\'s null!"\n    is JsonBoolean -> "It\'s a boolean!"\n    is JsonNumber -> "It\'s a number!"\n    // Other types include `JsonMissing`, `JsonString`, `JsonArray`, and `JsonObject`\n    else -> "It\'s something else!"\n}\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonField\n\nval name: JsonField<String> = client.counterparties().create(params)._name()\n\nif (name.isMissing()) {\n  // The property is absent from the JSON response\n} else if (name.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  val jsonString: String? = name.asString();\n\n  // Try to deserialize into a custom type\n  val myObject: MyClass = name.asUnknown()!!.convert(MyClass::class.java)\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`ModernTreasuryInvalidDataException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryInvalidDataException.kt) only if you directly access the property.\n\nValidating the response is _not_ forwards compatible with new types from the API for existing fields.\n\nIf you would still prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\n\nval counterparty: Counterparty = client.counterparties().create(params).validate()\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\n\nval counterparty: Counterparty = client.counterparties().create(\n  params, RequestOptions.builder().responseValidation(true).build()\n)\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build()\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nKotlin `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-kotlin/issues) with questions, bugs, or suggestions.\n',
+      "# Modern Treasury TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/modern-treasury.svg?label=npm%20(stable))](https://npmjs.org/package/modern-treasury) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/modern-treasury)\n\nThis library provides convenient access to the Modern Treasury REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com). The full API of this library can be found in [api.md](api.md).\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install modern-treasury\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst counterparty = await client.counterparties.create({ name: 'my first counterparty' });\n\nconsole.log(counterparty.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst params: ModernTreasury.CounterpartyCreateParams = { name: 'my first counterparty' };\nconst counterparty: ModernTreasury.Counterparty = await client.counterparties.create(params);\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n## File uploads\n\nRequest parameters that correspond to file uploads can be passed in many different forms:\n- `File` (or an object with the same structure)\n- a `fetch` `Response` (or an object with the same structure)\n- an `fs.ReadStream`\n- the return value of our `toFile` helper\n\n```ts\nimport fs from 'fs';\nimport ModernTreasury, { toFile } from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\n// If you have access to Node `fs` we recommend using `fs.createReadStream()`:\nawait client.documents.create({\n  file: fs.createReadStream('my/file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\n\n// Or if you have the web `File` API you can pass a `File` instance:\nawait client.documents.create({\n  file: new File(['my bytes'], 'file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\n\n// You can also pass a `fetch` `Response`:\nawait client.documents.create({\n  file: await fetch('https://somesite/file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\n\n// Finally, if none of the above are convenient, you can use our `toFile` helper:\nawait client.documents.create({\n  file: await toFile(Buffer.from('my bytes'), 'file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\nawait client.documents.create({\n  file: await toFile(new Uint8Array([0, 1, 2]), 'file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\n```\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst externalAccount = await client.externalAccounts\n  .create({ counterparty_id: 'missing' })\n  .catch(async (err) => {\n    if (err instanceof ModernTreasury.APIError) {\n      console.log(err.status); // 400\n      console.log(err.name); // BadRequestError\n      console.log(err.headers); // {server: 'nginx', ...}\n    } else {\n      throw err;\n    }\n  });\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new ModernTreasury({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.counterparties.create({ name: 'my first counterparty' }, {\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new ModernTreasury({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.counterparties.create({ name: 'my first counterparty' }, {\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the ModernTreasury API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllCounterparties(params) {\n  const allCounterparties = [];\n  // Automatically fetches more pages as needed.\n  for await (const counterparty of client.counterparties.list()) {\n    allCounterparties.push(counterparty);\n  }\n  return allCounterparties;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await client.counterparties.list();\nfor (const counterparty of page.items) {\n  console.log(counterparty);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new ModernTreasury();\n\nconst response = await client.counterparties.create({ name: 'my first counterparty' }).asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: counterparty, response: raw } = await client.counterparties\n  .create({ name: 'my first counterparty' })\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nconsole.log(counterparty.id);\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `MODERN_TREASURY_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport ModernTreasury from 'modern-treasury';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new ModernTreasury({\n  logger: logger.child({ name: 'ModernTreasury' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.counterparties.create({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport ModernTreasury from 'modern-treasury';\nimport fetch from 'my-fetch';\n\nconst client = new ModernTreasury({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport ModernTreasury from 'modern-treasury';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new ModernTreasury({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport ModernTreasury from 'npm:modern-treasury';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new ModernTreasury({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-node/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
   },
   {
     language: 'python',
     content:
-      '# Modern Treasury Python API library\n\n<!-- prettier-ignore -->\n[![PyPI version](https://img.shields.io/pypi/v/modern-treasury.svg?label=pypi%20(stable))](https://pypi.org/project/modern-treasury/)\n\nThe Modern Treasury Python library provides convenient access to the Modern Treasury REST API from any Python 3.9+\napplication. The library includes type definitions for all request params and response fields,\nand offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).\n\nhttps://user-images.githubusercontent.com/704302/216504942-09ed8dd7-7f44-40a6-a580-3764e91f11b4.mov\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJuYW1lIjoibW9kZXJuLXRyZWFzdXJ5LW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL21vZGVybi10cmVhc3VyeS5zdGxtY3AuY29tIiwiaGVhZGVycyI6eyJ4LW1vZGVybi10cmVhc3VyeS1vcmdhbml6YXRpb24taWQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJ4LW1vZGVybi10cmVhc3VyeS1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmodern-treasury.stlmcp.com%22%2C%22headers%22%3A%7B%22x-modern-treasury-organization-id%22%3A%22my-organization-ID%22%2C%22x-modern-treasury-api-key%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com). The full API of this library can be found in [api.md](api.md).\n\n## Installation\n\n```sh\n# install from PyPI\npip install modern-treasury\n```\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```python\nimport os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\n\ncounterparty = client.counterparties.create(\n    name="my first counterparty",\n)\nprint(counterparty.id)\n```\n\nWhile you can provide a `organization_id` keyword argument,\nwe recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)\nto add `MODERN_TREASURY_ORGANIZATION_ID="my-organization-ID"` to your `.env` file\nso that your Organization ID is not stored in source control.\n\n## Async usage\n\nSimply import `AsyncModernTreasury` instead of `ModernTreasury` and use `await` with each API call:\n\n```python\nimport os\nimport asyncio\nfrom modern_treasury import AsyncModernTreasury\n\nclient = AsyncModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\n\nasync def main() -> None:\n  counterparty = await client.counterparties.create(\n      name="my first counterparty",\n  )\n  print(counterparty.id)\n\nasyncio.run(main())\n```\n\nFunctionality between the synchronous and asynchronous clients is otherwise identical.\n\n### With aiohttp\n\nBy default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.\n\nYou can enable this by installing `aiohttp`:\n\n```sh\n# install from PyPI\npip install modern-treasury[aiohttp]\n```\n\nThen you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:\n\n```python\nimport os\nimport asyncio\nfrom modern_treasury import DefaultAioHttpClient\nfrom modern_treasury import AsyncModernTreasury\n\nasync def main() -> None:\n  async with AsyncModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n    http_client=DefaultAioHttpClient(),\n) as client:\n    counterparty = await client.counterparties.create(\n        name="my first counterparty",\n    )\n    print(counterparty.id)\n\nasyncio.run(main())\n```\n\n\n\n## Using types\n\nNested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:\n\n- Serializing back into JSON, `model.to_json()`\n- Converting to a dictionary, `model.to_dict()`\n\nTyped requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.\n\n## Pagination\n\nList methods in the Modern Treasury API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```python\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury()\n\nall_counterparties = []\n# Automatically fetches more pages as needed.\nfor counterparty in client.counterparties.list():\n    # Do something with counterparty here\n    all_counterparties.append(counterparty)\nprint(all_counterparties)\n```\n\nOr, asynchronously:\n\n```python\nimport asyncio\nfrom modern_treasury import AsyncModernTreasury\n\nclient = AsyncModernTreasury()\n\nasync def main() -> None:\n    all_counterparties = []\n    # Iterate through items across all pages, issuing requests as needed.\n    async for counterparty in client.counterparties.list():\n        all_counterparties.append(counterparty)\n    print(all_counterparties)\n\nasyncio.run(main())\n```\n\nAlternatively, you can use the `.has_next_page()`, `.next_page_info()`, or  `.get_next_page()` methods for more granular control working with pages:\n\n```python\nfirst_page = await client.counterparties.list()\nif first_page.has_next_page():\n    print(f"will fetch next page using these details: {first_page.next_page_info()}")\n    next_page = await first_page.get_next_page()\n    print(f"number of items we just fetched: {len(next_page.items)}")\n\n# Remove `await` for non-async usage.\n```\n\nOr just work directly with the returned data:\n\n```python\nfirst_page = await client.counterparties.list()\n\nprint(f"next page cursor: {first_page.after_cursor}") # => "next page cursor: ..."\nfor counterparty in first_page.items:\n    print(counterparty.id)\n\n# Remove `await` for non-async usage.\n```\n\n\n\n## File uploads\n\nRequest parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.\n\n```python\nfrom pathlib import Path\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury()\n\nclient.documents.create(\n    file=Path("my/file.txt"),\n    documentable_id="24c6b7a3-02...",\n    documentable_type="connection",\n)\n```\n\nThe async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.\n\n## Handling errors\n\nWhen the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `modern_treasury.APIConnectionError` is raised.\n\nWhen the API returns a non-success status code (that is, 4xx or 5xx\nresponse), a subclass of `modern_treasury.APIStatusError` is raised, containing `status_code` and `response` properties.\n\nAll errors inherit from `modern_treasury.APIError`.\n\n```python\nimport modern_treasury\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury()\n\ntry:\n    client.external_accounts.create(\n        counterparty_id="missing",\n    )\nexcept modern_treasury.APIConnectionError as e:\n    print("The server could not be reached")\n    print(e.__cause__) # an underlying Exception, likely raised within httpx.\nexcept modern_treasury.RateLimitError as e:\n    print("A 429 status code was received; we should back off a bit.")\nexcept modern_treasury.APIStatusError as e:\n    print("Another non-200-range status code was received")\n    print(e.status_code)\n    print(e.response)\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default.\n\nYou can use the `max_retries` option to configure or disable retry settings:\n\n```python\nfrom modern_treasury import ModernTreasury\n\n# Configure the default for all requests:\nclient = ModernTreasury(\n    # default is 2\n    max_retries=0,\n)\n\n# Or, configure per-request:\nclient.with_options(max_retries = 5).counterparties.create(\n    name="my first counterparty",\n)\n```\n\n### Timeouts\n\nBy default requests time out after 1 minute. You can configure this with a `timeout` option,\nwhich accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:\n\n```python\nfrom modern_treasury import ModernTreasury\n\n# Configure the default for all requests:\nclient = ModernTreasury(\n    # 20 seconds (default is 1 minute)\n    timeout=20.0,\n)\n\n# More granular control:\nclient = ModernTreasury(\n    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),\n)\n\n# Override per-request:\nclient.with_options(timeout = 5.0).counterparties.create(\n    name="my first counterparty",\n)\n```\n\nOn timeout, an `APITimeoutError` is thrown.\n\nNote that requests that time out are [retried twice by default](#retries).\n\n\n\n## Advanced\n\n### Logging\n\nWe use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.\n\nYou can enable logging by setting the environment variable `MODERN_TREASURY_LOG` to `info`.\n\n```shell\n$ export MODERN_TREASURY_LOG=info\n```\n\nOr to `debug` for more verbose logging.\n\n### How to tell whether `None` means `null` or missing\n\nIn an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:\n\n```py\nif response.my_field is None:\n  if \'my_field\' not in response.model_fields_set:\n    print(\'Got json like {}, without a "my_field" key present at all.\')\n  else:\n    print(\'Got json like {"my_field": null}.\')\n```\n\n### Accessing raw response data (e.g. headers)\n\nThe "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,\n\n```py\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury()\nresponse = client.counterparties.with_raw_response.create(\n    name="my first counterparty",\n)\nprint(response.headers.get(\'X-My-Header\'))\n\ncounterparty = response.parse()  # get the object that `counterparties.create()` would have returned\nprint(counterparty.id)\n```\n\nThese methods return a [`LegacyAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_legacy_response.py) object. This is a legacy class as we\'re changing it slightly in the next major version.\n\nFor the sync client this will mostly be the same with the exception\nof `content` & `text` will be methods instead of properties. In the\nasync client, all methods will be async.\n\nA migration script will be provided & the migration in general should\nbe smooth.\n\n#### `.with_streaming_response`\n\nThe above interface eagerly reads the full response body when you make the request, which may not always be what you want.\n\nTo stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.\n\nAs such, `.with_streaming_response` methods return a different [`APIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object, and the async client returns an [`AsyncAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object.\n\n```python\nwith client.counterparties.with_streaming_response.create(\n    name="my first counterparty",\n) as response :\n    print(response.headers.get(\'X-My-Header\'))\n\n    for line in response.iter_lines():\n      print(line)\n```\n\nThe context manager is required so that the response will reliably be closed.\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API.\n\nIf you need to access undocumented endpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other\nhttp verbs. Options on the client will be respected (such as retries) when making this request.\n\n```py\nimport httpx\n\nresponse = client.post(\n    "/foo",\n    cast_to=httpx.Response,\n    body={"my_param": True},\n)\n\nprint(response.headers.get("x-foo"))\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You\ncan also get all the extra fields on the Pydantic model as a dict with\n[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).\n\n### Configuring the HTTP client\n\nYou can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:\n\n- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)\n- Custom [transports](https://www.python-httpx.org/advanced/transports/)\n- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality\n\n```python\nimport httpx\nfrom modern_treasury import ModernTreasury, DefaultHttpxClient\n\nclient = ModernTreasury(\n    # Or use the `MODERN_TREASURY_BASE_URL` env var\n    base_url="http://my.test.server.example.com:8083",\n    http_client=DefaultHttpxClient(proxy="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),\n)\n```\n\nYou can also customize the client on a per-request basis by using `with_options()`:\n\n```python\nclient.with_options(http_client=DefaultHttpxClient(...))\n```\n\n### Managing HTTP resources\n\nBy default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.\n\n```py\nfrom modern_treasury import ModernTreasury\n\nwith ModernTreasury() as client:\n  # make requests here\n  ...\n\n# HTTP client is now closed\n```\n\n## Versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-python/issues) with questions, bugs, or suggestions.\n\n### Determining the installed version\n\nIf you\'ve upgraded to the latest version but aren\'t seeing any new features you were expecting then your python environment is likely still using an older version.\n\nYou can determine the version that is being used at runtime with:\n\n```py\nimport modern_treasury\nprint(modern_treasury.__version__)\n```\n\n## Requirements\n\nPython 3.9 or higher.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
+      '# Modern Treasury Python API library\n\n<!-- prettier-ignore -->\n[![PyPI version](https://img.shields.io/pypi/v/modern-treasury.svg?label=pypi%20(stable))](https://pypi.org/project/modern-treasury/)\n\nThe Modern Treasury Python library provides convenient access to the Modern Treasury REST API from any Python 3.9+\napplication. The library includes type definitions for all request params and response fields,\nand offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).\n\nhttps://user-images.githubusercontent.com/704302/216504942-09ed8dd7-7f44-40a6-a580-3764e91f11b4.mov\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com). The full API of this library can be found in [api.md](api.md).\n\n## Installation\n\n```sh\n# install from PyPI\npip install modern-treasury\n```\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```python\nimport os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\n\ncounterparty = client.counterparties.create(\n    name="my first counterparty",\n)\nprint(counterparty.id)\n```\n\nWhile you can provide a `organization_id` keyword argument,\nwe recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)\nto add `MODERN_TREASURY_ORGANIZATION_ID="my-organization-ID"` to your `.env` file\nso that your Organization ID is not stored in source control.\n\n## Async usage\n\nSimply import `AsyncModernTreasury` instead of `ModernTreasury` and use `await` with each API call:\n\n```python\nimport os\nimport asyncio\nfrom modern_treasury import AsyncModernTreasury\n\nclient = AsyncModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\n\nasync def main() -> None:\n  counterparty = await client.counterparties.create(\n      name="my first counterparty",\n  )\n  print(counterparty.id)\n\nasyncio.run(main())\n```\n\nFunctionality between the synchronous and asynchronous clients is otherwise identical.\n\n### With aiohttp\n\nBy default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.\n\nYou can enable this by installing `aiohttp`:\n\n```sh\n# install from PyPI\npip install modern-treasury[aiohttp]\n```\n\nThen you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:\n\n```python\nimport os\nimport asyncio\nfrom modern_treasury import DefaultAioHttpClient\nfrom modern_treasury import AsyncModernTreasury\n\nasync def main() -> None:\n  async with AsyncModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n    http_client=DefaultAioHttpClient(),\n) as client:\n    counterparty = await client.counterparties.create(\n        name="my first counterparty",\n    )\n    print(counterparty.id)\n\nasyncio.run(main())\n```\n\n\n\n## Using types\n\nNested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:\n\n- Serializing back into JSON, `model.to_json()`\n- Converting to a dictionary, `model.to_dict()`\n\nTyped requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.\n\n## Pagination\n\nList methods in the Modern Treasury API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```python\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury()\n\nall_counterparties = []\n# Automatically fetches more pages as needed.\nfor counterparty in client.counterparties.list():\n    # Do something with counterparty here\n    all_counterparties.append(counterparty)\nprint(all_counterparties)\n```\n\nOr, asynchronously:\n\n```python\nimport asyncio\nfrom modern_treasury import AsyncModernTreasury\n\nclient = AsyncModernTreasury()\n\nasync def main() -> None:\n    all_counterparties = []\n    # Iterate through items across all pages, issuing requests as needed.\n    async for counterparty in client.counterparties.list():\n        all_counterparties.append(counterparty)\n    print(all_counterparties)\n\nasyncio.run(main())\n```\n\nAlternatively, you can use the `.has_next_page()`, `.next_page_info()`, or  `.get_next_page()` methods for more granular control working with pages:\n\n```python\nfirst_page = await client.counterparties.list()\nif first_page.has_next_page():\n    print(f"will fetch next page using these details: {first_page.next_page_info()}")\n    next_page = await first_page.get_next_page()\n    print(f"number of items we just fetched: {len(next_page.items)}")\n\n# Remove `await` for non-async usage.\n```\n\nOr just work directly with the returned data:\n\n```python\nfirst_page = await client.counterparties.list()\n\nprint(f"next page cursor: {first_page.after_cursor}") # => "next page cursor: ..."\nfor counterparty in first_page.items:\n    print(counterparty.id)\n\n# Remove `await` for non-async usage.\n```\n\n\n\n## File uploads\n\nRequest parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.\n\n```python\nfrom pathlib import Path\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury()\n\nclient.documents.create(\n    file=Path("my/file.txt"),\n    documentable_id="24c6b7a3-02...",\n    documentable_type="connection",\n)\n```\n\nThe async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.\n\n## Handling errors\n\nWhen the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `modern_treasury.APIConnectionError` is raised.\n\nWhen the API returns a non-success status code (that is, 4xx or 5xx\nresponse), a subclass of `modern_treasury.APIStatusError` is raised, containing `status_code` and `response` properties.\n\nAll errors inherit from `modern_treasury.APIError`.\n\n```python\nimport modern_treasury\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury()\n\ntry:\n    client.external_accounts.create(\n        counterparty_id="missing",\n    )\nexcept modern_treasury.APIConnectionError as e:\n    print("The server could not be reached")\n    print(e.__cause__) # an underlying Exception, likely raised within httpx.\nexcept modern_treasury.RateLimitError as e:\n    print("A 429 status code was received; we should back off a bit.")\nexcept modern_treasury.APIStatusError as e:\n    print("Another non-200-range status code was received")\n    print(e.status_code)\n    print(e.response)\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default.\n\nYou can use the `max_retries` option to configure or disable retry settings:\n\n```python\nfrom modern_treasury import ModernTreasury\n\n# Configure the default for all requests:\nclient = ModernTreasury(\n    # default is 2\n    max_retries=0,\n)\n\n# Or, configure per-request:\nclient.with_options(max_retries = 5).counterparties.create(\n    name="my first counterparty",\n)\n```\n\n### Timeouts\n\nBy default requests time out after 1 minute. You can configure this with a `timeout` option,\nwhich accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:\n\n```python\nfrom modern_treasury import ModernTreasury\n\n# Configure the default for all requests:\nclient = ModernTreasury(\n    # 20 seconds (default is 1 minute)\n    timeout=20.0,\n)\n\n# More granular control:\nclient = ModernTreasury(\n    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),\n)\n\n# Override per-request:\nclient.with_options(timeout = 5.0).counterparties.create(\n    name="my first counterparty",\n)\n```\n\nOn timeout, an `APITimeoutError` is thrown.\n\nNote that requests that time out are [retried twice by default](#retries).\n\n\n\n## Advanced\n\n### Logging\n\nWe use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.\n\nYou can enable logging by setting the environment variable `MODERN_TREASURY_LOG` to `info`.\n\n```shell\n$ export MODERN_TREASURY_LOG=info\n```\n\nOr to `debug` for more verbose logging.\n\n### How to tell whether `None` means `null` or missing\n\nIn an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:\n\n```py\nif response.my_field is None:\n  if \'my_field\' not in response.model_fields_set:\n    print(\'Got json like {}, without a "my_field" key present at all.\')\n  else:\n    print(\'Got json like {"my_field": null}.\')\n```\n\n### Accessing raw response data (e.g. headers)\n\nThe "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,\n\n```py\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury()\nresponse = client.counterparties.with_raw_response.create(\n    name="my first counterparty",\n)\nprint(response.headers.get(\'X-My-Header\'))\n\ncounterparty = response.parse()  # get the object that `counterparties.create()` would have returned\nprint(counterparty.id)\n```\n\nThese methods return a [`LegacyAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_legacy_response.py) object. This is a legacy class as we\'re changing it slightly in the next major version.\n\nFor the sync client this will mostly be the same with the exception\nof `content` & `text` will be methods instead of properties. In the\nasync client, all methods will be async.\n\nA migration script will be provided & the migration in general should\nbe smooth.\n\n#### `.with_streaming_response`\n\nThe above interface eagerly reads the full response body when you make the request, which may not always be what you want.\n\nTo stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.\n\nAs such, `.with_streaming_response` methods return a different [`APIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object, and the async client returns an [`AsyncAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object.\n\n```python\nwith client.counterparties.with_streaming_response.create(\n    name="my first counterparty",\n) as response :\n    print(response.headers.get(\'X-My-Header\'))\n\n    for line in response.iter_lines():\n      print(line)\n```\n\nThe context manager is required so that the response will reliably be closed.\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API.\n\nIf you need to access undocumented endpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other\nhttp verbs. Options on the client will be respected (such as retries) when making this request.\n\n```py\nimport httpx\n\nresponse = client.post(\n    "/foo",\n    cast_to=httpx.Response,\n    body={"my_param": True},\n)\n\nprint(response.headers.get("x-foo"))\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You\ncan also get all the extra fields on the Pydantic model as a dict with\n[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).\n\n### Configuring the HTTP client\n\nYou can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:\n\n- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)\n- Custom [transports](https://www.python-httpx.org/advanced/transports/)\n- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality\n\n```python\nimport httpx\nfrom modern_treasury import ModernTreasury, DefaultHttpxClient\n\nclient = ModernTreasury(\n    # Or use the `MODERN_TREASURY_BASE_URL` env var\n    base_url="http://my.test.server.example.com:8083",\n    http_client=DefaultHttpxClient(proxy="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),\n)\n```\n\nYou can also customize the client on a per-request basis by using `with_options()`:\n\n```python\nclient.with_options(http_client=DefaultHttpxClient(...))\n```\n\n### Managing HTTP resources\n\nBy default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.\n\n```py\nfrom modern_treasury import ModernTreasury\n\nwith ModernTreasury() as client:\n  # make requests here\n  ...\n\n# HTTP client is now closed\n```\n\n## Versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-python/issues) with questions, bugs, or suggestions.\n\n### Determining the installed version\n\nIf you\'ve upgraded to the latest version but aren\'t seeing any new features you were expecting then your python environment is likely still using an older version.\n\nYou can determine the version that is being used at runtime with:\n\n```py\nimport modern_treasury\nprint(modern_treasury.__version__)\n```\n\n## Requirements\n\nPython 3.9 or higher.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
+  },
+  {
+    language: 'java',
+    content:
+      '# Modern Treasury Java API Library\n\n<!-- x-release-please-start-version -->\n[![Maven Central](https://img.shields.io/maven-central/v/com.moderntreasury.api/modern-treasury-java)](https://central.sonatype.com/artifact/com.moderntreasury.api/modern-treasury-java/7.30.0)\n[![javadoc](https://javadoc.io/badge2/com.moderntreasury.api/modern-treasury-java/7.30.0/javadoc.svg)](https://javadoc.io/doc/com.moderntreasury.api/modern-treasury-java/7.30.0)\n<!-- x-release-please-end -->\n\nThe Modern Treasury Java SDK provides convenient access to the [Modern Treasury REST API](https://docs.moderntreasury.com)   from applications written in Java.\n\nThe Modern Treasury Java SDK is similar to the Modern Treasury Kotlin SDK but with minor differences that       make it more ergonomic for use in Java, such as `Optional` instead of nullable values, `Stream`       instead of `Sequence`, and `CompletableFuture` instead of suspend functions.\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n<!-- x-release-please-start-version -->\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com). Javadocs are available on [javadoc.io](https://javadoc.io/doc/com.moderntreasury.api/modern-treasury-java/7.30.0).\n\n<!-- x-release-please-end -->\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n### Gradle\n\n~~~kotlin\nimplementation("com.moderntreasury:modern-treasury-java:7.30.0")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.moderntreasury</groupId>\n  <artifactId>modern-treasury-java</artifactId>\n  <version>7.30.0</version>\n</dependency>\n~~~\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build();\nCounterparty counterparty = client.counterparties().create(params);\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n```\n\nOr manually:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .apiKey("My API Key")\n    .organizationId("my-organization-ID")\n    .build();\n```\n\nOr using a combination of the two approaches:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    // Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n    // Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\n    .fromEnv()\n    .apiKey("My API Key")\n    .build();\n```\n\nSee this table for the available options:\n\n| Setter           | System property                 | Environment variable              | Required | Default value                      |\n| ---------------- | ------------------------------- | --------------------------------- | -------- | ---------------------------------- |\n| `apiKey`         | `moderntreasury.apiKey`         | `MODERN_TREASURY_API_KEY`         | true     | -                                  |\n| `organizationId` | `moderntreasury.organizationId` | `MODERN_TREASURY_ORGANIZATION_ID` | true     | -                                  |\n| `webhookKey`     | `moderntreasury.webhookKey`     | `MODERN_TREASURY_WEBHOOK_KEY`     | false    | -                                  |\n| `baseUrl`        | `moderntreasury.baseUrl`        | `MODERN_TREASURY_BASE_URL`        | true     | `"https://app.moderntreasury.com"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\n\nModernTreasuryClient clientWithOptions = client.withOptions(optionsBuilder -> {\n    optionsBuilder.baseUrl("https://example.com");\n    optionsBuilder.maxRetries(42);\n});\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Modern Treasury API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Java class.\n\nFor example, `client.counterparties().create(...)` should be called with an instance of `CounterpartyCreateParams`, and it     will return an instance of `Counterparty`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\nimport java.util.concurrent.CompletableFuture;\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build();\nCompletableFuture<Counterparty> counterparty = client.async().counterparties().create(params);\n```\n\nOr create an asynchronous client from the beginning:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClientAsync;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClientAsync;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\nimport java.util.concurrent.CompletableFuture;\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nModernTreasuryClientAsync client = ModernTreasuryOkHttpClientAsync.fromEnv();\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build();\nCompletableFuture<Counterparty> counterparty = client.counterparties().create(params);\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods return `CompletableFuture`s.\n\n\n\n## File uploads\n\nThe SDK defines methods that accept files.\n\nTo upload a file, pass a [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html):\n\n```java\nimport com.moderntreasury.api.models.Document;\nimport com.moderntreasury.api.models.DocumentCreateParams;\nimport java.nio.file.Paths;\n\nDocumentCreateParams params = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(Paths.get("my/file.txt"))\n    .build();\nDocument document = client.documents().create(params);\n```\n\nOr an arbitrary [`InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html):\n\n```java\nimport com.moderntreasury.api.models.Document;\nimport com.moderntreasury.api.models.DocumentCreateParams;\nimport java.net.URL;\n\nDocumentCreateParams params = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(new URL("https://example.com/my/file.txt").openStream())\n    .build();\nDocument document = client.documents().create(params);\n```\n\nOr a `byte[]` array:\n\n```java\nimport com.moderntreasury.api.models.Document;\nimport com.moderntreasury.api.models.DocumentCreateParams;\n\nDocumentCreateParams params = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file("content".getBytes())\n    .build();\nDocument document = client.documents().create(params);\n```\n\nNote that when passing a non-`Path` its filename is unknown so it will not be included in the request.     To manually set a filename, pass a [`MultipartField`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt):\n\n```java\nimport com.moderntreasury.api.core.MultipartField;\nimport com.moderntreasury.api.models.Document;\nimport com.moderntreasury.api.models.DocumentCreateParams;\nimport java.io.InputStream;\nimport java.net.URL;\n\nDocumentCreateParams params = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(MultipartField.<InputStream>builder()\n        .value(new URL("https://example.com/my/file.txt").openStream())\n        .filename("my/file.txt")\n        .build())\n    .build();\nDocument document = client.documents().create(params);\n```\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Java classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```java\nimport com.moderntreasury.api.core.http.Headers;\nimport com.moderntreasury.api.core.http.HttpResponseFor;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build();\nHttpResponseFor<Counterparty> counterparty = client.counterparties().withRawResponse().create(params);\n\nint statusCode = counterparty.statusCode();\nHeaders headers = counterparty.headers();\n```\n\nYou can still deserialize the response into an instance of a Java class if needed:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\n\nCounterparty parsedCounterparty = counterparty.parse();\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`ModernTreasuryServiceException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`ModernTreasuryIoException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryIoException.kt): I/O networking errors.\n\n- [`ModernTreasuryRetryableException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`ModernTreasuryInvalidDataException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`ModernTreasuryException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns an [`Iterable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyListPage;\n\nCounterpartyListPage page = client.counterparties().list();\n\n// Process as an Iterable\nfor (Counterparty counterparty : page.autoPager()) {\n    System.out.println(counterparty);\n}\n\n// Process as a Stream\npage.autoPager()\n    .stream()\n    .limit(50)\n    .forEach(counterparty -> System.out.println(counterparty));\n```\n\nWhen using the asynchronous client, the method returns an [`AsyncStreamResponse`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/http/AsyncStreamResponse.kt):\n\n```java\nimport com.moderntreasury.api.core.http.AsyncStreamResponse;\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyListPageAsync;\nimport java.util.Optional;\nimport java.util.concurrent.CompletableFuture;\n\nCompletableFuture<CounterpartyListPageAsync> pageFuture = client.async().counterparties().list();\n\npageFuture.thenRun(page -> page.autoPager().subscribe(counterparty -> {\n    System.out.println(counterparty);\n}));\n\n// If you need to handle errors or completion of the stream\npageFuture.thenRun(page -> page.autoPager().subscribe(new AsyncStreamResponse.Handler<>() {\n    @Override\n    public void onNext(Counterparty counterparty) {\n        System.out.println(counterparty);\n    }\n\n    @Override\n    public void onComplete(Optional<Throwable> error) {\n        if (error.isPresent()) {\n            System.out.println("Something went wrong!");\n            throw new RuntimeException(error.get());\n        } else {\n            System.out.println("No more!");\n        }\n    }\n}));\n\n// Or use futures\npageFuture.thenRun(page -> page.autoPager()\n    .subscribe(counterparty -> {\n        System.out.println(counterparty);\n    })\n    .onCompleteFuture()\n    .whenComplete((unused, error) -> {\n        if (error != null) {\n            System.out.println("Something went wrong!");\n            throw new RuntimeException(error);\n        } else {\n            System.out.println("No more!");\n        }\n    }));\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\nimport com.moderntreasury.api.models.CounterpartyListPage;\n\nCounterpartyListPage page = client.counterparties().list();\nwhile (true) {\n    for (Counterparty counterparty : page.items()) {\n        System.out.println(counterparty);\n    }\n\n    if (!page.hasNextPage()) {\n        break;\n    }\n\n    page = page.nextPage();\n}\n```\n\n## Logging\n\nEnable logging by setting the `MODERN_TREASURY_LOG` environment variable to   `info`:\n\n```sh\nexport MODERN_TREASURY_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport MODERN_TREASURY_LOG=debug\n```\n\nOr configure the client manually using the `logLevel` method:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.core.LogLevel;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .logLevel(LogLevel.INFO)\n    .build();\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `modern-treasury-java-core` is published with a     [configuration file](modern-treasury-java-core/src/main/resources/META-INF/proguard/modern-treasury-java-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`ModernTreasuryOkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or     [`ModernTreasuryOkHttpClientAsync`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build();\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\n\nCounterparty counterparty = client.counterparties().create(\n  params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build()\n);\n```\n\nOr configure the default for all method calls at the client level:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport java.time.Duration;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build();\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport java.net.InetSocketAddress;\nimport java.net.Proxy;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .proxy(new Proxy(\n      Proxy.Type.HTTP, new InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build();\n```\n\nIf the proxy responds with `407 Proxy Authentication Required`, supply credentials by also   configuring `proxyAuthenticator`:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.core.http.ProxyAuthenticator;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .proxy(...)\n    // Or a custom implementation of `ProxyAuthenticator`.\n    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))\n    .build();\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport java.time.Duration;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build();\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build();\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `modern-treasury-java-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`ModernTreasuryClient`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClient.kt), [`ModernTreasuryClientAsync`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsync.kt),             [`ModernTreasuryClientImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt), and [`ModernTreasuryClientAsyncImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `modern-treasury-java-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`ModernTreasuryOkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) and [`ModernTreasuryOkHttpClientAsync`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), which             provide a way to construct [`ModernTreasuryClientImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) and             [`ModernTreasuryClientAsyncImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), respectively, using OkHttp\n- `modern-treasury-java`\n  - Depends on and exposes the APIs of both `modern-treasury-java-core` and `modern-treasury-java-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`modern-treasury-java` dependency](#installation) with `modern-treasury-java-core`\n2. Copy `modern-treasury-java-client-okhttp`\'s [`OkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`ModernTreasuryClientImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) or [`ModernTreasuryClientAsyncImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), similarly to        [`ModernTreasuryOkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or [`ModernTreasuryOkHttpClientAsync`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`modern-treasury-java` dependency](#installation) with `modern-treasury-java-core`\n2. Write a class that implements the [`HttpClient`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/http/HttpClient.kt) interface\n3. Construct [`ModernTreasuryClientImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) or [`ModernTreasuryClientAsyncImpl`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), similarly to        [`ModernTreasuryOkHttpClient`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or [`ModernTreasuryOkHttpClientAsync`](modern-treasury-java-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```java\nimport com.moderntreasury.api.core.JsonValue;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build();\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt) object to its setter:\n\n```java\nimport com.moderntreasury.api.core.JsonValue;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name(JsonValue.from(42))\n    .build();\n```\n\nThe most straightforward way to create a [`JsonValue`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt) is using its       `from(...)` method:\n\n```java\nimport com.moderntreasury.api.core.JsonValue;\nimport java.util.List;\nimport java.util.Map;\n\n// Create primitive JSON values\nJsonValue nullValue = JsonValue.from(null);\nJsonValue booleanValue = JsonValue.from(true);\nJsonValue numberValue = JsonValue.from(42);\nJsonValue stringValue = JsonValue.from("Hello World!");\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nJsonValue arrayValue = JsonValue.from(List.of(\n  "Hello", "World"\n));\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nJsonValue objectValue = JsonValue.from(Map.of(\n  "a", 1,\n  "b", 2\n));\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nJsonValue complexValue = JsonValue.from(Map.of(\n  "a", List.of(\n    1, 2\n  ),\n  "b", List.of(\n    3, 4\n  )\n));\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt):\n\n```java\nimport com.moderntreasury.api.core.JsonMissing;\nimport com.moderntreasury.api.models.CounterpartyCreateParams;\n\nCounterpartyCreateParams params = CounterpartyCreateParams.builder()\n    .name(JsonMissing.of())\n    .build();\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```java\nimport com.moderntreasury.api.core.JsonValue;\nimport java.util.Map;\n\nMap<String, JsonValue> additionalProperties = client.counterparties().create(params)._additionalProperties();\nJsonValue secretPropertyValue = additionalProperties.get("secretProperty");\n\nString result = secretPropertyValue.accept(new JsonValue.Visitor<>() {\n    @Override\n    public String visitNull() {\n        return "It\'s null!";\n    }\n\n    @Override\n    public String visitBoolean(boolean value) {\n        return "It\'s a boolean!";\n    }\n\n    @Override\n    public String visitNumber(Number value) {\n        return "It\'s a number!";\n    }\n\n    // Other methods include `visitMissing`, `visitString`, `visitArray`, and `visitObject`\n    // The default implementation of each unimplemented method delegates to `visitDefault`, which throws by default, but can also be overridden\n});\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```java\nimport com.moderntreasury.api.core.JsonField;\nimport java.util.Optional;\n\nJsonField<String> name = client.counterparties().create(params)._name();\n\nif (name.isMissing()) {\n  // The property is absent from the JSON response\n} else if (name.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  Optional<String> jsonString = name.asString();\n\n  // Try to deserialize into a custom type\n  MyClass myObject = name.asUnknown().orElseThrow().convert(MyClass.class);\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`ModernTreasuryInvalidDataException`](modern-treasury-java-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryInvalidDataException.kt) only if you directly access the property.\n\nValidating the response is _not_ forwards compatible with new types from the API for existing fields.\n\nIf you would still prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\n\nCounterparty counterparty = client.counterparties().create(params).validate();\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```java\nimport com.moderntreasury.api.models.Counterparty;\n\nCounterparty counterparty = client.counterparties().create(\n  params, RequestOptions.builder().responseValidation(true).build()\n);\n```\n\nOr configure the default for all method calls at the client level:\n\n```java\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\n\nModernTreasuryClient client = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build();\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nJava `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-java/issues) with questions, bugs, or suggestions.\n',
+  },
+  {
+    language: 'kotlin',
+    content:
+      '# Modern Treasury Kotlin API Library\n\n<!-- x-release-please-start-version -->\n[![Maven Central](https://img.shields.io/maven-central/v/com.moderntreasury.api/modern-treasury-kotlin)](https://central.sonatype.com/artifact/com.moderntreasury.api/modern-treasury-kotlin/7.35.0)\n[![javadoc](https://javadoc.io/badge2/com.moderntreasury.api/modern-treasury-kotlin/7.35.0/javadoc.svg)](https://javadoc.io/doc/com.moderntreasury.api/modern-treasury-kotlin/7.35.0)\n<!-- x-release-please-end -->\n\nThe Modern Treasury Kotlin SDK provides convenient access to the [Modern Treasury REST API](https://docs.moderntreasury.com)   from applications written in Kotlin.\n\nThe Modern Treasury Kotlin SDK is similar to the Modern Treasury Java SDK but with minor differences that       make it more ergonomic for use in Kotlin, such as nullable values instead of `Optional`,       `Sequence` instead of `Stream`, and suspend functions instead of `CompletableFuture`.\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n<!-- x-release-please-start-version -->\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.moderntreasury.api/modern-treasury-kotlin/7.35.0).\n\n<!-- x-release-please-end -->\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n### Gradle\n\n~~~kotlin\nimplementation("com.moderntreasury:modern-treasury-kotlin:7.35.0")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.moderntreasury</groupId>\n  <artifactId>modern-treasury-kotlin</artifactId>\n  <version>7.35.0</version>\n</dependency>\n~~~\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build()\nval counterparty: Counterparty = client.counterparties().create(params)\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n```\n\nOr manually:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .apiKey("My API Key")\n    .organizationId("my-organization-ID")\n    .build()\n```\n\nOr using a combination of the two approaches:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    // Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n    // Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\n    .fromEnv()\n    .apiKey("My API Key")\n    .build()\n```\n\nSee this table for the available options:\n\n| Setter           | System property                 | Environment variable              | Required | Default value                      |\n| ---------------- | ------------------------------- | --------------------------------- | -------- | ---------------------------------- |\n| `apiKey`         | `moderntreasury.apiKey`         | `MODERN_TREASURY_API_KEY`         | true     | -                                  |\n| `organizationId` | `moderntreasury.organizationId` | `MODERN_TREASURY_ORGANIZATION_ID` | true     | -                                  |\n| `webhookKey`     | `moderntreasury.webhookKey`     | `MODERN_TREASURY_WEBHOOK_KEY`     | false    | -                                  |\n| `baseUrl`        | `moderntreasury.baseUrl`        | `MODERN_TREASURY_BASE_URL`        | true     | `"https://app.moderntreasury.com"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\n\nval clientWithOptions: ModernTreasuryClient = client.withOptions {\n    it.baseUrl("https://example.com")\n    it.maxRetries(42)\n}\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Modern Treasury API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Kotlin class.\n\nFor example, `client.counterparties().create(...)` should be called with an instance of `CounterpartyCreateParams`, and it     will return an instance of `Counterparty`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build()\nval counterparty: Counterparty = client.async().counterparties().create(params)\n```\n\nOr create an asynchronous client from the beginning:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClientAsync\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClientAsync\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\n// Configures using the `moderntreasury.apiKey`, `moderntreasury.organizationId`, `moderntreasury.webhookKey` and `moderntreasury.baseUrl` system properties\n// Or configures using the `MODERN_TREASURY_API_KEY`, `MODERN_TREASURY_ORGANIZATION_ID`, `MODERN_TREASURY_WEBHOOK_KEY` and `MODERN_TREASURY_BASE_URL` environment variables\nval client: ModernTreasuryClientAsync = ModernTreasuryOkHttpClientAsync.fromEnv()\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build()\nval counterparty: Counterparty = client.counterparties().create(params)\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).\n\n\n\n## File uploads\n\nThe SDK defines methods that accept files.\n\nTo upload a file, pass a [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html):\n\n```kotlin\nimport com.moderntreasury.api.models.Document\nimport com.moderntreasury.api.models.DocumentCreateParams\nimport java.nio.file.Paths\n\nval params: DocumentCreateParams = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(Paths.get("my/file.txt"))\n    .build()\nval document: Document = client.documents().create(params)\n```\n\nOr an arbitrary [`InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html):\n\n```kotlin\nimport com.moderntreasury.api.models.Document\nimport com.moderntreasury.api.models.DocumentCreateParams\nimport java.net.URL\n\nval params: DocumentCreateParams = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(URL("https://example.com/my/file.txt").openStream())\n    .build()\nval document: Document = client.documents().create(params)\n```\n\nOr a `ByteArray`:\n\n```kotlin\nimport com.moderntreasury.api.models.Document\nimport com.moderntreasury.api.models.DocumentCreateParams\n\nval params: DocumentCreateParams = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file("content".toByteArray())\n    .build()\nval document: Document = client.documents().create(params)\n```\n\nNote that when passing a non-`Path` its filename is unknown so it will not be included in the request.     To manually set a filename, pass a [`MultipartField`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt):\n\n```kotlin\nimport com.moderntreasury.api.core.MultipartField\nimport com.moderntreasury.api.models.Document\nimport com.moderntreasury.api.models.DocumentCreateParams\nimport java.io.InputStream\nimport java.net.URL\n\nval params: DocumentCreateParams = DocumentCreateParams.builder()\n    .documentableId("24c6b7a3-02...")\n    .documentableType(DocumentCreateParams.DocumentableType.CONNECTION)\n    .file(MultipartField.builder<InputStream>()\n        .value(URL("https://example.com/my/file.txt").openStream())\n        .filename("my/file.txt")\n        .build())\n    .build()\nval document: Document = client.documents().create(params)\n```\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Kotlin classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```kotlin\nimport com.moderntreasury.api.core.http.Headers\nimport com.moderntreasury.api.core.http.HttpResponseFor\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name("my first counterparty")\n    .build()\nval counterparty: HttpResponseFor<Counterparty> = client.counterparties().withRawResponse().create(params)\n\nval statusCode: Int = counterparty.statusCode()\nval headers: Headers = counterparty.headers()\n```\n\nYou can still deserialize the response into an instance of a Kotlin class if needed:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\n\nval parsedCounterparty: Counterparty = counterparty.parse()\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`ModernTreasuryServiceException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`ModernTreasuryIoException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryIoException.kt): I/O networking errors.\n\n- [`ModernTreasuryRetryableException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`ModernTreasuryInvalidDataException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`ModernTreasuryException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns a [`Sequence`](https://kotlinlang.org/docs/sequences.html)\n\n```kotlin\nimport com.moderntreasury.api.models.CounterpartyListPage\n\nval page: CounterpartyListPage = client.counterparties().list()\npage.autoPager()\n    .take(50)\n    .forEach { counterparty -> println(counterparty) }\n```\n\nWhen using the asynchronous client, the method returns a [`Flow`](https://kotlinlang.org/docs/flow.html):\n\n```kotlin\nimport com.moderntreasury.api.models.CounterpartyListPageAsync\n\nval page: CounterpartyListPageAsync = client.async().counterparties().list()\npage.autoPager()\n    .take(50)\n    .forEach { counterparty -> println(counterparty) }\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\nimport com.moderntreasury.api.models.CounterpartyListPage\n\nval page: CounterpartyListPage = client.counterparties().list()\nwhile (true) {\n    for (counterparty in page.items()) {\n        println(counterparty)\n    }\n\n    if (!page.hasNextPage()) {\n        break\n    }\n\n    page = page.nextPage()\n}\n```\n\n## Logging\n\nEnable logging by setting the `MODERN_TREASURY_LOG` environment variable to   `info`:\n\n```sh\nexport MODERN_TREASURY_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport MODERN_TREASURY_LOG=debug\n```\n\nOr configure the client manually using the `logLevel` method:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.core.LogLevel\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .logLevel(LogLevel.INFO)\n    .build()\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `modern-treasury-kotlin-core` is published with a     [configuration file](modern-treasury-kotlin-core/src/main/resources/META-INF/proguard/modern-treasury-kotlin-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`ModernTreasuryOkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or     [`ModernTreasuryOkHttpClientAsync`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build()\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\n\nval counterparty: Counterparty = client.counterparties().create(\n  params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build()\n)\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport java.time.Duration\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build()\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport java.net.InetSocketAddress\nimport java.net.Proxy\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .proxy(Proxy(\n      Proxy.Type.HTTP, InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build()\n```\n\nIf the proxy responds with `407 Proxy Authentication Required`, supply credentials by also   configuring `proxyAuthenticator`:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.core.http.ProxyAuthenticator\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .proxy(...)\n    // Or a custom implementation of `ProxyAuthenticator`.\n    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))\n    .build()\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport java.time.Duration\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build()\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build()\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `modern-treasury-kotlin-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`ModernTreasuryClient`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClient.kt), [`ModernTreasuryClientAsync`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsync.kt),             [`ModernTreasuryClientImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt), and [`ModernTreasuryClientAsyncImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `modern-treasury-kotlin-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`ModernTreasuryOkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) and [`ModernTreasuryOkHttpClientAsync`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), which             provide a way to construct [`ModernTreasuryClientImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) and             [`ModernTreasuryClientAsyncImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), respectively, using OkHttp\n- `modern-treasury-kotlin`\n  - Depends on and exposes the APIs of both `modern-treasury-kotlin-core` and `modern-treasury-kotlin-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`modern-treasury-kotlin` dependency](#installation) with `modern-treasury-kotlin-core`\n2. Copy `modern-treasury-kotlin-client-okhttp`\'s [`OkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`ModernTreasuryClientImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) or [`ModernTreasuryClientAsyncImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), similarly to        [`ModernTreasuryOkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or [`ModernTreasuryOkHttpClientAsync`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`modern-treasury-kotlin` dependency](#installation) with `modern-treasury-kotlin-core`\n2. Write a class that implements the [`HttpClient`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/http/HttpClient.kt) interface\n3. Construct [`ModernTreasuryClientImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientImpl.kt) or [`ModernTreasuryClientAsyncImpl`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/client/ModernTreasuryClientAsyncImpl.kt), similarly to        [`ModernTreasuryOkHttpClient`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClient.kt) or [`ModernTreasuryOkHttpClientAsync`](modern-treasury-kotlin-client-okhttp/src/main/kotlin/com/moderntreasury/api/client/okhttp/ModernTreasuryOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonValue\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build()\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt) object to its setter:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonValue\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name(JsonValue.from(42))\n    .build()\n```\n\nThe most straightforward way to create a [`JsonValue`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt) is using its       `from(...)` method:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonValue\n\n// Create primitive JSON values\nval nullValue: JsonValue = JsonValue.from(null)\nval booleanValue: JsonValue = JsonValue.from(true)\nval numberValue: JsonValue = JsonValue.from(42)\nval stringValue: JsonValue = JsonValue.from("Hello World!")\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nval arrayValue: JsonValue = JsonValue.from(listOf(\n  "Hello", "World"\n))\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nval objectValue: JsonValue = JsonValue.from(mapOf(\n  "a" to 1, "b" to 2\n))\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nval complexValue: JsonValue = JsonValue.from(mapOf(\n  "a" to listOf(\n    1, 2\n  ), "b" to listOf(\n    3, 4\n  )\n))\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/core/Values.kt):\n\n```kotlin\nimport com.moderntreasury.api.core.JsonMissing\nimport com.moderntreasury.api.models.CounterpartyCreateParams\n\nval params: CounterpartyCreateParams = CounterpartyCreateParams.builder()\n    .name(JsonMissing.of())\n    .build()\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonBoolean\nimport com.moderntreasury.api.core.JsonNull\nimport com.moderntreasury.api.core.JsonNumber\nimport com.moderntreasury.api.core.JsonValue\n\nval additionalProperties: Map<String, JsonValue> = client.counterparties().create(params)._additionalProperties()\nval secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")\n\nval result = when (secretPropertyValue) {\n    is JsonNull -> "It\'s null!"\n    is JsonBoolean -> "It\'s a boolean!"\n    is JsonNumber -> "It\'s a number!"\n    // Other types include `JsonMissing`, `JsonString`, `JsonArray`, and `JsonObject`\n    else -> "It\'s something else!"\n}\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```kotlin\nimport com.moderntreasury.api.core.JsonField\n\nval name: JsonField<String> = client.counterparties().create(params)._name()\n\nif (name.isMissing()) {\n  // The property is absent from the JSON response\n} else if (name.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  val jsonString: String? = name.asString();\n\n  // Try to deserialize into a custom type\n  val myObject: MyClass = name.asUnknown()!!.convert(MyClass::class.java)\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`ModernTreasuryInvalidDataException`](modern-treasury-kotlin-core/src/main/kotlin/com/moderntreasury/api/errors/ModernTreasuryInvalidDataException.kt) only if you directly access the property.\n\nValidating the response is _not_ forwards compatible with new types from the API for existing fields.\n\nIf you would still prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\n\nval counterparty: Counterparty = client.counterparties().create(params).validate()\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```kotlin\nimport com.moderntreasury.api.models.Counterparty\n\nval counterparty: Counterparty = client.counterparties().create(\n  params, RequestOptions.builder().responseValidation(true).build()\n)\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\n\nval client: ModernTreasuryClient = ModernTreasuryOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build()\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nKotlin `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-kotlin/issues) with questions, bugs, or suggestions.\n',
+  },
+  {
+    language: 'go',
+    content:
+      '# Modern Treasury Go API Library\n\n<a href="https://pkg.go.dev/github.com/Modern-Treasury/modern-treasury-go/v2"><img src="https://pkg.go.dev/badge/github.com/Modern-Treasury/modern-treasury-go/v2.svg" alt="Go Reference"></a>\n\nThe Modern Treasury Go library provides convenient access to the [Modern Treasury REST API](https://docs.moderntreasury.com)\nfrom applications written in Go.\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n```go\nimport (\n\t"github.com/Modern-Treasury/modern-treasury-go/v2" // imported as SDK_PackageName\n)\n```\n\n<!-- x-release-please-end -->\n\nOr to pin the version:\n\n<!-- x-release-please-start-version -->\n\n```sh\ngo get -u \'github.com/Modern-Treasury/modern-treasury-go/v2@v2.59.0\'\n```\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Go 1.22+.\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```go\npackage main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),                 // defaults to os.LookupEnv("MODERN_TREASURY_API_KEY")\n\t\toption.WithOrganizationID("my-organization-ID"), // defaults to os.LookupEnv("MODERN_TREASURY_ORGANIZATION_ID")\n\t)\n\tcounterparty, err := client.Counterparties.New(context.TODO(), moderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n\n```\n\n### Request fields\n\nAll request parameters are wrapped in a generic `Field` type,\nwhich we use to distinguish zero values from null or omitted fields.\n\nThis prevents accidentally sending a zero value if you forget a required parameter,\nand enables explicitly sending `null`, `false`, `\'\'`, or `0` on optional parameters.\nAny field not specified is not sent.\n\nTo construct fields with values, use the helpers `String()`, `Int()`, `Float()`, or most commonly, the generic `F[T]()`.\nTo send a null, use `Null[T]()`, and to send a nonconforming value, use `Raw[T](any)`. For example:\n\n```go\nparams := FooParams{\n\tName: SDK_PackageName.F("hello"),\n\n\t// Explicitly send `"description": null`\n\tDescription: SDK_PackageName.Null[string](),\n\n\tPoint: SDK_PackageName.F(SDK_PackageName.Point{\n\t\tX: SDK_PackageName.Int(0),\n\t\tY: SDK_PackageName.Int(1),\n\n\t\t// In cases where the API specifies a given type,\n\t\t// but you want to send something else, use `Raw`:\n\t\tZ: SDK_PackageName.Raw[int64](0.01), // sends a float\n\t}),\n}\n```\n\n### Response objects\n\nAll fields in response structs are value types (not pointers or wrappers).\n\nIf a given field is `null`, not present, or invalid, the corresponding field\nwill simply be its zero value.\n\nAll response structs also include a special `JSON` field, containing more detailed\ninformation about each property, which you can use like so:\n\n```go\nif res.Name == "" {\n\t// true if `"name"` is either not present or explicitly null\n\tres.JSON.Name.IsNull()\n\n\t// true if the `"name"` key was not present in the response JSON at all\n\tres.JSON.Name.IsMissing()\n\n\t// When the API returns data that cannot be coerced to the expected type:\n\tif res.JSON.Name.IsInvalid() {\n\t\traw := res.JSON.Name.Raw()\n\n\t\tlegacyName := struct{\n\t\t\tFirst string `json:"first"`\n\t\t\tLast  string `json:"last"`\n\t\t}{}\n\t\tjson.Unmarshal([]byte(raw), &legacyName)\n\t\tname = legacyName.First + " " + legacyName.Last\n\t}\n}\n```\n\nThese `.JSON` structs also include an `Extras` map containing\nany properties in the json response that were not specified\nin the struct. This can be useful for API features not yet\npresent in the SDK.\n\n```go\nbody := res.JSON.ExtraFields["my_unexpected_field"].Raw()\n```\n\n### RequestOptions\n\nThis library uses the functional options pattern. Functions defined in the\n`SDK_PackageOptionName` package return a `RequestOption`, which is a closure that mutates a\n`RequestConfig`. These options can be supplied to the client or at individual\nrequests. For example:\n\n```go\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\t// Adds a header to every request made by the client\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "custom_header_info"),\n)\n\nclient.Counterparties.New(context.TODO(), ...,\n\t// Override the header\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "some_other_custom_header_info"),\n\t// Add an undocumented field to the request body, using sjson syntax\n\tSDK_PackageOptionName.WithJSONSet("some.json.path", map[string]string{"my": "object"}),\n)\n```\n\nSee the [full list of request options](https://pkg.go.dev/github.com/Modern-Treasury/modern-treasury-go/v2/SDK_PackageOptionName).\n\n### Pagination\n\nThis library provides some conveniences for working with paginated list endpoints.\n\nYou can use `.ListAutoPaging()` methods to iterate through items across all pages:\n\n```go\niter := client.Counterparties.ListAutoPaging(context.TODO(), moderntreasury.CounterpartyListParams{})\n// Automatically fetches more pages as needed.\nfor iter.Next() {\n\tcounterparty := iter.Current()\n\tfmt.Printf("%+v\\n", counterparty)\n}\nif err := iter.Err(); err != nil {\n\tpanic(err.Error())\n}\n```\n\nOr you can use simple `.List()` methods to fetch a single page and receive a standard response object\nwith additional helper methods like `.GetNextPage()`, e.g.:\n\n```go\npage, err := client.Counterparties.List(context.TODO(), moderntreasury.CounterpartyListParams{})\nfor page != nil {\n\tfor _, counterparty := range page.Items {\n\t\tfmt.Printf("%+v\\n", counterparty)\n\t}\n\tpage, err = page.GetNextPage()\n}\nif err != nil {\n\tpanic(err.Error())\n}\n```\n\n### Errors\n\nWhen the API returns a non-success status code, we return an error with type\n`*SDK_PackageName.Error`. This contains the `StatusCode`, `*http.Request`, and\n`*http.Response` values of the request, as well as the JSON of the error body\n(much like other response objects in the SDK).\n\nTo handle errors, we recommend that you use the `errors.As` pattern:\n\n```go\n_, err := client.ExternalAccounts.New(context.TODO(), moderntreasury.ExternalAccountNewParams{\n\tCounterpartyID: moderntreasury.F("missing"),\n})\nif err != nil {\n\tvar apierr *moderntreasury.Error\n\tif errors.As(err, &apierr) {\n\t\tprintln(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request\n\t\tprintln(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response\n\t}\n\tpanic(err.Error()) // GET "/api/external_accounts": 400 Bad Request { ... }\n}\n```\n\nWhen other errors occur, they are returned unwrapped; for example,\nif HTTP transport fails, you might receive `*url.Error` wrapping `*net.OpError`.\n\n### Timeouts\n\nRequests do not time out by default; use context to configure a timeout for a request lifecycle.\n\nNote that if a request is [retried](#retries), the context timeout does not start over.\nTo set a per-retry timeout, use `SDK_PackageOptionName.WithRequestTimeout()`.\n\n```go\n// This sets the timeout for the request, including all the retries.\nctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)\ndefer cancel()\nclient.Counterparties.New(\n\tctx,\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\t// This sets the per-retry timeout\n\toption.WithRequestTimeout(20*time.Second),\n)\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads in multipart requests are typed as\n`param.Field[io.Reader]`. The contents of the `io.Reader` will by default be sent as a multipart form\npart with the file name of "anonymous_file" and content-type of "application/octet-stream".\n\nThe file name and content-type can be customized by implementing `Name() string` or `ContentType()\nstring` on the run-time type of `io.Reader`. Note that `os.File` implements `Name() string`, so a\nfile returned by `os.Open` will be sent with the file name on disk.\n\nWe also provide a helper `SDK_PackageName.FileParam(reader io.Reader, filename string, contentType string)`\nwhich can be used to wrap any `io.Reader` with the appropriate file name and content type.\n\n```go\n// A file from the file system\nfile, err := os.Open("my/file.txt")\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.F[io.Reader](file),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n\n// A file from a string\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.F[io.Reader](strings.NewReader("my file contents")),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n\n// With a custom filename and contentType\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.FileParam(strings.NewReader(`{"hello": "foo"}`), "file.go", "application/json"),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n```\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nWe retry by default all connection errors, 408 Request Timeout, 409 Conflict, 429 Rate Limit,\nand >=500 Internal errors.\n\nYou can use the `WithMaxRetries` option to configure or disable this:\n\n```go\n// Configure the default for all requests:\nclient := moderntreasury.NewClient(\n\toption.WithMaxRetries(0), // default is 2\n)\n\n// Override per-request:\nclient.Counterparties.New(\n\tcontext.TODO(),\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\toption.WithMaxRetries(5),\n)\n```\n\n\n### Accessing raw response data (e.g. response headers)\n\nYou can access the raw HTTP response data by using the `option.WithResponseInto()` request option. This is useful when\nyou need to examine response headers, status codes, or other details.\n\n```go\n// Create a variable to store the HTTP response\nvar response *http.Response\ncounterparty, err := client.Counterparties.New(\n\tcontext.TODO(),\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\toption.WithResponseInto(&response),\n)\nif err != nil {\n\t// handle error\n}\nfmt.Printf("%+v\\n", counterparty)\n\nfmt.Printf("Status Code: %d\\n", response.StatusCode)\nfmt.Printf("Headers: %+#v\\n", response.Header)\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.Get`, `client.Post`, and other HTTP verbs.\n`RequestOptions` on the client, such as retries, will be respected when making these requests.\n\n```go\nvar (\n    // params can be an io.Reader, a []byte, an encoding/json serializable object,\n    // or a "…Params" struct defined in this library.\n    params map[string]interface{}\n\n    // result can be an []byte, *http.Response, a encoding/json deserializable object,\n    // or a model defined in this library.\n    result *http.Response\n)\nerr := client.Post(context.Background(), "/unspecified", params, &result)\nif err != nil {\n    …\n}\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use either the `SDK_PackageOptionName.WithQuerySet()`\nor the `SDK_PackageOptionName.WithJSONSet()` methods.\n\n```go\nparams := FooNewParams{\n    ID:   SDK_PackageName.F("id_xxxx"),\n    Data: SDK_PackageName.F(FooNewParamsData{\n        FirstName: SDK_PackageName.F("John"),\n    }),\n}\nclient.Foo.New(context.Background(), params, SDK_PackageOptionName.WithJSONSet("data.last_name", "Doe"))\n```\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may either access the raw JSON of the response as a string\nwith `result.JSON.RawJSON()`, or get the raw JSON of a particular field on the result with\n`result.JSON.Foo.Raw()`.\n\nAny fields that are not present on the response struct will be saved and can be accessed by `result.JSON.ExtraFields()` which returns the extra fields as a `map[string]Field`.\n\n### Middleware\n\nWe provide `SDK_PackageOptionName.WithMiddleware` which applies the given\nmiddleware to requests.\n\n```go\nfunc Logger(req *http.Request, next SDK_PackageOptionName.MiddlewareNext) (res *http.Response, err error) {\n\t// Before the request\n\tstart := time.Now()\n\tLogReq(req)\n\n\t// Forward the request to the next handler\n\tres, err = next(req)\n\n\t// Handle stuff after the request\n\tend := time.Now()\n\tLogRes(res, err, start - end)\n\n    return res, err\n}\n\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\tSDK_PackageOptionName.WithMiddleware(Logger),\n)\n```\n\nWhen multiple middlewares are provided as variadic arguments, the middlewares\nare applied left to right. If `SDK_PackageOptionName.WithMiddleware` is given\nmultiple times, for example first in the client then the method, the\nmiddleware in the client will run first and the middleware given in the method\nwill run next.\n\nYou may also replace the default `http.Client` with\n`SDK_PackageOptionName.WithHTTPClient(client)`. Only one http client is\naccepted (this overwrites any previous client) and receives requests after any\nmiddleware has been applied.\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-go/issues) with questions, bugs, or suggestions.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
   },
   {
     language: 'ruby',
     content:
-      '# Modern Treasury Ruby API library\n\nThe Modern Treasury Ruby library provides convenient access to the Modern Treasury REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/Modern-Treasury/modern-treasury-ruby#Sorbet) for usage with Sorbet. The standard library\'s `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.\n\n\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJuYW1lIjoibW9kZXJuLXRyZWFzdXJ5LW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL21vZGVybi10cmVhc3VyeS5zdGxtY3AuY29tIiwiaGVhZGVycyI6eyJ4LW1vZGVybi10cmVhc3VyeS1vcmdhbml6YXRpb24taWQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJ4LW1vZGVybi10cmVhc3VyeS1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmodern-treasury.stlmcp.com%22%2C%22headers%22%3A%7B%22x-modern-treasury-organization-id%22%3A%22my-organization-ID%22%2C%22x-modern-treasury-api-key%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nDocumentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/modern_treasury).\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com).\n\n## Installation\n\nTo use this gem, install via Bundler by adding the following to your application\'s `Gemfile`:\n\n<!-- x-release-please-start-version -->\n\n```ruby\ngem "modern_treasury", "~> 0.0.1"\n```\n\n<!-- x-release-please-end -->\n\n## Usage\n\n```ruby\nrequire "bundler/setup"\nrequire "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(\n  api_key: ENV["MODERN_TREASURY_API_KEY"], # This is the default and can be omitted\n  organization_id: ENV["MODERN_TREASURY_ORGANIZATION_ID"] # This is the default and can be omitted\n)\n\ncounterparty = modern_treasury.counterparties.create(name: "my first counterparty")\n\nputs(counterparty.id)\n```\n\n\n\n### Pagination\n\nList methods in the Modern Treasury API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```ruby\npage = modern_treasury.counterparties.list\n\n# Fetch single item from page.\ncounterparty = page.items[0]\nputs(counterparty.id)\n\n# Automatically fetches more pages as needed.\npage.auto_paging_each do |counterparty|\n  puts(counterparty.id)\nend\n```\n\nAlternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.\n\n```ruby\nif page.next_page?\n  new_page = page.next_page\n  puts(new_page.items[0].id)\nend\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.\n\n```ruby\nrequire "pathname"\n\n# Use `Pathname` to send the filename and/or avoid paging a large file into memory:\ndocument = modern_treasury.documents.create(\n  file: Pathname("my/file.txt"),\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\n# Alternatively, pass file contents or a `StringIO` directly:\ndocument = modern_treasury.documents.create(\n  file: File.read("my/file.txt"),\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\n# Or, to control the filename and/or content type:\nfile = ModernTreasury::FilePart.new(File.read("my/file.txt"), filename: "my/file.txt", content_type: "…")\ndocument = modern_treasury.documents.create(\n  file: file,\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\nputs(document.id)\n```\n\nNote that you can also pass a raw `IO` descriptor, but this disables retries, as the library can\'t be sure if the descriptor is a file or pipe (which cannot be rewound).\n\n### Handling errors\n\nWhen the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `ModernTreasury::Errors::APIError` will be thrown:\n\n```ruby\nbegin\n  external_account = modern_treasury.external_accounts.create(counterparty_id: "missing")\nrescue ModernTreasury::Errors::APIConnectionError => e\n  puts("The server could not be reached")\n  puts(e.cause)  # an underlying Exception, likely raised within `net/http`\nrescue ModernTreasury::Errors::RateLimitError => e\n  puts("A 429 status code was received; we should back off a bit.")\nrescue ModernTreasury::Errors::APIStatusError => e\n  puts("Another non-200-range status code was received")\n  puts(e.status)\nend\n```\n\nError codes are as follows:\n\n| Cause            | Error Type                 |\n| ---------------- | -------------------------- |\n| HTTP 400         | `BadRequestError`          |\n| HTTP 401         | `AuthenticationError`      |\n| HTTP 403         | `PermissionDeniedError`    |\n| HTTP 404         | `NotFoundError`            |\n| HTTP 409         | `ConflictError`            |\n| HTTP 422         | `UnprocessableEntityError` |\n| HTTP 429         | `RateLimitError`           |\n| HTTP >= 500      | `InternalServerError`      |\n| Other HTTP error | `APIStatusError`           |\n| Timeout          | `APITimeoutError`          |\n| Network error    | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\n\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.\n\nYou can use the `max_retries` option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmodern_treasury = ModernTreasury::Client.new(\n  max_retries: 0 # default is 2\n)\n\n# Or, configure per-request:\nmodern_treasury.counterparties.create(name: "my first counterparty", request_options: {max_retries: 5})\n```\n\n### Timeouts\n\nBy default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmodern_treasury = ModernTreasury::Client.new(\n  timeout: nil # default is 60\n)\n\n# Or, configure per-request:\nmodern_treasury.counterparties.create(name: "my first counterparty", request_options: {timeout: 5})\n```\n\nOn timeout, `ModernTreasury::Errors::APITimeoutError` is raised.\n\nNote that requests that time out are retried by default.\n\n## Advanced concepts\n\n### BaseModel\n\nAll parameter and response objects inherit from `ModernTreasury::Internal::Type::BaseModel`, which provides several conveniences, including:\n\n1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.\n\n2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.\n\n3. Both instances and the classes themselves can be pretty-printed.\n\n4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.\n\n### Making custom or undocumented requests\n\n#### Undocumented properties\n\nYou can send undocumented parameters to any endpoint, and read undocumented response properties, like so:\n\nNote: the `extra_` parameters of the same name overrides the documented parameters.\n\n```ruby\ncounterparty =\n  modern_treasury.counterparties.create(\n    name: "my first counterparty",\n    request_options: {\n      extra_query: {my_query_parameter: value},\n      extra_body: {my_body_parameter: value},\n      extra_headers: {"my-header": value}\n    }\n  )\n\nputs(counterparty[:my_undocumented_property])\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:\n\n```ruby\nresponse = client.request(\n  method: :post,\n  path: \'/undocumented/endpoint\',\n  query: {"dog": "woof"},\n  headers: {"useful-header": "interesting-value"},\n  body: {"hello": "world"}\n)\n```\n\n### Concurrency & connection pooling\n\nThe `ModernTreasury::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.\n\nEach instance of `ModernTreasury::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.\n\nWhen all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.\n\nUnless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.\n\n## Sorbet\n\nThis library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.\n\nYou can provide typesafe request parameters like so:\n\n```ruby\nmodern_treasury.counterparties.create(name: "my first counterparty")\n```\n\nOr, equivalently:\n\n```ruby\n# Hashes work, but are not typesafe:\nmodern_treasury.counterparties.create(name: "my first counterparty")\n\n# You can also splat a full Params class:\nparams = ModernTreasury::CounterpartyCreateParams.new(name: "my first counterparty")\nmodern_treasury.counterparties.create(**params)\n```\n\n### Enums\n\nSince this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:\n\n```ruby\n# :credit\nputs(ModernTreasury::TransactionDirection::CREDIT)\n\n# Revealed type: `T.all(ModernTreasury::TransactionDirection, Symbol)`\nT.reveal_type(ModernTreasury::TransactionDirection::CREDIT)\n```\n\nEnum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:\n\n```ruby\n# Using the enum constants preserves the tagged type information:\nmodern_treasury.counterparties.collect_account(\n  direction: ModernTreasury::TransactionDirection::CREDIT,\n  # …\n)\n\n# Literal values are also permissible:\nmodern_treasury.counterparties.collect_account(\n  direction: :credit,\n  # …\n)\n```\n\n## Versioning\n\nThis package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.\n\nThis package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.\n\n## Requirements\n\nRuby 3.2.0 or higher.\n\n## Contributing\n\nSee [the contributing documentation](https://github.com/Modern-Treasury/modern-treasury-ruby/tree/main/CONTRIBUTING.md).\n',
-  },
-  {
-    language: 'terraform',
-    content:
-      '# Modern Treasury Terraform Provider\n\nThe [Modern Treasury Terraform provider](https://registry.terraform.io/providers/stainless-sdks/modern-treasury/latest/docs) provides convenient access to\nthe [Modern Treasury REST API](https://docs.moderntreasury.com) from Terraform.\n\n\n\n## Requirements\n\nThis provider requires Terraform CLI 1.0 or later. You can [install it for your system](https://developer.hashicorp.com/terraform/install)\non Hashicorp\'s website.\n\n## Usage\n\nAdd the following to your `main.tf` file:\n\n\n\n```hcl\n# Declare the provider and version\nterraform {\n  required_providers {\n    SDK_ProviderTypeName = {\n      source  = "stainless-sdks/modern-treasury"\n      version = "~> 0.0.1"\n    }\n  }\n}\n\n# Initialize the provider\nprovider "modern-treasury" {\n  api_key = "My API Key" # or set MODERN_TREASURY_API_KEY env variable\n  organization_id = "my-organization-ID" # or set MODERN_TREASURY_ORGANIZATION_ID env variable\n  webhook_key = "My Webhook Key" # or set MODERN_TREASURY_WEBHOOK_KEY env variable\n}\n\n# Configure a resource\n\n```\n\n\n\nInitialize your project by running `terraform init` in the directory.\n\nAdditional examples can be found in the [./examples](./examples) folder within this repository, and you can\nrefer to the full documentation on [the Terraform Registry](https://registry.terraform.io/providers/stainless-sdks/modern-treasury/latest/docs).\n\n### Provider Options\nWhen you initialize the provider, the following options are supported. It is recommended to use environment variables for sensitive values like access tokens.\nIf an environment variable is provided, then the option does not need to be set in the terraform source.\n\n| Property        | Environment variable              | Required | Default value |\n| --------------- | --------------------------------- | -------- | ------------- |\n| organization_id | `MODERN_TREASURY_ORGANIZATION_ID` | true     | —             |\n| api_key         | `MODERN_TREASURY_API_KEY`         | true     | —             |\n| webhook_key     | `MODERN_TREASURY_WEBHOOK_KEY`     | false    | —             |\n\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/modern-treasury-terraform/issues) with questions, bugs, or suggestions.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
-  },
-  {
-    language: 'typescript',
-    content:
-      "# Modern Treasury TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/modern-treasury.svg?label=npm%20(stable))](https://npmjs.org/package/modern-treasury) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/modern-treasury)\n\nThis library provides convenient access to the Modern Treasury REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com). The full API of this library can be found in [api.md](api.md).\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJuYW1lIjoibW9kZXJuLXRyZWFzdXJ5LW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL21vZGVybi10cmVhc3VyeS5zdGxtY3AuY29tIiwiaGVhZGVycyI6eyJ4LW1vZGVybi10cmVhc3VyeS1vcmdhbml6YXRpb24taWQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJ4LW1vZGVybi10cmVhc3VyeS1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmodern-treasury.stlmcp.com%22%2C%22headers%22%3A%7B%22x-modern-treasury-organization-id%22%3A%22my-organization-ID%22%2C%22x-modern-treasury-api-key%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install modern-treasury\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst counterparty = await client.counterparties.create({ name: 'my first counterparty' });\n\nconsole.log(counterparty.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst params: ModernTreasury.CounterpartyCreateParams = { name: 'my first counterparty' };\nconst counterparty: ModernTreasury.Counterparty = await client.counterparties.create(params);\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n## File uploads\n\nRequest parameters that correspond to file uploads can be passed in many different forms:\n- `File` (or an object with the same structure)\n- a `fetch` `Response` (or an object with the same structure)\n- an `fs.ReadStream`\n- the return value of our `toFile` helper\n\n```ts\nimport fs from 'fs';\nimport ModernTreasury, { toFile } from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\n// If you have access to Node `fs` we recommend using `fs.createReadStream()`:\nawait client.documents.create({\n  file: fs.createReadStream('my/file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\n\n// Or if you have the web `File` API you can pass a `File` instance:\nawait client.documents.create({\n  file: new File(['my bytes'], 'file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\n\n// You can also pass a `fetch` `Response`:\nawait client.documents.create({\n  file: await fetch('https://somesite/file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\n\n// Finally, if none of the above are convenient, you can use our `toFile` helper:\nawait client.documents.create({\n  file: await toFile(Buffer.from('my bytes'), 'file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\nawait client.documents.create({\n  file: await toFile(new Uint8Array([0, 1, 2]), 'file.txt'),\n  documentable_id: '24c6b7a3-02...',\n  documentable_type: 'connection',\n});\n```\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst externalAccount = await client.externalAccounts\n  .create({ counterparty_id: 'missing' })\n  .catch(async (err) => {\n    if (err instanceof ModernTreasury.APIError) {\n      console.log(err.status); // 400\n      console.log(err.name); // BadRequestError\n      console.log(err.headers); // {server: 'nginx', ...}\n    } else {\n      throw err;\n    }\n  });\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new ModernTreasury({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.counterparties.create({ name: 'my first counterparty' }, {\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new ModernTreasury({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.counterparties.create({ name: 'my first counterparty' }, {\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the ModernTreasury API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllCounterparties(params) {\n  const allCounterparties = [];\n  // Automatically fetches more pages as needed.\n  for await (const counterparty of client.counterparties.list()) {\n    allCounterparties.push(counterparty);\n  }\n  return allCounterparties;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await client.counterparties.list();\nfor (const counterparty of page.items) {\n  console.log(counterparty);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new ModernTreasury();\n\nconst response = await client.counterparties.create({ name: 'my first counterparty' }).asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: counterparty, response: raw } = await client.counterparties\n  .create({ name: 'my first counterparty' })\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nconsole.log(counterparty.id);\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `MODERN_TREASURY_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport ModernTreasury from 'modern-treasury';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new ModernTreasury({\n  logger: logger.child({ name: 'ModernTreasury' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.counterparties.create({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport ModernTreasury from 'modern-treasury';\nimport fetch from 'my-fetch';\n\nconst client = new ModernTreasury({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport ModernTreasury from 'modern-treasury';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new ModernTreasury({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport ModernTreasury from 'npm:modern-treasury';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new ModernTreasury({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-node/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
+      '# Modern Treasury Ruby API library\n\nThe Modern Treasury Ruby library provides convenient access to the Modern Treasury REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/Modern-Treasury/modern-treasury-ruby#Sorbet) for usage with Sorbet. The standard library\'s `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.\n\n\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nDocumentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/modern_treasury).\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com).\n\n## Installation\n\nTo use this gem, install via Bundler by adding the following to your application\'s `Gemfile`:\n\n<!-- x-release-please-start-version -->\n\n```ruby\ngem "modern_treasury", "~> 0.28.0"\n```\n\n<!-- x-release-please-end -->\n\n## Usage\n\n```ruby\nrequire "bundler/setup"\nrequire "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(\n  api_key: ENV["MODERN_TREASURY_API_KEY"], # This is the default and can be omitted\n  organization_id: ENV["MODERN_TREASURY_ORGANIZATION_ID"] # This is the default and can be omitted\n)\n\ncounterparty = modern_treasury.counterparties.create(name: "my first counterparty")\n\nputs(counterparty.id)\n```\n\n\n\n### Pagination\n\nList methods in the Modern Treasury API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```ruby\npage = modern_treasury.counterparties.list\n\n# Fetch single item from page.\ncounterparty = page.items[0]\nputs(counterparty.id)\n\n# Automatically fetches more pages as needed.\npage.auto_paging_each do |counterparty|\n  puts(counterparty.id)\nend\n```\n\nAlternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.\n\n```ruby\nif page.next_page?\n  new_page = page.next_page\n  puts(new_page.items[0].id)\nend\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.\n\n```ruby\nrequire "pathname"\n\n# Use `Pathname` to send the filename and/or avoid paging a large file into memory:\ndocument = modern_treasury.documents.create(\n  file: Pathname("my/file.txt"),\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\n# Alternatively, pass file contents or a `StringIO` directly:\ndocument = modern_treasury.documents.create(\n  file: File.read("my/file.txt"),\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\n# Or, to control the filename and/or content type:\nfile = ModernTreasury::FilePart.new(File.read("my/file.txt"), filename: "my/file.txt", content_type: "…")\ndocument = modern_treasury.documents.create(\n  file: file,\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\nputs(document.id)\n```\n\nNote that you can also pass a raw `IO` descriptor, but this disables retries, as the library can\'t be sure if the descriptor is a file or pipe (which cannot be rewound).\n\n### Handling errors\n\nWhen the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `ModernTreasury::Errors::APIError` will be thrown:\n\n```ruby\nbegin\n  external_account = modern_treasury.external_accounts.create(counterparty_id: "missing")\nrescue ModernTreasury::Errors::APIConnectionError => e\n  puts("The server could not be reached")\n  puts(e.cause)  # an underlying Exception, likely raised within `net/http`\nrescue ModernTreasury::Errors::RateLimitError => e\n  puts("A 429 status code was received; we should back off a bit.")\nrescue ModernTreasury::Errors::APIStatusError => e\n  puts("Another non-200-range status code was received")\n  puts(e.status)\nend\n```\n\nError codes are as follows:\n\n| Cause            | Error Type                 |\n| ---------------- | -------------------------- |\n| HTTP 400         | `BadRequestError`          |\n| HTTP 401         | `AuthenticationError`      |\n| HTTP 403         | `PermissionDeniedError`    |\n| HTTP 404         | `NotFoundError`            |\n| HTTP 409         | `ConflictError`            |\n| HTTP 422         | `UnprocessableEntityError` |\n| HTTP 429         | `RateLimitError`           |\n| HTTP >= 500      | `InternalServerError`      |\n| Other HTTP error | `APIStatusError`           |\n| Timeout          | `APITimeoutError`          |\n| Network error    | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\n\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.\n\nYou can use the `max_retries` option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmodern_treasury = ModernTreasury::Client.new(\n  max_retries: 0 # default is 2\n)\n\n# Or, configure per-request:\nmodern_treasury.counterparties.create(name: "my first counterparty", request_options: {max_retries: 5})\n```\n\n### Timeouts\n\nBy default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmodern_treasury = ModernTreasury::Client.new(\n  timeout: nil # default is 60\n)\n\n# Or, configure per-request:\nmodern_treasury.counterparties.create(name: "my first counterparty", request_options: {timeout: 5})\n```\n\nOn timeout, `ModernTreasury::Errors::APITimeoutError` is raised.\n\nNote that requests that time out are retried by default.\n\n## Advanced concepts\n\n### BaseModel\n\nAll parameter and response objects inherit from `ModernTreasury::Internal::Type::BaseModel`, which provides several conveniences, including:\n\n1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.\n\n2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.\n\n3. Both instances and the classes themselves can be pretty-printed.\n\n4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.\n\n### Making custom or undocumented requests\n\n#### Undocumented properties\n\nYou can send undocumented parameters to any endpoint, and read undocumented response properties, like so:\n\nNote: the `extra_` parameters of the same name overrides the documented parameters.\n\n```ruby\ncounterparty =\n  modern_treasury.counterparties.create(\n    name: "my first counterparty",\n    request_options: {\n      extra_query: {my_query_parameter: value},\n      extra_body: {my_body_parameter: value},\n      extra_headers: {"my-header": value}\n    }\n  )\n\nputs(counterparty[:my_undocumented_property])\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:\n\n```ruby\nresponse = client.request(\n  method: :post,\n  path: \'/undocumented/endpoint\',\n  query: {"dog": "woof"},\n  headers: {"useful-header": "interesting-value"},\n  body: {"hello": "world"}\n)\n```\n\n### Concurrency & connection pooling\n\nThe `ModernTreasury::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.\n\nEach instance of `ModernTreasury::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.\n\nWhen all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.\n\nUnless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.\n\n## Sorbet\n\nThis library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.\n\nYou can provide typesafe request parameters like so:\n\n```ruby\nmodern_treasury.counterparties.create(name: "my first counterparty")\n```\n\nOr, equivalently:\n\n```ruby\n# Hashes work, but are not typesafe:\nmodern_treasury.counterparties.create(name: "my first counterparty")\n\n# You can also splat a full Params class:\nparams = ModernTreasury::CounterpartyCreateParams.new(name: "my first counterparty")\nmodern_treasury.counterparties.create(**params)\n```\n\n### Enums\n\nSince this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:\n\n```ruby\n# :credit\nputs(ModernTreasury::TransactionDirection::CREDIT)\n\n# Revealed type: `T.all(ModernTreasury::TransactionDirection, Symbol)`\nT.reveal_type(ModernTreasury::TransactionDirection::CREDIT)\n```\n\nEnum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:\n\n```ruby\n# Using the enum constants preserves the tagged type information:\nmodern_treasury.counterparties.collect_account(\n  direction: ModernTreasury::TransactionDirection::CREDIT,\n  # …\n)\n\n# Literal values are also permissible:\nmodern_treasury.counterparties.collect_account(\n  direction: :credit,\n  # …\n)\n```\n\n## Versioning\n\nThis package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.\n\nThis package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.\n\n## Requirements\n\nRuby 3.2.0 or higher.\n\n## Contributing\n\nSee [the contributing documentation](https://github.com/Modern-Treasury/modern-treasury-ruby/tree/main/CONTRIBUTING.md).\n',
   },
 ];
 
