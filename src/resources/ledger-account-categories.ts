@@ -10,6 +10,27 @@ import { path } from '../internal/utils/path';
 
 export class LedgerAccountCategories extends APIResource {
   /**
+   * Get a list of ledger account categories.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ledgerAccountCategory of client.ledgerAccountCategories.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: LedgerAccountCategoryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerAccountCategoriesPage, LedgerAccountCategory> {
+    return this._client.getAPIList('/api/ledger_account_categories', Page<LedgerAccountCategory>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Create a ledger account category.
    *
    * @example
@@ -65,27 +86,6 @@ export class LedgerAccountCategories extends APIResource {
   }
 
   /**
-   * Get a list of ledger account categories.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const ledgerAccountCategory of client.ledgerAccountCategories.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: LedgerAccountCategoryListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LedgerAccountCategoriesPage, LedgerAccountCategory> {
-    return this._client.getAPIList('/api/ledger_account_categories', Page<LedgerAccountCategory>, {
-      query,
-      ...options,
-    });
-  }
-
-  /**
    * Delete a ledger account category.
    *
    * @example
@@ -122,29 +122,6 @@ export class LedgerAccountCategories extends APIResource {
   }
 
   /**
-   * Add a ledger account category to a ledger account category.
-   *
-   * @example
-   * ```ts
-   * await client.ledgerAccountCategories.addNestedCategory(
-   *   'sub_category_id',
-   *   { id: 'id' },
-   * );
-   * ```
-   */
-  addNestedCategory(
-    subCategoryID: string,
-    params: LedgerAccountCategoryAddNestedCategoryParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { id } = params;
-    return this._client.put(
-      path`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryID}`,
-      { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
-    );
-  }
-
-  /**
    * Remove a ledger account from a ledger account category.
    *
    * @example
@@ -163,6 +140,29 @@ export class LedgerAccountCategories extends APIResource {
     const { id } = params;
     return this._client.delete(
       path`/api/ledger_account_categories/${id}/ledger_accounts/${ledgerAccountID}`,
+      { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+    );
+  }
+
+  /**
+   * Add a ledger account category to a ledger account category.
+   *
+   * @example
+   * ```ts
+   * await client.ledgerAccountCategories.addNestedCategory(
+   *   'sub_category_id',
+   *   { id: 'id' },
+   * );
+   * ```
+   */
+  addNestedCategory(
+    subCategoryID: string,
+    params: LedgerAccountCategoryAddNestedCategoryParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { id } = params;
+    return this._client.put(
+      path`/api/ledger_account_categories/${id}/ledger_account_categories/${subCategoryID}`,
       { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
     );
   }
@@ -249,6 +249,60 @@ export interface LedgerAccountCategory {
   object: string;
 
   updated_at: string;
+}
+
+export interface LedgerAccountCategoryListParams extends PageParams {
+  /**
+   * If you have specific IDs to retrieve in bulk, you can pass them as query
+   * parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+   */
+  id?: Array<string>;
+
+  /**
+   * For example, if you want the balances as of a particular time (ISO8601), the
+   * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+   * The balances as of a time are inclusive of entries with that exact time, but
+   * with respect to the ledger accounts that are currently present in the category.
+   */
+  balances?: LedgerAccountCategoryListParams.Balances;
+
+  currency?: string;
+
+  external_id?: string;
+
+  /**
+   * Query categories which contain a ledger account directly or through child
+   * categories.
+   */
+  ledger_account_id?: string;
+
+  ledger_id?: string;
+
+  /**
+   * For example, if you want to query for records with metadata key `Type` and value
+   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+   * parameters.
+   */
+  metadata?: { [key: string]: string };
+
+  name?: string;
+
+  /**
+   * Query categories that are nested underneath a parent category
+   */
+  parent_ledger_account_category_id?: string;
+}
+
+export namespace LedgerAccountCategoryListParams {
+  /**
+   * For example, if you want the balances as of a particular time (ISO8601), the
+   * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+   * The balances as of a time are inclusive of entries with that exact time, but
+   * with respect to the ledger accounts that are currently present in the category.
+   */
+  export interface Balances {
+    effective_at?: string;
+  }
 }
 
 export interface LedgerAccountCategoryCreateParams {
@@ -347,60 +401,6 @@ export interface LedgerAccountCategoryUpdateParams {
   name?: string;
 }
 
-export interface LedgerAccountCategoryListParams extends PageParams {
-  /**
-   * If you have specific IDs to retrieve in bulk, you can pass them as query
-   * parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
-   */
-  id?: Array<string>;
-
-  /**
-   * For example, if you want the balances as of a particular time (ISO8601), the
-   * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-   * The balances as of a time are inclusive of entries with that exact time, but
-   * with respect to the ledger accounts that are currently present in the category.
-   */
-  balances?: LedgerAccountCategoryListParams.Balances;
-
-  currency?: string;
-
-  external_id?: string;
-
-  /**
-   * Query categories which contain a ledger account directly or through child
-   * categories.
-   */
-  ledger_account_id?: string;
-
-  ledger_id?: string;
-
-  /**
-   * For example, if you want to query for records with metadata key `Type` and value
-   * `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-   * parameters.
-   */
-  metadata?: { [key: string]: string };
-
-  name?: string;
-
-  /**
-   * Query categories that are nested underneath a parent category
-   */
-  parent_ledger_account_category_id?: string;
-}
-
-export namespace LedgerAccountCategoryListParams {
-  /**
-   * For example, if you want the balances as of a particular time (ISO8601), the
-   * encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-   * The balances as of a time are inclusive of entries with that exact time, but
-   * with respect to the ledger accounts that are currently present in the category.
-   */
-  export interface Balances {
-    effective_at?: string;
-  }
-}
-
 export interface LedgerAccountCategoryAddLedgerAccountParams {
   /**
    * id
@@ -408,14 +408,14 @@ export interface LedgerAccountCategoryAddLedgerAccountParams {
   id: string;
 }
 
-export interface LedgerAccountCategoryAddNestedCategoryParams {
+export interface LedgerAccountCategoryRemoveLedgerAccountParams {
   /**
    * id
    */
   id: string;
 }
 
-export interface LedgerAccountCategoryRemoveLedgerAccountParams {
+export interface LedgerAccountCategoryAddNestedCategoryParams {
   /**
    * id
    */
@@ -433,13 +433,13 @@ export declare namespace LedgerAccountCategories {
   export {
     type LedgerAccountCategory as LedgerAccountCategory,
     type LedgerAccountCategoriesPage as LedgerAccountCategoriesPage,
+    type LedgerAccountCategoryListParams as LedgerAccountCategoryListParams,
     type LedgerAccountCategoryCreateParams as LedgerAccountCategoryCreateParams,
     type LedgerAccountCategoryRetrieveParams as LedgerAccountCategoryRetrieveParams,
     type LedgerAccountCategoryUpdateParams as LedgerAccountCategoryUpdateParams,
-    type LedgerAccountCategoryListParams as LedgerAccountCategoryListParams,
     type LedgerAccountCategoryAddLedgerAccountParams as LedgerAccountCategoryAddLedgerAccountParams,
-    type LedgerAccountCategoryAddNestedCategoryParams as LedgerAccountCategoryAddNestedCategoryParams,
     type LedgerAccountCategoryRemoveLedgerAccountParams as LedgerAccountCategoryRemoveLedgerAccountParams,
+    type LedgerAccountCategoryAddNestedCategoryParams as LedgerAccountCategoryAddNestedCategoryParams,
     type LedgerAccountCategoryRemoveNestedCategoryParams as LedgerAccountCategoryRemoveNestedCategoryParams,
   };
 }

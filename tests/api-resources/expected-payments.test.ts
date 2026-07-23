@@ -9,6 +9,41 @@ const client = new ModernTreasury({
 });
 
 describe('resource expectedPayments', () => {
+  test('list', async () => {
+    const responsePromise = client.expectedPayments.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.expectedPayments.list(
+        {
+          after_cursor: 'after_cursor',
+          counterparty_id: 'counterparty_id',
+          created_at_lower_bound: '2019-12-27T18:11:19.117Z',
+          created_at_upper_bound: '2019-12-27T18:11:19.117Z',
+          direction: 'credit',
+          external_id: 'external_id',
+          internal_account_id: 'internal_account_id',
+          metadata: { foo: 'string' },
+          per_page: 0,
+          status: 'archived',
+          type: 'ach',
+          updated_at_lower_bound: '2019-12-27T18:11:19.117Z',
+          updated_at_upper_bound: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  });
+
   test('create', async () => {
     const responsePromise = client.expectedPayments.create();
     const rawResponse = await responsePromise.asResponse();
@@ -182,41 +217,6 @@ describe('resource expectedPayments', () => {
           statement_descriptor: 'statement_descriptor',
           status: 'reconciled',
           type: 'ach',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
-  });
-
-  test('list', async () => {
-    const responsePromise = client.expectedPayments.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.expectedPayments.list(
-        {
-          after_cursor: 'after_cursor',
-          counterparty_id: 'counterparty_id',
-          created_at_lower_bound: '2019-12-27T18:11:19.117Z',
-          created_at_upper_bound: '2019-12-27T18:11:19.117Z',
-          direction: 'credit',
-          external_id: 'external_id',
-          internal_account_id: 'internal_account_id',
-          metadata: { foo: 'string' },
-          per_page: 0,
-          status: 'archived',
-          type: 'ach',
-          updated_at_lower_bound: '2019-12-27T18:11:19.117Z',
-          updated_at_upper_bound: '2019-12-27T18:11:19.117Z',
         },
         { path: '/_stainless_unknown_path' },
       ),
