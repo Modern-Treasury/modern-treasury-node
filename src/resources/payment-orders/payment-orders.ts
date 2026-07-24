@@ -947,7 +947,7 @@ export interface PaymentOrderCreateParams {
    * Additional vendor specific fields for this payment. Data must be represented as
    * key-value pairs.
    */
-  vendor_attributes?: unknown;
+  vendor_attributes?: { [key: string]: unknown };
 }
 
 export namespace PaymentOrderCreateParams {
@@ -993,6 +993,7 @@ export namespace PaymentOrderCreateParams {
       | 'legal_entity'
       | 'organization'
       | 'payment_order'
+      | 'return'
       | 'transaction';
   }
 
@@ -1448,7 +1449,7 @@ export interface PaymentOrderCreateAsyncParams {
    * Additional vendor specific fields for this payment. Data must be represented as
    * key-value pairs.
    */
-  vendor_attributes?: unknown;
+  vendor_attributes?: { [key: string]: unknown };
 }
 
 export namespace PaymentOrderCreateAsyncParams {
