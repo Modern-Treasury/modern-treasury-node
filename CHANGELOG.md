@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.20.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.19.0...v4.20.0) (2026-07-24)
+
+
+### Features
+
+* **api:** api update ([668d925](https://github.com/Modern-Treasury/modern-treasury-node/commit/668d9257607b6ea313fc916ad770724e9b25f8a8))
+* **api:** api update ([c60d977](https://github.com/Modern-Treasury/modern-treasury-node/commit/c60d977ab8c7bc90cacc2e3926a61ce8089485bc))
+* **api:** api update ([7f96ea2](https://github.com/Modern-Treasury/modern-treasury-node/commit/7f96ea21578f5744c6ad6dd1f2a9fa7ddc247836))
+* **api:** api update ([e116da2](https://github.com/Modern-Treasury/modern-treasury-node/commit/e116da2933d6c6e0c245f8f2ac04215875031cd6))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([b588e1e](https://github.com/Modern-Treasury/modern-treasury-node/commit/b588e1e1ecba10db593aa2cf4559be301d0cc3d0))
+
+
+### Chores
+
+* regenerate SDKs from 0270d021f54f3bde2339d9160dce71a6bb6955e1 ([b140903](https://github.com/Modern-Treasury/modern-treasury-node/commit/b140903ddde52125a34533855663235c0d499e35))
+* regenerate SDKs from 24f3dc7dc33d9f75e2d589541d11b7a8bd943451 ([1caf56b](https://github.com/Modern-Treasury/modern-treasury-node/commit/1caf56bbca8a30b08ece30121cd5c4a004ba8a10))
+* regenerate SDKs from c982ebc71c7db716e153ada1c89917276c64b815 ([495a869](https://github.com/Modern-Treasury/modern-treasury-node/commit/495a86986d9207b45024f2c76f879acb71b0475e))
+* regenerate SDKs from e1e0e3ef1458022fd1daec6fcf15bb4695c49a4b ([6dea66e](https://github.com/Modern-Treasury/modern-treasury-node/commit/6dea66ee0a28a34299703f515ca479906b1f922e))
+
 ## 4.19.0 (2026-07-11)
 
 Full Changelog: [v4.18.0...v4.19.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.18.0...v4.19.0)
