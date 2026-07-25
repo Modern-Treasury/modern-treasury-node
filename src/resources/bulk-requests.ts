@@ -428,7 +428,7 @@ export namespace BulkRequestCreateParams {
      * Additional vendor specific fields for this payment. Data must be represented as
      * key-value pairs.
      */
-    vendor_attributes?: unknown;
+    vendor_attributes?: { [key: string]: unknown };
   }
 
   export namespace PaymentOrderAsyncCreateRequest {
