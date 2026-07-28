@@ -271,6 +271,12 @@ export interface PaymentOrder {
   originating_account_id: string;
 
   /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  originating_party_address: PaymentOrder.OriginatingPartyAddress | null;
+
+  /**
    * If present, this will replace your default company name on receiver's bank
    * statement. This field can only be used for ACH payments currently. For ACH, only
    * the first 16 characters of this string will be used. Any additional characters
@@ -499,6 +505,38 @@ export namespace PaymentOrder {
      * When the hold was resolved
      */
     resolved_at?: string | null;
+  }
+
+  /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  export interface OriginatingPartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string | null;
+
+    line1?: string | null;
+
+    line2?: string | null;
+
+    /**
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
+     */
+    locality?: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string | null;
+
+    /**
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
+     */
+    region?: string | null;
   }
 
   export interface ReferenceNumber {
@@ -826,6 +864,12 @@ export interface PaymentOrderCreateParams {
   nsf_protected?: boolean;
 
   /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  originating_party_address?: PaymentOrderCreateParams.OriginatingPartyAddress | null;
+
+  /**
    * If present, this will replace your default company name on receiver's bank
    * statement. This field can only be used for ACH payments currently. For ACH, only
    * the first 16 characters of this string will be used. Any additional characters
@@ -993,6 +1037,7 @@ export namespace PaymentOrderCreateParams {
       | 'legal_entity'
       | 'organization'
       | 'payment_order'
+      | 'return'
       | 'transaction';
   }
 
@@ -1019,6 +1064,38 @@ export namespace PaymentOrderCreateParams {
      * strings.
      */
     metadata?: { [key: string]: string };
+  }
+
+  /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  export interface OriginatingPartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string | null;
+
+    line1?: string | null;
+
+    line2?: string | null;
+
+    /**
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
+     */
+    locality?: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string | null;
+
+    /**
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
+     */
+    region?: string | null;
   }
 
   /**
@@ -1327,6 +1404,12 @@ export interface PaymentOrderCreateAsyncParams {
   nsf_protected?: boolean;
 
   /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  originating_party_address?: PaymentOrderCreateAsyncParams.OriginatingPartyAddress | null;
+
+  /**
    * If present, this will replace your default company name on receiver's bank
    * statement. This field can only be used for ACH payments currently. For ACH, only
    * the first 16 characters of this string will be used. Any additional characters
@@ -1493,6 +1576,38 @@ export namespace PaymentOrderCreateAsyncParams {
      * strings.
      */
     metadata?: { [key: string]: string };
+  }
+
+  /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  export interface OriginatingPartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string | null;
+
+    line1?: string | null;
+
+    line2?: string | null;
+
+    /**
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
+     */
+    locality?: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string | null;
+
+    /**
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
+     */
+    region?: string | null;
   }
 
   /**
@@ -1890,6 +2005,12 @@ export interface PaymentOrderUpdateParams {
   originating_account_id?: string;
 
   /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  originating_party_address?: PaymentOrderUpdateParams.OriginatingPartyAddress | null;
+
+  /**
    * If present, this will replace your default company name on receiver's bank
    * statement. This field can only be used for ACH payments currently. For ACH, only
    * the first 16 characters of this string will be used. Any additional characters
@@ -2067,6 +2188,38 @@ export namespace PaymentOrderUpdateParams {
      * strings.
      */
     metadata?: { [key: string]: string };
+  }
+
+  /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  export interface OriginatingPartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string | null;
+
+    line1?: string | null;
+
+    line2?: string | null;
+
+    /**
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
+     */
+    locality?: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string | null;
+
+    /**
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
+     */
+    region?: string | null;
   }
 
   /**
