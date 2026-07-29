@@ -58,8 +58,8 @@ export interface Document {
 
   /**
    * The type of the associated object. Currently can be one of `payment_order`,
-   * `transaction`, `expected_payment`, `counterparty`, `organization`, `case`,
-   * `internal_account`, `decision`, or `external_account`.
+   * `transaction`, `expected_payment`, `return`, `legal_entity`, `counterparty`,
+   * `organization`, `case`, `internal_account`, `decision`, or `external_account`.
    */
   documentable_type:
     | 'connection'
@@ -72,6 +72,7 @@ export interface Document {
     | 'legal_entity'
     | 'organization'
     | 'payment_order'
+    | 'return'
     | 'transaction'
     | null;
 
@@ -136,6 +137,7 @@ export interface DocumentCreateParams {
     | 'legal_entity'
     | 'organization'
     | 'payment_order'
+    | 'return'
     | 'transaction';
 }
 
@@ -147,8 +149,8 @@ export interface DocumentListParams extends PageParams {
 
   /**
    * The type of the associated object. Currently can be one of `payment_order`,
-   * `transaction`, `expected_payment`, `counterparty`, `organization`, `case`,
-   * `internal_account`, `decision`, or `external_account`.
+   * `transaction`, `expected_payment`, `return`, `legal_entity`, `counterparty`,
+   * `organization`, `case`, `internal_account`, `decision`, or `external_account`.
    */
   documentable_type?:
     | 'connection'
@@ -161,6 +163,7 @@ export interface DocumentListParams extends PageParams {
     | 'legal_entity'
     | 'organization'
     | 'payment_order'
+    | 'return'
     | 'transaction';
 }
 
