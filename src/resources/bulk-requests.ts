@@ -307,6 +307,12 @@ export namespace BulkRequestCreateParams {
     nsf_protected?: boolean;
 
     /**
+     * If present, this address will override the default originating party address
+     * used on the payment order. This works across all payment types.
+     */
+    originating_party_address?: PaymentOrderAsyncCreateRequest.OriginatingPartyAddress | null;
+
+    /**
      * If present, this will replace your default company name on receiver's bank
      * statement. This field can only be used for ACH payments currently. For ACH, only
      * the first 16 characters of this string will be used. Any additional characters
@@ -473,6 +479,38 @@ export namespace BulkRequestCreateParams {
        * strings.
        */
       metadata?: { [key: string]: string };
+    }
+
+    /**
+     * If present, this address will override the default originating party address
+     * used on the payment order. This works across all payment types.
+     */
+    export interface OriginatingPartyAddress {
+      /**
+       * Country code conforms to [ISO 3166-1 alpha-2]
+       */
+      country?: string | null;
+
+      line1?: string | null;
+
+      line2?: string | null;
+
+      /**
+       * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+       * Francisco).
+       */
+      locality?: string | null;
+
+      /**
+       * The postal code of the address.
+       */
+      postal_code?: string | null;
+
+      /**
+       * Region or State. This field is free-form; for US states, we recommend a
+       * two-letter code (e.g. CA). Full state names are also accepted.
+       */
+      region?: string | null;
     }
 
     /**
@@ -935,6 +973,12 @@ export namespace BulkRequestCreateParams {
     originating_account_id?: string;
 
     /**
+     * If present, this address will override the default originating party address
+     * used on the payment order. This works across all payment types.
+     */
+    originating_party_address?: PaymentOrderUpdateRequestWithID.OriginatingPartyAddress | null;
+
+    /**
      * If present, this will replace your default company name on receiver's bank
      * statement. This field can only be used for ACH payments currently. For ACH, only
      * the first 16 characters of this string will be used. Any additional characters
@@ -1112,6 +1156,38 @@ export namespace BulkRequestCreateParams {
        * strings.
        */
       metadata?: { [key: string]: string };
+    }
+
+    /**
+     * If present, this address will override the default originating party address
+     * used on the payment order. This works across all payment types.
+     */
+    export interface OriginatingPartyAddress {
+      /**
+       * Country code conforms to [ISO 3166-1 alpha-2]
+       */
+      country?: string | null;
+
+      line1?: string | null;
+
+      line2?: string | null;
+
+      /**
+       * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+       * Francisco).
+       */
+      locality?: string | null;
+
+      /**
+       * The postal code of the address.
+       */
+      postal_code?: string | null;
+
+      /**
+       * Region or State. This field is free-form; for US states, we recommend a
+       * two-letter code (e.g. CA). Full state names are also accepted.
+       */
+      region?: string | null;
     }
 
     /**
