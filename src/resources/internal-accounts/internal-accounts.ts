@@ -552,13 +552,6 @@ export interface InternalAccountCreateParams {
   party_name?: string | null;
 
   /**
-   * An array of account number types requested for provisioning.
-   */
-  requested_account_number_types?: Array<
-    'ethereum_address' | 'solana_address' | 'polygon_address' | 'base_address'
-  >;
-
-  /**
    * A hash of vendor specific attributes that will be used when creating the account
    * at the vendor specified by the given connection.
    */
@@ -641,8 +634,7 @@ export namespace InternalAccountCreateParams {
     line1: string;
 
     /**
-     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
-     * Francisco).
+     * Locality or City.
      */
     locality: string;
 
@@ -652,8 +644,7 @@ export namespace InternalAccountCreateParams {
     postal_code: string;
 
     /**
-     * Region or State. This field is free-form; for US states, we recommend a
-     * two-letter code (e.g. CA). Full state names are also accepted.
+     * Region or State.
      */
     region: string;
 

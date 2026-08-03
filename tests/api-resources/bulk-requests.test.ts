@@ -210,7 +210,7 @@ describe('resource bulkRequests', () => {
           ultimate_originating_party_name: 'ultimate_originating_party_name',
           ultimate_receiving_party_identifier: 'ultimate_receiving_party_identifier',
           ultimate_receiving_party_name: 'ultimate_receiving_party_name',
-          vendor_attributes: { foo: 'bar' },
+          vendor_attributes: {},
         },
       ],
       metadata: {

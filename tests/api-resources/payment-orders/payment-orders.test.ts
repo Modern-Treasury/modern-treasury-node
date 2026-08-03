@@ -180,7 +180,7 @@ describe('resource paymentOrders', () => {
       ultimate_originating_party_name: 'ultimate_originating_party_name',
       ultimate_receiving_party_identifier: 'ultimate_receiving_party_identifier',
       ultimate_receiving_party_name: 'ultimate_receiving_party_name',
-      vendor_attributes: { foo: 'bar' },
+      vendor_attributes: {},
     });
   });
 
@@ -345,7 +345,7 @@ describe('resource paymentOrders', () => {
       ultimate_originating_party_name: 'ultimate_originating_party_name',
       ultimate_receiving_party_identifier: 'ultimate_receiving_party_identifier',
       ultimate_receiving_party_name: 'ultimate_receiving_party_name',
-      vendor_attributes: { foo: 'bar' },
+      vendor_attributes: {},
     });
   });
 

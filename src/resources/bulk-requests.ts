@@ -458,7 +458,7 @@ export namespace BulkRequestCreateParams {
      * Additional vendor specific fields for this payment. Data must be represented as
      * key-value pairs.
      */
-    vendor_attributes?: { [key: string]: unknown };
+    vendor_attributes?: unknown;
   }
 
   export namespace PaymentOrderAsyncCreateRequest {
@@ -662,8 +662,7 @@ export namespace BulkRequestCreateParams {
       line2?: string;
 
       /**
-       * Locality or City. Use the full city name rather than an abbreviation (e.g. San
-       * Francisco).
+       * Locality or City.
        */
       locality?: string;
 
@@ -673,8 +672,7 @@ export namespace BulkRequestCreateParams {
       postal_code?: string;
 
       /**
-       * Region or State. This field is free-form; for US states, we recommend a
-       * two-letter code (e.g. CA). Full state names are also accepted.
+       * Region or State.
        */
       region?: string;
     }

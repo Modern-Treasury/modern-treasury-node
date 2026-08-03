@@ -947,7 +947,7 @@ export interface PaymentOrderCreateParams {
    * Additional vendor specific fields for this payment. Data must be represented as
    * key-value pairs.
    */
-  vendor_attributes?: { [key: string]: unknown };
+  vendor_attributes?: unknown;
 }
 
 export namespace PaymentOrderCreateParams {
@@ -1178,8 +1178,7 @@ export namespace PaymentOrderCreateParams {
     line2?: string;
 
     /**
-     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
-     * Francisco).
+     * Locality or City.
      */
     locality?: string;
 
@@ -1189,8 +1188,7 @@ export namespace PaymentOrderCreateParams {
     postal_code?: string;
 
     /**
-     * Region or State. This field is free-form; for US states, we recommend a
-     * two-letter code (e.g. CA). Full state names are also accepted.
+     * Region or State.
      */
     region?: string;
   }
@@ -1448,7 +1446,7 @@ export interface PaymentOrderCreateAsyncParams {
    * Additional vendor specific fields for this payment. Data must be represented as
    * key-value pairs.
    */
-  vendor_attributes?: { [key: string]: unknown };
+  vendor_attributes?: unknown;
 }
 
 export namespace PaymentOrderCreateAsyncParams {
@@ -1652,8 +1650,7 @@ export namespace PaymentOrderCreateAsyncParams {
     line2?: string;
 
     /**
-     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
-     * Francisco).
+     * Locality or City.
      */
     locality?: string;
 
@@ -1663,8 +1660,7 @@ export namespace PaymentOrderCreateAsyncParams {
     postal_code?: string;
 
     /**
-     * Region or State. This field is free-form; for US states, we recommend a
-     * two-letter code (e.g. CA). Full state names are also accepted.
+     * Region or State.
      */
     region?: string;
   }
