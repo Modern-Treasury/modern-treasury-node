@@ -154,7 +154,7 @@ export interface PaymentReference {
    * One of the referenceable types. This must be accompanied by the id of the
    * referenceable or will return an error.
    */
-  referenceable_type: 'payment_order' | 'reversal' | 'return';
+  referenceable_type: 'payment_order' | 'reversal' | 'return' | 'incoming_payment_detail' | 'transaction';
 
   updated_at: string;
 }
@@ -175,7 +175,7 @@ export interface PaymentReferenceListParams extends PageParams {
    * One of the referenceable types. This must be accompanied by the id of the
    * referenceable or will return an error.
    */
-  referenceable_type?: 'payment_order' | 'return' | 'reversal';
+  referenceable_type?: 'payment_order' | 'return' | 'reversal' | 'incoming_payment_detail' | 'transaction';
 }
 
 export declare namespace PaymentReferences {
