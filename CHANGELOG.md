@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.20.0...v4.20.1) (2026-08-03)
+
+
+### Chores
+
+* regenerate SDKs from f8431d19ac72164ca8c950d87d1ab63a2ab77353 ([83d0f0c](https://github.com/Modern-Treasury/modern-treasury-node/commit/83d0f0c268470e9be6249edad1b90bbe2bf657f2))
+
 ## [4.20.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.19.0...v4.20.0) (2026-07-24)
 
 
