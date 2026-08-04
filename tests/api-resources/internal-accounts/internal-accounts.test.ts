@@ -130,6 +130,7 @@ describe('resource internalAccounts', () => {
           metadata: { foo: 'string' },
           name: 'name',
           parent_account_id: 'parent_account_id',
+          status: 'pending_closure',
         },
         { path: '/_stainless_unknown_path' },
       ),
