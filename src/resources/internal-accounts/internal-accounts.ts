@@ -697,6 +697,12 @@ export interface InternalAccountUpdateParams {
    * The parent internal account for this account.
    */
   parent_account_id?: string;
+
+  /**
+   * Requests closure of the internal account. The resulting status may be `closed`
+   * for vendors that close synchronously.
+   */
+  status?: 'pending_closure';
 }
 
 export interface InternalAccountUpdateAccountCapabilityParams {
