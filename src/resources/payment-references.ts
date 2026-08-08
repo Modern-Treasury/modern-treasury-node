@@ -142,7 +142,8 @@ export interface PaymentReference {
     | 'wells_fargo_uetr'
     | 'western_alliance_payment_id'
     | 'western_alliance_transaction_id'
-    | 'western_alliance_wire_confirmation_number';
+    | 'western_alliance_wire_confirmation_number'
+    | 'wise_transfer_id';
 
   /**
    * The id of the referenceable to search for. Must be accompanied by the
