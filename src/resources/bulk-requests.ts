@@ -108,8 +108,7 @@ export interface BulkRequest {
     | 'ledger_transaction'
     | 'expected_payment'
     | 'transaction'
-    | 'transaction_line_item'
-    | 'entity_link';
+    | 'transaction_line_item';
 
   /**
    * One of pending, processing, or completed.
@@ -153,8 +152,7 @@ export interface BulkRequestListParams extends PageParams {
     | 'ledger_transaction'
     | 'expected_payment'
     | 'transaction'
-    | 'transaction_line_item'
-    | 'entity_link';
+    | 'transaction_line_item';
 
   /**
    * One of pending, processing, or completed.
@@ -177,8 +175,7 @@ export interface BulkRequestCreateParams {
     | 'ledger_transaction'
     | 'expected_payment'
     | 'transaction'
-    | 'transaction_line_item'
-    | 'entity_link';
+    | 'transaction_line_item';
 
   /**
    * An array of objects where each object contains the input params for a single
