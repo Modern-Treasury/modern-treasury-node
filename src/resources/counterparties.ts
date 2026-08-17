@@ -186,6 +186,8 @@ export namespace Counterparty {
      */
     account_type?: ExternalAccountsAPI.ExternalAccountType;
 
+    card_id?: string | null;
+
     contact_details?: Array<Shared.ContactDetail>;
 
     created_at?: string;
