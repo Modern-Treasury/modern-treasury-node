@@ -143,6 +143,8 @@ export interface ExternalAccount {
    */
   account_type: ExternalAccountType;
 
+  card_id: string | null;
+
   contact_details: Array<Shared.ContactDetail>;
 
   counterparty_id: string | null;
