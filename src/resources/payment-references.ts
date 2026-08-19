@@ -82,7 +82,6 @@ export interface PaymentReference {
     | 'cross_river_transaction_id'
     | 'currencycloud_conversion_id'
     | 'currencycloud_payment_id'
-    | 'dc_bank_transaction_id'
     | 'eft_trace_number'
     | 'evolve_core_batch'
     | 'evolve_core_file_key'

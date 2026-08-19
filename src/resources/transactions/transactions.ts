@@ -234,9 +234,9 @@ export interface Transaction {
 
   /**
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
-   * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
-   * `us_bank`, or others.
+   * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dwolla`, `evolve`,
+   * `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`, `us_bank`, or
+   * others.
    */
   vendor_code_type:
     | 'bai2'
@@ -248,7 +248,6 @@ export interface Transaction {
     | 'column'
     | 'cross_river'
     | 'currencycloud'
-    | 'dc_bank'
     | 'dwolla'
     | 'evolve'
     | 'fake_vendor'
@@ -381,9 +380,9 @@ export interface TransactionCreateParams {
 
   /**
    * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
-   * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-   * `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
-   * `us_bank`, or others.
+   * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dwolla`, `evolve`,
+   * `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`, `us_bank`, or
+   * others.
    */
   vendor_code_type: string | null;
 
