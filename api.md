@@ -468,6 +468,8 @@ Methods:
 - <code title="patch /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">update</a>(id, { ...params }) -> VirtualAccount</code>
 - <code title="delete /api/virtual_accounts/{id}">client.virtualAccounts.<a href="./src/resources/virtual-accounts.ts">delete</a>(id) -> VirtualAccount</code>
 
+# VirtualAccountSettings
+
 # BulkRequests
 
 Types:
