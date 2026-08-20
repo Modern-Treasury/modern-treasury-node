@@ -248,6 +248,7 @@ import {
   ValidationValidateRoutingNumberParams,
   Validations,
 } from './resources/validations';
+import { VirtualAccountSettings } from './resources/virtual-account-settings';
 import {
   VirtualAccount,
   VirtualAccountCreateParams,
@@ -1128,6 +1129,7 @@ export class ModernTreasury {
   transactions: API.Transactions = new API.Transactions(this);
   validations: API.Validations = new API.Validations(this);
   virtualAccounts: API.VirtualAccounts = new API.VirtualAccounts(this);
+  virtualAccountSettings: API.VirtualAccountSettings = new API.VirtualAccountSettings(this);
   bulkRequests: API.BulkRequests = new API.BulkRequests(this);
   bulkResults: API.BulkResults = new API.BulkResults(this);
   ledgerAccountSettlements: API.LedgerAccountSettlements = new API.LedgerAccountSettlements(this);
@@ -1168,6 +1170,7 @@ ModernTreasury.Returns = Returns;
 ModernTreasury.Transactions = Transactions;
 ModernTreasury.Validations = Validations;
 ModernTreasury.VirtualAccounts = VirtualAccounts;
+ModernTreasury.VirtualAccountSettings = VirtualAccountSettings;
 ModernTreasury.BulkRequests = BulkRequests;
 ModernTreasury.BulkResults = BulkResults;
 ModernTreasury.LedgerAccountSettlements = LedgerAccountSettlements;
@@ -1442,6 +1445,8 @@ export declare namespace ModernTreasury {
     type VirtualAccountCreateParams as VirtualAccountCreateParams,
     type VirtualAccountUpdateParams as VirtualAccountUpdateParams,
   };
+
+  export { VirtualAccountSettings as VirtualAccountSettings };
 
   export {
     BulkRequests as BulkRequests,
