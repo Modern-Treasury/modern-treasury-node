@@ -290,6 +290,7 @@ export {
   type RoutingNumberLookupRequest,
   type ValidationValidateRoutingNumberParams,
 } from './validations';
+export { VirtualAccountSettings } from './virtual-account-settings';
 export {
   VirtualAccounts,
   type VirtualAccount,
