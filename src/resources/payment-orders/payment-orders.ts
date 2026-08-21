@@ -270,6 +270,8 @@ export interface PaymentOrder {
    */
   originating_account_id: string;
 
+  originating_account_type: 'internal_account' | 'virtual_account';
+
   /**
    * If present, this address will override the default originating party address
    * used on the payment order. This works across all payment types.
