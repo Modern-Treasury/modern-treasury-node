@@ -280,10 +280,9 @@ export interface PaymentOrder {
 
   /**
    * If present, this will replace your default company name on receiver's bank
-   * statement. For ACH, only the first 16 characters of this string will be used.
-   * This must be a name the account holder legally operates under, such as a DBA. Do
-   * not use it to originate on behalf of another person or business, including an
-   * end customer.
+   * statement. This field can only be used for ACH payments currently. For ACH, only
+   * the first 16 characters of this string will be used. Any additional characters
+   * will be truncated.
    */
   originating_party_name: string | null;
 
@@ -874,10 +873,9 @@ export interface PaymentOrderCreateParams {
 
   /**
    * If present, this will replace your default company name on receiver's bank
-   * statement. For ACH, only the first 16 characters of this string will be used.
-   * This must be a name the account holder legally operates under, such as a DBA. Do
-   * not use it to originate on behalf of another person or business, including an
-   * end customer.
+   * statement. This field can only be used for ACH payments currently. For ACH, only
+   * the first 16 characters of this string will be used. Any additional characters
+   * will be truncated.
    */
   originating_party_name?: string | null;
 
@@ -1415,10 +1413,9 @@ export interface PaymentOrderCreateAsyncParams {
 
   /**
    * If present, this will replace your default company name on receiver's bank
-   * statement. For ACH, only the first 16 characters of this string will be used.
-   * This must be a name the account holder legally operates under, such as a DBA. Do
-   * not use it to originate on behalf of another person or business, including an
-   * end customer.
+   * statement. This field can only be used for ACH payments currently. For ACH, only
+   * the first 16 characters of this string will be used. Any additional characters
+   * will be truncated.
    */
   originating_party_name?: string | null;
 
@@ -2017,10 +2014,9 @@ export interface PaymentOrderUpdateParams {
 
   /**
    * If present, this will replace your default company name on receiver's bank
-   * statement. For ACH, only the first 16 characters of this string will be used.
-   * This must be a name the account holder legally operates under, such as a DBA. Do
-   * not use it to originate on behalf of another person or business, including an
-   * end customer.
+   * statement. This field can only be used for ACH payments currently. For ACH, only
+   * the first 16 characters of this string will be used. Any additional characters
+   * will be truncated.
    */
   originating_party_name?: string | null;
 
