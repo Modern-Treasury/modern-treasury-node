@@ -877,7 +877,7 @@ export interface InvoiceUpdateParams {
   /**
    * Invoice status must be updated in a `PATCH` request that does not modify any
    * other invoice attributes. Valid state transitions are `draft` to `unpaid`,
-   * `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
+   * `draft`, `unpaid` or `paid` to `voided`, and `draft` or `unpaid` to `paid`.
    */
   status?: string;
 
