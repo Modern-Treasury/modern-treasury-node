@@ -133,6 +133,11 @@ export interface LegalEntity {
   business_description: string | null;
 
   /**
+   * Legal designation associated with the business.
+   */
+  business_designation: 'exempt_financial_institution' | 'non_operating_business' | null;
+
+  /**
    * The business's legal business name.
    */
   business_name: string | null;
@@ -805,6 +810,11 @@ export interface LegalEntityCreateParams {
   business_description?: string | null;
 
   /**
+   * Legal designation associated with the business.
+   */
+  business_designation?: 'exempt_financial_institution' | 'non_operating_business' | null;
+
+  /**
    * The business's legal business name.
    */
   business_name?: string | null;
@@ -1085,6 +1095,11 @@ export interface LegalEntityUpdateParams {
    * A description of the business.
    */
   business_description?: string | null;
+
+  /**
+   * Legal designation associated with the business.
+   */
+  business_designation?: 'exempt_financial_institution' | 'non_operating_business' | null;
 
   /**
    * The business's legal business name.
