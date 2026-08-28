@@ -604,6 +604,11 @@ export namespace CounterpartyCreateParams {
     business_description?: string | null;
 
     /**
+     * Legal designation associated with the business.
+     */
+    business_designation?: 'exempt_financial_institution' | 'non_operating_business' | null;
+
+    /**
      * The business's legal business name.
      */
     business_name?: string | null;
