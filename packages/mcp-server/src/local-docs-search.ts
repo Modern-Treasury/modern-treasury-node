@@ -8705,6 +8705,161 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'update_status',
+    endpoint: '/api/simulations/legal_entities/{id}/update_status',
+    httpMethod: 'patch',
+    summary: 'update legal entity status',
+    description: 'Update Legal Entity Status (sandbox only)',
+    stainlessPath: '(resource) legal_entities > (method) update_status',
+    qualified: 'client.legalEntities.updateStatus',
+    params: ['id: string;', "status: 'active' | 'suspended' | 'denied';"],
+    response: 'object',
+    markdown:
+      "## update_status\n\n`client.legalEntities.updateStatus(id: string, status: 'active' | 'suspended' | 'denied'): { id: string; addresses: object[]; bank_settings: bank_settings; business_description: string; business_designation: 'exempt_financial_institution' | 'non_operating_business'; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: document[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: object[]; industry_classifications: legal_entity_industry_classification[]; intended_use: string; last_name: string; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: object[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: object[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: object; third_party_verification: third_party_verification; third_party_verifications: third_party_verification[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: wealth_and_employment_details; website: string; legal_entity_associations?: legal_entity_association[]; }`\n\n**patch** `/api/simulations/legal_entities/{id}/update_status`\n\nUpdate Legal Entity Status (sandbox only)\n\n### Parameters\n\n- `id: string`\n\n- `status: 'active' | 'suspended' | 'denied'`\n  The target status for the legal entity. One of `active`, `suspended`, or `denied`. Valid transitions depend on the current status.\n\n### Returns\n\n- `{ id: string; addresses: { id: string; address_types: string[]; country: string; created_at: string; discarded_at: string; line1: string; line2: string; live_mode: boolean; locality: string; object: string; postal_code: string; primary: boolean; region: string; updated_at: string; }[]; bank_settings: { id: string; backup_withholding_percentage: number; created_at: string; discarded_at: string; enable_backup_withholding: boolean; live_mode: boolean; object: string; privacy_opt_out: boolean; regulation_o: boolean; updated_at: string; }; business_description: string; business_designation: 'exempt_financial_institution' | 'non_operating_business'; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: { id: string; created_at: string; discarded_at: string; document_type: string; documentable_id: string; documentable_type: string; file: object; live_mode: boolean; object: string; source: string; updated_at: string; }[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: { id: string; created_at: string; discarded_at: string; documents: object[]; expiration_date: string; id_type: string; issuing_country: string; issuing_region: string; live_mode: boolean; object: string; updated_at: string; }[]; industry_classifications: { id: string; classification_codes: string[]; classification_type: string; created_at: string; discarded_at: string; live_mode: boolean; object: string; updated_at: string; }[]; intended_use: string; last_name: string; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: { phone_number?: string; }[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: { jurisdiction: string; name: string; registration_number: string; }[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: { accepted_at?: string; ip_address?: string; }; third_party_verification: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }; third_party_verifications: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: { id: string; annual_income: number; created_at: string; discarded_at: string; employer_country: string; employer_name: string; employer_state: string; employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed'; income_country: string; income_source: string; income_state: string; industry: string; live_mode: boolean; object: string; occupation: string; source_of_funds: string; updated_at: string; wealth_source: string; }; website: string; legal_entity_associations?: { id: string; child_legal_entity: child_legal_entity; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }[]; }`\n\n  - `id: string`\n  - `addresses: { id: string; address_types: string[]; country: string; created_at: string; discarded_at: string; line1: string; line2: string; live_mode: boolean; locality: string; object: string; postal_code: string; primary: boolean; region: string; updated_at: string; }[]`\n  - `bank_settings: { id: string; backup_withholding_percentage: number; created_at: string; discarded_at: string; enable_backup_withholding: boolean; live_mode: boolean; object: string; privacy_opt_out: boolean; regulation_o: boolean; updated_at: string; }`\n  - `business_description: string`\n  - `business_designation: 'exempt_financial_institution' | 'non_operating_business'`\n  - `business_name: string`\n  - `citizenship_country: string`\n  - `compliance_details: object`\n  - `country_of_incorporation: string`\n  - `created_at: string`\n  - `date_formed: string`\n  - `date_of_birth: string`\n  - `discarded_at: string`\n  - `documents: { id: string; created_at: string; discarded_at: string; document_type: string; documentable_id: string; documentable_type: string; file: { content_type?: string; filename?: string; size?: number; }; live_mode: boolean; object: string; source: string; updated_at: string; }[]`\n  - `doing_business_as_names: string[]`\n  - `email: string`\n  - `expected_activity_volume: number`\n  - `external_id: string`\n  - `first_name: string`\n  - `identifications: { id: string; created_at: string; discarded_at: string; documents: { id: string; created_at: string; discarded_at: string; document_type: string; documentable_id: string; documentable_type: string; file: { content_type?: string; filename?: string; size?: number; }; live_mode: boolean; object: string; source: string; updated_at: string; }[]; expiration_date: string; id_type: string; issuing_country: string; issuing_region: string; live_mode: boolean; object: string; updated_at: string; }[]`\n  - `industry_classifications: { id: string; classification_codes: string[]; classification_type: string; created_at: string; discarded_at: string; live_mode: boolean; object: string; updated_at: string; }[]`\n  - `intended_use: string`\n  - `last_name: string`\n  - `legal_entity_type: 'business' | 'individual'`\n  - `legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'`\n  - `listed_exchange: string`\n  - `live_mode: boolean`\n  - `metadata: object`\n  - `middle_name: string`\n  - `object: string`\n  - `operating_jurisdictions: string[]`\n  - `phone_numbers: { phone_number?: string; }[]`\n  - `politically_exposed_person: boolean`\n  - `preferred_name: string`\n  - `prefix: string`\n  - `primary_social_media_sites: string[]`\n  - `regulators: { jurisdiction: string; name: string; registration_number: string; }[]`\n  - `risk_rating: 'low' | 'medium' | 'high'`\n  - `service_provider_legal_entity_id: string`\n  - `status: 'active' | 'denied' | 'pending' | 'suspended'`\n  - `suffix: string`\n  - `terms_of_use: { accepted_at?: string; ip_address?: string; }`\n  - `third_party_verification: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }`\n  - `third_party_verifications: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }[]`\n  - `ticker_symbol: string`\n  - `updated_at: string`\n  - `wealth_and_employment_details: { id: string; annual_income: number; created_at: string; discarded_at: string; employer_country: string; employer_name: string; employer_state: string; employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed'; income_country: string; income_source: string; income_state: string; industry: string; live_mode: boolean; object: string; occupation: string; source_of_funds: string; updated_at: string; wealth_source: string; }`\n  - `website: string`\n  - `legal_entity_associations?: { id: string; child_legal_entity: { id: string; addresses: object[]; bank_settings: bank_settings; business_description: string; business_designation: 'exempt_financial_institution' | 'non_operating_business'; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: document[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: object[]; industry_classifications: legal_entity_industry_classification[]; intended_use: string; last_name: string; legal_entity_associations: legal_entity_association[]; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: object[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: object[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: object; third_party_verification: third_party_verification; third_party_verifications: third_party_verification[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: wealth_and_employment_details; website: string; }; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }[]`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nconst legalEntity = await client.legalEntities.updateStatus('id', { status: 'active' });\n\nconsole.log(legalEntity);\n```",
+    perLanguage: {
+      python: {
+        method: 'legal_entities.update_status',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\nlegal_entity = client.legal_entities.update_status(\n    id="id",\n    status="active",\n)\nprint(legal_entity.id)',
+      },
+      go: {
+        method: 'client.LegalEntities.UpdateStatus',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.UpdateStatus(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LegalEntityUpdateStatusParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.LegalEntityUpdateStatusParamsStatusActive),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
+      },
+      java: {
+        method: 'legalEntities().updateStatus',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.LegalEntity;\nimport com.moderntreasury.api.models.LegalEntityUpdateStatusParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        LegalEntityUpdateStatusParams params = LegalEntityUpdateStatusParams.builder()\n            .id("id")\n            .status(LegalEntityUpdateStatusParams.Status.ACTIVE)\n            .build();\n        LegalEntity legalEntity = client.legalEntities().updateStatus(params);\n    }\n}',
+      },
+      ruby: {
+        method: 'legal_entities.update_status',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nlegal_entity = modern_treasury.legal_entities.update_status("id", status: :active)\n\nputs(legal_entity)',
+      },
+      kotlin: {
+        method: 'legalEntities().updateStatus',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.LegalEntity\nimport com.moderntreasury.api.models.LegalEntityUpdateStatusParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    val params: LegalEntityUpdateStatusParams = LegalEntityUpdateStatusParams.builder()\n        .id("id")\n        .status(LegalEntityUpdateStatusParams.Status.ACTIVE)\n        .build()\n    val legalEntity: LegalEntity = client.legalEntities().updateStatus(params)\n}',
+      },
+      typescript: {
+        method: 'client.legalEntities.updateStatus',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst legalEntity = await client.legalEntities.updateStatus('id', { status: 'active' });\n\nconsole.log(legalEntity.id);",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/simulations/legal_entities/$ID/update_status \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "active"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create',
+    endpoint: '/api/legal_entity_associations',
+    httpMethod: 'post',
+    summary: 'create legal_entity_association',
+    description: 'Add an associated legal entity to a business legal entity.',
+    stainlessPath: '(resource) legal_entity_associations > (method) create',
+    qualified: 'client.legalEntityAssociations.create',
+    params: [
+      'child_legal_entity_id: string;',
+      'parent_legal_entity_id: string;',
+      "relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[];",
+      'ownership_percentage?: number;',
+      'title?: string;',
+    ],
+    response:
+      "{ id: string; child_legal_entity: object; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }",
+    markdown:
+      "## create\n\n`client.legalEntityAssociations.create(child_legal_entity_id: string, parent_legal_entity_id: string, relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[], ownership_percentage?: number, title?: string): { id: string; child_legal_entity: child_legal_entity; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }`\n\n**post** `/api/legal_entity_associations`\n\nAdd an associated legal entity to a business legal entity.\n\n### Parameters\n\n- `child_legal_entity_id: string`\n  The ID of the child legal entity.\n\n- `parent_legal_entity_id: string`\n  The ID of the parent legal entity. This must be a business legal entity.\n\n- `relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]`\n\n- `ownership_percentage?: number`\n  The child entity's ownership percentage iff they are a beneficial owner.\n\n- `title?: string`\n  The job title of the child entity at the parent entity.\n\n### Returns\n\n- `{ id: string; child_legal_entity: { id: string; addresses: object[]; bank_settings: bank_settings; business_description: string; business_designation: 'exempt_financial_institution' | 'non_operating_business'; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: document[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: object[]; industry_classifications: legal_entity_industry_classification[]; intended_use: string; last_name: string; legal_entity_associations: legal_entity_association[]; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: object[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: object[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: object; third_party_verification: third_party_verification; third_party_verifications: third_party_verification[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: wealth_and_employment_details; website: string; }; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }`\n\n  - `id: string`\n  - `child_legal_entity: { id: string; addresses: { id: string; address_types: string[]; country: string; created_at: string; discarded_at: string; line1: string; line2: string; live_mode: boolean; locality: string; object: string; postal_code: string; primary: boolean; region: string; updated_at: string; }[]; bank_settings: { id: string; backup_withholding_percentage: number; created_at: string; discarded_at: string; enable_backup_withholding: boolean; live_mode: boolean; object: string; privacy_opt_out: boolean; regulation_o: boolean; updated_at: string; }; business_description: string; business_designation: 'exempt_financial_institution' | 'non_operating_business'; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: { id: string; created_at: string; discarded_at: string; document_type: string; documentable_id: string; documentable_type: string; file: object; live_mode: boolean; object: string; source: string; updated_at: string; }[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: { id: string; created_at: string; discarded_at: string; documents: object[]; expiration_date: string; id_type: string; issuing_country: string; issuing_region: string; live_mode: boolean; object: string; updated_at: string; }[]; industry_classifications: { id: string; classification_codes: string[]; classification_type: string; created_at: string; discarded_at: string; live_mode: boolean; object: string; updated_at: string; }[]; intended_use: string; last_name: string; legal_entity_associations: { id: string; child_legal_entity: child_legal_entity; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }[]; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: { phone_number?: string; }[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: { jurisdiction: string; name: string; registration_number: string; }[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: { accepted_at?: string; ip_address?: string; }; third_party_verification: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }; third_party_verifications: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: { id: string; annual_income: number; created_at: string; discarded_at: string; employer_country: string; employer_name: string; employer_state: string; employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed'; income_country: string; income_source: string; income_state: string; industry: string; live_mode: boolean; object: string; occupation: string; source_of_funds: string; updated_at: string; wealth_source: string; }; website: string; }`\n  - `created_at: string`\n  - `discarded_at: string`\n  - `live_mode: boolean`\n  - `object: string`\n  - `ownership_percentage: number`\n  - `parent_legal_entity_id: string`\n  - `relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]`\n  - `title: string`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nconst legalEntityAssociation = await client.legalEntityAssociations.create({\n  child_legal_entity_id: 'child_legal_entity_id',\n  parent_legal_entity_id: 'parent_legal_entity_id',\n  relationship_types: ['authorized_signer'],\n});\n\nconsole.log(legalEntityAssociation);\n```",
+    perLanguage: {
+      python: {
+        method: 'legal_entity_associations.create',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\nlegal_entity_association = client.legal_entity_associations.create(\n    child_legal_entity_id="child_legal_entity_id",\n    parent_legal_entity_id="parent_legal_entity_id",\n    relationship_types=["authorized_signer"],\n)\nprint(legal_entity_association.id)',
+      },
+      go: {
+        method: 'client.LegalEntityAssociations.New',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntityAssociation, err := client.LegalEntityAssociations.New(context.TODO(), moderntreasury.LegalEntityAssociationNewParams{\n\t\tChildLegalEntityID:  moderntreasury.F("child_legal_entity_id"),\n\t\tParentLegalEntityID: moderntreasury.F("parent_legal_entity_id"),\n\t\tRelationshipTypes:   moderntreasury.F([]moderntreasury.LegalEntityAssociationNewParamsRelationshipType{moderntreasury.LegalEntityAssociationNewParamsRelationshipTypeAuthorizedSigner}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntityAssociation.ID)\n}\n',
+      },
+      java: {
+        method: 'legalEntityAssociations().create',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.LegalEntityAssociation;\nimport com.moderntreasury.api.models.LegalEntityAssociationCreateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        LegalEntityAssociationCreateParams params = LegalEntityAssociationCreateParams.builder()\n            .childLegalEntityId("child_legal_entity_id")\n            .parentLegalEntityId("parent_legal_entity_id")\n            .addRelationshipType(LegalEntityAssociationCreateParams.RelationshipType.AUTHORIZED_SIGNER)\n            .build();\n        LegalEntityAssociation legalEntityAssociation = client.legalEntityAssociations().create(params);\n    }\n}',
+      },
+      ruby: {
+        method: 'legal_entity_associations.create',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nlegal_entity_association = modern_treasury.legal_entity_associations.create(\n  child_legal_entity_id: "child_legal_entity_id",\n  parent_legal_entity_id: "parent_legal_entity_id",\n  relationship_types: [:authorized_signer]\n)\n\nputs(legal_entity_association)',
+      },
+      kotlin: {
+        method: 'legalEntityAssociations().create',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.LegalEntityAssociation\nimport com.moderntreasury.api.models.LegalEntityAssociationCreateParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    val params: LegalEntityAssociationCreateParams = LegalEntityAssociationCreateParams.builder()\n        .childLegalEntityId("child_legal_entity_id")\n        .parentLegalEntityId("parent_legal_entity_id")\n        .addRelationshipType(LegalEntityAssociationCreateParams.RelationshipType.AUTHORIZED_SIGNER)\n        .build()\n    val legalEntityAssociation: LegalEntityAssociation = client.legalEntityAssociations().create(params)\n}',
+      },
+      typescript: {
+        method: 'client.legalEntityAssociations.create',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst legalEntityAssociation = await client.legalEntityAssociations.create({\n  child_legal_entity_id: 'child_legal_entity_id',\n  parent_legal_entity_id: 'parent_legal_entity_id',\n  relationship_types: ['authorized_signer'],\n});\n\nconsole.log(legalEntityAssociation.id);",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/legal_entity_associations \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "child_legal_entity_id": "child_legal_entity_id",\n          "parent_legal_entity_id": "parent_legal_entity_id",\n          "relationship_types": [\n            "authorized_signer"\n          ]\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/api/legal_entity_associations/{id}',
+    httpMethod: 'delete',
+    summary: 'delete legal_entity_association',
+    description: 'Remove an associated legal entity from a business legal entity.',
+    stainlessPath: '(resource) legal_entity_associations > (method) delete',
+    qualified: 'client.legalEntityAssociations.delete',
+    params: ['id: string;'],
+    response:
+      "{ id: string; child_legal_entity: object; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }",
+    markdown:
+      "## delete\n\n`client.legalEntityAssociations.delete(id: string): { id: string; child_legal_entity: child_legal_entity; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }`\n\n**delete** `/api/legal_entity_associations/{id}`\n\nRemove an associated legal entity from a business legal entity.\n\n### Parameters\n\n- `id: string`\n\n### Returns\n\n- `{ id: string; child_legal_entity: { id: string; addresses: object[]; bank_settings: bank_settings; business_description: string; business_designation: 'exempt_financial_institution' | 'non_operating_business'; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: document[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: object[]; industry_classifications: legal_entity_industry_classification[]; intended_use: string; last_name: string; legal_entity_associations: legal_entity_association[]; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: object[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: object[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: object; third_party_verification: third_party_verification; third_party_verifications: third_party_verification[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: wealth_and_employment_details; website: string; }; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }`\n\n  - `id: string`\n  - `child_legal_entity: { id: string; addresses: { id: string; address_types: string[]; country: string; created_at: string; discarded_at: string; line1: string; line2: string; live_mode: boolean; locality: string; object: string; postal_code: string; primary: boolean; region: string; updated_at: string; }[]; bank_settings: { id: string; backup_withholding_percentage: number; created_at: string; discarded_at: string; enable_backup_withholding: boolean; live_mode: boolean; object: string; privacy_opt_out: boolean; regulation_o: boolean; updated_at: string; }; business_description: string; business_designation: 'exempt_financial_institution' | 'non_operating_business'; business_name: string; citizenship_country: string; compliance_details: object; country_of_incorporation: string; created_at: string; date_formed: string; date_of_birth: string; discarded_at: string; documents: { id: string; created_at: string; discarded_at: string; document_type: string; documentable_id: string; documentable_type: string; file: object; live_mode: boolean; object: string; source: string; updated_at: string; }[]; doing_business_as_names: string[]; email: string; expected_activity_volume: number; external_id: string; first_name: string; identifications: { id: string; created_at: string; discarded_at: string; documents: object[]; expiration_date: string; id_type: string; issuing_country: string; issuing_region: string; live_mode: boolean; object: string; updated_at: string; }[]; industry_classifications: { id: string; classification_codes: string[]; classification_type: string; created_at: string; discarded_at: string; live_mode: boolean; object: string; updated_at: string; }[]; intended_use: string; last_name: string; legal_entity_associations: { id: string; child_legal_entity: child_legal_entity; created_at: string; discarded_at: string; live_mode: boolean; object: string; ownership_percentage: number; parent_legal_entity_id: string; relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]; title: string; updated_at: string; }[]; legal_entity_type: 'business' | 'individual'; legal_structure: 'corporation' | 'llc' | 'non_profit' | 'partnership' | 'sole_proprietorship' | 'trust'; listed_exchange: string; live_mode: boolean; metadata: object; middle_name: string; object: string; operating_jurisdictions: string[]; phone_numbers: { phone_number?: string; }[]; politically_exposed_person: boolean; preferred_name: string; prefix: string; primary_social_media_sites: string[]; regulators: { jurisdiction: string; name: string; registration_number: string; }[]; risk_rating: 'low' | 'medium' | 'high'; service_provider_legal_entity_id: string; status: 'active' | 'denied' | 'pending' | 'suspended'; suffix: string; terms_of_use: { accepted_at?: string; ip_address?: string; }; third_party_verification: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }; third_party_verifications: { outcome: 'passed' | 'failed'; vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff'; vendor_verification_id: string; verification_category: 'legal_name' | 'date_of_birth' | 'address' | 'government_id_number' | 'adverse_media'; verification_method: string; verification_time: string; comment?: string; }[]; ticker_symbol: string; updated_at: string; wealth_and_employment_details: { id: string; annual_income: number; created_at: string; discarded_at: string; employer_country: string; employer_name: string; employer_state: string; employment_status: 'employed' | 'retired' | 'self_employed' | 'student' | 'unemployed'; income_country: string; income_source: string; income_state: string; industry: string; live_mode: boolean; object: string; occupation: string; source_of_funds: string; updated_at: string; wealth_source: string; }; website: string; }`\n  - `created_at: string`\n  - `discarded_at: string`\n  - `live_mode: boolean`\n  - `object: string`\n  - `ownership_percentage: number`\n  - `parent_legal_entity_id: string`\n  - `relationship_types: 'authorized_signer' | 'beneficial_owner' | 'control_person'[]`\n  - `title: string`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nconst legalEntityAssociation = await client.legalEntityAssociations.delete('id');\n\nconsole.log(legalEntityAssociation);\n```",
+    perLanguage: {
+      python: {
+        method: 'legal_entity_associations.delete',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\nlegal_entity_association = client.legal_entity_associations.delete(\n    "id",\n)\nprint(legal_entity_association.id)',
+      },
+      go: {
+        method: 'client.LegalEntityAssociations.Delete',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntityAssociation, err := client.LegalEntityAssociations.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntityAssociation.ID)\n}\n',
+      },
+      java: {
+        method: 'legalEntityAssociations().delete',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.LegalEntityAssociation;\nimport com.moderntreasury.api.models.LegalEntityAssociationDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        LegalEntityAssociation legalEntityAssociation = client.legalEntityAssociations().delete("id");\n    }\n}',
+      },
+      ruby: {
+        method: 'legal_entity_associations.delete',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nlegal_entity_association = modern_treasury.legal_entity_associations.delete("id")\n\nputs(legal_entity_association)',
+      },
+      kotlin: {
+        method: 'legalEntityAssociations().delete',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.LegalEntityAssociation\nimport com.moderntreasury.api.models.LegalEntityAssociationDeleteParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    val legalEntityAssociation: LegalEntityAssociation = client.legalEntityAssociations().delete("id")\n}',
+      },
+      typescript: {
+        method: 'client.legalEntityAssociations.delete',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst legalEntityAssociation = await client.legalEntityAssociations.delete('id');\n\nconsole.log(legalEntityAssociation.id);",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/legal_entity_associations/$ID \\\n    -X DELETE \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
+    },
+  },
+  {
     name: 'list',
     endpoint: '/api/payment_actions',
     httpMethod: 'get',
@@ -9016,6 +9171,109 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://app.moderntreasury.com/api/journal_entries/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/api/journal_sources',
+    httpMethod: 'get',
+    summary: 'list journal_sources',
+    description: 'Retrieve a list of journal sources',
+    stainlessPath: '(resource) journal_sources > (method) list',
+    qualified: 'client.journalSources.list',
+    params: [
+      'journal_entry_id?: string;',
+      'journal_report_id?: string;',
+      'page?: number;',
+      'per_page?: number;',
+      'source_id?: string;',
+      'source_type?: string;',
+    ],
+    markdown:
+      "## list\n\n`client.journalSources.list(journal_entry_id?: string, journal_report_id?: string, page?: number, per_page?: number, source_id?: string, source_type?: string): void`\n\n**get** `/api/journal_sources`\n\nRetrieve a list of journal sources\n\n### Parameters\n\n- `journal_entry_id?: string`\n  The ID of the journal entry\n\n- `journal_report_id?: string`\n  The ID of the journal report\n\n- `page?: number`\n  Page number for pagination\n\n- `per_page?: number`\n  Number of items per page\n\n- `source_id?: string`\n  The ID of the source object\n\n- `source_type?: string`\n  The type of the source object\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nawait client.journalSources.list()\n```",
+    perLanguage: {
+      python: {
+        method: 'journal_sources.list',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\nclient.journal_sources.list()',
+      },
+      go: {
+        method: 'client.JournalSources.List',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalSources.List(context.TODO(), moderntreasury.JournalSourceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      java: {
+        method: 'journalSources().list',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.JournalSourceListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        client.journalSources().list();\n    }\n}',
+      },
+      ruby: {
+        method: 'journal_sources.list',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.journal_sources.list\n\nputs(result)',
+      },
+      kotlin: {
+        method: 'journalSources().list',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.JournalSourceListParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    client.journalSources().list()\n}',
+      },
+      typescript: {
+        method: 'client.journalSources.list',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.journalSources.list();",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/journal_sources \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/api/journal_sources/{id}',
+    httpMethod: 'get',
+    summary: 'show journal_source',
+    description: 'Retrieve a specific journal source',
+    stainlessPath: '(resource) journal_sources > (method) retrieve',
+    qualified: 'client.journalSources.retrieve',
+    params: ['id: string;'],
+    markdown:
+      "## retrieve\n\n`client.journalSources.retrieve(id: string): void`\n\n**get** `/api/journal_sources/{id}`\n\nRetrieve a specific journal source\n\n### Parameters\n\n- `id: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nawait client.journalSources.retrieve('id')\n```",
+    perLanguage: {
+      python: {
+        method: 'journal_sources.retrieve',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\nclient.journal_sources.retrieve(\n    "id",\n)',
+      },
+      go: {
+        method: 'client.JournalSources.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalSources.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      java: {
+        method: 'journalSources().retrieve',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.JournalSourceRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        client.journalSources().retrieve("id");\n    }\n}',
+      },
+      ruby: {
+        method: 'journal_sources.retrieve',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nresult = modern_treasury.journal_sources.retrieve("id")\n\nputs(result)',
+      },
+      kotlin: {
+        method: 'journalSources().retrieve',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.JournalSourceRetrieveParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    client.journalSources().retrieve("id")\n}',
+      },
+      typescript: {
+        method: 'client.journalSources.retrieve',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.journalSources.retrieve('id');",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/journal_sources/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
       },
     },
   },
@@ -9373,6 +9631,221 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://app.moderntreasury.com/api/holds/$ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "status": "resolved"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/api/cases',
+    httpMethod: 'get',
+    summary: 'list cases',
+    description: 'Get a list of cases.',
+    stainlessPath: '(resource) cases > (method) list',
+    qualified: 'client.cases.list',
+    params: [
+      'after_cursor?: string;',
+      'per_page?: number;',
+      "status?: 'open' | 'resolved';",
+      'subject_id?: string;',
+      "subject_type?: 'legal_entity';",
+    ],
+    response:
+      "{ id: string; created_at: string; live_mode: boolean; object: string; requested_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]; resolved_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]; status: 'open' | 'resolved'; subject_id: string; subject_type: string; updated_at: string; }",
+    markdown:
+      "## list\n\n`client.cases.list(after_cursor?: string, per_page?: number, status?: 'open' | 'resolved', subject_id?: string, subject_type?: 'legal_entity'): { id: string; created_at: string; live_mode: boolean; object: string; requested_actions: object[]; resolved_actions: object[]; status: 'open' | 'resolved'; subject_id: string; subject_type: string; updated_at: string; }`\n\n**get** `/api/cases`\n\nGet a list of cases.\n\n### Parameters\n\n- `after_cursor?: string`\n\n- `per_page?: number`\n\n- `status?: 'open' | 'resolved'`\n  The status of the case.\n\n- `subject_id?: string`\n  The ID of the object the case is about.\n\n- `subject_type?: 'legal_entity'`\n  The type of the object the case is about.\n\n### Returns\n\n- `{ id: string; created_at: string; live_mode: boolean; object: string; requested_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]; resolved_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]; status: 'open' | 'resolved'; subject_id: string; subject_type: string; updated_at: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `live_mode: boolean`\n  - `object: string`\n  - `requested_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]`\n  - `resolved_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]`\n  - `status: 'open' | 'resolved'`\n  - `subject_id: string`\n  - `subject_type: string`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\n// Automatically fetches more pages as needed.\nfor await (const _case of client.cases.list()) {\n  console.log(_case);\n}\n```",
+    perLanguage: {
+      python: {
+        method: 'cases.list',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\npage = client.cases.list()\npage = page.items[0]\nprint(page.id)',
+      },
+      go: {
+        method: 'client.Cases.List',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Cases.List(context.TODO(), moderntreasury.CaseListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+      },
+      java: {
+        method: 'cases().list',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.CaseListPage;\nimport com.moderntreasury.api.models.CaseListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        CaseListPage page = client.cases().list();\n    }\n}',
+      },
+      ruby: {
+        method: 'cases.list',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.cases.list\n\nputs(page)',
+      },
+      kotlin: {
+        method: 'cases().list',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.CaseListPage\nimport com.moderntreasury.api.models.CaseListParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    val page: CaseListPage = client.cases().list()\n}',
+      },
+      typescript: {
+        method: 'client.cases.list',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const _case of client.cases.list()) {\n  console.log(_case.id);\n}",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/cases \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/api/cases/{id}',
+    httpMethod: 'get',
+    summary: 'get case',
+    description: 'Get details on a single case.',
+    stainlessPath: '(resource) cases > (method) retrieve',
+    qualified: 'client.cases.retrieve',
+    params: ['id: string;'],
+    response:
+      "{ id: string; created_at: string; live_mode: boolean; object: string; requested_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]; resolved_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]; status: 'open' | 'resolved'; subject_id: string; subject_type: string; updated_at: string; }",
+    markdown:
+      "## retrieve\n\n`client.cases.retrieve(id: string): { id: string; created_at: string; live_mode: boolean; object: string; requested_actions: object[]; resolved_actions: object[]; status: 'open' | 'resolved'; subject_id: string; subject_type: string; updated_at: string; }`\n\n**get** `/api/cases/{id}`\n\nGet details on a single case.\n\n### Parameters\n\n- `id: string`\n\n### Returns\n\n- `{ id: string; created_at: string; live_mode: boolean; object: string; requested_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]; resolved_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]; status: 'open' | 'resolved'; subject_id: string; subject_type: string; updated_at: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `live_mode: boolean`\n  - `object: string`\n  - `requested_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]`\n  - `resolved_actions: { id: string; category: string; created_at: string; field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address'; instructions: string; live_mode: boolean; object: string; reasons: string[]; updated_at: string; }[]`\n  - `status: 'open' | 'resolved'`\n  - `subject_id: string`\n  - `subject_type: string`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nconst _case = await client.cases.retrieve('id');\n\nconsole.log(_case);\n```",
+    perLanguage: {
+      python: {
+        method: 'cases.retrieve',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\ncase = client.cases.retrieve(\n    "id",\n)\nprint(case.id)',
+      },
+      go: {
+        method: 'client.Cases.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcase_, err := client.Cases.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", case_.ID)\n}\n',
+      },
+      java: {
+        method: 'cases().retrieve',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.Case;\nimport com.moderntreasury.api.models.CaseRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        Case case_ = client.cases().retrieve("id");\n    }\n}',
+      },
+      ruby: {
+        method: 'cases.retrieve',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\ncase_ = modern_treasury.cases.retrieve("id")\n\nputs(case_)',
+      },
+      kotlin: {
+        method: 'cases().retrieve',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.Case\nimport com.moderntreasury.api.models.CaseRetrieveParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    val case: Case = client.cases().retrieve("id")\n}',
+      },
+      typescript: {
+        method: 'client.cases.retrieve',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst _case = await client.cases.retrieve('id');\n\nconsole.log(_case.id);",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/cases/$ID \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/api/virtual_account_settings',
+    httpMethod: 'get',
+    summary: 'list virtual_account_settings',
+    description: 'List virtual account settings.',
+    stainlessPath: '(resource) virtual_account_settings > (method) list',
+    qualified: 'client.virtualAccountSettings.list',
+    params: ['after_cursor?: string;', 'external_id?: string;', 'per_page?: number;'],
+    response:
+      '{ id: string; created_at: string; external_id: string; live_mode: boolean; object: string; updated_at: string; }',
+    markdown:
+      "## list\n\n`client.virtualAccountSettings.list(after_cursor?: string, external_id?: string, per_page?: number): { id: string; created_at: string; external_id: string; live_mode: boolean; object: string; updated_at: string; }`\n\n**get** `/api/virtual_account_settings`\n\nList virtual account settings.\n\n### Parameters\n\n- `after_cursor?: string`\n\n- `external_id?: string`\n  A user-defined identifier for the virtual account setting.\n\n- `per_page?: number`\n\n### Returns\n\n- `{ id: string; created_at: string; external_id: string; live_mode: boolean; object: string; updated_at: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `external_id: string`\n  - `live_mode: boolean`\n  - `object: string`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\n// Automatically fetches more pages as needed.\nfor await (const virtualAccountSetting of client.virtualAccountSettings.list()) {\n  console.log(virtualAccountSetting);\n}\n```",
+    perLanguage: {
+      python: {
+        method: 'virtual_account_settings.list',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\npage = client.virtual_account_settings.list()\npage = page.items[0]\nprint(page.id)',
+      },
+      go: {
+        method: 'client.VirtualAccountSettings.List',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.VirtualAccountSettings.List(context.TODO(), moderntreasury.VirtualAccountSettingListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+      },
+      java: {
+        method: 'virtualAccountSettings().list',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.VirtualAccountSettingListPage;\nimport com.moderntreasury.api.models.VirtualAccountSettingListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        VirtualAccountSettingListPage page = client.virtualAccountSettings().list();\n    }\n}',
+      },
+      ruby: {
+        method: 'virtual_account_settings.list',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\npage = modern_treasury.virtual_account_settings.list\n\nputs(page)',
+      },
+      kotlin: {
+        method: 'virtualAccountSettings().list',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.VirtualAccountSettingListPage\nimport com.moderntreasury.api.models.VirtualAccountSettingListParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    val page: VirtualAccountSettingListPage = client.virtualAccountSettings().list()\n}',
+      },
+      typescript: {
+        method: 'client.virtualAccountSettings.list',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const virtualAccountSetting of client.virtualAccountSettings.list()) {\n  console.log(virtualAccountSetting.id);\n}",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/virtual_account_settings \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'create',
+    endpoint: '/api/virtual_account_settings',
+    httpMethod: 'post',
+    summary: 'create virtual_account_setting',
+    description: 'Create a virtual account setting.',
+    stainlessPath: '(resource) virtual_account_settings > (method) create',
+    qualified: 'client.virtualAccountSettings.create',
+    params: [
+      'allocation_type: string;',
+      'internal_account_id: string;',
+      'allocation_identifier?: string;',
+      'allocation_length?: number;',
+      'allocation_range_end?: string;',
+      'allocation_range_start?: string;',
+      'external_id?: string;',
+      'generated_allocation_identifier_length?: number;',
+    ],
+    response:
+      '{ id: string; created_at: string; external_id: string; live_mode: boolean; object: string; updated_at: string; }',
+    markdown:
+      "## create\n\n`client.virtualAccountSettings.create(allocation_type: string, internal_account_id: string, allocation_identifier?: string, allocation_length?: number, allocation_range_end?: string, allocation_range_start?: string, external_id?: string, generated_allocation_identifier_length?: number): { id: string; created_at: string; external_id: string; live_mode: boolean; object: string; updated_at: string; }`\n\n**post** `/api/virtual_account_settings`\n\nCreate a virtual account setting.\n\n### Parameters\n\n- `allocation_type: string`\n  The method used to allocate virtual account numbers.\n\n- `internal_account_id: string`\n  The ID of the internal account for the virtual account setting.\n\n- `allocation_identifier?: string`\n  The prefix, suffix, or bank-assigned identifier for the virtual account numbers.\n\n- `allocation_length?: number`\n  The total length of generated virtual account numbers.\n\n- `allocation_range_end?: string`\n  The inclusive end of the virtual account number range.\n\n- `allocation_range_start?: string`\n  The inclusive start of the virtual account number range.\n\n- `external_id?: string`\n  A user-defined identifier for the virtual account setting.\n\n- `generated_allocation_identifier_length?: number`\n  The length of a generated virtual account setting prefix.\n\n### Returns\n\n- `{ id: string; created_at: string; external_id: string; live_mode: boolean; object: string; updated_at: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `external_id: string`\n  - `live_mode: boolean`\n  - `object: string`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury();\n\nconst virtualAccountSetting = await client.virtualAccountSettings.create({ allocation_type: 'allocation_type', internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(virtualAccountSetting);\n```",
+    perLanguage: {
+      python: {
+        method: 'virtual_account_settings.create',
+        example:
+          'import os\nfrom modern_treasury import ModernTreasury\n\nclient = ModernTreasury(\n    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted\n    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted\n)\nvirtual_account_setting = client.virtual_account_settings.create(\n    allocation_type="allocation_type",\n    internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(virtual_account_setting.id)',
+      },
+      go: {
+        method: 'client.VirtualAccountSettings.New',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccountSetting, err := client.VirtualAccountSettings.New(context.TODO(), moderntreasury.VirtualAccountSettingNewParams{\n\t\tAllocationType:    moderntreasury.F("allocation_type"),\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccountSetting.ID)\n}\n',
+      },
+      java: {
+        method: 'virtualAccountSettings().create',
+        example:
+          'package com.moderntreasury.api.example;\n\nimport com.moderntreasury.api.client.ModernTreasuryClient;\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient;\nimport com.moderntreasury.api.models.VirtualAccountSetting;\nimport com.moderntreasury.api.models.VirtualAccountSettingCreateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        ModernTreasuryClient client = ModernTreasuryOkHttpClient.fromEnv();\n\n        VirtualAccountSettingCreateParams params = VirtualAccountSettingCreateParams.builder()\n            .allocationType("allocation_type")\n            .internalAccountId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n            .build();\n        VirtualAccountSetting virtualAccountSetting = client.virtualAccountSettings().create(params);\n    }\n}',
+      },
+      ruby: {
+        method: 'virtual_account_settings.create',
+        example:
+          'require "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(api_key: "My API Key", organization_id: "my-organization-ID")\n\nvirtual_account_setting = modern_treasury.virtual_account_settings.create(\n  allocation_type: "allocation_type",\n  internal_account_id: "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n)\n\nputs(virtual_account_setting)',
+      },
+      kotlin: {
+        method: 'virtualAccountSettings().create',
+        example:
+          'package com.moderntreasury.api.example\n\nimport com.moderntreasury.api.client.ModernTreasuryClient\nimport com.moderntreasury.api.client.okhttp.ModernTreasuryOkHttpClient\nimport com.moderntreasury.api.models.VirtualAccountSetting\nimport com.moderntreasury.api.models.VirtualAccountSettingCreateParams\n\nfun main() {\n    val client: ModernTreasuryClient = ModernTreasuryOkHttpClient.fromEnv()\n\n    val params: VirtualAccountSettingCreateParams = VirtualAccountSettingCreateParams.builder()\n        .allocationType("allocation_type")\n        .internalAccountId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n        .build()\n    val virtualAccountSetting: VirtualAccountSetting = client.virtualAccountSettings().create(params)\n}',
+      },
+      typescript: {
+        method: 'client.virtualAccountSettings.create',
+        example:
+          "import ModernTreasury from 'modern-treasury';\n\nconst client = new ModernTreasury({\n  organizationID: process.env['MODERN_TREASURY_ORGANIZATION_ID'], // This is the default and can be omitted\n  apiKey: process.env['MODERN_TREASURY_API_KEY'], // This is the default and can be omitted\n});\n\nconst virtualAccountSetting = await client.virtualAccountSettings.create({\n  allocation_type: 'allocation_type',\n  internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(virtualAccountSetting.id);",
+      },
+      http: {
+        example:
+          'curl https://app.moderntreasury.com/api/virtual_account_settings \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "allocation_type": "allocation_type",\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
       },
     },
   },
