@@ -936,6 +936,24 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/legal_entities/{id}',
   },
   {
+    clientCallName: 'client.legalEntities.updateStatus',
+    fullyQualifiedName: 'legalEntities.updateStatus',
+    httpMethod: 'patch',
+    httpPath: '/api/simulations/legal_entities/{id}/update_status',
+  },
+  {
+    clientCallName: 'client.legalEntityAssociations.create',
+    fullyQualifiedName: 'legalEntityAssociations.create',
+    httpMethod: 'post',
+    httpPath: '/api/legal_entity_associations',
+  },
+  {
+    clientCallName: 'client.legalEntityAssociations.delete',
+    fullyQualifiedName: 'legalEntityAssociations.delete',
+    httpMethod: 'delete',
+    httpPath: '/api/legal_entity_associations/{id}',
+  },
+  {
     clientCallName: 'client.paymentActions.list',
     fullyQualifiedName: 'paymentActions.list',
     httpMethod: 'get',
@@ -970,6 +988,18 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'journalEntries.retrieve',
     httpMethod: 'get',
     httpPath: '/api/journal_entries/{id}',
+  },
+  {
+    clientCallName: 'client.journalSources.list',
+    fullyQualifiedName: 'journalSources.list',
+    httpMethod: 'get',
+    httpPath: '/api/journal_sources',
+  },
+  {
+    clientCallName: 'client.journalSources.retrieve',
+    fullyQualifiedName: 'journalSources.retrieve',
+    httpMethod: 'get',
+    httpPath: '/api/journal_sources/{id}',
   },
   {
     clientCallName: 'client.journalReports.list',
@@ -1012,6 +1042,30 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'holds.update',
     httpMethod: 'patch',
     httpPath: '/api/holds/{id}',
+  },
+  {
+    clientCallName: 'client.cases.list',
+    fullyQualifiedName: 'cases.list',
+    httpMethod: 'get',
+    httpPath: '/api/cases',
+  },
+  {
+    clientCallName: 'client.cases.retrieve',
+    fullyQualifiedName: 'cases.retrieve',
+    httpMethod: 'get',
+    httpPath: '/api/cases/{id}',
+  },
+  {
+    clientCallName: 'client.virtualAccountSettings.list',
+    fullyQualifiedName: 'virtualAccountSettings.list',
+    httpMethod: 'get',
+    httpPath: '/api/virtual_account_settings',
+  },
+  {
+    clientCallName: 'client.virtualAccountSettings.create',
+    fullyQualifiedName: 'virtualAccountSettings.create',
+    httpMethod: 'post',
+    httpPath: '/api/virtual_account_settings',
   },
 ];
 

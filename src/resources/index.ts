@@ -31,6 +31,7 @@ export {
   type BulkResultListParams,
   type BulkResultsPage,
 } from './bulk-results';
+export { Cases, type Case, type CaseListParams, type CasesPage } from './cases';
 export {
   ConnectionLegalEntities,
   type ConnectionLegalEntity,
@@ -131,6 +132,7 @@ export {
   type JournalReportListParams,
   type JournalReportUpdateParams,
 } from './journal-reports';
+export { JournalSources, type JournalSourceListParams } from './journal-sources';
 export {
   LedgerAccountBalanceMonitors,
   type LedgerAccountBalanceMonitor,
@@ -209,12 +211,14 @@ export {
   type LegalEntityListParams,
   type LegalEntityCreateParams,
   type LegalEntityUpdateParams,
+  type LegalEntityUpdateStatusParams,
   type LegalEntitiesPage,
 } from './legal-entities';
 export {
   LegalEntityAssociations,
   type ChildLegalEntity,
   type LegalEntityAssociation,
+  type LegalEntityAssociationCreateParams,
 } from './legal-entity-associations';
 export {
   LineItems,
@@ -290,6 +294,13 @@ export {
   type RoutingNumberLookupRequest,
   type ValidationValidateRoutingNumberParams,
 } from './validations';
+export {
+  VirtualAccountSettings,
+  type VirtualAccountSetting,
+  type VirtualAccountSettingListParams,
+  type VirtualAccountSettingCreateParams,
+  type VirtualAccountSettingsPage,
+} from './virtual-account-settings';
 export {
   VirtualAccounts,
   type VirtualAccount,
