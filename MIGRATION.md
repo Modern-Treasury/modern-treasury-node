@@ -175,6 +175,8 @@ client.example.list(undefined, { headers: { ... } });
 - `client.journalReports.list()`
 - `client.journalReports.update()`
 - `client.holds.list()`
+- `client.cases.list()`
+- `client.virtualAccountSettings.list()`
 
 </details>
 
