@@ -4,8 +4,28 @@ import { APIResource } from '../core/resource';
 import * as DocumentsAPI from './documents';
 import * as LegalEntitiesAPI from './legal-entities';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
-export class LegalEntityAssociations extends APIResource {}
+export class LegalEntityAssociations extends APIResource {
+  /**
+   * Add an associated legal entity to a business legal entity.
+   */
+  create(
+    body: LegalEntityAssociationCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<LegalEntityAssociation> {
+    return this._client.post('/api/legal_entity_associations', { body, ...options });
+  }
+
+  /**
+   * Remove an associated legal entity from a business legal entity.
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<LegalEntityAssociation> {
+    return this._client.delete(path`/api/legal_entity_associations/${id}`, options);
+  }
+}
 
 export interface ChildLegalEntity {
   id: string;
@@ -530,6 +550,34 @@ export interface LegalEntityAssociation {
   updated_at: string;
 }
 
+export interface LegalEntityAssociationCreateParams {
+  /**
+   * The ID of the child legal entity.
+   */
+  child_legal_entity_id: string;
+
+  /**
+   * The ID of the parent legal entity. This must be a business legal entity.
+   */
+  parent_legal_entity_id: string;
+
+  relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
+
+  /**
+   * The child entity's ownership percentage iff they are a beneficial owner.
+   */
+  ownership_percentage?: number | null;
+
+  /**
+   * The job title of the child entity at the parent entity.
+   */
+  title?: string | null;
+}
+
 export declare namespace LegalEntityAssociations {
-  export { type ChildLegalEntity as ChildLegalEntity, type LegalEntityAssociation as LegalEntityAssociation };
+  export {
+    type ChildLegalEntity as ChildLegalEntity,
+    type LegalEntityAssociation as LegalEntityAssociation,
+    type LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
+  };
 }
