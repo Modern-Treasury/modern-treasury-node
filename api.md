@@ -543,6 +543,7 @@ Methods:
 - <code title="post /api/legal_entities">client.legalEntities.<a href="./src/resources/legal-entities.ts">create</a>({ ...params }) -> LegalEntity</code>
 - <code title="get /api/legal_entities/{id}">client.legalEntities.<a href="./src/resources/legal-entities.ts">retrieve</a>(id) -> LegalEntity</code>
 - <code title="patch /api/legal_entities/{id}">client.legalEntities.<a href="./src/resources/legal-entities.ts">update</a>(id, { ...params }) -> LegalEntity</code>
+- <code title="patch /api/simulations/legal_entities/{id}/update_status">client.legalEntities.<a href="./src/resources/legal-entities.ts">updateStatus</a>(id, { ...params }) -> LegalEntity</code>
 
 # LegalEntityAssociations
 
@@ -550,6 +551,11 @@ Types:
 
 - <code><a href="./src/resources/legal-entity-associations.ts">ChildLegalEntity</a></code>
 - <code><a href="./src/resources/legal-entity-associations.ts">LegalEntityAssociation</a></code>
+
+Methods:
+
+- <code title="post /api/legal_entity_associations">client.legalEntityAssociations.<a href="./src/resources/legal-entity-associations.ts">create</a>({ ...params }) -> LegalEntityAssociation</code>
+- <code title="delete /api/legal_entity_associations/{id}">client.legalEntityAssociations.<a href="./src/resources/legal-entity-associations.ts">delete</a>(id) -> LegalEntityAssociation</code>
 
 # PaymentActions
 
@@ -574,6 +580,13 @@ Methods:
 - <code title="get /api/journal_entries">client.journalEntries.<a href="./src/resources/journal-entries.ts">list</a>({ ...params }) -> void</code>
 - <code title="get /api/journal_entries/{id}">client.journalEntries.<a href="./src/resources/journal-entries.ts">retrieve</a>(id) -> void</code>
 
+# JournalSources
+
+Methods:
+
+- <code title="get /api/journal_sources">client.journalSources.<a href="./src/resources/journal-sources.ts">list</a>({ ...params }) -> void</code>
+- <code title="get /api/journal_sources/{id}">client.journalSources.<a href="./src/resources/journal-sources.ts">retrieve</a>(id) -> void</code>
+
 # JournalReports
 
 Methods:
@@ -597,3 +610,25 @@ Methods:
 - <code title="post /api/holds">client.holds.<a href="./src/resources/holds.ts">create</a>({ ...params }) -> HoldCreateResponse</code>
 - <code title="get /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">retrieve</a>(id) -> HoldRetrieveResponse</code>
 - <code title="patch /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">update</a>(id, { ...params }) -> HoldUpdateResponse</code>
+
+# Cases
+
+Types:
+
+- <code><a href="./src/resources/cases.ts">Case</a></code>
+
+Methods:
+
+- <code title="get /api/cases">client.cases.<a href="./src/resources/cases.ts">list</a>({ ...params }) -> CasesPage</code>
+- <code title="get /api/cases/{id}">client.cases.<a href="./src/resources/cases.ts">retrieve</a>(id) -> Case</code>
+
+# VirtualAccountSettings
+
+Types:
+
+- <code><a href="./src/resources/virtual-account-settings.ts">VirtualAccountSetting</a></code>
+
+Methods:
+
+- <code title="get /api/virtual_account_settings">client.virtualAccountSettings.<a href="./src/resources/virtual-account-settings.ts">list</a>({ ...params }) -> VirtualAccountSettingsPage</code>
+- <code title="post /api/virtual_account_settings">client.virtualAccountSettings.<a href="./src/resources/virtual-account-settings.ts">create</a>({ ...params }) -> VirtualAccountSetting</code>
