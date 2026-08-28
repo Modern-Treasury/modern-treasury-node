@@ -172,9 +172,12 @@ client.example.list(undefined, { headers: { ... } });
 - `client.legalEntities.list()`
 - `client.legalEntities.update()`
 - `client.paymentActions.list()`
+- `client.journalSources.list()`
 - `client.journalReports.list()`
 - `client.journalReports.update()`
 - `client.holds.list()`
+- `client.cases.list()`
+- `client.virtualAccountSettings.list()`
 
 </details>
 

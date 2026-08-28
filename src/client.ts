@@ -46,6 +46,7 @@ import {
   BulkRequestsPage,
 } from './resources/bulk-requests';
 import { BulkResult, BulkResultListParams, BulkResults, BulkResultsPage } from './resources/bulk-results';
+import { Case, CaseListParams, Cases, CasesPage } from './resources/cases';
 import {
   ConnectionLegalEntities,
   ConnectionLegalEntitiesPage,
@@ -127,6 +128,7 @@ import {
   JournalReportUpdateParams,
   JournalReports,
 } from './resources/journal-reports';
+import { JournalSourceListParams, JournalSources } from './resources/journal-sources';
 import {
   LedgerAccountBalanceMonitor,
   LedgerAccountBalanceMonitorCreateParams,
@@ -187,11 +189,13 @@ import {
   LegalEntityCreateParams,
   LegalEntityListParams,
   LegalEntityUpdateParams,
+  LegalEntityUpdateStatusParams,
   WealthAndEmploymentDetails,
 } from './resources/legal-entities';
 import {
   ChildLegalEntity,
   LegalEntityAssociation,
+  LegalEntityAssociationCreateParams,
   LegalEntityAssociations,
 } from './resources/legal-entity-associations';
 import {
@@ -248,6 +252,13 @@ import {
   ValidationValidateRoutingNumberParams,
   Validations,
 } from './resources/validations';
+import {
+  VirtualAccountSetting,
+  VirtualAccountSettingCreateParams,
+  VirtualAccountSettingListParams,
+  VirtualAccountSettings,
+  VirtualAccountSettingsPage,
+} from './resources/virtual-account-settings';
 import {
   VirtualAccount,
   VirtualAccountCreateParams,
@@ -1137,8 +1148,11 @@ export class ModernTreasury {
   legalEntityAssociations: API.LegalEntityAssociations = new API.LegalEntityAssociations(this);
   paymentActions: API.PaymentActions = new API.PaymentActions(this);
   journalEntries: API.JournalEntries = new API.JournalEntries(this);
+  journalSources: API.JournalSources = new API.JournalSources(this);
   journalReports: API.JournalReports = new API.JournalReports(this);
   holds: API.Holds = new API.Holds(this);
+  cases: API.Cases = new API.Cases(this);
+  virtualAccountSettings: API.VirtualAccountSettings = new API.VirtualAccountSettings(this);
 }
 
 ModernTreasury.Connections = Connections;
@@ -1177,8 +1191,11 @@ ModernTreasury.LegalEntities = LegalEntities;
 ModernTreasury.LegalEntityAssociations = LegalEntityAssociations;
 ModernTreasury.PaymentActions = PaymentActions;
 ModernTreasury.JournalEntries = JournalEntries;
+ModernTreasury.JournalSources = JournalSources;
 ModernTreasury.JournalReports = JournalReports;
 ModernTreasury.Holds = Holds;
+ModernTreasury.Cases = Cases;
+ModernTreasury.VirtualAccountSettings = VirtualAccountSettings;
 
 export declare namespace ModernTreasury {
   export type RequestOptions = Opts.RequestOptions;
@@ -1493,12 +1510,14 @@ export declare namespace ModernTreasury {
     type LegalEntityListParams as LegalEntityListParams,
     type LegalEntityCreateParams as LegalEntityCreateParams,
     type LegalEntityUpdateParams as LegalEntityUpdateParams,
+    type LegalEntityUpdateStatusParams as LegalEntityUpdateStatusParams,
   };
 
   export {
     LegalEntityAssociations as LegalEntityAssociations,
     type ChildLegalEntity as ChildLegalEntity,
     type LegalEntityAssociation as LegalEntityAssociation,
+    type LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
   };
 
   export {
@@ -1514,6 +1533,8 @@ export declare namespace ModernTreasury {
   };
 
   export { JournalEntries as JournalEntries, type JournalEntryListParams as JournalEntryListParams };
+
+  export { JournalSources as JournalSources, type JournalSourceListParams as JournalSourceListParams };
 
   export {
     JournalReports as JournalReports,
@@ -1531,6 +1552,21 @@ export declare namespace ModernTreasury {
     type HoldListParams as HoldListParams,
     type HoldCreateParams as HoldCreateParams,
     type HoldUpdateParams as HoldUpdateParams,
+  };
+
+  export {
+    Cases as Cases,
+    type Case as Case,
+    type CasesPage as CasesPage,
+    type CaseListParams as CaseListParams,
+  };
+
+  export {
+    VirtualAccountSettings as VirtualAccountSettings,
+    type VirtualAccountSetting as VirtualAccountSetting,
+    type VirtualAccountSettingsPage as VirtualAccountSettingsPage,
+    type VirtualAccountSettingListParams as VirtualAccountSettingListParams,
+    type VirtualAccountSettingCreateParams as VirtualAccountSettingCreateParams,
   };
 
   export type AccountsType = API.AccountsType;
