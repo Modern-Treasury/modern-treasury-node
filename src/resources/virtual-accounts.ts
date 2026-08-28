@@ -200,6 +200,11 @@ export interface VirtualAccountCreateParams {
    * An array of routing detail objects.
    */
   routing_details?: Array<VirtualAccountCreateParams.RoutingDetail>;
+
+  /**
+   * The ID of the virtual account setting used to allocate this virtual account.
+   */
+  virtual_account_setting_id?: string;
 }
 
 export namespace VirtualAccountCreateParams {
