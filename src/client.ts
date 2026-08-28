@@ -1101,6 +1101,8 @@ export class ModernTreasury {
 
   static toFile = Uploads.toFile;
 
+  webhooks: API.Webhooks = new API.Webhooks(this);
+
   connections: API.Connections = new API.Connections(this);
   counterparties: API.Counterparties = new API.Counterparties(this);
   events: API.Events = new API.Events(this);

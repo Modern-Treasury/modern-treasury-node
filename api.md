@@ -447,6 +447,13 @@ Methods:
 
 - <code title="get /api/validations/routing_numbers">client.validations.<a href="./src/resources/validations.ts">validateRoutingNumber</a>({ ...params }) -> RoutingNumberLookupRequest</code>
 
+# Webhooks
+
+Methods:
+
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">getSignature</a>(payload, opts?) -> string</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">validateSignature</a>(payload, headers, opts?) -> boolean</code>
+
 # VirtualAccounts
 
 Types:

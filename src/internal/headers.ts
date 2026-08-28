@@ -95,3 +95,50 @@ export const isEmptyHeaders = (headers: HeadersLike) => {
   for (const _ of iterateHeaders(headers)) return false;
   return true;
 };
+
+export const getRequiredHeader = (headers: HeadersLike | Headers, header: string): string => {
+  const foundHeader = getHeader(headers, header);
+  if (foundHeader === undefined) {
+    throw new Error(`Could not find ${header} header`);
+  }
+  return foundHeader;
+};
+
+export const isHeadersProtocol = (headers: any): headers is HeadersProtocol => {
+  return typeof headers?.get === 'function';
+};
+
+export interface HeadersProtocol {
+  get: (header: string) => string | null | undefined;
+}
+
+export const getHeader = (headers: HeadersLike | Headers, header: string): string | undefined => {
+  if (!headers) return undefined;
+
+  const lowerCasedHeader = header.toLowerCase();
+  if (isHeadersProtocol(headers)) {
+    // to deal with the case where the header looks like Stainless-Event-Id
+    const intercapsHeader =
+      header[0]?.toUpperCase() +
+      header.substring(1).replace(/([^\w])(\w)/g, (_m, g1, g2) => g1 + g2.toUpperCase());
+    for (const key of [header, lowerCasedHeader, header.toUpperCase(), intercapsHeader]) {
+      const value = headers.get(key);
+      if (value) {
+        return value;
+      }
+    }
+  }
+
+  for (const [key, value] of Object.entries(headers)) {
+    if (key.toLowerCase() === lowerCasedHeader) {
+      if (Array.isArray(value)) {
+        if (value.length <= 1) return value[0];
+        console.warn(`Received ${value.length} entries for the ${header} header, using the first entry.`);
+        return value[0];
+      }
+      return value;
+    }
+  }
+
+  return undefined;
+};
