@@ -699,6 +699,14 @@ export interface InternalAccountUpdateParams {
   parent_account_id?: string;
 
   /**
+   * The address associated with the owner of the internal account. Updating this
+   * value does not guarantee that the new address matches the address on record with
+   * the account's bank; you are responsible for verifying that the address is
+   * accurate.
+   */
+  party_address?: Shared.AddressRequest;
+
+  /**
    * Requests closure of the internal account. The resulting status may be `closed`
    * for vendors that close synchronously.
    */
