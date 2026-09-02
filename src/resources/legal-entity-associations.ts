@@ -552,16 +552,21 @@ export interface LegalEntityAssociation {
 
 export interface LegalEntityAssociationCreateParams {
   /**
-   * The ID of the child legal entity.
-   */
-  child_legal_entity_id: string;
-
-  /**
    * The ID of the parent legal entity. This must be a business legal entity.
    */
   parent_legal_entity_id: string;
 
   relationship_types: Array<'authorized_signer' | 'beneficial_owner' | 'control_person'>;
+
+  /**
+   * The child legal entity.
+   */
+  child_legal_entity?: Shared.ChildLegalEntityCreate;
+
+  /**
+   * The ID of the child legal entity.
+   */
+  child_legal_entity_id?: string;
 
   /**
    * The child entity's ownership percentage iff they are a beneficial owner.
