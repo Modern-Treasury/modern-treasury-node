@@ -191,6 +191,11 @@ export interface VirtualAccountCreateParams {
   ledger_account?: Shared.LedgerAccountCreateRequest;
 
   /**
+   * The ledger account that you'd like to link to the virtual account.
+   */
+  ledger_account_id?: string;
+
+  /**
    * Additional data represented as key-value pairs. Both the key and value must be
    * strings.
    */
