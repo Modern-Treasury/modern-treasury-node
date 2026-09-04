@@ -1067,6 +1067,24 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'post',
     httpPath: '/api/virtual_account_settings',
   },
+  {
+    clientCallName: 'client.identifications.create',
+    fullyQualifiedName: 'identifications.create',
+    httpMethod: 'post',
+    httpPath: '/api/identifications',
+  },
+  {
+    clientCallName: 'client.identifications.retrieve',
+    fullyQualifiedName: 'identifications.retrieve',
+    httpMethod: 'get',
+    httpPath: '/api/identifications/{id}',
+  },
+  {
+    clientCallName: 'client.identifications.update',
+    fullyQualifiedName: 'identifications.update',
+    httpMethod: 'patch',
+    httpPath: '/api/identifications/{id}',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {

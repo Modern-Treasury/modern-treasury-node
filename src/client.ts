@@ -115,6 +115,12 @@ import {
   Holds,
 } from './resources/holds';
 import {
+  Identification,
+  IdentificationCreateParams,
+  IdentificationUpdateParams,
+  Identifications,
+} from './resources/identifications';
+import {
   IncomingPaymentDetail,
   IncomingPaymentDetailCreateAsyncParams,
   IncomingPaymentDetailListParams,
@@ -1155,6 +1161,7 @@ export class ModernTreasury {
   holds: API.Holds = new API.Holds(this);
   cases: API.Cases = new API.Cases(this);
   virtualAccountSettings: API.VirtualAccountSettings = new API.VirtualAccountSettings(this);
+  identifications: API.Identifications = new API.Identifications(this);
 }
 
 ModernTreasury.Connections = Connections;
@@ -1198,6 +1205,7 @@ ModernTreasury.JournalReports = JournalReports;
 ModernTreasury.Holds = Holds;
 ModernTreasury.Cases = Cases;
 ModernTreasury.VirtualAccountSettings = VirtualAccountSettings;
+ModernTreasury.Identifications = Identifications;
 
 export declare namespace ModernTreasury {
   export type RequestOptions = Opts.RequestOptions;
@@ -1569,6 +1577,13 @@ export declare namespace ModernTreasury {
     type VirtualAccountSettingsPage as VirtualAccountSettingsPage,
     type VirtualAccountSettingListParams as VirtualAccountSettingListParams,
     type VirtualAccountSettingCreateParams as VirtualAccountSettingCreateParams,
+  };
+
+  export {
+    Identifications as Identifications,
+    type Identification as Identification,
+    type IdentificationCreateParams as IdentificationCreateParams,
+    type IdentificationUpdateParams as IdentificationUpdateParams,
   };
 
   export type AccountsType = API.AccountsType;
