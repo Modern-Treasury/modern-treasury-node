@@ -632,3 +632,15 @@ Methods:
 
 - <code title="get /api/virtual_account_settings">client.virtualAccountSettings.<a href="./src/resources/virtual-account-settings.ts">list</a>({ ...params }) -> VirtualAccountSettingsPage</code>
 - <code title="post /api/virtual_account_settings">client.virtualAccountSettings.<a href="./src/resources/virtual-account-settings.ts">create</a>({ ...params }) -> VirtualAccountSetting</code>
+
+# Identifications
+
+Types:
+
+- <code><a href="./src/resources/identifications.ts">Identification</a></code>
+
+Methods:
+
+- <code title="post /api/identifications">client.identifications.<a href="./src/resources/identifications.ts">create</a>({ ...params }) -> Identification</code>
+- <code title="get /api/identifications/{id}">client.identifications.<a href="./src/resources/identifications.ts">retrieve</a>(id) -> Identification</code>
+- <code title="patch /api/identifications/{id}">client.identifications.<a href="./src/resources/identifications.ts">update</a>(id, { ...params }) -> Identification</code>
