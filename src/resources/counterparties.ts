@@ -527,8 +527,7 @@ export namespace CounterpartyCreateParams {
         | 'pan'
         | 'polygon_address'
         | 'sg_number'
-        | 'solana_address'
-        | 'wallet_address';
+        | 'solana_address';
     }
 
     export interface RoutingDetail {
