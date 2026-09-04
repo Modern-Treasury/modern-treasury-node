@@ -100,6 +100,12 @@ export {
   type HoldListResponsesPage,
 } from './holds';
 export {
+  Identifications,
+  type Identification,
+  type IdentificationCreateParams,
+  type IdentificationUpdateParams,
+} from './identifications';
+export {
   IncomingPaymentDetails,
   type IncomingPaymentDetail,
   type IncomingPaymentDetailListParams,
