@@ -285,6 +285,9 @@ const fuse = new Fuse(
     'client.cases.retrieve',
     'client.virtualAccountSettings.create',
     'client.virtualAccountSettings.list',
+    'client.identifications.create',
+    'client.identifications.retrieve',
+    'client.identifications.update',
   ],
   { threshold: 1, shouldSort: true },
 );
