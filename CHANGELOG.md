@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.20.2](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.20.1...v4.20.2) (2026-09-04)
+
+
+### Chores
+
+* regenerate SDKs from 079bb35aed14217b22f7df256b76d32f76de364a ([705b77b](https://github.com/Modern-Treasury/modern-treasury-node/commit/705b77b177c40ce4634f9704fb364724d9a9ac4d))
+* regenerate SDKs from 1846300751004ea366c6b50e9cc73ef332853cc7 ([97e98af](https://github.com/Modern-Treasury/modern-treasury-node/commit/97e98af1cbf8f7ee05dcadcebe8b087e1aa11729))
+* regenerate SDKs from 1ba62719665dfac3a01da68fa4d0f68fe50b8574 ([74f76be](https://github.com/Modern-Treasury/modern-treasury-node/commit/74f76bebd146b6947fb6187858fada5338c58a4d))
+* regenerate SDKs from 343d886c636954e7e0870418b38898fc39de2698 ([deec662](https://github.com/Modern-Treasury/modern-treasury-node/commit/deec662e05cff02895455bdcf2f568a952bb7969))
+* regenerate SDKs from 44366b0feb4a67c557ab18243a5a4e62fc526b46 ([a384871](https://github.com/Modern-Treasury/modern-treasury-node/commit/a384871a6e6701353998a9c9c11e912f29eaebfa))
+* regenerate SDKs from 5b92822da54c5ed47a5ec70624eae07754e34457 ([19c3539](https://github.com/Modern-Treasury/modern-treasury-node/commit/19c3539f5a3d5d034b3255bc3ed5d635a520ddb0))
+* regenerate SDKs from 6311974b7bd8e5b7a6f1b521219406ed778993d3 ([568b8f8](https://github.com/Modern-Treasury/modern-treasury-node/commit/568b8f8e6efa9c7c7b62e3ed66a048924c0ef8ea))
+* regenerate SDKs from 648842f54e4bd55a71ffbacf5c3f8bbc47cb77df ([9b067c6](https://github.com/Modern-Treasury/modern-treasury-node/commit/9b067c6224445e4e9c8b3c01269a7e9d0ed238f0))
+* regenerate SDKs from 76bfe6ef7bf238af0c68f1ff514b7c6d29042662 ([a4a3232](https://github.com/Modern-Treasury/modern-treasury-node/commit/a4a323276eeeaa96d40299f4e2aad8f3b10655bf))
+* regenerate SDKs from b51aa69627e6aafc44c4609a7574b9068a894b7c ([5c69929](https://github.com/Modern-Treasury/modern-treasury-node/commit/5c6992928b627d41f1b2c76af48b86ba4ed3dd54))
+* regenerate SDKs from d52e6f7cb7821cecbe9ad9e02712f9b8c190d80d ([8dd0b67](https://github.com/Modern-Treasury/modern-treasury-node/commit/8dd0b67e2268b3ba819872515faea382061fc1b4))
+
 ## [4.20.1](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.20.0...v4.20.1) (2026-08-04)
 
 
