@@ -72,8 +72,9 @@ export interface AccountDetail {
   account_number_safe: string;
 
   /**
-   * One of `iban`, `clabe`, or `other`. Use `other` if the bank account number is in
-   * a generic format.
+   * The type of the account number. For wallet addresses, use the chain-specific
+   * type (e.g. `ethereum_address`). Use `other` if the account number is in a
+   * generic format.
    */
   account_number_type:
     | 'au_number'
@@ -130,8 +131,9 @@ export interface AccountDetailCreateParams {
   account_number: string;
 
   /**
-   * Body param: One of `iban`, `clabe`, or `other`. Use `other` if the bank account
-   * number is in a generic format.
+   * Body param: The type of the account number. For wallet addresses, use the
+   * chain-specific type (e.g. `ethereum_address`). Use `other` if the account number
+   * is in a generic format.
    */
   account_number_type?:
     | 'au_number'
