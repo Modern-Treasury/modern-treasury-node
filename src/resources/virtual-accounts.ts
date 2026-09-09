@@ -92,6 +92,11 @@ export interface VirtualAccount {
   discarded_at: string | null;
 
   /**
+   * A user-defined identifier for the virtual account.
+   */
+  external_id: string | null;
+
+  /**
    * The ID of the internal account that the virtual account is in.
    */
   internal_account_id: string;
@@ -132,6 +137,11 @@ export interface VirtualAccount {
 
 export interface VirtualAccountListParams extends PageParams {
   counterparty_id?: string;
+
+  /**
+   * Only return virtual accounts with this external ID.
+   */
+  external_id?: string;
 
   internal_account_id?: string;
 
@@ -182,6 +192,11 @@ export interface VirtualAccountCreateParams {
    * An optional description for internal use.
    */
   description?: string;
+
+  /**
+   * A user-defined identifier for the virtual account.
+   */
+  external_id?: string | null;
 
   /**
    * Specifies a ledger account object that will be created with the virtual account.
