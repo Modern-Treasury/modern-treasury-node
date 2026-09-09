@@ -197,7 +197,7 @@ export interface ChildLegalEntity {
   prefix: string | null;
 
   /**
-   * A list of primary social media URLs for the business.
+   * A list of the entity's primary social media URLs.
    */
   primary_social_media_sites: Array<string>;
 
