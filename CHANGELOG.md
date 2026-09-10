@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.22.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.21.0...v4.22.0) (2026-09-10)
+
+
+### Features
+
+* regenerate SDKs from 08af7fedc870e2d9a7f697517623eebdb45d86cc ([5602aa7](https://github.com/Modern-Treasury/modern-treasury-node/commit/5602aa711cb965b3ab64d3d0d586f3ede25790e0))
+* regenerate SDKs from 0ed3f0cdda7032e8a95afe0e230eb52d004afa91 ([8b51015](https://github.com/Modern-Treasury/modern-treasury-node/commit/8b51015ee999b7691f1130001e62697f10b57614))
+* regenerate SDKs from 256e67f3902acc2a01de6f9ebf5a5a59f434d332 ([3fb42f1](https://github.com/Modern-Treasury/modern-treasury-node/commit/3fb42f1f226ba593b9e78239a795a63ca377b8af))
+* regenerate SDKs from 6f84b3ee98f7c58add7e7b9c27ad77e30890d095 ([854f1de](https://github.com/Modern-Treasury/modern-treasury-node/commit/854f1dea4213dda6f19effd3780a16435d30c740))
+
 ## [4.21.0](https://github.com/Modern-Treasury/modern-treasury-node/compare/v4.20.2...v4.21.0) (2026-09-04)
 
 
