@@ -1032,12 +1032,10 @@ export namespace PaymentOrderCreateParams {
       | 'connection'
       | 'counterparty'
       | 'expected_payment'
-      | 'external_account'
       | 'identification'
       | 'incoming_payment_detail'
       | 'internal_account'
       | 'legal_entity'
-      | 'organization'
       | 'payment_order'
       | 'return'
       | 'transaction';
