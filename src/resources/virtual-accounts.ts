@@ -240,6 +240,7 @@ export namespace VirtualAccountCreateParams {
      * generic format.
      */
     account_number_type?:
+      | 'arbitrum_address'
       | 'au_number'
       | 'base_address'
       | 'card_token'

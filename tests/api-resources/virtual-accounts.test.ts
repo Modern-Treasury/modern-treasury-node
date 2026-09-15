@@ -55,7 +55,7 @@ describe('resource virtualAccounts', () => {
     const response = await client.virtualAccounts.create({
       internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       name: 'name',
-      account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
+      account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       credit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       debit_ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',

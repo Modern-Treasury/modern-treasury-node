@@ -674,6 +674,7 @@ export type PaymentOrderSubtype =
   | 'PPD'
   | 'TEL'
   | 'WEB'
+  | 'arbitrum'
   | 'au_becs'
   | 'bacs'
   | 'base'
@@ -1170,6 +1171,7 @@ export namespace PaymentOrderCreateParams {
       account_number: string;
 
       account_number_type?:
+        | 'arbitrum_address'
         | 'au_number'
         | 'base_address'
         | 'card_token'
@@ -1681,6 +1683,7 @@ export namespace PaymentOrderCreateAsyncParams {
       account_number: string;
 
       account_number_type?:
+        | 'arbitrum_address'
         | 'au_number'
         | 'base_address'
         | 'card_token'
@@ -2292,6 +2295,7 @@ export namespace PaymentOrderUpdateParams {
       account_number: string;
 
       account_number_type?:
+        | 'arbitrum_address'
         | 'au_number'
         | 'base_address'
         | 'card_token'

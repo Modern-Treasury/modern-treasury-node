@@ -120,6 +120,7 @@ export interface IncomingPaymentDetail {
    * The type of the originating account number for the incoming payment detail.
    */
   originating_account_number_type:
+    | 'arbitrum_address'
     | 'au_number'
     | 'base_address'
     | 'card_token'

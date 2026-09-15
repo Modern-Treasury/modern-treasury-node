@@ -46,7 +46,7 @@ describe('resource accountDetails', () => {
     const response = await client.accountDetails.create('account_id', {
       accounts_type: 'external_accounts',
       account_number: 'account_number',
-      account_number_type: 'au_number',
+      account_number_type: 'arbitrum_address',
     });
   });
 

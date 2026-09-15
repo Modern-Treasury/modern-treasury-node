@@ -77,6 +77,7 @@ export interface AccountDetail {
    * generic format.
    */
   account_number_type:
+    | 'arbitrum_address'
     | 'au_number'
     | 'base_address'
     | 'card_token'
@@ -136,6 +137,7 @@ export interface AccountDetailCreateParams {
    * is in a generic format.
    */
   account_number_type?:
+    | 'arbitrum_address'
     | 'au_number'
     | 'base_address'
     | 'card_token'
