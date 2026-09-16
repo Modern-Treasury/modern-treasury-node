@@ -612,6 +612,7 @@ export namespace BulkRequestCreateParams {
         account_number: string;
 
         account_number_type?:
+          | 'arbitrum_address'
           | 'au_number'
           | 'base_address'
           | 'card_token'
@@ -1389,6 +1390,7 @@ export namespace BulkRequestCreateParams {
         account_number: string;
 
         account_number_type?:
+          | 'arbitrum_address'
           | 'au_number'
           | 'base_address'
           | 'card_token'
