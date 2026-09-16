@@ -25,7 +25,7 @@ describe('resource externalAccounts', () => {
   test('create: required and optional params', async () => {
     const response = await client.externalAccounts.create({
       counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
+      account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
       account_type: 'base_wallet',
       contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
       external_id: 'external_id',

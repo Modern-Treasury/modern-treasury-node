@@ -121,7 +121,7 @@ describe('resource paymentOrders', () => {
       process_after: '2019-12-27T18:11:19.117Z',
       purpose: 'purpose',
       receiving_account: {
-        account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
+        account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
         account_type: 'base_wallet',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
         external_id: 'external_id',
@@ -294,7 +294,7 @@ describe('resource paymentOrders', () => {
       process_after: '2019-12-27T18:11:19.117Z',
       purpose: 'purpose',
       receiving_account: {
-        account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
+        account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
         account_type: 'base_wallet',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
         external_id: 'external_id',
@@ -483,7 +483,7 @@ describe('resource paymentOrders', () => {
           process_after: '2019-12-27T18:11:19.117Z',
           purpose: 'purpose',
           receiving_account: {
-            account_details: [{ account_number: 'account_number', account_number_type: 'au_number' }],
+            account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
             account_type: 'base_wallet',
             contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
             external_id: 'external_id',
