@@ -70,8 +70,8 @@ describe('resource lineItems', () => {
       itemizable_type: 'expected_payments',
       itemizable_id: 'itemizable_id',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
     });

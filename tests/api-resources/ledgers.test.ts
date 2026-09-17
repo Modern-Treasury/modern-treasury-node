@@ -52,8 +52,8 @@ describe('resource ledgers', () => {
       name: 'name',
       description: 'description',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
     });
@@ -89,8 +89,8 @@ describe('resource ledgers', () => {
         {
           description: 'description',
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           name: 'name',
