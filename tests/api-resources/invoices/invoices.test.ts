@@ -103,8 +103,8 @@ describe('resource invoices', () => {
           description: 'description',
           direction: 'direction',
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           quantity: 0,
@@ -121,8 +121,8 @@ describe('resource invoices', () => {
       },
       invoicer_name: 'invoicer_name',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
       notification_email_addresses: ['string'],
@@ -206,8 +206,8 @@ describe('resource invoices', () => {
               description: 'description',
               direction: 'direction',
               metadata: {
-                key: 'value',
                 foo: 'bar',
+                key: 'value',
                 modern: 'treasury',
               },
               quantity: 0,
@@ -224,8 +224,8 @@ describe('resource invoices', () => {
           },
           invoicer_name: 'invoicer_name',
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           notification_email_addresses: ['string'],
