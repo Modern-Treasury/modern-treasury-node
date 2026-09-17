@@ -41,14 +41,14 @@ describe('resource externalAccounts', () => {
         ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         ledgerable_type: 'counterparty',
         metadata: {
-          key: 'value',
           foo: 'bar',
+          key: 'value',
           modern: 'treasury',
         },
       },
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
       name: 'name',

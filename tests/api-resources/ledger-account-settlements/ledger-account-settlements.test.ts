@@ -31,8 +31,8 @@ describe('resource ledgerAccountSettlements', () => {
       description: 'description',
       effective_at_upper_bound: '2019-12-27T18:11:19.117Z',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
       skip_settlement_ledger_transaction: true,
@@ -102,8 +102,8 @@ describe('resource ledgerAccountSettlements', () => {
         {
           description: 'description',
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           skip_settlement_ledger_transaction: true,
