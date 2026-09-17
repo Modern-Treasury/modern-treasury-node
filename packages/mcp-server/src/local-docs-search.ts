@@ -328,7 +328,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/counterparties \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/counterparties \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -971,7 +971,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/external_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/external_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -1653,7 +1653,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/invoices \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "counterparty_id",\n          "due_date": "2019-12-27T18:11:19.117Z",\n          "originating_account_id": "originating_account_id",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/invoices \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "counterparty_id": "counterparty_id",\n          "due_date": "2019-12-27T18:11:19.117Z",\n          "originating_account_id": "originating_account_id",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -1936,7 +1936,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "unit_amount": 0,\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/invoices/$INVOICE_ID/invoice_line_items \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "unit_amount": 0,\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -3015,7 +3015,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/internal_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "USD",\n          "name": "name",\n          "account_type": "checking",\n          "vendor_attributes": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/internal_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "USD",\n          "name": "name",\n          "account_type": "checking",\n          "vendor_attributes": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -3542,7 +3542,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/ledgers \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/ledgers \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "name": "name",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -3814,7 +3814,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/ledger_account_categories \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "currency",\n          "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name",\n          "normal_balance": "credit",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/ledger_account_categories \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "currency",\n          "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name",\n          "normal_balance": "credit",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -4291,7 +4291,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/ledger_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "currency",\n          "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name",\n          "normal_balance": "credit",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/ledger_accounts \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "currency": "currency",\n          "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "name": "name",\n          "normal_balance": "credit",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -4505,7 +4505,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "alert_condition": {\n            "field": "field",\n            "operator": "operator",\n            "value": 0\n          },\n          "ledger_account_id": "ledger_account_id",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/ledger_account_balance_monitors \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "alert_condition": {\n            "field": "field",\n            "operator": "operator",\n            "value": 0\n          },\n          "ledger_account_id": "ledger_account_id",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -4767,7 +4767,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/ledger_account_statements \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "effective_at_lower_bound": "2019-12-27T18:11:19.117Z",\n          "effective_at_upper_bound": "2019-12-27T18:11:19.117Z",\n          "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/ledger_account_statements \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "effective_at_lower_bound": "2019-12-27T18:11:19.117Z",\n          "effective_at_upper_bound": "2019-12-27T18:11:19.117Z",\n          "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -5120,7 +5120,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/ledger_transactions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "ledger_entries": [\n            {\n              "direction": "credit",\n              "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/ledger_transactions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "ledger_entries": [\n            {\n              "direction": "credit",\n              "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n            }\n          ],\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -5345,7 +5345,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID/partial_post \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "posted_ledger_entries": [\n            {\n              "direction": "credit",\n              "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/ledger_transactions/$ID/partial_post \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "posted_ledger_entries": [\n            {\n              "direction": "credit",\n              "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n            }\n          ],\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -5874,7 +5874,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/payment_orders \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -F amount=0 \\\n    -F direction=credit \\\n    -F originating_account_id=182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e \\\n    -F type=ach \\\n    -F metadata=\'{"key":"value","foo":"bar","modern":"treasury"}\'',
+          'curl https://app.moderntreasury.com/api/payment_orders \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -F amount=0 \\\n    -F direction=credit \\\n    -F originating_account_id=182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e \\\n    -F type=ach \\\n    -F metadata=\'{"foo":"bar","key":"value","modern":"treasury"}\'',
       },
     },
   },
@@ -5965,7 +5965,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/payment_orders/create_async \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "amount": 0,\n          "direction": "credit",\n          "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "type": "ach",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/payment_orders/create_async \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "amount": 0,\n          "direction": "credit",\n          "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "type": "ach",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -6275,7 +6275,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/payment_orders/$PAYMENT_ORDER_ID/reversals \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "reason": "duplicate",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/payment_orders/$PAYMENT_ORDER_ID/reversals \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "reason": "duplicate",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -6868,7 +6868,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/transactions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "as_of_date": "2019-12-27",\n          "direction": "direction",\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "vendor_code": "vendor_code",\n          "vendor_code_type": "vendor_code_type",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/transactions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "as_of_date": "2019-12-27",\n          "direction": "direction",\n          "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "vendor_code": "vendor_code",\n          "vendor_code_type": "vendor_code_type",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -7559,7 +7559,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/bulk_requests \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "action_type": "create",\n          "resource_type": "payment_order",\n          "resources": [\n            {\n              "amount": 0,\n              "direction": "credit",\n              "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n              "type": "ach"\n            }\n          ],\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/bulk_requests \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "action_type": "create",\n          "resource_type": "payment_order",\n          "resources": [\n            {\n              "amount": 0,\n              "direction": "credit",\n              "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n              "type": "ach"\n            }\n          ],\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -7776,7 +7776,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/ledger_account_settlements \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "contra_ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "settled_ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          }\n        }\'',
+          'curl https://app.moderntreasury.com/api/ledger_account_settlements \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "contra_ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "settled_ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          }\n        }\'',
       },
     },
   },
@@ -8566,7 +8566,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://app.moderntreasury.com/api/legal_entities \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "legal_entity_type": "business",\n          "country_of_incorporation": "US",\n          "metadata": {\n            "key": "value",\n            "foo": "bar",\n            "modern": "treasury"\n          },\n          "operating_jurisdictions": [\n            "US",\n            "CA"\n          ]\n        }\'',
+          'curl https://app.moderntreasury.com/api/legal_entities \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MODERN_TREASURY_ORGANIZATION_ID:MODERN_TREASURY_API_KEY" \\\n    -d \'{\n          "legal_entity_type": "business",\n          "country_of_incorporation": "US",\n          "metadata": {\n            "foo": "bar",\n            "key": "value",\n            "modern": "treasury"\n          },\n          "operating_jurisdictions": [\n            "US",\n            "CA"\n          ]\n        }\'',
       },
     },
   },
