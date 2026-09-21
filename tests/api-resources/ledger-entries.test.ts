@@ -94,8 +94,8 @@ describe('resource ledgerEntries', () => {
         'id',
         {
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
         },

@@ -82,8 +82,8 @@ describe('resource ledgerTransactions', () => {
           effective_at: '2019-12-27T18:11:19.117Z',
           lock_version: 0,
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           pending_balance_amount: { foo: 0 },
@@ -98,8 +98,8 @@ describe('resource ledgerTransactions', () => {
       ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       ledgerable_type: 'expected_payment',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
       status: 'archived',
@@ -147,8 +147,8 @@ describe('resource ledgerTransactions', () => {
               effective_at: '2019-12-27T18:11:19.117Z',
               lock_version: 0,
               metadata: {
-                key: 'value',
                 foo: 'bar',
+                key: 'value',
                 modern: 'treasury',
               },
               pending_balance_amount: { foo: 0 },
@@ -159,8 +159,8 @@ describe('resource ledgerTransactions', () => {
           ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           ledgerable_type: 'expected_payment',
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           status: 'archived',
@@ -193,8 +193,8 @@ describe('resource ledgerTransactions', () => {
           ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           ledgerable_type: 'expected_payment',
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           status: 'archived',
@@ -230,8 +230,8 @@ describe('resource ledgerTransactions', () => {
           available_balance_amount: { foo: 0 },
           lock_version: 0,
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           pending_balance_amount: { foo: 0 },
@@ -242,8 +242,8 @@ describe('resource ledgerTransactions', () => {
       description: 'description',
       effective_at: '2019-12-27T18:11:19.117Z',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
     });

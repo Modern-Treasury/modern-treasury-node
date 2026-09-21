@@ -369,7 +369,7 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   /**
    * One of `credit`, `debit`.
    */
-  direction?: 'credit' | 'debit';
+  direction?: Shared.TransactionDirection;
 
   /**
    * The ID of one of your internal accounts.

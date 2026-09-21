@@ -49,8 +49,8 @@ describe('resource lineItems', () => {
       description: 'description',
       direction: 'direction',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
       quantity: 0,
@@ -90,8 +90,8 @@ describe('resource lineItems', () => {
       description: 'description',
       direction: 'direction',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
       name: 'name',

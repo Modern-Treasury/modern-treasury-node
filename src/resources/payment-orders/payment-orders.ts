@@ -287,6 +287,13 @@ export interface PaymentOrder {
   originating_party_name: string | null;
 
   /**
+   * Secondary name for the legal entity making the payment. Can be used for e.g.
+   * check signatures where the originating party wishes to retain their company's
+   * display name but use an employee's name for the signature.
+   */
+  originating_secondary_party_name: string | null;
+
+  /**
    * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
    * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
    * an overnight check rather than standard mail.
@@ -881,6 +888,13 @@ export interface PaymentOrderCreateParams {
   originating_party_name?: string | null;
 
   /**
+   * Secondary name for the legal entity making the payment. Can be used for e.g.
+   * check signatures where the originating party wishes to retain their company's
+   * display name but use an employee's name for the signature.
+   */
+  originating_secondary_party_name?: string | null;
+
+  /**
    * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
    * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
    * an overnight check rather than standard mail.
@@ -1417,6 +1431,13 @@ export interface PaymentOrderCreateAsyncParams {
    * will be truncated.
    */
   originating_party_name?: string | null;
+
+  /**
+   * Secondary name for the legal entity making the payment. Can be used for e.g.
+   * check signatures where the originating party wishes to retain their company's
+   * display name but use an employee's name for the signature.
+   */
+  originating_secondary_party_name?: string | null;
 
   /**
    * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
@@ -2018,6 +2039,13 @@ export interface PaymentOrderUpdateParams {
    * will be truncated.
    */
   originating_party_name?: string | null;
+
+  /**
+   * Secondary name for the legal entity making the payment. Can be used for e.g.
+   * check signatures where the originating party wishes to retain their company's
+   * display name but use an employee's name for the signature.
+   */
+  originating_secondary_party_name?: string | null;
 
   /**
    * Either `normal` or `high`. For ACH and EFT payments, `high` represents a

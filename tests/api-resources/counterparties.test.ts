@@ -93,14 +93,14 @@ describe('resource counterparties', () => {
             ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
             ledgerable_type: 'counterparty',
             metadata: {
-              key: 'value',
               foo: 'bar',
+              key: 'value',
               modern: 'treasury',
             },
           },
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           name: 'name',
@@ -289,8 +289,8 @@ describe('resource counterparties', () => {
               legal_structure: 'corporation',
               listed_exchange: 'listed_exchange',
               metadata: {
-                key: 'value',
                 foo: 'bar',
+                key: 'value',
                 modern: 'treasury',
               },
               middle_name: 'middle_name',
@@ -362,8 +362,8 @@ describe('resource counterparties', () => {
         legal_structure: 'corporation',
         listed_exchange: 'listed_exchange',
         metadata: {
-          key: 'value',
           foo: 'bar',
+          key: 'value',
           modern: 'treasury',
         },
         middle_name: 'middle_name',
@@ -429,8 +429,8 @@ describe('resource counterparties', () => {
       },
       legal_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
       send_remittance_advice: true,

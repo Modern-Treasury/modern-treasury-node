@@ -33,8 +33,8 @@ describe('resource ledgerAccountStatements', () => {
       ledger_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'description',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
     });

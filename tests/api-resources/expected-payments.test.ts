@@ -85,8 +85,8 @@ describe('resource expectedPayments', () => {
                 effective_at: '2019-12-27T18:11:19.117Z',
                 lock_version: 0,
                 metadata: {
-                  key: 'value',
                   foo: 'bar',
+                  key: 'value',
                   modern: 'treasury',
                 },
                 pending_balance_amount: { foo: 0 },
@@ -101,8 +101,8 @@ describe('resource expectedPayments', () => {
             ledgerable_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
             ledgerable_type: 'expected_payment',
             metadata: {
-              key: 'value',
               foo: 'bar',
+              key: 'value',
               modern: 'treasury',
             },
             status: 'archived',
@@ -114,15 +114,15 @@ describe('resource expectedPayments', () => {
               accounting_category_id: 'accounting_category_id',
               description: 'description',
               metadata: {
-                key: 'value',
                 foo: 'bar',
+                key: 'value',
                 modern: 'treasury',
               },
             },
           ],
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           reconciliation_filters: {},
@@ -193,8 +193,8 @@ describe('resource expectedPayments', () => {
           external_id: 'external_id',
           internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
           reconciliation_filters: {},
