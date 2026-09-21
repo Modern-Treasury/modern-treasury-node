@@ -147,6 +147,7 @@ describe('resource bulkRequests', () => {
             region: 'region',
           },
           originating_party_name: 'originating_party_name',
+          originating_secondary_party_name: 'originating_secondary_party_name',
           priority: 'high',
           process_after: '2019-12-27T18:11:19.117Z',
           purpose: 'purpose',
