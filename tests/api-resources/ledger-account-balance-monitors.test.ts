@@ -37,8 +37,8 @@ describe('resource ledgerAccountBalanceMonitors', () => {
       ledger_account_id: 'ledger_account_id',
       description: 'description',
       metadata: {
-        key: 'value',
         foo: 'bar',
+        key: 'value',
         modern: 'treasury',
       },
     });
@@ -101,8 +101,8 @@ describe('resource ledgerAccountBalanceMonitors', () => {
         {
           description: 'description',
           metadata: {
-            key: 'value',
             foo: 'bar',
+            key: 'value',
             modern: 'treasury',
           },
         },
