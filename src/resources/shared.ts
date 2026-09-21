@@ -1170,6 +1170,7 @@ export interface ThirdPartyVerification {
     | 'date_of_birth'
     | 'address'
     | 'government_id_number'
+    | 'tax_id'
     | 'adverse_media';
 
   /**
