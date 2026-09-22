@@ -1053,11 +1053,6 @@ export interface LegalEntityAddressCreateRequest {
   locality: string | null;
 
   /**
-   * The postal code of the address.
-   */
-  postal_code: string | null;
-
-  /**
    * Region or State. This field is free-form; for US states, we recommend a
    * two-letter code (e.g. CA). Full state names are also accepted.
    */
@@ -1071,6 +1066,11 @@ export interface LegalEntityAddressCreateRequest {
   >;
 
   line2?: string | null;
+
+  /**
+   * The postal code of the address.
+   */
+  postal_code?: string | null;
 
   /**
    * Whether this address is the primary address for the legal entity. Optional; when
