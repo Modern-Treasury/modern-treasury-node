@@ -837,7 +837,7 @@ export namespace BulkRequestCreateParams {
     /**
      * An array of reconciliation rule variables for this payment.
      */
-    reconciliation_rule_variables?: Array<ExpectedPaymentsAPI.ReconciliationRule> | null;
+    reconciliation_rule_variables?: Array<ExpectedPaymentsAPI.ReconciliationRule>;
 
     /**
      * For `ach`, this field will be passed through on an addenda record. For `wire`
@@ -1575,7 +1575,7 @@ export namespace BulkRequestCreateParams {
     /**
      * An array of reconciliation rule variables for this payment.
      */
-    reconciliation_rule_variables?: Array<ExpectedPaymentsAPI.ReconciliationRule> | null;
+    reconciliation_rule_variables?: Array<ExpectedPaymentsAPI.ReconciliationRule>;
 
     /**
      * For `ach`, this field will be passed through on an addenda record. For `wire`
