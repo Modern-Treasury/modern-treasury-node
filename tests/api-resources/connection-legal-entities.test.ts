@@ -99,7 +99,7 @@ describe('resource connectionLegalEntities', () => {
         identifications: [
           {
             id_number: 'id_number',
-            id_type: 'ar_cuil',
+            id_type: 'ad_nrt',
             documents: [
               {
                 document_type: 'articles_of_incorporation',
@@ -178,7 +178,7 @@ describe('resource connectionLegalEntities', () => {
               identifications: [
                 {
                   id_number: 'id_number',
-                  id_type: 'ar_cuil',
+                  id_type: 'ad_nrt',
                   documents: [
                     {
                       document_type: 'articles_of_incorporation',
