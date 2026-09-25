@@ -12,7 +12,7 @@ describe('resource identifications', () => {
   test('create: only required params', async () => {
     const responsePromise = client.identifications.create({
       id_number: 'id_number',
-      id_type: 'ar_cuil',
+      id_type: 'ad_nrt',
       legal_entity_id: 'legal_entity_id',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,7 +27,7 @@ describe('resource identifications', () => {
   test('create: required and optional params', async () => {
     const response = await client.identifications.create({
       id_number: 'id_number',
-      id_type: 'ar_cuil',
+      id_type: 'ad_nrt',
       legal_entity_id: 'legal_entity_id',
       documents: [
         {
@@ -72,7 +72,7 @@ describe('resource identifications', () => {
         {
           expiration_date: '2019-12-27',
           id_number: 'id_number',
-          id_type: 'ar_cuil',
+          id_type: 'ad_nrt',
           issuing_country: 'issuing_country',
           issuing_region: 'issuing_region',
         },
