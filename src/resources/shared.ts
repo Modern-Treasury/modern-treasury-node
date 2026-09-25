@@ -1097,12 +1097,6 @@ export interface LegalEntityAddressCreateRequest {
   locality: string | null;
 
   /**
-   * Region or State. This field is free-form; for US states, we recommend a
-   * two-letter code (e.g. CA). Full state names are also accepted.
-   */
-  region: string | null;
-
-  /**
    * The types of this address.
    */
   address_types?: Array<
@@ -1121,6 +1115,12 @@ export interface LegalEntityAddressCreateRequest {
    * omitted it is inferred from the address types.
    */
   primary?: boolean | null;
+
+  /**
+   * Region or State. This field is free-form; for US states, we recommend a
+   * two-letter code (e.g. CA). Full state names are also accepted.
+   */
+  region?: string | null;
 }
 
 export interface LegalEntityAssociationInlineCreate {
