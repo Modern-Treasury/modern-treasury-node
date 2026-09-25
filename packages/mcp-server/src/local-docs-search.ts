@@ -90,7 +90,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ping',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpingResponse, err := client.Ping(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pingResponse.Ping)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpingResponse, err := client.Ping(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pingResponse.Ping)\n}\n',
       },
       ruby: {
         method: 'ping',
@@ -145,7 +145,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Connections.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Connections.List(context.TODO(), moderntreasury.ConnectionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Connections.List(context.TODO(), moderntreasury.ConnectionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'connections.list',
@@ -200,7 +200,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.CollectAccount',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterpartyCollectAccountResponse, err := client.Counterparties.CollectAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.CounterpartyCollectAccountParams{\n\t\t\tDirection: moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterpartyCollectAccountResponse.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterpartyCollectAccountResponse, err := client.Counterparties.CollectAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.CounterpartyCollectAccountParams{\n\t\t\tDirection: moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterpartyCollectAccountResponse.ID)\n}\n',
       },
       ruby: {
         method: 'counterparties.collect_account',
@@ -260,7 +260,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Counterparties.List(context.TODO(), moderntreasury.CounterpartyListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Counterparties.List(context.TODO(), moderntreasury.CounterpartyListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'counterparties.list',
@@ -323,7 +323,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.New(context.TODO(), moderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.New(context.TODO(), moderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
       },
       ruby: {
         method: 'counterparties.create',
@@ -373,7 +373,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
       },
       ruby: {
         method: 'counterparties.retrieve',
@@ -432,7 +432,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.CounterpartyUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcounterparty, err := client.Counterparties.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.CounterpartyUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n',
       },
       ruby: {
         method: 'counterparties.update',
@@ -480,7 +480,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Counterparties.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Counterparties.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Counterparties.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'counterparties.delete',
@@ -538,7 +538,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Events.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Events.List(context.TODO(), moderntreasury.EventListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Events.List(context.TODO(), moderntreasury.EventListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'events.list',
@@ -588,7 +588,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Events.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tevent, err := client.Events.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", event.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tevent, err := client.Events.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", event.ID)\n}\n',
       },
       ruby: {
         method: 'events.retrieve',
@@ -652,7 +652,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ExpectedPayments.List(context.TODO(), moderntreasury.ExpectedPaymentListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ExpectedPayments.List(context.TODO(), moderntreasury.ExpectedPaymentListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'expected_payments.list',
@@ -727,7 +727,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.New(context.TODO(), moderntreasury.ExpectedPaymentNewParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.New(context.TODO(), moderntreasury.ExpectedPaymentNewParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
       },
       ruby: {
         method: 'expected_payments.create',
@@ -777,7 +777,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
       },
       ruby: {
         method: 'expected_payments.retrieve',
@@ -851,7 +851,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExpectedPaymentUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExpectedPaymentUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
       },
       ruby: {
         method: 'expected_payments.update',
@@ -901,7 +901,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExpectedPayments.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texpectedPayment, err := client.ExpectedPayments.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", expectedPayment.ID)\n}\n',
       },
       ruby: {
         method: 'expected_payments.delete',
@@ -966,7 +966,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.New(context.TODO(), moderntreasury.ExternalAccountNewParams{\n\t\tCounterpartyID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.New(context.TODO(), moderntreasury.ExternalAccountNewParams{\n\t\tCounterpartyID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'external_accounts.create',
@@ -1014,7 +1014,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.ExternalAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.ExternalAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'external_accounts.delete',
@@ -1071,7 +1071,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.Verify',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tresponse, err := client.ExternalAccounts.Verify(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountVerifyParams{\n\t\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tPaymentType:          moderntreasury.F(moderntreasury.ExternalAccountVerifyParamsPaymentTypeACH),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tresponse, err := client.ExternalAccounts.Verify(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountVerifyParams{\n\t\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tPaymentType:          moderntreasury.F(moderntreasury.ExternalAccountVerifyParamsPaymentTypeACH),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'external_accounts.verify',
@@ -1121,7 +1121,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.CompleteVerification',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.CompleteVerification(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountCompleteVerificationParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.CompleteVerification(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountCompleteVerificationParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'external_accounts.complete_verification',
@@ -1178,7 +1178,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ExternalAccounts.List(context.TODO(), moderntreasury.ExternalAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ExternalAccounts.List(context.TODO(), moderntreasury.ExternalAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'external_accounts.list',
@@ -1228,7 +1228,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'external_accounts.retrieve',
@@ -1287,7 +1287,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ExternalAccounts.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\texternalAccount, err := client.ExternalAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ExternalAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", externalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'external_accounts.update',
@@ -1348,7 +1348,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.IncomingPaymentDetails.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.IncomingPaymentDetails.List(context.TODO(), moderntreasury.IncomingPaymentDetailListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.IncomingPaymentDetails.List(context.TODO(), moderntreasury.IncomingPaymentDetailListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'incoming_payment_details.list',
@@ -1398,7 +1398,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.IncomingPaymentDetails.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
       },
       ruby: {
         method: 'incoming_payment_details.retrieve',
@@ -1448,7 +1448,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.IncomingPaymentDetails.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.IncomingPaymentDetailUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.IncomingPaymentDetailUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
       },
       ruby: {
         method: 'incoming_payment_details.update',
@@ -1509,7 +1509,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.IncomingPaymentDetails.NewAsync',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.NewAsync(context.TODO(), moderntreasury.IncomingPaymentDetailNewAsyncParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tincomingPaymentDetail, err := client.IncomingPaymentDetails.NewAsync(context.TODO(), moderntreasury.IncomingPaymentDetailNewAsyncParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", incomingPaymentDetail.ID)\n}\n',
       },
       ruby: {
         method: 'incoming_payment_details.create_async',
@@ -1573,7 +1573,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Invoices.List(context.TODO(), moderntreasury.InvoiceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Invoices.List(context.TODO(), moderntreasury.InvoiceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'invoices.list',
@@ -1648,7 +1648,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.New(context.TODO(), moderntreasury.InvoiceNewParams{\n\t\tCounterpartyID:       moderntreasury.F("counterparty_id"),\n\t\tDueDate:              moderntreasury.F(time.Now()),\n\t\tOriginatingAccountID: moderntreasury.F("originating_account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.New(context.TODO(), moderntreasury.InvoiceNewParams{\n\t\tCounterpartyID:       moderntreasury.F("counterparty_id"),\n\t\tDueDate:              moderntreasury.F(time.Now()),\n\t\tOriginatingAccountID: moderntreasury.F("originating_account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.create',
@@ -1698,7 +1698,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.retrieve',
@@ -1774,7 +1774,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.InvoiceUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoice, err := client.Invoices.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.InvoiceUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoice.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.update',
@@ -1822,7 +1822,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.AddPaymentOrder',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Invoices.AddPaymentOrder(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"payment_order_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Invoices.AddPaymentOrder(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"payment_order_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'invoices.add_payment_order',
@@ -1872,7 +1872,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Invoices.LineItems.List(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\tmoderntreasury.InvoiceLineItemListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Invoices.LineItems.List(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\tmoderntreasury.InvoiceLineItemListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.list',
@@ -1931,7 +1931,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.New(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\tmoderntreasury.InvoiceLineItemNewParams{\n\t\t\tName:       moderntreasury.F("name"),\n\t\t\tUnitAmount: moderntreasury.F(int64(0)),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.New(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\tmoderntreasury.InvoiceLineItemNewParams{\n\t\t\tName:       moderntreasury.F("name"),\n\t\t\tUnitAmount: moderntreasury.F(int64(0)),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.create',
@@ -1981,7 +1981,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Get(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Get(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.retrieve',
@@ -2041,7 +2041,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Update(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t\tmoderntreasury.InvoiceLineItemUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Update(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t\tmoderntreasury.InvoiceLineItemUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.update',
@@ -2091,7 +2091,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Invoices.LineItems.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Delete(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinvoiceLineItem, err := client.Invoices.LineItems.Delete(\n\t\tcontext.TODO(),\n\t\t"invoice_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", invoiceLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'invoices.line_items.delete',
@@ -2146,7 +2146,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Documents.New',
         example:
-          'package main\n\nimport (\n\t"bytes"\n\t"context"\n\t"fmt"\n\t"io"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tdocument, err := client.Documents.New(context.TODO(), moderntreasury.DocumentNewParams{\n\t\tFile: moderntreasury.F(io.Reader(bytes.NewBuffer([]byte("Example data")))),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", document.ID)\n}\n',
+          'package main\n\nimport (\n\t"bytes"\n\t"context"\n\t"fmt"\n\t"io"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tdocument, err := client.Documents.New(context.TODO(), moderntreasury.DocumentNewParams{\n\t\tFile: moderntreasury.F(io.Reader(bytes.NewBuffer([]byte("Example data")))),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", document.ID)\n}\n',
       },
       ruby: {
         method: 'documents.create',
@@ -2201,7 +2201,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Documents.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Documents.List(context.TODO(), moderntreasury.DocumentListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Documents.List(context.TODO(), moderntreasury.DocumentListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'documents.list',
@@ -2251,7 +2251,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Documents.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tdocument, err := client.Documents.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", document.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tdocument, err := client.Documents.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", document.ID)\n}\n',
       },
       ruby: {
         method: 'documents.retrieve',
@@ -2308,7 +2308,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountCollectionFlows.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.AccountCollectionFlows.List(context.TODO(), moderntreasury.AccountCollectionFlowListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.AccountCollectionFlows.List(context.TODO(), moderntreasury.AccountCollectionFlowListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'account_collection_flows.list',
@@ -2358,7 +2358,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountCollectionFlows.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.New(context.TODO(), moderntreasury.AccountCollectionFlowNewParams{\n\t\tCounterpartyID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tPaymentTypes:   moderntreasury.F([]string{"string"}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.New(context.TODO(), moderntreasury.AccountCollectionFlowNewParams{\n\t\tCounterpartyID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tPaymentTypes:   moderntreasury.F([]string{"string"}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
       },
       ruby: {
         method: 'account_collection_flows.create',
@@ -2408,7 +2408,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountCollectionFlows.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
       },
       ruby: {
         method: 'account_collection_flows.retrieve',
@@ -2458,7 +2458,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountCollectionFlows.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.AccountCollectionFlowUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.AccountCollectionFlowUpdateParamsStatusCancelled),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountCollectionFlow, err := client.AccountCollectionFlows.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.AccountCollectionFlowUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.AccountCollectionFlowUpdateParamsStatusCancelled),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountCollectionFlow.CounterpartyID)\n}\n',
       },
       ruby: {
         method: 'account_collection_flows.update',
@@ -2513,7 +2513,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountDetails.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.AccountDetails.List(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.AccountDetailListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.AccountDetails.List(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.AccountDetailListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'account_details.list',
@@ -2568,7 +2568,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountDetails.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountDetail, err := client.AccountDetails.New(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.AccountDetailNewParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.AccountDetailNewParams{\n\t\t\tAccountNumber: moderntreasury.F("account_number"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountDetail, err := client.AccountDetails.New(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.AccountDetailNewParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.AccountDetailNewParams{\n\t\t\tAccountNumber: moderntreasury.F("account_number"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountDetail.ID)\n}\n',
       },
       ruby: {
         method: 'account_details.create',
@@ -2622,7 +2622,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountDetails.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountDetail, err := client.AccountDetails.Get(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\taccountDetail, err := client.AccountDetails.Get(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountDetail.ID)\n}\n',
       },
       ruby: {
         method: 'account_details.retrieve',
@@ -2670,7 +2670,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.AccountDetails.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.AccountDetails.Delete(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.AccountDetailDeleteParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.AccountDetails.Delete(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.AccountDetailDeleteParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'account_details.delete',
@@ -2725,7 +2725,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.RoutingDetails.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.RoutingDetails.List(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.RoutingDetailListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.RoutingDetails.List(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.RoutingDetailListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'routing_details.list',
@@ -2781,7 +2781,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.RoutingDetails.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingDetail, err := client.RoutingDetails.New(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.RoutingDetailNewParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.RoutingDetailNewParams{\n\t\t\tRoutingNumber:     moderntreasury.F("routing_number"),\n\t\t\tRoutingNumberType: moderntreasury.F(moderntreasury.RoutingDetailNewParamsRoutingNumberTypeAba),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingDetail, err := client.RoutingDetails.New(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.RoutingDetailNewParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\tmoderntreasury.RoutingDetailNewParams{\n\t\t\tRoutingNumber:     moderntreasury.F("routing_number"),\n\t\t\tRoutingNumberType: moderntreasury.F(moderntreasury.RoutingDetailNewParamsRoutingNumberTypeAba),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingDetail.ID)\n}\n',
       },
       ruby: {
         method: 'routing_details.create',
@@ -2835,7 +2835,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.RoutingDetails.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingDetail, err := client.RoutingDetails.Get(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingDetail.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingDetail, err := client.RoutingDetails.Get(\n\t\tcontext.TODO(),\n\t\tshared.AccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingDetail.ID)\n}\n',
       },
       ruby: {
         method: 'routing_details.retrieve',
@@ -2883,7 +2883,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.RoutingDetails.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.RoutingDetails.Delete(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.RoutingDetailDeleteParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.RoutingDetails.Delete(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.RoutingDetailDeleteParamsAccountsTypeExternalAccounts,\n\t\t"account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'routing_details.delete',
@@ -2944,7 +2944,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.InternalAccounts.List(context.TODO(), moderntreasury.InternalAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.InternalAccounts.List(context.TODO(), moderntreasury.InternalAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.list',
@@ -3010,7 +3010,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.New(context.TODO(), moderntreasury.InternalAccountNewParams{\n\t\tCurrency: moderntreasury.F(moderntreasury.InternalAccountNewParamsCurrencyUsd),\n\t\tName:     moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.New(context.TODO(), moderntreasury.InternalAccountNewParams{\n\t\tCurrency: moderntreasury.F(moderntreasury.InternalAccountNewParamsCurrencyUsd),\n\t\tName:     moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.create',
@@ -3060,7 +3060,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.retrieve',
@@ -3121,7 +3121,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.InternalAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.InternalAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.update',
@@ -3171,7 +3171,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.UpdateAccountCapability',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tresponse, err := client.InternalAccounts.UpdateAccountCapability(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\t"id",\n\t\tmoderntreasury.InternalAccountUpdateAccountCapabilityParams{\n\t\t\tIdentifier: moderntreasury.F("identifier"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tresponse, err := client.InternalAccounts.UpdateAccountCapability(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\t"id",\n\t\tmoderntreasury.InternalAccountUpdateAccountCapabilityParams{\n\t\t\tIdentifier: moderntreasury.F("identifier"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.update_account_capability',
@@ -3221,7 +3221,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.RequestClosure',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.RequestClosure(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tinternalAccount, err := client.InternalAccounts.RequestClosure(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", internalAccount.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.request_closure',
@@ -3277,7 +3277,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.BalanceReports.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.InternalAccounts.BalanceReports.List(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.InternalAccounts.BalanceReports.List(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.balance_reports.list',
@@ -3327,7 +3327,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.BalanceReports.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbalanceReport, err := client.InternalAccounts.BalanceReports.Get(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportGetParamsIDLatest,\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", balanceReport.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbalanceReport, err := client.InternalAccounts.BalanceReports.Get(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportGetParamsIDLatest,\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", balanceReport.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.balance_reports.retrieve',
@@ -3383,7 +3383,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.BalanceReports.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbalanceReport, err := client.InternalAccounts.BalanceReports.New(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportNewParams{\n\t\t\tAsOfDate:          moderntreasury.F(time.Now()),\n\t\t\tAsOfTime:          moderntreasury.F("as_of_time"),\n\t\t\tBalanceReportType: moderntreasury.F(moderntreasury.BalanceReportNewParamsBalanceReportTypeIntraday),\n\t\t\tBalances: moderntreasury.F([]moderntreasury.BalanceReportNewParamsBalance{{\n\t\t\t\tBalanceType:    moderntreasury.F(moderntreasury.BalanceReportNewParamsBalancesBalanceTypeClosingAvailable),\n\t\t\t\tVendorCode:     moderntreasury.F("vendor_code"),\n\t\t\t\tVendorCodeType: moderntreasury.F("vendor_code_type"),\n\t\t\t}}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", balanceReport.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbalanceReport, err := client.InternalAccounts.BalanceReports.New(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\tmoderntreasury.BalanceReportNewParams{\n\t\t\tAsOfDate:          moderntreasury.F(time.Now()),\n\t\t\tAsOfTime:          moderntreasury.F("as_of_time"),\n\t\t\tBalanceReportType: moderntreasury.F(moderntreasury.BalanceReportNewParamsBalanceReportTypeIntraday),\n\t\t\tBalances: moderntreasury.F([]moderntreasury.BalanceReportNewParamsBalance{{\n\t\t\t\tBalanceType:    moderntreasury.F(moderntreasury.BalanceReportNewParamsBalancesBalanceTypeClosingAvailable),\n\t\t\t\tVendorCode:     moderntreasury.F("vendor_code"),\n\t\t\t\tVendorCodeType: moderntreasury.F("vendor_code_type"),\n\t\t\t}}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", balanceReport.ID)\n}\n',
       },
       ruby: {
         method: 'internal_accounts.balance_reports.create',
@@ -3431,7 +3431,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.InternalAccounts.BalanceReports.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.InternalAccounts.BalanceReports.Delete(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.InternalAccounts.BalanceReports.Delete(\n\t\tcontext.TODO(),\n\t\t"internal_account_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'internal_accounts.balance_reports.delete',
@@ -3487,7 +3487,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Ledgers.List(context.TODO(), moderntreasury.LedgerListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Ledgers.List(context.TODO(), moderntreasury.LedgerListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledgers.list',
@@ -3537,7 +3537,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.New(context.TODO(), moderntreasury.LedgerNewParams{\n\t\tName: moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.New(context.TODO(), moderntreasury.LedgerNewParams{\n\t\tName: moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
       },
       ruby: {
         method: 'ledgers.create',
@@ -3587,7 +3587,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
       },
       ruby: {
         method: 'ledgers.retrieve',
@@ -3637,7 +3637,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
       },
       ruby: {
         method: 'ledgers.update',
@@ -3687,7 +3687,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Ledgers.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledger, err := client.Ledgers.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledger.ID)\n}\n',
       },
       ruby: {
         method: 'ledgers.delete',
@@ -3749,7 +3749,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountCategories.List(context.TODO(), moderntreasury.LedgerAccountCategoryListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountCategories.List(context.TODO(), moderntreasury.LedgerAccountCategoryListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.list',
@@ -3809,7 +3809,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.New(context.TODO(), moderntreasury.LedgerAccountCategoryNewParams{\n\t\tCurrency:      moderntreasury.F("currency"),\n\t\tLedgerID:      moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tName:          moderntreasury.F("name"),\n\t\tNormalBalance: moderntreasury.F(shared.TransactionDirectionCredit),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.New(context.TODO(), moderntreasury.LedgerAccountCategoryNewParams{\n\t\tCurrency:      moderntreasury.F("currency"),\n\t\tLedgerID:      moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tName:          moderntreasury.F("name"),\n\t\tNormalBalance: moderntreasury.F(shared.TransactionDirectionCredit),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.create',
@@ -3859,7 +3859,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountCategoryGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountCategoryGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.retrieve',
@@ -3915,7 +3915,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountCategoryUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountCategoryUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.update',
@@ -3965,7 +3965,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountCategory, err := client.LedgerAccountCategories.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountCategory.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.delete',
@@ -4013,7 +4013,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.AddLedgerAccount',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.AddLedgerAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"ledger_account_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.AddLedgerAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"ledger_account_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.add_ledger_account',
@@ -4061,7 +4061,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.RemoveLedgerAccount',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.RemoveLedgerAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"ledger_account_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.RemoveLedgerAccount(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"ledger_account_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.remove_ledger_account',
@@ -4109,7 +4109,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.AddNestedCategory',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.AddNestedCategory(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"sub_category_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.AddNestedCategory(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"sub_category_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.add_nested_category',
@@ -4157,7 +4157,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountCategories.RemoveNestedCategory',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.RemoveNestedCategory(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"sub_category_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountCategories.RemoveNestedCategory(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\t"sub_category_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_categories.remove_nested_category',
@@ -4224,7 +4224,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccounts.List(context.TODO(), moderntreasury.LedgerAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccounts.List(context.TODO(), moderntreasury.LedgerAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.list',
@@ -4286,7 +4286,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.New(context.TODO(), moderntreasury.LedgerAccountNewParams{\n\t\tLedgerAccountCreateRequest: shared.LedgerAccountCreateRequestParam{\n\t\t\tCurrency:      moderntreasury.F("currency"),\n\t\t\tLedgerID:      moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tName:          moderntreasury.F("name"),\n\t\t\tNormalBalance: moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.New(context.TODO(), moderntreasury.LedgerAccountNewParams{\n\t\tLedgerAccountCreateRequest: shared.LedgerAccountCreateRequestParam{\n\t\t\tCurrency:      moderntreasury.F("currency"),\n\t\t\tLedgerID:      moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tName:          moderntreasury.F("name"),\n\t\t\tNormalBalance: moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.create',
@@ -4339,7 +4339,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.retrieve',
@@ -4395,7 +4395,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.update',
@@ -4445,7 +4445,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccounts.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccount, err := client.LedgerAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccount.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_accounts.delete',
@@ -4500,7 +4500,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.New(context.TODO(), moderntreasury.LedgerAccountBalanceMonitorNewParams{\n\t\tAlertCondition: moderntreasury.F(moderntreasury.LedgerAccountBalanceMonitorNewParamsAlertCondition{\n\t\t\tField:    moderntreasury.F("field"),\n\t\t\tOperator: moderntreasury.F("operator"),\n\t\t\tValue:    moderntreasury.F(int64(0)),\n\t\t}),\n\t\tLedgerAccountID: moderntreasury.F("ledger_account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.New(context.TODO(), moderntreasury.LedgerAccountBalanceMonitorNewParams{\n\t\tAlertCondition: moderntreasury.F(moderntreasury.LedgerAccountBalanceMonitorNewParamsAlertCondition{\n\t\t\tField:    moderntreasury.F("field"),\n\t\t\tOperator: moderntreasury.F("operator"),\n\t\t\tValue:    moderntreasury.F(int64(0)),\n\t\t}),\n\t\tLedgerAccountID: moderntreasury.F("ledger_account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.create',
@@ -4556,7 +4556,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountBalanceMonitors.List(context.TODO(), moderntreasury.LedgerAccountBalanceMonitorListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountBalanceMonitors.List(context.TODO(), moderntreasury.LedgerAccountBalanceMonitorListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.list',
@@ -4606,7 +4606,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.retrieve',
@@ -4656,7 +4656,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountBalanceMonitorUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountBalanceMonitorUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.update',
@@ -4706,7 +4706,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountBalanceMonitors.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountBalanceMonitor, err := client.LedgerAccountBalanceMonitors.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountBalanceMonitor.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_balance_monitors.delete',
@@ -4762,7 +4762,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountStatements.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountStatement, err := client.LedgerAccountStatements.New(context.TODO(), moderntreasury.LedgerAccountStatementNewParams{\n\t\tEffectiveAtLowerBound: moderntreasury.F(time.Now()),\n\t\tEffectiveAtUpperBound: moderntreasury.F(time.Now()),\n\t\tLedgerAccountID:       moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountStatement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountStatement, err := client.LedgerAccountStatements.New(context.TODO(), moderntreasury.LedgerAccountStatementNewParams{\n\t\tEffectiveAtLowerBound: moderntreasury.F(time.Now()),\n\t\tEffectiveAtUpperBound: moderntreasury.F(time.Now()),\n\t\tLedgerAccountID:       moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountStatement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_statements.create',
@@ -4812,7 +4812,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountStatements.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountStatement, err := client.LedgerAccountStatements.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountStatement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountStatement, err := client.LedgerAccountStatements.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountStatement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_statements.retrieve',
@@ -4884,7 +4884,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerEntries.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerEntries.List(context.TODO(), moderntreasury.LedgerEntryListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerEntries.List(context.TODO(), moderntreasury.LedgerEntryListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_entries.list',
@@ -4934,7 +4934,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerEntries.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerEntry, err := client.LedgerEntries.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerEntryGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerEntry.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerEntry, err := client.LedgerEntries.Get(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerEntryGetParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerEntry.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_entries.retrieve',
@@ -4984,7 +4984,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerEntries.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerEntry, err := client.LedgerEntries.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerEntryUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerEntry.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerEntry, err := client.LedgerEntries.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerEntryUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerEntry.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_entries.update',
@@ -5055,7 +5055,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerTransactions.List(context.TODO(), moderntreasury.LedgerTransactionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerTransactions.List(context.TODO(), moderntreasury.LedgerTransactionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.list',
@@ -5115,7 +5115,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.New(context.TODO(), moderntreasury.LedgerTransactionNewParams{\n\t\tLedgerTransactionCreateRequest: shared.LedgerTransactionCreateRequestParam{\n\t\t\tLedgerEntries: moderntreasury.F([]shared.LedgerEntryCreateRequestParam{{\n\t\t\t\tDirection:       moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t\t\tLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\t}}),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.New(context.TODO(), moderntreasury.LedgerTransactionNewParams{\n\t\tLedgerTransactionCreateRequest: shared.LedgerTransactionCreateRequestParam{\n\t\t\tLedgerEntries: moderntreasury.F([]shared.LedgerEntryCreateRequestParam{{\n\t\t\t\tDirection:       moderntreasury.F(shared.TransactionDirectionCredit),\n\t\t\t\tLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\t}}),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.create',
@@ -5165,7 +5165,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.retrieve',
@@ -5225,7 +5225,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.update',
@@ -5284,7 +5284,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.NewReversal',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.NewReversal(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionNewReversalParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.NewReversal(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionNewReversalParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.create_reversal',
@@ -5340,7 +5340,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.NewPartialPost',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.NewPartialPost(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionNewPartialPostParams{\n\t\t\tPostedLedgerEntries: moderntreasury.F([]moderntreasury.LedgerTransactionNewPartialPostParamsPostedLedgerEntry{{\n\t\t\t\tDirection:       moderntreasury.F(moderntreasury.LedgerTransactionNewPartialPostParamsPostedLedgerEntriesDirectionCredit),\n\t\t\t\tLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\t}}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerTransaction, err := client.LedgerTransactions.NewPartialPost(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerTransactionNewPartialPostParams{\n\t\t\tPostedLedgerEntries: moderntreasury.F([]moderntreasury.LedgerTransactionNewPartialPostParamsPostedLedgerEntry{{\n\t\t\t\tDirection:       moderntreasury.F(moderntreasury.LedgerTransactionNewPartialPostParamsPostedLedgerEntriesDirectionCredit),\n\t\t\t\tLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\t}}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerTransaction.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.create_partial_post',
@@ -5397,7 +5397,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerTransactions.Versions.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerTransactions.Versions.List(context.TODO(), moderntreasury.LedgerTransactionVersionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerTransactions.Versions.List(context.TODO(), moderntreasury.LedgerTransactionVersionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_transactions.versions.list',
@@ -5452,7 +5452,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LineItems.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LineItems.List(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemListParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\tmoderntreasury.LineItemListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LineItems.List(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemListParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\tmoderntreasury.LineItemListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'line_items.list',
@@ -5506,7 +5506,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LineItems.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlineItem, err := client.LineItems.Get(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemGetParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", lineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlineItem, err := client.LineItems.Get(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemGetParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\t"id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", lineItem.ID)\n}\n',
       },
       ruby: {
         method: 'line_items.retrieve',
@@ -5561,7 +5561,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LineItems.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlineItem, err := client.LineItems.Update(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemUpdateParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\t"id",\n\t\tmoderntreasury.LineItemUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", lineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlineItem, err := client.LineItems.Update(\n\t\tcontext.TODO(),\n\t\tmoderntreasury.LineItemUpdateParamsItemizableTypeExpectedPayments,\n\t\t"itemizable_id",\n\t\t"id",\n\t\tmoderntreasury.LineItemUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", lineItem.ID)\n}\n',
       },
       ruby: {
         method: 'line_items.update',
@@ -5620,7 +5620,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentFlows.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentFlows.List(context.TODO(), moderntreasury.PaymentFlowListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentFlows.List(context.TODO(), moderntreasury.PaymentFlowListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_flows.list',
@@ -5677,7 +5677,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentFlows.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.New(context.TODO(), moderntreasury.PaymentFlowNewParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tCounterpartyID:       moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tCurrency:             moderntreasury.F("currency"),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentFlowNewParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.New(context.TODO(), moderntreasury.PaymentFlowNewParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tCounterpartyID:       moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tCurrency:             moderntreasury.F("currency"),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentFlowNewParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
       },
       ruby: {
         method: 'payment_flows.create',
@@ -5727,7 +5727,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentFlows.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
       },
       ruby: {
         method: 'payment_flows.retrieve',
@@ -5777,7 +5777,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentFlows.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentFlowUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.PaymentFlowUpdateParamsStatusCancelled),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentFlow, err := client.PaymentFlows.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentFlowUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.PaymentFlowUpdateParamsStatusCancelled),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentFlow.ID)\n}\n',
       },
       ruby: {
         method: 'payment_flows.update',
@@ -5870,7 +5870,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.New(context.TODO(), moderntreasury.PaymentOrderNewParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentOrderNewParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.New(context.TODO(), moderntreasury.PaymentOrderNewParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentOrderNewParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.create',
@@ -5962,7 +5962,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.NewAsync',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tasyncResponse, err := client.PaymentOrders.NewAsync(context.TODO(), moderntreasury.PaymentOrderNewAsyncParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentOrderNewAsyncParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", asyncResponse.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tasyncResponse, err := client.PaymentOrders.NewAsync(context.TODO(), moderntreasury.PaymentOrderNewAsyncParams{\n\t\tAmount:               moderntreasury.F(int64(0)),\n\t\tDirection:            moderntreasury.F(moderntreasury.PaymentOrderNewAsyncParamsDirectionCredit),\n\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", asyncResponse.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.create_async',
@@ -6030,7 +6030,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentOrders.List(context.TODO(), moderntreasury.PaymentOrderListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentOrders.List(context.TODO(), moderntreasury.PaymentOrderListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_orders.list',
@@ -6079,7 +6079,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.retrieve',
@@ -6168,7 +6168,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentOrderUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentOrder, err := client.PaymentOrders.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentOrderUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentOrder.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.update',
@@ -6218,7 +6218,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Reversals.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentOrders.Reversals.List(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\tmoderntreasury.PaymentOrderReversalListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentOrders.Reversals.List(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\tmoderntreasury.PaymentOrderReversalListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_orders.reversals.list',
@@ -6273,7 +6273,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Reversals.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treversal, err := client.PaymentOrders.Reversals.New(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\tmoderntreasury.PaymentOrderReversalNewParams{\n\t\t\tReason: moderntreasury.F(moderntreasury.PaymentOrderReversalNewParamsReasonDuplicate),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", reversal.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treversal, err := client.PaymentOrders.Reversals.New(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\tmoderntreasury.PaymentOrderReversalNewParams{\n\t\t\tReason: moderntreasury.F(moderntreasury.PaymentOrderReversalNewParamsReasonDuplicate),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", reversal.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.reversals.create',
@@ -6323,7 +6323,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentOrders.Reversals.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treversal, err := client.PaymentOrders.Reversals.Get(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\t"reversal_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", reversal.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treversal, err := client.PaymentOrders.Reversals.Get(\n\t\tcontext.TODO(),\n\t\t"payment_order_id",\n\t\t"reversal_id",\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", reversal.ID)\n}\n',
       },
       ruby: {
         method: 'payment_orders.reversals.retrieve',
@@ -6379,7 +6379,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentReferences.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentReferences.List(context.TODO(), moderntreasury.PaymentReferenceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentReferences.List(context.TODO(), moderntreasury.PaymentReferenceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_references.list',
@@ -6429,7 +6429,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentReferences.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentReference, err := client.PaymentReferences.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentReference.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentReference, err := client.PaymentReferences.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentReference.ID)\n}\n',
       },
       ruby: {
         method: 'payment_references.retrieve',
@@ -6470,7 +6470,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentReferences.Retireve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentReference, err := client.PaymentReferences.Retireve(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentReference.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentReference, err := client.PaymentReferences.Retireve(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentReference.ID)\n}\n',
       },
       ruby: {
         method: 'payment_references.retireve',
@@ -6527,7 +6527,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Returns.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Returns.List(context.TODO(), moderntreasury.ReturnListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Returns.List(context.TODO(), moderntreasury.ReturnListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'returns.list',
@@ -6588,7 +6588,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Returns.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treturnObject, err := client.Returns.New(context.TODO(), moderntreasury.ReturnNewParams{\n\t\tReturnableID:   moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tReturnableType: moderntreasury.F(moderntreasury.ReturnNewParamsReturnableTypeIncomingPaymentDetail),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", returnObject.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treturnObject, err := client.Returns.New(context.TODO(), moderntreasury.ReturnNewParams{\n\t\tReturnableID:   moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tReturnableType: moderntreasury.F(moderntreasury.ReturnNewParamsReturnableTypeIncomingPaymentDetail),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", returnObject.ID)\n}\n',
       },
       ruby: {
         method: 'returns.create',
@@ -6638,7 +6638,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Returns.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treturnObject, err := client.Returns.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", returnObject.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\treturnObject, err := client.Returns.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", returnObject.ID)\n}\n',
       },
       ruby: {
         method: 'returns.retrieve',
@@ -6703,7 +6703,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Transactions.List(context.TODO(), moderntreasury.TransactionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Transactions.List(context.TODO(), moderntreasury.TransactionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'transactions.list',
@@ -6753,7 +6753,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.retrieve',
@@ -6803,7 +6803,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.TransactionUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.TransactionUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.update',
@@ -6866,7 +6866,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.New(context.TODO(), moderntreasury.TransactionNewParams{\n\t\tAsOfDate:          moderntreasury.F(time.Now()),\n\t\tDirection:         moderntreasury.F("direction"),\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tVendorCode:        moderntreasury.F("vendor_code"),\n\t\tVendorCodeType:    moderntreasury.F("vendor_code_type"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransaction, err := client.Transactions.New(context.TODO(), moderntreasury.TransactionNewParams{\n\t\tAsOfDate:          moderntreasury.F(time.Now()),\n\t\tDirection:         moderntreasury.F("direction"),\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tVendorCode:        moderntreasury.F("vendor_code"),\n\t\tVendorCodeType:    moderntreasury.F("vendor_code_type"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transaction.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.create',
@@ -6914,7 +6914,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Transactions.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Transactions.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'transactions.delete',
@@ -6970,7 +6970,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.LineItems.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Transactions.LineItems.List(context.TODO(), moderntreasury.TransactionLineItemListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Transactions.LineItems.List(context.TODO(), moderntreasury.TransactionLineItemListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'transactions.line_items.list',
@@ -7020,7 +7020,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.LineItems.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransactionLineItem, err := client.Transactions.LineItems.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transactionLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransactionLineItem, err := client.Transactions.LineItems.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transactionLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.line_items.retrieve',
@@ -7070,7 +7070,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.LineItems.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransactionLineItem, err := client.Transactions.LineItems.New(context.TODO(), moderntreasury.TransactionLineItemNewParams{\n\t\tAmount:            moderntreasury.F(int64(0)),\n\t\tExpectedPaymentID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTransactionID:     moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transactionLineItem.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\ttransactionLineItem, err := client.Transactions.LineItems.New(context.TODO(), moderntreasury.TransactionLineItemNewParams{\n\t\tAmount:            moderntreasury.F(int64(0)),\n\t\tExpectedPaymentID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTransactionID:     moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", transactionLineItem.ID)\n}\n',
       },
       ruby: {
         method: 'transactions.line_items.create',
@@ -7118,7 +7118,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Transactions.LineItems.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Transactions.LineItems.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.Transactions.LineItems.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'transactions.line_items.delete',
@@ -7168,7 +7168,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Validations.ValidateRoutingNumber',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingNumberLookupRequest, err := client.Validations.ValidateRoutingNumber(context.TODO(), moderntreasury.ValidationValidateRoutingNumberParams{\n\t\tRoutingNumber:     moderntreasury.F("routing_number"),\n\t\tRoutingNumberType: moderntreasury.F(moderntreasury.ValidationValidateRoutingNumberParamsRoutingNumberTypeAba),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingNumberLookupRequest.BankAddress)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\troutingNumberLookupRequest, err := client.Validations.ValidateRoutingNumber(context.TODO(), moderntreasury.ValidationValidateRoutingNumberParams{\n\t\tRoutingNumber:     moderntreasury.F("routing_number"),\n\t\tRoutingNumberType: moderntreasury.F(moderntreasury.ValidationValidateRoutingNumberParamsRoutingNumberTypeAba),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", routingNumberLookupRequest.BankAddress)\n}\n',
       },
       ruby: {
         method: 'validations.validate_routing_number',
@@ -7225,7 +7225,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.VirtualAccounts.List(context.TODO(), moderntreasury.VirtualAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.VirtualAccounts.List(context.TODO(), moderntreasury.VirtualAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.list',
@@ -7289,7 +7289,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.New(context.TODO(), moderntreasury.VirtualAccountNewParams{\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tName:              moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.New(context.TODO(), moderntreasury.VirtualAccountNewParams{\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tName:              moderntreasury.F("name"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.create',
@@ -7339,7 +7339,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.retrieve',
@@ -7395,7 +7395,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.VirtualAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.VirtualAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.update',
@@ -7445,7 +7445,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccounts.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccount, err := client.VirtualAccounts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccount.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_accounts.delete',
@@ -7502,7 +7502,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkRequests.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.BulkRequests.List(context.TODO(), moderntreasury.BulkRequestListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.BulkRequests.List(context.TODO(), moderntreasury.BulkRequestListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'bulk_requests.list',
@@ -7557,7 +7557,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkRequests.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkRequest, err := client.BulkRequests.New(context.TODO(), moderntreasury.BulkRequestNewParams{\n\t\tActionType:   moderntreasury.F(moderntreasury.BulkRequestNewParamsActionTypeCreate),\n\t\tResourceType: moderntreasury.F(moderntreasury.BulkRequestNewParamsResourceTypePaymentOrder),\n\t\tResources: moderntreasury.F([]moderntreasury.BulkRequestNewParamsResourceUnion{moderntreasury.BulkRequestNewParamsResourcesPaymentOrderAsyncCreateRequest{\n\t\t\tAmount:               moderntreasury.F(int64(0)),\n\t\t\tDirection:            moderntreasury.F(moderntreasury.BulkRequestNewParamsResourcesPaymentOrderAsyncCreateRequestDirectionCredit),\n\t\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t\t}}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkRequest.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkRequest, err := client.BulkRequests.New(context.TODO(), moderntreasury.BulkRequestNewParams{\n\t\tActionType:   moderntreasury.F(moderntreasury.BulkRequestNewParamsActionTypeCreate),\n\t\tResourceType: moderntreasury.F(moderntreasury.BulkRequestNewParamsResourceTypePaymentOrder),\n\t\tResources: moderntreasury.F([]moderntreasury.BulkRequestNewParamsResourceUnion{moderntreasury.BulkRequestNewParamsResourcesPaymentOrderAsyncCreateRequest{\n\t\t\tAmount:               moderntreasury.F(int64(0)),\n\t\t\tDirection:            moderntreasury.F(moderntreasury.BulkRequestNewParamsResourcesPaymentOrderAsyncCreateRequestDirectionCredit),\n\t\t\tOriginatingAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\t\tType:                 moderntreasury.F(moderntreasury.PaymentOrderTypeACH),\n\t\t}}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkRequest.ID)\n}\n',
       },
       ruby: {
         method: 'bulk_requests.create',
@@ -7607,7 +7607,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkRequests.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkRequest, err := client.BulkRequests.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkRequest.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkRequest, err := client.BulkRequests.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkRequest.ID)\n}\n',
       },
       ruby: {
         method: 'bulk_requests.retrieve',
@@ -7665,7 +7665,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkResults.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.BulkResults.List(context.TODO(), moderntreasury.BulkResultListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.BulkResults.List(context.TODO(), moderntreasury.BulkResultListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'bulk_results.list',
@@ -7715,7 +7715,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.BulkResults.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkResult, err := client.BulkResults.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkResult.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tbulkResult, err := client.BulkResults.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", bulkResult.ID)\n}\n',
       },
       ruby: {
         method: 'bulk_results.retrieve',
@@ -7774,7 +7774,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.New(context.TODO(), moderntreasury.LedgerAccountSettlementNewParams{\n\t\tContraLedgerAccountID:  moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tSettledLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.New(context.TODO(), moderntreasury.LedgerAccountSettlementNewParams{\n\t\tContraLedgerAccountID:  moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tSettledLedgerAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.create',
@@ -7835,7 +7835,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountSettlements.List(context.TODO(), moderntreasury.LedgerAccountSettlementListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LedgerAccountSettlements.List(context.TODO(), moderntreasury.LedgerAccountSettlementListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.list',
@@ -7885,7 +7885,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.retrieve',
@@ -7941,7 +7941,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tledgerAccountSettlement, err := client.LedgerAccountSettlements.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ledgerAccountSettlement.ID)\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.update',
@@ -7989,7 +7989,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.AccountEntries.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountSettlements.AccountEntries.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementAccountEntryUpdateParams{\n\t\t\tLedgerEntryIDs: moderntreasury.F([]string{"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountSettlements.AccountEntries.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementAccountEntryUpdateParams{\n\t\t\tLedgerEntryIDs: moderntreasury.F([]string{"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.account_entries.update',
@@ -8037,7 +8037,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LedgerAccountSettlements.AccountEntries.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountSettlements.AccountEntries.Delete(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementAccountEntryDeleteParams{\n\t\t\tLedgerEntryIDs: moderntreasury.F([]string{"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.LedgerAccountSettlements.AccountEntries.Delete(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LedgerAccountSettlementAccountEntryDeleteParams{\n\t\t\tLedgerEntryIDs: moderntreasury.F([]string{"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ledger_account_settlements.account_entries.delete',
@@ -8097,7 +8097,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ForeignExchangeQuotes.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ForeignExchangeQuotes.List(context.TODO(), moderntreasury.ForeignExchangeQuoteListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ForeignExchangeQuotes.List(context.TODO(), moderntreasury.ForeignExchangeQuoteListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'foreign_exchange_quotes.list',
@@ -8154,7 +8154,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ForeignExchangeQuotes.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tforeignExchangeQuote, err := client.ForeignExchangeQuotes.New(context.TODO(), moderntreasury.ForeignExchangeQuoteNewParams{\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTargetCurrency:    moderntreasury.F(shared.CurrencyAed),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", foreignExchangeQuote.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/shared"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tforeignExchangeQuote, err := client.ForeignExchangeQuotes.New(context.TODO(), moderntreasury.ForeignExchangeQuoteNewParams{\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTargetCurrency:    moderntreasury.F(shared.CurrencyAed),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", foreignExchangeQuote.ID)\n}\n',
       },
       ruby: {
         method: 'foreign_exchange_quotes.create',
@@ -8204,7 +8204,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ForeignExchangeQuotes.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tforeignExchangeQuote, err := client.ForeignExchangeQuotes.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", foreignExchangeQuote.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tforeignExchangeQuote, err := client.ForeignExchangeQuotes.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", foreignExchangeQuote.ID)\n}\n',
       },
       ruby: {
         method: 'foreign_exchange_quotes.retrieve',
@@ -8260,7 +8260,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ConnectionLegalEntities.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ConnectionLegalEntities.List(context.TODO(), moderntreasury.ConnectionLegalEntityListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.ConnectionLegalEntities.List(context.TODO(), moderntreasury.ConnectionLegalEntityListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'connection_legal_entities.list',
@@ -8314,7 +8314,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ConnectionLegalEntities.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.New(context.TODO(), moderntreasury.ConnectionLegalEntityNewParams{\n\t\tConnectionID: moderntreasury.F("connection_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.New(context.TODO(), moderntreasury.ConnectionLegalEntityNewParams{\n\t\tConnectionID: moderntreasury.F("connection_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'connection_legal_entities.create',
@@ -8364,7 +8364,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ConnectionLegalEntities.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'connection_legal_entities.retrieve',
@@ -8414,7 +8414,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.ConnectionLegalEntities.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ConnectionLegalEntityUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tconnectionLegalEntity, err := client.ConnectionLegalEntities.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.ConnectionLegalEntityUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", connectionLegalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'connection_legal_entities.update',
@@ -8471,7 +8471,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LegalEntities.List(context.TODO(), moderntreasury.LegalEntityListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.LegalEntities.List(context.TODO(), moderntreasury.LegalEntityListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'legal_entities.list',
@@ -8564,7 +8564,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.New(context.TODO(), moderntreasury.LegalEntityNewParams{\n\t\tLegalEntityType: moderntreasury.F(moderntreasury.LegalEntityNewParamsLegalEntityTypeBusiness),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.New(context.TODO(), moderntreasury.LegalEntityNewParams{\n\t\tLegalEntityType: moderntreasury.F(moderntreasury.LegalEntityNewParamsLegalEntityTypeBusiness),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entities.create',
@@ -8613,7 +8613,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entities.retrieve',
@@ -8702,7 +8702,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LegalEntityUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LegalEntityUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entities.update',
@@ -8751,7 +8751,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntities.UpdateStatus',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.UpdateStatus(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LegalEntityUpdateStatusParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.LegalEntityUpdateStatusParamsStatusActive),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntity, err := client.LegalEntities.UpdateStatus(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.LegalEntityUpdateStatusParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.LegalEntityUpdateStatusParamsStatusActive),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntity.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entities.update_status',
@@ -8808,7 +8808,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntityAssociations.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntityAssociation, err := client.LegalEntityAssociations.New(context.TODO(), moderntreasury.LegalEntityAssociationNewParams{\n\t\tParentLegalEntityID: moderntreasury.F("parent_legal_entity_id"),\n\t\tRelationshipTypes:   moderntreasury.F([]moderntreasury.LegalEntityAssociationNewParamsRelationshipType{moderntreasury.LegalEntityAssociationNewParamsRelationshipTypeAuthorizedSigner}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntityAssociation.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntityAssociation, err := client.LegalEntityAssociations.New(context.TODO(), moderntreasury.LegalEntityAssociationNewParams{\n\t\tParentLegalEntityID: moderntreasury.F("parent_legal_entity_id"),\n\t\tRelationshipTypes:   moderntreasury.F([]moderntreasury.LegalEntityAssociationNewParamsRelationshipType{moderntreasury.LegalEntityAssociationNewParamsRelationshipTypeAuthorizedSigner}),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntityAssociation.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entity_associations.create',
@@ -8858,7 +8858,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.LegalEntityAssociations.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntityAssociation, err := client.LegalEntityAssociations.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntityAssociation.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tlegalEntityAssociation, err := client.LegalEntityAssociations.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", legalEntityAssociation.ID)\n}\n',
       },
       ruby: {
         method: 'legal_entity_associations.delete',
@@ -8918,7 +8918,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentActions.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentActions.List(context.TODO(), moderntreasury.PaymentActionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.PaymentActions.List(context.TODO(), moderntreasury.PaymentActionListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'payment_actions.list',
@@ -8974,7 +8974,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentActions.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.New(context.TODO(), moderntreasury.PaymentActionNewParams{\n\t\tType: moderntreasury.F("type"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.New(context.TODO(), moderntreasury.PaymentActionNewParams{\n\t\tType: moderntreasury.F("type"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
       },
       ruby: {
         method: 'payment_actions.create',
@@ -9024,7 +9024,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentActions.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
       },
       ruby: {
         method: 'payment_actions.retrieve',
@@ -9077,7 +9077,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.PaymentActions.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentActionUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.PaymentActionUpdateParamsStatusPending),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpaymentAction, err := client.PaymentActions.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.PaymentActionUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.PaymentActionUpdateParamsStatusPending),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", paymentAction.ID)\n}\n',
       },
       ruby: {
         method: 'payment_actions.update',
@@ -9125,7 +9125,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalEntries.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalEntries.List(context.TODO(), moderntreasury.JournalEntryListParams{\n\t\tJournalReportID: moderntreasury.F("journal_report_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalEntries.List(context.TODO(), moderntreasury.JournalEntryListParams{\n\t\tJournalReportID: moderntreasury.F("journal_report_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_entries.list',
@@ -9173,7 +9173,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalEntries.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalEntries.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalEntries.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_entries.retrieve',
@@ -9228,7 +9228,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalSources.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalSources.List(context.TODO(), moderntreasury.JournalSourceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalSources.List(context.TODO(), moderntreasury.JournalSourceListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_sources.list',
@@ -9276,7 +9276,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalSources.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalSources.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalSources.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_sources.retrieve',
@@ -9324,7 +9324,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalReports.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.List(context.TODO(), moderntreasury.JournalReportListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.List(context.TODO(), moderntreasury.JournalReportListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_reports.list',
@@ -9372,7 +9372,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalReports.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_reports.retrieve',
@@ -9420,7 +9420,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.JournalReports.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.JournalReportUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\terr := client.JournalReports.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.JournalReportUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'journal_reports.update',
@@ -9477,7 +9477,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Holds.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Holds.List(context.TODO(), moderntreasury.HoldListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Holds.List(context.TODO(), moderntreasury.HoldListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'holds.list',
@@ -9533,7 +9533,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Holds.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.New(context.TODO(), moderntreasury.HoldNewParams{\n\t\tStatus:     moderntreasury.F(moderntreasury.HoldNewParamsStatusActive),\n\t\tTargetID:   moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTargetType: moderntreasury.F(moderntreasury.HoldNewParamsTargetTypePaymentOrder),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.New(context.TODO(), moderntreasury.HoldNewParams{\n\t\tStatus:     moderntreasury.F(moderntreasury.HoldNewParamsStatusActive),\n\t\tTargetID:   moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t\tTargetType: moderntreasury.F(moderntreasury.HoldNewParamsTargetTypePaymentOrder),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
       },
       ruby: {
         method: 'holds.create',
@@ -9583,7 +9583,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Holds.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
       },
       ruby: {
         method: 'holds.retrieve',
@@ -9633,7 +9633,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Holds.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.HoldUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.HoldUpdateParamsStatusResolved),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\thold, err := client.Holds.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.HoldUpdateParams{\n\t\t\tStatus: moderntreasury.F(moderntreasury.HoldUpdateParamsStatusResolved),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hold.ID)\n}\n',
       },
       ruby: {
         method: 'holds.update',
@@ -9689,7 +9689,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Cases.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Cases.List(context.TODO(), moderntreasury.CaseListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.Cases.List(context.TODO(), moderntreasury.CaseListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'cases.list',
@@ -9739,7 +9739,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Cases.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcase_, err := client.Cases.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", case_.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tcase_, err := client.Cases.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", case_.ID)\n}\n',
       },
       ruby: {
         method: 'cases.retrieve',
@@ -9789,7 +9789,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccountSettings.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.VirtualAccountSettings.List(context.TODO(), moderntreasury.VirtualAccountSettingListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tpage, err := client.VirtualAccountSettings.List(context.TODO(), moderntreasury.VirtualAccountSettingListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'virtual_account_settings.list',
@@ -9848,7 +9848,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.VirtualAccountSettings.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccountSetting, err := client.VirtualAccountSettings.New(context.TODO(), moderntreasury.VirtualAccountSettingNewParams{\n\t\tAllocationType:    moderntreasury.F("allocation_type"),\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccountSetting.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tvirtualAccountSetting, err := client.VirtualAccountSettings.New(context.TODO(), moderntreasury.VirtualAccountSettingNewParams{\n\t\tAllocationType:    moderntreasury.F("allocation_type"),\n\t\tInternalAccountID: moderntreasury.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", virtualAccountSetting.ID)\n}\n',
       },
       ruby: {
         method: 'virtual_account_settings.create',
@@ -9906,7 +9906,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Identifications.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tidentification, err := client.Identifications.New(context.TODO(), moderntreasury.IdentificationNewParams{\n\t\tIDNumber:      moderntreasury.F("id_number"),\n\t\tIDType:        moderntreasury.F(moderntreasury.IdentificationNewParamsIDTypeAdNrt),\n\t\tLegalEntityID: moderntreasury.F("legal_entity_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", identification.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tidentification, err := client.Identifications.New(context.TODO(), moderntreasury.IdentificationNewParams{\n\t\tIDNumber:      moderntreasury.F("id_number"),\n\t\tIDType:        moderntreasury.F(moderntreasury.IdentificationNewParamsIDTypeAdNrt),\n\t\tLegalEntityID: moderntreasury.F("legal_entity_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", identification.ID)\n}\n',
       },
       ruby: {
         method: 'identifications.create',
@@ -9956,7 +9956,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Identifications.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tidentification, err := client.Identifications.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", identification.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tidentification, err := client.Identifications.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", identification.ID)\n}\n',
       },
       ruby: {
         method: 'identifications.retrieve',
@@ -10013,7 +10013,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Identifications.Update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tidentification, err := client.Identifications.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.IdentificationUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", identification.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t\toption.WithOrganizationID("my-organization-ID"),\n\t)\n\tidentification, err := client.Identifications.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tmoderntreasury.IdentificationUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", identification.ID)\n}\n',
       },
       ruby: {
         method: 'identifications.update',
@@ -10048,12 +10048,12 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
   {
     language: 'go',
     content:
-      '# Modern Treasury Go API Library\n\n<a href="https://pkg.go.dev/github.com/Modern-Treasury/modern-treasury-go"><img src="https://pkg.go.dev/badge/github.com/Modern-Treasury/modern-treasury-go.svg" alt="Go Reference"></a>\n\nThe Modern Treasury Go library provides convenient access to the [Modern Treasury REST API](https://docs.moderntreasury.com)\nfrom applications written in Go.\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n```go\nimport (\n\t"github.com/Modern-Treasury/modern-treasury-go" // imported as SDK_PackageName\n)\n```\n\n<!-- x-release-please-end -->\n\nOr to pin the version:\n\n<!-- x-release-please-start-version -->\n\n```sh\ngo get -u \'github.com/Modern-Treasury/modern-treasury-go@v0.0.1\'\n```\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Go 1.22+.\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```go\npackage main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go"\n\t"github.com/Modern-Treasury/modern-treasury-go/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),                 // defaults to os.LookupEnv("MODERN_TREASURY_API_KEY")\n\t\toption.WithOrganizationID("my-organization-ID"), // defaults to os.LookupEnv("MODERN_TREASURY_ORGANIZATION_ID")\n\t)\n\tcounterparty, err := client.Counterparties.New(context.TODO(), moderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n\n```\n\n### Request fields\n\nAll request parameters are wrapped in a generic `Field` type,\nwhich we use to distinguish zero values from null or omitted fields.\n\nThis prevents accidentally sending a zero value if you forget a required parameter,\nand enables explicitly sending `null`, `false`, `\'\'`, or `0` on optional parameters.\nAny field not specified is not sent.\n\nTo construct fields with values, use the helpers `String()`, `Int()`, `Float()`, or most commonly, the generic `F[T]()`.\nTo send a null, use `Null[T]()`, and to send a nonconforming value, use `Raw[T](any)`. For example:\n\n```go\nparams := FooParams{\n\tName: SDK_PackageName.F("hello"),\n\n\t// Explicitly send `"description": null`\n\tDescription: SDK_PackageName.Null[string](),\n\n\tPoint: SDK_PackageName.F(SDK_PackageName.Point{\n\t\tX: SDK_PackageName.Int(0),\n\t\tY: SDK_PackageName.Int(1),\n\n\t\t// In cases where the API specifies a given type,\n\t\t// but you want to send something else, use `Raw`:\n\t\tZ: SDK_PackageName.Raw[int64](0.01), // sends a float\n\t}),\n}\n```\n\n### Response objects\n\nAll fields in response structs are value types (not pointers or wrappers).\n\nIf a given field is `null`, not present, or invalid, the corresponding field\nwill simply be its zero value.\n\nAll response structs also include a special `JSON` field, containing more detailed\ninformation about each property, which you can use like so:\n\n```go\nif res.Name == "" {\n\t// true if `"name"` is either not present or explicitly null\n\tres.JSON.Name.IsNull()\n\n\t// true if the `"name"` key was not present in the response JSON at all\n\tres.JSON.Name.IsMissing()\n\n\t// When the API returns data that cannot be coerced to the expected type:\n\tif res.JSON.Name.IsInvalid() {\n\t\traw := res.JSON.Name.Raw()\n\n\t\tlegacyName := struct{\n\t\t\tFirst string `json:"first"`\n\t\t\tLast  string `json:"last"`\n\t\t}{}\n\t\tjson.Unmarshal([]byte(raw), &legacyName)\n\t\tname = legacyName.First + " " + legacyName.Last\n\t}\n}\n```\n\nThese `.JSON` structs also include an `Extras` map containing\nany properties in the json response that were not specified\nin the struct. This can be useful for API features not yet\npresent in the SDK.\n\n```go\nbody := res.JSON.ExtraFields["my_unexpected_field"].Raw()\n```\n\n### RequestOptions\n\nThis library uses the functional options pattern. Functions defined in the\n`SDK_PackageOptionName` package return a `RequestOption`, which is a closure that mutates a\n`RequestConfig`. These options can be supplied to the client or at individual\nrequests. For example:\n\n```go\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\t// Adds a header to every request made by the client\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "custom_header_info"),\n)\n\nclient.Counterparties.New(context.TODO(), ...,\n\t// Override the header\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "some_other_custom_header_info"),\n\t// Add an undocumented field to the request body, using sjson syntax\n\tSDK_PackageOptionName.WithJSONSet("some.json.path", map[string]string{"my": "object"}),\n)\n```\n\nSee the [full list of request options](https://pkg.go.dev/github.com/Modern-Treasury/modern-treasury-go/SDK_PackageOptionName).\n\n### Pagination\n\nThis library provides some conveniences for working with paginated list endpoints.\n\nYou can use `.ListAutoPaging()` methods to iterate through items across all pages:\n\n```go\niter := client.Counterparties.ListAutoPaging(context.TODO(), moderntreasury.CounterpartyListParams{})\n// Automatically fetches more pages as needed.\nfor iter.Next() {\n\tcounterparty := iter.Current()\n\tfmt.Printf("%+v\\n", counterparty)\n}\nif err := iter.Err(); err != nil {\n\tpanic(err.Error())\n}\n```\n\nOr you can use simple `.List()` methods to fetch a single page and receive a standard response object\nwith additional helper methods like `.GetNextPage()`, e.g.:\n\n```go\npage, err := client.Counterparties.List(context.TODO(), moderntreasury.CounterpartyListParams{})\nfor page != nil {\n\tfor _, counterparty := range page.Items {\n\t\tfmt.Printf("%+v\\n", counterparty)\n\t}\n\tpage, err = page.GetNextPage()\n}\nif err != nil {\n\tpanic(err.Error())\n}\n```\n\n### Errors\n\nWhen the API returns a non-success status code, we return an error with type\n`*SDK_PackageName.Error`. This contains the `StatusCode`, `*http.Request`, and\n`*http.Response` values of the request, as well as the JSON of the error body\n(much like other response objects in the SDK).\n\nTo handle errors, we recommend that you use the `errors.As` pattern:\n\n```go\n_, err := client.ExternalAccounts.New(context.TODO(), moderntreasury.ExternalAccountNewParams{\n\tCounterpartyID: moderntreasury.F("missing"),\n})\nif err != nil {\n\tvar apierr *moderntreasury.Error\n\tif errors.As(err, &apierr) {\n\t\tprintln(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request\n\t\tprintln(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response\n\t}\n\tpanic(err.Error()) // GET "/api/external_accounts": 400 Bad Request { ... }\n}\n```\n\nWhen other errors occur, they are returned unwrapped; for example,\nif HTTP transport fails, you might receive `*url.Error` wrapping `*net.OpError`.\n\n### Timeouts\n\nRequests do not time out by default; use context to configure a timeout for a request lifecycle.\n\nNote that if a request is [retried](#retries), the context timeout does not start over.\nTo set a per-retry timeout, use `SDK_PackageOptionName.WithRequestTimeout()`.\n\n```go\n// This sets the timeout for the request, including all the retries.\nctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)\ndefer cancel()\nclient.Counterparties.New(\n\tctx,\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\t// This sets the per-retry timeout\n\toption.WithRequestTimeout(20*time.Second),\n)\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads in multipart requests are typed as\n`param.Field[io.Reader]`. The contents of the `io.Reader` will by default be sent as a multipart form\npart with the file name of "anonymous_file" and content-type of "application/octet-stream".\n\nThe file name and content-type can be customized by implementing `Name() string` or `ContentType()\nstring` on the run-time type of `io.Reader`. Note that `os.File` implements `Name() string`, so a\nfile returned by `os.Open` will be sent with the file name on disk.\n\nWe also provide a helper `SDK_PackageName.FileParam(reader io.Reader, filename string, contentType string)`\nwhich can be used to wrap any `io.Reader` with the appropriate file name and content type.\n\n```go\n// A file from the file system\nfile, err := os.Open("my/file.txt")\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.F[io.Reader](file),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n\n// A file from a string\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.F[io.Reader](strings.NewReader("my file contents")),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n\n// With a custom filename and contentType\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.FileParam(strings.NewReader(`{"hello": "foo"}`), "file.go", "application/json"),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n```\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nWe retry by default all connection errors, 408 Request Timeout, 409 Conflict, 429 Rate Limit,\nand >=500 Internal errors.\n\nYou can use the `WithMaxRetries` option to configure or disable this:\n\n```go\n// Configure the default for all requests:\nclient := moderntreasury.NewClient(\n\toption.WithMaxRetries(0), // default is 2\n)\n\n// Override per-request:\nclient.Counterparties.New(\n\tcontext.TODO(),\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\toption.WithMaxRetries(5),\n)\n```\n\n\n### Accessing raw response data (e.g. response headers)\n\nYou can access the raw HTTP response data by using the `option.WithResponseInto()` request option. This is useful when\nyou need to examine response headers, status codes, or other details.\n\n```go\n// Create a variable to store the HTTP response\nvar response *http.Response\ncounterparty, err := client.Counterparties.New(\n\tcontext.TODO(),\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\toption.WithResponseInto(&response),\n)\nif err != nil {\n\t// handle error\n}\nfmt.Printf("%+v\\n", counterparty)\n\nfmt.Printf("Status Code: %d\\n", response.StatusCode)\nfmt.Printf("Headers: %+#v\\n", response.Header)\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.Get`, `client.Post`, and other HTTP verbs.\n`RequestOptions` on the client, such as retries, will be respected when making these requests.\n\n```go\nvar (\n    // params can be an io.Reader, a []byte, an encoding/json serializable object,\n    // or a "…Params" struct defined in this library.\n    params map[string]interface{}\n\n    // result can be an []byte, *http.Response, a encoding/json deserializable object,\n    // or a model defined in this library.\n    result *http.Response\n)\nerr := client.Post(context.Background(), "/unspecified", params, &result)\nif err != nil {\n    …\n}\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use either the `SDK_PackageOptionName.WithQuerySet()`\nor the `SDK_PackageOptionName.WithJSONSet()` methods.\n\n```go\nparams := FooNewParams{\n    ID:   SDK_PackageName.F("id_xxxx"),\n    Data: SDK_PackageName.F(FooNewParamsData{\n        FirstName: SDK_PackageName.F("John"),\n    }),\n}\nclient.Foo.New(context.Background(), params, SDK_PackageOptionName.WithJSONSet("data.last_name", "Doe"))\n```\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may either access the raw JSON of the response as a string\nwith `result.JSON.RawJSON()`, or get the raw JSON of a particular field on the result with\n`result.JSON.Foo.Raw()`.\n\nAny fields that are not present on the response struct will be saved and can be accessed by `result.JSON.ExtraFields()` which returns the extra fields as a `map[string]Field`.\n\n### Middleware\n\nWe provide `SDK_PackageOptionName.WithMiddleware` which applies the given\nmiddleware to requests.\n\n```go\nfunc Logger(req *http.Request, next SDK_PackageOptionName.MiddlewareNext) (res *http.Response, err error) {\n\t// Before the request\n\tstart := time.Now()\n\tLogReq(req)\n\n\t// Forward the request to the next handler\n\tres, err = next(req)\n\n\t// Handle stuff after the request\n\tend := time.Now()\n\tLogRes(res, err, start - end)\n\n    return res, err\n}\n\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\tSDK_PackageOptionName.WithMiddleware(Logger),\n)\n```\n\nWhen multiple middlewares are provided as variadic arguments, the middlewares\nare applied left to right. If `SDK_PackageOptionName.WithMiddleware` is given\nmultiple times, for example first in the client then the method, the\nmiddleware in the client will run first and the middleware given in the method\nwill run next.\n\nYou may also replace the default `http.Client` with\n`SDK_PackageOptionName.WithHTTPClient(client)`. Only one http client is\naccepted (this overwrites any previous client) and receives requests after any\nmiddleware has been applied.\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-go/issues) with questions, bugs, or suggestions.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
+      '# Modern Treasury Go API Library\n\n<a href="https://pkg.go.dev/github.com/Modern-Treasury/modern-treasury-go/v2"><img src="https://pkg.go.dev/badge/github.com/Modern-Treasury/modern-treasury-go/v2.svg" alt="Go Reference"></a>\n\nThe Modern Treasury Go library provides convenient access to the [Modern Treasury REST API](https://docs.moderntreasury.com)\nfrom applications written in Go.\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n```go\nimport (\n\t"github.com/Modern-Treasury/modern-treasury-go/v2" // imported as SDK_PackageName\n)\n```\n\n<!-- x-release-please-end -->\n\nOr to pin the version:\n\n<!-- x-release-please-start-version -->\n\n```sh\ngo get -u \'github.com/Modern-Treasury/modern-treasury-go/v2@v2.61.0\'\n```\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Go 1.22+.\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```go\npackage main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/Modern-Treasury/modern-treasury-go/v2"\n\t"github.com/Modern-Treasury/modern-treasury-go/v2/option"\n)\n\nfunc main() {\n\tclient := moderntreasury.NewClient(\n\t\toption.WithAPIKey("My API Key"),                 // defaults to os.LookupEnv("MODERN_TREASURY_API_KEY")\n\t\toption.WithOrganizationID("my-organization-ID"), // defaults to os.LookupEnv("MODERN_TREASURY_ORGANIZATION_ID")\n\t)\n\tcounterparty, err := client.Counterparties.New(context.TODO(), moderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", counterparty.ID)\n}\n\n```\n\n### Request fields\n\nAll request parameters are wrapped in a generic `Field` type,\nwhich we use to distinguish zero values from null or omitted fields.\n\nThis prevents accidentally sending a zero value if you forget a required parameter,\nand enables explicitly sending `null`, `false`, `\'\'`, or `0` on optional parameters.\nAny field not specified is not sent.\n\nTo construct fields with values, use the helpers `String()`, `Int()`, `Float()`, or most commonly, the generic `F[T]()`.\nTo send a null, use `Null[T]()`, and to send a nonconforming value, use `Raw[T](any)`. For example:\n\n```go\nparams := FooParams{\n\tName: SDK_PackageName.F("hello"),\n\n\t// Explicitly send `"description": null`\n\tDescription: SDK_PackageName.Null[string](),\n\n\tPoint: SDK_PackageName.F(SDK_PackageName.Point{\n\t\tX: SDK_PackageName.Int(0),\n\t\tY: SDK_PackageName.Int(1),\n\n\t\t// In cases where the API specifies a given type,\n\t\t// but you want to send something else, use `Raw`:\n\t\tZ: SDK_PackageName.Raw[int64](0.01), // sends a float\n\t}),\n}\n```\n\n### Response objects\n\nAll fields in response structs are value types (not pointers or wrappers).\n\nIf a given field is `null`, not present, or invalid, the corresponding field\nwill simply be its zero value.\n\nAll response structs also include a special `JSON` field, containing more detailed\ninformation about each property, which you can use like so:\n\n```go\nif res.Name == "" {\n\t// true if `"name"` is either not present or explicitly null\n\tres.JSON.Name.IsNull()\n\n\t// true if the `"name"` key was not present in the response JSON at all\n\tres.JSON.Name.IsMissing()\n\n\t// When the API returns data that cannot be coerced to the expected type:\n\tif res.JSON.Name.IsInvalid() {\n\t\traw := res.JSON.Name.Raw()\n\n\t\tlegacyName := struct{\n\t\t\tFirst string `json:"first"`\n\t\t\tLast  string `json:"last"`\n\t\t}{}\n\t\tjson.Unmarshal([]byte(raw), &legacyName)\n\t\tname = legacyName.First + " " + legacyName.Last\n\t}\n}\n```\n\nThese `.JSON` structs also include an `Extras` map containing\nany properties in the json response that were not specified\nin the struct. This can be useful for API features not yet\npresent in the SDK.\n\n```go\nbody := res.JSON.ExtraFields["my_unexpected_field"].Raw()\n```\n\n### RequestOptions\n\nThis library uses the functional options pattern. Functions defined in the\n`SDK_PackageOptionName` package return a `RequestOption`, which is a closure that mutates a\n`RequestConfig`. These options can be supplied to the client or at individual\nrequests. For example:\n\n```go\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\t// Adds a header to every request made by the client\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "custom_header_info"),\n)\n\nclient.Counterparties.New(context.TODO(), ...,\n\t// Override the header\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "some_other_custom_header_info"),\n\t// Add an undocumented field to the request body, using sjson syntax\n\tSDK_PackageOptionName.WithJSONSet("some.json.path", map[string]string{"my": "object"}),\n)\n```\n\nSee the [full list of request options](https://pkg.go.dev/github.com/Modern-Treasury/modern-treasury-go/v2/SDK_PackageOptionName).\n\n### Pagination\n\nThis library provides some conveniences for working with paginated list endpoints.\n\nYou can use `.ListAutoPaging()` methods to iterate through items across all pages:\n\n```go\niter := client.Counterparties.ListAutoPaging(context.TODO(), moderntreasury.CounterpartyListParams{})\n// Automatically fetches more pages as needed.\nfor iter.Next() {\n\tcounterparty := iter.Current()\n\tfmt.Printf("%+v\\n", counterparty)\n}\nif err := iter.Err(); err != nil {\n\tpanic(err.Error())\n}\n```\n\nOr you can use simple `.List()` methods to fetch a single page and receive a standard response object\nwith additional helper methods like `.GetNextPage()`, e.g.:\n\n```go\npage, err := client.Counterparties.List(context.TODO(), moderntreasury.CounterpartyListParams{})\nfor page != nil {\n\tfor _, counterparty := range page.Items {\n\t\tfmt.Printf("%+v\\n", counterparty)\n\t}\n\tpage, err = page.GetNextPage()\n}\nif err != nil {\n\tpanic(err.Error())\n}\n```\n\n### Errors\n\nWhen the API returns a non-success status code, we return an error with type\n`*SDK_PackageName.Error`. This contains the `StatusCode`, `*http.Request`, and\n`*http.Response` values of the request, as well as the JSON of the error body\n(much like other response objects in the SDK).\n\nTo handle errors, we recommend that you use the `errors.As` pattern:\n\n```go\n_, err := client.ExternalAccounts.New(context.TODO(), moderntreasury.ExternalAccountNewParams{\n\tCounterpartyID: moderntreasury.F("missing"),\n})\nif err != nil {\n\tvar apierr *moderntreasury.Error\n\tif errors.As(err, &apierr) {\n\t\tprintln(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request\n\t\tprintln(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response\n\t}\n\tpanic(err.Error()) // GET "/api/external_accounts": 400 Bad Request { ... }\n}\n```\n\nWhen other errors occur, they are returned unwrapped; for example,\nif HTTP transport fails, you might receive `*url.Error` wrapping `*net.OpError`.\n\n### Timeouts\n\nRequests do not time out by default; use context to configure a timeout for a request lifecycle.\n\nNote that if a request is [retried](#retries), the context timeout does not start over.\nTo set a per-retry timeout, use `SDK_PackageOptionName.WithRequestTimeout()`.\n\n```go\n// This sets the timeout for the request, including all the retries.\nctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)\ndefer cancel()\nclient.Counterparties.New(\n\tctx,\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\t// This sets the per-retry timeout\n\toption.WithRequestTimeout(20*time.Second),\n)\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads in multipart requests are typed as\n`param.Field[io.Reader]`. The contents of the `io.Reader` will by default be sent as a multipart form\npart with the file name of "anonymous_file" and content-type of "application/octet-stream".\n\nThe file name and content-type can be customized by implementing `Name() string` or `ContentType()\nstring` on the run-time type of `io.Reader`. Note that `os.File` implements `Name() string`, so a\nfile returned by `os.Open` will be sent with the file name on disk.\n\nWe also provide a helper `SDK_PackageName.FileParam(reader io.Reader, filename string, contentType string)`\nwhich can be used to wrap any `io.Reader` with the appropriate file name and content type.\n\n```go\n// A file from the file system\nfile, err := os.Open("my/file.txt")\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.F[io.Reader](file),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n\n// A file from a string\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.F[io.Reader](strings.NewReader("my file contents")),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n\n// With a custom filename and contentType\nmoderntreasury.DocumentNewParams{\n\tFile:             moderntreasury.FileParam(strings.NewReader(`{"hello": "foo"}`), "file.go", "application/json"),\n\tDocumentableID:   moderntreasury.F("24c6b7a3-02..."),\n\tDocumentableType: moderntreasury.F(moderntreasury.DocumentNewParamsDocumentableTypeConnection),\n}\n```\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nWe retry by default all connection errors, 408 Request Timeout, 409 Conflict, 429 Rate Limit,\nand >=500 Internal errors.\n\nYou can use the `WithMaxRetries` option to configure or disable this:\n\n```go\n// Configure the default for all requests:\nclient := moderntreasury.NewClient(\n\toption.WithMaxRetries(0), // default is 2\n)\n\n// Override per-request:\nclient.Counterparties.New(\n\tcontext.TODO(),\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\toption.WithMaxRetries(5),\n)\n```\n\n\n### Accessing raw response data (e.g. response headers)\n\nYou can access the raw HTTP response data by using the `option.WithResponseInto()` request option. This is useful when\nyou need to examine response headers, status codes, or other details.\n\n```go\n// Create a variable to store the HTTP response\nvar response *http.Response\ncounterparty, err := client.Counterparties.New(\n\tcontext.TODO(),\n\tmoderntreasury.CounterpartyNewParams{\n\t\tName: moderntreasury.F("my first counterparty"),\n\t},\n\toption.WithResponseInto(&response),\n)\nif err != nil {\n\t// handle error\n}\nfmt.Printf("%+v\\n", counterparty)\n\nfmt.Printf("Status Code: %d\\n", response.StatusCode)\nfmt.Printf("Headers: %+#v\\n", response.Header)\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.Get`, `client.Post`, and other HTTP verbs.\n`RequestOptions` on the client, such as retries, will be respected when making these requests.\n\n```go\nvar (\n    // params can be an io.Reader, a []byte, an encoding/json serializable object,\n    // or a "…Params" struct defined in this library.\n    params map[string]interface{}\n\n    // result can be an []byte, *http.Response, a encoding/json deserializable object,\n    // or a model defined in this library.\n    result *http.Response\n)\nerr := client.Post(context.Background(), "/unspecified", params, &result)\nif err != nil {\n    …\n}\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use either the `SDK_PackageOptionName.WithQuerySet()`\nor the `SDK_PackageOptionName.WithJSONSet()` methods.\n\n```go\nparams := FooNewParams{\n    ID:   SDK_PackageName.F("id_xxxx"),\n    Data: SDK_PackageName.F(FooNewParamsData{\n        FirstName: SDK_PackageName.F("John"),\n    }),\n}\nclient.Foo.New(context.Background(), params, SDK_PackageOptionName.WithJSONSet("data.last_name", "Doe"))\n```\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may either access the raw JSON of the response as a string\nwith `result.JSON.RawJSON()`, or get the raw JSON of a particular field on the result with\n`result.JSON.Foo.Raw()`.\n\nAny fields that are not present on the response struct will be saved and can be accessed by `result.JSON.ExtraFields()` which returns the extra fields as a `map[string]Field`.\n\n### Middleware\n\nWe provide `SDK_PackageOptionName.WithMiddleware` which applies the given\nmiddleware to requests.\n\n```go\nfunc Logger(req *http.Request, next SDK_PackageOptionName.MiddlewareNext) (res *http.Response, err error) {\n\t// Before the request\n\tstart := time.Now()\n\tLogReq(req)\n\n\t// Forward the request to the next handler\n\tres, err = next(req)\n\n\t// Handle stuff after the request\n\tend := time.Now()\n\tLogRes(res, err, start - end)\n\n    return res, err\n}\n\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\tSDK_PackageOptionName.WithMiddleware(Logger),\n)\n```\n\nWhen multiple middlewares are provided as variadic arguments, the middlewares\nare applied left to right. If `SDK_PackageOptionName.WithMiddleware` is given\nmultiple times, for example first in the client then the method, the\nmiddleware in the client will run first and the middleware given in the method\nwill run next.\n\nYou may also replace the default `http.Client` with\n`SDK_PackageOptionName.WithHTTPClient(client)`. Only one http client is\naccepted (this overwrites any previous client) and receives requests after any\nmiddleware has been applied.\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-go/issues) with questions, bugs, or suggestions.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
   },
   {
     language: 'ruby',
     content:
-      '# Modern Treasury Ruby API library\n\nThe Modern Treasury Ruby library provides convenient access to the Modern Treasury REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/Modern-Treasury/modern-treasury-ruby#Sorbet) for usage with Sorbet. The standard library\'s `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.\n\n\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nDocumentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/modern_treasury).\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com).\n\n## Installation\n\nTo use this gem, install via Bundler by adding the following to your application\'s `Gemfile`:\n\n<!-- x-release-please-start-version -->\n\n```ruby\ngem "modern_treasury", "~> 0.0.1"\n```\n\n<!-- x-release-please-end -->\n\n## Usage\n\n```ruby\nrequire "bundler/setup"\nrequire "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(\n  api_key: ENV["MODERN_TREASURY_API_KEY"], # This is the default and can be omitted\n  organization_id: ENV["MODERN_TREASURY_ORGANIZATION_ID"] # This is the default and can be omitted\n)\n\ncounterparty = modern_treasury.counterparties.create(name: "my first counterparty")\n\nputs(counterparty.id)\n```\n\n\n\n### Pagination\n\nList methods in the Modern Treasury API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```ruby\npage = modern_treasury.counterparties.list\n\n# Fetch single item from page.\ncounterparty = page.items[0]\nputs(counterparty.id)\n\n# Automatically fetches more pages as needed.\npage.auto_paging_each do |counterparty|\n  puts(counterparty.id)\nend\n```\n\nAlternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.\n\n```ruby\nif page.next_page?\n  new_page = page.next_page\n  puts(new_page.items[0].id)\nend\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.\n\n```ruby\nrequire "pathname"\n\n# Use `Pathname` to send the filename and/or avoid paging a large file into memory:\ndocument = modern_treasury.documents.create(\n  file: Pathname("my/file.txt"),\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\n# Alternatively, pass file contents or a `StringIO` directly:\ndocument = modern_treasury.documents.create(\n  file: File.read("my/file.txt"),\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\n# Or, to control the filename and/or content type:\nfile = ModernTreasury::FilePart.new(File.read("my/file.txt"), filename: "my/file.txt", content_type: "…")\ndocument = modern_treasury.documents.create(\n  file: file,\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\nputs(document.id)\n```\n\nNote that you can also pass a raw `IO` descriptor, but this disables retries, as the library can\'t be sure if the descriptor is a file or pipe (which cannot be rewound).\n\n### Handling errors\n\nWhen the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `ModernTreasury::Errors::APIError` will be thrown:\n\n```ruby\nbegin\n  external_account = modern_treasury.external_accounts.create(counterparty_id: "missing")\nrescue ModernTreasury::Errors::APIConnectionError => e\n  puts("The server could not be reached")\n  puts(e.cause)  # an underlying Exception, likely raised within `net/http`\nrescue ModernTreasury::Errors::RateLimitError => e\n  puts("A 429 status code was received; we should back off a bit.")\nrescue ModernTreasury::Errors::APIStatusError => e\n  puts("Another non-200-range status code was received")\n  puts(e.status)\nend\n```\n\nError codes are as follows:\n\n| Cause            | Error Type                 |\n| ---------------- | -------------------------- |\n| HTTP 400         | `BadRequestError`          |\n| HTTP 401         | `AuthenticationError`      |\n| HTTP 403         | `PermissionDeniedError`    |\n| HTTP 404         | `NotFoundError`            |\n| HTTP 409         | `ConflictError`            |\n| HTTP 422         | `UnprocessableEntityError` |\n| HTTP 429         | `RateLimitError`           |\n| HTTP >= 500      | `InternalServerError`      |\n| Other HTTP error | `APIStatusError`           |\n| Timeout          | `APITimeoutError`          |\n| Network error    | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\n\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.\n\nYou can use the `max_retries` option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmodern_treasury = ModernTreasury::Client.new(\n  max_retries: 0 # default is 2\n)\n\n# Or, configure per-request:\nmodern_treasury.counterparties.create(name: "my first counterparty", request_options: {max_retries: 5})\n```\n\n### Timeouts\n\nBy default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmodern_treasury = ModernTreasury::Client.new(\n  timeout: nil # default is 60\n)\n\n# Or, configure per-request:\nmodern_treasury.counterparties.create(name: "my first counterparty", request_options: {timeout: 5})\n```\n\nOn timeout, `ModernTreasury::Errors::APITimeoutError` is raised.\n\nNote that requests that time out are retried by default.\n\n## Advanced concepts\n\n### BaseModel\n\nAll parameter and response objects inherit from `ModernTreasury::Internal::Type::BaseModel`, which provides several conveniences, including:\n\n1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.\n\n2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.\n\n3. Both instances and the classes themselves can be pretty-printed.\n\n4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.\n\n### Making custom or undocumented requests\n\n#### Undocumented properties\n\nYou can send undocumented parameters to any endpoint, and read undocumented response properties, like so:\n\nNote: the `extra_` parameters of the same name overrides the documented parameters.\n\n```ruby\ncounterparty =\n  modern_treasury.counterparties.create(\n    name: "my first counterparty",\n    request_options: {\n      extra_query: {my_query_parameter: value},\n      extra_body: {my_body_parameter: value},\n      extra_headers: {"my-header": value}\n    }\n  )\n\nputs(counterparty[:my_undocumented_property])\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:\n\n```ruby\nresponse = client.request(\n  method: :post,\n  path: \'/undocumented/endpoint\',\n  query: {"dog": "woof"},\n  headers: {"useful-header": "interesting-value"},\n  body: {"hello": "world"}\n)\n```\n\n### Concurrency & connection pooling\n\nThe `ModernTreasury::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.\n\nEach instance of `ModernTreasury::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.\n\nWhen all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.\n\nUnless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.\n\n## Sorbet\n\nThis library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.\n\nYou can provide typesafe request parameters like so:\n\n```ruby\nmodern_treasury.counterparties.create(name: "my first counterparty")\n```\n\nOr, equivalently:\n\n```ruby\n# Hashes work, but are not typesafe:\nmodern_treasury.counterparties.create(name: "my first counterparty")\n\n# You can also splat a full Params class:\nparams = ModernTreasury::CounterpartyCreateParams.new(name: "my first counterparty")\nmodern_treasury.counterparties.create(**params)\n```\n\n### Enums\n\nSince this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:\n\n```ruby\n# :credit\nputs(ModernTreasury::TransactionDirection::CREDIT)\n\n# Revealed type: `T.all(ModernTreasury::TransactionDirection, Symbol)`\nT.reveal_type(ModernTreasury::TransactionDirection::CREDIT)\n```\n\nEnum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:\n\n```ruby\n# Using the enum constants preserves the tagged type information:\nmodern_treasury.counterparties.collect_account(\n  direction: ModernTreasury::TransactionDirection::CREDIT,\n  # …\n)\n\n# Literal values are also permissible:\nmodern_treasury.counterparties.collect_account(\n  direction: :credit,\n  # …\n)\n```\n\n## Versioning\n\nThis package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.\n\nThis package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.\n\n## Requirements\n\nRuby 3.2.0 or higher.\n\n## Contributing\n\nSee [the contributing documentation](https://github.com/Modern-Treasury/modern-treasury-ruby/tree/main/CONTRIBUTING.md).\n',
+      '# Modern Treasury Ruby API library\n\nThe Modern Treasury Ruby library provides convenient access to the Modern Treasury REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/Modern-Treasury/modern-treasury-ruby#Sorbet) for usage with Sorbet. The standard library\'s `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.\n\n\n\n\n\n## MCP Server\n\nUse the Modern Treasury MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=modern-treasury-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1vZGVybi10cmVhc3VyeS1tY3AiXSwiZW52Ijp7Ik1PREVSTl9UUkVBU1VSWV9BUElfS0VZIjoiTXkgQVBJIEtleSIsIk1PREVSTl9UUkVBU1VSWV9PUkdBTklaQVRJT05fSUQiOiJteS1vcmdhbml6YXRpb24tSUQiLCJNT0RFUk5fVFJFQVNVUllfV0VCSE9PS19LRVkiOiJNeSBXZWJob29rIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22modern-treasury-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22modern-treasury-mcp%22%5D%2C%22env%22%3A%7B%22MODERN_TREASURY_API_KEY%22%3A%22My%20API%20Key%22%2C%22MODERN_TREASURY_ORGANIZATION_ID%22%3A%22my-organization-ID%22%2C%22MODERN_TREASURY_WEBHOOK_KEY%22%3A%22My%20Webhook%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nDocumentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/modern_treasury).\n\nThe REST API documentation can be found on [docs.moderntreasury.com](https://docs.moderntreasury.com).\n\n## Installation\n\nTo use this gem, install via Bundler by adding the following to your application\'s `Gemfile`:\n\n<!-- x-release-please-start-version -->\n\n```ruby\ngem "modern_treasury", "~> 0.31.0"\n```\n\n<!-- x-release-please-end -->\n\n## Usage\n\n```ruby\nrequire "bundler/setup"\nrequire "modern_treasury"\n\nmodern_treasury = ModernTreasury::Client.new(\n  api_key: ENV["MODERN_TREASURY_API_KEY"], # This is the default and can be omitted\n  organization_id: ENV["MODERN_TREASURY_ORGANIZATION_ID"] # This is the default and can be omitted\n)\n\ncounterparty = modern_treasury.counterparties.create(name: "my first counterparty")\n\nputs(counterparty.id)\n```\n\n\n\n### Pagination\n\nList methods in the Modern Treasury API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```ruby\npage = modern_treasury.counterparties.list\n\n# Fetch single item from page.\ncounterparty = page.items[0]\nputs(counterparty.id)\n\n# Automatically fetches more pages as needed.\npage.auto_paging_each do |counterparty|\n  puts(counterparty.id)\nend\n```\n\nAlternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.\n\n```ruby\nif page.next_page?\n  new_page = page.next_page\n  puts(new_page.items[0].id)\nend\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.\n\n```ruby\nrequire "pathname"\n\n# Use `Pathname` to send the filename and/or avoid paging a large file into memory:\ndocument = modern_treasury.documents.create(\n  file: Pathname("my/file.txt"),\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\n# Alternatively, pass file contents or a `StringIO` directly:\ndocument = modern_treasury.documents.create(\n  file: File.read("my/file.txt"),\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\n# Or, to control the filename and/or content type:\nfile = ModernTreasury::FilePart.new(File.read("my/file.txt"), filename: "my/file.txt", content_type: "…")\ndocument = modern_treasury.documents.create(\n  file: file,\n  documentable_id: "24c6b7a3-02...",\n  documentable_type: "connection"\n)\n\nputs(document.id)\n```\n\nNote that you can also pass a raw `IO` descriptor, but this disables retries, as the library can\'t be sure if the descriptor is a file or pipe (which cannot be rewound).\n\n### Handling errors\n\nWhen the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `ModernTreasury::Errors::APIError` will be thrown:\n\n```ruby\nbegin\n  external_account = modern_treasury.external_accounts.create(counterparty_id: "missing")\nrescue ModernTreasury::Errors::APIConnectionError => e\n  puts("The server could not be reached")\n  puts(e.cause)  # an underlying Exception, likely raised within `net/http`\nrescue ModernTreasury::Errors::RateLimitError => e\n  puts("A 429 status code was received; we should back off a bit.")\nrescue ModernTreasury::Errors::APIStatusError => e\n  puts("Another non-200-range status code was received")\n  puts(e.status)\nend\n```\n\nError codes are as follows:\n\n| Cause            | Error Type                 |\n| ---------------- | -------------------------- |\n| HTTP 400         | `BadRequestError`          |\n| HTTP 401         | `AuthenticationError`      |\n| HTTP 403         | `PermissionDeniedError`    |\n| HTTP 404         | `NotFoundError`            |\n| HTTP 409         | `ConflictError`            |\n| HTTP 422         | `UnprocessableEntityError` |\n| HTTP 429         | `RateLimitError`           |\n| HTTP >= 500      | `InternalServerError`      |\n| Other HTTP error | `APIStatusError`           |\n| Timeout          | `APITimeoutError`          |\n| Network error    | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\n\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.\n\nYou can use the `max_retries` option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmodern_treasury = ModernTreasury::Client.new(\n  max_retries: 0 # default is 2\n)\n\n# Or, configure per-request:\nmodern_treasury.counterparties.create(name: "my first counterparty", request_options: {max_retries: 5})\n```\n\n### Timeouts\n\nBy default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmodern_treasury = ModernTreasury::Client.new(\n  timeout: nil # default is 60\n)\n\n# Or, configure per-request:\nmodern_treasury.counterparties.create(name: "my first counterparty", request_options: {timeout: 5})\n```\n\nOn timeout, `ModernTreasury::Errors::APITimeoutError` is raised.\n\nNote that requests that time out are retried by default.\n\n## Advanced concepts\n\n### BaseModel\n\nAll parameter and response objects inherit from `ModernTreasury::Internal::Type::BaseModel`, which provides several conveniences, including:\n\n1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.\n\n2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.\n\n3. Both instances and the classes themselves can be pretty-printed.\n\n4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.\n\n### Making custom or undocumented requests\n\n#### Undocumented properties\n\nYou can send undocumented parameters to any endpoint, and read undocumented response properties, like so:\n\nNote: the `extra_` parameters of the same name overrides the documented parameters.\n\n```ruby\ncounterparty =\n  modern_treasury.counterparties.create(\n    name: "my first counterparty",\n    request_options: {\n      extra_query: {my_query_parameter: value},\n      extra_body: {my_body_parameter: value},\n      extra_headers: {"my-header": value}\n    }\n  )\n\nputs(counterparty[:my_undocumented_property])\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:\n\n```ruby\nresponse = client.request(\n  method: :post,\n  path: \'/undocumented/endpoint\',\n  query: {"dog": "woof"},\n  headers: {"useful-header": "interesting-value"},\n  body: {"hello": "world"}\n)\n```\n\n### Concurrency & connection pooling\n\nThe `ModernTreasury::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.\n\nEach instance of `ModernTreasury::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.\n\nWhen all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.\n\nUnless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.\n\n## Sorbet\n\nThis library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.\n\nYou can provide typesafe request parameters like so:\n\n```ruby\nmodern_treasury.counterparties.create(name: "my first counterparty")\n```\n\nOr, equivalently:\n\n```ruby\n# Hashes work, but are not typesafe:\nmodern_treasury.counterparties.create(name: "my first counterparty")\n\n# You can also splat a full Params class:\nparams = ModernTreasury::CounterpartyCreateParams.new(name: "my first counterparty")\nmodern_treasury.counterparties.create(**params)\n```\n\n### Enums\n\nSince this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:\n\n```ruby\n# :credit\nputs(ModernTreasury::TransactionDirection::CREDIT)\n\n# Revealed type: `T.all(ModernTreasury::TransactionDirection, Symbol)`\nT.reveal_type(ModernTreasury::TransactionDirection::CREDIT)\n```\n\nEnum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:\n\n```ruby\n# Using the enum constants preserves the tagged type information:\nmodern_treasury.counterparties.collect_account(\n  direction: ModernTreasury::TransactionDirection::CREDIT,\n  # …\n)\n\n# Literal values are also permissible:\nmodern_treasury.counterparties.collect_account(\n  direction: :credit,\n  # …\n)\n```\n\n## Versioning\n\nThis package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.\n\nThis package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.\n\n## Requirements\n\nRuby 3.2.0 or higher.\n\n## Contributing\n\nSee [the contributing documentation](https://github.com/Modern-Treasury/modern-treasury-ruby/tree/main/CONTRIBUTING.md).\n',
   },
 ];
 
