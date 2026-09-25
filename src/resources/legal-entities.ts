@@ -148,7 +148,7 @@ export interface LegalEntity {
    */
   addresses: Array<LegalEntity.Address>;
 
-  bank_settings: BankSettings | null;
+  bank_settings: BankSettings | unknown;
 
   /**
    * A description of the business.
@@ -340,9 +340,9 @@ export interface LegalEntity {
   terms_of_use: LegalEntity.TermsOfUse | null;
 
   /**
-   * @deprecated Deprecated. Use `third_party_verifications` instead.
+   * Deprecated. Use `third_party_verifications` instead.
    */
-  third_party_verification: Shared.ThirdPartyVerification | null;
+  third_party_verification: Shared.ThirdPartyVerification | unknown;
 
   /**
    * A list of third-party verifications run by external vendors.
@@ -356,7 +356,7 @@ export interface LegalEntity {
 
   updated_at: string;
 
-  wealth_and_employment_details: WealthAndEmploymentDetails | null;
+  wealth_and_employment_details: WealthAndEmploymentDetails | unknown;
 
   /**
    * The entity's primary website URL.
@@ -682,7 +682,7 @@ export interface LegalEntityCreateParams {
    */
   addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-  bank_settings?: BankSettings | null;
+  bank_settings?: BankSettings | unknown;
 
   /**
    * A description of the business.
@@ -871,7 +871,7 @@ export interface LegalEntityCreateParams {
   /**
    * Deprecated. Use `third_party_verifications` instead.
    */
-  third_party_verification?: Shared.ThirdPartyVerification | null;
+  third_party_verification?: Shared.ThirdPartyVerification | unknown;
 
   /**
    * A list of third-party verifications run by external vendors.
@@ -883,7 +883,7 @@ export interface LegalEntityCreateParams {
    */
   ticker_symbol?: string | null;
 
-  wealth_and_employment_details?: WealthAndEmploymentDetails | null;
+  wealth_and_employment_details?: WealthAndEmploymentDetails | unknown;
 
   /**
    * The entity's primary website URL.
@@ -969,7 +969,7 @@ export interface LegalEntityUpdateParams {
    */
   addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-  bank_settings?: BankSettings | null;
+  bank_settings?: BankSettings | unknown;
 
   /**
    * A description of the business.
@@ -1133,7 +1133,7 @@ export interface LegalEntityUpdateParams {
   /**
    * Deprecated. Use `third_party_verifications` instead.
    */
-  third_party_verification?: Shared.ThirdPartyVerification | null;
+  third_party_verification?: Shared.ThirdPartyVerification | unknown;
 
   /**
    * A list of third-party verifications run by external vendors.
@@ -1145,7 +1145,7 @@ export interface LegalEntityUpdateParams {
    */
   ticker_symbol?: string | null;
 
-  wealth_and_employment_details?: WealthAndEmploymentDetails | null;
+  wealth_and_employment_details?: WealthAndEmploymentDetails | unknown;
 
   /**
    * The entity's primary website URL.

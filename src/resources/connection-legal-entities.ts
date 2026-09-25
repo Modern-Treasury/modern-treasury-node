@@ -126,7 +126,7 @@ export namespace ConnectionLegalEntityCreateParams {
      */
     addresses?: Array<Shared.LegalEntityAddressCreateRequest>;
 
-    bank_settings?: LegalEntitiesAPI.BankSettings | null;
+    bank_settings?: LegalEntitiesAPI.BankSettings | unknown;
 
     /**
      * A description of the business.
@@ -318,9 +318,9 @@ export namespace ConnectionLegalEntityCreateParams {
     terms_of_use?: LegalEntity.TermsOfUse | null;
 
     /**
-     * @deprecated Deprecated. Use `third_party_verifications` instead.
+     * Deprecated. Use `third_party_verifications` instead.
      */
-    third_party_verification?: Shared.ThirdPartyVerification | null;
+    third_party_verification?: Shared.ThirdPartyVerification | unknown;
 
     /**
      * A list of third-party verifications run by external vendors.
@@ -332,7 +332,7 @@ export namespace ConnectionLegalEntityCreateParams {
      */
     ticker_symbol?: string | null;
 
-    wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
+    wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | unknown;
 
     /**
      * The entity's primary website URL.

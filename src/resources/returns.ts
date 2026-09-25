@@ -161,7 +161,7 @@ export interface ReturnObject {
    * If the return's status is `returned`, this will include the return object's data
    * that is returning this return.
    */
-  current_return: ReturnObject | null;
+  current_return: ReturnObject | unknown;
 
   /**
    * If the return code is `R14` or `R15` this is the date the deceased counterparty
