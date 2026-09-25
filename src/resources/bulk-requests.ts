@@ -765,7 +765,7 @@ export namespace BulkRequestCreateParams {
     counterparty_id?: string | null;
 
     /**
-     * Must conform to ISO 4217. Defaults to the currency of the internal account.
+     * Three-letter ISO currency code.
      */
     currency?: Shared.Currency | null;
 
@@ -1521,7 +1521,7 @@ export namespace BulkRequestCreateParams {
     counterparty_id?: string | null;
 
     /**
-     * Must conform to ISO 4217. Defaults to the currency of the internal account.
+     * Three-letter ISO currency code.
      */
     currency?: Shared.Currency | null;
 
