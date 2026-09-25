@@ -159,7 +159,7 @@ export interface Transaction {
   /**
    * Associated serialized foreign exchange rate information.
    */
-  foreign_exchange_rate: Shared.ForeignExchangeRate | null;
+  foreign_exchange_rate: Shared.ForeignExchangeRate | unknown;
 
   /**
    * The ID of the relevant Internal Account.

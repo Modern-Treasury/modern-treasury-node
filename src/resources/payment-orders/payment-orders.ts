@@ -184,13 +184,13 @@ export interface PaymentOrder {
    * If the payment order's status is `held`, this will include the hold object's
    * data.
    */
-  current_hold: PaymentOrder.CurrentHold | null;
+  current_hold: PaymentOrder.Hold | unknown;
 
   /**
    * If the payment order's status is `returned`, this will include the return
    * object's data.
    */
-  current_return: ReturnsAPI.ReturnObject | null;
+  current_return: ReturnsAPI.ReturnObject | unknown;
 
   /**
    * An optional description for internal use.
@@ -238,7 +238,7 @@ export interface PaymentOrder {
   /**
    * Associated serialized foreign exchange rate information.
    */
-  foreign_exchange_rate: Shared.ForeignExchangeRate | null;
+  foreign_exchange_rate: Shared.ForeignExchangeRate | unknown;
 
   /**
    * The ID of the ledger transaction linked to the payment order.
@@ -458,11 +458,7 @@ export namespace PaymentOrder {
     class_id?: string | null;
   }
 
-  /**
-   * If the payment order's status is `held`, this will include the hold object's
-   * data.
-   */
-  export interface CurrentHold {
+  export interface Hold {
     id: string;
 
     created_at: string;

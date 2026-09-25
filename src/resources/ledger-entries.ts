@@ -147,7 +147,7 @@ export interface LedgerEntry {
    * https://docs.moderntreasury.com/docs/transaction-status-and-balances for more
    * details.
    */
-  resulting_ledger_account_balances: Shared.LedgerBalances | null;
+  resulting_ledger_account_balances: Shared.LedgerBalances | unknown;
 
   /**
    * Equal to the state of the ledger transaction when the ledger entry was created.

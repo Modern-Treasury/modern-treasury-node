@@ -86,7 +86,7 @@ export interface ChildLegalEntityCreate {
    */
   addresses?: Array<LegalEntityAddressCreateRequest>;
 
-  bank_settings?: LegalEntitiesAPI.BankSettings | null;
+  bank_settings?: LegalEntitiesAPI.BankSettings | unknown;
 
   /**
    * A description of the business.
@@ -278,9 +278,9 @@ export interface ChildLegalEntityCreate {
   terms_of_use?: ChildLegalEntityCreate.TermsOfUse | null;
 
   /**
-   * @deprecated Deprecated. Use `third_party_verifications` instead.
+   * Deprecated. Use `third_party_verifications` instead.
    */
-  third_party_verification?: ThirdPartyVerification | null;
+  third_party_verification?: ThirdPartyVerification | unknown;
 
   /**
    * A list of third-party verifications run by external vendors.
@@ -292,7 +292,7 @@ export interface ChildLegalEntityCreate {
    */
   ticker_symbol?: string | null;
 
-  wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | null;
+  wealth_and_employment_details?: LegalEntitiesAPI.WealthAndEmploymentDetails | unknown;
 
   /**
    * The entity's primary website URL.
@@ -735,6 +735,7 @@ export interface IdentificationCreateRequest {
     | 'gl_ger'
     | 'gm_tin'
     | 'gr_vat'
+    | 'gt_nit'
     | 'hk_brn'
     | 'hk_hkid'
     | 'hn_id'
@@ -742,29 +743,64 @@ export interface IdentificationCreateRequest {
     | 'hr_oib'
     | 'hu_adj'
     | 'hu_anum'
+    | 'id_nik'
+    | 'id_npwp'
     | 'ie_pps'
     | 'ie_trn'
+    | 'il_cn'
+    | 'il_pin'
+    | 'im_trn'
     | 'in_lei'
     | 'is_knt'
     | 'it_cf'
     | 'it_piva'
+    | 'je_ssn'
+    | 'je_tin'
+    | 'jm_trn'
+    | 'jo_tin'
     | 'jp_hb'
     | 'jp_mn'
+    | 'ke_pin'
+    | 'kg_pin'
+    | 'kn_tin'
     | 'kr_brn'
     | 'kr_crn'
     | 'kr_rrn'
+    | 'kw_cid'
+    | 'kz_bin'
+    | 'kz_iin'
+    | 'la_tin'
+    | 'lc_tin'
     | 'li_peid'
+    | 'lk_tin'
+    | 'ls_tin'
     | 'lt_ak'
     | 'lt_jak'
     | 'lu_mtc'
     | 'lu_vat'
     | 'lv_pk'
     | 'lv_rn'
+    | 'md_idnp'
+    | 'me_jmbg'
+    | 'me_pib'
+    | 'mg_nif'
+    | 'mh_ssn'
+    | 'mo_bir'
+    | 'mo_tin_b'
+    | 'mo_tin_i'
+    | 'mr_nif'
     | 'mt_tin'
     | 'mt_vat'
+    | 'mu_tan'
+    | 'mw_tpin'
     | 'mx_curp'
     | 'mx_ine'
     | 'mx_rfc'
+    | 'my_npc'
+    | 'my_nric'
+    | 'my_tin_b'
+    | 'mz_nuit'
+    | 'na_tin'
     | 'national_id'
     | 'nl_bsn'
     | 'nl_btw'
@@ -772,11 +808,19 @@ export interface IdentificationCreateRequest {
     | 'no_fdn'
     | 'no_mva'
     | 'no_orgnr'
+    | 'nr_tin'
     | 'nz_ird'
+    | 'om_cid'
+    | 'pa_cedula'
+    | 'pa_ruc'
     | 'passport'
+    | 'pe_ruc'
+    | 'pg_tin'
+    | 'ph_tin'
     | 'pl_nip'
     | 'pl_pesel'
     | 'pt_nif'
+    | 'py_ruc'
     | 'ro_cnp'
     | 'ro_cui'
     | 'sa_tin'
@@ -1097,12 +1141,6 @@ export interface LegalEntityAddressCreateRequest {
   locality: string | null;
 
   /**
-   * Region or State. This field is free-form; for US states, we recommend a
-   * two-letter code (e.g. CA). Full state names are also accepted.
-   */
-  region: string | null;
-
-  /**
    * The types of this address.
    */
   address_types?: Array<
@@ -1121,6 +1159,12 @@ export interface LegalEntityAddressCreateRequest {
    * omitted it is inferred from the address types.
    */
   primary?: boolean | null;
+
+  /**
+   * Region or State. This field is free-form; for US states, we recommend a
+   * two-letter code (e.g. CA). Full state names are also accepted.
+   */
+  region?: string | null;
 }
 
 export interface LegalEntityAssociationInlineCreate {
