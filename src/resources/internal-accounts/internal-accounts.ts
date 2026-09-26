@@ -182,7 +182,7 @@ export interface InternalAccount {
   created_at: string;
 
   /**
-   * Three-letter ISO currency code.
+   * The currency of the account.
    */
   currency: Shared.Currency;
 

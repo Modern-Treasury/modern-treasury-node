@@ -254,7 +254,7 @@ export namespace BulkRequestCreateParams {
     charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
 
     /**
-     * Three-letter ISO currency code.
+     * Defaults to the currency of the originating account.
      */
     currency?: Shared.Currency;
 
@@ -765,7 +765,7 @@ export namespace BulkRequestCreateParams {
     counterparty_id?: string | null;
 
     /**
-     * Three-letter ISO currency code.
+     * Must conform to ISO 4217. Defaults to the currency of the internal account.
      */
     currency?: Shared.Currency | null;
 
@@ -1031,7 +1031,7 @@ export namespace BulkRequestCreateParams {
     counterparty_id?: string | null;
 
     /**
-     * Three-letter ISO currency code.
+     * Defaults to the currency of the originating account.
      */
     currency?: Shared.Currency;
 
@@ -1521,7 +1521,7 @@ export namespace BulkRequestCreateParams {
     counterparty_id?: string | null;
 
     /**
-     * Three-letter ISO currency code.
+     * Must conform to ISO 4217. Defaults to the currency of the internal account.
      */
     currency?: Shared.Currency | null;
 

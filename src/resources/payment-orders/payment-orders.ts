@@ -176,7 +176,7 @@ export interface PaymentOrder {
   created_at: string;
 
   /**
-   * Three-letter ISO currency code.
+   * Defaults to the currency of the originating account.
    */
   currency: Shared.Currency;
 
@@ -788,7 +788,7 @@ export interface PaymentOrderCreateParams {
   charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
 
   /**
-   * Three-letter ISO currency code.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency;
 
@@ -1339,7 +1339,7 @@ export interface PaymentOrderCreateAsyncParams {
   charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
 
   /**
-   * Three-letter ISO currency code.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency;
 
@@ -1950,7 +1950,7 @@ export interface PaymentOrderUpdateParams {
   counterparty_id?: string | null;
 
   /**
-   * Three-letter ISO currency code.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency;
 

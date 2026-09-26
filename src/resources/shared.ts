@@ -607,7 +607,7 @@ export interface ForeignExchangeRate {
   base_amount: number;
 
   /**
-   * Three-letter ISO currency code.
+   * Currency to convert, often called the "sell" currency.
    */
   base_currency: Currency;
 
@@ -629,7 +629,7 @@ export interface ForeignExchangeRate {
   target_amount: number;
 
   /**
-   * Three-letter ISO currency code.
+   * Currency to convert the `base_currency` to, often called the "buy" currency.
    */
   target_currency: Currency;
 
