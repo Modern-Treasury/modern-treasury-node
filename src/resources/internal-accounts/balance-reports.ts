@@ -200,7 +200,7 @@ export namespace BalanceReport {
     created_at: string;
 
     /**
-     * Three-letter ISO currency code.
+     * The currency of the balance.
      */
     currency: Shared.Currency;
 

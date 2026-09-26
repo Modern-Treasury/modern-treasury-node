@@ -149,7 +149,7 @@ export interface Invoice {
   created_at: string;
 
   /**
-   * Three-letter ISO currency code.
+   * Currency that the invoice is denominated in. Defaults to `USD` if not provided.
    */
   currency: Shared.Currency;
 
@@ -501,7 +501,7 @@ export interface InvoiceCreateParams {
   counterparty_shipping_address?: InvoiceCreateParams.CounterpartyShippingAddress | null;
 
   /**
-   * Three-letter ISO currency code.
+   * Currency that the invoice is denominated in. Defaults to `USD` if not provided.
    */
   currency?: Shared.Currency;
 
@@ -766,7 +766,7 @@ export interface InvoiceUpdateParams {
   counterparty_shipping_address?: InvoiceUpdateParams.CounterpartyShippingAddress | null;
 
   /**
-   * Three-letter ISO currency code.
+   * Currency that the invoice is denominated in. Defaults to `USD` if not provided.
    */
   currency?: Shared.Currency;
 

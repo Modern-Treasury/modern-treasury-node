@@ -153,7 +153,7 @@ export interface ReturnObject {
   created_at: string;
 
   /**
-   * Three-letter ISO currency code.
+   * Currency that this transaction is denominated in.
    */
   currency: Shared.Currency;
 

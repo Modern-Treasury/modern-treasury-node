@@ -70,7 +70,7 @@ export interface IncomingPaymentDetail {
   created_at: string;
 
   /**
-   * Three-letter ISO currency code.
+   * The currency of the incoming payment detail.
    */
   currency: Shared.Currency;
 
@@ -351,7 +351,7 @@ export interface IncomingPaymentDetailCreateAsyncParams {
   as_of_date?: string | null;
 
   /**
-   * Three-letter ISO currency code.
+   * Defaults to the currency of the originating account.
    */
   currency?: Shared.Currency | null;
 
