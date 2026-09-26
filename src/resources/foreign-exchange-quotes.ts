@@ -138,7 +138,7 @@ export interface ForeignExchangeQuoteCreateParams {
   internal_account_id: string;
 
   /**
-   * Currency to convert the `base_currency` to, often called the "buy" currency.
+   * Three-letter ISO currency code.
    */
   target_currency: Shared.Currency;
 
@@ -149,7 +149,7 @@ export interface ForeignExchangeQuoteCreateParams {
   base_amount?: number;
 
   /**
-   * Currency to convert, often called the "sell" currency.
+   * Three-letter ISO currency code.
    */
   base_currency?: Shared.Currency;
 

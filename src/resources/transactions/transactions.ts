@@ -139,7 +139,7 @@ export interface Transaction {
   created_at: string;
 
   /**
-   * Currency that this transaction is denominated in.
+   * Three-letter ISO currency code.
    */
   currency: Shared.Currency;
 
