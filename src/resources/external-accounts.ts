@@ -478,7 +478,7 @@ export interface ExternalAccountVerifyParams {
     | 'zengin';
 
   /**
-   * Defaults to the currency of the originating account.
+   * Three-letter ISO currency code.
    */
   currency?: Shared.Currency;
 

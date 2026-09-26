@@ -135,7 +135,7 @@ export interface ExpectedPayment {
   created_at: string;
 
   /**
-   * Must conform to ISO 4217. Defaults to the currency of the internal account.
+   * Three-letter ISO currency code.
    */
   currency: Shared.Currency | null;
 
@@ -310,7 +310,7 @@ export interface ReconciliationRule {
   counterparty_id?: string | null;
 
   /**
-   * Must conform to ISO 4217. Defaults to the currency of the internal account
+   * Three-letter ISO currency code.
    */
   currency?: Shared.Currency;
 
@@ -485,7 +485,7 @@ export interface ExpectedPaymentCreateParams {
   counterparty_id?: string | null;
 
   /**
-   * Must conform to ISO 4217. Defaults to the currency of the internal account.
+   * Three-letter ISO currency code.
    */
   currency?: Shared.Currency | null;
 
@@ -650,7 +650,7 @@ export interface ExpectedPaymentUpdateParams {
   counterparty_id?: string | null;
 
   /**
-   * Must conform to ISO 4217. Defaults to the currency of the internal account.
+   * Three-letter ISO currency code.
    */
   currency?: Shared.Currency | null;
 
