@@ -79,6 +79,7 @@ export interface AccountDetail {
   account_number_type:
     | 'arbitrum_address'
     | 'au_number'
+    | 'avalanche_address'
     | 'base_address'
     | 'card_token'
     | 'clabe'
@@ -139,6 +140,7 @@ export interface AccountDetailCreateParams {
   account_number_type?:
     | 'arbitrum_address'
     | 'au_number'
+    | 'avalanche_address'
     | 'base_address'
     | 'card_token'
     | 'clabe'
