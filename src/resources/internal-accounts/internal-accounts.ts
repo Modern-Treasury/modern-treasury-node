@@ -555,7 +555,12 @@ export interface InternalAccountCreateParams {
    * An array of account number types requested for provisioning.
    */
   requested_account_number_types?: Array<
-    'arbitrum_address' | 'base_address' | 'ethereum_address' | 'polygon_address' | 'solana_address'
+    | 'arbitrum_address'
+    | 'avalanche_address'
+    | 'base_address'
+    | 'ethereum_address'
+    | 'polygon_address'
+    | 'solana_address'
   >;
 
   /**
