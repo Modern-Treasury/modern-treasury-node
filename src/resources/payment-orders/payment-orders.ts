@@ -657,8 +657,7 @@ export namespace PaymentOrder {
       | 'wells_fargo_uetr'
       | 'western_alliance_payment_id'
       | 'western_alliance_transaction_id'
-      | 'western_alliance_wire_confirmation_number'
-      | 'wise_transfer_id';
+      | 'western_alliance_wire_confirmation_number';
 
     updated_at: string;
   }
@@ -683,6 +682,7 @@ export type PaymentOrderSubtype =
   | 'WEB'
   | 'arbitrum'
   | 'au_becs'
+  | 'avalanche'
   | 'bacs'
   | 'base'
   | 'chats'
@@ -1187,6 +1187,7 @@ export namespace PaymentOrderCreateParams {
       account_number_type?:
         | 'arbitrum_address'
         | 'au_number'
+        | 'avalanche_address'
         | 'base_address'
         | 'card_token'
         | 'clabe'
@@ -1706,6 +1707,7 @@ export namespace PaymentOrderCreateAsyncParams {
       account_number_type?:
         | 'arbitrum_address'
         | 'au_number'
+        | 'avalanche_address'
         | 'base_address'
         | 'card_token'
         | 'clabe'
@@ -2325,6 +2327,7 @@ export namespace PaymentOrderUpdateParams {
       account_number_type?:
         | 'arbitrum_address'
         | 'au_number'
+        | 'avalanche_address'
         | 'base_address'
         | 'card_token'
         | 'clabe'
