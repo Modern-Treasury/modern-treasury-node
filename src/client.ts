@@ -176,7 +176,6 @@ import {
   LedgerEntriesPage,
   LedgerEntry,
   LedgerEntryListParams,
-  LedgerEntryRetrieveParams,
   LedgerEntryUpdateParams,
 } from './resources/ledger-entries';
 import {
@@ -1383,7 +1382,6 @@ export declare namespace ModernTreasury {
     type LedgerEntry as LedgerEntry,
     type LedgerEntriesPage as LedgerEntriesPage,
     type LedgerEntryListParams as LedgerEntryListParams,
-    type LedgerEntryRetrieveParams as LedgerEntryRetrieveParams,
     type LedgerEntryUpdateParams as LedgerEntryUpdateParams,
   };
 
