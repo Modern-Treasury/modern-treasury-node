@@ -305,7 +305,7 @@ Types:
 Methods:
 
 - <code title="get /api/ledger_entries">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">list</a>({ ...params }) -> LedgerEntriesPage</code>
-- <code title="get /api/ledger_entries/{id}">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">retrieve</a>(id, { ...params }) -> LedgerEntry</code>
+- <code title="get /api/ledger_entries/{id}">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">retrieve</a>(id) -> LedgerEntry</code>
 - <code title="patch /api/ledger_entries/{id}">client.ledgerEntries.<a href="./src/resources/ledger-entries.ts">update</a>(id, { ...params }) -> LedgerEntry</code>
 
 # LedgerTransactions

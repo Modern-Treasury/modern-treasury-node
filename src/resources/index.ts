@@ -187,7 +187,6 @@ export {
   LedgerEntries,
   type LedgerEntry,
   type LedgerEntryListParams,
-  type LedgerEntryRetrieveParams,
   type LedgerEntryUpdateParams,
   type LedgerEntriesPage,
 } from './ledger-entries';

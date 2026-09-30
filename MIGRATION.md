@@ -145,7 +145,6 @@ client.example.list(undefined, { headers: { ... } });
 - `client.ledgerAccountBalanceMonitors.list()`
 - `client.ledgerAccountBalanceMonitors.update()`
 - `client.ledgerEntries.list()`
-- `client.ledgerEntries.retrieve()`
 - `client.ledgerEntries.update()`
 - `client.ledgerTransactions.list()`
 - `client.ledgerTransactions.update()`

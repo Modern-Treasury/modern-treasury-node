@@ -36,12 +36,8 @@ export class LedgerEntries extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    query: LedgerEntryRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<LedgerEntry> {
-    return this._client.get(path`/api/ledger_entries/${id}`, { query, ...options });
+  retrieve(id: string, options?: RequestOptions): APIPromise<LedgerEntry> {
+    return this._client.get(path`/api/ledger_entries/${id}`, options);
   }
 
   /**
@@ -237,12 +233,6 @@ export interface LedgerEntryListParams extends PageParams {
   order_by?: LedgerEntryListParams.OrderBy;
 
   /**
-   * If true, response will include the balances attached to the ledger entry. If
-   * there is no balance available, null will be returned instead.
-   */
-  show_balances?: boolean;
-
-  /**
    * If true, response will include ledger entries that were deleted. When you update
    * a ledger transaction to specify a new set of entries, the previous entries are
    * deleted.
@@ -292,14 +282,6 @@ export namespace LedgerEntryListParams {
   }
 }
 
-export interface LedgerEntryRetrieveParams {
-  /**
-   * If true, response will include the balances attached to the ledger entry. If
-   * there is no balance available, null will be returned instead.
-   */
-  show_balances?: boolean;
-}
-
 export interface LedgerEntryUpdateParams {
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -313,7 +295,6 @@ export declare namespace LedgerEntries {
     type LedgerEntry as LedgerEntry,
     type LedgerEntriesPage as LedgerEntriesPage,
     type LedgerEntryListParams as LedgerEntryListParams,
-    type LedgerEntryRetrieveParams as LedgerEntryRetrieveParams,
     type LedgerEntryUpdateParams as LedgerEntryUpdateParams,
   };
 }
