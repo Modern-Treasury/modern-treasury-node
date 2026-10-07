@@ -217,10 +217,10 @@ export interface ChildLegalEntity {
   service_provider_legal_entity_id: string | null;
 
   /**
-   * The activation status of the legal entity. One of pending, active, suspended, or
-   * denied.
+   * The activation status of the legal entity. One of draft, pending, active,
+   * suspended, or denied.
    */
-  status: 'active' | 'denied' | 'pending' | 'suspended' | null;
+  status: 'active' | 'denied' | 'draft' | 'pending' | 'suspended' | null;
 
   /**
    * An individual's suffix.
