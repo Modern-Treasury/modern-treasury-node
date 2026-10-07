@@ -115,13 +115,10 @@ export class InternalAccounts extends APIResource {
   }
 
   /**
-   * request closure of internal account
+   * This endpoint has been deprecated. Request closure with PATCH
+   * /api/internal_accounts/{id} and status: "pending_closure".
    *
-   * @example
-   * ```ts
-   * const internalAccount =
-   *   await client.internalAccounts.requestClosure('id');
-   * ```
+   * @deprecated
    */
   requestClosure(id: string, options?: RequestOptions): APIPromise<InternalAccount> {
     return this._client.post(path`/api/internal_accounts/${id}/request_closure`, options);
