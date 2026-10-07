@@ -699,6 +699,7 @@ export type PaymentOrderSubtype =
   | 'pl_elixir'
   | 'polygon'
   | 'print'
+  | 'remote_deposit'
   | 'se_bankgirot'
   | 'sepa'
   | 'sg_giro'
