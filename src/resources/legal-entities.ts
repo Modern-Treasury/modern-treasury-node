@@ -324,10 +324,10 @@ export interface LegalEntity {
   service_provider_legal_entity_id: string | null;
 
   /**
-   * The activation status of the legal entity. One of pending, active, suspended, or
-   * denied.
+   * The activation status of the legal entity. One of draft, pending, active,
+   * suspended, or denied.
    */
-  status: 'active' | 'denied' | 'pending' | 'suspended' | null;
+  status: 'active' | 'denied' | 'draft' | 'pending' | 'suspended' | null;
 
   /**
    * An individual's suffix.
@@ -668,7 +668,7 @@ export interface LegalEntityListParams extends PageParams {
 
   show_deleted?: string;
 
-  status?: 'pending' | 'active' | 'suspended' | 'denied';
+  status?: 'pending' | 'draft' | 'active' | 'suspended' | 'denied';
 }
 
 export interface LegalEntityCreateParams {
@@ -857,6 +857,12 @@ export interface LegalEntityCreateParams {
    * The UUID of the parent legal entity in the service provider tree.
    */
   service_provider_legal_entity_id?: string | null;
+
+  /**
+   * Set to draft to create the legal entity as a draft. Omit to create it as
+   * pending. Inline child legal entities take the parent's status.
+   */
+  status?: 'draft';
 
   /**
    * An individual's suffix.
@@ -1119,6 +1125,13 @@ export interface LegalEntityUpdateParams {
    * The UUID of the parent legal entity in the service provider tree.
    */
   service_provider_legal_entity_id?: string | null;
+
+  /**
+   * Set to pending to submit a draft legal entity for processing. Only valid while
+   * the legal entity is draft, and must be the only attribute in the request. Draft
+   * child legal entities are submitted with it.
+   */
+  status?: 'pending';
 
   /**
    * An individual's suffix.

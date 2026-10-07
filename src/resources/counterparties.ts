@@ -774,6 +774,12 @@ export namespace CounterpartyCreateParams {
     service_provider_legal_entity_id?: string | null;
 
     /**
+     * Set to draft to create the legal entity as a draft. Omit to create it as
+     * pending. Inline child legal entities take the parent's status.
+     */
+    status?: 'draft';
+
+    /**
      * An individual's suffix.
      */
     suffix?: string | null;
