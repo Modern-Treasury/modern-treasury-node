@@ -87,6 +87,7 @@ describe('resource internalAccounts', () => {
       },
       party_name: 'party_name',
       requested_account_number_types: ['arbitrum_address'],
+      title: 'title',
       vendor_attributes: {
         foo: 'bar',
         key: 'value',
