@@ -256,6 +256,12 @@ export interface InternalAccount {
    */
   status: 'active' | 'closed' | 'pending_activation' | 'pending_closure' | 'suspended' | null;
 
+  /**
+   * The account title at the financial institution, used in place of the party name.
+   * Only applicable to accounts created under supported connections.
+   */
+  title: string | null;
+
   updated_at: string;
 
   /**
@@ -559,6 +565,13 @@ export interface InternalAccountCreateParams {
     | 'polygon_address'
     | 'solana_address'
   >;
+
+  /**
+   * The account title at the financial institution, used in place of the party name.
+   * Only applicable to accounts created under supported connections. Please reach
+   * out to your customer success manager to enable this capability for your program.
+   */
+  title?: string | null;
 
   /**
    * A hash of vendor specific attributes that will be used when creating the account
