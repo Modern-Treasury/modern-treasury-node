@@ -85,6 +85,11 @@ export interface IncomingPaymentDetail {
   direction: Shared.TransactionDirection;
 
   /**
+   * The reason the incoming payment detail failed, or `null`.
+   */
+  failure_reason: string | null;
+
+  /**
    * The ID of the Internal Account for the incoming payment detail. This is always
    * present.
    */
@@ -176,9 +181,9 @@ export interface IncomingPaymentDetail {
 
   /**
    * The current status of the incoming payment order. One of `pending`, `completed`,
-   * or `returned`.
+   * `returned`, or `failed`.
    */
-  status: 'completed' | 'pending' | 'returned';
+  status: 'completed' | 'failed' | 'pending' | 'returned';
 
   /**
    * An additional layer of classification for the type of incoming payment detail.
@@ -297,7 +302,7 @@ export interface IncomingPaymentDetailListParams extends PageParams {
    * The current status of the incoming payment order. One of `pending`, `completed`,
    * or `returned`.
    */
-  status?: 'completed' | 'pending' | 'returned';
+  status?: 'completed' | 'failed' | 'pending' | 'returned';
 
   /**
    * An additional layer of classification for the type of incoming payment detail.
