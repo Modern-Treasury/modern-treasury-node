@@ -218,12 +218,14 @@ export type ExternalAccountType =
   | 'crypto_wallet'
   | 'ethereum_wallet'
   | 'general_ledger'
+  | 'hosted_wallet'
   | 'loan'
   | 'non_resident'
   | 'other'
   | 'overdraft'
   | 'polygon_wallet'
   | 'savings'
+  | 'self_hosted_wallet'
   | 'solana_wallet';
 
 export type ExternalAccountVerifyResponse =
