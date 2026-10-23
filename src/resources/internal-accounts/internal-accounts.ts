@@ -145,19 +145,14 @@ export interface InternalAccount {
    * Can be checking, savings or other.
    */
   account_type:
-    | 'base_wallet'
     | 'cash'
     | 'checking'
-    | 'crypto_wallet'
-    | 'ethereum_wallet'
     | 'general_ledger'
     | 'loan'
     | 'non_resident'
     | 'other'
     | 'overdraft'
-    | 'polygon_wallet'
     | 'savings'
-    | 'solana_wallet'
     | null;
 
   /**
@@ -257,10 +252,11 @@ export interface InternalAccount {
   status: 'active' | 'closed' | 'pending_activation' | 'pending_closure' | 'suspended' | null;
 
   /**
-   * The account title at the financial institution, used in place of the party name.
-   * Only applicable to accounts created under supported connections.
+   * The account title at the financial institution. Defaults to the party name
+   * unless a custom title was set on creation. Custom titles are only applicable to
+   * accounts created under supported connections.
    */
-  title: string | null;
+  title: string;
 
   updated_at: string;
 
@@ -489,19 +485,14 @@ export interface InternalAccountCreateParams {
    * institution.
    */
   account_type?:
-    | 'base_wallet'
     | 'cash'
     | 'checking'
-    | 'crypto_wallet'
-    | 'ethereum_wallet'
     | 'general_ledger'
     | 'loan'
     | 'non_resident'
     | 'other'
     | 'overdraft'
-    | 'polygon_wallet'
-    | 'savings'
-    | 'solana_wallet';
+    | 'savings';
 
   /**
    * The identifier of the financial institution the account belongs to. If not
@@ -568,8 +559,9 @@ export interface InternalAccountCreateParams {
 
   /**
    * The account title at the financial institution, used in place of the party name.
-   * Only applicable to accounts created under supported connections. Please reach
-   * out to your customer success manager to enable this capability for your program.
+   * Defaults to the party name if not set. Only applicable to accounts created under
+   * supported connections. Please reach out to your customer success manager to
+   * enable this capability for your program.
    */
   title?: string | null;
 
