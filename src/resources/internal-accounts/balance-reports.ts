@@ -183,14 +183,20 @@ export namespace BalanceReport {
     /**
      * The specific type of balance reported. One of `opening_ledger`,
      * `closing_ledger`, `current_ledger`, `opening_available`,
-     * `opening_available_next_business_day`, `closing_available`, `current_available`,
-     * 'previously_closed_book', or `other`.
+     * `opening_available_next_business_day`, `closing_available`,
+     * `closing_pending_inflows`, `closing_pending_outflows`, `current_available`,
+     * 'previously_closed_book', `current_pending_inflows`, `current_pending_outflows`,
+     * or `other`.
      */
     balance_type:
       | 'closing_available'
       | 'closing_ledger'
+      | 'closing_pending_inflows'
+      | 'closing_pending_outflows'
       | 'current_available'
       | 'current_ledger'
+      | 'current_pending_inflows'
+      | 'current_pending_outflows'
       | 'opening_available'
       | 'opening_available_next_business_day'
       | 'opening_ledger'
@@ -281,14 +287,20 @@ export namespace BalanceReportCreateParams {
     /**
      * The specific type of balance reported. One of `opening_ledger`,
      * `closing_ledger`, `current_ledger`, `opening_available`,
-     * `opening_available_next_business_day`, `closing_available`, `current_available`,
-     * 'previously_closed_book', or `other`.
+     * `opening_available_next_business_day`, `closing_available`,
+     * `closing_pending_inflows`, `closing_pending_outflows`, `current_available`,
+     * 'previously_closed_book', `current_pending_inflows`, `current_pending_outflows`,
+     * or `other`.
      */
     balance_type:
       | 'closing_available'
       | 'closing_ledger'
+      | 'closing_pending_inflows'
+      | 'closing_pending_outflows'
       | 'current_available'
       | 'current_ledger'
+      | 'current_pending_inflows'
+      | 'current_pending_outflows'
       | 'opening_available'
       | 'opening_available_next_business_day'
       | 'opening_ledger'
