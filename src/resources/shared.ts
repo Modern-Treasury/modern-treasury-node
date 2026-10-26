@@ -1264,7 +1264,7 @@ export interface ThirdPartyVerification {
   /**
    * The vendor that performed the verification, e.g. `persona`.
    */
-  vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff';
+  vendor: 'persona' | 'middesk' | 'alloy' | 'idology' | 'socure' | 'sumsub' | 'veriff' | 'smarty';
 
   /**
    * The identification of the third party verification in `vendor`'s system.
