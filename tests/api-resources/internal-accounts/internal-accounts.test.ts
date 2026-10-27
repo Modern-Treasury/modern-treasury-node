@@ -70,6 +70,7 @@ describe('resource internalAccounts', () => {
         },
       ],
       account_type: 'checking',
+      allowed_ach_debit_company_ids: ['string'],
       connection_id: 'connection_id',
       counterparty_id: 'counterparty_id',
       debitable: true,
@@ -86,6 +87,7 @@ describe('resource internalAccounts', () => {
         line2: 'line2',
       },
       party_name: 'party_name',
+      party_type: 'individual',
       requested_account_number_types: ['arbitrum_address'],
       title: 'title',
       vendor_attributes: {
@@ -139,6 +141,7 @@ describe('resource internalAccounts', () => {
             postal_code: 'postal_code',
             region: 'region',
           },
+          party_type: 'individual',
           status: 'pending_closure',
         },
         { path: '/_stainless_unknown_path' },
