@@ -19,6 +19,8 @@ export class PaymentFlows extends APIResource {
 
   /**
    * create payment_flow
+   *
+   * @deprecated
    */
   create(body: PaymentFlowCreateParams, options?: RequestOptions): APIPromise<PaymentFlow> {
     return this._client.post('/api/payment_flows', { body, ...options });

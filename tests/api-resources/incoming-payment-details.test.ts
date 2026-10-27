@@ -74,8 +74,8 @@ describe('resource incomingPaymentDetails', () => {
     ).rejects.toThrow(ModernTreasury.NotFoundError);
   });
 
-  test('createAsync', async () => {
-    const responsePromise = client.incomingPaymentDetails.createAsync();
+  test('createAsync: only required params', async () => {
+    const responsePromise = client.incomingPaymentDetails.createAsync({ type: 'ach' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -85,24 +85,18 @@ describe('resource incomingPaymentDetails', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createAsync: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.incomingPaymentDetails.createAsync(
-        {
-          amount: 0,
-          as_of_date: '2019-12-27',
-          currency: 'AED',
-          data: {},
-          description: 'description',
-          direction: 'credit',
-          internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          subtype: 'subtype',
-          type: 'ach',
-          virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ModernTreasury.NotFoundError);
+  test('createAsync: required and optional params', async () => {
+    const response = await client.incomingPaymentDetails.createAsync({
+      type: 'ach',
+      amount: 0,
+      as_of_date: '2019-12-27',
+      currency: 'AED',
+      data: {},
+      description: 'description',
+      direction: 'credit',
+      internal_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      subtype: 'subtype',
+      virtual_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 });
