@@ -58,6 +58,14 @@ export {
   type DocumentListParams,
   type DocumentsPage,
 } from './documents';
+export {
+  EmbeddableFlows,
+  type EmbeddableFlow,
+  type EmbeddableFlowListParams,
+  type EmbeddableFlowCreateParams,
+  type EmbeddableFlowUpdateParams,
+  type EmbeddableFlowsPage,
+} from './embeddable-flows';
 export { Events, type Event, type EventListParams, type EventsPage } from './events';
 export {
   ExpectedPayments,

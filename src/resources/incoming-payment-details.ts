@@ -85,6 +85,11 @@ export interface IncomingPaymentDetail {
   direction: Shared.TransactionDirection;
 
   /**
+   * The reason the incoming payment detail failed, or `null`.
+   */
+  failure_reason: string | null;
+
+  /**
    * The ID of the Internal Account for the incoming payment detail. This is always
    * present.
    */
@@ -166,6 +171,7 @@ export interface IncomingPaymentDetail {
     | 'se_bankgiro_clearing_code'
     | 'sg_interbank_clearing_code'
     | 'swift'
+    | 'vasp'
     | 'za_national_clearing_code'
     | null;
 
@@ -176,9 +182,9 @@ export interface IncomingPaymentDetail {
 
   /**
    * The current status of the incoming payment order. One of `pending`, `completed`,
-   * or `returned`.
+   * `returned`, `failed`, or `held`.
    */
-  status: 'completed' | 'pending' | 'returned';
+  status: 'completed' | 'failed' | 'held' | 'pending' | 'returned';
 
   /**
    * An additional layer of classification for the type of incoming payment detail.
@@ -295,9 +301,9 @@ export interface IncomingPaymentDetailListParams extends PageParams {
 
   /**
    * The current status of the incoming payment order. One of `pending`, `completed`,
-   * or `returned`.
+   * `returned`, `failed`, or `held`.
    */
-  status?: 'completed' | 'pending' | 'returned';
+  status?: 'completed' | 'failed' | 'held' | 'pending' | 'returned';
 
   /**
    * An additional layer of classification for the type of incoming payment detail.
