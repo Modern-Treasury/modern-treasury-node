@@ -179,6 +179,7 @@ client.example.list(undefined, { headers: { ... } });
 - `client.cases.list()`
 - `client.virtualAccountSettings.list()`
 - `client.identifications.update()`
+- `client.embeddableFlows.list()`
 
 </details>
 

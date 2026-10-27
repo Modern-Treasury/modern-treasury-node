@@ -22,6 +22,8 @@ export class AccountCollectionFlows extends APIResource {
 
   /**
    * create account_collection_flow
+   *
+   * @deprecated
    */
   create(
     body: AccountCollectionFlowCreateParams,
