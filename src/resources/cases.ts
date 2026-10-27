@@ -43,12 +43,12 @@ export interface Case {
   /**
    * The pending actions requested to resolve the case.
    */
-  requested_actions: Array<Case.RequestedAction>;
+  requested_actions: Array<RequestedAction>;
 
   /**
    * The requested actions that have been resolved.
    */
-  resolved_actions: Array<Case.ResolvedAction>;
+  resolved_actions: Array<RequestedAction>;
 
   /**
    * The status of the case.
@@ -68,90 +68,46 @@ export interface Case {
   updated_at: string;
 }
 
-export namespace Case {
-  export interface RequestedAction {
-    id: string;
+export interface RequestedAction {
+  id: string;
 
-    /**
-     * The category of the requested action.
-     */
-    category:
-      | 'onboarding_articles_of_incorporation_failure'
-      | 'onboarding_business_registry_verification_failure'
-      | 'onboarding_database_failure'
-      | 'onboarding_proof_of_address_failure'
-      | 'onboarding_ssn_check_failure'
-      | 'onboarding_tin_check_failure';
+  /**
+   * The category of the requested action.
+   */
+  category:
+    | 'onboarding_articles_of_incorporation_failure'
+    | 'onboarding_business_registry_verification_failure'
+    | 'onboarding_database_failure'
+    | 'onboarding_proof_of_address_failure'
+    | 'onboarding_ssn_check_failure'
+    | 'onboarding_tin_check_failure';
 
-    created_at: string;
+  created_at: string;
 
-    /**
-     * The field that needs to be corrected or provided, if any.
-     */
-    field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address' | null;
+  /**
+   * The field that needs to be corrected or provided, if any.
+   */
+  field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address' | null;
 
-    /**
-     * Instructions on how to resolve the requested action.
-     */
-    instructions: string | null;
+  /**
+   * Instructions on how to resolve the requested action.
+   */
+  instructions: string | null;
 
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
 
-    object: string;
+  object: string;
 
-    /**
-     * The reasons the action was requested.
-     */
-    reasons: Array<string>;
+  /**
+   * The reasons the action was requested.
+   */
+  reasons: Array<string>;
 
-    updated_at: string;
-  }
-
-  export interface ResolvedAction {
-    id: string;
-
-    /**
-     * The category of the requested action.
-     */
-    category:
-      | 'onboarding_articles_of_incorporation_failure'
-      | 'onboarding_business_registry_verification_failure'
-      | 'onboarding_database_failure'
-      | 'onboarding_proof_of_address_failure'
-      | 'onboarding_ssn_check_failure'
-      | 'onboarding_tin_check_failure';
-
-    created_at: string;
-
-    /**
-     * The field that needs to be corrected or provided, if any.
-     */
-    field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address' | null;
-
-    /**
-     * Instructions on how to resolve the requested action.
-     */
-    instructions: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * The reasons the action was requested.
-     */
-    reasons: Array<string>;
-
-    updated_at: string;
-  }
+  updated_at: string;
 }
 
 export interface CaseListParams extends PageParams {
@@ -172,5 +128,10 @@ export interface CaseListParams extends PageParams {
 }
 
 export declare namespace Cases {
-  export { type Case as Case, type CasesPage as CasesPage, type CaseListParams as CaseListParams };
+  export {
+    type Case as Case,
+    type RequestedAction as RequestedAction,
+    type CasesPage as CasesPage,
+    type CaseListParams as CaseListParams,
+  };
 }
