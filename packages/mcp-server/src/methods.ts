@@ -1085,6 +1085,30 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'patch',
     httpPath: '/api/identifications/{id}',
   },
+  {
+    clientCallName: 'client.embeddableFlows.list',
+    fullyQualifiedName: 'embeddableFlows.list',
+    httpMethod: 'get',
+    httpPath: '/api/embeddable_flows',
+  },
+  {
+    clientCallName: 'client.embeddableFlows.create',
+    fullyQualifiedName: 'embeddableFlows.create',
+    httpMethod: 'post',
+    httpPath: '/api/embeddable_flows',
+  },
+  {
+    clientCallName: 'client.embeddableFlows.retrieve',
+    fullyQualifiedName: 'embeddableFlows.retrieve',
+    httpMethod: 'get',
+    httpPath: '/api/embeddable_flows/{id}',
+  },
+  {
+    clientCallName: 'client.embeddableFlows.update',
+    fullyQualifiedName: 'embeddableFlows.update',
+    httpMethod: 'patch',
+    httpPath: '/api/embeddable_flows/{id}',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
