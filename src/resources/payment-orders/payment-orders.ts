@@ -2,7 +2,10 @@
 
 import { APIResource } from '../../core/resource';
 import * as PaymentOrdersAPI from './payment-orders';
+import * as DocumentsAPI from '../documents';
+import * as ExpectedPaymentsAPI from '../expected-payments';
 import * as ExternalAccountsAPI from '../external-accounts';
+import * as HoldsAPI from '../holds';
 import * as ReturnsAPI from '../returns';
 import * as Shared from '../shared';
 import * as VirtualAccountsAPI from '../virtual-accounts';
@@ -18,7 +21,6 @@ import {
 } from './reversals';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
-import { type Uploadable } from '../../core/uploads';
 import { RequestOptions } from '../../internal/request-options';
 import { maybeMultipartFormRequestOptions } from '../../internal/uploads';
 import { path } from '../../internal/utils/path';
@@ -122,6 +124,24 @@ export class PaymentOrders extends APIResource {
 
 export type PaymentOrdersPage = Page<PaymentOrder>;
 
+/**
+ * @deprecated
+ */
+export interface Accounting {
+  /**
+   * @deprecated The ID of one of your accounting categories. Note that these will
+   * only be accessible if your accounting system has been connected.
+   */
+  account_id?: string | null;
+
+  /**
+   * @deprecated The ID of one of the class objects in your accounting system. Class
+   * objects track segments of your business independent of client or project. Note
+   * that these will only be accessible if your accounting system has been connected.
+   */
+  class_id?: string | null;
+}
+
 export interface ContactDetailCreateRequest {
   contact_identifier?: string;
 
@@ -134,7 +154,7 @@ export interface PaymentOrder {
   /**
    * @deprecated
    */
-  accounting: PaymentOrder.Accounting;
+  accounting: Accounting;
 
   /**
    * @deprecated The ID of one of your accounting categories. Note that these will
@@ -184,7 +204,7 @@ export interface PaymentOrder {
    * If the payment order's status is `held`, this will include the hold object's
    * data.
    */
-  current_hold: PaymentOrder.CurrentHold | null;
+  current_hold: HoldsAPI.Hold | null;
 
   /**
    * If the payment order's status is `returned`, this will include the return
@@ -441,82 +461,6 @@ export interface PaymentOrder {
 
 export namespace PaymentOrder {
   /**
-   * @deprecated
-   */
-  export interface Accounting {
-    /**
-     * @deprecated The ID of one of your accounting categories. Note that these will
-     * only be accessible if your accounting system has been connected.
-     */
-    account_id?: string | null;
-
-    /**
-     * @deprecated The ID of one of the class objects in your accounting system. Class
-     * objects track segments of your business independent of client or project. Note
-     * that these will only be accessible if your accounting system has been connected.
-     */
-    class_id?: string | null;
-  }
-
-  /**
-   * If the payment order's status is `held`, this will include the hold object's
-   * data.
-   */
-  export interface CurrentHold {
-    id: string;
-
-    created_at: string;
-
-    /**
-     * The type of object
-     */
-    object: 'hold';
-
-    /**
-     * The status of the hold
-     */
-    status: 'active' | 'resolved';
-
-    /**
-     * The ID of the target being held
-     */
-    target_id: string;
-
-    /**
-     * The type of target being held
-     */
-    target_type: 'payment_order';
-
-    updated_at: string;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode?: boolean;
-
-    /**
-     * Additional metadata for the hold
-     */
-    metadata?: { [key: string]: string } | null;
-
-    /**
-     * The reason for the hold
-     */
-    reason?: string | null;
-
-    /**
-     * The resolution of the hold
-     */
-    resolution?: string | null;
-
-    /**
-     * When the hold was resolved
-     */
-    resolved_at?: string | null;
-  }
-
-  /**
    * If present, this address will override the default originating party address
    * used on the payment order. This works across all payment types.
    */
@@ -664,6 +608,484 @@ export namespace PaymentOrder {
   }
 }
 
+export interface PaymentOrderAsyncCreateRequest {
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented as
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
+   */
+  amount: number;
+
+  /**
+   * One of `credit`, `debit`. Describes the direction money is flowing in the
+   * transaction. A `credit` moves money from your account to someone else's. A
+   * `debit` pulls money from someone else's account to your own. Note that wire,
+   * rtp, and check payments will always be `credit`.
+   */
+  direction: 'credit' | 'debit';
+
+  /**
+   * The ID of one of your organization's internal accounts.
+   */
+  originating_account_id: string;
+
+  /**
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
+   */
+  type: PaymentOrderType;
+
+  /**
+   * @deprecated
+   */
+  accounting?: Accounting;
+
+  /**
+   * @deprecated The ID of one of your accounting categories. Note that these will
+   * only be accessible if your accounting system has been connected.
+   */
+  accounting_category_id?: string | null;
+
+  /**
+   * @deprecated The ID of one of your accounting ledger classes. Note that these
+   * will only be accessible if your accounting system has been connected.
+   */
+  accounting_ledger_class_id?: string | null;
+
+  /**
+   * The party that will pay the fees for the payment order. See
+   * https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+   * differences between the options.
+   */
+  charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
+
+  /**
+   * Defaults to the currency of the originating account.
+   */
+  currency?: Shared.Currency;
+
+  /**
+   * An optional description for internal use.
+   */
+  description?: string | null;
+
+  /**
+   * Date transactions are to be posted to the participants' account. Defaults to the
+   * current business day or the next business day if the current day is a bank
+   * holiday or weekend. Format: yyyy-mm-dd.
+   */
+  effective_date?: string;
+
+  /**
+   * RFP payments require an expires_at. This value must be past the effective_date.
+   */
+  expires_at?: string | null;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
+   * A payment type to fallback to if the original type is not valid for the
+   * receiving account. Currently, this only supports falling back from RTP to ACH
+   * (type=rtp and fallback_type=ach)
+   */
+  fallback_type?: 'ach';
+
+  /**
+   * If present, indicates a specific foreign exchange contract number that has been
+   * generated by your financial institution.
+   */
+  foreign_exchange_contract?: string | null;
+
+  /**
+   * Indicates the type of FX transfer to initiate, can be either
+   * `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order
+   * currency matches the originating account currency.
+   */
+  foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed' | null;
+
+  /**
+   * Specifies a ledger transaction object that will be created with the payment
+   * order. If the ledger transaction cannot be created, then the payment order
+   * creation will fail. The resulting ledger transaction will mirror the status of
+   * the payment order.
+   */
+  ledger_transaction?: Shared.LedgerTransactionCreateRequest;
+
+  /**
+   * Either ledger_transaction or ledger_transaction_id can be provided. Only a
+   * pending ledger transaction can be attached upon payment order creation. Once the
+   * payment order is created, the status of the ledger transaction tracks the
+   * payment order automatically.
+   */
+  ledger_transaction_id?: string;
+
+  /**
+   * An array of line items that must sum up to the amount of the payment order.
+   */
+  line_items?: Array<ExpectedPaymentsAPI.LineItemRequest>;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * A boolean to determine if NSF Protection is enabled for this payment order. Note
+   * that this setting must also be turned on in your organization settings page.
+   */
+  nsf_protected?: boolean;
+
+  /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  originating_party_address?: PaymentOrderAsyncCreateRequest.OriginatingPartyAddress | null;
+
+  /**
+   * If present, this will replace your default company name on receiver's bank
+   * statement. This field can only be used for ACH payments currently. For ACH, only
+   * the first 16 characters of this string will be used. Any additional characters
+   * will be truncated.
+   */
+  originating_party_name?: string | null;
+
+  /**
+   * Secondary name for the legal entity making the payment. Can be used for e.g.
+   * check signatures where the originating party wishes to retain their company's
+   * display name but use an employee's name for the signature.
+   */
+  originating_secondary_party_name?: string | null;
+
+  /**
+   * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
+   * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
+   * an overnight check rather than standard mail.
+   */
+  priority?: 'high' | 'normal';
+
+  /**
+   * If present, Modern Treasury will not process the payment until after this time.
+   * If `process_after` is past the cutoff for `effective_date`, `process_after` will
+   * take precedence and `effective_date` will automatically update to reflect the
+   * earliest possible sending date after `process_after`. Format is ISO8601
+   * timestamp.
+   */
+  process_after?: string | null;
+
+  /**
+   * For `wire`, this is usually the purpose which is transmitted via the
+   * "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+   * digit CPA Code that will be attached to the payment.
+   */
+  purpose?: string | null;
+
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
+  receiving_account?: PaymentOrderAsyncCreateRequest.ReceivingAccount;
+
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
+  receiving_account_id?: string;
+
+  /**
+   * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
+   */
+  reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
+
+  /**
+   * For `ach`, this field will be passed through on an addenda record. For `wire`
+   * payments the field will be passed through as the "Originator to Beneficiary
+   * Information", also known as OBI or Fedwire tag 6000.
+   */
+  remittance_information?: string | null;
+
+  /**
+   * Send an email to the counterparty when the payment order is sent to the bank. If
+   * `null`, `send_remittance_advice` on the Counterparty is used.
+   */
+  send_remittance_advice?: boolean | null;
+
+  /**
+   * An optional descriptor which will appear in the receiver's statement. For
+   * `check` payments this field will be used as the memo line. For `ach` the maximum
+   * length is 10 characters. Note that for ACH payments, the name on your bank
+   * account will be included automatically by the bank, so you can use the
+   * characters for other useful information. For `eft` the maximum length is 15
+   * characters.
+   */
+  statement_descriptor?: string | null;
+
+  /**
+   * An additional layer of classification for the type of payment order you are
+   * doing. This field is only used for `ach` payment orders currently. For `ach`
+   * payment orders, the `subtype` represents the SEC code. We currently support
+   * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
+   */
+  subtype?: PaymentOrderSubtype | null;
+
+  /**
+   * @deprecated A flag that determines whether a payment order should go through
+   * transaction monitoring.
+   */
+  transaction_monitoring_enabled?: boolean;
+
+  /**
+   * The ultimate originating account ID. Can be a `virtual_account` or
+   * `internal_account`.
+   */
+  ultimate_originating_account_id?: string;
+
+  /**
+   * Address of the ultimate originator of the payment order.
+   */
+  ultimate_originating_party_address?: PaymentOrderAsyncCreateRequest.UltimateOriginatingPartyAddress | null;
+
+  /**
+   * Identifier of the ultimate originator of the payment order.
+   */
+  ultimate_originating_party_identifier?: string | null;
+
+  /**
+   * Name of the ultimate originator of the payment order.
+   */
+  ultimate_originating_party_name?: string | null;
+
+  /**
+   * Identifier of the ultimate funds recipient.
+   */
+  ultimate_receiving_party_identifier?: string | null;
+
+  /**
+   * Name of the ultimate funds recipient.
+   */
+  ultimate_receiving_party_name?: string | null;
+
+  /**
+   * Additional vendor specific fields for this payment. Data must be represented as
+   * key-value pairs.
+   */
+  vendor_attributes?: { [key: string]: unknown };
+}
+
+export namespace PaymentOrderAsyncCreateRequest {
+  /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  export interface OriginatingPartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string | null;
+
+    line1?: string | null;
+
+    line2?: string | null;
+
+    /**
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
+     */
+    locality?: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string | null;
+
+    /**
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
+     */
+    region?: string | null;
+  }
+
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
+  export interface ReceivingAccount {
+    account_details?: Array<ReceivingAccount.AccountDetail>;
+
+    /**
+     * Can be `checking`, `savings` or `other`.
+     */
+    account_type?: ExternalAccountsAPI.ExternalAccountType;
+
+    contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: Shared.LedgerAccountCreateRequest;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: { [key: string]: string };
+
+    /**
+     * A nickname for the external account. This is only for internal usage and won't
+     * affect any payments
+     */
+    name?: string | null;
+
+    /**
+     * Required if receiving wire payments.
+     */
+    party_address?: Shared.AddressRequest;
+
+    party_identifier?: string;
+
+    /**
+     * If this value isn't provided, it will be inherited from the counterparty's name.
+     */
+    party_name?: string;
+
+    /**
+     * Either `individual` or `business`.
+     */
+    party_type?: 'business' | 'individual' | null;
+
+    /**
+     * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
+     * you can pass the processor token in this field.
+     */
+    plaid_processor_token?: string;
+
+    routing_details?: Array<ReceivingAccount.RoutingDetail>;
+  }
+
+  export namespace ReceivingAccount {
+    export interface AccountDetail {
+      account_number: string;
+
+      account_number_type?:
+        | 'arbitrum_address'
+        | 'au_number'
+        | 'avalanche_address'
+        | 'base_address'
+        | 'card_token'
+        | 'clabe'
+        | 'ethereum_address'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'polygon_address'
+        | 'sg_number'
+        | 'solana_address';
+    }
+
+    export interface RoutingDetail {
+      routing_number: string;
+
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'dk_interbank_clearing_code'
+        | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
+        | 'il_bank_code'
+        | 'in_ifsc'
+        | 'jp_zengin_code'
+        | 'my_branch_code'
+        | 'mx_bank_identifier'
+        | 'nz_national_clearing_code'
+        | 'pl_national_clearing_code'
+        | 'se_bankgiro_clearing_code'
+        | 'sg_interbank_clearing_code'
+        | 'swift'
+        | 'vasp'
+        | 'za_national_clearing_code';
+
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'chats'
+        | 'check'
+        | 'cross_border'
+        | 'dk_nets'
+        | 'eft'
+        | 'gb_fps'
+        | 'masav'
+        | 'mx_ccen'
+        | 'neft'
+        | 'nics'
+        | 'nz_becs'
+        | 'pl_elixir'
+        | 'rtp'
+        | 'se_bankgirot'
+        | 'sepa'
+        | 'sg_giro'
+        | 'sic'
+        | 'stablecoin'
+        | 'wire'
+        | 'zengin';
+    }
+  }
+
+  /**
+   * Address of the ultimate originator of the payment order.
+   */
+  export interface UltimateOriginatingPartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string;
+
+    line1?: string;
+
+    line2?: string;
+
+    /**
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
+     */
+    locality?: string;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string;
+
+    /**
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
+     */
+    region?: string;
+  }
+}
+
 /**
  * An additional layer of classification for the type of payment order you are
  * doing. This field is only used for `ach` payment orders currently. For `ach`
@@ -739,6 +1161,447 @@ export type PaymentOrderType =
   | 'wire'
   | 'zengin';
 
+export interface PaymentOrderUpdateRequest {
+  /**
+   * @deprecated
+   */
+  accounting?: Accounting;
+
+  /**
+   * @deprecated The ID of one of your accounting categories. Note that these will
+   * only be accessible if your accounting system has been connected.
+   */
+  accounting_category_id?: string | null;
+
+  /**
+   * @deprecated The ID of one of your accounting ledger classes. Note that these
+   * will only be accessible if your accounting system has been connected.
+   */
+  accounting_ledger_class_id?: string | null;
+
+  /**
+   * Value in specified currency's smallest unit. e.g. $10 would be represented as
+   * 1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
+   */
+  amount?: number;
+
+  /**
+   * The party that will pay the fees for the payment order. See
+   * https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+   * differences between the options.
+   */
+  charge_bearer?: 'shared' | 'sender' | 'receiver' | null;
+
+  /**
+   * Required when receiving_account_id is passed the ID of an external account.
+   */
+  counterparty_id?: string | null;
+
+  /**
+   * Defaults to the currency of the originating account.
+   */
+  currency?: Shared.Currency;
+
+  /**
+   * An optional description for internal use.
+   */
+  description?: string | null;
+
+  /**
+   * One of `credit`, `debit`. Describes the direction money is flowing in the
+   * transaction. A `credit` moves money from your account to someone else's. A
+   * `debit` pulls money from someone else's account to your own. Note that wire,
+   * rtp, and check payments will always be `credit`.
+   */
+  direction?: 'credit' | 'debit';
+
+  /**
+   * Date transactions are to be posted to the participants' account. Defaults to the
+   * current business day or the next business day if the current day is a bank
+   * holiday or weekend. Format: yyyy-mm-dd.
+   */
+  effective_date?: string;
+
+  /**
+   * RFP payments require an expires_at. This value must be past the effective_date.
+   */
+  expires_at?: string | null;
+
+  /**
+   * An optional user-defined 180 character unique identifier.
+   */
+  external_id?: string | null;
+
+  /**
+   * A payment type to fallback to if the original type is not valid for the
+   * receiving account. Currently, this only supports falling back from RTP to ACH
+   * (type=rtp and fallback_type=ach)
+   */
+  fallback_type?: 'ach';
+
+  /**
+   * If present, indicates a specific foreign exchange contract number that has been
+   * generated by your financial institution.
+   */
+  foreign_exchange_contract?: string | null;
+
+  /**
+   * Indicates the type of FX transfer to initiate, can be either
+   * `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order
+   * currency matches the originating account currency.
+   */
+  foreign_exchange_indicator?: 'fixed_to_variable' | 'variable_to_fixed' | null;
+
+  /**
+   * An array of line items that must sum up to the amount of the payment order.
+   */
+  line_items?: Array<ExpectedPaymentsAPI.LineItemRequest>;
+
+  /**
+   * Additional data represented as key-value pairs. Both the key and value must be
+   * strings.
+   */
+  metadata?: { [key: string]: string };
+
+  /**
+   * A boolean to determine if NSF Protection is enabled for this payment order. Note
+   * that this setting must also be turned on in your organization settings page.
+   */
+  nsf_protected?: boolean;
+
+  /**
+   * The ID of one of your organization's internal accounts.
+   */
+  originating_account_id?: string;
+
+  /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  originating_party_address?: PaymentOrderUpdateRequest.OriginatingPartyAddress | null;
+
+  /**
+   * If present, this will replace your default company name on receiver's bank
+   * statement. This field can only be used for ACH payments currently. For ACH, only
+   * the first 16 characters of this string will be used. Any additional characters
+   * will be truncated.
+   */
+  originating_party_name?: string | null;
+
+  /**
+   * Secondary name for the legal entity making the payment. Can be used for e.g.
+   * check signatures where the originating party wishes to retain their company's
+   * display name but use an employee's name for the signature.
+   */
+  originating_secondary_party_name?: string | null;
+
+  /**
+   * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
+   * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
+   * an overnight check rather than standard mail.
+   */
+  priority?: 'high' | 'normal';
+
+  /**
+   * If present, Modern Treasury will not process the payment until after this time.
+   * If `process_after` is past the cutoff for `effective_date`, `process_after` will
+   * take precedence and `effective_date` will automatically update to reflect the
+   * earliest possible sending date after `process_after`. Format is ISO8601
+   * timestamp.
+   */
+  process_after?: string | null;
+
+  /**
+   * For `wire`, this is usually the purpose which is transmitted via the
+   * "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+   * digit CPA Code that will be attached to the payment.
+   */
+  purpose?: string | null;
+
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
+  receiving_account?: PaymentOrderUpdateRequest.ReceivingAccount;
+
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
+  receiving_account_id?: string;
+
+  /**
+   * One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
+   */
+  reconciliation_status?: 'unreconciled' | 'tentatively_reconciled' | 'reconciled';
+
+  /**
+   * For `ach`, this field will be passed through on an addenda record. For `wire`
+   * payments the field will be passed through as the "Originator to Beneficiary
+   * Information", also known as OBI or Fedwire tag 6000.
+   */
+  remittance_information?: string | null;
+
+  /**
+   * Send an email to the counterparty when the payment order is sent to the bank. If
+   * `null`, `send_remittance_advice` on the Counterparty is used.
+   */
+  send_remittance_advice?: boolean | null;
+
+  /**
+   * An optional descriptor which will appear in the receiver's statement. For
+   * `check` payments this field will be used as the memo line. For `ach` the maximum
+   * length is 10 characters. Note that for ACH payments, the name on your bank
+   * account will be included automatically by the bank, so you can use the
+   * characters for other useful information. For `eft` the maximum length is 15
+   * characters.
+   */
+  statement_descriptor?: string | null;
+
+  /**
+   * To cancel a payment order, use `cancelled`. To redraft a returned payment order,
+   * use `approved`. To undo approval on a denied or approved payment order, use
+   * `needs_approval`.
+   */
+  status?:
+    | 'approved'
+    | 'cancelled'
+    | 'completed'
+    | 'denied'
+    | 'failed'
+    | 'held'
+    | 'needs_approval'
+    | 'pending'
+    | 'processing'
+    | 'returned'
+    | 'reversed'
+    | 'sent'
+    | 'stopped';
+
+  /**
+   * An additional layer of classification for the type of payment order you are
+   * doing. This field is only used for `ach` payment orders currently. For `ach`
+   * payment orders, the `subtype` represents the SEC code. We currently support
+   * `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
+   */
+  subtype?: PaymentOrderSubtype | null;
+
+  /**
+   * One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+   * `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
+   */
+  type?: PaymentOrderType;
+
+  /**
+   * This represents the identifier by which the person is known to the receiver when
+   * using the CIE subtype for ACH payments. Only the first 22 characters of this
+   * string will be used. Any additional characters will be truncated.
+   */
+  ultimate_originating_party_identifier?: string | null;
+
+  /**
+   * This represents the name of the person that the payment is on behalf of when
+   * using the CIE subtype for ACH payments. Only the first 15 characters of this
+   * string will be used. Any additional characters will be truncated.
+   */
+  ultimate_originating_party_name?: string | null;
+
+  /**
+   * This represents the name of the merchant that the payment is being sent to when
+   * using the CIE subtype for ACH payments. Only the first 22 characters of this
+   * string will be used. Any additional characters will be truncated.
+   */
+  ultimate_receiving_party_identifier?: string | null;
+
+  /**
+   * This represents the identifier by which the merchant is known to the person
+   * initiating an ACH payment with CIE subtype. Only the first 15 characters of this
+   * string will be used. Any additional characters will be truncated.
+   */
+  ultimate_receiving_party_name?: string | null;
+}
+
+export namespace PaymentOrderUpdateRequest {
+  /**
+   * If present, this address will override the default originating party address
+   * used on the payment order. This works across all payment types.
+   */
+  export interface OriginatingPartyAddress {
+    /**
+     * Country code conforms to [ISO 3166-1 alpha-2]
+     */
+    country?: string | null;
+
+    line1?: string | null;
+
+    line2?: string | null;
+
+    /**
+     * Locality or City. Use the full city name rather than an abbreviation (e.g. San
+     * Francisco).
+     */
+    locality?: string | null;
+
+    /**
+     * The postal code of the address.
+     */
+    postal_code?: string | null;
+
+    /**
+     * Region or State. This field is free-form; for US states, we recommend a
+     * two-letter code (e.g. CA). Full state names are also accepted.
+     */
+    region?: string | null;
+  }
+
+  /**
+   * Either `receiving_account` or `receiving_account_id` must be present. When using
+   * `receiving_account_id`, you may pass the id of an external account or an
+   * internal account.
+   */
+  export interface ReceivingAccount {
+    account_details?: Array<ReceivingAccount.AccountDetail>;
+
+    /**
+     * Can be `checking`, `savings` or `other`.
+     */
+    account_type?: ExternalAccountsAPI.ExternalAccountType;
+
+    contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
+
+    /**
+     * An optional user-defined 180 character unique identifier.
+     */
+    external_id?: string | null;
+
+    /**
+     * Specifies a ledger account object that will be created with the external
+     * account. The resulting ledger account is linked to the external account for
+     * auto-ledgering Payment objects. See
+     * https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
+     * for more details.
+     */
+    ledger_account?: Shared.LedgerAccountCreateRequest;
+
+    /**
+     * Additional data represented as key-value pairs. Both the key and value must be
+     * strings.
+     */
+    metadata?: { [key: string]: string };
+
+    /**
+     * A nickname for the external account. This is only for internal usage and won't
+     * affect any payments
+     */
+    name?: string | null;
+
+    /**
+     * Required if receiving wire payments.
+     */
+    party_address?: Shared.AddressRequest;
+
+    party_identifier?: string;
+
+    /**
+     * If this value isn't provided, it will be inherited from the counterparty's name.
+     */
+    party_name?: string;
+
+    /**
+     * Either `individual` or `business`.
+     */
+    party_type?: 'business' | 'individual' | null;
+
+    /**
+     * If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
+     * you can pass the processor token in this field.
+     */
+    plaid_processor_token?: string;
+
+    routing_details?: Array<ReceivingAccount.RoutingDetail>;
+  }
+
+  export namespace ReceivingAccount {
+    export interface AccountDetail {
+      account_number: string;
+
+      account_number_type?:
+        | 'arbitrum_address'
+        | 'au_number'
+        | 'avalanche_address'
+        | 'base_address'
+        | 'card_token'
+        | 'clabe'
+        | 'ethereum_address'
+        | 'hk_number'
+        | 'iban'
+        | 'id_number'
+        | 'nz_number'
+        | 'other'
+        | 'pan'
+        | 'polygon_address'
+        | 'sg_number'
+        | 'solana_address';
+    }
+
+    export interface RoutingDetail {
+      routing_number: string;
+
+      routing_number_type:
+        | 'aba'
+        | 'au_bsb'
+        | 'br_codigo'
+        | 'ca_cpa'
+        | 'chips'
+        | 'cnaps'
+        | 'dk_interbank_clearing_code'
+        | 'gb_sort_code'
+        | 'hk_interbank_clearing_code'
+        | 'il_bank_code'
+        | 'in_ifsc'
+        | 'jp_zengin_code'
+        | 'my_branch_code'
+        | 'mx_bank_identifier'
+        | 'nz_national_clearing_code'
+        | 'pl_national_clearing_code'
+        | 'se_bankgiro_clearing_code'
+        | 'sg_interbank_clearing_code'
+        | 'swift'
+        | 'vasp'
+        | 'za_national_clearing_code';
+
+      payment_type?:
+        | 'ach'
+        | 'au_becs'
+        | 'bacs'
+        | 'book'
+        | 'card'
+        | 'chats'
+        | 'check'
+        | 'cross_border'
+        | 'dk_nets'
+        | 'eft'
+        | 'gb_fps'
+        | 'masav'
+        | 'mx_ccen'
+        | 'neft'
+        | 'nics'
+        | 'nz_becs'
+        | 'pl_elixir'
+        | 'rtp'
+        | 'se_bankgirot'
+        | 'sepa'
+        | 'sg_giro'
+        | 'sic'
+        | 'stablecoin'
+        | 'wire'
+        | 'zengin';
+    }
+  }
+}
+
 export interface PaymentOrderCreateParams {
   /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented as
@@ -768,7 +1631,7 @@ export interface PaymentOrderCreateParams {
   /**
    * @deprecated
    */
-  accounting?: PaymentOrderCreateParams.Accounting;
+  accounting?: Accounting;
 
   /**
    * @deprecated The ID of one of your accounting categories. Note that these will
@@ -803,7 +1666,7 @@ export interface PaymentOrderCreateParams {
    * An array of documents to be attached to the payment order. Note that if you
    * attach documents, the request's content type must be `multipart/form-data`.
    */
-  documents?: Array<PaymentOrderCreateParams.Document>;
+  documents?: Array<DocumentsAPI.DocumentCreateRequest>;
 
   /**
    * Date transactions are to be posted to the participants' account. Defaults to the
@@ -861,7 +1724,7 @@ export interface PaymentOrderCreateParams {
   /**
    * An array of line items that must sum up to the amount of the payment order.
    */
-  line_items?: Array<PaymentOrderCreateParams.LineItem>;
+  line_items?: Array<ExpectedPaymentsAPI.LineItemRequest>;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -1015,75 +1878,6 @@ export interface PaymentOrderCreateParams {
 
 export namespace PaymentOrderCreateParams {
   /**
-   * @deprecated
-   */
-  export interface Accounting {
-    /**
-     * @deprecated The ID of one of your accounting categories. Note that these will
-     * only be accessible if your accounting system has been connected.
-     */
-    account_id?: string | null;
-
-    /**
-     * @deprecated The ID of one of the class objects in your accounting system. Class
-     * objects track segments of your business independent of client or project. Note
-     * that these will only be accessible if your accounting system has been connected.
-     */
-    class_id?: string | null;
-  }
-
-  export interface Document {
-    file: Uploadable;
-
-    /**
-     * A category given to the document, can be `null`.
-     */
-    document_type?: string;
-
-    /**
-     * The unique identifier for the associated object.
-     */
-    documentable_id?: string;
-
-    documentable_type?:
-      | 'connection'
-      | 'counterparty'
-      | 'expected_payment'
-      | 'identification'
-      | 'incoming_payment_detail'
-      | 'internal_account'
-      | 'legal_entity'
-      | 'payment_order'
-      | 'return'
-      | 'transaction';
-  }
-
-  export interface LineItem {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
-  }
-
-  /**
    * If present, this address will override the default originating party address
    * used on the payment order. This works across all payment types.
    */
@@ -1228,6 +2022,7 @@ export namespace PaymentOrderCreateParams {
         | 'se_bankgiro_clearing_code'
         | 'sg_interbank_clearing_code'
         | 'swift'
+        | 'vasp'
         | 'za_national_clearing_code';
 
       payment_type?:
@@ -1320,7 +2115,7 @@ export interface PaymentOrderCreateAsyncParams {
   /**
    * @deprecated
    */
-  accounting?: PaymentOrderCreateAsyncParams.Accounting;
+  accounting?: Accounting;
 
   /**
    * @deprecated The ID of one of your accounting categories. Note that these will
@@ -1407,7 +2202,7 @@ export interface PaymentOrderCreateAsyncParams {
   /**
    * An array of line items that must sum up to the amount of the payment order.
    */
-  line_items?: Array<PaymentOrderCreateAsyncParams.LineItem>;
+  line_items?: Array<ExpectedPaymentsAPI.LineItemRequest>;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -1561,49 +2356,6 @@ export interface PaymentOrderCreateAsyncParams {
 
 export namespace PaymentOrderCreateAsyncParams {
   /**
-   * @deprecated
-   */
-  export interface Accounting {
-    /**
-     * @deprecated The ID of one of your accounting categories. Note that these will
-     * only be accessible if your accounting system has been connected.
-     */
-    account_id?: string | null;
-
-    /**
-     * @deprecated The ID of one of the class objects in your accounting system. Class
-     * objects track segments of your business independent of client or project. Note
-     * that these will only be accessible if your accounting system has been connected.
-     */
-    class_id?: string | null;
-  }
-
-  export interface LineItem {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
-  }
-
-  /**
    * If present, this address will override the default originating party address
    * used on the payment order. This works across all payment types.
    */
@@ -1748,6 +2500,7 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'se_bankgiro_clearing_code'
         | 'sg_interbank_clearing_code'
         | 'swift'
+        | 'vasp'
         | 'za_national_clearing_code';
 
       payment_type?:
@@ -1921,7 +2674,7 @@ export interface PaymentOrderUpdateParams {
   /**
    * @deprecated
    */
-  accounting?: PaymentOrderUpdateParams.Accounting;
+  accounting?: Accounting;
 
   /**
    * @deprecated The ID of one of your accounting categories. Note that these will
@@ -2011,7 +2764,7 @@ export interface PaymentOrderUpdateParams {
   /**
    * An array of line items that must sum up to the amount of the payment order.
    */
-  line_items?: Array<PaymentOrderUpdateParams.LineItem>;
+  line_items?: Array<ExpectedPaymentsAPI.LineItemRequest>;
 
   /**
    * Additional data represented as key-value pairs. Both the key and value must be
@@ -2181,49 +2934,6 @@ export interface PaymentOrderUpdateParams {
 
 export namespace PaymentOrderUpdateParams {
   /**
-   * @deprecated
-   */
-  export interface Accounting {
-    /**
-     * @deprecated The ID of one of your accounting categories. Note that these will
-     * only be accessible if your accounting system has been connected.
-     */
-    account_id?: string | null;
-
-    /**
-     * @deprecated The ID of one of the class objects in your accounting system. Class
-     * objects track segments of your business independent of client or project. Note
-     * that these will only be accessible if your accounting system has been connected.
-     */
-    class_id?: string | null;
-  }
-
-  export interface LineItem {
-    /**
-     * Value in specified currency's smallest unit. e.g. $10 would be represented
-     * as 1000.
-     */
-    amount: number;
-
-    /**
-     * The ID of one of your accounting categories. Note that these will only be
-     * accessible if your accounting system has been connected.
-     */
-    accounting_category_id?: string | null;
-
-    /**
-     * A free-form description of the line item.
-     */
-    description?: string | null;
-
-    /**
-     * Additional data represented as key-value pairs. Both the key and value must be
-     * strings.
-     */
-    metadata?: { [key: string]: string };
-  }
-
-  /**
    * If present, this address will override the default originating party address
    * used on the payment order. This works across all payment types.
    */
@@ -2368,6 +3078,7 @@ export namespace PaymentOrderUpdateParams {
         | 'se_bankgiro_clearing_code'
         | 'sg_interbank_clearing_code'
         | 'swift'
+        | 'vasp'
         | 'za_national_clearing_code';
 
       payment_type?:
@@ -2404,10 +3115,13 @@ PaymentOrders.Reversals = Reversals;
 
 export declare namespace PaymentOrders {
   export {
+    type Accounting as Accounting,
     type ContactDetailCreateRequest as ContactDetailCreateRequest,
     type PaymentOrder as PaymentOrder,
+    type PaymentOrderAsyncCreateRequest as PaymentOrderAsyncCreateRequest,
     type PaymentOrderSubtype as PaymentOrderSubtype,
     type PaymentOrderType as PaymentOrderType,
+    type PaymentOrderUpdateRequest as PaymentOrderUpdateRequest,
     type PaymentOrdersPage as PaymentOrdersPage,
     type PaymentOrderCreateParams as PaymentOrderCreateParams,
     type PaymentOrderCreateAsyncParams as PaymentOrderCreateAsyncParams,

@@ -127,6 +127,11 @@ export interface VirtualAccount {
   object: string;
 
   /**
+   * The address of the owner of the virtual account, or null.
+   */
+  party_address: Shared.Address | null;
+
+  /**
    * An array of routing detail objects. These will be the routing details of the
    * internal account.
    */
@@ -167,7 +172,7 @@ export interface VirtualAccountCreateParams {
   /**
    * An array of account detail objects.
    */
-  account_details?: Array<VirtualAccountCreateParams.AccountDetail>;
+  account_details?: Array<AccountDetailsAPI.AccountDetailCreateRequest>;
 
   /**
    * The ID of the counterparty that the virtual account belongs to.
@@ -217,112 +222,20 @@ export interface VirtualAccountCreateParams {
   metadata?: { [key: string]: string };
 
   /**
+   * The address of the owner of the virtual account. When absent, the internal
+   * account's party address is used.
+   */
+  party_address?: Shared.AddressRequest;
+
+  /**
    * An array of routing detail objects.
    */
-  routing_details?: Array<VirtualAccountCreateParams.RoutingDetail>;
+  routing_details?: Array<RoutingDetailsAPI.RoutingDetailCreateRequest>;
 
   /**
    * The ID of the virtual account setting used to allocate this virtual account.
    */
   virtual_account_setting_id?: string;
-}
-
-export namespace VirtualAccountCreateParams {
-  export interface AccountDetail {
-    /**
-     * The account number for the bank account.
-     */
-    account_number: string;
-
-    /**
-     * The type of the account number. For wallet addresses, use the chain-specific
-     * type (e.g. `ethereum_address`). Use `other` if the account number is in a
-     * generic format.
-     */
-    account_number_type?:
-      | 'arbitrum_address'
-      | 'au_number'
-      | 'avalanche_address'
-      | 'base_address'
-      | 'card_token'
-      | 'clabe'
-      | 'ethereum_address'
-      | 'hk_number'
-      | 'iban'
-      | 'id_number'
-      | 'nz_number'
-      | 'other'
-      | 'pan'
-      | 'polygon_address'
-      | 'sg_number'
-      | 'solana_address';
-  }
-
-  export interface RoutingDetail {
-    /**
-     * The routing number of the bank.
-     */
-    routing_number: string;
-
-    /**
-     * The type of routing number. See
-     * https://docs.moderntreasury.com/platform/reference/routing-detail-object for
-     * more details.
-     */
-    routing_number_type:
-      | 'aba'
-      | 'au_bsb'
-      | 'br_codigo'
-      | 'ca_cpa'
-      | 'chips'
-      | 'cnaps'
-      | 'dk_interbank_clearing_code'
-      | 'gb_sort_code'
-      | 'hk_interbank_clearing_code'
-      | 'il_bank_code'
-      | 'in_ifsc'
-      | 'jp_zengin_code'
-      | 'mx_bank_identifier'
-      | 'my_branch_code'
-      | 'nz_national_clearing_code'
-      | 'pl_national_clearing_code'
-      | 'se_bankgiro_clearing_code'
-      | 'sg_interbank_clearing_code'
-      | 'swift'
-      | 'za_national_clearing_code';
-
-    /**
-     * If the routing detail is to be used for a specific payment type this field will
-     * be populated, otherwise null.
-     */
-    payment_type?:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'book'
-      | 'card'
-      | 'chats'
-      | 'check'
-      | 'cross_border'
-      | 'dk_nets'
-      | 'eft'
-      | 'gb_fps'
-      | 'masav'
-      | 'mx_ccen'
-      | 'neft'
-      | 'nics'
-      | 'nz_becs'
-      | 'pl_elixir'
-      | 'rtp'
-      | 'se_bankgirot'
-      | 'sepa'
-      | 'sg_giro'
-      | 'sic'
-      | 'stablecoin'
-      | 'wire'
-      | 'zengin'
-      | null;
-  }
 }
 
 export interface VirtualAccountUpdateParams {
@@ -336,6 +249,13 @@ export interface VirtualAccountUpdateParams {
   metadata?: { [key: string]: string };
 
   name?: string | null;
+
+  /**
+   * The address of the owner of the virtual account. Omit to leave it unchanged;
+   * pass all fields blank to clear it, after which the internal account's party
+   * address is used.
+   */
+  party_address?: Shared.AddressRequest;
 }
 
 export declare namespace VirtualAccounts {
