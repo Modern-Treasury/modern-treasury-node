@@ -125,7 +125,6 @@ client.example.list(undefined, { headers: { ... } });
 - `client.externalAccounts.update()`
 - `client.incomingPaymentDetails.list()`
 - `client.incomingPaymentDetails.update()`
-- `client.incomingPaymentDetails.createAsync()`
 - `client.invoices.list()`
 - `client.invoices.update()`
 - `client.invoices.lineItems.list()`
@@ -179,6 +178,7 @@ client.example.list(undefined, { headers: { ... } });
 - `client.cases.list()`
 - `client.virtualAccountSettings.list()`
 - `client.identifications.update()`
+- `client.embeddableFlows.list()`
 
 </details>
 
