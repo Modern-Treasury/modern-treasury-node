@@ -125,7 +125,6 @@ client.example.list(undefined, { headers: { ... } });
 - `client.externalAccounts.update()`
 - `client.incomingPaymentDetails.list()`
 - `client.incomingPaymentDetails.update()`
-- `client.incomingPaymentDetails.createAsync()`
 - `client.invoices.list()`
 - `client.invoices.update()`
 - `client.invoices.lineItems.list()`
