@@ -92,7 +92,7 @@ export class InternalAccounts extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
+   * const accountCapability =
    *   await client.internalAccounts.updateAccountCapability(
    *     'id',
    *     {
@@ -106,7 +106,7 @@ export class InternalAccounts extends APIResource {
     id: string,
     params: InternalAccountUpdateAccountCapabilityParams,
     options?: RequestOptions,
-  ): APIPromise<InternalAccountUpdateAccountCapabilityResponse> {
+  ): APIPromise<AccountCapability> {
     const { internal_account_id, ...body } = params;
     return this._client.patch(
       path`/api/internal_accounts/${internal_account_id}/account_capabilities/${id}`,
@@ -127,6 +127,69 @@ export class InternalAccounts extends APIResource {
 
 export type InternalAccountsPage = Page<InternalAccount>;
 
+export interface AccountCapability {
+  id: string;
+
+  created_at: string;
+
+  /**
+   * One of `debit` or `credit`. Indicates the direction of money movement this
+   * capability is responsible for.
+   */
+  direction: Shared.TransactionDirection;
+
+  discarded_at: string | null;
+
+  /**
+   * A unique reference assigned by your bank for tracking and recognizing payment
+   * files. It is important this is formatted exactly how the bank assigned it.
+   */
+  identifier: string | null;
+
+  /**
+   * This field will be true if this object exists in the live environment or false
+   * if it exists in the test environment.
+   */
+  live_mode: boolean;
+
+  object: string;
+
+  /**
+   * Indicates the the type of payment this capability is responsible for
+   * originating.
+   */
+  payment_type:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'card'
+    | 'chats'
+    | 'check'
+    | 'cross_border'
+    | 'dk_nets'
+    | 'eft'
+    | 'gb_fps'
+    | 'masav'
+    | 'mx_ccen'
+    | 'neft'
+    | 'nics'
+    | 'nz_becs'
+    | 'pl_elixir'
+    | 'rtp'
+    | 'se_bankgirot'
+    | 'sepa'
+    | 'sg_giro'
+    | 'sic'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin';
+
+  updated_at: string;
+
+  [k: string]: unknown;
+}
+
 export interface InternalAccount {
   id: string;
 
@@ -134,7 +197,7 @@ export interface InternalAccount {
    * An array of AccountCapability objects that list the originating abilities of the
    * internal account and any relevant information for them.
    */
-  account_capabilities: Array<InternalAccount.AccountCapability>;
+  account_capabilities: Array<AccountCapability>;
 
   /**
    * An array of account detail objects.
@@ -145,20 +208,23 @@ export interface InternalAccount {
    * Can be checking, savings or other.
    */
   account_type:
-    | 'base_wallet'
     | 'cash'
     | 'checking'
-    | 'crypto_wallet'
-    | 'ethereum_wallet'
     | 'general_ledger'
     | 'loan'
     | 'non_resident'
     | 'other'
     | 'overdraft'
-    | 'polygon_wallet'
     | 'savings'
-    | 'solana_wallet'
     | null;
+
+  /**
+   * The ACH Company IDs allowed to debit this account. `null` allows every company.
+   * An empty array allows none. Debits from any other company are returned with code
+   * R10. Only applicable to debitable accounts under a Modern Treasury PSP
+   * connection.
+   */
+  allowed_ach_debit_company_ids: Array<string> | null;
 
   /**
    * Specifies which financial institution the accounts belong to.
@@ -242,7 +308,8 @@ export interface InternalAccount {
   party_name: string;
 
   /**
-   * Either individual or business.
+   * Either individual or business. Inherits from associated LegalEntity
+   * legal_entity_type, if one exists.
    */
   party_type: 'business' | 'individual' | null;
 
@@ -257,10 +324,11 @@ export interface InternalAccount {
   status: 'active' | 'closed' | 'pending_activation' | 'pending_closure' | 'suspended' | null;
 
   /**
-   * The account title at the financial institution, used in place of the party name.
-   * Only applicable to accounts created under supported connections.
+   * The account title at the financial institution. Defaults to the party name
+   * unless a custom title was set on creation. Custom titles are only applicable to
+   * accounts created under supported connections.
    */
-  title: string | null;
+  title: string;
 
   updated_at: string;
 
@@ -268,134 +336,6 @@ export interface InternalAccount {
    * The vendor ID associated with this account.
    */
   vendor_id: string | null;
-}
-
-export namespace InternalAccount {
-  export interface AccountCapability {
-    id: string;
-
-    created_at: string;
-
-    /**
-     * One of `debit` or `credit`. Indicates the direction of money movement this
-     * capability is responsible for.
-     */
-    direction: Shared.TransactionDirection;
-
-    discarded_at: string | null;
-
-    /**
-     * A unique reference assigned by your bank for tracking and recognizing payment
-     * files. It is important this is formatted exactly how the bank assigned it.
-     */
-    identifier: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * Indicates the the type of payment this capability is responsible for
-     * originating.
-     */
-    payment_type:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'book'
-      | 'card'
-      | 'chats'
-      | 'check'
-      | 'cross_border'
-      | 'dk_nets'
-      | 'eft'
-      | 'gb_fps'
-      | 'masav'
-      | 'mx_ccen'
-      | 'neft'
-      | 'nics'
-      | 'nz_becs'
-      | 'pl_elixir'
-      | 'rtp'
-      | 'se_bankgirot'
-      | 'sepa'
-      | 'sg_giro'
-      | 'sic'
-      | 'stablecoin'
-      | 'wire'
-      | 'zengin';
-
-    updated_at: string;
-
-    [k: string]: unknown;
-  }
-}
-
-export interface InternalAccountUpdateAccountCapabilityResponse {
-  id: string;
-
-  created_at: string;
-
-  /**
-   * One of `debit` or `credit`. Indicates the direction of money movement this
-   * capability is responsible for.
-   */
-  direction: Shared.TransactionDirection;
-
-  discarded_at: string | null;
-
-  /**
-   * A unique reference assigned by your bank for tracking and recognizing payment
-   * files. It is important this is formatted exactly how the bank assigned it.
-   */
-  identifier: string | null;
-
-  /**
-   * This field will be true if this object exists in the live environment or false
-   * if it exists in the test environment.
-   */
-  live_mode: boolean;
-
-  object: string;
-
-  /**
-   * Indicates the the type of payment this capability is responsible for
-   * originating.
-   */
-  payment_type:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'card'
-    | 'chats'
-    | 'check'
-    | 'cross_border'
-    | 'dk_nets'
-    | 'eft'
-    | 'gb_fps'
-    | 'masav'
-    | 'mx_ccen'
-    | 'neft'
-    | 'nics'
-    | 'nz_becs'
-    | 'pl_elixir'
-    | 'rtp'
-    | 'se_bankgirot'
-    | 'sepa'
-    | 'sg_giro'
-    | 'sic'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
-
-  updated_at: string;
-
-  [k: string]: unknown;
 }
 
 export interface InternalAccountListParams extends PageParams {
@@ -482,26 +422,29 @@ export interface InternalAccountCreateParams {
    * An array of AccountCapability objects that list the originating abilities of the
    * internal account and any relevant information for them.
    */
-  account_capabilities?: Array<InternalAccountCreateParams.AccountCapability>;
+  account_capabilities?: Array<AccountCapability>;
 
   /**
    * The account type, used to provision the appropriate account at the financial
    * institution.
    */
   account_type?:
-    | 'base_wallet'
     | 'cash'
     | 'checking'
-    | 'crypto_wallet'
-    | 'ethereum_wallet'
     | 'general_ledger'
     | 'loan'
     | 'non_resident'
     | 'other'
     | 'overdraft'
-    | 'polygon_wallet'
-    | 'savings'
-    | 'solana_wallet';
+    | 'savings';
+
+  /**
+   * The ACH Company IDs allowed to debit this account. `null` allows every company.
+   * An empty array allows none. Debits from any other company are returned with code
+   * R10. Only applicable to debitable accounts under a Modern Treasury PSP
+   * connection.
+   */
+  allowed_ach_debit_company_ids?: Array<string> | null;
 
   /**
    * The identifier of the financial institution the account belongs to. If not
@@ -555,6 +498,12 @@ export interface InternalAccountCreateParams {
   party_name?: string | null;
 
   /**
+   * Either individual or business. Inherits from associated LegalEntity
+   * legal_entity_type, if one exists.
+   */
+  party_type?: 'individual' | 'business' | null;
+
+  /**
    * An array of account number types requested for provisioning.
    */
   requested_account_number_types?: Array<
@@ -568,8 +517,9 @@ export interface InternalAccountCreateParams {
 
   /**
    * The account title at the financial institution, used in place of the party name.
-   * Only applicable to accounts created under supported connections. Please reach
-   * out to your customer success manager to enable this capability for your program.
+   * Defaults to the party name if not set. Only applicable to accounts created under
+   * supported connections. Please reach out to your customer success manager to
+   * enable this capability for your program.
    */
   title?: string | null;
 
@@ -581,69 +531,6 @@ export interface InternalAccountCreateParams {
 }
 
 export namespace InternalAccountCreateParams {
-  export interface AccountCapability {
-    id: string;
-
-    created_at: string;
-
-    /**
-     * One of `debit` or `credit`. Indicates the direction of money movement this
-     * capability is responsible for.
-     */
-    direction: Shared.TransactionDirection;
-
-    discarded_at: string | null;
-
-    /**
-     * A unique reference assigned by your bank for tracking and recognizing payment
-     * files. It is important this is formatted exactly how the bank assigned it.
-     */
-    identifier: string | null;
-
-    /**
-     * This field will be true if this object exists in the live environment or false
-     * if it exists in the test environment.
-     */
-    live_mode: boolean;
-
-    object: string;
-
-    /**
-     * Indicates the the type of payment this capability is responsible for
-     * originating.
-     */
-    payment_type:
-      | 'ach'
-      | 'au_becs'
-      | 'bacs'
-      | 'book'
-      | 'card'
-      | 'chats'
-      | 'check'
-      | 'cross_border'
-      | 'dk_nets'
-      | 'eft'
-      | 'gb_fps'
-      | 'masav'
-      | 'mx_ccen'
-      | 'neft'
-      | 'nics'
-      | 'nz_becs'
-      | 'pl_elixir'
-      | 'rtp'
-      | 'se_bankgirot'
-      | 'sepa'
-      | 'sg_giro'
-      | 'sic'
-      | 'stablecoin'
-      | 'wire'
-      | 'zengin';
-
-    updated_at: string;
-
-    [k: string]: unknown;
-  }
-
   /**
    * The address associated with the owner or null.
    */
@@ -722,6 +609,12 @@ export interface InternalAccountUpdateParams {
   party_address?: Shared.AddressRequest;
 
   /**
+   * Either individual or business. Inherits from associated LegalEntity
+   * legal_entity_type, if one exists.
+   */
+  party_type?: 'individual' | 'business' | null;
+
+  /**
    * Requests closure of the internal account. The resulting status may be `closed`
    * for vendors that close synchronously.
    */
@@ -746,8 +639,8 @@ InternalAccounts.BalanceReports = BalanceReports;
 
 export declare namespace InternalAccounts {
   export {
+    type AccountCapability as AccountCapability,
     type InternalAccount as InternalAccount,
-    type InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
     type InternalAccountsPage as InternalAccountsPage,
     type InternalAccountListParams as InternalAccountListParams,
     type InternalAccountCreateParams as InternalAccountCreateParams,
