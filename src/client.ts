@@ -73,6 +73,14 @@ import {
   Documents,
   DocumentsPage,
 } from './resources/documents';
+import {
+  EmbeddableFlow,
+  EmbeddableFlowCreateParams,
+  EmbeddableFlowListParams,
+  EmbeddableFlowUpdateParams,
+  EmbeddableFlows,
+  EmbeddableFlowsPage,
+} from './resources/embeddable-flows';
 import { Event, EventListParams, Events, EventsPage } from './resources/events';
 import {
   ExpectedPayment,
@@ -1162,6 +1170,7 @@ export class ModernTreasury {
   cases: API.Cases = new API.Cases(this);
   virtualAccountSettings: API.VirtualAccountSettings = new API.VirtualAccountSettings(this);
   identifications: API.Identifications = new API.Identifications(this);
+  embeddableFlows: API.EmbeddableFlows = new API.EmbeddableFlows(this);
 }
 
 ModernTreasury.Connections = Connections;
@@ -1206,6 +1215,7 @@ ModernTreasury.Holds = Holds;
 ModernTreasury.Cases = Cases;
 ModernTreasury.VirtualAccountSettings = VirtualAccountSettings;
 ModernTreasury.Identifications = Identifications;
+ModernTreasury.EmbeddableFlows = EmbeddableFlows;
 
 export declare namespace ModernTreasury {
   export type RequestOptions = Opts.RequestOptions;
@@ -1584,6 +1594,15 @@ export declare namespace ModernTreasury {
     type Identification as Identification,
     type IdentificationCreateParams as IdentificationCreateParams,
     type IdentificationUpdateParams as IdentificationUpdateParams,
+  };
+
+  export {
+    EmbeddableFlows as EmbeddableFlows,
+    type EmbeddableFlow as EmbeddableFlow,
+    type EmbeddableFlowsPage as EmbeddableFlowsPage,
+    type EmbeddableFlowListParams as EmbeddableFlowListParams,
+    type EmbeddableFlowCreateParams as EmbeddableFlowCreateParams,
+    type EmbeddableFlowUpdateParams as EmbeddableFlowUpdateParams,
   };
 
   export type AccountsType = API.AccountsType;
