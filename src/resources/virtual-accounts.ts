@@ -127,6 +127,11 @@ export interface VirtualAccount {
   object: string;
 
   /**
+   * The address of the owner of the virtual account, or null.
+   */
+  party_address: Shared.Address | null;
+
+  /**
    * An array of routing detail objects. These will be the routing details of the
    * internal account.
    */
@@ -217,6 +222,12 @@ export interface VirtualAccountCreateParams {
   metadata?: { [key: string]: string };
 
   /**
+   * The address of the owner of the virtual account. When absent, the internal
+   * account's party address is used.
+   */
+  party_address?: Shared.AddressRequest;
+
+  /**
    * An array of routing detail objects.
    */
   routing_details?: Array<VirtualAccountCreateParams.RoutingDetail>;
@@ -289,6 +300,7 @@ export namespace VirtualAccountCreateParams {
       | 'se_bankgiro_clearing_code'
       | 'sg_interbank_clearing_code'
       | 'swift'
+      | 'vasp'
       | 'za_national_clearing_code';
 
     /**
@@ -336,6 +348,13 @@ export interface VirtualAccountUpdateParams {
   metadata?: { [key: string]: string };
 
   name?: string | null;
+
+  /**
+   * The address of the owner of the virtual account. Omit to leave it unchanged;
+   * pass all fields blank to clear it, after which the internal account's party
+   * address is used.
+   */
+  party_address?: Shared.AddressRequest;
 }
 
 export declare namespace VirtualAccounts {
