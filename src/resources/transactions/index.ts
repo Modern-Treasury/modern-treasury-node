@@ -10,6 +10,8 @@ export {
 export {
   Transactions,
   type Transaction,
+  type TransactionCreateRequest,
+  type TransactionUpdateRequest,
   type TransactionListParams,
   type TransactionUpdateParams,
   type TransactionCreateParams,

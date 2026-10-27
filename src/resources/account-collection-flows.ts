@@ -22,6 +22,8 @@ export class AccountCollectionFlows extends APIResource {
 
   /**
    * create account_collection_flow
+   *
+   * @deprecated
    */
   create(
     body: AccountCollectionFlowCreateParams,
@@ -113,6 +115,36 @@ export interface AccountCollectionFlow {
   updated_at?: string;
 }
 
+export interface AccountCollectionFlowCreateRequest {
+  /**
+   * Required.
+   */
+  counterparty_id: string;
+
+  payment_types: Array<string>;
+
+  receiving_countries?: Array<
+    | 'USA'
+    | 'AUS'
+    | 'BEL'
+    | 'CAN'
+    | 'CHL'
+    | 'CHN'
+    | 'COL'
+    | 'FRA'
+    | 'DEU'
+    | 'HKG'
+    | 'IND'
+    | 'IRL'
+    | 'ITA'
+    | 'MEX'
+    | 'NLD'
+    | 'PER'
+    | 'ESP'
+    | 'GBR'
+  >;
+}
+
 export interface AccountCollectionFlowListParams extends PageParams {
   client_token?: string;
 
@@ -164,6 +196,7 @@ export interface AccountCollectionFlowUpdateParams {
 export declare namespace AccountCollectionFlows {
   export {
     type AccountCollectionFlow as AccountCollectionFlow,
+    type AccountCollectionFlowCreateRequest as AccountCollectionFlowCreateRequest,
     type AccountCollectionFlowsPage as AccountCollectionFlowsPage,
     type AccountCollectionFlowListParams as AccountCollectionFlowListParams,
     type AccountCollectionFlowCreateParams as AccountCollectionFlowCreateParams,
