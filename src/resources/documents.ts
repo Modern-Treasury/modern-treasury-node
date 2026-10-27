@@ -111,6 +111,32 @@ export namespace Document {
   }
 }
 
+export interface DocumentCreateRequest {
+  file: Uploadable;
+
+  /**
+   * A category given to the document, can be `null`.
+   */
+  document_type?: string;
+
+  /**
+   * The unique identifier for the associated object.
+   */
+  documentable_id?: string;
+
+  documentable_type?:
+    | 'connection'
+    | 'counterparty'
+    | 'expected_payment'
+    | 'identification'
+    | 'incoming_payment_detail'
+    | 'internal_account'
+    | 'legal_entity'
+    | 'payment_order'
+    | 'return'
+    | 'transaction';
+}
+
 export interface DocumentCreateParams {
   file: Uploadable;
 
@@ -164,6 +190,7 @@ export interface DocumentListParams extends PageParams {
 export declare namespace Documents {
   export {
     type Document as Document,
+    type DocumentCreateRequest as DocumentCreateRequest,
     type DocumentsPage as DocumentsPage,
     type DocumentCreateParams as DocumentCreateParams,
     type DocumentListParams as DocumentListParams,
