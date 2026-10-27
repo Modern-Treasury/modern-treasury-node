@@ -147,6 +147,7 @@ export interface RoutingDetail {
     | 'se_bankgiro_clearing_code'
     | 'sg_interbank_clearing_code'
     | 'swift'
+    | 'vasp'
     | 'za_national_clearing_code';
 
   updated_at: string;
@@ -195,6 +196,7 @@ export interface RoutingDetailCreateParams {
     | 'se_bankgiro_clearing_code'
     | 'sg_interbank_clearing_code'
     | 'swift'
+    | 'vasp'
     | 'za_national_clearing_code';
 
   /**
