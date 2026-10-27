@@ -44,7 +44,7 @@ export class IncomingPaymentDetails extends APIResource {
    * Simulate Incoming Payment Detail
    */
   createAsync(
-    body: IncomingPaymentDetailCreateAsyncParams | null | undefined = {},
+    body: IncomingPaymentDetailCreateAsyncParams,
     options?: RequestOptions,
   ): APIPromise<IncomingPaymentDetail> {
     return this._client.post('/api/simulations/incoming_payment_details/create_async', { body, ...options });
@@ -83,6 +83,11 @@ export interface IncomingPaymentDetail {
    * One of `credit` or `debit`.
    */
   direction: Shared.TransactionDirection;
+
+  /**
+   * The reason the incoming payment detail failed, or `null`.
+   */
+  failure_reason: string | null;
 
   /**
    * The ID of the Internal Account for the incoming payment detail. This is always
@@ -166,6 +171,7 @@ export interface IncomingPaymentDetail {
     | 'se_bankgiro_clearing_code'
     | 'sg_interbank_clearing_code'
     | 'swift'
+    | 'vasp'
     | 'za_national_clearing_code'
     | null;
 
@@ -176,9 +182,9 @@ export interface IncomingPaymentDetail {
 
   /**
    * The current status of the incoming payment order. One of `pending`, `completed`,
-   * or `returned`.
+   * `returned`, `failed`, or `held`.
    */
-  status: 'completed' | 'pending' | 'returned';
+  status: 'completed' | 'failed' | 'held' | 'pending' | 'returned';
 
   /**
    * An additional layer of classification for the type of incoming payment detail.
@@ -295,9 +301,9 @@ export interface IncomingPaymentDetailListParams extends PageParams {
 
   /**
    * The current status of the incoming payment order. One of `pending`, `completed`,
-   * or `returned`.
+   * `returned`, `failed`, or `held`.
    */
-  status?: 'completed' | 'pending' | 'returned';
+  status?: 'completed' | 'failed' | 'held' | 'pending' | 'returned';
 
   /**
    * An additional layer of classification for the type of incoming payment detail.
@@ -341,6 +347,24 @@ export interface IncomingPaymentDetailUpdateParams {
 
 export interface IncomingPaymentDetailCreateAsyncParams {
   /**
+   * One of `ach`, `wire`, `check`.
+   */
+  type:
+    | 'ach'
+    | 'au_becs'
+    | 'bacs'
+    | 'book'
+    | 'check'
+    | 'eft'
+    | 'neft'
+    | 'nz_becs'
+    | 'rtp'
+    | 'sepa'
+    | 'stablecoin'
+    | 'wire'
+    | 'zengin';
+
+  /**
    * Value in specified currency's smallest unit. e.g. $10 would be represented
    * as 1000.
    */
@@ -358,7 +382,9 @@ export interface IncomingPaymentDetailCreateAsyncParams {
 
   /**
    * An object passed through to the simulated IPD that could reflect what a vendor
-   * would pass.
+   * would pass. For `type: check` with `subtype: lockbox` (sandbox Modern Treasury
+   * payment accounts only), `data` must include `payor_name`, otherwise the request
+   * returns 422.
    */
   data?: unknown | null;
 
@@ -379,27 +405,10 @@ export interface IncomingPaymentDetailCreateAsyncParams {
 
   /**
    * An additional layer of classification for the type of incoming payment detail,
-   * e.g. `ethereum` for a `stablecoin` type.
+   * e.g. `ethereum` for a `stablecoin` type. For `type: check`, `subtype: lockbox`
+   * simulates a lockbox check deposit.
    */
   subtype?: string | null;
-
-  /**
-   * One of `ach`, `wire`, `check`.
-   */
-  type?:
-    | 'ach'
-    | 'au_becs'
-    | 'bacs'
-    | 'book'
-    | 'check'
-    | 'eft'
-    | 'neft'
-    | 'nz_becs'
-    | 'rtp'
-    | 'sepa'
-    | 'stablecoin'
-    | 'wire'
-    | 'zengin';
 
   /**
    * An optional parameter to associate the incoming payment detail to a virtual
