@@ -644,3 +644,16 @@ Methods:
 - <code title="post /api/identifications">client.identifications.<a href="./src/resources/identifications.ts">create</a>({ ...params }) -> Identification</code>
 - <code title="get /api/identifications/{id}">client.identifications.<a href="./src/resources/identifications.ts">retrieve</a>(id) -> Identification</code>
 - <code title="patch /api/identifications/{id}">client.identifications.<a href="./src/resources/identifications.ts">update</a>(id, { ...params }) -> Identification</code>
+
+# EmbeddableFlows
+
+Types:
+
+- <code><a href="./src/resources/embeddable-flows.ts">EmbeddableFlow</a></code>
+
+Methods:
+
+- <code title="get /api/embeddable_flows">client.embeddableFlows.<a href="./src/resources/embeddable-flows.ts">list</a>({ ...params }) -> EmbeddableFlowsPage</code>
+- <code title="post /api/embeddable_flows">client.embeddableFlows.<a href="./src/resources/embeddable-flows.ts">create</a>({ ...params }) -> EmbeddableFlow</code>
+- <code title="get /api/embeddable_flows/{id}">client.embeddableFlows.<a href="./src/resources/embeddable-flows.ts">retrieve</a>(id) -> EmbeddableFlow</code>
+- <code title="patch /api/embeddable_flows/{id}">client.embeddableFlows.<a href="./src/resources/embeddable-flows.ts">update</a>(id, { ...params }) -> EmbeddableFlow</code>

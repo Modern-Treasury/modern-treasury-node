@@ -123,7 +123,7 @@ describe('resource paymentOrders', () => {
       purpose: 'purpose',
       receiving_account: {
         account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
-        account_type: 'base_wallet',
+        account_type: 'cash',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
         external_id: 'external_id',
         ledger_account: {
@@ -297,7 +297,7 @@ describe('resource paymentOrders', () => {
       purpose: 'purpose',
       receiving_account: {
         account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
-        account_type: 'base_wallet',
+        account_type: 'cash',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
         external_id: 'external_id',
         ledger_account: {
@@ -487,7 +487,7 @@ describe('resource paymentOrders', () => {
           purpose: 'purpose',
           receiving_account: {
             account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
-            account_type: 'base_wallet',
+            account_type: 'cash',
             contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
             external_id: 'external_id',
             ledger_account: {
