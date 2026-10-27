@@ -288,6 +288,10 @@ const fuse = new Fuse(
     'client.identifications.create',
     'client.identifications.retrieve',
     'client.identifications.update',
+    'client.embeddableFlows.create',
+    'client.embeddableFlows.list',
+    'client.embeddableFlows.retrieve',
+    'client.embeddableFlows.update',
   ],
   { threshold: 1, shouldSort: true },
 );
