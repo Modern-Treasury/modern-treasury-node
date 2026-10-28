@@ -128,6 +128,7 @@ client.example.list(undefined, { headers: { ... } });
 - `client.invoices.list()`
 - `client.invoices.update()`
 - `client.invoices.lineItems.list()`
+- `client.documents.create()`
 - `client.documents.list()`
 - `client.accountCollectionFlows.list()`
 - `client.internalAccounts.list()`

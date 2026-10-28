@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as PaymentOrdersAPI from './payment-orders/payment-orders';
 import { APIPromise } from '../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
@@ -77,7 +78,7 @@ export interface LineItem {
   /**
    * @deprecated
    */
-  accounting: LineItem.Accounting;
+  accounting: PaymentOrdersAPI.Accounting;
 
   /**
    * @deprecated The ID of one of your accounting categories. Note that these will
@@ -130,26 +131,6 @@ export interface LineItem {
   object: string;
 
   updated_at: string;
-}
-
-export namespace LineItem {
-  /**
-   * @deprecated
-   */
-  export interface Accounting {
-    /**
-     * @deprecated The ID of one of your accounting categories. Note that these will
-     * only be accessible if your accounting system has been connected.
-     */
-    account_id?: string | null;
-
-    /**
-     * @deprecated The ID of one of the class objects in your accounting system. Class
-     * objects track segments of your business independent of client or project. Note
-     * that these will only be accessible if your accounting system has been connected.
-     */
-    class_id?: string | null;
-  }
 }
 
 export interface LineItemListParams extends PageParams {
