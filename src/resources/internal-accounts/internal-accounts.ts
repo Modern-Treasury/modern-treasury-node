@@ -744,7 +744,7 @@ export interface InternalAccountUpdateParams {
    * the account's bank; you are responsible for verifying that the address is
    * accurate.
    */
-  party_address?: Shared.AddressRequest;
+  party_address?: Shared.AddressRequest | null;
 
   /**
    * Either individual or business. Inherits from associated LegalEntity
