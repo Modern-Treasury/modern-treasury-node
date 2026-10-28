@@ -148,11 +148,13 @@ export interface InternalAccount {
     | 'cash'
     | 'checking'
     | 'general_ledger'
+    | 'hosted_wallet'
     | 'loan'
     | 'non_resident'
     | 'other'
     | 'overdraft'
     | 'savings'
+    | 'self_hosted_wallet'
     | null;
 
   /**
