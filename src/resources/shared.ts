@@ -255,7 +255,7 @@ export interface ChildLegalEntityCreate {
   /**
    * Array of regulatory bodies overseeing this institution.
    */
-  regulators?: Array<ChildLegalEntityCreate.Regulator> | null;
+  regulators?: Array<LegalEntitiesAPI.LegalEntityRegulator> | null;
 
   /**
    * The risk rating of the legal entity. One of low, medium, high.
@@ -335,24 +335,6 @@ export namespace ChildLegalEntityCreate {
      * +12025551234.
      */
     phone_number?: string;
-  }
-
-  export interface Regulator {
-    /**
-     * The country code where the regulator operates in the ISO 3166-1 alpha-2 format
-     * (e.g., "US", "CA", "GB").
-     */
-    jurisdiction: string;
-
-    /**
-     * Full name of the regulatory body.
-     */
-    name: string;
-
-    /**
-     * Registration or identification number with the regulator.
-     */
-    registration_number: string;
   }
 
   /**

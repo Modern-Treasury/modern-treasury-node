@@ -12,7 +12,7 @@ export class Documents extends APIResource {
   /**
    * Create a document.
    */
-  create(body: DocumentCreateParams, options?: RequestOptions): APIPromise<Document> {
+  create(body: DocumentCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Document> {
     return this._client.post(
       '/api/documents',
       multipartFormRequestOptions({ body, ...options }, this._client),
@@ -112,8 +112,6 @@ export namespace Document {
 }
 
 export interface DocumentCreateParams {
-  file: Uploadable;
-
   /**
    * A category given to the document, can be `null`.
    */
@@ -135,6 +133,8 @@ export interface DocumentCreateParams {
     | 'payment_order'
     | 'return'
     | 'transaction';
+
+  file?: Uploadable;
 }
 
 export interface DocumentListParams extends PageParams {

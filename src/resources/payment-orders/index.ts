@@ -2,10 +2,13 @@
 
 export {
   PaymentOrders,
+  type Accounting,
   type ContactDetailCreateRequest,
   type PaymentOrder,
+  type PaymentOrderAsyncCreateRequest,
   type PaymentOrderSubtype,
   type PaymentOrderType,
+  type PaymentOrderUpdateRequest,
   type PaymentOrderCreateParams,
   type PaymentOrderCreateAsyncParams,
   type PaymentOrderListParams,
