@@ -39,7 +39,7 @@ describe('resource paymentActions', () => {
           metadata: { foo: 'string' },
           per_page: 0,
           status: 'pending',
-          type: 'stop',
+          type: 'void',
         },
         { path: '/_stainless_unknown_path' },
       ),
