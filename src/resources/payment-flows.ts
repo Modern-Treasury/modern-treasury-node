@@ -142,6 +142,43 @@ export interface PaymentFlow {
   updated_at?: string;
 }
 
+export interface PaymentFlowCreateRequest {
+  /**
+   * Required. Value in specified currency's smallest unit. e.g. $10 would be
+   * represented as 1000. Can be any integer up to 36 digits.
+   */
+  amount: number;
+
+  /**
+   * Required. The ID of a counterparty associated with the payment. As part of the
+   * payment workflow an external account will be associated with this model.
+   */
+  counterparty_id: string;
+
+  /**
+   * Required. The currency of the payment.
+   */
+  currency: string;
+
+  /**
+   * Required. Describes the direction money is flowing in the transaction. Can only
+   * be `debit`. A `debit` pulls money from someone else's account to your own.
+   */
+  direction: 'credit' | 'debit';
+
+  /**
+   * Required. The ID of one of your organization's internal accounts.
+   */
+  originating_account_id: string;
+
+  /**
+   * Optional. Can only be passed in when `effective_date_selection_enabled` is
+   * `true`. When set, the due date is shown to your end-user in the pre-built UI as
+   * they are selecting a payment `effective_date`.
+   */
+  due_date?: string;
+}
+
 export interface PaymentFlowListParams extends PageParams {
   client_token?: string;
 
@@ -204,6 +241,7 @@ export interface PaymentFlowUpdateParams {
 export declare namespace PaymentFlows {
   export {
     type PaymentFlow as PaymentFlow,
+    type PaymentFlowCreateRequest as PaymentFlowCreateRequest,
     type PaymentFlowsPage as PaymentFlowsPage,
     type PaymentFlowListParams as PaymentFlowListParams,
     type PaymentFlowCreateParams as PaymentFlowCreateParams,
