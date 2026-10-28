@@ -126,6 +126,7 @@ describe('resource internalAccounts', () => {
       client.internalAccounts.update(
         'id',
         {
+          allowed_ach_debit_company_ids: ['x'],
           contra_ledger_account_id: 'contra_ledger_account_id',
           counterparty_id: 'counterparty_id',
           external_id: 'external_id',

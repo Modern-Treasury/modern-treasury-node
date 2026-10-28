@@ -693,6 +693,14 @@ export namespace InternalAccountCreateParams {
 
 export interface InternalAccountUpdateParams {
   /**
+   * The ACH Company IDs allowed to debit this account. `null` allows every company.
+   * An empty array allows none. Debits from any other company are returned with code
+   * R10. Only applicable to debitable accounts under a Modern Treasury PSP
+   * connection.
+   */
+  allowed_ach_debit_company_ids?: Array<string> | null;
+
+  /**
    * The Contra Ledger Account associated to this account.
    */
   contra_ledger_account_id?: string;

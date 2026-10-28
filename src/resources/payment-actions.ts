@@ -279,7 +279,7 @@ export interface PaymentActionListParams extends PageParams {
   /**
    * The type of payment action.
    */
-  type?: 'stop' | 'issue';
+  type?: 'void' | 'stop' | 'issue';
 }
 
 export namespace PaymentActionListParams {
