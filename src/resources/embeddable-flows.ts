@@ -1,6 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as AccountCollectionFlowsAPI from './account-collection-flows';
+import * as PaymentFlowsAPI from './payment-flows';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../core/pagination';
@@ -126,81 +128,14 @@ export interface EmbeddableFlowCreateParams {
    * The parameters for the selected template's flow.
    */
   options:
-    | EmbeddableFlowCreateParams.AccountCollectionFlowCreateRequest
-    | EmbeddableFlowCreateParams.PaymentFlowCreateRequest
+    | AccountCollectionFlowsAPI.AccountCollectionFlowCreateRequest
+    | PaymentFlowsAPI.PaymentFlowCreateRequest
     | EmbeddableFlowCreateParams.Type;
 
   template: 'legal_entity_onboarding' | 'account_collection' | 'payment';
 }
 
 export namespace EmbeddableFlowCreateParams {
-  export interface AccountCollectionFlowCreateRequest {
-    /**
-     * Required.
-     */
-    counterparty_id: string;
-
-    payment_types: Array<string>;
-
-    receiving_countries?: Array<
-      | 'USA'
-      | 'AUS'
-      | 'BEL'
-      | 'CAN'
-      | 'CHL'
-      | 'CHN'
-      | 'COL'
-      | 'FRA'
-      | 'DEU'
-      | 'HKG'
-      | 'IND'
-      | 'IRL'
-      | 'ITA'
-      | 'MEX'
-      | 'NLD'
-      | 'PER'
-      | 'ESP'
-      | 'GBR'
-    >;
-  }
-
-  export interface PaymentFlowCreateRequest {
-    /**
-     * Required. Value in specified currency's smallest unit. e.g. $10 would be
-     * represented as 1000. Can be any integer up to 36 digits.
-     */
-    amount: number;
-
-    /**
-     * Required. The ID of a counterparty associated with the payment. As part of the
-     * payment workflow an external account will be associated with this model.
-     */
-    counterparty_id: string;
-
-    /**
-     * Required. The currency of the payment.
-     */
-    currency: string;
-
-    /**
-     * Required. Describes the direction money is flowing in the transaction. Can only
-     * be `debit`. A `debit` pulls money from someone else's account to your own.
-     */
-    direction: 'credit' | 'debit';
-
-    /**
-     * Required. The ID of one of your organization's internal accounts.
-     */
-    originating_account_id: string;
-
-    /**
-     * Optional. Can only be passed in when `effective_date_selection_enabled` is
-     * `true`. When set, the due date is shown to your end-user in the pre-built UI as
-     * they are selecting a payment `effective_date`.
-     */
-    due_date?: string;
-  }
-
   export interface Type {
     type: 'individual';
   }
