@@ -89,7 +89,6 @@ export interface AccountDetail {
     | 'id_number'
     | 'nz_number'
     | 'other'
-    | 'pan'
     | 'polygon_address'
     | 'sg_number'
     | 'solana_address';
@@ -150,7 +149,6 @@ export interface AccountDetailCreateParams {
     | 'id_number'
     | 'nz_number'
     | 'other'
-    | 'pan'
     | 'polygon_address'
     | 'sg_number'
     | 'solana_address';
