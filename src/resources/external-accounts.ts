@@ -540,7 +540,7 @@ export interface ExternalAccountUpdateParams {
    */
   name?: string | null;
 
-  party_address?: Shared.AddressRequest;
+  party_address?: Shared.AddressRequest | null;
 
   /**
    * If this value isn't provided, it will be inherited from the counterparty's name.

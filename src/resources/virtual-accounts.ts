@@ -351,10 +351,10 @@ export interface VirtualAccountUpdateParams {
 
   /**
    * The address of the owner of the virtual account. Omit to leave it unchanged;
-   * pass all fields blank to clear it, after which the internal account's party
-   * address is used.
+   * pass `null` to clear it, after which the internal account's party address is
+   * used.
    */
-  party_address?: Shared.AddressRequest;
+  party_address?: Shared.AddressRequest | null;
 }
 
 export declare namespace VirtualAccounts {

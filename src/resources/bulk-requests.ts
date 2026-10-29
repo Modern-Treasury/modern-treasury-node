@@ -271,6 +271,14 @@ export namespace BulkRequestCreateParams {
     effective_date?: string;
 
     /**
+     * A unique identifier passed through to the receiving bank. Only supported for
+     * `ach` (maximum 15 characters) and `wire` (maximum 35 characters). If not
+     * provided, Modern Treasury generates one. Some banks may truncate this value or
+     * use their own identifier instead.
+     */
+    end_to_end_id?: string | null;
+
+    /**
      * RFP payments require an expires_at. This value must be past the effective_date.
      */
     expires_at?: string | null;
@@ -1056,6 +1064,14 @@ export namespace BulkRequestCreateParams {
      * holiday or weekend. Format: yyyy-mm-dd.
      */
     effective_date?: string;
+
+    /**
+     * A unique identifier passed through to the receiving bank. Only supported for
+     * `ach` (maximum 15 characters) and `wire` (maximum 35 characters). If not
+     * provided, Modern Treasury generates one. Some banks may truncate this value or
+     * use their own identifier instead.
+     */
+    end_to_end_id?: string | null;
 
     /**
      * RFP payments require an expires_at. This value must be past the effective_date.
