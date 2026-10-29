@@ -81,6 +81,7 @@ describe('resource bulkRequests', () => {
           currency: 'AED',
           description: 'description',
           effective_date: '2019-12-27',
+          end_to_end_id: 'end_to_end_id',
           expires_at: '2019-12-27T18:11:19.117Z',
           external_id: 'external_id',
           fallback_type: 'ach',
