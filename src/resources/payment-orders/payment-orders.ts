@@ -1212,7 +1212,6 @@ export namespace PaymentOrderCreateParams {
         | 'id_number'
         | 'nz_number'
         | 'other'
-        | 'pan'
         | 'polygon_address'
         | 'sg_number'
         | 'solana_address';
@@ -1741,7 +1740,6 @@ export namespace PaymentOrderCreateAsyncParams {
         | 'id_number'
         | 'nz_number'
         | 'other'
-        | 'pan'
         | 'polygon_address'
         | 'sg_number'
         | 'solana_address';
@@ -2370,7 +2368,6 @@ export namespace PaymentOrderUpdateParams {
         | 'id_number'
         | 'nz_number'
         | 'other'
-        | 'pan'
         | 'polygon_address'
         | 'sg_number'
         | 'solana_address';

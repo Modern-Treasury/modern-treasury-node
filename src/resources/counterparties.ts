@@ -302,7 +302,6 @@ export interface CounterpartyCollectAccountParams {
     | 'ibanNumber'
     | 'clabeNumber'
     | 'walletAddress'
-    | 'panNumber'
     | 'routingNumber'
     | 'abaWireRoutingNumber'
     | 'swiftCode'
@@ -526,7 +525,6 @@ export namespace CounterpartyCreateParams {
         | 'id_number'
         | 'nz_number'
         | 'other'
-        | 'pan'
         | 'polygon_address'
         | 'sg_number'
         | 'solana_address';
