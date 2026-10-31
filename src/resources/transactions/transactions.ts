@@ -338,8 +338,6 @@ export interface TransactionListParams extends PageParams {
    */
   posted?: boolean;
 
-  transactable_type?: string;
-
   /**
    * Filters for transactions including the queried vendor id (an identifier given to
    * transactions by the bank).

@@ -36,7 +36,6 @@ describe('resource transactions', () => {
           payment_type: 'payment_type',
           per_page: 0,
           posted: true,
-          transactable_type: 'transactable_type',
           vendor_id: 'vendor_id',
           virtual_account_id: 'virtual_account_id',
         },
