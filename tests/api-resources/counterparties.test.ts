@@ -74,7 +74,6 @@ describe('resource counterparties', () => {
   test('create: required and optional params', async () => {
     const response = await client.counterparties.create({
       name: 'name',
-      accounting: { type: 'customer' },
       accounts: [
         {
           account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
@@ -127,7 +126,6 @@ describe('resource counterparties', () => {
       ],
       email: 'dev@stainless.com',
       external_id: 'external_id',
-      ledger_type: 'customer',
       legal_entity: {
         legal_entity_type: 'business',
         addresses: [

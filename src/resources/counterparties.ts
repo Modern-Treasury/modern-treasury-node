@@ -379,11 +379,6 @@ export interface CounterpartyCreateParams {
   name: string | null;
 
   /**
-   * @deprecated
-   */
-  accounting?: CounterpartyCreateParams.Accounting;
-
-  /**
    * The accounts for this counterparty.
    */
   accounts?: Array<CounterpartyCreateParams.Account>;
@@ -397,12 +392,6 @@ export interface CounterpartyCreateParams {
    * An optional user-defined 180 character unique identifier.
    */
   external_id?: string | null;
-
-  /**
-   * @deprecated An optional type to auto-sync the counterparty to your ledger.
-   * Either `customer` or `vendor`.
-   */
-  ledger_type?: 'customer' | 'vendor';
 
   legal_entity?: CounterpartyCreateParams.LegalEntity;
 
@@ -435,17 +424,6 @@ export interface CounterpartyCreateParams {
 }
 
 export namespace CounterpartyCreateParams {
-  /**
-   * @deprecated
-   */
-  export interface Accounting {
-    /**
-     * An optional type to auto-sync the counterparty to your ledger. Either `customer`
-     * or `vendor`.
-     */
-    type?: 'customer' | 'vendor';
-  }
-
   export interface Account {
     account_details?: Array<Account.AccountDetail>;
 
