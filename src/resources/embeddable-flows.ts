@@ -52,6 +52,13 @@ export interface EmbeddableFlow {
   expires_at: string;
 
   /**
+   * The Modern Treasury hosted URL for completing the flow. Only present for
+   * legal_entity_onboarding flows. Each response mints a fresh link that expires
+   * after 7 days.
+   */
+  hosted_url: string | null;
+
+  /**
    * This field will be true if this object exists in the live environment or false
    * if it exists in the test environment.
    */
@@ -76,6 +83,8 @@ export namespace EmbeddableFlow {
     legal_entity_id: string;
 
     type: 'individual';
+
+    return_url?: string;
   }
 
   export interface UnionMember1 {
@@ -128,7 +137,7 @@ export interface EmbeddableFlowCreateParams {
   options:
     | EmbeddableFlowCreateParams.AccountCollectionFlowCreateRequest
     | EmbeddableFlowCreateParams.PaymentFlowCreateRequest
-    | EmbeddableFlowCreateParams.Type;
+    | EmbeddableFlowCreateParams.UnionMember2;
 
   template: 'legal_entity_onboarding' | 'account_collection' | 'payment';
 }
@@ -201,8 +210,14 @@ export namespace EmbeddableFlowCreateParams {
     due_date?: string;
   }
 
-  export interface Type {
+  export interface UnionMember2 {
     type: 'individual';
+
+    /**
+     * The URL you want your customer redirected to upon completing the flow. This must
+     * be a valid HTTPS URL if set.
+     */
+    return_url?: string;
   }
 }
 
