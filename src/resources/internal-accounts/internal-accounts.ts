@@ -275,6 +275,11 @@ export interface InternalAccount {
    * The vendor ID associated with this account.
    */
   vendor_id: string | null;
+
+  /**
+   * An array of `Balance` objects from the account's latest balance report.
+   */
+  latest_balances?: Array<InternalAccount.LatestBalance>;
 }
 
 export namespace InternalAccount {
@@ -339,6 +344,88 @@ export namespace InternalAccount {
     updated_at: string;
 
     [k: string]: unknown;
+  }
+
+  export interface LatestBalance {
+    id: string;
+
+    /**
+     * The balance amount.
+     */
+    amount: number;
+
+    /**
+     * The amount of the balance as a string, preserving full precision for values that
+     * may exceed safe integer limits in some languages.
+     */
+    amount_string: string;
+
+    /**
+     * The date on which the balance became true for the account.
+     */
+    as_of_date: string | null;
+
+    /**
+     * The time on which the balance became true for the account.
+     */
+    as_of_time: string | null;
+
+    /**
+     * The specific type of balance reported. One of `opening_ledger`,
+     * `closing_ledger`, `current_ledger`, `opening_available`,
+     * `opening_available_next_business_day`, `closing_available`,
+     * `closing_pending_inflows`, `closing_pending_outflows`, `current_available`,
+     * 'previously_closed_book', `current_pending_inflows`, `current_pending_outflows`,
+     * or `other`.
+     */
+    balance_type:
+      | 'closing_available'
+      | 'closing_ledger'
+      | 'closing_pending_inflows'
+      | 'closing_pending_outflows'
+      | 'current_available'
+      | 'current_ledger'
+      | 'current_pending_inflows'
+      | 'current_pending_outflows'
+      | 'opening_available'
+      | 'opening_available_next_business_day'
+      | 'opening_ledger'
+      | 'other'
+      | 'previously_closed_book';
+
+    created_at: string;
+
+    /**
+     * The currency of the balance.
+     */
+    currency: Shared.Currency;
+
+    /**
+     * This field will be true if this object exists in the live environment or false
+     * if it exists in the test environment.
+     */
+    live_mode: boolean;
+
+    object: string;
+
+    updated_at: string;
+
+    /**
+     * The date on which the balance becomes available.
+     */
+    value_date: string | null;
+
+    /**
+     * The code used by the bank when reporting this specific balance.
+     */
+    vendor_code: string;
+
+    /**
+     * The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
+     * `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dwolla`, `evolve`,
+     * `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`, or `us_bank`.
+     */
+    vendor_code_type: string | null;
   }
 }
 
