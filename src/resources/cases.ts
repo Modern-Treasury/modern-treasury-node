@@ -79,6 +79,7 @@ export namespace Case {
       | 'onboarding_articles_of_incorporation_failure'
       | 'onboarding_business_registry_verification_failure'
       | 'onboarding_database_failure'
+      | 'onboarding_government_id_failure'
       | 'onboarding_proof_of_address_failure'
       | 'onboarding_ssn_check_failure'
       | 'onboarding_tin_check_failure';
@@ -88,7 +89,13 @@ export namespace Case {
     /**
      * The field that needs to be corrected or provided, if any.
      */
-    field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address' | null;
+    field:
+      | 'articles_of_incorporation'
+      | 'ein_letter'
+      | 'government_id'
+      | 'legal_entity_details'
+      | 'proof_of_address'
+      | null;
 
     /**
      * Instructions on how to resolve the requested action.
@@ -121,6 +128,7 @@ export namespace Case {
       | 'onboarding_articles_of_incorporation_failure'
       | 'onboarding_business_registry_verification_failure'
       | 'onboarding_database_failure'
+      | 'onboarding_government_id_failure'
       | 'onboarding_proof_of_address_failure'
       | 'onboarding_ssn_check_failure'
       | 'onboarding_tin_check_failure';
@@ -130,7 +138,13 @@ export namespace Case {
     /**
      * The field that needs to be corrected or provided, if any.
      */
-    field: 'articles_of_incorporation' | 'ein_letter' | 'legal_entity_details' | 'proof_of_address' | null;
+    field:
+      | 'articles_of_incorporation'
+      | 'ein_letter'
+      | 'government_id'
+      | 'legal_entity_details'
+      | 'proof_of_address'
+      | null;
 
     /**
      * Instructions on how to resolve the requested action.
