@@ -347,12 +347,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/internal_accounts/{internal_account_id}/account_capabilities/{id}',
   },
   {
-    clientCallName: 'client.internalAccounts.requestClosure',
-    fullyQualifiedName: 'internalAccounts.requestClosure',
-    httpMethod: 'post',
-    httpPath: '/api/internal_accounts/{id}/request_closure',
-  },
-  {
     clientCallName: 'client.internalAccounts.balanceReports.list',
     fullyQualifiedName: 'internalAccounts.balanceReports.list',
     httpMethod: 'get',

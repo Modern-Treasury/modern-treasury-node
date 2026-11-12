@@ -1143,6 +1143,8 @@ export namespace PaymentOrderCreateParams {
 
     contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
 
+    counterparty_id?: string | null;
+
     /**
      * An optional user-defined 180 character unique identifier.
      */
