@@ -113,16 +113,6 @@ export class InternalAccounts extends APIResource {
       { body, ...options },
     );
   }
-
-  /**
-   * This endpoint has been deprecated. Request closure with PATCH
-   * /api/internal_accounts/{id} and status: "pending_closure".
-   *
-   * @deprecated
-   */
-  requestClosure(id: string, options?: RequestOptions): APIPromise<InternalAccount> {
-    return this._client.post(path`/api/internal_accounts/${id}/request_closure`, options);
-  }
 }
 
 export type InternalAccountsPage = Page<InternalAccount>;

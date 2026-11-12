@@ -60,7 +60,7 @@ export interface AccountCollectionFlow {
    */
   counterparty_id: string;
 
-  payment_types: Array<'ach' | 'wire'>;
+  payment_types: Array<'ach' | 'wire' | 'check' | 'card'>;
 
   id?: string;
 
