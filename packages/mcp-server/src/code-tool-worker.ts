@@ -161,7 +161,6 @@ const fuse = new Fuse(
     'client.routingDetails.retrieve',
     'client.internalAccounts.create',
     'client.internalAccounts.list',
-    'client.internalAccounts.requestClosure',
     'client.internalAccounts.retrieve',
     'client.internalAccounts.update',
     'client.internalAccounts.updateAccountCapability',
