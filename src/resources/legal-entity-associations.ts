@@ -142,6 +142,7 @@ export interface ChildLegalEntity {
    */
   legal_structure:
     | 'corporation'
+    | 'government_entity'
     | 'llc'
     | 'non_profit'
     | 'partnership'
