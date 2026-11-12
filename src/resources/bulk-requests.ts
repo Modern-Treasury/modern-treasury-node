@@ -174,8 +174,7 @@ export interface BulkRequestCreateParams {
     | 'ledger_account'
     | 'ledger_transaction'
     | 'expected_payment'
-    | 'transaction'
-    | 'transaction_line_item';
+    | 'transaction';
 
   /**
    * An array of objects where each object contains the input params for a single
