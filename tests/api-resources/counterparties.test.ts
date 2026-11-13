@@ -163,7 +163,7 @@ describe('resource counterparties', () => {
         date_of_birth: '2019-12-27',
         documents: [
           {
-            document_type: 'articles_of_incorporation',
+            document_type: 'agent_authorization_letter',
             file_data: 'file_data',
             filename: 'filename',
           },
@@ -179,7 +179,7 @@ describe('resource counterparties', () => {
             id_type: 'ad_nrt',
             documents: [
               {
-                document_type: 'articles_of_incorporation',
+                document_type: 'agent_authorization_letter',
                 file_data: 'file_data',
                 filename: 'filename',
               },
@@ -242,7 +242,7 @@ describe('resource counterparties', () => {
               date_of_birth: '2019-12-27',
               documents: [
                 {
-                  document_type: 'articles_of_incorporation',
+                  document_type: 'agent_authorization_letter',
                   file_data: 'file_data',
                   filename: 'filename',
                 },
@@ -258,7 +258,7 @@ describe('resource counterparties', () => {
                   id_type: 'ad_nrt',
                   documents: [
                     {
-                      document_type: 'articles_of_incorporation',
+                      document_type: 'agent_authorization_letter',
                       file_data: 'file_data',
                       filename: 'filename',
                     },
