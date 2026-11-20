@@ -209,7 +209,6 @@ Methods:
 - <code title="get /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">retrieve</a>(id) -> InternalAccount</code>
 - <code title="patch /api/internal_accounts/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">update</a>(id, { ...params }) -> InternalAccount</code>
 - <code title="patch /api/internal_accounts/{internal_account_id}/account_capabilities/{id}">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">updateAccountCapability</a>(id, { ...params }) -> InternalAccountUpdateAccountCapabilityResponse</code>
-- <code title="post /api/internal_accounts/{id}/request_closure">client.internalAccounts.<a href="./src/resources/internal-accounts/internal-accounts.ts">requestClosure</a>(id) -> InternalAccount</code>
 
 ## BalanceReports
 
@@ -596,20 +595,6 @@ Methods:
 - <code title="patch /api/journal_reports/{id}">client.journalReports.<a href="./src/resources/journal-reports.ts">update</a>(id, { ...params }) -> void</code>
 
 # Holds
-
-Types:
-
-- <code><a href="./src/resources/holds.ts">HoldCreateResponse</a></code>
-- <code><a href="./src/resources/holds.ts">HoldRetrieveResponse</a></code>
-- <code><a href="./src/resources/holds.ts">HoldUpdateResponse</a></code>
-- <code><a href="./src/resources/holds.ts">HoldListResponse</a></code>
-
-Methods:
-
-- <code title="get /api/holds">client.holds.<a href="./src/resources/holds.ts">list</a>({ ...params }) -> HoldListResponsesPage</code>
-- <code title="post /api/holds">client.holds.<a href="./src/resources/holds.ts">create</a>({ ...params }) -> HoldCreateResponse</code>
-- <code title="get /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">retrieve</a>(id) -> HoldRetrieveResponse</code>
-- <code title="patch /api/holds/{id}">client.holds.<a href="./src/resources/holds.ts">update</a>(id, { ...params }) -> HoldUpdateResponse</code>
 
 # Cases
 

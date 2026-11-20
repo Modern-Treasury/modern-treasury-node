@@ -111,17 +111,7 @@ import {
   ForeignExchangeQuotes,
   ForeignExchangeQuotesPage,
 } from './resources/foreign-exchange-quotes';
-import {
-  HoldCreateParams,
-  HoldCreateResponse,
-  HoldListParams,
-  HoldListResponse,
-  HoldListResponsesPage,
-  HoldRetrieveResponse,
-  HoldUpdateParams,
-  HoldUpdateResponse,
-  Holds,
-} from './resources/holds';
+import { Holds } from './resources/holds';
 import {
   Identification,
   IdentificationCreateParams,
@@ -1560,17 +1550,7 @@ export declare namespace ModernTreasury {
     type JournalReportUpdateParams as JournalReportUpdateParams,
   };
 
-  export {
-    Holds as Holds,
-    type HoldCreateResponse as HoldCreateResponse,
-    type HoldRetrieveResponse as HoldRetrieveResponse,
-    type HoldUpdateResponse as HoldUpdateResponse,
-    type HoldListResponse as HoldListResponse,
-    type HoldListResponsesPage as HoldListResponsesPage,
-    type HoldListParams as HoldListParams,
-    type HoldCreateParams as HoldCreateParams,
-    type HoldUpdateParams as HoldUpdateParams,
-  };
+  export { Holds as Holds };
 
   export {
     Cases as Cases,
