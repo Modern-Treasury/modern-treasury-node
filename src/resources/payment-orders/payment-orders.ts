@@ -586,6 +586,7 @@ export namespace PaymentOrder {
       | 'chips_uid'
       | 'citibank_reference_number'
       | 'citibank_worldlink_clearing_system_reference_number'
+      | 'citibank_worldlink_fndref'
       | 'column_fx_quote_id'
       | 'column_reversal_pair_transfer_id'
       | 'column_transfer_id'
@@ -1142,6 +1143,8 @@ export namespace PaymentOrderCreateParams {
     account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
+
+    counterparty_id?: string | null;
 
     /**
      * An optional user-defined 180 character unique identifier.
