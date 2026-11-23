@@ -119,6 +119,7 @@ describe('resource paymentOrders', () => {
       },
       originating_party_name: 'originating_party_name',
       originating_secondary_party_name: 'originating_secondary_party_name',
+      payment_request_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       priority: 'high',
       process_after: '2019-12-27T18:11:19.117Z',
       purpose: 'purpose',
@@ -126,6 +127,7 @@ describe('resource paymentOrders', () => {
         account_details: [{ account_number: 'account_number', account_number_type: 'arbitrum_address' }],
         account_type: 'cash',
         contact_details: [{ contact_identifier: 'contact_identifier', contact_identifier_type: 'email' }],
+        counterparty_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         external_id: 'external_id',
         ledger_account: {
           currency: 'currency',
@@ -395,6 +397,7 @@ describe('resource paymentOrders', () => {
           external_id: 'external_id',
           metadata: { foo: 'string' },
           originating_account_id: 'originating_account_id',
+          payment_request_id: 'payment_request_id',
           per_page: 0,
           priority: 'high',
           process_after_end: '2019-12-27T18:11:19.117Z',

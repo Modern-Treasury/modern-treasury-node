@@ -293,6 +293,8 @@ export interface PaymentOrder {
    */
   originating_secondary_party_name: string | null;
 
+  payment_request_id: string | null;
+
   /**
    * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
    * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
@@ -586,6 +588,7 @@ export namespace PaymentOrder {
       | 'chips_uid'
       | 'citibank_reference_number'
       | 'citibank_worldlink_clearing_system_reference_number'
+      | 'citibank_worldlink_fndref'
       | 'column_fx_quote_id'
       | 'column_reversal_pair_transfer_id'
       | 'column_transfer_id'
@@ -909,6 +912,8 @@ export interface PaymentOrderCreateParams {
    */
   originating_secondary_party_name?: string | null;
 
+  payment_request_id?: string;
+
   /**
    * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
    * same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
@@ -1142,6 +1147,8 @@ export namespace PaymentOrderCreateParams {
     account_type?: ExternalAccountsAPI.ExternalAccountType;
 
     contact_details?: Array<PaymentOrdersAPI.ContactDetailCreateRequest>;
+
+    counterparty_id?: string | null;
 
     /**
      * An optional user-defined 180 character unique identifier.
@@ -1867,6 +1874,8 @@ export interface PaymentOrderListParams extends PageParams {
   metadata?: { [key: string]: string };
 
   originating_account_id?: string;
+
+  payment_request_id?: string;
 
   /**
    * Either `normal` or `high`. For ACH and EFT payments, `high` represents a
