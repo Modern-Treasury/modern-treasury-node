@@ -347,12 +347,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/api/internal_accounts/{internal_account_id}/account_capabilities/{id}',
   },
   {
-    clientCallName: 'client.internalAccounts.requestClosure',
-    fullyQualifiedName: 'internalAccounts.requestClosure',
-    httpMethod: 'post',
-    httpPath: '/api/internal_accounts/{id}/request_closure',
-  },
-  {
     clientCallName: 'client.internalAccounts.balanceReports.list',
     fullyQualifiedName: 'internalAccounts.balanceReports.list',
     httpMethod: 'get',
@@ -696,6 +690,36 @@ export const sdkMethods: SdkMethod[] = [
   },
   { clientCallName: 'client.paymentReferences.retireve', fullyQualifiedName: 'paymentReferences.retireve' },
   {
+    clientCallName: 'client.paymentRequests.list',
+    fullyQualifiedName: 'paymentRequests.list',
+    httpMethod: 'get',
+    httpPath: '/api/payment_requests',
+  },
+  {
+    clientCallName: 'client.paymentRequests.retrieve',
+    fullyQualifiedName: 'paymentRequests.retrieve',
+    httpMethod: 'get',
+    httpPath: '/api/payment_requests/{id}',
+  },
+  {
+    clientCallName: 'client.paymentRequests.update',
+    fullyQualifiedName: 'paymentRequests.update',
+    httpMethod: 'patch',
+    httpPath: '/api/payment_requests/{id}',
+  },
+  {
+    clientCallName: 'client.paymentRequests.simulate',
+    fullyQualifiedName: 'paymentRequests.simulate',
+    httpMethod: 'post',
+    httpPath: '/api/simulations/payment_requests',
+  },
+  {
+    clientCallName: 'client.paymentRequests.cancelSimulation',
+    fullyQualifiedName: 'paymentRequests.cancelSimulation',
+    httpMethod: 'patch',
+    httpPath: '/api/simulations/payment_requests/{id}',
+  },
+  {
     clientCallName: 'client.returns.list',
     fullyQualifiedName: 'returns.list',
     httpMethod: 'get',
@@ -1018,30 +1042,6 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'journalReports.update',
     httpMethod: 'patch',
     httpPath: '/api/journal_reports/{id}',
-  },
-  {
-    clientCallName: 'client.holds.list',
-    fullyQualifiedName: 'holds.list',
-    httpMethod: 'get',
-    httpPath: '/api/holds',
-  },
-  {
-    clientCallName: 'client.holds.create',
-    fullyQualifiedName: 'holds.create',
-    httpMethod: 'post',
-    httpPath: '/api/holds',
-  },
-  {
-    clientCallName: 'client.holds.retrieve',
-    fullyQualifiedName: 'holds.retrieve',
-    httpMethod: 'get',
-    httpPath: '/api/holds/{id}',
-  },
-  {
-    clientCallName: 'client.holds.update',
-    fullyQualifiedName: 'holds.update',
-    httpMethod: 'patch',
-    httpPath: '/api/holds/{id}',
   },
   {
     clientCallName: 'client.cases.list',

@@ -111,17 +111,7 @@ import {
   ForeignExchangeQuotes,
   ForeignExchangeQuotesPage,
 } from './resources/foreign-exchange-quotes';
-import {
-  HoldCreateParams,
-  HoldCreateResponse,
-  HoldListParams,
-  HoldListResponse,
-  HoldListResponsesPage,
-  HoldRetrieveResponse,
-  HoldUpdateParams,
-  HoldUpdateResponse,
-  Holds,
-} from './resources/holds';
+import { Holds } from './resources/holds';
 import {
   Identification,
   IdentificationCreateParams,
@@ -245,6 +235,15 @@ import {
   PaymentReferences,
   PaymentReferencesPage,
 } from './resources/payment-references';
+import {
+  PaymentRequest,
+  PaymentRequestCancelSimulationParams,
+  PaymentRequestListParams,
+  PaymentRequestSimulateParams,
+  PaymentRequestUpdateParams,
+  PaymentRequests,
+  PaymentRequestsPage,
+} from './resources/payment-requests';
 import {
   ReturnCreateParams,
   ReturnListParams,
@@ -1149,6 +1148,7 @@ export class ModernTreasury {
   paymentFlows: API.PaymentFlows = new API.PaymentFlows(this);
   paymentOrders: API.PaymentOrders = new API.PaymentOrders(this);
   paymentReferences: API.PaymentReferences = new API.PaymentReferences(this);
+  paymentRequests: API.PaymentRequests = new API.PaymentRequests(this);
   returns: API.Returns = new API.Returns(this);
   transactions: API.Transactions = new API.Transactions(this);
   validations: API.Validations = new API.Validations(this);
@@ -1194,6 +1194,7 @@ ModernTreasury.LineItems = LineItems;
 ModernTreasury.PaymentFlows = PaymentFlows;
 ModernTreasury.PaymentOrders = PaymentOrders;
 ModernTreasury.PaymentReferences = PaymentReferences;
+ModernTreasury.PaymentRequests = PaymentRequests;
 ModernTreasury.Returns = Returns;
 ModernTreasury.Transactions = Transactions;
 ModernTreasury.Validations = Validations;
@@ -1447,6 +1448,16 @@ export declare namespace ModernTreasury {
   };
 
   export {
+    PaymentRequests as PaymentRequests,
+    type PaymentRequest as PaymentRequest,
+    type PaymentRequestsPage as PaymentRequestsPage,
+    type PaymentRequestListParams as PaymentRequestListParams,
+    type PaymentRequestUpdateParams as PaymentRequestUpdateParams,
+    type PaymentRequestSimulateParams as PaymentRequestSimulateParams,
+    type PaymentRequestCancelSimulationParams as PaymentRequestCancelSimulationParams,
+  };
+
+  export {
     Returns as Returns,
     type ReturnObject as ReturnObject,
     type ReturnObjectsPage as ReturnObjectsPage,
@@ -1560,17 +1571,7 @@ export declare namespace ModernTreasury {
     type JournalReportUpdateParams as JournalReportUpdateParams,
   };
 
-  export {
-    Holds as Holds,
-    type HoldCreateResponse as HoldCreateResponse,
-    type HoldRetrieveResponse as HoldRetrieveResponse,
-    type HoldUpdateResponse as HoldUpdateResponse,
-    type HoldListResponse as HoldListResponse,
-    type HoldListResponsesPage as HoldListResponsesPage,
-    type HoldListParams as HoldListParams,
-    type HoldCreateParams as HoldCreateParams,
-    type HoldUpdateParams as HoldUpdateParams,
-  };
+  export { Holds as Holds };
 
   export {
     Cases as Cases,
