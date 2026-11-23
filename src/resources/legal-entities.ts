@@ -249,6 +249,8 @@ export interface LegalEntity {
    */
   legal_structure:
     | 'corporation'
+    | 'estate'
+    | 'government_entity'
     | 'llc'
     | 'non_profit'
     | 'partnership'
@@ -792,6 +794,8 @@ export interface LegalEntityCreateParams {
    */
   legal_structure?:
     | 'corporation'
+    | 'estate'
+    | 'government_entity'
     | 'llc'
     | 'non_profit'
     | 'partnership'
@@ -903,12 +907,14 @@ export namespace LegalEntityCreateParams {
      * A category given to the document, can be `null`.
      */
     document_type:
+      | 'agent_authorization_letter'
       | 'articles_of_incorporation'
       | 'certificate_of_good_standing'
       | 'ein_letter'
       | 'generic'
       | 'identification_back'
       | 'identification_front'
+      | 'letter_of_administration'
       | 'proof_of_address';
 
     /**
@@ -1060,6 +1066,8 @@ export interface LegalEntityUpdateParams {
    */
   legal_structure?:
     | 'corporation'
+    | 'estate'
+    | 'government_entity'
     | 'llc'
     | 'non_profit'
     | 'partnership'

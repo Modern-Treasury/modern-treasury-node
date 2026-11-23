@@ -96,17 +96,7 @@ export {
   type ForeignExchangeQuoteCreateParams,
   type ForeignExchangeQuotesPage,
 } from './foreign-exchange-quotes';
-export {
-  Holds,
-  type HoldCreateResponse,
-  type HoldRetrieveResponse,
-  type HoldUpdateResponse,
-  type HoldListResponse,
-  type HoldListParams,
-  type HoldCreateParams,
-  type HoldUpdateParams,
-  type HoldListResponsesPage,
-} from './holds';
+export { Holds } from './holds';
 export {
   Identifications,
   type Identification,
@@ -279,6 +269,15 @@ export {
   type PaymentReferenceListParams,
   type PaymentReferencesPage,
 } from './payment-references';
+export {
+  PaymentRequests,
+  type PaymentRequest,
+  type PaymentRequestListParams,
+  type PaymentRequestUpdateParams,
+  type PaymentRequestSimulateParams,
+  type PaymentRequestCancelSimulationParams,
+  type PaymentRequestsPage,
+} from './payment-requests';
 export {
   Returns,
   type ReturnObject,
