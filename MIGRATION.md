@@ -155,6 +155,7 @@ client.example.list(undefined, { headers: { ... } });
 - `client.paymentOrders.update()`
 - `client.paymentOrders.reversals.list()`
 - `client.paymentReferences.list()`
+- `client.paymentRequests.list()`
 - `client.returns.list()`
 - `client.transactions.list()`
 - `client.transactions.update()`
@@ -174,7 +175,6 @@ client.example.list(undefined, { headers: { ... } });
 - `client.journalSources.list()`
 - `client.journalReports.list()`
 - `client.journalReports.update()`
-- `client.holds.list()`
 - `client.cases.list()`
 - `client.virtualAccountSettings.list()`
 - `client.identifications.update()`
